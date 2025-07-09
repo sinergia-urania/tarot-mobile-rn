@@ -52,14 +52,14 @@ Chrome/
 coverage/
 .nyc_output/
 
-# Ignoriši slike i binarne assete osim ako ih koristiš u projektu
+# Ignoriši slike i binarne assete OSIM onih u src/assets/cards/
 *.png
 *.jpg
 *.jpeg
 *.gif
 *.webp
 *.svg
-!src/assets/
+!src/assets/cards/*.webp
 
 # Ostavi samo “src”, “app.json”, “app.config.js”, “package.json”, “eas.json”, README...
 !/src/
