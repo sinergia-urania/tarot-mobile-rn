@@ -1,0 +1,91 @@
+# Ignoriši sve osim osnovnih izvora projekta
+
+# Sve što je skriveno i sistemski
+.*
+!.gitignore
+
+# Node i build foldere
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.expo/
+.expo-shared/
+dist/
+build/
+android/
+ios/
+
+# AppData i sve temp foldere
+AppData/
+*.tmp
+*.log
+*.lock
+*.bak
+*.db
+*.jfm
+*.wal
+
+# VS Code i JetBrains IDE fajlovi
+.vscode/
+.idea/
+*.iml
+
+# OS specifično
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Google/Chrome podaci
+Google/
+Chrome/
+
+# Svi potencijalni lokalni korisnički podaci
+**/Local/
+**/Roaming/
+**/OneDrive/
+
+# Ignore test coverage output
+coverage/
+.nyc_output/
+
+# Ignoriši slike i binarne assete osim ako ih koristiš u projektu
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+!src/assets/
+
+# Ostavi samo “src”, “app.json”, “app.config.js”, “package.json”, “eas.json”, README...
+!/src/
+!app.json
+!app.config.js
+!package.json
+!eas.json
+!README.md
+
+# Test folderi i output
+test/
+tests/
+__tests__/
+*.spec.js
+*.test.js
+
+# Ignoriši ostale "random" foldere/fajlove
+*.sublime-project
+*.sublime-workspace
+*.swp
+
+# Ignore private keys
+*.pem
+*.key
+*.crt
+*.p12
+
+# Ignore Android keystore
+*.jks

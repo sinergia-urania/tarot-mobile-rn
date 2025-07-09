@@ -1,0 +1,546 @@
+{
+  "theFool": {
+    "symbolism": "Luda stoji na ivici litice, spremna na prvi korak u nepoznato. U ruci drži ružu kao simbol nevinosti, a iza nje pas predstavlja instinkt i unutrašnju zaštitu.",
+    "uprightExtended": "U uspravnom položaju, Luda označava početak avanture i poverenje u život. Simboliše otvorenost za promene, spontanost i novu fazu bez straha.",
+    "reversedExtended": "U obrnutom položaju, karta ukazuje na nepromišljenost, naivnost i izbegavanje odgovornosti. Moguće je da osoba ide napred bez svesti o posledicama.",
+    "daily": "Danas je vreme da se oslobodiš očekivanja i kreneš u nepoznato s poverenjem. Ludak te podseća da je svaka greška samo deo putovanja."
+  },
+  "theMagician": {
+    "symbolism": "Mag stoji sa jednom rukom podignutom ka nebu, drugom prema zemlji — simbol veze između duhovnog i materijalnog sveta. Na stolu su alati svih elemenata, što simbolizuje njegovu sposobnost manifestacije.",
+    "uprightExtended": "U uspravnom položaju, Mag ukazuje na ličnu moć, fokus i sposobnost da se ideje pretoče u stvarnost. Vreme je za akciju uz korišćenje svih raspoloživih sredstava.",
+    "reversedExtended": "Kada je obrnuta, karta Mag može ukazivati na manipulaciju, iluzije i neiskorišćen potencijal. Osoba možda ne koristi svoje darove ili ih koristi sebično.",
+    "daily": "Iskoristi današnji dan da prepoznaš svoje talente i manifestuješ ono što ti je zaista važno. Mag ti poručuje: imaš sve što ti je potrebno – koristi to svesno."
+  },
+  "theHighPriestess": {
+    "symbolism": "Sveštenica sedi između dva stuba, simbolizujući ravnotežu između suprotnosti. Zavese iza nje skrivaju mistična znanja, dok svitak u njenim rukama označava skrivenu mudrost.",
+    "uprightExtended": "Karta predstavlja intuiciju, tišinu i unutrašnju spoznaju. Upozorava na potrebu da slušamo svoj unutrašnji glas i tražimo odgovore u sebi.",
+    "reversedExtended": "U obrnutom položaju označava potisnutu intuiciju, emocionalnu zbunjenost ili odvojenost od duhovnih vrednosti. Moguće je da osoba ignoriše unutrašnje znake.",
+    "daily": "Poveri se svojoj intuiciji danas. Odgovori koje tražiš nalaze se već u tebi – dovoljno je da utišaš um i oslušneš unutrašnji glas."
+  },
+  "theEmpress": {
+    "symbolism": "Carica sedi u plodnoj prirodi, okružena žitom i drvećem, simbolizujući obilje i plodnost. Njena kruna od zvezda povezuje je sa univerzumom.",
+    "uprightExtended": "Carica simbolizuje majčinsku energiju, stvaranje, ljubav i negu. Upozorava na doba plodnosti u svakom smislu — kreativno, emotivno ili fizički.",
+    "reversedExtended": "U obrnutom položaju može značiti zavisnost od drugih, emotivnu iscrpljenost ili kreativnu blokadu. Potrebno je negovati sebe kako bi se moglo negovati druge.",
+    "daily": "Danas je dan za njegovanje svega što raste – bilo da je to ideja, odnos ili sopstveni mir. Carica te podseća da nežnost prema sebi donosi plodove spolja."
+
+  },
+  "theEmperor": {
+    "symbolism": "Car sedi na kamenom prestolu ukrašenom simbolima ovna, što označava snagu, disciplinu i autoritet. On predstavlja stabilnost i svet reda.",
+    "uprightExtended": "U uspravnom položaju označava kontrolu, odgovornost i vođstvo. Karta sugeriše potrebu za strukturiranjem života i donošenjem čvrstih odluka.",
+    "reversedExtended": "U obrnutom položaju ukazuje na tiraniju, tvrdoglavost ili emocionalnu hladnoću. Moguće je da osoba koristi moć na destruktivan način.",
+    "daily": "Stabilnost i struktura su tvoji saveznici danas. Car te podstiče da postaviš granice i doneseš odluke s poverenjem u vlastiti autoritet."
+
+  },
+  "theHierophant": {
+    "symbolism": "Sveštenik sedi između dva stuba, simbolizujući institucionalni autoritet i duhovno znanje. Njegove ruke su podignute u blagoslov, a vernici kleče ispred njega.",
+    "uprightExtended": "Ova karta označava tradiciju, duhovni autoritet i učenje kroz institucije. Ukazuje na potrebu za poštovanjem duhovnih zakona i duhovnih učitelja.",
+    "reversedExtended": "Kada je obrnuta, karta ukazuje na odbacivanje pravila, duhovnu pobunu ili rigidnost koja sputava lični rast. Ponekad označava i lažni autoritet.",
+    "daily": "Potraži mudrost u tradiciji ili savet od nekog kome veruješ. Današnji dan traži poštovanje znanja koje je već postojalo pre nas."
+
+  },
+  "theLovers": {
+    "symbolism": "Muškarac i žena stoje goli ispod anđela, predstavljajući čistu vezu i božansko jedinstvo. U pozadini su simboli drveta znanja i vatre strasti.",
+    "uprightExtended": "Uspravno, Ljubavnici simbolizuju duboku povezanost, harmoniju i izbor iz ljubavi. Mogu označavati ljubavne odnose, ali i ključne moralne odluke.",
+    "reversedExtended": "U obrnutom položaju označava nesklad, neusklađenost u vezi ili pogrešan izbor. Potrebno je preispitati srž emotivne odluke.",
+    "daily": "Danas je vreme da biraš srcem. Ljubavnici te podsećaju da su odnosi ogledala – ono što nudiš, to i primaš."
+
+  },
+  "theChariot": {
+    "symbolism": "Kočijaš stoji samouvereno između crne i bele sfinge, držeći uzde duhovne i materijalne snage. Zvezda na njegovom čelu simbolizuje božansko vođstvo.",
+    "uprightExtended": "Ova karta označava volju, pobedu i napredovanje uprkos preprekama. Nagoveštava jaku kontrolu i balans između suprotnosti.",
+    "reversedExtended": "Kada je obrnuta, Chariot ukazuje na gubitak kontrole, unutrašnji konflikt ili odustajanje. Potrebno je ponovo uskladiti unutrašnju snagu.",
+    "daily": "Preuzmi kontrolu i vozi prema svom cilju. Kočijaš zna: čak i suprotne sile mogu se ujediniti ako znaš gde ideš."
+
+  },
+  "strength": {
+    "symbolism": "Žena nežno zatvara lavlja usta, što ukazuje na moć saosećanja i unutrašnju snagu. Lemniskata iznad njene glave označava beskonačni potencijal duha.",
+    "uprightExtended": "Uspravna karta Snage ukazuje na strpljenje, hrabrost i suptilnu kontrolu. Snaga dolazi iz smirenosti i razumevanja, a ne iz agresije.",
+    "reversedExtended": "Obrnuta pozicija ukazuje na sumnju u sebe, nedostatak hrabrosti ili prepuštanje strastima. Potrebno je uspostaviti unutrašnju ravnotežu.",
+    "daily": "Tvoja snaga danas dolazi iz strpljenja i blagosti. Ne moraš da vičeš da bi bio snažan – tišina tvog srca zna put."
+
+  },
+  "theHermit": {
+    "symbolism": "Pustinjak stoji na planinskom vrhu sa lampom u ruci, što simbolizuje mudrost, introspekciju i potragu za istinom. Njegov štap je oslonac kroz duhovnu tišinu.",
+    "uprightExtended": "Karta ukazuje na potrebu za povlačenjem, tišinom i unutrašnjom refleksijom. Vreme je za slušanje unutrašnjeg glasa i duhovno usmerenje.",
+    "reversedExtended": "Kada je obrnuta, označava izolaciju, unutrašnju blokadu ili odbijanje da se suočimo sa sobom. Potrebno je otvoriti se prema mudrosti drugih.",
+    "daily": "Danas je vreme za tišinu, povlačenje i osluškivanje unutrašnje istine. Pustinjak te vodi ka svetlu koje nosiš u sebi."
+
+  },
+  "wheelOfFortune": {
+    "symbolism": "Točak sreće prikazuje cikličnu prirodu života sa simbolima bogova, zmija i sfinge. Označava stalnu promenu i univerzalne sile koje upravljaju sudbinom.",
+    "uprightExtended": "Ova karta označava sudbinu, promenu i preokrete koji dolaze neizbežno. Mogući su iznenadni događaji koji menjaju tok života.",
+    "reversedExtended": "U obrnutom položaju označava otpor promeni, osećaj da nas 'sve ide nizbrdo' ili da se vrtimo u krug. Potrebno je pustiti i verovati prirodnom toku.",
+    "daily": "Sudbina se okreće – prihvati promenu i budi spreman na iznenađenja. Točak donosi prilike kad se najmanje nadaš."
+
+  },
+  "justice": {
+    "symbolism": "Pravda sedi između dva stuba, sa mačem i vagom — simbolima istine i ravnoteže. Pogled joj je direktan, ukazujući na jasnoću i poštenje.",
+    "uprightExtended": "Uspravna Pravda označava istinu, ravnotežu, karmičku pravdu i odgovornost. Ukazuje da će sve biti razrešeno pravedno.",
+    "reversedExtended": "U obrnutom položaju označava nepravdu, pristrasnost ili izbegavanje odgovornosti. Potrebno je pogledati istini u oči.",
+    "daily": "Danas se traži poštenje – prema sebi i drugima. Pravda te podseća da je ravnoteža ključ mira, a istina svetlost."
+
+  },
+  "theHangedMan": {
+    "symbolism": "Obešeni čovek visi naglavačke, ali sa spokojnim izrazom lica. Oko njegove glave svetli aura — simbol prosvetljenja kroz predaju.",
+    "uprightExtended": "Ova karta poziva na pauzu, kontemplaciju i promenu perspektive. Progres dolazi kroz prihvatanje i žrtvu.",
+    "reversedExtended": "U obrnutom položaju ukazuje na otpor promeni, zastoje ili tvrdoglavo držanje starog pogleda. Potrebno je pustiti kontrolu.",
+    "daily": "Zastani. Promeni ugao. Obešeni ti poručuje: ponekad je najmudrija akcija – predaja."
+
+  },
+  "death": {
+    "symbolism": "Smrt jaše na belom konju i nosi crnu zastavu sa belim ružama, simbolizujući kraj i novo rađanje. Ljudi oko njega prihvataju neizbežno.",
+    "uprightExtended": "Uspravna Smrt označava transformaciju, kraj i novi početak. Oslobađanje od starog da bi se napravilo mesto za novo.",
+    "reversedExtended": "Kada je obrnuta, označava strah od promena, blokadu ili stagnaciju. Proces transformacije se opire, ali je neizbežan.",
+    "daily": "Pusti ono što više ne služi. Danas je dan za unutrašnju transformaciju – iza kraja uvek dolazi novi početak."
+
+  },
+  "temperance": {
+    "symbolism": "Anđeo sipa tečnost iz jedne čaše u drugu, simbolizujući balans i sklad. Jedna noga mu je u vodi, a druga na zemlji — duhovno i fizičko u harmoniji.",
+    "uprightExtended": "Karta označava balans, strpljenje i umerenost. Poziva na sklad između suprotnosti i staložen pristup izazovima.",
+    "reversedExtended": "U obrnutom položaju ukazuje na ekstrem, nestrpljenje ili unutrašnji haos. Potrebno je obnoviti unutrašnju ravnotežu.",
+    "daily": "Umiri um i izbalansiraj želje. Umerenost te podseća da se čuda dešavaju kada uskladiš dušu i telo."
+
+  },
+  "theDevil": {
+    "symbolism": "Đavo sedi na prestolu s okovima oko vrata muškarca i žene, koji simbolizuju vezanost za materijalno, strasti i iluzije.",
+    "uprightExtended": "Uspravno označava zavisnost, iskušenje i vezanost za lažne ideale. Potrebno je osloboditi se lanaca koje smo sami stavili.",
+    "reversedExtended": "U obrnutom položaju ukazuje na buđenje i oslobađanje. Osoba postaje svesna sopstvenih ograničenja i započinje proces oslobađanja.",
+    "daily": "Prepoznaj šta te vezuje. Đavo ti šapuće iluzije – danas ih možeš raskrinkati i napraviti prvi korak ka slobodi."
+
+  },
+  "theTower": {
+    "symbolism": "Kula se ruši pod udarom munje dok ljudi padaju s nje. Simbolizuje iznenadnu promenu, šok i rušenje iluzija.",
+    "uprightExtended": "Ova karta ukazuje na neočekivane događaje koji ruše stare temelje. Iako bolno, omogućava izgradnju na zdravijim osnovama.",
+    "reversedExtended": "U obrnutom položaju označava unutrašnji potres, poricanje promene ili strah od gubitka kontrole. Oslobađanje se dešava iznutra.",
+    "daily": "Promena može boleti, ali rušenje lažnog vodi do istine. Kula te poziva da otpustiš ono što je samo izgledalo stabilno."
+
+  },
+  "theStar": {
+    "symbolism": "Žena sipa vodu u jezero i na zemlju pod noćnim zvezdanim nebom, simbolizujući nadu, inspiraciju i duhovnu obnovu.",
+    "uprightExtended": "Uspravno donosi svetlost posle tame, duhovno vođstvo i veru u bolje sutra. Ukazuje na obnovu snage i inspiraciju.",
+    "reversedExtended": "Obrnuto simbolizuje gubitak vere, pesimizam ili osećaj udaljenosti od duhovnog izvora. Potrebno je vratiti poverenje u tok života.",
+    "daily": "Nada se vraća. Zvezda te podseća da i u najmračnijem trenutku postoji svetlost – u tebi."
+
+  },
+  "theMoon": {
+    "symbolism": "Put vodi između dva tornja kroz tamu, osvetljen mesecom. Pas i vuk laju na Mesec, dok rak izlazi iz vode — simboli nesvesnog i intuicije.",
+    "uprightExtended": "Karta ukazuje na snove, intuiciju i skrivena značenja. Vreme je za slušanje unutrašnjeg glasa i čuvanje od iluzija.",
+    "reversedExtended": "U obrnutom položaju označava zbunjenost, anksioznost i lažne percepcije. Potrebno je pronaći jasnoću kroz tišinu.",
+    "daily": "Danas slušaj intuiciju više nego logiku. Mesec ti osvetljava skrivene istine – ali samo ako si spreman da pogledaš unutar sebe."
+
+  },
+  "theSun": {
+    "symbolism": "Dete jaše belog konja ispred zida suncokreta, dok Sunce sija jasno na nebu. Simbol je radosti, jasnoće i života.",
+    "uprightExtended": "Ova karta donosi sreću, uspeh, vitalnost i jasnoću. Sve postaje osvetljeno i energija teče slobodno.",
+    "reversedExtended": "U obrnutom položaju ukazuje na privremeni pad radosti, senku neizvesnosti ili preterani ego. Svetlost još uvek postoji — samo je zamućena.",
+    "daily": "Ovo je dan radosti, jasnoće i zahvalnosti. Sunce ti poručuje: zrači – i sve oko tebe će zasijati."
+
+  },
+  "judgement": {
+    "symbolism": "Anđeo trubi sa neba dok mrtvi ustaju iz grobova, simbolizujući buđenje, oproštaj i karmičku presudu. Scena je puna duhovnog poziva.",
+    "uprightExtended": "Ova karta simbolizuje buđenje, obnovu i donošenje važnih odluka. Poziva na oslobađanje iz prošlosti i pripremu za viši nivo svesti.",
+    "reversedExtended": "U obrnutom položaju označava strah od osude, propuštene prilike ili neprihvatanje lične odgovornosti. Potrebno je suočiti se s istinom.",
+    "daily": "Danas je vreme za oproštaj i novi početak. Sudnji dan te poziva da se probudiš iz stare verzije sebe i zakoračiš u višu istinu."
+
+  },
+  "theWorld": {
+    "symbolism": "Figura žene u vencu pleše unutar venčanog kruga, okružena simbolima četiri sveta bića. Ova scena označava završetak, celovitost i jedinstvo.",
+    "uprightExtended": "Karta simbolizuje postignuće, ispunjenje i zatvaranje ciklusa. Donosi uspeh kroz integraciju iskustava.",
+    "reversedExtended": "Obrnuta ukazuje na osećaj da nešto još nedostaje, kašnjenje u završetku ili ponavljanje istih obrazaca. Potrebno je povezati sve delove u celinu.",
+    "daily": "Završi ono što je započeto i proslavi celinu. Svet ti donosi osećaj zaokruženosti – jer ti si i putnik i cilj."
+
+  },
+  "aceOfWands": {
+    "symbolism": "Ruka koja izlazi iz oblaka drži plamteći štap — simbol duhovne vatre, inicijative i kreativne energije.",
+    "uprightExtended": "Uspravno ova karta simbolizuje novi početak, kreativnu iskru i potencijal za rast. Vreme je za akciju i pokretanje ideje.",
+    "reversedExtended": "U obrnutom položaju označava blokadu inspiracije, kašnjenje u pokretanju ili strah od preuzimanja inicijative.",
+    "daily": "Danas je dan za akciju i nove početke. As štapova te podstiče da ispružiš ruku ka inspiraciji i zapališ svoju unutrašnju vatru."
+
+  },
+  "twoOfWands": {
+    "symbolism": "Čovek drži globus i gleda u daljinu sa kule, simbolizujući planiranje, viziju i dominaciju nad prostorom.",
+    "uprightExtended": "Uspravno označava razmišljanje unapred, donošenje odluka i proširenje horizonta. Planovi su tu — vreme je da se odvažiš.",
+    "reversedExtended": "Obrnuto ukazuje na kolebanje, neodlučnost i strah od nepoznatog. Osoba možda ima viziju, ali ne i hrabrost da krene.",
+    "daily": "Vreme je da izađeš iz zone komfora i pogledaš širu sliku. Dvojka štapova donosi planove i vizije – usudi se da ih pratiš."
+
+  },
+  "threeOfWands": {
+    "symbolism": "Figura stoji na uzvišenju gledajući brodove koji dolaze i odlaze — simbol očekivanja i trgovine.",
+    "uprightExtended": "Ova karta simbolizuje širenje, uspeh i napredak na osnovu već uloženog truda. Stižu plodovi rada.",
+    "reversedExtended": "U obrnutom položaju ukazuje na odlaganja, neispunjena očekivanja ili nejasan pravac napredovanja.",
+    "daily": "Danas se vidi prvi pomak. Trojka štapova te podseća da su tvoji napori već poslali energiju u svet – uskoro dolazi odgovor."
+
+  },
+  "fourOfWands": {
+    "symbolism": "Ljudi slave pod ukrašenom palisadom — simbol mira, sklada i zajedničke radosti.",
+    "uprightExtended": "Karta ukazuje na stabilnost, slavlje i harmonične odnose. Moguće slavlje, venčanje ili uspešan povratak kući.",
+    "reversedExtended": "Obrnuto označava neusklađenost u zajednici, unutrašnju nesigurnost ili neprepoznatu radost. Potrebno je vratiti balans.",
+    "daily": "Slavi male pobede. Četvorka štapova donosi stabilnost, zajedništvo i osećaj doma – makar i simbolički."
+
+  },
+  "fiveOfWands": {
+    "symbolism": "Pet figura maše štapovima, delujući kao da se bore ili treniraju — simbol konkurencije i sukoba.",
+    "uprightExtended": "Uspravno predstavlja nesuglasice, rivalstvo ili konstruktivnu borbu. Napor donosi razvoj.",
+    "reversedExtended": "U obrnutom položaju označava rasprave bez smisla, unutrašnji konflikt ili potrebu za kompromisom.",
+    "daily": "Moguće je da naiđeš na sukob mišljenja ili borbu ega. Petica štapova ti nudi šansu da kroz izazov ojačaš svoje granice."
+
+  },
+  "sixOfWands": {
+    "symbolism": "Ratnik na konju nosi venac pobede dok ga masa pozdravlja — simbol javnog priznanja i dostignuća.",
+    "uprightExtended": "Uspravno predstavlja trijumf, priznanje i samopouzdanje. Uspeh koji je rezultat prethodnog truda i borbe.",
+    "reversedExtended": "U obrnutom položaju ukazuje na neprepoznat trud, unutrašnje sumnje ili strah od neuspeha. Potrebno je raditi na samovrednovanju.",
+    "daily": "Danas te prati energija priznanja i uspeha. Šestica štapova te podseća da je u redu da primiš aplauz – zaslužio si ga."
+
+  },
+  "sevenOfWands": {
+    "symbolism": "Čovek stoji na uzvišenju i brani se od šest napadača — simbol odlučnosti i borbe za stav.",
+    "uprightExtended": "Karta ukazuje na potrebu da se zauzme stav i brani sopstvena pozicija. Iako izazovno, vredi se boriti.",
+    "reversedExtended": "Obrnuto označava osećaj preplavljenosti, defanzivu ili povlačenje pred izazovima. Potrebna je hrabrost da se istraje.",
+    "daily": "Stani za ono u šta veruješ. Sedmica štapova donosi izazove, ali i snagu da braniš svoj stav – uzdignute glave."
+
+  },
+  "eightOfWands": {
+    "symbolism": "Osam štapova leti kroz vazduh — simbol brzine, kretanja i napretka bez prepreka.",
+    "uprightExtended": "Uspravno označava brzo kretanje, dobre vesti i ubrzanje događaja. Energija teče slobodno i stvari se dešavaju brzo.",
+    "reversedExtended": "U obrnutom položaju označava kašnjenja, blokade u komunikaciji ili zbunjenost. Potrebno je uskladiti misli i akciju.",
+    "daily": "Vreme se ubrzava. Osmica štapova donosi iznenadne vesti, brzu komunikaciju ili pomak – drži fokus."
+
+  },
+  "nineOfWands": {
+    "symbolism": "Ranjen ratnik stoji s jednim štapom dok ostali stoje iza njega — simbol istrajnosti i zaštite.",
+    "uprightExtended": "Ova karta označava izdržljivost, upornost i odbranu. Iako umoran, još uvek si spreman da zaštitiš ono što je tvoje.",
+    "reversedExtended": "Obrnuto ukazuje na izgaranje, paranoju ili osećaj da si stalno pod napadom. Potrebno je obnoviti energiju.",
+    "daily": "Možda si umoran, ali još si tu. Devetka štapova te podseća da si izdržao mnogo i da ti je snaga bliže nego što misliš."
+
+
+  },
+  "tenOfWands": {
+    "symbolism": "Figura nosi deset štapova i teško hoda — simbol tereta i odgovornosti koje je sam preuzeo.",
+    "uprightExtended": "Uspravno označava preopterećenost, odgovornost i završnu fazu velikog zadatka. Vreme je da razmotriš delegiranje.",
+    "reversedExtended": "U obrnutom položaju ukazuje na odbijanje pomoći, osećaj zarobljenosti ili emocionalni teret. Vreme je za rasterećenje.",
+    "daily": "Ako nosiš previše, danas je dan da ispustiš nešto. Desetka štapova poziva da podeliš teret ili reorganizuješ prioritete."
+
+  },
+  "pageOfWands": {
+    "symbolism": "Mladić u egzotičnoj odeći posmatra štap — simbol novih ideja, poruka i duhovne radoznalosti.",
+    "uprightExtended": "Uspravno označava poruku, vest ili početak inspiracije. Vreme je za istraživanje i otkrivanje unutrašnje vatre.",
+    "reversedExtended": "U obrnutom položaju označava nesigurnost, nepromišljenost ili odlaganje izražavanja. Potrebno je pronaći hrabrost i autentičnost.",
+    "daily": "Danas se probudi radoznalost. Paz štapova donosi mladalačku energiju – isprobaj nešto novo, makar i sitnicu."
+
+  },
+  "knightOfWands": {
+    "symbolism": "Vitez na konju juri napred sa štapom — simbol hrabrosti, impulsa i strasti u pokretu.",
+    "uprightExtended": "Uspravno označava snažnu akciju, entuzijazam i želju za osvajanjem. Energija je intenzivna i puna inicijative.",
+    "reversedExtended": "Obrnuto ukazuje na nepromišljenost, preteranu brzinu ili nedostatak strpljenja. Potrebno je uskladiti akciju sa svrhom.",
+    "daily": "Sledi strast, ali bez srljanja. Vitez štapova ti daje vetar u leđa – iskoristi ga za cilj, ne samo za trku."
+
+  },
+  "queenOfWands": {
+    "symbolism": "Kraljica sedi na prestolu sa suncokretom i mačkom — simboli samopouzdanja, harizme i duhovne snage.",
+    "uprightExtended": "Uspravno označava toplinu, magnetizam i unutrašnju sigurnost. Kraljica inspiriše druge da zasijaju.",
+    "reversedExtended": "U obrnutom položaju ukazuje na nesigurnost, ljubomoru ili manipulaciju kroz šarm. Potrebna je iskrenost u vođstvu.",
+    "daily": "Zračiš harizmom i samopouzdanjem. Kraljica štapova ti poručuje da ne skrivaš svoju svetlost – inspiriši druge time što jesi."
+
+  },
+  "kingOfWands": {
+    "symbolism": "Kralj sedi s štapom u ruci, gledajući napred — simbol liderstva, vizije i autoriteta sa strašću.",
+    "uprightExtended": "Uspravno predstavlja vizionarsko vođstvo, hrabrost i odlučnost. Vreme je za preuzimanje kontrole s inspiracijom.",
+    "reversedExtended": "Obrnuto označava autoritarnost, aroganciju ili neosnovano komandovanje. Potrebno je voditi primerom, ne silom.",
+    "daily": "Preuzmi vođstvo – ali s vizijom. Kralj štapova ti daje moć da vodiš druge kroz primer, ne kroz kontrolu."
+
+  },
+  "aceOfCups": {
+    "symbolism": "Ruka izlazi iz oblaka i drži zlatni pehar iz kog se preliva voda, simbol emocija, ljubavi i duhovnog punjenja.",
+    "uprightExtended": "Uspravno označava novi emotivni početak, otvorenost srca i obilje osećanja. Idealan trenutak za ljubav, intuiciju i isceljenje.",
+    "reversedExtended": "U obrnutom položaju označava emocionalne blokade, potisnuta osećanja ili nesposobnost da se primi ljubav. Potrebno je otvoriti srce.",
+    "daily": "Otvori srce za nove emocije. As pehara donosi priliku za ljubav, oproštaj ili duhovno ispunjenje – danas sve kreće iz osećanja."
+
+  },
+  "twoOfCups": {
+    "symbolism": "Muškarac i žena razmenjuju pehare pod blagoslovom lavlje glave — simbol ravnoteže i emotivne povezanosti.",
+    "uprightExtended": "Uspravno simbolizuje partnerstvo, ljubavnu ili duhovnu povezanost, harmoniju i razmenu. Sjajna karta za odnose svih vrsta.",
+    "reversedExtended": "Obrnuto ukazuje na nesporazume, raskid ili neuzvraćena osećanja. Potrebno je obnoviti emotivnu ravnotežu.",
+    "daily": "Danas su odnosi u fokusu. Dvojka pehara te poziva da neguješ ravnotežu, razmenu i istinsku povezanost sa nekim."
+
+  },
+  "threeOfCups": {
+    "symbolism": "Tri žene u slavlju podižu pehare u vazduh, okružene plodovima zemlje — simbol zajedništva i radosti.",
+    "uprightExtended": "Ova karta označava slavlje, prijateljstvo, okupljanje i zajedničku radost. Vreme je za deljenje sreće sa drugima.",
+    "reversedExtended": "U obrnutom položaju označava izolaciju, ljubomoru ili prekid društvenih veza. Potrebno je preispitati odnose i poverenje.",
+    "daily": "Slavi prijateljstvo, radost i male trenutke. Trojka pehara donosi veselje i podseća te da ne moraš biti sam."
+
+  },
+  "fourOfCups": {
+    "symbolism": "Čovek sedi ispod drveta zamišljeno dok mu ruka iz oblaka nudi još jedan pehar — simbol emocionalnog nezadovoljstva i introspektivne faze.",
+    "uprightExtended": "Uspravno ukazuje na emotivnu ravnodušnost, dosadu ili neprepoznavanje prilike. Vreme je da pogledaš šire.",
+    "reversedExtended": "Obrnuto označava novo buđenje, izlazak iz apatične faze i spremnost za emotivni rast.",
+    "daily": "Možda si previše fokusiran na ono što ti fali. Četvorka pehara te podseća da pogledaš šire – možda propuštaš priliku pred sobom."
+
+  },
+  "fiveOfCups": {
+    "symbolism": "Figura u crnom plaštu gleda prevrnute pehare dok dva stoje iza — simbol gubitka, ali i nade.",
+    "uprightExtended": "Karta označava tugu, razočaranje ili žaljenje. Poziva na prihvatanje gubitka i otvaranje prema novim mogućnostima.",
+    "reversedExtended": "Obrnuto označava oproštaj, emotivni oporavak i vraćanje fokusa na ono što je ostalo vredno. Nada se vraća.",
+    "daily": "Tuga je prirodna, ali nije kraj. Petica pehara te poziva da priznaš gubitak, ali i da se okreneš onome što je ostalo."
+
+  },
+  "sixOfCups": {
+    "symbolism": "Dvoje dece u vrtu razmenjuju pehar — simbol sećanja, nostalgije i nevinosti prošlosti.",
+    "uprightExtended": "Karta ukazuje na uspomene, detinjstvo, nostalgiju i davanje bez očekivanja. Vreme je da se obnovi duh nevinosti.",
+    "reversedExtended": "U obrnutom položaju označava zaglavljenost u prošlosti, nezrelost ili potrebu da se emotivno oslobodimo starih veza.",
+    "daily": "Seti se nečeg lepog iz prošlosti. Šestica pehara donosi nostalgiju, ali i priliku da iz prošlih radosti crpiš snagu za sadašnji trenutak."
+
+  },
+  "sevenOfCups": {
+    "symbolism": "Figura stoji pred sedam lebdećih pehara punih simbola — iluzija, iskušenja i mogućnosti.",
+    "uprightExtended": "Uspravno označava mnoštvo opcija, maštovitost i konfuziju. Potrebno je izabrati srcem, a ne samo očima.",
+    "reversedExtended": "Obrnuto ukazuje na raspršenu energiju, fantazije bez temelja ili konačnu odluku među mnogim opcijama.",
+    "daily": "Mogućnosti je mnogo – ali nisu sve stvarne. Sedmica pehara te poziva da razlikuješ iluziju od prave želje."
+
+  },
+  "eightOfCups": {
+    "symbolism": "Figura napušta osam pehara i kreće ka planinama — simbol duhovnog traženja i napuštanja poznatog.",
+    "uprightExtended": "Karta označava emotivno povlačenje, potragu za smislom i potrebu za unutrašnjim ispunjenjem.",
+    "reversedExtended": "U obrnutom položaju označava odlaganje odlaska, bežanje od suočavanja ili vraćanje starim obrascima.",
+    "daily": "Možda je vreme da ostaviš nešto što te više ne ispunjava. Osmica pehara podseća: nije odustajanje – već potraga za dubljim smislom."
+
+  },
+  "nineOfCups": {
+    "symbolism": "Zadovoljna figura sedi ispred devet pehara — simbol ostvarenja želja, zadovoljstva i emotivne ispunjenosti.",
+    "uprightExtended": "Uspravno donosi emotivno zadovoljstvo, ostvarenje ciljeva i zahvalnost. Vreme je da se uživa u plodovima rada.",
+    "reversedExtended": "Obrnuto označava površno zadovoljstvo, preterivanje ili promašena očekivanja. Potrebno je tražiti dublju ispunjenost.",
+    "daily": "Zadovoljstvo dolazi iznutra. Devetka pehara donosi emocionalno ispunjenje – danas je dan za zahvalnost i hedonizam."
+
+  },
+  "tenOfCups": {
+    "symbolism": "Porodica stoji ispod duge od deset pehara — simbol idealne ljubavi, sklada i emocionalnog ispunjenja.",
+    "uprightExtended": "Karta donosi emotivno ispunjenje, porodičnu harmoniju i duhovni mir. Vrhunska karta sreće u ljubavi i odnosima.",
+    "reversedExtended": "U obrnutom položaju označava pukotine ispod savršene slike, porodične tenzije ili nerealna očekivanja.",
+    "daily": "Ljubav, porodica, ispunjenost – danas te okružuje osećaj celovitosti. Desetka pehara slavi zajedništvo u najširem smislu."
+
+  },
+  "pageOfCups": {
+    "symbolism": "Mladić drži pehar iz kog izranja riba — simbol iznenadne intuicije, poruke i emocija.",
+    "uprightExtended": "Ova karta simbolizuje nežne emocije, kreativnost i početak emotivnih uvida. Otvori srce nepoznatom.",
+    "reversedExtended": "U obrnutom položaju ukazuje na nezrelost, neozbiljnost u emocijama ili izbegavanje stvarnih osećanja.",
+    "daily": "Budi otvoren za poruku iz srca – ma koliko čudna delovala. Paz pehara donosi umetničku inspiraciju, iznenađenja i nežne emocije."
+
+  },
+  "knightOfCups": {
+    "symbolism": "Vitez na belom konju drži pehar kao poslanik ljubavi, umetnosti i duhovnih težnji.",
+    "uprightExtended": "Uspravno označava romantičnu ponudu, duhovno traganje i idealizam. Pokreće te emocija i vizija.",
+    "reversedExtended": "Obrnuto ukazuje na zabludu, emocionalnu manipulaciju ili nerealna očekivanja u ljubavi.",
+    "daily": "Danas govoriš (ili primaš) reči iz srca. Vitez pehara donosi romantiku, ali i poziv da slediš ono što ti duša šapuće."
+
+  },
+  "queenOfCups": {
+    "symbolism": "Kraljica sedi pored mora sa zatvorenim peharom u rukama — simbol intuitivne mudrosti i emocionalne dubine.",
+    "uprightExtended": "Karta ukazuje na saosećanje, brižnost i duhovnu dubinu. Ona sluša srcem i razume ono neizrečeno.",
+    "reversedExtended": "U obrnutom položaju označava emocionalnu iscrpljenost, pasivnost ili preplavljenost tuđim emocijama.",
+    "daily": "Neguj se iznutra. Kraljica pehara donosi duboku emocionalnu mudrost – danas ne moraš ništa da rešavaš, samo da osećaš."
+
+  },
+  "kingOfCups": {
+    "symbolism": "Kralj sedi na prestolu usred vode, miran uprkos talasima — simbol kontrole nad emocijama.",
+    "uprightExtended": "Uspravno označava emocionalnu stabilnost, mudrost i iskrenu podršku. Vodiš druge srcem i iskustvom.",
+    "reversedExtended": "Obrnuto označava potisnute emocije, manipulaciju ili emocionalnu distancu. Potrebno je uskladiti glavu i srce.",
+    "daily": "Ostani miran u svom okeanu osećanja. Kralj pehara te uči da emocije ne moraš potiskivati – već ih mudro nositi."
+
+  },
+  "aceOfSwords": {
+    "symbolism": "Ruka izlazi iz oblaka držeći uspravan mač okrunjen lovorovim vencem — simbol istine, jasnoće i intelektualnog proboja.",
+    "uprightExtended": "Ova karta simbolizuje novi početak kroz istinu, jasan um i odlučnost. Vreme je za donošenje odluka i sečenje iluzija.",
+    "reversedExtended": "Obrnuto označava konfuziju, mentalne blokade ili pogrešno rasuđivanje. Potrebno je vratiti jasnoću kroz tišinu.",
+    "daily": "Danas se rađa jasnoća. As mačeva donosi istinu i snagu reči – reci ono što misliš, ali sa svesnošću."
+
+  },
+  "twoOfSwords": {
+    "symbolism": "Žena sedi sa povezom preko očiju i drži dva ukrštena mača — simbol neodlučnosti i unutrašnjeg sukoba.",
+    "uprightExtended": "Uspravno označava balansiranje između dve opcije, odlaganje odluke i potrebu za unutrašnjim mirom pre akcije.",
+    "reversedExtended": "Obrnuto ukazuje na nemogućnost donošenja odluke, emocionalnu blokadu ili ignorisanje istine.",
+    "daily": "Možda izbegavaš odluku – ali vreme je da pogledaš istini u oči. Dvojka mačeva traži balans između logike i osećaja."
+
+  },
+  "threeOfSwords": {
+    "symbolism": "Tri mača probadaju crveno srce na sivom nebu — simbol tuge, slomljenog srca i gubitka.",
+    "uprightExtended": "Ova karta donosi bol, razočaranje i kraj nečeg emotivnog. Ipak, kroz tugu dolazi isceljenje.",
+    "reversedExtended": "Obrnuto označava proces ozdravljenja, oslobađanje od bola ili potiskivanje tuge koje mora da ispliva.",
+    "daily": "Tuga se mora priznati da bi mogla da ode. Trojka mačeva boli, ali otvara srce za nešto istinitije."
+
+  },
+  "fourOfSwords": {
+    "symbolism": "Figura leži u crkvi sa sklopljenim rukama — simbol odmora, kontemplacije i duhovne obnove.",
+    "uprightExtended": "Karta poziva na pauzu, odmor i duhovnu tišinu. Potrebno je regenerisati telo i um pre sledeće faze.",
+    "reversedExtended": "Obrnuto ukazuje na nemir, odbijanje odmora ili unutrašnju iscrpljenost. Hitno je potrebna refleksija.",
+    "daily": "Odmor je lek. Četvorka mačeva ti poručuje da se povučeš, utišaš um i obnoviš snagu pre nego što kreneš dalje."
+
+  },
+  "fiveOfSwords": {
+    "symbolism": "Figura prikuplja mačeve dok se drugi povlače — simbol pobede po cenu sukoba i gubitka poštovanja.",
+    "uprightExtended": "Uspravno označava konflikt, manipulaciju ili pobedu bez stvarnog zadovoljstva. Potrebno je preispitati motive.",
+    "reversedExtended": "Obrnuto ukazuje na potrebu za pomirenjem, izbegavanje sukoba ili povlačenje iz toksične situacije.",
+    "daily": "Pazi da pobeda ne bude prazna. Petica mačeva podseća da nije svaki konflikt vredan nastavka – biraj mir, ne nadmoć."
+
+  },
+  "sixOfSwords": {
+    "symbolism": "Figura u čamcu prelazi preko vode noseći šest mačeva — simbol prelaska, isceljenja i promene konteksta.",
+    "uprightExtended": "Karta označava miran prelaz, emotivno isceljenje i povratak ravnoteži. Vreme je za ostavljanje prošlosti iza sebe.",
+    "reversedExtended": "Obrnuto ukazuje na poteškoće u kretanju dalje, emocionalni teret ili odlaganje potrebne promene.",
+    "daily": "Krećeš ka mirnijim vodama. Šestica mačeva donosi olakšanje nakon teškog perioda – prihvati tranziciju."
+
+  },
+  "sevenOfSwords": {
+    "symbolism": "Figura beži noseći mačeve, osvrćući se iza sebe — simbol prevare, skrivenih namera i samoobmane.",
+    "uprightExtended": "Uspravno označava lukavost, strategiju ili izbegavanje odgovornosti. Moguće je da neko nešto skriva.",
+    "reversedExtended": "Obrnuto ukazuje na otkrivanje istine, grižu savesti ili poziv na iskrenost.",
+    "daily": "Budi mudar i pažljiv. Sedmica mačeva sugeriše da neko (možda i ti) izbegava istinu – vreme je za iskrenost."
+
+  },
+  "eightOfSwords": {
+    "symbolism": "Žena je vezana i okružena mačevima — simbol mentalne zarobljenosti, straha i ograničenja.",
+    "uprightExtended": "Ova karta označava osećaj zarobljenosti, nesposobnost da se vidi izlaz. Ograničenja su uglavnom unutrašnja.",
+    "reversedExtended": "Obrnuto simbolizuje oslobađanje, osvešćivanje i prvi korak ka mentalnoj slobodi.",
+    "daily": "Osećaj zarobljenosti dolazi iznutra. Osmica mačeva te podseća da su tvoje misli prepreka – i da ti držiš ključ oslobađanja."
+
+  },
+  "nineOfSwords": {
+    "symbolism": "Osoba sedi u krevetu i drži glavu u rukama ispod devet mačeva — simbol brige, nesanice i griže savesti.",
+    "uprightExtended": "Uspravno ukazuje na mentalnu patnju, teskobu ili krivicu. Misli su postale teret.",
+    "reversedExtended": "Obrnuto donosi proces oporavka, prestanak briga ili priznanje unutrašnjih problema.",
+    "daily": "Brige te mogu obuzeti noću, ali nisu ceo svet. Devetka mačeva ti šapuće: nisi sam – i nisi ono čega se bojiš."
+
+  },
+  "tenOfSwords": {
+    "symbolism": "Figura leži sa deset mačeva u leđima pod tamnim nebom — simbol kraja, izdaje i konačnog pada.",
+    "uprightExtended": "Ova karta označava kraj ciklusa, razočaranje ili emotivnu izdaju. Ali i novo jutro posle tame.",
+    "reversedExtended": "Obrnuto označava preživljavanje, oporavak i izlazak iz teške situacije. Vreme je za ponovni početak.",
+    "daily": "Kraj je možda bolan, ali donosi olakšanje. Desetka mačeva zatvara poglavlje i pravi mesto za obnovu."
+
+  },
+  "pageOfSwords": {
+    "symbolism": "Mladić stoji sa mačem u ruci u borbenom stavu — simbol radoznalosti, intelektualne budnosti i opreza.",
+    "uprightExtended": "Ova karta ukazuje na mentalnu oštrinu, komunikaciju i istraživanje. Vreme je za iskren razgovor i učenje.",
+    "reversedExtended": "Obrnuto označava tračeve, nedostatak fokusa ili preveliku defanzivu. Potrebno je smiriti um i biti jasniji.",
+    "daily": "Budi radoznao, ali i pažljiv. Paz mačeva donosi nove informacije – slušaj, posmatraj i ne skači odmah na zaključke."
+
+  },
+  "knightOfSwords": {
+    "symbolism": "Vitez juri napred podignutog mača — simbol akcije, odlučnosti i impulsa vođenog idejom.",
+    "uprightExtended": "Uspravno označava brzinu, intelektualni proboj i hrabrost. Vreme je za odlučnu akciju bez odlaganja.",
+    "reversedExtended": "Obrnuto ukazuje na nepromišljenost, agresivnu komunikaciju ili mentalnu zbrku. Usmeri energiju mudrije.",
+    "daily": "Misli ti lete brzo – ali pazi da ne presečeš i ono što želiš da sačuvaš. Vitez mačeva traži balans između strasti i razuma."
+
+  },
+  "queenOfSwords": {
+    "symbolism": "Kraljica sedi na prestolu sa mačem podignutim u jednoj ruci, dok drugom poziva — simbol pravednosti i intelektualne snage.",
+    "uprightExtended": "Karta ukazuje na objektivnost, mudrost i analitički pristup. Prava istina izlazi na videlo.",
+    "reversedExtended": "Obrnuto označava hladnoću, netoleranciju ili emocionalnu distancu. Potrebno je uravnotežiti um i srce.",
+    "daily": "Budi jasna i istinita, čak i ako to deluje hladno. Kraljica mačeva donosi mudrost bez iluzija – vidiš ono što jeste."
+
+  },
+  "kingOfSwords": {
+    "symbolism": "Kralj sedi na prestolu s mačem koji simbolizuje istinu, pravdu i racionalnost.",
+    "uprightExtended": "Uspravno predstavlja autoritet, logiku i moralnu čvrstinu. Vodi se intelektom i jasnoćom.",
+    "reversedExtended": "Obrnuto označava manipulaciju, zlostavljanje moći ili ekstremni racionalizam. Potrebna je pravedna ravnoteža.",
+    "daily": "Danas vlada logika. Kralj mačeva poziva na odlučnost, ali i objektivnost – vodi primerom, ne emocijom."
+
+  },
+  "aceOfPentacles": {
+    "symbolism": "Ruka izlazi iz oblaka držeći zlatni pentakl — simbol novih materijalnih prilika i darova univerzuma.",
+    "uprightExtended": "Karta označava novi početak u oblasti novca, zdravlja ili karijere. Vreme je za konkretnu realizaciju.",
+    "reversedExtended": "Obrnuto ukazuje na propuštenu priliku, nesigurne temelje ili kašnjenje u manifestaciji.",
+    "daily": "Danas se otvara nova prilika u materijalnom svetu – novac, posao, zdravlje. As pentakla je seme stabilnosti – zasadi ga pažljivo."
+
+  },
+  "twoOfPentacles": {
+    "symbolism": "Figura balansira dve pentakl kugle povezane beskonačnim znakom — simbol upravljanja životnim tokovima.",
+    "uprightExtended": "Uspravno simbolizuje balans između posla i privatnog života, fleksibilnost i snalažljivost.",
+    "reversedExtended": "Obrnuto ukazuje na haos, stres ili zanemarivanje jednog aspekta života. Potrebno je bolja organizacija.",
+    "daily": "Vrtiš više stvari odjednom? Dvojka pentakla te uči kako da pronađeš ritam – balans je tvoj najbolji alat danas."
+
+  },
+  "threeOfPentacles": {
+    "symbolism": "Umetnik, sveštenik i zanatlija sarađuju na izgradnji katedrale — simbol timskog rada i zajedničkih vrednosti.",
+    "uprightExtended": "Karta označava saradnju, priznanje veštine i gradnju na čvrstim temeljima.",
+    "reversedExtended": "Obrnuto označava nedostatak saradnje, neusaglašenost tima ili neprihvatanje saveta.",
+    "daily": "Saradnja donosi rezultate. Trojka pentakla podseća da uspeh raste kada svako doprinosi svoj deo – i poštuje trud drugih."
+
+  },
+  "fourOfPentacles": {
+    "symbolism": "Čovek drži jedan pentakl čvrsto dok su mu dva pod nogama i jedan na glavi — simbol materijalne sigurnosti i vezanosti.",
+    "uprightExtended": "Uspravno označava štednju, potrebu za kontrolom i očuvanje resursa. Vreme je za stabilnost.",
+    "reversedExtended": "Obrnuto ukazuje na pohlepu, tvrdoglavost ili strah od gubitka. Potrebno je otvoriti se protoku.",
+    "daily": "Držiš prečvrsto nešto? Četvorka pentakla ti poručuje da zaštita ne sme postati zatvor – sigurnost dolazi i iz poverenja."
+
+  },
+  "fiveOfPentacles": {
+    "symbolism": "Dvoje siromaha prolazi ispred crkve u snegu — simbol oskudice, izolacije i telesne ili duhovne potrebe.",
+    "uprightExtended": "Karta ukazuje na finansijske poteškoće, bolest ili emocionalnu osamljenost. Pomoć postoji, ali mora se zatražiti.",
+    "reversedExtended": "Obrnuto simbolizuje oporavak, izlazak iz oskudice i nadu. Svetlo počinje da se pojavljuje.",
+    "daily": "Ako se osećaš isključeno ili nesigurno, potraži podršku. Petica pentakla te podseća da nisi sam – vrata su možda bliže nego što misliš."
+
+  },
+  "sixOfPentacles": {
+    "symbolism": "Bogataš deli novac siromašnima, držeći vagu pravde — simbol ravnoteže, davanja i primanja.",
+    "uprightExtended": "Ova karta označava velikodušnost, pomoć i ravnotežu u razmeni. Vreme je za davanje ili primanje sa zahvalnošću.",
+    "reversedExtended": "Obrnuto ukazuje na neravnotežu, zavisnost ili pomoć s očekivanjima. Potrebno je razmotriti iskrene namere.",
+    "daily": "Danas se seti razmene. Šestica pentakla te poziva da daješ – ili primaš – sa ravnotežom, zahvalnošću i bez osećaja krivice."
+
+  },
+  "sevenOfPentacles": {
+    "symbolism": "Farmer posmatra svoj zasad — simbol čekanja, procene i strpljenja u procesu rasta.",
+    "uprightExtended": "Uspravno označava procenu postignutog, ulaganje truda i čekanje rezultata. Strpljenje se isplati.",
+    "reversedExtended": "Obrnuto ukazuje na nestrpljenje, sumnju u sopstvene napore ili potrebu da se preispita pravac delovanja.",
+    "daily": "Strpljenje je ključ. Sedmica pentakla donosi poruku da plodovi dolaze – ali zahtevaju negu i vreme. Ne odustaj sad."
+
+  },
+  "eightOfPentacles": {
+    "symbolism": "Radnik neumorno kuje pentakle — simbol usavršavanja, posvećenosti i zanatske veštine.",
+    "uprightExtended": "Ova karta označava posvećen rad, učenje i napredak kroz praksu. Vreme je za disciplinu.",
+    "reversedExtended": "Obrnuto ukazuje na rutinu bez inspiracije, greške zbog žurbe ili odbijanje da se uči.",
+    "daily": "Vežbanje čini majstora. Osmica pentakla te poziva da uložiš trud i razvijaš veštine – svaki korak se računa."
+
+  },
+  "nineOfPentacles": {
+    "symbolism": "Žena stoji u vrtu sa sokolom — simbol nezavisnosti, luksuza i samopouzdanja.",
+    "uprightExtended": "Karta donosi plodove rada, samostalnost i uživanje u postignutom. Vreme je da se ponosno stoji samostalno.",
+    "reversedExtended": "Obrnuto ukazuje na zavisnost, neautentičnost ili strah od samostalnosti. Potrebno je graditi sopstvenu vrednost.",
+    "daily": "Samostalnost i uživanje u plodovima svog rada danas dominiraju. Devetka pentakla je tvoj podsjetnik da si sposoban i dostojan obilja."
+
+  },
+  "tenOfPentacles": {
+    "symbolism": "Porodica okružena simbolima obilja — simbol materijalne sigurnosti, porodične tradicije i nasledstva.",
+    "uprightExtended": "Ova karta označava dugoročnu stabilnost, porodične vrednosti i završetak uspešnog ciklusa.",
+    "reversedExtended": "Obrnuto ukazuje na porodične nesuglasice, finansijske tenzije ili gubitak nasleđenih vrednosti.",
+    "daily": "Razmišljaj dugoročno. Desetka pentakla donosi osećaj pripadnosti, nasleđa i sigurnosti – danas gradiš temelje za sutra."
+
+  },
+  "pageOfPentacles": {
+    "symbolism": "Mladić posmatra zlatni pentakl sa fokusom — simbol učenja, materijalnog potencijala i konkretne namere.",
+    "uprightExtended": "Karta označava radoznalost, učenika i prvi korak ka praktičnom ostvarenju. Vreme je da učiš kroz iskustvo.",
+    "reversedExtended": "Obrnuto ukazuje na nedostatak fokusa, propuštene šanse ili odlaganje početka. Potrebno je posvetiti se cilju.",
+    "daily": "Danas je idealan trenutak za učenje ili postavljanje ciljeva. Paz pentakla ti šapuće: ako veruješ u ideju – budi spreman da je neguješ."
+
+  },
+  "knightOfPentacles": {
+    "symbolism": "Vitez mirno sedi na konju i drži pentakl — simbol odgovornosti, strpljenja i temeljne akcije.",
+    "uprightExtended": "Uspravno označava istrajnost, posvećenost i realan napredak. Vodi se pouzdanim putem.",
+    "reversedExtended": "Obrnuto ukazuje na tvrdoglavost, stagnaciju ili preveliku sporost. Potrebno je uskladiti ritam s ciljem.",
+    "daily": "Doslednost i pažnja prema detaljima su tvoji saveznici. Vitez pentakla podseća: sporo, ali sigurno – tako se gradi ono što traje."
+
+  },
+  "queenOfPentacles": {
+    "symbolism": "Kraljica u prirodi drži pentakl sa brižnošću — simbol domaćinstva, stabilnosti i majčinske energije.",
+    "uprightExtended": "Karta donosi sigurnost, negu i praktičnost. Ona stvara harmoniju kroz organizaciju i nežnost.",
+    "reversedExtended": "Obrnuto označava zanemarivanje sebe, previše materijalizma ili emocionalno povlačenje.",
+    "daily": "Neguj svoj svet – spolja i iznutra. Kraljica pentakla donosi toplinu, praktičnost i stabilnost – obrati pažnju na telo, dom i rutinu."
+
+  },
+  "kingOfPentacles": {
+    "symbolism": "Kralj sedi na prestolu ukrašenom bikovima i vinovom lozom — simbol moći, bogatstva i ostvarene stabilnosti.",
+    "uprightExtended": "Ova karta simbolizuje postignut materijalni uspeh, mudro upravljanje resursima i sigurnost.",
+    "reversedExtended": "Obrnuto ukazuje na tvrdokornost, pohlepu ili preteranu kontrolu. Potrebno je pustiti tok života.",
+    "daily": "Danas donesi odluke koje grade dugoročne temelje. Kralj pentakla te podseća da tvoja snaga leži u mudrom upravljanju resursima."
+
+  }
+}
