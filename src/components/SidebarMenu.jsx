@@ -1,9 +1,53 @@
 import { useNavigation } from '@react-navigation/native';
-import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, Linking, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Linking, Modal, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../context/AuthProvider';
-import { db } from '../utils/firebase';
+
+// --- MODALI SEKCIJA ---
+const ProfilModal = ({ visible, onClose, user, dukati, status, loading, handleLogout }) => (
+  <Modal visible={visible} transparent animationType="slide">
+    <View style={styles.sectionModal}>
+      <Text style={styles.sectionTitle}>👤 Profil</Text>
+      <Text style={styles.sectionText}>Ime: {user?.user_metadata?.displayName || user?.email || "Gost"}</Text>
+      {user && <Text style={styles.sectionText}>💰 Dukati: {loading ? <ActivityIndicator color="#facc15" size="small" /> : dukati}</Text>}
+      <Text style={styles.sectionText}>Status: {status}</Text>
+      {/* Ovde možeš dodati još info po želji */}
+      <TouchableOpacity style={styles.sectionCloseBtn} onPress={onClose}>
+        <Text style={[styles.text, { color: '#facc15' }]}>Zatvori</Text>
+      </TouchableOpacity>
+      {user && (
+        <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
+          <Text style={[styles.text, { color: '#f87171' }]}>Odjavi se</Text>
+        </TouchableOpacity>
+      )}
+    </View>
+  </Modal>
+);
+
+
+
+// PRAVNA DOKUMENTA – sada ima Odricanje, Uslovi, Kontakt
+const PravnaModal = ({ visible, onClose, navigation }) => (
+  <Modal visible={visible} transparent animationType="slide">
+    <View style={styles.sectionModal}>
+      <Text style={styles.sectionTitle}>📜 Pravna dokumenta</Text>
+      <TouchableOpacity onPress={() => { onClose(); navigation.navigate('Odricanje'); }}>
+        <Text style={styles.sectionText}>- Odricanje od odgovornosti</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => { onClose(); navigation.navigate('Uslovi'); }}>
+        <Text style={styles.sectionText}>- Uslovi korišćenja</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => { onClose(); navigation.navigate('Kontakt'); }}>
+        <Text style={styles.sectionText}>- Kontakt</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.sectionCloseBtn} onPress={onClose}>
+        <Text style={[styles.text, { color: '#facc15' }]}>Zatvori</Text>
+      </TouchableOpacity>
+    </View>
+  </Modal>
+);
+
+// --- KRAJ MODALA SEKCIJA ---
 
 const SidebarMenu = ({ visible, onClose }) => {
   const navigation = useNavigation();
@@ -12,54 +56,41 @@ const SidebarMenu = ({ visible, onClose }) => {
   const [status, setStatus] = useState('free');
   const [loading, setLoading] = useState(false);
 
+  // State za aktivnu sekciju (za modal sekcije)
+  const [activeSection, setActiveSection] = useState(null);
+
+  // Resetuj sekciju kad se zatvori sidebar
+  useEffect(() => {
+    if (!visible) setActiveSection(null);
+  }, [visible]);
+
+  // Supabase placeholder logika (umesto Firebase)
   useEffect(() => {
     if (visible && user) {
       setLoading(true);
-      const docRef = doc(db, 'users', user.uid);
-      getDoc(docRef)
-        .then(docSnap => {
-          if (docSnap.exists()) {
-            setDukati(docSnap.data().dukati ?? 0);
-            setStatus(docSnap.data().status ?? 'free');
-          }
-        })
-        .finally(() => setLoading(false));
+      setTimeout(() => {
+        setDukati(0);
+        setStatus('free');
+        setLoading(false);
+      }, 600);
     } else {
       setDukati(null);
       setStatus('free');
     }
   }, [visible, user]);
 
-  // START: Guard za pristup profilu
-  const handleProfil = () => {
-    if (!user) {
-      Alert.alert(
-        "Pristup profilu",
-        "Da biste videli svoj profil, potrebno je da se prijavite.",
-        [
-          { text: "Otkaži", style: "cancel" },
-          { text: "Prijavi se", onPress: () => navigation.navigate('Login') }
-        ]
-      );
-      onClose();
-      return;
-    }
-    onClose();
-    navigation.navigate('Profil');
-  };
-  // END: Guard za pristup profilu
-
-  // START: Login/Logout logika
+  // Logout
   const handleLogout = () => {
+    setActiveSection(null);
     onClose();
     logout();
   };
 
+  // Login
   const handleLogin = () => {
     onClose();
     navigation.navigate('Login');
   };
-  // END: Login/Logout logika
 
   // Badge za status
   const renderStatusBadge = () => {
@@ -74,10 +105,11 @@ const SidebarMenu = ({ visible, onClose }) => {
       <TouchableOpacity style={styles.overlay} onPress={onClose} activeOpacity={1} />
       <View style={styles.menu}>
 
-        {/* START: Prikaz korisničkih/gost podataka */}
+        {/* Prikaz korisničkih/gost podataka */}
         <View style={styles.userBox}>
           <Text style={styles.userName}>
-            {user?.displayName || user?.email || 'Gost'}
+            {user?.user_metadata?.displayName || user?.email || 'Gost'}
+
           </Text>
           {user && (
             <Text style={styles.dukati}>
@@ -91,61 +123,105 @@ const SidebarMenu = ({ visible, onClose }) => {
             </Text>
           )}
         </View>
-        {/* END: Prikaz korisničkih/gost podataka */}
+        {/* Kraj korisničkih/gost podataka */}
 
-        {/* Meni stavke */}
-        <TouchableOpacity style={styles.item} onPress={handleProfil}>
+        {/* Glavne sekcije menija */}
+        <TouchableOpacity style={styles.item} onPress={() => setActiveSection('profil')}>
           <Text style={styles.text}>👤 Profil</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => { onClose(); navigation.navigate('Podesavanja'); }}>
-          <Text style={styles.text}>⚙️ Podešavanja</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => { onClose(); navigation.navigate('Faq'); }}>
-          <Text style={styles.text}>❓ FAQ</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => {
-          onClose();
-          Linking.openURL('https://play.google.com/store/apps/details?id=tvoja.aplikacija.id');
-        }}>
-          <Text style={styles.text}>⭐ Oceni aplikaciju</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => { onClose(); navigation.navigate('Podeli'); }}>
-          <Text style={styles.text}>📤 Podeli</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => { onClose(); navigation.navigate('Privatnost'); }}>
-          <Text style={styles.text}>📜 Privatnost</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => { onClose(); navigation.navigate('Odricanje'); }}>
-          <Text style={styles.text}>⚠️ Odricanje</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => { onClose(); navigation.navigate('Uslovi'); }}>
-          <Text style={styles.text}>📑 Uslovi korišćenja</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => { onClose(); navigation.navigate('OAplikaciji'); }}>
-          <Text style={styles.text}>💡 O aplikaciji</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => { onClose(); navigation.navigate('Kontakt'); }}>
-          <Text style={styles.text}>✉️ Kontakt</Text>
+        <TouchableOpacity
+         style={styles.item}
+         onPress={() => {
+         onClose();
+         navigation.navigate('Podesavanja');
+        }}
+        >
+         <Text style={styles.text}>⚙️ Podešavanja</Text>
         </TouchableOpacity>
 
-        {/* Prikaz login/logout dugmeta u zavisnosti od user-a */}
+         <TouchableOpacity
+          style={styles.item}
+           onPress={() => {
+           onClose();
+           navigation.navigate('OAplikaciji');
+          }}
+        >
+        <Text style={styles.text}>📖 O aplikaciji</Text>
+         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.item} onPress={() => setActiveSection('podrzi')}>
+          <Text style={styles.text}>🌟 Podrži aplikaciju</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.item} onPress={() => setActiveSection('pravna')}>
+          <Text style={styles.text}>📜 Pravna dokumenta</Text>
+        </TouchableOpacity>
+
+        {/* Prikaz login/logout dugmeta */}
         {!user ? (
           <TouchableOpacity style={styles.logoutBtn} onPress={handleLogin}>
             <Text style={[styles.text, { color: '#4ade80' }]}>Prijavi se</Text>
           </TouchableOpacity>
-        ) : (
-          <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
-            <Text style={[styles.text, { color: '#f87171' }]}>Odjavi se</Text>
-          </TouchableOpacity>
-        )}
+        ) : null}
+
         <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
           <Text style={[styles.text, { color: '#facc15' }]}>Zatvori</Text>
         </TouchableOpacity>
+
+        {/* MODALI SEKCIJA */}
+        <ProfilModal
+          visible={activeSection === 'profil'}
+          onClose={() => setActiveSection(null)}
+          user={user}
+          dukati={dukati}
+          status={status}
+          loading={loading}
+          handleLogout={handleLogout}
+        />
+        
+        <PodrziModal
+          visible={activeSection === 'podrzi'}
+          onClose={() => setActiveSection(null)}
+          navigation={navigation}
+        />
+        <PravnaModal
+          visible={activeSection === 'pravna'}
+          onClose={() => setActiveSection(null)}
+          navigation={navigation}
+        />
       </View>
     </Modal>
   );
 };
 
+const PodrziModal = ({ visible, onClose }) => (
+  <Modal visible={visible} transparent animationType="slide">
+    <View style={styles.sectionModal}>
+      <Text style={styles.sectionTitle}>🌟 Podrži aplikaciju</Text>
+      <TouchableOpacity
+        onPress={() => {
+          Linking.openURL('https://play.google.com/store/apps/details?id=com.mare82.tarotmobile');
+        }}
+      >
+        <Text style={styles.sectionText}>- Oceni nas</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={async () => {
+          try {
+            await Share.share({
+              message: 'Probaj Tarot AI aplikaciju! https://play.google.com/store/apps/details?id=com.mare82.tarotmobile'
+,
+            });
+          } catch (error) {}
+        }}
+      >
+        <Text style={styles.sectionText}>- Podeli prijateljima</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.sectionCloseBtn} onPress={onClose}>
+        <Text style={[styles.text, { color: '#facc15' }]}>Zatvori</Text>
+      </TouchableOpacity>
+    </View>
+  </Modal>
+);
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
@@ -235,6 +311,43 @@ const styles = StyleSheet.create({
     marginTop: 8,
     alignItems: 'center',
   },
+  // --- Stilovi za sekcione modale ---
+  sectionModal: {
+    position: 'absolute',
+    top: 56,
+    left: 28,
+    width: 240,
+    minHeight: 300,
+    backgroundColor: '#171717',
+    borderRadius: 18,
+    padding: 24,
+    shadowColor: '#000',
+    shadowOpacity: 0.6,
+    elevation: 12,
+    alignItems: 'flex-start',
+  },
+  sectionTitle: {
+    color: '#facc15',
+    fontSize: 21,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  sectionText: {
+    color: '#fff',
+    fontSize: 16,
+    marginBottom: 14,
+  },
+  sectionCloseBtn: {
+    marginTop: 16,
+    alignSelf: 'center',
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    backgroundColor: '#333',
+  },
 });
 
 export default SidebarMenu;
+
+
+

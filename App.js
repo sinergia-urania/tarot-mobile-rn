@@ -10,17 +10,20 @@ import { ActivityIndicator } from "react-native";
 import './i18n';
 import { DukatiProvider } from "./src/components/DukatiProvider";
 import IzborKarataModal from "./src/components/IzborKarataModal";
+import { MusicProvider } from "./src/context/MusicProvider";
 import CardGroupList from "./src/pages/CardGroupList";
+import Kontakt from "./src/pages/Kontakt";
+import OAplikaciji from "./src/pages/OAplikaciji";
+import Odricanje from "./src/pages/Odricanje";
 import PitanjeIzbor from "./src/pages/PitanjeIzbor";
 import Podesavanja from "./src/pages/Podesavanja";
 import TarotCardModal from "./src/pages/TarotCardModal";
 import TarotHome from "./src/pages/TarotHome";
 import TarotMeaning from "./src/pages/TarotMeaning";
+import Uslovi from "./src/pages/Uslovi";
 import VelikaArkanaList from "./src/pages/VelikaArkanaList";
 import { allCardKeys } from "./src/utils/allCardKeys";
 
-// START: Uvoz MusicProvider
-import { MusicProvider } from "./src/context/MusicProvider";
 // END: Uvoz MusicProvider
 import { AuthProvider } from "./src/context/AuthProvider";
 // START: Novi ekrani za intuitivna i kompleksna otvaranja
@@ -101,6 +104,11 @@ function AppContent() {
                 name="OdgovorAI"
                 component={OdgovorAI}
               />
+              <Stack.Screen name="Uslovi" component={Uslovi} options={{ headerShown: false }} />
+              <Stack.Screen name="Kontakt" component={Kontakt} options={{ headerShown: false }} />
+              <Stack.Screen name="OAplikaciji" component={OAplikaciji} options={{ headerShown: false }} />
+              <Stack.Screen name="Odricanje" component={Odricanje} options={{ headerShown: false, title: "Odricanje od odgovornosti" }} />
+
               {/* --- Kraj novih ruta --- */}
 
               {/* --- Stare rute ostaju ispod --- */}

@@ -1,9 +1,11 @@
-import { doc, getDoc } from 'firebase/firestore';
+// START: Uklonjeni Firebase importi
+// import { doc, getDoc } from 'firebase/firestore';
+// import { db } from '../utils/firebase';
+// END: Uklonjeni Firebase importi
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../context/AuthProvider';
 import { useDukati } from '../context/DukatiContext';
-import { db } from '../utils/firebase';
 
 const COINS_FOR_PREMIUM = 5000;
 
@@ -17,29 +19,20 @@ const ProfilScreen = ({ navigation }) => {
   const [loadingLogout, setLoadingLogout] = useState(false);
 
   useEffect(() => {
+    // START: Placeholder za Supabase (dummy logika)
     let mounted = true;
-    const fetchProfile = async () => {
-      if (user && user.uid) {
-        try {
-          setLoading(true);
-          const docRef = doc(db, 'users', user.uid);
-          const snap = await getDoc(docRef);
-          if (snap.exists()) {
-            const data = snap.data();
-            if (mounted) {
-              setStatus(data.status || 'free');
-              setJoined(data.createdAt ? formatJoinDate(data.createdAt) : '-');
-            }
-          }
-        } catch (e) {
-          // fallback na osnovno
-        } finally {
+    if (user && user.uid) {
+      setLoading(true);
+      setTimeout(() => {
+        if (mounted) {
+          setStatus('free'); // TODO: zameniti sa podacima iz Supabase
+          setJoined('-');    // TODO: zameniti sa podacima iz Supabase
           setLoading(false);
         }
-      }
-    };
-    fetchProfile();
+      }, 500);
+    }
     return () => { mounted = false; };
+    // END: Placeholder za Supabase
   }, [user]);
 
   // Prikaz datuma
@@ -65,15 +58,13 @@ const ProfilScreen = ({ navigation }) => {
 
   // (Stub) za promenu lozinke
   const handleChangePassword = () => {
-    // Ovo možeš da povežeš sa Firebase Auth reset funkcijom
     alert('Ova funkcija šalje email za promenu lozinke.');
   };
 
   // (Stub) za gledanje reklame/otključavanje
   const handleWatchAd = () => {
-    // Pozovi AdRewardModal ili custom funkciju
     if (navigation?.navigate) {
-      navigation.navigate('AdRewardModal'); // ako imaš modal kao rutu
+      navigation.navigate('AdRewardModal');
     } else {
       alert('Ova funkcionalnost otvara AdRewardModal!');
     }
@@ -86,7 +77,6 @@ const ProfilScreen = ({ navigation }) => {
         <Image source={{ uri: user.photoURL }} style={styles.avatarImg} />
       );
     }
-    // Inicijal
     return (
       <View style={styles.avatarFallback}>
         <Text style={styles.avatarInitial}>{user?.displayName?.[0]?.toUpperCase() || 'K'}</Text>

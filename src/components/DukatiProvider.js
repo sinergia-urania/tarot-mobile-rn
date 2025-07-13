@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-// START: Importi za auth i firestore
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+// START: Uklonjeni Firebase importi
+// import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+// import { db } from '../utils/firebase';
+// END: Uklonjeni Firebase importi
 import { useAuth } from "../context/AuthProvider";
-import { db } from '../utils/firebase';
-// END: Importi za auth i firestore
 
 const DukatiContext = createContext();
 
@@ -16,40 +16,32 @@ export const DukatiProvider = ({ children }) => {
   const { user } = useAuth();
   // END: Auth kontekst
 
-  // --- Funkcija za sync sa Firestore ---
-  const syncDukatiFromFirestore = useCallback(async (userId) => {
+  // --- Funkcija za sync sa storage-om ---
+  const syncDukati = useCallback(async (userId) => {
     try {
-      const docRef = doc(db, 'users', userId);
-      const userSnap = await getDoc(docRef);
-      let dukatiValue = 0;
-
-      if (userSnap.exists()) {
-        const data = userSnap.data();
-        dukatiValue = typeof data.dukati === 'number' ? data.dukati : 0;
-      } else {
-        // Prvi put – kreiraj user doc sa dukatima
-        await setDoc(docRef, { dukati: 0 }, { merge: true });
-      }
-      setDukati(dukatiValue);
-      await AsyncStorage.setItem('dukati', dukatiValue.toString());
-    } catch (e) {
-      // fallback na lokalno
+      // START: Placeholder za Supabase fetch
+      // TODO: Ovde ubaciti Supabase upit za korisnika (dukati)
+      // Trenutno koristi samo lokalnu AsyncStorage vrednost
       const stored = await AsyncStorage.getItem('dukati');
-      if (stored !== null) setDukati(parseInt(stored, 10));
+      const dukatiValue = stored !== null ? parseInt(stored, 10) : 0;
+      setDukati(dukatiValue);
+      // END: Placeholder za Supabase fetch
+    } catch (e) {
+      setDukati(0);
     }
   }, []);
 
-  // --- Učitavanje iz Firestore kad se user promeni (login/logout) ---
+  // --- Učitavanje pri promeni user-a (login/logout) ---
   useEffect(() => {
     if (user && user.uid) {
-      syncDukatiFromFirestore(user.uid);
+      syncDukati(user.uid);
     } else {
       setDukati(0);
       AsyncStorage.setItem('dukati', '0');
     }
-  }, [user, syncDukatiFromFirestore]);
+  }, [user, syncDukati]);
 
-  // --- Dodavanje dukata (i u cloud i lokalno) ---
+  // --- Dodavanje dukata (samo lokalno, bez cloud-a) ---
   const dodajDukate = useCallback(
     async (kolicina, animacijaPodaci) => {
       setDukati(prev => {
@@ -60,22 +52,14 @@ export const DukatiProvider = ({ children }) => {
         AsyncStorage.setItem('dukati', novi.toString());
         return novi;
       });
-
-      if (user && user.uid) {
-        try {
-          const docRef = doc(db, 'users', user.uid);
-          await updateDoc(docRef, {
-            dukati: (dukati || 0) + kolicina
-          });
-        } catch (e) {
-          // fallback na lokalno
-        }
-      }
+      // START: Placeholder za Supabase update
+      // TODO: Ubaciti Supabase update korisnika
+      // END: Placeholder za Supabase update
     },
-    [user, dukati, onCoinAdd]
+    [onCoinAdd]
   );
 
-  // --- Oduzimanje dukata ---
+  // --- Oduzimanje dukata (samo lokalno) ---
   const oduzmiDukate = useCallback(
     async (kolicina) => {
       setDukati(prev => {
@@ -83,19 +67,11 @@ export const DukatiProvider = ({ children }) => {
         AsyncStorage.setItem('dukati', novi.toString());
         return novi;
       });
-
-      if (user && user.uid) {
-        try {
-          const docRef = doc(db, 'users', user.uid);
-          await updateDoc(docRef, {
-            dukati: Math.max(0, (dukati || 0) - kolicina)
-          });
-        } catch (e) {
-          // fallback na lokalno
-        }
-      }
+      // START: Placeholder za Supabase update
+      // TODO: Ubaciti Supabase update korisnika
+      // END: Placeholder za Supabase update
     },
-    [user, dukati]
+    []
   );
 
   // Podesi callback za animaciju

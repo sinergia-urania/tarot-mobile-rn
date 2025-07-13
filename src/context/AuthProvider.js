@@ -1,52 +1,56 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
+// START: Supabase AuthProvider za React Native/Expo sa podrškom za sesije
+
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../utils/firebase";
-// START: Firestore importi
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../utils/firebase';
-// END: Firestore importi
+import { supabase } from "../utils/supabaseClient";
+
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      setUser(firebaseUser);
+    // Učitaj trenutnog korisnika na startu
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user || null);
       setAuthLoading(false);
-
-      // START: automatsko kreiranje users/{uid} u Firestore ako ne postoji
-      if (firebaseUser && firebaseUser.uid) {
-        try {
-          const userDocRef = doc(db, 'users', firebaseUser.uid);
-          const userDoc = await getDoc(userDocRef);
-          if (!userDoc.exists()) {
-            await setDoc(userDocRef, {
-              dukati: 0,
-              status: 'free',
-              createdAt: new Date().toISOString(),
-              email: firebaseUser.email || '',
-            });
-          }
-        } catch (e) {
-          // možeš ovde logovati error ili ignorisati za basic fail-safe
-        }
-      }
-      // END: automatsko kreiranje users/{uid}
     });
-    return unsubscribe;
+
+    // Listener za promene u auth state-u (login, logout, refresh)
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
+      setAuthLoading(false);
+    });
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
   }, []);
 
-  const logout = () => signOut(auth);
+  const login = async (email, password) => {
+    setAuthLoading(true);
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    setUser(data?.user || null);
+    setAuthLoading(false);
+    if (error) throw error;
+    return data;
+  };
+
+  const logout = async () => {
+    setAuthLoading(true);
+    await supabase.auth.signOut();
+    setUser(null);
+    setAuthLoading(false);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, authLoading, logout }}>
+    <AuthContext.Provider value={{ user, authLoading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-// Custom hook za korišćenje Auth-a bilo gde:
 export const useAuth = () => useContext(AuthContext);
+
+// END: Supabase AuthProvider za React Native/Expo sa podrškom za sesije

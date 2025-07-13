@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "com.mare82.tarotmobile",
     "extra": {
       "eas": {
         "projectId": "1c8251b9-7c40-4b86-92b5-96612afcc36b"
