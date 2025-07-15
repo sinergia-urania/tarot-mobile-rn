@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { ActivityIndicator, Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { login, loginWithFacebook, register } from "../utils/auth";
+import { login, loginWithFacebook, loginWithGoogle, register } from "../utils/auth";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -42,18 +42,32 @@ const LoginScreen = () => {
     setLoading(false);
   };
 
-  // Facebook login
+  // Facebook login (privremeno ne radi)
   const handleFacebookLogin = async () => {
     setLoading(true);
     try {
-      await loginWithFacebook();
-      // Supabase obavlja preusmeravanje, korisnik se vraća u app
+      const result = await loginWithFacebook();
+      console.log("FB LOGIN result:", result);
       navigation.goBack();
     } catch (err) {
+      console.log("FB LOGIN ERROR:", err);
       Alert.alert("Greška", err.message || "Facebook prijava nije uspela.");
     }
     setLoading(false);
   };
+
+  // START: Google login handler
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    try {
+      await loginWithGoogle();
+      // Nema potrebe za navigation.goBack(); -- redirektuje browser
+    } catch (err) {
+      Alert.alert("Greška", err.message || "Google prijava nije uspela.");
+    }
+    setLoading(false);
+  };
+  // END: Google login handler
 
   return (
     <View style={styles.container}>
@@ -98,13 +112,39 @@ const LoginScreen = () => {
             </Text>
           </TouchableOpacity>
 
+          {/* START: Google login dugme */}
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#fff",
+              borderRadius: 10,
+              paddingVertical: 12,
+              paddingHorizontal: 32,
+              alignItems: "center",
+              marginTop: 14,
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "center",
+              borderWidth: 1,
+              borderColor: "#ccc",
+            }}
+            onPress={handleGoogleLogin}
+            disabled={loading}
+          >
+            <Text style={{ color: "#232323", fontSize: 17, fontWeight: "bold" }}>
+              Prijava preko Google-a
+            </Text>
+          </TouchableOpacity>
+          {/* END: Google login dugme */}
+
+          {/* START: Facebook dugme (onemogućeno, za kasnije) */}
           <TouchableOpacity
             style={styles.fbButton}
             onPress={handleFacebookLogin}
-            disabled={loading}
+            
           >
             <Text style={styles.fbButtonText}>Prijava preko Facebook-a</Text>
           </TouchableOpacity>
+          {/* END: Facebook dugme */}
         </>
       )}
 
