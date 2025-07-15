@@ -51,6 +51,10 @@ Chrome/
 # Ignore test coverage output
 coverage/
 .nyc_output/
+# Dozvoli sve potrebne slike (pre nego što ignoriseš sve webp)
+!src/assets/icons/*.webp
+!assets/splash.webp
+!assets/icon.webp
 
 # Ignoriši slike i binarne assete OSIM onih u src/assets/cards/
 *.png
@@ -59,7 +63,8 @@ coverage/
 *.gif
 *.webp
 *.svg
-!src/assets/cards/*.webp
+
+
 
 # Ostavi samo “src”, “app.json”, “app.config.js”, “package.json”, “eas.json”, README...
 !/src/
