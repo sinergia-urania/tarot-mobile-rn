@@ -77,6 +77,7 @@ const cardImages = {
   knight_of_pentacles: require('../assets/cards/knight_of_pentacles.webp'),
   queen_of_pentacles: require('../assets/cards/queen_of_pentacles.webp'),
   king_of_pentacles: require('../assets/cards/king_of_pentacles.webp'),
+  master_card: require('../assets/cards/master_card.webp'),
 };
 
 const toSnakeCase = (str) =>
