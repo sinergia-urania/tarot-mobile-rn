@@ -55,7 +55,7 @@ coverage/
 !src/assets/icons/*.webp
 !assets/splash.webp
 !assets/icon.webp
-
+!src/assets/cards/*.webp
 # Ignoriši slike i binarne assete OSIM onih u src/assets/cards/
 *.png
 *.jpg
