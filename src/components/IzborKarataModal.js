@@ -392,10 +392,10 @@ const IzborKarataModal = ({
                     }}
                   >
                     <Image
-                      source={require("../assets/cards/master_card.webp")}
-                      style={styles.cardImage}
+                     source={getCardImagePath("master_card")}
+                     style={styles.cardImage}
                       resizeMode="contain"
-                    />
+                   />
                   </Pressable>
                 );
               })}
