@@ -7,17 +7,23 @@ import cardMeanings from '../locales/sr/cardMeanings.json';
 // END: Dodaj import za imena karata iz JSON-a
 
 
-const CardGroupList = ({ cards, title, groupIcon }) => {
+const CardGroupList = ({ cards, title, groupIcon, onCardView }) => {
   const [selectedCard, setSelectedCard] = useState(null);
 
-  // START: Pravi grid sa 3 kolone
+  // START: Pravi grid sa 3 kolone + poziv parent handlera
+  const handleCardPress = (item) => {
+    setSelectedCard(item);
+    if (onCardView) onCardView();
+  };
+
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.cardContainer} onPress={() => setSelectedCard(item)}>
+    <TouchableOpacity style={styles.cardContainer} onPress={() => handleCardPress(item)}>
       <Image source={getCardImagePath(item.key)} style={styles.cardImage} />
       <Text style={styles.cardTitle}>{cardMeanings.cards[item.key]?.name ?? item.key}</Text>
     </TouchableOpacity>
   );
-  // END: Pravi grid sa 3 kolone
+  // END: Pravi grid sa 3 kolone + poziv parent handlera
+
 
   return (
     <View style={styles.screen}>

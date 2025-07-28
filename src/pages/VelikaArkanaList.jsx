@@ -14,14 +14,14 @@ const cardKeys = [
   'theDevil', 'theTower', 'theStar', 'theMoon', 'theSun', 'judgement', 'theWorld'
 ];
 
-const VelikaArkanaList = () => {
+const VelikaArkanaList = (props) => {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardPress = (key) => {
-    setSelectedCard({ key }); // Modal će sam povući sve podatke iz JSON-a
+    setSelectedCard({ key });
+    if (props.onCardView) props.onCardView();
   };
 
-  // START: Render jedne karte u gridu
   const renderItem = ({ item: key }) => (
     <TouchableOpacity
       key={key}
@@ -37,16 +37,9 @@ const VelikaArkanaList = () => {
       <Text style={styles.name}>{cardMeanings.cards[key]?.name || key}</Text>
     </TouchableOpacity>
   );
-  // END: Render jedne karte u gridu
 
   return (
     <View style={styles.screen}>
-      
-
-      {/* START: Ikonica za grupu (npr. velika arkana) */}
-      {/* <Image source={require('../assets/icons/velika_arkana.webp')} style={styles.groupIcon} /> */}
-      {/* END: Ikonica za grupu */}
-
       <FlatList
         data={cardKeys}
         renderItem={renderItem}
@@ -64,6 +57,7 @@ const VelikaArkanaList = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   screen: {

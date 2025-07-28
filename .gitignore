@@ -61,6 +61,8 @@ coverage/
 !eas.json
 !README.md
 !assets
+!google-services.json
+
 
 # Test folderi i output
 test/

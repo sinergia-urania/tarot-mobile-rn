@@ -1,8 +1,7 @@
-// START: Uklonjeni Firebase importi
-// import { doc, getDoc } from 'firebase/firestore';
-// import { db } from '../utils/firebase';
-// END: Uklonjeni Firebase importi
-import React, { useEffect, useState } from 'react';
+/// START: ProfilScreen sa polling logikom za profil iz Supabase
+
+import { useFocusEffect } from '@react-navigation/native';
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../context/AuthProvider';
 import { useDukati } from '../context/DukatiContext';
@@ -10,30 +9,27 @@ import { useDukati } from '../context/DukatiContext';
 const COINS_FOR_PREMIUM = 5000;
 
 const ProfilScreen = ({ navigation }) => {
-  const { user, logout } = useAuth();
-  const { dukati } = useDukati();
+  // START: Preuzimanje iz context-a, više nema lokalnog profila
+  const { user, logout, profile, fetchProfile } = useAuth();
+  const { userPlan, fetchDukatiSaServera } = useDukati();
 
-  const [status, setStatus] = useState('free');
+  // END: Preuzimanje iz context-a
+
   const [loading, setLoading] = useState(true);
-  const [joined, setJoined] = useState('');
   const [loadingLogout, setLoadingLogout] = useState(false);
 
-  useEffect(() => {
-    // START: Placeholder za Supabase (dummy logika)
-    let mounted = true;
-    if (user && user.uid) {
+  // START: useFocusEffect refresha profil iz context-a
+  useFocusEffect(
+    useCallback(() => {
       setLoading(true);
-      setTimeout(() => {
-        if (mounted) {
-          setStatus('free'); // TODO: zameniti sa podacima iz Supabase
-          setJoined('-');    // TODO: zameniti sa podacima iz Supabase
-          setLoading(false);
-        }
-      }, 500);
-    }
-    return () => { mounted = false; };
-    // END: Placeholder za Supabase
-  }, [user]);
+      let cancelled = false;
+      fetchProfile().finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+      return () => { cancelled = true; };
+    }, [user])
+  );
+  // END: useFocusEffect refresha profil iz context-a
 
   // Prikaz datuma
   function formatJoinDate(dateStr) {
@@ -46,8 +42,12 @@ const ProfilScreen = ({ navigation }) => {
   }
 
   // Progress do Premium
-  const coinsToPremium = Math.max(COINS_FOR_PREMIUM - dukati, 0);
-  const progressPercent = Math.min(Math.round((dukati / COINS_FOR_PREMIUM) * 100), 100);
+  const coins = (profile?.coins !== undefined && profile?.coins !== null) ? profile.coins : 150;
+  const status = userPlan ?? profile?.package ?? 'free';
+
+  const joined = profile?.created_at || '-';
+  const coinsToPremium = Math.max(COINS_FOR_PREMIUM - coins, 0);
+  const progressPercent = Math.min(Math.round((coins / COINS_FOR_PREMIUM) * 100), 100);
 
   // Logout handler
   const handleLogout = async () => {
@@ -79,11 +79,52 @@ const ProfilScreen = ({ navigation }) => {
     }
     return (
       <View style={styles.avatarFallback}>
-        <Text style={styles.avatarInitial}>{user?.displayName?.[0]?.toUpperCase() || 'K'}</Text>
+        <Text style={styles.avatarInitial}>{profile?.username?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || 'K'}</Text>
       </View>
     );
   };
 
+  // START: Guard/fallback logika za prikaz
+  if (loading) return (
+    <View style={styles.overlay}>
+      <View style={styles.container}>
+        <ActivityIndicator color="#a21caf" size="large" />
+        <Text style={{ color: "#666", marginTop: 30, textAlign: "center" }}>
+          Pripremamo vaš profil... Molimo sačekajte trenutak.
+        </Text>
+      </View>
+    </View>
+  );
+
+  if (!user?.id) return (
+    <View style={styles.overlay}>
+      <View style={styles.container}>
+        <Text style={{ color: "#666", marginTop: 30, textAlign: "center" }}>
+          Niste prijavljeni.
+        </Text>
+      </View>
+    </View>
+  );
+
+  if (!profile) return (
+    <View style={styles.overlay}>
+      <View style={styles.container}>
+        <Text style={{ color: "#b91c1c", marginVertical: 16 }}>
+          Nema profila za ovog korisnika. Prijavite se istim načinom kao i prvi put!
+        </Text>
+        {/* Dugme za ručno pokušaj ponovo */}
+        <TouchableOpacity style={styles.changePassBtn} onPress={() => {
+          setLoading(true);
+          fetchProfile().finally(() => setLoading(false));
+        }}>
+          <Text style={styles.changePassBtnText}>Pokušaj ponovo</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+  // END: Guard/fallback logika za prikaz
+
+  // Prikaz kada sve postoji
   return (
     <View style={styles.overlay}>
       <View style={styles.container}>
@@ -91,53 +132,52 @@ const ProfilScreen = ({ navigation }) => {
           {renderAvatar()}
           <Text style={styles.title}>Tvoj profil</Text>
         </View>
-        {loading ? (
-          <ActivityIndicator color="#a21caf" size="large" />
-        ) : (
-          <>
-            <Text style={styles.label}>Ime:</Text>
-            <Text style={styles.value}>{user?.displayName || 'Korisnik'}</Text>
-            <Text style={styles.label}>Email:</Text>
-            <Text style={styles.value}>{user?.email || '-'}</Text>
-            <Text style={styles.label}>Član od:</Text>
-            <Text style={styles.value}>{joined}</Text>
-            <Text style={styles.label}>Nivo naloga:</Text>
-            <Text style={[styles.value, statusStyle(status)]}>
-              {status === 'premium'
-                ? 'Premium'
-                : status === 'pro'
-                ? 'Pro'
-                : 'Free'}
-            </Text>
-            <View style={styles.coinsBox}>
-              <Text style={styles.label}>Dukati:</Text>
-              <Text style={styles.coins}>💰 {dukati}</Text>
-            </View>
-            {/* Progress bar ka Premiumu */}
-            <View style={styles.progressBarBg}>
-              <View style={[styles.progressBar, { width: `${progressPercent}%` }]} />
-            </View>
-            <Text style={styles.progressText}>
-              Još <Text style={{ fontWeight: 'bold' }}>{coinsToPremium}</Text> dukata do Premium naloga!
-            </Text>
+        <Text style={styles.label}>Ime:</Text>
+        <Text style={styles.value}>{profile?.username || user?.email || 'Korisnik'}</Text>
+        <Text style={styles.label}>Email:</Text>
+        <Text style={styles.value}>{user?.email || '-'}</Text>
+        <Text style={styles.label}>Član od:</Text>
+        <Text style={styles.value}>{formatJoinDate(joined)}</Text>
+        <Text style={styles.label}>Nivo naloga:</Text>
+        <Text style={[styles.value, statusStyle(status)]}>
+          {status === 'premium'
+            ? 'Premium'
+            : status === 'pro'
+              ? 'Pro'
+              : 'Free'}
+        </Text>
+        <View style={styles.coinsBox}>
+          <Text style={styles.label}>Dukati:</Text>
+          <Text style={styles.coins}>💰 {coins}</Text>
+        </View>
+        {/* Progress bar ka Premiumu */}
+        <View style={styles.progressBarBg}>
+          <View style={[styles.progressBar, { width: `${progressPercent}%` }]} />
+        </View>
+        <Text style={styles.progressText}>
+          Još <Text style={{ fontWeight: 'bold' }}>{coinsToPremium}</Text> dukata do Premium naloga!
+        </Text>
 
-            {/* Dugme za otključavanje (reklama) */}
-            <TouchableOpacity style={styles.adBtn} onPress={handleWatchAd}>
-              <Text style={styles.adBtnText}>Gledaj reklamu i osvoji dukate</Text>
-            </TouchableOpacity>
+        
+        {/* Dugme za osvežavanje profila */}
+        <TouchableOpacity style={styles.changePassBtn} onPress={() => {
+         setLoading(true);
+        fetchDukatiSaServera().finally(() => setLoading(false));
+        }}>
+       <Text style={styles.changePassBtnText}>Osveži status paketa</Text>
+       </TouchableOpacity>
 
-            <View style={{ flexDirection: 'row', gap: 10, marginTop: 18 }}>
-              <TouchableOpacity style={styles.changePassBtn} onPress={handleChangePassword}>
-                <Text style={styles.changePassBtnText}>Promeni lozinku</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout} disabled={loadingLogout}>
-                <Text style={styles.logoutBtnText}>
-                  {loadingLogout ? 'Odjava...' : 'Odjavi se'}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </>
-        )}
+
+        <View style={{ flexDirection: 'row', gap: 10, marginTop: 18 }}>
+          <TouchableOpacity style={styles.changePassBtn} onPress={handleChangePassword}>
+            <Text style={styles.changePassBtnText}>Promeni lozinku</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout} disabled={loadingLogout}>
+            <Text style={styles.logoutBtnText}>
+              {loadingLogout ? 'Odjava...' : 'Odjavi se'}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -283,3 +323,5 @@ const styles = StyleSheet.create({
 });
 
 export default ProfilScreen;
+
+// END: ProfilScreen sa polling logikom za profil iz Supabase

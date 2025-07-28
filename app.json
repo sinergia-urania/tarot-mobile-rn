@@ -1,13 +1,33 @@
 {
   "expo": {
-    "scheme": "com.mare82.tarotmobile",
+    "name": "TarotMobile",
+    "slug": "tarot-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "sdkVersion": "53.0.0",
     "extra": {
       "eas": {
         "projectId": "1c8251b9-7c40-4b86-92b5-96612afcc36b"
       }
     },
     "android": {
-      "package": "com.mare82.tarotmobile"
-    }
+      "package": "com.mare82.tarotmobile",
+       "googleServicesFile": "./google-services.json"
+
+    },
+    "ios": {
+      "bundleIdentifier": "com.mare82.tarotmobile"
+      
+    },
+    "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-2786609619751533~1407821486",
+          "iosAppId": "ca-app-pub-2786609619751533~5646433485"
+        }
+      ],
+      "expo-font"
+    ]
   }
 }

@@ -1,13 +1,21 @@
-// START: Dodavanje Back dugmeta (strelica) u Podesavanja.jsx
+/// START: Dodavanje Back dugmeta (strelica) u Podesavanja.jsx
 
 // START: Nova podešavanja - obrnutih karata, notifikacije, jezik
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 
-import { Modal, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Modal, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native'; // START: Dodato Alert
 import SoundSettings from '../components/SoundSettings';
 import { useAuth } from '../context/AuthProvider'; // ili odakle već vučeš user podatke
 import { updateDisplayName } from "../utils/auth"; // vidi da li je tu ili ga dodaj
+// START: Import supabase za ON/OFF notifikacije
+import { supabase } from '../utils/supabaseClient';
+// ...ostale import-e ostavi
+import { registerForPushNotificationsAsync } from '../utils/pushNotifications'; // Dodaj na vrh
+
+
+
+
 
 
 // START: Dropdown modal helper
@@ -22,39 +30,103 @@ const LANGUAGES = [
 
 const Podesavanja = () => {
   const navigation = useNavigation();
+  const { user, refreshUser } = useAuth();
 
   // Switch/ceker stanja, default ON
+  const [notifications, setNotifications] = useState(user?.notifications_enabled ?? true);
+  const [notifSaving, setNotifSaving] = useState(false);
+
+  // Ostala stanja
   const [reversed, setReversed] = useState(true);
-  const [notifications, setNotifications] = useState(true);
-    const { user, refreshUser } = useAuth(); // koristi tvoj context ili hook za user-a
-    const [editing, setEditing] = useState(false);
-    const [displayName, setDisplayName] = useState(user?.displayName || "");
-    const [inputName, setInputName] = useState(displayName);
-    const [saving, setSaving] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [displayName, setDisplayName] = useState(user?.displayName || "");
+  const [inputName, setInputName] = useState(displayName);
+  const [saving, setSaving] = useState(false);
 
-    useEffect(() => {
-     setDisplayName(user?.displayName || "");
-     setInputName(user?.displayName || "");
-    },   [user?.displayName]);
+  // Sync notifikacija sa bazom kad se user promeni
+  useEffect(() => {
+    setNotifications(user?.notifications_enabled ?? true);
+  }, [user?.notifications_enabled]);
 
+  useEffect(() => {
+    setDisplayName(user?.displayName || "");
+    setInputName(user?.displayName || "");
+  }, [user?.displayName]);
 
-    const handleSave = async () => {
-    if (!inputName.trim()) {
-    Alert.alert("Greška", "Ime ne može biti prazno!");
+  // --- OVO JE NAJBOLJE MESTO ZA upisiPushToken ---
+  const upisiPushToken = async () => {
+    console.log(">>>> Ulazim u upisiPushToken");
+    const token = await registerForPushNotificationsAsync();
+    console.log(">>>> Dobijen token:", token);
+    if (!token) return;
+    Alert.alert("Push test", "Nema tokena!");
+    const userId = user?.id;
+    console.log(">>>> userId:", userId);
+    if (!userId) {
+    Alert.alert("Push test", "Nema user id!");
     return;
+  }
+
+    const { error } = await supabase
+      .from('profiles')
+      .update({ expo_push_token: token })
+      .eq('id', userId);
+    if (error) {
+    Alert.alert("Push test", "Token NIJE upisan!\n" + error.message);
+    console.log("Supabase error:", error);
+  } else {
+    Alert.alert("Push test", "Token JE upisan!");
+    console.log("Supabase OK!");
+  }
+};
+  // --- KRAJ ---
+
+  const handleToggleNotifications = async (newValue) => {
+    setNotifications(newValue);
+    setNotifSaving(true);
+    const userId = user?.id;
+    if (!userId) {
+      setNotifSaving(false);
+      return;
     }
-     setSaving(true);
-    try {
-    await updateDisplayName(inputName);
-    setDisplayName(inputName);
-    setEditing(false);
-    Alert.alert("Uspeh", "Ime je ažurirano!");
+    const { error } = await supabase
+      .from('profiles')
+      .update({ notifications_enabled: newValue })
+      .eq('id', userId);
+    if (error) {
+      Alert.alert("Greška", "Nije moguće ažurirati notifikacije.");
+      setNotifications(!newValue);
+    }
+    setNotifSaving(false);
     if (refreshUser) refreshUser();
-     } catch (err) {
-    Alert.alert("Greška", "Došlo je do greške prilikom izmene imena.");
-     }
+
+    if (newValue) {
+      await upisiPushToken();
+      
+    } else {
+      // await supabase.from('profiles').update({ expo_push_token: null }).eq('id', userId);
+    }
+  };
+
+  const handleSave = async () => {
+    if (!inputName.trim()) {
+      Alert.alert("Greška", "Ime ne može biti prazno!");
+      return;
+    }
+    setSaving(true);
+    try {
+      await updateDisplayName(inputName);
+      setDisplayName(inputName);
+      setEditing(false);
+      Alert.alert("Uspeh", "Ime je ažurirano!");
+      if (refreshUser) refreshUser();
+    } catch (err) {
+      Alert.alert("Greška", "Došlo je do greške prilikom izmene imena.");
+    }
     setSaving(false);
-    };
+  };
+
+  // ...jezik dropdown itd.
 
   // Jezik dropdown
   const [langModal, setLangModal] = useState(false);
@@ -70,29 +142,29 @@ const Podesavanja = () => {
 
       <Text style={styles.title}>Podešavanja</Text>
       <View style={styles.section}>
-       <Text style={styles.label}>Trenutno ime:</Text>
-       {user?.user_metadata?.displayName
-         ? <Text style={styles.displayName}>{user.user_metadata.displayName}</Text>
-         : <Text style={styles.displayNamePrazno}>Niste uneli ime</Text>
-       }
+        <Text style={styles.label}>Trenutno ime:</Text>
+        {user?.user_metadata?.displayName
+          ? <Text style={styles.displayName}>{user.user_metadata.displayName}</Text>
+          : <Text style={styles.displayNamePrazno}>Niste uneli ime</Text>
+        }
 
-       {!editing ? (
-       <TouchableOpacity style={styles.editBtn} onPress={() => setEditing(true)}>
-       <Text style={styles.editText}>Promeni ime</Text>
-        </TouchableOpacity>
-        ) : (
-        <View style={styles.inputRow}>
-        <TextInput
-        value={inputName}
-        onChangeText={setInputName}
-        placeholder="Novo ime"
-        style={styles.input}
-        editable={!saving}
-       />
-         <TouchableOpacity style={styles.saveBtn} onPress={handleSave} disabled={saving}>
-           <Text style={styles.saveText}>{saving ? "..." : "Sačuvaj"}</Text>
+        {!editing ? (
+          <TouchableOpacity style={styles.editBtn} onPress={() => setEditing(true)}>
+            <Text style={styles.editText}>Promeni ime</Text>
           </TouchableOpacity>
-        </View>
+        ) : (
+          <View style={styles.inputRow}>
+            <TextInput
+              value={inputName}
+              onChangeText={setInputName}
+              placeholder="Novo ime"
+              style={styles.input}
+              editable={!saving}
+            />
+            <TouchableOpacity style={styles.saveBtn} onPress={handleSave} disabled={saving}>
+              <Text style={styles.saveText}>{saving ? "..." : "Sačuvaj"}</Text>
+            </TouchableOpacity>
+          </View>
         )}
       </View>
 
@@ -100,26 +172,20 @@ const Podesavanja = () => {
         <Text style={styles.sectionTitle}>Zvuk</Text>
         <SoundSettings />
 
-        {/* START: Switch za Obrnute karte */}
-        <View style={styles.toggleRow}>
-          <Text style={styles.toggleText}>Obrnute karte</Text>
-          <Switch
-            value={reversed}
-            onValueChange={setReversed}
-            thumbColor={reversed ? "#facc15" : "#333"}
-            trackColor={{ false: "#444", true: "#facc15" }}
-          />
-        </View>
-        {/* END: Switch za Obrnute karte */}
+        <TouchableOpacity style={{backgroundColor:'#facc15', padding:12, borderRadius:7, marginTop:30}} onPress={upisiPushToken}>
+        <Text style={{color:'#232323', fontWeight:'bold', textAlign:'center'}}>Test push token upis</Text>
+         </TouchableOpacity>
+
 
         {/* START: Switch za Notifikacije */}
         <View style={styles.toggleRow}>
           <Text style={styles.toggleText}>Notifikacije</Text>
           <Switch
             value={notifications}
-            onValueChange={setNotifications}
+            onValueChange={handleToggleNotifications}
             thumbColor={notifications ? "#facc15" : "#333"}
             trackColor={{ false: "#444", true: "#facc15" }}
+            disabled={notifSaving}
           />
         </View>
         {/* END: Switch za Notifikacije */}
@@ -159,6 +225,7 @@ const Podesavanja = () => {
               <TouchableOpacity onPress={() => setLangModal(false)}>
                 <Text style={[styles.selectedLang, { color: '#facc15', marginTop: 16 }]}>Zatvori</Text>
               </TouchableOpacity>
+              
             </View>
           </View>
         </Modal>
@@ -260,69 +327,67 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: '#393939',
     borderBottomWidth: 1,
- 
+
   },
   label: {
-  color: "#facc15",
-  fontSize: 16,
-  fontWeight: "bold",
-  marginBottom: 2,
+    color: "#facc15",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 2,
   },
   displayName: {
-  color: "#fff",
-  fontSize: 18,
-  marginBottom: 6,
-  fontWeight: "600",
+    color: "#fff",
+    fontSize: 18,
+    marginBottom: 6,
+    fontWeight: "600",
   },
   editBtn: {
-  backgroundColor: "#eab308",
-  borderRadius: 7,
-  paddingHorizontal: 15,
-  paddingVertical: 6,
+    backgroundColor: "#eab308",
+    borderRadius: 7,
+    paddingHorizontal: 15,
+    paddingVertical: 6,
   },
   editText: {
-  color: "#232323",
-  fontWeight: "bold",
-  fontSize: 15,
+    color: "#232323",
+    fontWeight: "bold",
+    fontSize: 15,
   },
   inputRow: {
-  flexDirection: "row",
-  alignItems: "center",
-  marginTop: 4,
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 4,
   },
   input: {
-  minWidth: 110,
-  maxWidth: 180,
-  backgroundColor: "#232323",
-  color: "#fff",
-  borderRadius: 7,
-  borderWidth: 2,
-  borderColor: "#facc15",  
-  backgroundColor: "#5a4949ff",
-  paddingVertical: 6,
-  paddingHorizontal: 10,
-  fontSize: 16,
-  marginRight: 8,
+    minWidth: 110,
+    maxWidth: 180,
+    backgroundColor: "#232323",
+    color: "#fff",
+    borderRadius: 7,
+    borderWidth: 2,
+    borderColor: "#facc15",  
+    backgroundColor: "#5a4949ff",
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    fontSize: 16,
+    marginRight: 8,
   },
   saveBtn: {
-  backgroundColor: "#facc15",
-  borderRadius: 7,
-  paddingHorizontal: 10,
-  paddingVertical: 6,
+    backgroundColor: "#facc15",
+    borderRadius: 7,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
   },
   saveText: {
-  color: "#232323",
-  fontWeight: "bold",
-  fontSize: 15,
- },
- displayNamePrazno: {
-  color: "#aaa",
-  fontSize: 18,
-  marginBottom: 6,
-  fontWeight: "600",
- },
-
-
+    color: "#232323",
+    fontWeight: "bold",
+    fontSize: 15,
+  },
+  displayNamePrazno: {
+    color: "#aaa",
+    fontSize: 18,
+    marginBottom: 6,
+    fontWeight: "600",
+  },
 });
 
 export default Podesavanja;

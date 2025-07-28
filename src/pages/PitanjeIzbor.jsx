@@ -1,9 +1,10 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
-import { Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import TarotHeader from "../components/TarotHeader"; // prilagodi putanju ako treba
+
+// ... tvoja lista oblasti (ostaje nepromenjena)
 const oblasti = [
-  // ... (ostaje tvoja lista oblasti, nisam dirao)
   {
     naziv: "Ljubav",
     ikonica: "❤️",
@@ -76,6 +77,7 @@ const oblasti = [
       "Da li nas očekuje mir u kući?",
     ],
   },
+  
 ];
 
 function OblastModal({ oblast, visible, onClose, onSelect }) {
@@ -111,39 +113,42 @@ function OblastModal({ oblast, visible, onClose, onSelect }) {
 export default function PitanjeIzbor() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { layoutTemplate, tip } = route.params || {};
+  const { layoutTemplate, tip, subtip } = route.params || {};
 
   const [pitanje, setPitanje] = useState("");
   const [openModal, setOpenModal] = useState(null);
 
   const handleNastavi = () => {
     if (!pitanje.trim()) return;
+    // START: Navigacija - subtip je obavezno u props, naplata će raditi ispravno
     navigation.navigate("IzborKarata", {
       layoutTemplate,
       pitanje,
       tip,
+      subtip, // <-- sada je subtip SVUDA prisutan
     });
+    // END: Navigacija - subtip uvek ide dalje!
   };
 
+  // Prikaz oblasti: samo ljubavne za "ljubavno" subtip, inače sve
   const prikazOblasti =
-    tip === "ljubavno"
+    subtip === "ljubavno"
       ? oblasti.filter((o) => o.naziv === "Ljubav")
       : oblasti;
 
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
-        <TarotHeader
-          showBack={true}
-          onBack={() => navigation.goBack()}
-          showHome={true}
-          onHome={() => navigation.navigate("Home")}
-        />
-      
-      {/* Ostatak sadržaja se skroluje ispod headera */}
+      <TarotHeader
+        showBack={true}
+        onBack={() => navigation.goBack()}
+        showHome={true}
+        onHome={() => navigation.navigate("Home")}
+        showMenu={false}
+      />
+
       <ScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{ paddingBottom: 32}}
-        // paddingTop mora biti veći od visine headera
+        contentContainerStyle={{ paddingBottom: 32 }}
       >
         <View style={styles.container}>
           <Text style={styles.infoMsg}>
@@ -197,9 +202,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 10,
-    // Podešavanje visine, možeš je prilagoditi ako menjaš TarotHeader
-    height: Platform.OS === "ios" ? 78 : 70,
-    backgroundColor: "#000", // ili "black" za vizuelni kontinuitet
+    backgroundColor: "#000",
     borderBottomWidth: 1,
     borderBottomColor: "#ffd700",
   },

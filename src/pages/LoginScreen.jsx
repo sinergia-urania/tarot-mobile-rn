@@ -1,10 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useAuth } from "../context/AuthProvider";
 import { login, loginWithFacebook, loginWithGoogle, register } from "../utils/auth";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+  const { user } = useAuth();
 
   const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState("");
@@ -12,13 +14,21 @@ const LoginScreen = () => {
   const [displayName, setDisplayName] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // START: Automatski idi na Home kad je korisnik ulogovan
+  useEffect(() => {
+    if (user) {
+      navigation.replace("Home"); // zameni Login sa Home ekranom
+    }
+  }, [user]);
+  // END: Automatski idi na Home kad je korisnik ulogovan
+
   // Klasičan login
   const handleLogin = async () => {
     setLoading(true);
     try {
       await login(email, password);
       Alert.alert("Uspeh", "Uspešno ste se prijavili!");
-      navigation.goBack();
+      // navigation.goBack(); -- vise nije potrebno, automatski će prebaciti kad user postane != null
     } catch (err) {
       Alert.alert("Greška", err.message || "Neuspešna prijava.");
     }
@@ -35,39 +45,36 @@ const LoginScreen = () => {
     try {
       await register(email, password, displayName);
       Alert.alert("Uspeh", "Uspešno ste se registrovali! Potvrdite email.");
-      navigation.goBack();
+      // navigation.goBack(); -- automatski će prebaciti
     } catch (err) {
       Alert.alert("Greška", err.message || "Neuspešna registracija.");
     }
     setLoading(false);
   };
 
-  // Facebook login (privremeno ne radi)
+  // Facebook login
   const handleFacebookLogin = async () => {
     setLoading(true);
     try {
-      const result = await loginWithFacebook();
-      console.log("FB LOGIN result:", result);
-      navigation.goBack();
+      await loginWithFacebook();
+      // navigation.goBack(); -- ne treba
     } catch (err) {
-      console.log("FB LOGIN ERROR:", err);
       Alert.alert("Greška", err.message || "Facebook prijava nije uspela.");
     }
     setLoading(false);
   };
 
-  // START: Google login handler
+  // Google login
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
       await loginWithGoogle();
-      // Nema potrebe za navigation.goBack(); -- redirektuje browser
+      // nema navigation -- user će automatski biti preusmeren
     } catch (err) {
       Alert.alert("Greška", err.message || "Google prijava nije uspela.");
     }
     setLoading(false);
   };
-  // END: Google login handler
 
   return (
     <View style={styles.container}>
@@ -136,15 +143,24 @@ const LoginScreen = () => {
           </TouchableOpacity>
           {/* END: Google login dugme */}
 
-          {/* START: Facebook dugme (onemogućeno, za kasnije) */}
+          {/* START: Facebook dugme */}
           <TouchableOpacity
             style={styles.fbButton}
             onPress={handleFacebookLogin}
-            
+            disabled={loading}
           >
             <Text style={styles.fbButtonText}>Prijava preko Facebook-a</Text>
           </TouchableOpacity>
           {/* END: Facebook dugme */}
+
+          {/* START: Close dugme (ako želiš da ga vidiš uvek) */}
+          <TouchableOpacity
+            style={{ marginTop: 20 }}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={{ color: '#fff', fontSize: 15, textDecorationLine: "underline" }}>Zatvori</Text>
+          </TouchableOpacity>
+          {/* END: Close dugme */}
         </>
       )}
 

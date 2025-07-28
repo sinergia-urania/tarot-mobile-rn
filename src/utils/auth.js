@@ -1,20 +1,40 @@
 import { Linking } from 'react-native';
 import { supabase } from './supabaseClient';
 
-// Funkcija za registraciju korisnika
-export async function register(email, password, displayName) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: { displayName },
-    },
-  });
-  if (error) throw error;
-  return data;
+// Provera isteka paketa — helper funkcija za AuthProvider
+export async function proveriIstekPaketa(userId) {
+  try {
+    const { data: profileData, error } = await supabase
+      .from("profiles")
+      .select("package, premium_until, coins")
+      .eq("id", userId)
+      .single();
+
+    if (error) throw error;
+
+    const danas = new Date();
+    const istek = profileData?.premium_until ? new Date(profileData.premium_until) : null;
+
+    if (profileData.package !== "free" && istek && danas > istek) {
+      const noviDukati = (profileData.coins ?? 0) + 150;
+      await supabase
+        .from("profiles")
+        .update({
+          package: "free",
+          coins: noviDukati,
+          premium_until: null,
+        })
+        .eq("id", userId);
+      return { paketIstekao: true, noviDukati };
+    }
+    return { paketIstekao: false };
+  } catch (err) {
+    console.log("Greška u proveri isteka paketa:", err.message);
+    return { paketIstekao: false, greska: err.message };
+  }
 }
 
-// Funkcija za login korisnika
+// Klasičan login (email/password)
 export async function login(email, password) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -24,50 +44,32 @@ export async function login(email, password) {
   return data;
 }
 
-// START: Ispravan Facebook login (NE FUNKCIONIŠE, ostavljeno radi reference)
-// Prilikom poziva, Supabase otvara Facebook login automatski.
-export async function loginWithFacebook() {
-  // Supabase vraća URL koji možeš otvoriti u browseru
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'facebook',
-    options: {
-      redirectTo: 'com.mare82.tarotmobile://auth/callback', // obavezno!
-    },
-  });
-  if (error) {
-    console.log('FB login greška:', error);
-    alert('Greška: ' + error.message);
-    return;
-  }
-  if (data?.url) {
-    // Ovo forsira otvaranje auth URL-a u browseru
-    Linking.openURL(data.url);
-  } else {
-    alert('Nije moguće otvoriti Facebook login!');
-  }
-}
-// END: Ispravan Facebook login (NE FUNKCIONIŠE, ostavljeno radi reference)
-
-
-// START: Google login za Supabase (Expo/React Native)
-// START: Google login sa Linking.openURL workaround-om
-// START: Ispravan mobilni Google login (deep link redirect)
+// Login sa Google-om (OAuth, mobile) — koristi Linking
 export async function loginWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
+    provider: "google",
     options: {
-      redirectTo: 'com.mare82.tarotmobile://auth/callback',
-    },
+      redirectTo: "com.mare82.tarotmobile://auth/callback",
+    }
   });
-  if (error) {
-    console.log('Google login greška:', error);
-    alert('Greška: ' + error.message);
-    return;
-  }
+  if (error) throw error;
   if (data?.url) {
-    Linking.openURL(data.url);
-  } else {
-    alert('Nije moguće otvoriti Google login!');
+    await Linking.openURL(data.url);
   }
+  return data;
 }
-// END: Ispravan mobilni Google login (deep link redirect)
+
+// Login sa Facebook-om (OAuth, mobile) — koristi Linking
+export async function loginWithFacebook() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "facebook",
+    options: {
+      redirectTo: "com.mare82.tarotmobile://auth/callback",
+    }
+  });
+  if (error) throw error;
+  if (data?.url) {
+    await Linking.openURL(data.url);
+  }
+  return data;
+}

@@ -5,6 +5,13 @@ import SidebarMenu from '../components/SidebarMenu'; // DODATO!
 import TarotHeader from '../components/TarotHeader';
 import CardGroupList from './CardGroupList';
 import VelikaArkanaList from './VelikaArkanaList';
+// START: Importi za must-watch reklame i toast
+import Toast from "react-native-toast-message";
+import { useDukati } from "../context/DukatiContext";
+// START: Zamena stare logike za rewarded ad modernom logikom
+import { createRewardedAdInstance, RewardedAdEventType, showInterstitialAd } from "../utils/ads";
+// END: Zamena stare logike za rewarded ad modernom logikom
+// END: Importi za must-watch reklame i toast
 
 const groupMap = {
   velika: { label: 'Velika Arkana', icon: require('../assets/icons/major.webp') },
@@ -33,11 +40,111 @@ const pentacleKeys = [
   'pageOfPentacles', 'knightOfPentacles', 'queenOfPentacles', 'kingOfPentacles'
 ];
 
+// START: Zamena stare logike za rewarded ad modernom logikom
+const prikaziRewardedReklamu = async () => {
+  return new Promise((resolve, reject) => {
+    const rewarded = createRewardedAdInstance();
+
+    const earnedListener = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      async (reward) => {
+        if (reward && reward.amount) {
+          try {
+            await dodeliDukatePrekoBackenda(reward.amount);
+          } catch (err) {
+            // Baci toast ili error, po želji
+          }
+        }
+        resolve();
+      }
+    );
+
+    const loadedListener = rewarded.addAdEventListener(
+      RewardedAdEventType.LOADED,
+      () => {
+        rewarded.show();
+      }
+    );
+
+    const errorListener = rewarded.addAdEventListener(
+      RewardedAdEventType.ERROR,
+      (err) => {
+        Toast.show({
+          type: "error",
+          text1: "Greška sa reklamom!",
+          text2: err.message,
+          position: "bottom",
+        });
+        earnedListener();
+        loadedListener();
+        errorListener();
+        reject(err);
+      }
+    );
+
+    const closedListener = rewarded.addAdEventListener(
+      RewardedAdEventType.CLOSED,
+      () => {
+        earnedListener();
+        loadedListener();
+        errorListener();
+        closedListener();
+        resolve();
+      }
+    );
+
+    rewarded.load();
+  });
+};
+// END: Zamena stare logike za rewarded ad modernom logikom
+
 const TarotMeaning = () => {
   const [selectedGroup, setSelectedGroup] = useState('velika');
   const [sidebarOpen, setSidebarOpen] = useState(false); // DODATO!
   const navigation = useNavigation();
   const route = useRoute();
+  // START: State i handler za must-watch reklame
+  const [cardViewCount, setCardViewCount] = useState(0);
+  const [offerShown, setOfferShown] = useState(false);
+  const { dukati: contextDukati, userPlan, dodeliDukatePrekoBackenda, loading } = useDukati();
+
+  const handleCardView = async () => {
+  let next;
+  setCardViewCount(prev => {
+    next = prev + 1;
+    return next;
+  });
+
+  // Sada koristiš next asinhrono
+  if (userPlan === "guest" && next % 3 === 0) {
+    showInterstitialAd();
+  } else if (userPlan === "free") {
+    if (next === 4 && !offerShown) {
+      Toast.show({
+        type: 'info',
+        text1: 'Dukati za reklamu',
+        text2: 'Pogledaj reklamu i osvoji dukate!',
+        position: 'bottom',
+        autoHide: true,
+        visibilityTime: 8000,
+        onPress: async () => {
+          await prikaziRewardedReklamu();
+          setOfferShown(true);
+          Toast.hide();
+        },
+        onHide: () => setOfferShown(true)
+      });
+    }
+    if (next === 6 && offerShown) {
+      await prikaziRewardedReklamu();
+      if (userPlan === "free" && next % 5 === 0) {
+        showInterstitialAd();
+      }
+    }
+  }
+};
+
+  // END: State i handler za must-watch reklame
 
   const generateCardList = (keys) =>
     keys.map((key) => ({
@@ -48,15 +155,15 @@ const TarotMeaning = () => {
   const renderGroup = () => {
     switch (selectedGroup) {
       case 'velika':
-        return <VelikaArkanaList />;
+        return <VelikaArkanaList onCardView={handleCardView} />;
       case 'stapovi':
-        return <CardGroupList cards={generateCardList(wandKeys)} />;
+        return <CardGroupList cards={generateCardList(wandKeys)} onCardView={handleCardView} />;
       case 'pehari':
-        return <CardGroupList cards={generateCardList(cupKeys)} />;
+        return <CardGroupList cards={generateCardList(cupKeys)} onCardView={handleCardView} />;
       case 'macevi':
-        return <CardGroupList cards={generateCardList(swordKeys)} />;
+        return <CardGroupList cards={generateCardList(swordKeys)} onCardView={handleCardView} />;
       case 'zlatnici':
-        return <CardGroupList cards={generateCardList(pentacleKeys)} />;
+        return <CardGroupList cards={generateCardList(pentacleKeys)} onCardView={handleCardView} />;
       default:
         return (
           <Text style={styles.notImplemented}>
@@ -69,8 +176,8 @@ const TarotMeaning = () => {
   return (
     <View style={{ flex: 1, backgroundColor: '#181818' }}>
       {/* Header fiksiran na vrhu */}
-      <TarotHeader
-        showBack={route.name !== 'Home'}
+      <TarotHeader swapTreasureMenu
+        showBack={false}
         onBack={() => navigation.goBack()}
         onHome={() => navigation.navigate('Home')}
         onMenu={() => setSidebarOpen(true)} // ISPRAVLJENO!

@@ -12,24 +12,31 @@ const FlyingCoin = ({ start, end, onComplete }) => {
     scale.setValue(1);
 
     Animated.parallel([
-      Animated.timing(position, {
-        toValue: { x: end.x, y: end.y },
-        duration: 1800,
+    Animated.timing(position, {
+      toValue: { x: end.x, y: end.y },
+      duration: 1800,
+      useNativeDriver: true,
+    }),
+    // PATCH: Sekvenca za opacity!
+    Animated.sequence([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 1300, // 1.3s potpuno vidljiv
         useNativeDriver: true,
       }),
       Animated.timing(opacity, {
         toValue: 0,
-        duration: 1800,
+        duration: 500, // zadnjih 0.5s fade out
         useNativeDriver: true,
       }),
-      Animated.timing(scale, {
-        toValue: 0.8,
-        duration: 1800,
-        useNativeDriver: true,
-      }),
-    ]).start(onComplete);
-  }, [start, end]);
-
+    ]),
+    Animated.timing(scale, {
+      toValue: 0.8,
+      duration: 1800,
+      useNativeDriver: true,
+    }),
+  ]).start(onComplete);
+}, [start, end]);
   return (
     <Animated.View
       style={[

@@ -2,12 +2,10 @@
 import {
   ASTROLOSKO,
   DVE_KARTE,
-  JEDNA_KARTA,
   KABALISTICKO,
   KELTSKI_KRST,
-  LJUBAVNO_OTVARANJE,
   PET_KARATA,
-  TRI_KARTE,
+  TRI_KARTE
 } from "../data/layoutTemplates";
 
 /**
@@ -15,21 +13,21 @@ import {
  * Svaki layout je niz objekata (jedan placeholder = jedan objekat)
  * Na mobilnom je bitan samo broj placeholdera!
  */
-const getLayoutByTip = (tip) => {
+const getLayoutByTip = (tip, subtip) => {
+  if (tip === "klasicno") {
+    switch (subtip) {
+      case "ljubavno":
+        return DVE_KARTE.layout;
+      case "tri":
+        return TRI_KARTE.layout;
+      case "pet":
+        return PET_KARATA.layout;
+      default:
+        return DVE_KARTE.layout; // fallback (ili prazno)
+     }
+  }
   switch (tip) {
-    case "jedna":
-    case "karta-dana":
-    case "da-ne":
-    case "dane":
-      return JEDNA_KARTA.layout;
-    case "ljubavno":
-      return LJUBAVNO_OTVARANJE.layout;
-    case "dve":
-      return DVE_KARTE.layout;
-    case "tri":
-      return TRI_KARTE.layout;
-    case "pet":
-      return PET_KARATA.layout;
+    
     case "keltski":
       return KELTSKI_KRST.layout;
     case "astrološko":

@@ -1,9 +1,13 @@
-import { Audio } from "expo-av";
-import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { DVE_KARTE, PET_KARATA, TRI_KARTE } from "../data/layoutTemplates";
 
-// --- zvuk klik dugmeta ---
+import { Audio } from "expo-av";
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { READING_PRICES } from "../constants/readingPrices";
+import { LJUBAVNO_OTVARANJE, PET_KARATA, TRI_KARTE } from "../data/layoutTemplates";
+
+import { useDukati } from "../context/DukatiContext";
+
+
 const clickSound = require("../assets/sounds/hover-click.mp3");
 const playClickSound = async () => {
   try {
@@ -13,33 +17,56 @@ const playClickSound = async () => {
     });
   } catch (e) {}
 };
-// -------------------------
 
 const options = [
-  { key: '2', label: 'Ja – On/Ona', icon: require("../assets/icons/love.webp") },
-  { key: '3', label: 'Prošlost – Sadašnjost – Budućnost', icon: require("../assets/icons/history.webp") },
-  { key: '5', label: 'Put spoznaje', icon: require("../assets/icons/five-cards.webp") },
+  { key: '2', label: 'Ja – On/Ona', icon: require("../assets/icons/love.webp"), subtip: "ljubavno" },
+  { key: '3', label: 'Prošlost – Sadašnjost – Budućnost', icon: require("../assets/icons/history.webp"), subtip: "tri" },
+  { key: '5', label: 'Put spoznaje', icon: require("../assets/icons/five-cards.webp"), subtip: "pet" },
 ];
 
 const KlasicnoModal = ({ onClose, navigation }) => {
+  // START: State za modal nedostatka dukata
+  const [showNoDukes, setShowNoDukes] = useState(false);
+  const [noDukesText, setNoDukesText] = useState("");
+  // END: State za modal nedostatka dukata
+
+  // START: Uzimanje dukata iz context-a
+  const { dukati } = useDukati();
+  // END: Uzimanje dukata iz context-a
+
   const handleSelect = async (key) => {
     await playClickSound();
+    const opt = options.find(o => o.key === key);
+    if (!opt) return;
+
+    // GUARD: Provera dukata po subtipu
+    const cena = READING_PRICES[opt.subtip] || 0;
+    if (cena > 0 && dukati < cena) {
+      setNoDukesText(`Nemaš dovoljno dukata za ovo otvaranje! Potrebno: ${cena} 🪙`);
+      setShowNoDukes(true);
+      return;
+    }
+
+    // Navigacija na odgovarajuće otvaranje (ako ima dovoljno dukata)
     if (key === '2') {
       navigation.navigate("PitanjeIzbor", {
-        layoutTemplate: DVE_KARTE,
-        tip: "ljubavno",
+        layoutTemplate: LJUBAVNO_OTVARANJE.layout,        
+        tip: "klasicno",
+        subtip: "ljubavno",
         opisOtvaranja: "Ja – On/Ona"
       });
     } else if (key === '3') {
       navigation.navigate("PitanjeIzbor", {
-        layoutTemplate: TRI_KARTE,
-        tip: "tri",
+        layoutTemplate: TRI_KARTE.layout,  
+        tip: "klasicno",
+        subtip: "tri",
         opisOtvaranja: "Prošlost – Sadašnjost – Budućnost"
       });
     } else if (key === '5') {
       navigation.navigate("PitanjeIzbor", {
-        layoutTemplate: PET_KARATA,
-        tip: "pet",
+        layoutTemplate: PET_KARATA.layout,   
+        tip: "klasicno",
+        subtip: "pet",
         opisOtvaranja: "Put spoznaje"
       });
     }
@@ -65,9 +92,54 @@ const KlasicnoModal = ({ onClose, navigation }) => {
                 <Image source={opt.icon} style={styles.icon} />
               </View>
               <Text style={styles.optionText}>{opt.label}</Text>
+              {/* Cena po subtipu */}
+              <Text style={styles.priceText}>
+                {READING_PRICES[opt.subtip]} 🪙
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
+        {/* START: Modal za nedovoljno dukata */}
+        {showNoDukes && (
+          <View style={{
+            position: "absolute",
+            top: "36%",
+            left: "6%",
+            width: "88%",
+            backgroundColor: "#220",
+            borderColor: "#ffd700",
+            borderWidth: 2,
+            borderRadius: 15,
+            padding: 18,
+            zIndex: 999,
+            alignSelf: "center",
+          }}>
+            <Text style={{
+              color: "#ffd700",
+              fontWeight: "bold",
+              fontSize: 17,
+              textAlign: "center"
+            }}>
+              {noDukesText || "Nemaš dovoljno dukata za ovo otvaranje!"}
+            </Text>
+            <TouchableOpacity
+              onPress={() => setShowNoDukes(false)}
+              style={{
+                marginTop: 14,
+                alignSelf: "center",
+                backgroundColor: "#ffd700",
+                paddingHorizontal: 20,
+                paddingVertical: 8,
+                borderRadius: 8
+              }}>
+              <Text style={{
+                color: "#222",
+                fontWeight: "bold"
+              }}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        {/* END: Modal za nedovoljno dukata */}
       </View>
     </View>
   );
@@ -150,6 +222,12 @@ const styles = StyleSheet.create({
     textShadowColor: "#000",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
+  },
+  priceText: {
+    color: "#facc15",
+    fontWeight: "bold",
+    fontSize: 17,
+    marginTop: 5,
   },
 });
 

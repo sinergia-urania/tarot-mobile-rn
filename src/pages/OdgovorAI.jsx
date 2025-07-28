@@ -54,6 +54,7 @@ const OdgovorAI = () => {
   const navigation = useNavigation();
   const {
     tip,
+    subtip,
     pitanje,
     podpitanja = [],
     izabraneKarte,
@@ -63,14 +64,15 @@ const OdgovorAI = () => {
 
   const prikazaneKarte = izabraneKarte || karte || [];
   const kontekstOtvaranja = opisOtvaranja ? `Tip otvaranja: ${opisOtvaranja}. ` : "";
-  const layout = getLayoutByTip(tip);
+  const layout = route.params.layoutTemplate || getLayoutByTip(tip);
+
   const offsetX = tip === "keltski" ? -35 : 0;
 
   // Prilagodljiva veličina karata po tipu i broju
   let cardSize = { width: 48, height: 80 };
-  if ((tip === "ljubavno" && layout.length === 2) || (tip === "tri" && layout.length === 3)) {
+  if ((subtip === "ljubavno" && layout.length === 2) || (subtip === "tri" && layout.length === 3)) {
     cardSize = { width: 120, height: 198 };
-  } else if (tip === "pet" && layout.length === 5) {
+  } else if (subtip === "pet" && layout.length === 5) {
     cardSize = { width: 80, height: 145 };
   }
 
@@ -91,7 +93,7 @@ const OdgovorAI = () => {
           showBack={true}
           onBack={() => navigation.goBack()}
           onHome={() => navigation.navigate("Home")}
-          onMenu={() => navigation.openDrawer ? navigation.openDrawer() : null}
+          showMenu={false}
         />
       </View>
       <ScrollView style={{ flex: 1 }}>
