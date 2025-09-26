@@ -1,0 +1,89 @@
+{
+  "about": {
+    "title": "About the App",
+    "updatedAt": "August 28, 2025",
+    "body": [
+      "AiTarot Una is an app based on a combination of modern AI technologies and archetypal symbols from the world of Tarot, to provide users with personalized, thoughtful and useful interpretations. The AI does not generate random messages — it analyzes in the context of the user’s question and the card layout.",
+      "All spreads in the app (except “Card of the Day” and “Yes/No”, which are intuitive in nature) analyze the cards through a multi-layered symbolic system and try to recognize the internal logic in relation to the user’s query.",
+      "How it works: the app offers a list of frequently asked questions, but you can always enter your own question if it’s not among the suggestions — this way you receive an interpretation that is truly personal and relevant.",
+      "Access & plans:",
+      "• Free: basic access with a limited number of spreads and features.",
+      "• Premium: unlocks additional types of spreads and insights.",
+      "• Pro: full access to all tools, analysis and personalization.",
+      "Besides plans, there is an AdReward option — by watching ads you can unlock certain features as an alternative to paying.",
+      "Note: the app does not predict the future in a deterministic sense; it sheds light on potential directions and inner patterns through the archetypal language of cards and symbolism.",
+      "App version: 1.0.0"
+    ]
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "updatedAt": "August 28, 2025",
+    "sourceUrl": "terms-of-service-en.html",
+    "body": [
+      "By using this app you agree to the following terms and rules. If you do not agree with any part of these terms, please do not use the app.",
+      "• The app is intended for personal and non-commercial use.",
+      "• You may not copy, distribute or modify the content without the author’s permission.",
+      "• We may change the Terms of Service at any time without prior notice.",
+      "By continuing to use the app you confirm that you have read, understood and accepted these terms."
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "updatedAt": "August 28, 2025",
+    "sourceUrl": "privacy-policy-en.html",
+    "body": [
+      "We care about your privacy. This document summarizes what data we collect, why, and how we protect it.",
+      "What we collect: (a) account data (email, display name, language), (b) optional profile data (gender, birth date, sign/ascendant), (c) technical data (user ID, Expo push token, device language/region), (d) metadata about feature usage.",
+      "Where we store: Supabase (database and authentication). Expo is used for delivering push notifications (device token). Zoho Mail is used for customer support.",
+      "Why: to provide app functionality, sync settings, send notifications you request, and improve product quality.",
+      "Sharing: we do not sell personal data. We share data only with service providers necessary for the app to function (e.g., Supabase, Expo) under appropriate data processing agreements.",
+      "Retention & deletion: we keep data as long as necessary to provide the service. You can request export or deletion of your account by contacting support.",
+      "Security: we apply technical and organizational measures; however, no system is 100% secure.",
+      "Your rights: access, rectification, deletion, objection, withdrawal of consent where applicable.",
+      "Privacy contact: info@infohelm.org"
+    ]
+  },
+  "support": {
+    "title": "Support & Donations",
+    "updatedAt": "August 28, 2025",
+    "body": [
+      "If you’d like to support the app development:",
+      "• Unlock PRO/Premium membership according to your needs — you get more spreads and fewer limits.",
+      "• Watch short ads for free coins (AdReward).",
+      "• Leave a rating and review on the store — it means a lot!",
+      "• Share the app with friends.",
+      "For additional help or suggestions, write to: info@infohelm.org"
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "updatedAt": "August 28, 2025",
+    "body": [
+      "If you have any questions, suggestions or technical issues, feel free to contact us.",
+      "Email: info@infohelm.org",
+      "We respond within 24h on business days."
+    ]
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "updatedAt": "August 28, 2025",
+    "body": [
+      "This app uses artificial intelligence to interpret symbols and answer questions, similar to how an experienced Tarot reader would. Although the AI analyzes patterns and provides insights, its answers are not a substitute for professional advice in areas such as health, law or finance.",
+      "Users make their own decisions based on the received messages and insights. The app creator does not assume responsibility for any consequences arising from the use of the content.",
+      "By using the app you agree to these terms."
+    ]
+  },
+  "dataDeletion": {
+    "title": "Data Deletion",
+    "updatedAt": "August 28, 2025",
+    "sourceUrl": "data-deletion-en.html",
+    "body": [
+      "You can request deletion of your account and data at any time.",
+      "How to submit a request: send an email from the address linked to your account to info@infohelm.org with a short note that you want your data deleted. If possible, include your user ID (UID) from the profile.",
+      "What we delete: profile (email, display name, language preferences), saved push-notification tokens, history of readings/interpretations, and other account-related data.",
+      "What we may retain: minimal records necessary to meet legal obligations or security needs, in line with the Privacy Policy.",
+      "Timeframe: requests are usually processed within 30 days after identity confirmation.",
+      "More details and the official document version are available on our website (use the “Open on web” button)."
+    ]
+  }
+}

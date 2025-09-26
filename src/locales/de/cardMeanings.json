@@ -1,0 +1,238 @@
+{
+  "cards": {
+    "theFool": {
+      "name": "Der Narr"
+    },
+    "theMagician": {
+      "name": "Der Magier"
+    },
+    "theHighPriestess": {
+      "name": "Die Hohepriesterin"
+    },
+    "theEmpress": {
+      "name": "Die Herrscherin"
+    },
+    "theEmperor": {
+      "name": "Der Herrscher"
+    },
+    "theHierophant": {
+      "name": "Der Hierophant"
+    },
+    "theLovers": {
+      "name": "Die Liebenden"
+    },
+    "theChariot": {
+      "name": "Der Wagen"
+    },
+    "strength": {
+      "name": "Die Kraft"
+    },
+    "theHermit": {
+      "name": "Der Eremit"
+    },
+    "wheelOfFortune": {
+      "name": "Das Rad des Schicksals"
+    },
+    "justice": {
+      "name": "Die Gerechtigkeit"
+    },
+    "theHangedMan": {
+      "name": "Der Gehängte"
+    },
+    "death": {
+      "name": "Der Tod"
+    },
+    "temperance": {
+      "name": "Die Mäßigkeit"
+    },
+    "theDevil": {
+      "name": "Der Teufel"
+    },
+    "theTower": {
+      "name": "Der Turm"
+    },
+    "theStar": {
+      "name": "Der Stern"
+    },
+    "theMoon": {
+      "name": "Der Mond"
+    },
+    "theSun": {
+      "name": "Die Sonne"
+    },
+    "judgement": {
+      "name": "Das Gericht"
+    },
+    "theWorld": {
+      "name": "Die Welt"
+    },
+    "aceOfWands": {
+      "name": "As der Stäbe"
+    },
+    "twoOfWands": {
+      "name": "Zwei der Stäbe"
+    },
+    "threeOfWands": {
+      "name": "Drei der Stäbe"
+    },
+    "fourOfWands": {
+      "name": "Vier der Stäbe"
+    },
+    "fiveOfWands": {
+      "name": "Fünf der Stäbe"
+    },
+    "sixOfWands": {
+      "name": "Sechs der Stäbe"
+    },
+    "sevenOfWands": {
+      "name": "Sieben der Stäbe"
+    },
+    "eightOfWands": {
+      "name": "Acht der Stäbe"
+    },
+    "nineOfWands": {
+      "name": "Neun der Stäbe"
+    },
+    "tenOfWands": {
+      "name": "Zehn der Stäbe"
+    },
+    "pageOfWands": {
+      "name": "Page der Stäbe"
+    },
+    "knightOfWands": {
+      "name": "Ritter der Stäbe"
+    },
+    "queenOfWands": {
+      "name": "Königin der Stäbe"
+    },
+    "kingOfWands": {
+      "name": "König der Stäbe"
+    },
+    "aceOfCups": {
+      "name": "As der Kelche"
+    },
+    "twoOfCups": {
+      "name": "Zwei der Kelche"
+    },
+    "threeOfCups": {
+      "name": "Drei der Kelche"
+    },
+    "fourOfCups": {
+      "name": "Vier der Kelche"
+    },
+    "fiveOfCups": {
+      "name": "Fünf der Kelche"
+    },
+    "sixOfCups": {
+      "name": "Sechs der Kelche"
+    },
+    "sevenOfCups": {
+      "name": "Sieben der Kelche"
+    },
+    "eightOfCups": {
+      "name": "Acht der Kelche"
+    },
+    "nineOfCups": {
+      "name": "Neun der Kelche"
+    },
+    "tenOfCups": {
+      "name": "Zehn der Kelche"
+    },
+    "pageOfCups": {
+      "name": "Page der Kelche"
+    },
+    "knightOfCups": {
+      "name": "Ritter der Kelche"
+    },
+    "queenOfCups": {
+      "name": "Königin der Kelche"
+    },
+    "kingOfCups": {
+      "name": "König der Kelche"
+    },
+    "aceOfSwords": {
+      "name": "As der Schwerter"
+    },
+    "twoOfSwords": {
+      "name": "Zwei der Schwerter"
+    },
+    "threeOfSwords": {
+      "name": "Drei der Schwerter"
+    },
+    "fourOfSwords": {
+      "name": "Vier der Schwerter"
+    },
+    "fiveOfSwords": {
+      "name": "Fünf der Schwerter"
+    },
+    "sixOfSwords": {
+      "name": "Sechs der Schwerter"
+    },
+    "sevenOfSwords": {
+      "name": "Sieben der Schwerter"
+    },
+    "eightOfSwords": {
+      "name": "Acht der Schwerter"
+    },
+    "nineOfSwords": {
+      "name": "Neun der Schwerter"
+    },
+    "tenOfSwords": {
+      "name": "Zehn der Schwerter"
+    },
+    "pageOfSwords": {
+      "name": "Page der Schwerter"
+    },
+    "knightOfSwords": {
+      "name": "Ritter der Schwerter"
+    },
+    "queenOfSwords": {
+      "name": "Königin der Schwerter"
+    },
+    "kingOfSwords": {
+      "name": "König der Schwerter"
+    },
+    "aceOfPentacles": {
+      "name": "As der Münzen"
+    },
+    "twoOfPentacles": {
+      "name": "Zwei der Münzen"
+    },
+    "threeOfPentacles": {
+      "name": "Drei der Münzen"
+    },
+    "fourOfPentacles": {
+      "name": "Vier der Münzen"
+    },
+    "fiveOfPentacles": {
+      "name": "Fünf der Münzen"
+    },
+    "sixOfPentacles": {
+      "name": "Sechs der Münzen"
+    },
+    "sevenOfPentacles": {
+      "name": "Sieben der Münzen"
+    },
+    "eightOfPentacles": {
+      "name": "Acht der Münzen"
+    },
+    "nineOfPentacles": {
+      "name": "Neun der Münzen"
+    },
+    "tenOfPentacles": {
+      "name": "Zehn der Münzen"
+    },
+    "pageOfPentacles": {
+      "name": "Page der Münzen"
+    },
+    "knightOfPentacles": {
+      "name": "Ritter der Münzen"
+    },
+    "queenOfPentacles": {
+      "name": "Königin der Münzen"
+    },
+    "kingOfPentacles": {
+      "name": "König der Münzen"
+    }
+  }
+}

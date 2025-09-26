@@ -1,40 +1,193 @@
+﻿// tarot-mobile1/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Prilagodi putanje ako treba
-import de from './src/locales/de/translation.json';
-import en from './src/locales/en/translation.json';
-import es from './src/locales/es/translation.json';
-import fr from './src/locales/fr/translation.json';
-import hi from './src/locales/hi/translation.json';
-import pt from './src/locales/pt/translation.json';
-import sr from './src/locales/sr/translation.json';
+// START: statički import 4 JSON ns za sr
+import sr_ai from './src/locales/sr/ai.json';
+import sr_cardMeanings from './src/locales/sr/cardMeanings.json';
+import sr_common from './src/locales/sr/common.json';
+import sr_extendedMeanings from './src/locales/sr/extendedMeanings.json';
+// END: statički import 4 JSON ns za sr
 
+// START: dokumenta (O aplikaciji, Uslovi, Odricanje, Kontakt…)
+import sr_documents from './src/locales/sr/documents.json';
+// END: dokumenta
+import sr_questions from './src/locales/sr/questions.json';
+
+// START: EN resursi (komplet – common, ai, cardMeanings, extendedMeanings, documents, questions)
+import en_ai from './src/locales/en/ai.json';
+import en_cardMeanings from './src/locales/en/cardMeanings.json';
+import en_common from './src/locales/en/common.json';
+import en_documents from './src/locales/en/documents.json';
+import en_extendedMeanings from './src/locales/en/extendedMeanings.json';
+import en_questions from './src/locales/en/questions.json';
+// END: EN resursi
+
+// START: ES resursi (komplet – common, ai, cardMeanings, extendedMeanings, documents, questions)
+import es_ai from './src/locales/es/ai.json';
+import es_cardMeanings from './src/locales/es/cardMeanings.json';
+import es_common from './src/locales/es/common.json';
+import es_documents from './src/locales/es/documents.json';
+import es_extendedMeanings from './src/locales/es/extendedMeanings.json';
+import es_questions from './src/locales/es/questions.json';
+// END: ES resursi
+
+// START: DE resursi (komplet – common, ai, cardMeanings, extendedMeanings, documents, questions)
+import de_ai from './src/locales/de/ai.json';
+import de_cardMeanings from './src/locales/de/cardMeanings.json';
+import de_common from './src/locales/de/common.json';
+import de_documents from './src/locales/de/documents.json';
+import de_extendedMeanings from './src/locales/de/extendedMeanings.json';
+import de_questions from './src/locales/de/questions.json';
+// END: DE resursi
+
+// START: add French (FR) resources and config - imports
+import fr_ai from './src/locales/fr/ai.json';
+import fr_cardMeanings from './src/locales/fr/cardMeanings.json';
+import fr_common from './src/locales/fr/common.json';
+import fr_documents from './src/locales/fr/documents.json';
+import fr_extendedMeanings from './src/locales/fr/extendedMeanings.json';
+import fr_questions from './src/locales/fr/questions.json';
+// END: add French (FR) resources and config - imports
+
+// START: PT resursi (komplet – common, ai, cardMeanings, extendedMeanings, documents, questions)
+import pt_ai from './src/locales/pt/ai.json';
+import pt_cardMeanings from './src/locales/pt/cardMeanings.json';
+import pt_common from './src/locales/pt/common.json';
+import pt_documents from './src/locales/pt/documents.json';
+import pt_extendedMeanings from './src/locales/pt/extendedMeanings.json';
+import pt_questions from './src/locales/pt/questions.json';
+// END: PT resursi
+
+// START: HI resursi (komplet – common, ai, cardMeanings, extendedMeanings, documents, questions)
+import hi_ai from './src/locales/hi/ai.json';
+import hi_cardMeanings from './src/locales/hi/cardMeanings.json';
+import hi_common from './src/locales/hi/common.json';
+import hi_documents from './src/locales/hi/documents.json';
+import hi_extendedMeanings from './src/locales/hi/extendedMeanings.json';
+import hi_questions from './src/locales/hi/questions.json';
+// END: HI resursi
+
+// START: resources — sr/en/es (+ de + fr)
 const resources = {
-  sr: { translation: sr },
-  en: { translation: en },
-  pt: { translation: pt },
-  fr: { translation: fr },
-  es: { translation: es },
-  de: { translation: de },
-  hi: { translation: hi },
-};
+  sr: {
+    common: sr_common,
+    ai: sr_ai,
+    cardMeanings: sr_cardMeanings,
+    extendedMeanings: sr_extendedMeanings,
+    documents: sr_documents,
+    questions: sr_questions,
+  },
+  // START: en resources (komplet)
+  en: {
+    common: en_common,
+    ai: en_ai,
+    cardMeanings: en_cardMeanings,
+    extendedMeanings: en_extendedMeanings,
+    documents: en_documents,
+    questions: en_questions,
+  },
+  // END: en resources
+  // START: es resources (komplet)
+  es: {
+    common: es_common,
+    ai: es_ai,
+    cardMeanings: es_cardMeanings,
+    extendedMeanings: es_extendedMeanings,
+    documents: es_documents,
+    questions: es_questions,
+  },
+  // END: es resources
+  // START: de resources (komplet)
+  de: {
+    common: de_common,
+    ai: de_ai,
+    cardMeanings: de_cardMeanings,
+    extendedMeanings: de_extendedMeanings,
+    documents: de_documents,
+    questions: de_questions,
+  },
+  // END: de resources
+  // START: fr resources (komplet)
+  fr: {
+    common: fr_common,
+    ai: fr_ai,
+    cardMeanings: fr_cardMeanings,
+    extendedMeanings: fr_extendedMeanings,
+    documents: fr_documents,
+    questions: fr_questions,
+  },
+  // END: fr resources
 
-// NAPOMENA:
-// Automatska detekcija jezika NE radi u Expo Go aplikaciji, jer je 'react-native-localize' nativni modul.
-// Kada praviš pravi build (EAS build), možeš vratiti automatsku detekciju.
+  // START: pt resources (komplet)
+  pt: {
+    common: pt_common,
+    ai: pt_ai,
+    cardMeanings: pt_cardMeanings,
+    extendedMeanings: pt_extendedMeanings,
+    documents: pt_documents,
+    questions: pt_questions,
+  },
+  // END: pt resources
+
+  // START: hi resources (komplet)
+  hi: {
+    common: hi_common,
+    ai: hi_ai,
+    cardMeanings: hi_cardMeanings,
+    extendedMeanings: hi_extendedMeanings,
+    documents: hi_documents,
+    questions: hi_questions,
+  },
+  // END: hi resources
+};
+// END: resources
 
 i18n
-  // .use(languageDetector) // NE koristi dok si u Expo Go
   .use(initReactI18next)
   .init({
-    compatibilityJSON: 'v3', // zbog RN
+    compatibilityJSON: 'v3',
     resources,
-    fallbackLng: 'sr',
-    lng: 'sr', // OVO ručno promeni u npr. 'en' za test (ili pusti da menjaš kroz LanguageSelector)
-    interpolation: {
-      escapeValue: false,
+    ns: ['common', 'ai', 'cardMeanings', 'extendedMeanings', 'documents', 'questions'],
+    defaultNS: 'common',
+    // START: fallbackNS — ako ključ fali u aktivnom ns, traži ga u "common"
+    fallbackNS: 'common',
+    // START: pametan fallback — globalno prvo EN, pa SR; za sr ostaje sr→en
+    fallbackLng: {
+      default: ['en', 'sr'],
+      sr: ['sr', 'en'],
+      en: ['en', 'sr'],
+      es: ['en', 'sr'], // španski pada na EN, pa SR
+      de: ['de', 'en', 'sr'], // nemački: DE → EN → SR
+      // START: add French (FR) resources and config - fallbackLng.fr
+      fr: ['fr', 'en', 'sr'], // francuski: FR → EN → SR
+      // END: add French (FR) resources and config - fallbackLng.fr
+
+      // START: pt & hi fallbacks
+      pt: ['pt', 'en', 'sr'], // portugalski: PT → EN → SR
+      hi: ['hi', 'en', 'sr'], // hindski: HI → EN → SR
+      // END: pt & hi fallbacks
     },
+    // END: pametan fallback
+    lng: 'sr',
+    // START: podržani jezici
+    // START: add German & French - supportedLngs
+    supportedLngs: ['sr', 'en', 'es', 'de', 'fr', 'pt', 'hi'],
+    // END: add German & French - supportedLngs
+    load: 'languageOnly',        // en-US/sr-RS/es-ES → en/sr/es
+    nonExplicitSupportedLngs: true,
+    // END: podržani jezici
+    interpolation: { escapeValue: false },
+    // START: RN best-practice – bez suspense-a
+    react: { useSuspense: false },
+    // END: RN best-practice
+    // START: dev pomoć – prijavi nestale ključeve u konzolu (samo u __DEV__)
+    missingKeyHandler: (__lng, __ns, key) => {
+      if (typeof __DEV__ !== 'undefined' && __DEV__) {
+        console.warn('[i18n][missing]', `${__ns}:${key}`);
+      }
+    },
+    // END: dev pomoć
   });
 
 export default i18n;

@@ -2,11 +2,17 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// START: i18n
+import { useTranslation } from "react-i18next";
+// END: i18n
 
 const DaNeOdgovor = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { karta } = route.params || {};
+  // START: init i18n
+  const { t } = useTranslation(["common"]);
+  // END: init i18n
 
   if (!karta) {
     return (
@@ -19,14 +25,24 @@ const DaNeOdgovor = () => {
           <Text style={styles.homeIcon}>🏠</Text>
         </TouchableOpacity>
         <View style={styles.center}>
+          {/* START: i18n – nema izvučene karte */}
           <Text style={styles.noCardText}>
-            Nema izvučene karte. Vratite se i pokušajte ponovo.
+            {t("common:messages.noCardSelected", {
+              defaultValue: "Nema izvučene karte. Vratite se i pokušajte ponovo."
+            })}
           </Text>
+          {/* END: i18n – nema izvučene karte */}
           <TouchableOpacity
             style={styles.button}
             onPress={() => navigation.navigate("Home")}
           >
-            <Text style={styles.buttonText}>Nazad na Tarot početnu</Text>
+            {/* START: i18n – dugme nazad na početnu */}
+            <Text style={styles.buttonText}>
+              {t("common:buttons.backToTarotHome", {
+                defaultValue: "Nazad na Tarot početnu"
+              })}
+            </Text>
+            {/* END: i18n – dugme nazad na početnu */}
           </TouchableOpacity>
         </View>
       </View>
@@ -46,7 +62,13 @@ const DaNeOdgovor = () => {
       </TouchableOpacity>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.center}>
-          <Text style={styles.title}>Odgovor na tvoje pitanje:</Text>
+          {/* START: i18n – naslov */}
+          <Text style={styles.title}>
+            {t("common:titles.yesNoAnswer", {
+              defaultValue: "Odgovor na tvoje pitanje:"
+            })}
+          </Text>
+          {/* END: i18n – naslov */}
           <Image
             source={karta.slika}
             style={[
@@ -55,12 +77,26 @@ const DaNeOdgovor = () => {
             ]}
             resizeMode="contain"
           />
+          {/* START: i18n – DA/NE */}
           <Text style={[styles.answer, isUspravna ? styles.yes : styles.no]}>
-            {isUspravna ? "DA" : "NE"}
+            {isUspravna
+              ? t("common:answers.yes", { defaultValue: "DA" })
+              : t("common:answers.no", { defaultValue: "NE" })}
           </Text>
+          {/* END: i18n – DA/NE */}
+          {/* START: i18n – orijentacija karte */}
           <Text style={styles.orientation}>
-            {`Karta je izvučena ${isUspravna ? "uspravno" : "obrnuto"}.`}
+            {t("common:messages.cardDrawnWithOrientation", {
+              orientation: t(
+                isUspravna
+                  ? "common:orientation.upright"
+                  : "common:orientation.reversed",
+                { defaultValue: isUspravna ? "uspravno" : "obrnuto" }
+              ),
+              defaultValue: "Karta je izvučena {{orientation}}."
+            })}
           </Text>
+          {/* END: i18n – orijentacija karte */}
         </View>
       </ScrollView>
     </View>
@@ -160,3 +196,5 @@ const styles = StyleSheet.create({
 
 export default DaNeOdgovor;
 // END: Migracija DaNeOdgovor u React Native - minimalistički home
+
+

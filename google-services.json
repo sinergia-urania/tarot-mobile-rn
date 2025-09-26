@@ -1,13 +1,13 @@
-{
+﻿{
   "project_info": {
-    "project_number": "299988390646",
-    "project_id": "ai-tarot-una",
-    "storage_bucket": "ai-tarot-una.firebasestorage.app"
+    "project_number": "953554406583",
+    "project_id": "tarotpush",
+    "storage_bucket": "tarotpush.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:299988390646:android:95709c56de9bb7195a52d7",
+        "mobilesdk_app_id": "1:953554406583:android:c0d6269af76bd9c8889132",
         "android_client_info": {
           "package_name": "com.mare82.tarotmobile"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD75MYeAa0HxNcMaSjOfa4Mi8yRlcSNwI0"
+          "current_key": "AIzaSyCbDoNMbeCkpUj5nGPyT_-d-V0j3yhtsaU"
         }
       ],
       "services": {
@@ -27,3 +27,4 @@
   ],
   "configuration_version": "1"
 }
+

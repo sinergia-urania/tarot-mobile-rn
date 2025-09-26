@@ -1,4 +1,4 @@
-// src/utils/features.js
+﻿// src/utils/features.js
 
 export const featureMatrix = {
   free: {
@@ -27,3 +27,5 @@ export const featureMatrix = {
 export const hasFeature = (plan, feature) => {
   return !!featureMatrix[plan]?.[feature];
 };
+
+

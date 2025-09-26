@@ -49,3 +49,5 @@ const styles = StyleSheet.create({
 
 export default LanguageSelector;
 // END: LanguageSelector za RN + i18next + 7 jezika
+
+

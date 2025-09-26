@@ -1,0 +1,89 @@
+{
+  "about": {
+    "title": "O aplikaciji",
+    "updatedAt": "28. avgust 2025.",
+    "body": [
+      "AiTarot Una je aplikacija zasnovana na kombinaciji savremenih AI tehnologija i arhetipskih simbola iz sveta tarota, kako bi korisnicima pružila personalizovano, promišljeno i korisno tumačenje. AI ne generiše nasumične poruke – već koristi analizu u kontekstu korisničkog pitanja i rasporeda karata.",
+      "Sva otvaranja u aplikaciji (osim „Karta dana“ i „Da/Ne“, koje su intuitivne prirode) analiziraju karte kroz višeslojni simbolički sistem i pokušavaju da prepoznaju unutrašnju logiku u vezi korisničkog upita.",
+      "Kako funkcioniše: aplikacija nudi listu često postavljanih pitanja, ali uvek možeš uneti i svoje pitanje ukoliko nije među predloženima – tako dobijaš tumačenje koje je zaista lično i relevantno.",
+      "Pristup i paketi:",
+      "• Free: osnovni pristup sa ograničenim brojem otvaranja i funkcionalnosti.",
+      "• Premium: otključava dodatne tipove otvaranja i uvida.",
+      "• Pro: puni pristup svim alatima, analizi i personalizaciji.",
+      "Pored paketa, dostupna je i opcija AdReward – gledanjem reklama možeš otključati određene funkcije kao alternativu plaćanju.",
+      "Napomena: aplikacija ne predviđa budućnost u determinističkom smislu, već osvetljava potencijalne pravce i unutrašnje obrasce kroz arhetipski jezik karata i simbolike.",
+      "Verzija aplikacije: 1.0.0"
+    ]
+  },
+  "terms": {
+    "title": "Uslovi korišćenja",
+    "updatedAt": "28. avgust 2025.",
+    "sourceUrl": "https://infohelm.org/terms-of-service-sr.html",
+    "body": [
+      "Korišćenjem ove aplikacije prihvatate sledeće uslove i pravila. Ako se ne slažete sa bilo kojim delom ovih uslova, molimo vas da ne koristite aplikaciju.",
+      "• Aplikacija je namenjena za ličnu i nekomercijalnu upotrebu.",
+      "• Ne smete kopirati, distribuirati ili modifikovati sadržaj bez dozvole autora.",
+      "• Možemo promeniti uslove korišćenja u bilo kom trenutku bez prethodne najave.",
+      "Nastavkom korišćenja aplikacije potvrđujete da ste pročitali, razumeli i prihvatili ove uslove."
+    ]
+  },
+  "privacy": {
+    "title": "Politika privatnosti",
+    "updatedAt": "28. avgust 2025.",
+    "sourceUrl": "https://infohelm.org/privacy-policy-sr.html",
+    "body": [
+      "Vodimo računa o tvojoj privatnosti. Ovaj dokument sažima koje podatke prikupljamo, zašto i kako ih štitimo.",
+      "Šta prikupljamo: (a) podaci naloga (imejl, prikazno ime, jezik), (b) opciono podaci profila (pol, datum rođenja, znak/podznak), (c) tehnički podaci (ID korisnika, Expo push token, jezik/region uređaja), (d) metapodaci o korišćenju funkcija.",
+      "Gde čuvamo: Supabase (baza i autentifikacija). Expo se koristi za isporuku push notifikacija (token uređaja). Zoho Mail koristimo za korisničku podršku.",
+      "Zašto: obezbeđivanje funkcionalnosti aplikacije, sinhronizacija podešavanja, slanje obaveštenja koja tražiš, poboljšanje kvaliteta proizvoda.",
+      "Deljenje: ne prodajemo lične podatke. Podatke delimo samo sa pružaocima usluga neophodnim za rad aplikacije (npr. Supabase, Expo) uz odgovarajuće ugovore o obradi podataka.",
+      "Čuvanje i brisanje: podatke čuvamo koliko je potrebno za pružanje usluge. Možeš zatražiti izvoz ili brisanje naloga slanjem zahteva podršci.",
+      "Bezbednost: primenjujemo tehničke i organizacione mere; ipak, nijedan sistem nije 100% bezbedan.",
+      "Tvoja prava: pristup, ispravka, brisanje, prigovor, povlačenje pristanka gde je relevantno.",
+      "Kontakt za privatnost: info@infohelm.org"
+    ]
+  },
+  "support": {
+    "title": "Podrška i donacije",
+    "updatedAt": "28. avgust 2025.",
+    "body": [
+      "Ako želiš da podržiš razvoj aplikacije:",
+      "• Otključaj PRO/Premium članstvo prema potrebama — dobijaš više rasporeda i manje ograničenja.",
+      "• Gledaj kratke oglase za besplatne dukate (AdReward).",
+      "• Ostavi ocenu i recenziju u prodavnici — mnogo znači!",
+      "• Podeli aplikaciju sa prijateljima.",
+      "Za dodatnu pomoć ili predloge, piši nam: info@infohelm.org"
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "updatedAt": "28. avgust 2025.",
+    "body": [
+      "Ako imate bilo kakva pitanja, predloge ili tehničke poteškoće, slobodno nas kontaktirajte.",
+      "E-pošta: info@infohelm.org",
+      "Odgovaramo u roku od 24h radnim danima."
+    ]
+  },
+  "disclaimer": {
+    "title": "Odricanje od odgovornosti",
+    "updatedAt": "28. avgust 2025.",
+    "body": [
+      "Ova aplikacija koristi veštačku inteligenciju za tumačenje simbola i odgovaranje na pitanja, slično načinu na koji bi to radio iskusan tumač tarota. Iako AI analizira obrasce i pruža uvide, njeni odgovori nisu zamena za profesionalni savet u oblastima poput zdravlja, prava ili finansija.",
+      "Korisnik samostalno donosi odluke na osnovu dobijenih poruka i uvida. Kreator aplikacije ne preuzima odgovornost za posledice koje mogu proizaći iz korišćenja sadržaja.",
+      "Korišćenjem aplikacije potvrđujete da ste saglasni sa ovim uslovima."
+    ]
+  },
+  "dataDeletion": {
+    "title": "Brisanje podataka",
+    "updatedAt": "28. avgust 2025.",
+    "sourceUrl": "https://infohelm.org/data-deletion-sr.html",
+    "body": [
+      "Možeš zatražiti brisanje naloga i podataka u svakom trenutku.",
+      "Kako da podneseš zahtev: pošalji e-poruku sa adrese povezane sa nalogom na info@infohelm.org, uz kratko objašnjenje da želiš brisanje podataka. Ako možeš, navedi i svoj korisnički ID (UID) iz profila.",
+      "Šta brišemo: profil (imejl, prikazno ime, preferencije jezika), sačuvane tokene za obaveštenja (push), istoriju otvaranja/tumačenja i druge podatke povezane sa nalogom.",
+      "Šta možemo zadržati: minimalne zapise potrebne za ispunjenje pravnih obaveza ili bezbednosne potrebe, u skladu sa Politikom privatnosti.",
+      "Rok: obrada zahteva se obično završava u roku od 30 dana od potvrde identiteta.",
+      "Više detalja i zvanična verzija dokumenta dostupni su na našem sajtu (dugme „Otvori na webu“)."
+    ]
+  }
+}

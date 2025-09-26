@@ -1,0 +1,76 @@
+{
+    "categories": {
+        "love": {
+            "name": "Ljubav",
+            "icon": "❤️",
+            "items": [
+                "Da li me voli?",
+                "Kakva je naša budućnost?",
+                "Da li ćemo se pomiriti?",
+                "Da li ću uskoro upoznati nekog posebnog?",
+                "Kako mogu poboljšati svoj ljubavni život?",
+                "Da li je moj partner iskren prema meni?"
+            ]
+        },
+        "work": {
+            "name": "Posao",
+            "icon": "💼",
+            "items": [
+                "Da li ću dobiti posao koji želim?",
+                "Kakva me karijera čeka?",
+                "Da li je vreme za promenu posla?",
+                "Kako da napredujem na poslu?",
+                "Da li će moj trud biti prepoznat?",
+                "Kako da pronađem posao koji me ispunjava?"
+            ]
+        },
+        "health": {
+            "name": "Zdravlje",
+            "icon": "🧘",
+            "items": [
+                "Da li me očekuje oporavak?",
+                "Na šta treba da obratim pažnju?",
+                "Kako da unapredim svoje zdravlje?",
+                "Da li je trenutni tretman pravi izbor?",
+                "Kako mogu poboljšati mentalno zdravlje?",
+                "Da li treba da tražim drugo mišljenje?"
+            ]
+        },
+        "finance": {
+            "name": "Finansije",
+            "icon": "💰",
+            "items": [
+                "Kako da poboljšam svoje finansije?",
+                "Da li je pametno ulaganje?",
+                "Da li ću imati stabilnost?",
+                "Kako da raspolažem novcem pametnije?",
+                "Da li ću otplatiti dugove?",
+                "Da li mi sledi dobitak?"
+            ]
+        },
+        "spiritual": {
+            "name": "Duhovni razvoj",
+            "icon": "🌀",
+            "items": [
+                "Koja je moja svrha?",
+                "Šta mi duša poručuje?",
+                "Na čemu treba da radim duhovno?",
+                "Koji je sledeći korak u mom razvoju?",
+                "Kako da pronađem unutrašnji mir?",
+                "Koja lekcija mi se ponavlja?"
+            ]
+        },
+        "family": {
+            "name": "Porodica i odnosi",
+            "icon": "🏡",
+            "items": [
+                "Kako da poboljšam porodične odnose?",
+                "Da li će se situacija u porodici smiriti?",
+                "Kako da pomognem članu porodice?",
+                "Da li će se odnos sa [ime] popraviti?",
+                "Kako da budem podrška partneru/partnerki?",
+                "Da li nas očekuje mir u kući?"
+            ]
+        }
+    }
+}

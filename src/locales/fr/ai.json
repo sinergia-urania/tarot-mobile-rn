@@ -1,0 +1,67 @@
+{
+  "titles": {
+    "aiReply": "Una répond",
+    "housesAnalysis": "Interprétation par maisons astrologiques",
+    "sefirotAnalysis": "Interprétation par séfirot",
+    "celticAnalysis": "Interprétation de la Croix celtique",
+    "followupPrompt": "Ajoute une relance (PRO) :",
+    "astroHouses": "Interprétation par maisons astrologiques :",
+    "sefirot": "Interprétation par Séfirot :",
+    "celticInterpretation": "Interprétation de la Croix celtique :"
+  },
+  "labels": {
+    "question": "Question :",
+    "spreadType": "Type de tirage : {{value}}. "
+  },
+  "placeholders": {
+    "followup": "Saisis une relance…"
+  },
+  "summary": {
+    "label": "En résumé :"
+  },
+  "houses": [
+    "Maison I (Soi)",
+    "Maison II (Finances)",
+    "Maison III (Communication)",
+    "Maison IV (Foyer & Famille)",
+    "Maison V (Créativité)",
+    "Maison VI (Santé)",
+    "Maison VII (Partenariats)",
+    "Maison VIII (Transformation)",
+    "Maison IX (Voyages & Croyances)",
+    "Maison X (Carrière)",
+    "Maison XI (Ami·e·s & Communauté)",
+    "Maison XII (Subconscient)"
+  ],
+  "celticPositions": [
+    "1. Situation présente",
+    "2. Obstacle / Défi",
+    "3. Fondation (Inconscient)",
+    "4. Passé",
+    "5. Conscient / Possibilités",
+    "6. Futur proche",
+    "7. Attitude face à la situation",
+    "8. Influence de l’environnement",
+    "9. Espoirs / Peurs",
+    "10. Issue"
+  ],
+  "sefirot": [
+    "Keter (Couronne)",
+    "Chokhmah (Sagesse)",
+    "Binah (Compréhension)",
+    "Chesed (Miséricorde)",
+    "Gevurah (Rigueur)",
+    "Tiferet (Beauté)",
+    "Netzach (Éternité)",
+    "Hod (Gloire)",
+    "Yesod (Fondation)",
+    "Malkhut (Royaume)"
+  ],
+  "misc": {
+    "proOnly": "Les relances sont réservées à PRO.",
+    "followupTitle": "Envoyer une relance (PRO) :",
+    "followupAnswer": "Réponse à la relance :",
+    "oneFollowupNote": "Tu pourras poser une nouvelle relance seulement lors du prochain tirage.",
+    "cardPlaceholder": "Carte {{index}}"
+  }
+}

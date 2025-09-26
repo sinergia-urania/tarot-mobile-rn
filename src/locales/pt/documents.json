@@ -1,0 +1,89 @@
+{
+  "about": {
+    "title": "Sobre o App",
+    "updatedAt": "28 de agosto de 2025",
+    "body": [
+      "AiTarot Una é um app baseado na combinação de tecnologias modernas de IA com símbolos arquetípicos do universo do Tarô, para oferecer interpretações personalizadas, ponderadas e úteis. A IA não gera mensagens aleatórias — ela analisa no contexto da sua pergunta e do arranjo das cartas.",
+      "Todas as tiragens no app (exceto “Carta do Dia” e “Sim/Não”, que são intuitivas por natureza) analisam as cartas por meio de um sistema simbólico em múltiplas camadas e tentam reconhecer a lógica interna em relação à sua questão.",
+      "Como funciona: o app oferece uma lista de perguntas frequentes, mas você sempre pode digitar a sua própria pergunta se ela não estiver entre as sugestões — assim você recebe uma interpretação realmente pessoal e relevante.",
+      "Acesso e planos:",
+      "• Gratuito: acesso básico com número limitado de tiragens e recursos.",
+      "• Premium: desbloqueia tipos adicionais de tiragens e insights.",
+      "• PRO: acesso completo a todas as ferramentas, análises e personalização.",
+      "Além dos planos, há a opção de Recompensa por Anúncio (AdReward) — assistindo a anúncios você pode desbloquear certos recursos como alternativa ao pagamento.",
+      "Observação: o app não prevê o futuro de forma determinística; ele lança luz sobre direções potenciais e padrões internos por meio da linguagem arquetípica das cartas e do simbolismo.",
+      "Versão do app: 1.0.0"
+    ]
+  },
+  "terms": {
+    "title": "Termos de Serviço",
+    "updatedAt": "28 de agosto de 2025",
+    "sourceUrl": "terms-of-service-pt.html",
+    "body": [
+      "Ao usar este app, você concorda com os seguintes termos e regras. Se não concordar com alguma parte, por favor, não utilize o app.",
+      "• O app se destina a uso pessoal e não comercial.",
+      "• Você não pode copiar, distribuir ou modificar o conteúdo sem permissão do autor.",
+      "• Podemos alterar os Termos de Serviço a qualquer momento sem aviso prévio.",
+      "Ao continuar usando o app, você confirma que leu, entendeu e aceitou estes termos."
+    ]
+  },
+  "privacy": {
+    "title": "Política de Privacidade",
+    "updatedAt": "28 de agosto de 2025",
+    "sourceUrl": "privacy-policy-pt.html",
+    "body": [
+      "Nós nos importamos com a sua privacidade. Este documento resume quais dados coletamos, por que coletamos e como os protegemos.",
+      "O que coletamos: (a) dados de conta (e-mail, nome de exibição, idioma), (b) dados de perfil opcionais (gênero, data de nascimento, signo/ascendente), (c) dados técnicos (ID do usuário, token de push do Expo, idioma/região do dispositivo), (d) metadados sobre o uso de recursos.",
+      "Onde armazenamos: Supabase (banco de dados e autenticação). O Expo é usado para entrega de notificações push (token do dispositivo). O Zoho Mail é usado para suporte ao cliente.",
+      "Por quê: para fornecer funcionalidades do app, sincronizar configurações, enviar notificações que você solicitar e melhorar a qualidade do produto.",
+      "Compartilhamento: não vendemos dados pessoais. Compartilhamos dados apenas com provedores necessários ao funcionamento do app (por exemplo, Supabase, Expo) sob acordos adequados de processamento de dados.",
+      "Retenção e exclusão: mantemos os dados pelo tempo necessário para fornecer o serviço. Você pode solicitar a exportação ou exclusão da sua conta entrando em contato com o suporte.",
+      "Segurança: aplicamos medidas técnicas e organizacionais; contudo, nenhum sistema é 100% seguro.",
+      "Seus direitos: acesso, retificação, exclusão, objeção, retirada de consentimento quando aplicável.",
+      "Contato de privacidade: info@infohelm.org"
+    ]
+  },
+  "support": {
+    "title": "Suporte e Doações",
+    "updatedAt": "28 de agosto de 2025",
+    "body": [
+      "Se você quiser apoiar o desenvolvimento do app:",
+      "• Ative a assinatura PRO/Premium conforme sua necessidade — você ganha mais tiragens e menos limites.",
+      "• Assista a anúncios curtos para ganhar moedas (AdReward).",
+      "• Deixe uma avaliação e um comentário na loja — isso ajuda muito!",
+      "• Compartilhe o app com amigos.",
+      "Para ajuda adicional ou sugestões, escreva para: info@infohelm.org"
+    ]
+  },
+  "contact": {
+    "title": "Contato",
+    "updatedAt": "28 de agosto de 2025",
+    "body": [
+      "Se você tiver perguntas, sugestões ou problemas técnicos, sinta-se à vontade para falar com a gente.",
+      "E-mail: info@infohelm.org",
+      "Respondemos em até 24h em dias úteis."
+    ]
+  },
+  "disclaimer": {
+    "title": "Aviso Legal",
+    "updatedAt": "28 de agosto de 2025",
+    "body": [
+      "Este app utiliza inteligência artificial para interpretar símbolos e responder perguntas, de forma semelhante a um tarólogo experiente. Embora a IA analise padrões e ofereça insights, suas respostas não substituem aconselhamento profissional em áreas como saúde, direito ou finanças.",
+      "As decisões são de responsabilidade do usuário com base nas mensagens e insights recebidos. O criador do app não se responsabiliza por quaisquer consequências decorrentes do uso do conteúdo.",
+      "Ao usar o app, você concorda com estes termos."
+    ]
+  },
+  "dataDeletion": {
+    "title": "Exclusão de Dados",
+    "updatedAt": "28 de agosto de 2025",
+    "sourceUrl": "data-deletion-pt.html",
+    "body": [
+      "Você pode solicitar a exclusão da sua conta e dos seus dados a qualquer momento.",
+      "Como enviar a solicitação: mande um e-mail do endereço vinculado à sua conta para info@infohelm.org com uma breve mensagem informando que deseja excluir seus dados. Se possível, inclua seu ID de usuário (UID) do perfil.",
+      "O que excluímos: perfil (e-mail, nome de exibição, preferências de idioma), tokens salvos de notificação push, histórico de leituras/interpretações e outros dados relacionados à conta.",
+      "O que podemos reter: registros mínimos necessários para cumprir obrigações legais ou necessidades de segurança, conforme a Política de Privacidade.",
+      "Prazos: solicitações geralmente são processadas em até 30 dias após a confirmação de identidade.",
+      "Mais detalhes e a versão oficial do documento estão disponíveis em nosso site (use o botão “Abrir na web”)."
+    ]
+  }
+}

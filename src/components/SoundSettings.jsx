@@ -5,10 +5,18 @@ import Slider from '@react-native-community/slider';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useMusic } from '../context/MusicProvider';
+// START: i18n za labele zvuka (sa keyPrefix)
+import { useTranslation } from 'react-i18next';
+// END: i18n za labele zvuka
 
 const SoundSettings = () => {
   const { musicVolume, setVolume } = useMusic(); // global!
   const [sfxVolume, setSfxVolume] = useState(0.5);
+
+  // START: t() sa eksplicitnim namespace + keyPrefix = 'soundControls'
+  // sada pozivamo t('music') i t('effects') bez rizika da promašimo putanju
+  const { t } = useTranslation('common', { keyPrefix: 'soundControls' });
+  // END: t() sa eksplicitnim namespace + keyPrefix
 
   useEffect(() => {
     (async () => {
@@ -28,7 +36,9 @@ const SoundSettings = () => {
   return (
     <View>
       <View style={styles.settingRow}>
-        <Text style={styles.label}>🎵 Muzika</Text>
+        {/* START: i18n - Muzika */}
+        <Text style={styles.label}>🎵 {t('music')}</Text>
+        {/* END: i18n - Muzika */}
         <Slider
           style={styles.slider}
           minimumValue={0}
@@ -41,8 +51,11 @@ const SoundSettings = () => {
         />
         <Text style={styles.percent}>{Math.round(musicVolume * 100)}%</Text>
       </View>
+
       <View style={styles.settingRow}>
-        <Text style={styles.label}>🔔 Efekti</Text>
+        {/* START: i18n - Efekti */}
+        <Text style={styles.label}>🔔 {t('effects')}</Text>
+        {/* END: i18n - Efekti */}
         <Slider
           style={styles.slider}
           minimumValue={0}

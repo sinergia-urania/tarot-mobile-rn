@@ -1,0 +1,367 @@
+{
+  "watchAdForCoins": "Regarder une pub pour des deniers",
+  "appName": "Tarot",
+  "groups": {
+    "velika": "Arcanes majeurs",
+    "stapovi": "Bâtons",
+    "pehari": "Coupes",
+    "macevi": "Épées",
+    "zlatnici": "Deniers"
+  },
+  "menu": {
+    "allSpreads": "Tous les tirages",
+    "dailyCard": "Carte du jour",
+    "yesNo": "Oui / Non",
+    "meanings": "Significations des cartes",
+    "history": "Archive des tirages",
+    "access": "Accès & offres"
+  },
+  "soundControls": {
+    "music": "Musique",
+    "effects": "Effets",
+    "test": "Tester le son"
+  },
+  "info": {
+    "allSpreads": "Voici des tirages avec l’interprète IA.",
+    "dailyCard": "Tirage intuitif — pense à une question avant de tirer une carte.",
+    "yesNo": "Tirage intuitif — pense à une question avant de tirer une carte."
+  },
+  "buttons": {
+    "askFollowUp": "Envoyer une relance",
+    "back": "Retour",
+    "ok": "OK",
+    "cancel": "Annuler",
+    "backToTarotHome": "Retour à l’accueil Tarot",
+    "close": "Fermer",
+    "answer": "$t(labels.answer)",
+    "buyCoins": "Ajouter des deniers",
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "saveProfile": "Enregistrer le profil",
+    "register": "S’inscrire",
+    "savePassword": "Enregistrer le mot de passe"
+  },
+  "messages": {
+    "loading": "Chargement…",
+    "error": "Une erreur est survenue",
+    "notImplemented": "Pas encore implémenté : {{group}}",
+    "noCardSelected": "Aucune carte n’a été tirée. Retourne en arrière et réessaie.",
+    "cardDrawnWithOrientation": "La carte a été tirée {{orientation}}.",
+    "tryAgain": "Réessayer.",
+    "tryAgainNav": "Retourne en arrière et réessaie.",
+    "loadingDailyCard": "Chargement de la carte du jour…",
+    "noDescription": "Pas de description pour cette carte.",
+    "successTitle": "Succès !",
+    "successGeneric": "Succès !",
+    "notLoggedInBlurb": "Tu n’es pas connecté. Connecte-toi pour utiliser l’IA et collecter des deniers !",
+    "notLoggedInSettings": "Tu n’es pas connecté. Connecte-toi pour accéder aux paramètres.",
+    "nameNotSet": "Tu n’as pas saisi de nom",
+    "profileSaved": "Profil enregistré !",
+    "noQuestion": "Pas de question.",
+    "waitingAI": "En attente de la réponse IA…"
+  },
+  "titles": {
+    "yesNoAnswer": "Réponse à ta question :",
+    "settings": "Paramètres",
+    "sound": "Son",
+    "selectLanguage": "Choisir la langue"
+  },
+  "sections": {
+    "symbolism": "Symbolisme",
+    "upright": "Signification à l’endroit",
+    "reversed": "Signification à l’envers",
+    "daily": "Signification comme carte du jour"
+  },
+  "answers": {
+    "yes": "OUI",
+    "no": "NON"
+  },
+  "orientation": {
+    "upright": "à l’endroit",
+    "reversed": "à l’envers"
+  },
+  "badges": {
+    "proOnly": "(PRO uniquement)",
+    "proOrPremium": "(Pro/Premium)"
+  },
+  "questions": {
+    "dailyCardPrompt": "Ta carte du jour est…",
+    "yesNoPrompt": "Ta question Oui/Non…",
+    "introBlurb": "Choisis un thème et une question d’exemple pour démarrer vite."
+  },
+  "accessibility": {
+    "menu": "Menu",
+    "back": "Retour",
+    "home": "Accueil",
+    "language": "Langue",
+    "coins": "Deniers",
+    "soundOn": "Activer le son",
+    "soundOff": "Couper le son",
+    "info": "Infos"
+  },
+  "labels": {
+    "answer": "Réponse",
+    "notifications": "Notifications",
+    "language": "Langue :",
+    "currentName": "Nom actuel :",
+    "user": "Utilisateur",
+    "orTypeYourQuestion": "Ou saisis ta question",
+    "chooseCards": "Choisir des cartes",
+    "status": "Statut :",
+    "coins": "Deniers",
+    "spread": "Tirage",
+    "updatedAt": "Mis à jour",
+    "openOnWeb": "Ouvrir sur le web",
+    "card": "Carte"
+  },
+  "classic": {
+    "title": "Choisis un tirage",
+    "options": {
+      "love": "Moi – Lui/Elle",
+      "pastPresentFuture": "Passé – Présent – Futur",
+      "pathOfInsight": "Voie de l’Insight"
+    }
+  },
+  "placeholders": {
+    "enterQuestion": "Entrer une question",
+    "enterName": "Entrer un nom",
+    "selectGender": "Choisir le genre",
+    "pickDate": "Choisir une date",
+    "pickSign": "Choisir le signe",
+    "pickAscendant": "Choisir l’ascendant",
+    "enterEmail": "E-mail",
+    "enterPassword": "Mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "repeatPassword": "Répéter le mot de passe"
+  },
+  "options": {
+    "includeReversed": "Inclure les cartes à l’envers"
+  },
+  "membership": {
+    "packages": {
+      "guest": "Invité",
+      "free": "Gratuit",
+      "premium": "Premium",
+      "pro": "Pro"
+    },
+    "features": {
+      "meanings": "Significations des cartes",
+      "classicSpreads": "Tirages classiques",
+      "celticCross": "Croix celtique",
+      "astrologicalSpread": "Tirage astrologique",
+      "kabbalisticSpread": "Tirage kabbalistique",
+      "aiFollowups": "Relances IA",
+      "historyArchive": "Archive des tirages",
+      "astrologicalTransits": "Transits astrologiques"
+    },
+    "values": {
+      "ads": "Publicités",
+      "noAds": "Sans publicité",
+      "aiModelMini": "Modèle d’IA : Mini",
+      "aiModelLarge": "Modèle d’IA : Grand"
+    },
+    "notes": {
+      "freeCoinsAd": "Les deniers se gagnent en regardant des pubs (utilisateurs gratuits uniquement)."
+    },
+    "cta": {
+      "alreadyPremium": "Tu as déjà Premium",
+      "buyPremium": "Acheter Premium ({{price}} {{currency}} / mois)",
+      "alreadyPro": "Tu as déjà PRO",
+      "buyPro": "Acheter PRO ({{price}} {{currency}} / mois)"
+    },
+    "topup": {
+      "title": "Recharger les deniers",
+      "buyCoins": "Acheter {{amount}} deniers — {{price}} {{currency}}"
+    },
+    "toast": {
+      "upgradedPremium": "Ton compte est maintenant Premium. Tu as reçu {{bonus}} deniers !",
+      "upgradedPro": "Ton compte est maintenant PRO. Tu as reçu {{bonus}} deniers !",
+      "topupDone": "Tu as reçu {{amount}} deniers."
+    }
+  },
+  "errors": {
+    "invalidLayoutTemplate": "Erreur : aucun layoutTemplate valide fourni !",
+    "notEnoughCoinsTitle": "Pas assez de deniers",
+    "notEnoughCoinsMessage": "Ce tirage nécessite {{required}} deniers, et tu en as {{balance}}.",
+    "genericTitle": "Erreur",
+    "tryAgain": "Réessayer.",
+    "notLoggedIn": "Tu n’es pas connecté.",
+    "adLimitReached": "Limite quotidienne de pubs atteinte.",
+    "topupFailed": "Impossible d’ajouter des deniers.",
+    "updateNotifFail": "Impossible de mettre à jour les notifications.",
+    "nameRequired": "Le nom ne peut pas être vide !",
+    "aiAnswerFailed": "Échec de récupération de la réponse IA",
+    "aiFollowupFailed": "Échec de la relance IA !",
+    "notEnoughCoinsServerRejected": "Le paiement a été refusé par le serveur. Recharge tes deniers et réessaie.",
+    "notEnoughCoinsFollowup": "Tu n’as pas assez de deniers pour une relance IA !",
+    "aiAnswerFailedDetailed": "Une erreur s’est produite lors de l’obtention de la réponse.{{extra}}",
+    "rateLimited": "Limite de débit dépassée. Réessaie plus tard.",
+    "modelUnavailable": "Modèle indisponible ou requête invalide.",
+    "upstreamFailed": "Le service IA est temporairement indisponible (amont).",
+    "aiServiceComm": "Erreur de communication avec le service IA.",
+    "edgeTimeout": "La requête IA a expiré. Réessaie."
+  },
+  "dailyCard": {
+    "alreadyPicked": "Tu as déjà tiré ta carte du jour !",
+    "comeBackTomorrow": "Reviens demain pour une nouvelle carte. 🌞"
+  },
+  "legal": {
+    "title": "Documents juridiques",
+    "disclaimer": "Avertissement",
+    "terms": "Conditions d’utilisation",
+    "contact": "Contact",
+    "privacy": "Politique de confidentialité",
+    "dataDeletion": "Suppression des données"
+  },
+  "support": {
+    "title": "Soutenir l’app",
+    "rateUs": "Nous noter",
+    "shareToFriends": "Partager avec des amis",
+    "shareMessage": "Essaie l’app Tarot IA ! https://play.google.com/store/apps/details?id=com.mare82.tarotmobile"
+  },
+  "auth": {
+    "loginTitle": "Connexion",
+    "registerTitle": "Inscription",
+    "googleSignIn": "Se connecter avec Google",
+    "googleOpening": "Ouverture de Google…",
+    "facebookSignIn": "Se connecter avec Facebook",
+    "facebookOpening": "Ouverture de Facebook…",
+    "toggleHaveAccount": "Tu as déjà un compte ? Connecte-toi",
+    "toggleNoAccount": "Pas de compte ? Inscris-toi",
+    "loginFailed": "Échec de la connexion.",
+    "registerFailed": "Échec de l’inscription.",
+    "googleFailed": "Échec de la connexion Google.",
+    "facebookFailed": "Échec de la connexion Facebook.",
+    "checkEmail": "Vérifie ton e-mail et confirme ton compte.",
+    "emailRequired": "Veuillez saisir votre adresse e-mail.",
+    "resetEmailSent": "Si un compte existe, nous avons envoyé un e-mail avec les instructions pour réinitialiser votre mot de passe.",
+    "resetEmailFailed": "Échec de l’envoi de l’e-mail de réinitialisation.",
+    "forgotPassword": "Mot de passe oublié ?",
+    "resetPasswordTitle": "Réinitialiser le mot de passe",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
+    "passwordsDontMatch": "Les mots de passe ne correspondent pas.",
+    "passwordUpdated": "Votre mot de passe a été mis à jour. Connectez-vous avec le nouveau mot de passe.",
+    "passwordUpdateFailed": "La mise à jour du mot de passe a échoué."
+  },
+  "ads": {
+    "errorTitle": "Erreur de publicité !",
+    "errorGeneric": "Une erreur est survenue avec la publicité. Réessaie plus tard.",
+    "notReady": "La publicité n’est pas prête.",
+    "loading": "Chargement de la pub…",
+    "showing": "Affichage de la pub...",
+    "buttonReady": "Regarder une pub pour {{amount}} deniers",
+    "buttonLoading": "Chargement de la pub...",
+    "thanksTitle": "Merci !",
+    "rewardToast": "Tu as reçu {{amount}} deniers.",
+    "grantError": "Erreur d’attribution des deniers",
+    "plusCoins": "+{{amount}} deniers !",
+    "reward": {
+      "title": "Regarder une pub pour des deniers",
+      "watch": "Regarder une pub pour {{amount}} deniers",
+      "loading": "Chargement de la pub…",
+      "showing": "Affichage de la pub...",
+      "toast": {
+        "thanks": "Merci !",
+        "granted": "Tu as reçu {{amount}} deniers.",
+        "errorGrant": "Erreur d’attribution des deniers",
+        "errorGeneric": "Erreur de publicité."
+      },
+      "done": {
+        "plusCoins": "+{{amount}} deniers !",
+        "ok": "OK"
+      }
+    }
+  },
+  "home": {
+    "menu": {
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "about": "À propos",
+      "packagesAccess": "Accès & offres",
+      "allSpreads": "$t(menu.allSpreads)",
+      "dailyCard": "$t(menu.dailyCard)",
+      "yesNo": "$t(menu.yesNo)",
+      "meanings": "$t(menu.meanings)",
+      "history": "$t(menu.history)",
+      "access": "$t(menu.access)"
+    },
+    "info": {
+      "allSpreads": "$t(info.allSpreads)",
+      "dailyCard": "$t(info.dailyCard)",
+      "yesNo": "$t(info.yesNo)"
+    },
+    "watchAdForCoins": "$t(watchAdForCoins)"
+  },
+  "profile": {
+    "title": "👤 Profil",
+    "nameLabel": "Nom :",
+    "gender": {
+      "label": "Genre :",
+      "male": "Homme",
+      "female": "Femme",
+      "other": "Autre"
+    },
+    "birthDate": "Date de naissance :",
+    "sunSign": "Signe :",
+    "ascendant": "Ascendant :"
+  },
+  "astrology": {
+    "signs": {
+      "aries": "♈ Bélier",
+      "taurus": "♉ Taureau",
+      "gemini": "♊ Gémeaux",
+      "cancer": "♋ Cancer",
+      "leo": "♌ Lion",
+      "virgo": "♍ Vierge",
+      "libra": "♎ Balance",
+      "scorpio": "♏ Scorpion",
+      "sagittarius": "♐ Sagittaire",
+      "capricorn": "♑ Capricorne",
+      "aquarius": "♒ Verseau",
+      "pisces": "♓ Poissons"
+    }
+  },
+  "push": {
+    "titleTest": "Test push",
+    "permDenied": "Les autorisations de notification n’ont pas été accordées.",
+    "noToken": "Aucun jeton (vérifie les autorisations/FCM).",
+    "noUserId": "Aucun ID utilisateur !",
+    "tokenWriteFail": "Jeton NON enregistré !",
+    "tokenWriteOk": "Jeton enregistré !",
+    "profileNoToken": "Aucun jeton dans le profil. Appuie d’abord sur « Écrire le jeton push (test) ».",
+    "localTitle": "LOCAL ✅",
+    "localBody": "Notification locale (avant-plan/arrière-plan)",
+    "remoteTitle": "DISTANT ✅",
+    "remoteBody": "Push Expo (envoyé immédiatement)",
+    "sentMinimize": "Envoyé ✔️ — minimise l’app pour voir la bannière.",
+    "notAccepted": "Push non accepté :",
+    "sendError": "Erreur d’envoi : ",
+    "debugTitle": "Notification de debug",
+    "localBgTitle": "LOCAL 🔔",
+    "localBgBody": "Test local en arrière-plan",
+    "scheduled5s": "Planifié dans 5 s — minimise l’app maintenant.",
+    "fcmTitle": "Jeton FCM (appareil)",
+    "btnWriteToken": "Écrire le jeton push (test)",
+    "btnLocal": "Tester la notification (locale)",
+    "btnRemote": "Tester la notification (distante)",
+    "btnShowFcm": "Afficher le jeton FCM (appareil)",
+    "btnDebug": "Déboguer les notifications",
+    "btnLocalBg": "Tester local (arrière-plan)"
+  },
+  "detail": {
+    "question": "Question :",
+    "answer": "Réponse :",
+    "drawnCards": "Cartes tirées :",
+    "followup": "Relance :",
+    "followupAnswer": "Réponse à la relance :",
+    "loveReading": "Tirage amoureux",
+    "pathOfInsightReading": "Voie de l’Insight",
+    "classic": "Tirage classique",
+    "kabbalisticTree": "Arbre de Vie kabbalistique",
+    "astrologicalSpread": "Tirage astrologique",
+    "celticCross": "Croix celtique"
+  },
+  "history": {
+    "empty30Days": "Aucun tirage archivé au cours des 30 derniers jours."
+  }
+}

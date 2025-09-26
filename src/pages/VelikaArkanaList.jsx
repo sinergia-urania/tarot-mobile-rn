@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { getCardImagePath } from '../utils/getCardImagePath';
 import TarotCardModal from './TarotCardModal';
 // START: Uvoz srpskih naziva iz JSON-a
 import cardMeanings from '../locales/sr/cardMeanings.json';
 // END: Uvoz srpskih naziva iz JSON-a
-
+// START: i18n hook (cardMeanings)
+import { useTranslation } from 'react-i18next';
+// END: i18n hook (cardMeanings)
 
 const cardKeys = [
   'theFool', 'theMagician', 'theHighPriestess', 'theEmpress', 'theEmperor',
@@ -16,6 +18,9 @@ const cardKeys = [
 
 const VelikaArkanaList = (props) => {
   const [selectedCard, setSelectedCard] = useState(null);
+  // START: init i18n
+  const { t } = useTranslation(['cardMeanings']);
+  // END: init i18n
 
   const handleCardPress = (key) => {
     setSelectedCard({ key });
@@ -34,7 +39,13 @@ const VelikaArkanaList = (props) => {
         style={styles.image}
         resizeMode="contain"
       />
-      <Text style={styles.name}>{cardMeanings.cards[key]?.name || key}</Text>
+      {/* START: naziv karte iz i18n (cardMeanings) sa fallback-om na lokalni sr JSON */}
+      <Text style={styles.name}>
+        {t(`cardMeanings:cards.${key}.name`, {
+          defaultValue: (cardMeanings?.cards?.[key]?.name) || key
+        })}
+      </Text>
+      {/* END: naziv karte iz i18n (cardMeanings) sa fallback-om */}
     </TouchableOpacity>
   );
 
@@ -57,7 +68,6 @@ const VelikaArkanaList = (props) => {
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   screen: {
@@ -104,3 +114,5 @@ const styles = StyleSheet.create({
 });
 
 export default VelikaArkanaList;
+
+

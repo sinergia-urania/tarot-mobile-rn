@@ -35,3 +35,5 @@ export const getKartaDanaSmart = async (userId, generisiKartu) => {
   // TODO: Kada dodaš Supabase, ovde možeš proširiti sa cloud logikom
 };
 // END: Nova util funkcija getKartaDanaSmart (bez Firestore)
+
+

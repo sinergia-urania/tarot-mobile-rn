@@ -8,8 +8,8 @@ export const READING_PRICES = {
   tri: 80,        // 3 karte (prošlost-sadašnjost-budućnost)
   pet: 100,        // 5 karata (put spoznaje)
   keltski: 150,        
-  astrološko: 170,    
-  drvo: 200,               
+  astrološko: 200,    
+  drvo: 170,               
 
 };
 // END: naplata po subtipu (AI logika)
@@ -21,3 +21,5 @@ export const READING_LABELS = {
   pet: "5 karata (Put spoznaje)",
   // ...dodaj dalje po potrebi
 };
+
+

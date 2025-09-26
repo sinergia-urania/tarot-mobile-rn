@@ -1,0 +1,367 @@
+{
+  "watchAdForCoins": "Watch an ad for coins",
+  "appName": "Tarot",
+  "groups": {
+    "velika": "Major Arcana",
+    "stapovi": "Wands",
+    "pehari": "Cups",
+    "macevi": "Swords",
+    "zlatnici": "Pentacles"
+  },
+  "menu": {
+    "allSpreads": "All spreads",
+    "dailyCard": "Card of the Day",
+    "yesNo": "Yes / No",
+    "meanings": "Card meanings",
+    "history": "Readings archive",
+    "access": "Access & plans"
+  },
+  "soundControls": {
+    "music": "Music",
+    "effects": "Effects",
+    "test": "Test sound"
+  },
+  "info": {
+    "allSpreads": "These are spreads with the AI interpreter.",
+    "dailyCard": "This is an intuitive spread — think of a question before picking a card.",
+    "yesNo": "This is an intuitive spread — think of a question before picking a card."
+  },
+  "buttons": {
+    "askFollowUp": "Send follow-up",
+    "back": "Back",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "backToTarotHome": "Back to Tarot Home",
+    "close": "Close",
+    "answer": "$t(labels.answer)",
+    "buyCoins": "Add coins",
+    "login": "Log in",
+    "logout": "Log out",
+    "saveProfile": "Save profile",
+    "register": "Sign up",
+    "savePassword": "Save password"
+  },
+  "messages": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notImplemented": "Not yet implemented: {{group}}",
+    "noCardSelected": "No card was drawn. Go back and try again.",
+    "cardDrawnWithOrientation": "The card was drawn {{orientation}}.",
+    "tryAgain": "Try again.",
+    "tryAgainNav": "Go back and try again.",
+    "loadingDailyCard": "Loading the Card of the Day...",
+    "noDescription": "No description for this card.",
+    "successTitle": "Success!",
+    "successGeneric": "Success!",
+    "notLoggedInBlurb": "You’re not logged in. Log in to use AI and collect coins!",
+    "notLoggedInSettings": "You’re not logged in. Log in to access settings.",
+    "nameNotSet": "You haven’t entered a name",
+    "profileSaved": "Profile saved!",
+    "noQuestion": "No question.",
+    "waitingAI": "Waiting for AI response..."
+  },
+  "titles": {
+    "yesNoAnswer": "Answer to your question:",
+    "settings": "Settings",
+    "sound": "Sound",
+    "selectLanguage": "Select language"
+  },
+  "sections": {
+    "symbolism": "Symbolism",
+    "upright": "Upright meaning",
+    "reversed": "Reversed meaning",
+    "daily": "Meaning as Card of the Day"
+  },
+  "answers": {
+    "yes": "YES",
+    "no": "NO"
+  },
+  "orientation": {
+    "upright": "upright",
+    "reversed": "reversed"
+  },
+  "badges": {
+    "proOnly": "(PRO only)",
+    "proOrPremium": "(Pro/Premium)"
+  },
+  "questions": {
+    "dailyCardPrompt": "Your card of the day is...",
+    "yesNoPrompt": "Your Yes/No question...",
+    "introBlurb": "Choose a topic and an example question for a quick start."
+  },
+  "accessibility": {
+    "menu": "Menu",
+    "back": "Back",
+    "home": "Home",
+    "language": "Language",
+    "coins": "Coins",
+    "soundOn": "Turn sound on",
+    "soundOff": "Turn sound off",
+    "info": "Info"
+  },
+  "labels": {
+    "answer": "Answer",
+    "notifications": "Notifications",
+    "language": "Language:",
+    "currentName": "Current name:",
+    "user": "User",
+    "orTypeYourQuestion": "Or type your question",
+    "chooseCards": "Choose cards",
+    "status": "Status:",
+    "coins": "Coins",
+    "spread": "Spread",
+    "updatedAt": "Updated",
+    "openOnWeb": "Open on web",
+    "card": "Card"
+  },
+  "classic": {
+    "title": "Choose a spread",
+    "options": {
+      "love": "Me – Him/Her",
+      "pastPresentFuture": "Past – Present – Future",
+      "pathOfInsight": "Path of Insight"
+    }
+  },
+  "placeholders": {
+    "enterQuestion": "Enter a question",
+    "enterName": "Enter name",
+    "selectGender": "Select gender",
+    "pickDate": "Pick a date",
+    "pickSign": "Select sign",
+    "pickAscendant": "Select ascendant",
+    "enterEmail": "Email",
+    "enterPassword": "Password",
+    "newPassword": "New password",
+    "repeatPassword": "Repeat password"
+  },
+  "options": {
+    "includeReversed": "Include reversed cards"
+  },
+  "membership": {
+    "packages": {
+      "guest": "Guest",
+      "free": "Free",
+      "premium": "Premium",
+      "pro": "Pro"
+    },
+    "features": {
+      "meanings": "Card meanings",
+      "classicSpreads": "Classic spreads",
+      "celticCross": "Celtic Cross",
+      "astrologicalSpread": "Astrological spread",
+      "kabbalisticSpread": "Kabbalistic spread",
+      "aiFollowups": "AI follow-ups",
+      "historyArchive": "Readings archive",
+      "astrologicalTransits": "Astrological transits"
+    },
+    "values": {
+      "ads": "Ads",
+      "noAds": "No ads",
+      "aiModelMini": "AI model: Mini",
+      "aiModelLarge": "AI model: Large"
+    },
+    "notes": {
+      "freeCoinsAd": "Coins are earned by watching ads (free users only)."
+    },
+    "cta": {
+      "alreadyPremium": "You already have Premium",
+      "buyPremium": "Buy Premium ({{price}} {{currency}} / month)",
+      "alreadyPro": "You already have PRO",
+      "buyPro": "Buy PRO ({{price}} {{currency}} / month)"
+    },
+    "topup": {
+      "title": "Top up coins",
+      "buyCoins": "Buy {{amount}} coins — {{price}} {{currency}}"
+    },
+    "toast": {
+      "upgradedPremium": "Your account is now Premium. You received {{bonus}} coins!",
+      "upgradedPro": "Your account is now PRO. You received {{bonus}} coins!",
+      "topupDone": "You received {{amount}} coins."
+    }
+  },
+  "errors": {
+    "invalidLayoutTemplate": "Error: A valid layoutTemplate was not provided!",
+    "notEnoughCoinsTitle": "Not enough coins",
+    "notEnoughCoinsMessage": "This spread requires {{required}} coins, and you have {{balance}}.",
+    "genericTitle": "Error",
+    "tryAgain": "Try again.",
+    "notLoggedIn": "You are not logged in.",
+    "adLimitReached": "Daily ad limit reached.",
+    "topupFailed": "Unable to add coins.",
+    "updateNotifFail": "Unable to update notifications.",
+    "nameRequired": "Name cannot be empty!",
+    "aiAnswerFailed": "Failed to get AI response",
+    "aiFollowupFailed": "Failed to get AI follow-up response!",
+    "notEnoughCoinsServerRejected": "Payment was rejected by the server. Top up your coins and try again.",
+    "notEnoughCoinsFollowup": "You don't have enough coins for an AI follow-up!",
+    "aiAnswerFailedDetailed": "An error occurred while getting the response.{{extra}}",
+    "rateLimited": "Rate limit exceeded. Please try again later.",
+    "modelUnavailable": "Model unavailable or invalid request.",
+    "upstreamFailed": "AI service is temporarily unavailable (upstream).",
+    "aiServiceComm": "There was an error communicating with the AI service.",
+    "edgeTimeout": "The AI request timed out. Please try again."
+  },
+  "dailyCard": {
+    "alreadyPicked": "You’ve already picked your card of the day!",
+    "comeBackTomorrow": "Come back tomorrow for a new card. 🌞"
+  },
+  "legal": {
+    "title": "Legal documents",
+    "disclaimer": "Disclaimer",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "dataDeletion": "Data Deletion"
+  },
+  "support": {
+    "title": "Support the app",
+    "rateUs": "Rate us",
+    "shareToFriends": "Share with friends",
+    "shareMessage": "Try the Tarot AI app! https://play.google.com/store/apps/details?id=com.mare82.tarotmobile"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "registerTitle": "Sign up",
+    "googleSignIn": "Sign in with Google",
+    "googleOpening": "Opening Google…",
+    "facebookSignIn": "Sign in with Facebook",
+    "facebookOpening": "Opening Facebook…",
+    "toggleHaveAccount": "Already have an account? Log in",
+    "toggleNoAccount": "Don’t have an account? Sign up",
+    "loginFailed": "Login failed.",
+    "registerFailed": "Registration failed.",
+    "googleFailed": "Google sign-in failed.",
+    "facebookFailed": "Facebook sign-in failed.",
+    "checkEmail": "Check your email and confirm your account.",
+    "emailRequired": "Please enter your email address.",
+    "resetEmailSent": "If an account exists, we've sent an email with instructions to reset your password.",
+    "resetEmailFailed": "Failed to send the reset email.",
+    "forgotPassword": "Forgot password?",
+    "resetPasswordTitle": "Reset password",
+    "passwordTooShort": "Password must be at least 8 characters long.",
+    "passwordsDontMatch": "Passwords do not match.",
+    "passwordUpdated": "Your password has been updated. Please sign in with the new password.",
+    "passwordUpdateFailed": "Updating the password failed."
+  },
+  "ads": {
+    "errorTitle": "Ad error!",
+    "errorGeneric": "There was an error with the ad. Please try again later.",
+    "notReady": "Ad is not ready.",
+    "loading": "Loading ad…",
+    "showing": "Displaying ad...",
+    "buttonReady": "Watch an ad for {{amount}} coins",
+    "buttonLoading": "Loading ad...",
+    "thanksTitle": "Thanks!",
+    "rewardToast": "You received {{amount}} coins.",
+    "grantError": "Error granting coins",
+    "plusCoins": "+{{amount}} coins!",
+    "reward": {
+      "title": "Watch an ad for coins",
+      "watch": "Watch an ad for {{amount}} coins",
+      "loading": "Loading ad…",
+      "showing": "Displaying ad...",
+      "toast": {
+        "thanks": "Thanks!",
+        "granted": "You received {{amount}} coins.",
+        "errorGrant": "Error granting coins",
+        "errorGeneric": "There was an ad error."
+      },
+      "done": {
+        "plusCoins": "+{{amount}} coins!",
+        "ok": "OK"
+      }
+    }
+  },
+  "home": {
+    "menu": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "about": "About",
+      "packagesAccess": "Access & plans",
+      "allSpreads": "$t(menu.allSpreads)",
+      "dailyCard": "$t(menu.dailyCard)",
+      "yesNo": "$t(menu.yesNo)",
+      "meanings": "$t(menu.meanings)",
+      "history": "$t(menu.history)",
+      "access": "$t(menu.access)"
+    },
+    "info": {
+      "allSpreads": "$t(info.allSpreads)",
+      "dailyCard": "$t(info.dailyCard)",
+      "yesNo": "$t(info.yesNo)"
+    },
+    "watchAdForCoins": "$t(watchAdForCoins)"
+  },
+  "profile": {
+    "title": "👤 Profile",
+    "nameLabel": "Name:",
+    "gender": {
+      "label": "Gender:",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "birthDate": "Date of birth:",
+    "sunSign": "Sign:",
+    "ascendant": "Ascendant:"
+  },
+  "astrology": {
+    "signs": {
+      "aries": "♈ Aries",
+      "taurus": "♉ Taurus",
+      "gemini": "♊ Gemini",
+      "cancer": "♋ Cancer",
+      "leo": "♌ Leo",
+      "virgo": "♍ Virgo",
+      "libra": "♎ Libra",
+      "scorpio": "♏ Scorpio",
+      "sagittarius": "♐ Sagittarius",
+      "capricorn": "♑ Capricorn",
+      "aquarius": "♒ Aquarius",
+      "pisces": "♓ Pisces"
+    }
+  },
+  "push": {
+    "titleTest": "Push test",
+    "permDenied": "Notification permissions were not granted.",
+    "noToken": "No token (check permissions/FCM).",
+    "noUserId": "No user id!",
+    "tokenWriteFail": "Token NOT saved!",
+    "tokenWriteOk": "Token saved!",
+    "profileNoToken": "No token in profile. Press “Write push token test” first.",
+    "localTitle": "LOCAL ✅",
+    "localBody": "Local notification (foreground/background)",
+    "remoteTitle": "REMOTE ✅",
+    "remoteBody": "Expo push (sent immediately)",
+    "sentMinimize": "Sent ✔️ — minimize the app now to see the banner.",
+    "notAccepted": "Push not accepted:",
+    "sendError": "Send error: ",
+    "debugTitle": "Debug notification",
+    "localBgTitle": "LOCAL 🔔",
+    "localBgBody": "Background local test",
+    "scheduled5s": "Scheduled in 5s — minimize the app now.",
+    "fcmTitle": "FCM token (device)",
+    "btnWriteToken": "Write push token test",
+    "btnLocal": "Test notification (local)",
+    "btnRemote": "Test notification (remote)",
+    "btnShowFcm": "Show FCM token (device)",
+    "btnDebug": "Debug notifications",
+    "btnLocalBg": "Test local (background)"
+  },
+  "detail": {
+    "question": "Question:",
+    "answer": "Answer:",
+    "drawnCards": "Drawn cards:",
+    "followup": "Follow-up:",
+    "followupAnswer": "Answer to follow-up:",
+    "loveReading": "Love reading",
+    "pathOfInsightReading": "Path of Insight",
+    "classic": "Classic spread",
+    "kabbalisticTree": "Kabbalistic Tree of Life",
+    "astrologicalSpread": "Astrological spread",
+    "celticCross": "Celtic Cross"
+  },
+  "history": {
+    "empty30Days": "No archived readings in the last 30 days."
+  }
+}

@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   Animated,
   Dimensions,
   Image,
@@ -29,8 +30,14 @@ import { getCardImagePath } from '../utils/getCardImagePath';
 // START: Import naplata po subtipu
 import { READING_PRICES } from "../constants/readingPrices";
 // END: Import naplata po subtipu
-import Toast from 'react-native-toast-message';
 import { useDukati } from "../context/DukatiContext"; // DODATO
+// START: i18n
+import { useTranslation } from 'react-i18next';
+// END: i18n
+
+// START: zvuk (expo-audio)
+import { useAudioPlayer } from "expo-audio";
+// END: zvuk (expo-audio)
 
 // START: IzborKarataModal
 const circleHeight = 220;
@@ -54,36 +61,155 @@ const IzborKarataModal = ({
   allCardKeys = [],
 }) => {
 
+  // START: i18n init
+  const { t } = useTranslation(['common', 'cardMeanings', 'extendedMeanings']);
+  // END: i18n init
+
   // START: Guard za layoutTemplate
   if (!Array.isArray(layoutTemplate) || layoutTemplate.length === 0) {
     return (
-      <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#000"}}>
-        <Text style={{color:"#ffd700",fontSize:20, textAlign: "center"}}>
-          Greška: Nije prosleđen validan layoutTemplate!{"\n"}
-          Vratite se i pokušajte ponovo.
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#000" }}>
+        <Text style={{ color: "#ffd700", fontSize: 20, textAlign: "center" }}>
+          {/* START: i18n poruke greške */}
+          {t('common:errors.invalidLayoutTemplate', { defaultValue: 'Greška: Nije prosleđen validan layoutTemplate!' })}{"\n"}
+          {t('common:messages.tryAgainNav', { defaultValue: 'Vratite se i pokušajte ponovo.' })}
+          {/* END: i18n poruke greške */}
         </Text>
       </View>
     );
   }
   // END: Guard za layoutTemplate
-const { dukati, platiOtvaranje } = useDukati();
+  const { dukati, platiOtvaranje } = useDukati();
+
+
   // ...ostatak tvoje logike
   if (!visible) return null;
-  
+
   const navigation = useNavigation();
   const numPlaceholders = layoutTemplate.length || 1;
   const [availableCards, setAvailableCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   const angleOffset = useRef(new Animated.Value(0)).current;
   const [currentAngle, setCurrentAngle] = useState(0);
-  
-  const [interactionDisabled, setInteractionDisabled] = useState(false);
 
+  const [interactionDisabled, setInteractionDisabled] = useState(false);
   const [dimensions, setDimensions] = useState(Dimensions.get("window"));
+
+
+  // START: klasifikacija ekrana (telefon/tablet + podgrupe)
+  const W = dimensions.width;
+  const H = dimensions.height;
+
+  const minSide = Math.min(W, H);
+  const isTablet = minSide >= 600; // tablet: sw600dp+
+
+  // telefoni po visini (portret)
+  const phoneTier = H >= 820 ? "phoneLarge" : H >= 760 ? "phoneMedium" : "phoneSmall";
+
+  // tableti po visini (portret)
+  const tabletTier = H >= 1000 ? "tabLarge" : "tabSmall";
+
+  // finalni tier
+  const screenTier = isTablet ? tabletTier : phoneTier;
+  // END: klasifikacija ekrana
+
+  // START: fanBaseTop po tier-u
+  const CARD_IN_FAN_HEIGHT = 140; // isto kao styles.singleCard.height
+
+  const fanBaseTopByTier = {
+    phoneSmall: 150,                                              // ~6.0" (umesto 80)
+    phoneMedium: 230,                                             // ~6.5" (tvoj dobar broj)
+    phoneLarge: 270 + 40 + Math.round(CARD_IN_FAN_HEIGHT / 3),    // ~6.7" (tvoja logika)
+    tabSmall: 320,                                                // ~8.5–10.5"
+    tabLarge: 360,                                                // ~10.5–14"
+  };
+
+  const fanBaseTop = fanBaseTopByTier[screenTier];
+  // END: fanBaseTop po tier-u
+
+  // START: CHEVRON_TOP po tier-u
+  const chevronTopByTier = {
+    phoneSmall: 150,   // ~6.0" (bezbedno iznad vrhova)
+    phoneMedium: 200,  // ~6.5" (tvoj dobar broj)
+    phoneLarge: 260,   // ~6.7" (tvoje podešavanje)
+    tabSmall: 200,     // tabletovi su „viši“ pa držimo u sredini
+    tabLarge: 210,
+  };
+  const CHEVRON_TOP = chevronTopByTier[screenTier];
+  // END: CHEVRON_TOP po tier-u
+
+
+  // START: CHEVRON_DISTANCE po tier-u
+  const distCapByTier = {
+    phoneSmall: 170,  // ~6.0"
+    phoneMedium: 200, // ~6.5"
+    phoneLarge: 260,  // ~6.7"
+    tabSmall: 300,    // ~8.5–10.5"
+    tabLarge: 360,    // ~10.5–14"
+  };
+
+  const distPctByTier = {
+    phoneSmall: 0.28,
+    phoneMedium: 0.32,
+    phoneLarge: 0.34,
+    tabSmall: 0.36,
+    tabLarge: 0.38,
+  };
+
+  const CHEVRON_DISTANCE = Math.min(
+    distCapByTier[screenTier],
+    Math.round(W * distPctByTier[screenTier])
+  );
+  // END: CHEVRON_DISTANCE po tier-u
+
+
+  const CHEVRON_TILT_DEG = 12;
+  const CHEVRON_COLOR = "#ffd700";
+  const SHOW_CHEVRON_HINT = true;
+  // END: chevron hint — vrednosti po tier-u
+
+
+
   const [ukljuciObrnute, setUkljuciObrnute] = useState(tip !== "karta-dana");
 
   const [animatedKey, setAnimatedKey] = useState(null);
   const [instantAnswer, setInstantAnswer] = useState(null);
+  // START: Chevron animacija
+  const chevAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(chevAnim, { toValue: 1, duration: 900, useNativeDriver: true }),
+        Animated.timing(chevAnim, { toValue: 0, duration: 900, useNativeDriver: true }),
+      ])
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [chevAnim]);
+
+  const leftShift = chevAnim.interpolate({ inputRange: [0, 1], outputRange: [-6, 6] });
+  const rightShift = chevAnim.interpolate({ inputRange: [0, 1], outputRange: [6, -6] });
+  const chevOpacity = chevAnim.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] });
+  // END: Chevron animacija
+
+  // START: Audio player — jedna instanca (expo-audio)
+  // ⚠️ Proveri relativnu putanju do zvuka u odnosu na ovu datoteku
+  const clickSound = require("../assets/sounds/click-card.mp3");
+
+  // hook upravlja lifecycle-om plejera
+  const player = useAudioPlayer(clickSound);
+
+  const playClick = useCallback(() => {
+    try {
+      // Za kratki „klik“: vrati na početak pa pusti
+      player.seekTo(0);
+      player.play();
+    } catch (e) {
+      if (__DEV__) console.log('[sound][play][err]', e?.message || e);
+    }
+  }, [player]);
+  // END: Audio player — jedna instanca (expo-audio)
 
   // START: State za kartu dana
   const [kartaDana, setKartaDana] = useState(null);
@@ -92,12 +218,15 @@ const { dukati, platiOtvaranje } = useDukati();
   const { user } = useAuth();
   const userId = user?.id || null;
   // END: State za kartu dana
+  // START: Dodaj state za "upravo izvučena karta dana"
+  const [upravoIzvucena, setUpravoIzvucena] = useState(false);
+  // END: Dodaj state za "upravo izvučena karta dana"
 
 
   // START: Detekcija draga za tap/drag razliku
   const [dragActive, setDragActive] = useState(false);
   // END: Detekcija draga za tap/drag razliku
-
+  const [loadingAnswer, setLoadingAnswer] = useState(false);
   function shuffleDeck(array) {
     let shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -124,15 +253,18 @@ const { dukati, platiOtvaranje } = useDukati();
     setSelectedCards([]);
   }, [shuffleId]);
 
+  // START: Resetuj "upravoIzvucena" kad se modal otvori
+  useEffect(() => {
+    if (visible) setUpravoIzvucena(false);
+  }, [visible]);
+  // END: Resetuj "upravoIzvucena" kad se modal otvori
+
+
+  // START: Karta dana - uvek samo čita, nikad random ne generiše!
   useEffect(() => {
     if (tip === "karta-dana") {
       setLoadingKarta(true);
-      const generisiKartu = () => {
-        const shuffled = shuffleDeck(allCardKeys);
-        const key = shuffled[0];
-        return { label: key, reversed: Math.random() < 0.5 };
-      };
-      getKartaDanaSmart(userId, generisiKartu).then((kartaDana) => {
+      getKartaDanaSmart(userId).then((kartaDana) => {
         if (kartaDana) {
           setKartaDana(kartaDana);
           setInteractionDisabled(!!kartaDana._izabranaDanas);
@@ -142,6 +274,8 @@ const { dukati, platiOtvaranje } = useDukati();
       });
     }
   }, [user, tip, allCardKeys]);
+  // END: Karta dana - uvek samo čita, nikad random ne generiše!
+
 
   const placeholderArray = Array.from({ length: numPlaceholders });
   const DVA_REDA_OTVARANJA = ["keltski", "astrološko", "drvo"];
@@ -155,6 +289,10 @@ const { dukati, platiOtvaranje } = useDukati();
     const cardIndex = availableCards.findIndex((c) => c.key === cardKey);
     if (cardIndex === -1 || availableCards[cardIndex].removed) return;
 
+    // START: pusti klik zvuk
+    void playClick();
+    // END: pusti klik zvuk
+
     setAnimatedKey(cardKey);
     setTimeout(() => setAnimatedKey(null), 600);
 
@@ -166,80 +304,83 @@ const { dukati, platiOtvaranje } = useDukati();
     setSelectedCards((prev) => [...prev, novaKarta]);
   };
 
-  /// --- GUARD za modal “nemaš dukata” ---
-  const [showNoDukes, setShowNoDukes] = useState(false);
-   const [loadingAnswer, setLoadingAnswer] = useState(false);
+  // START: handleGoToAnswer – jedna funkcija, server-side naplata i uvek navigacija
   const handleGoToAnswer = async () => {
-  if (interactionDisabled) {
-    console.log("Klik disabled!");
-    return;
-  }
+    if (interactionDisabled) {
+      console.log("Klik disabled!");
+      return;
+    }
 
-  if (selectedCards.length < numPlaceholders) {
-    console.log("Nedovoljno karata izabrano!");
-    return;
-  }
-  // BESPLATNO - KARTA DANA
-  if (tip === "karta-dana") {
-    const prvaKarta = selectedCards[0];
-    const novaKarta = {
-      ...prvaKarta,
-      _izabranaDanas: true,
-    };
-    setKartaDana(novaKarta);
-    setInteractionDisabled(true);
-    setLoadingKarta(false);
-    return;
-  }
+    if (selectedCards.length < numPlaceholders) {
+      console.log("Nedovoljno karata izabrano!");
+      return;
+    }
 
-  // BESPLATNO - DA/NE
-  if (tip === "dane") {
-    const prvaKarta = selectedCards[0];
-    navigation.navigate("DaNeOdgovor", {
-      karta: {
-        okrenuta: prvaKarta.reversed ? "obrnuto" : "uspravno",
-        slika: getCardImagePath(prvaKarta.label),
-      },
-    });
-    return;
-  }
+    // KARTA DANA – setuj i završi
+    if (tip === "karta-dana") {
+      const prvaKarta = selectedCards[0];
+      const novaKarta = { ...prvaKarta, _izabranaDanas: true };
+      await getKartaDanaSmart(userId, () => novaKarta, { forceSave: true });
+      setKartaDana(novaKarta);
+      setInteractionDisabled(true);
+      setLoadingKarta(false);
+      setUpravoIzvucena(true);
+      return;
+    }
 
-  const cenaOtvaranja = READING_PRICES[subtip] || 0;
-  if (dukati < cenaOtvaranja) {
-    setShowNoDukes(true);
-    return;
-  }
+    // BESPLATNO – DA/NE
+    if (tip === "dane") {
+      const prvaKarta = selectedCards[0];
+      navigation.navigate("DaNeOdgovor", {
+        karta: {
+          okrenuta: prvaKarta.reversed ? "obrnuto" : "uspravno",
+          slika: getCardImagePath(prvaKarta.label),
+        },
+      });
+      return;
+    }
 
-  setLoadingAnswer(true); // <-- OVDE krece loading
-  try {
-    await platiOtvaranje({
-      iznos: cenaOtvaranja,
-      tip: subtip,
-      is_archived: false,
-    });
+    // Plaćeni slučajevi – izračunaj cenu
+    const priceKey = tip === "klasicno" ? subtip : tip;
+    const cenaOtvaranja = READING_PRICES[priceKey] ?? 0;
 
-    navigation.navigate("OdgovorAI", {
-      karte: selectedCards,
-      pitanje,
-      tip,
-      subtip,
-      cena: cenaOtvaranja,
-      korisnikTip: "pro",
-      layoutTemplate,
-    });
-  } catch (err) {
-    Toast.show({
-      type: "error",
-      text1: "Greška pri naplati",
-      text2: "Pokušaj ponovo ili kontaktiraj podršku.",
-      position: "bottom",
-      visibilityTime: 3000,
-    });
-    console.log("NAPLATA ERROR:", err);
-  } finally {
-    setLoadingAnswer(false); // <-- Loading se završava
-  }
-};
+    // Guard: nedovoljno dukata -> ne puštaj dalje
+    if (cenaOtvaranja > 0 && dukati < cenaOtvaranja) {
+      Alert.alert(
+        // START: i18n alert
+        t('common:errors.notEnoughCoinsTitle', { defaultValue: 'Nedovoljno dukata' }),
+        t('common:errors.notEnoughCoinsMessage', {
+          required: cenaOtvaranja,
+          balance: dukati,
+          defaultValue: 'Za ovo otvaranje treba {{required}} dukata, a imaš {{balance}}.'
+        }),
+        [
+          { text: t('common:buttons.buyCoins', { defaultValue: 'Dodaj dukate' }), onPress: () => navigation.navigate("Membership") },
+          { text: t('common:buttons.ok', { defaultValue: 'U redu' }) },
+        ]
+        // END: i18n alert
+      );
+      return;
+    }
+
+    setLoadingAnswer(true);
+    try {
+      navigation.navigate("OdgovorAI", {
+        karte: selectedCards,
+        pitanje,
+        tip,
+        subtip,
+        cena: cenaOtvaranja,
+        layoutTemplate,
+        // napomena: nema hardcode korisnikTip: "pro"
+      });
+    } finally {
+      setLoadingAnswer(false);
+
+    }
+
+  };
+  // END: handleGoToAnswer – jedna funkcija, server-side naplata i uvek navigacija
 
 
   const handleClose = () => {
@@ -286,52 +427,29 @@ const { dukati, platiOtvaranje } = useDukati();
     availableCards.filter((c) => c.removed).map((c) => c.key)
   );
 
-    return (
+  // START: (ISKLJUČENO) – priprema za stari luk, ostavljeno radi istorije
+  // const containerTop = dimensions.height - 220 - fanBaseTop;
+  // const cxLocal = centerX;
+  // const cyLocal = centerY - containerTop;
+  // const ARROW_DELTA_R = 95;
+  // const arrowRadius = radius - ARROW_DELTA_R;
+  // const ARC_START = -115;
+  // const ARC_END   =  -65;
+  // const arrowPath = describeArc(cxLocal, cyLocal, arrowRadius, ARC_START, ARC_END);
+  // const startPt = polarToCartesian(cxLocal, cyLocal, arrowRadius, ARC_START);
+  // const endPt   = polarToCartesian(cxLocal, cyLocal, arrowRadius, ARC_END);
+  // const startTangent = ARC_START + 90 + 180;
+  // const endTangent   = ARC_END   + 90;
+  // END: (ISKLJUČENO)
+
+  return (
     <View style={styles.modalBg}>
       {/* Dugme za zatvaranje */}
       <TouchableOpacity style={styles.closeBtn} onPress={handleClose}>
         <Text style={styles.closeText}>×</Text>
       </TouchableOpacity>
 
-      {/* START: Modal za nedovoljno dukata */}
-      {showNoDukes && (
-        <View style={{
-          position: "absolute",
-          top: 120,
-          alignSelf: "center",
-          backgroundColor: "#220",
-          borderColor: "#ffd700",
-          borderWidth: 2,
-          borderRadius: 16,
-          padding: 20,
-          zIndex: 100
-        }}>
-          <Text style={{
-            color: "#ffd700",
-            fontWeight: "bold",
-            fontSize: 18,
-            textAlign: "center"
-          }}>
-            Nemaš dovoljno dukata za ovo otvaranje!
-          </Text>
-          <TouchableOpacity
-            onPress={() => setShowNoDukes(false)}
-            style={{
-              marginTop: 18,
-              alignSelf: "center",
-              backgroundColor: "#ffd700",
-              paddingHorizontal: 22,
-              paddingVertical: 8,
-              borderRadius: 8
-            }}>
-            <Text style={{
-              color: "#222",
-              fontWeight: "bold"
-            }}>OK</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-      {/* END: Modal za nedovoljno dukata */}
+
 
       <ScrollView contentContainerStyle={styles.container}>
         {tip !== "dane" && tip !== "karta-dana" && (
@@ -344,25 +462,35 @@ const { dukati, platiOtvaranje } = useDukati();
                 {ukljuciObrnute ? "✔" : ""}
               </Text>
             </TouchableOpacity>
-            <Text style={styles.label}>Uključi obrnute karte</Text>
+            {/* START: i18n opcija obrnute karte */}
+            <Text style={styles.label}>
+              {t('common:options.includeReversed', { defaultValue: 'Uključi obrnute karte' })}
+            </Text>
+            {/* END: i18n opcija obrnute karte */}
           </View>
         )}
 
         {/* Karta dana - loading */}
         {tip === "karta-dana" && loadingKarta && (
           <Text style={{ color: "#fff", margin: 24, fontSize: 16 }}>
-            Učitavanje karte dana...
+            {/* START: i18n loading */}
+            {t('common:messages.loadingDailyCard', { defaultValue: 'Učitavanje karte dana...' })}
+            {/* END: i18n loading */}
           </Text>
         )}
 
-        {/* Karta dana - već izabrana */}
+        {/* START: Prikaz karte dana sa uslovom za crveni tekst */}
+
         {tip === "karta-dana" && !loadingKarta && kartaDana && kartaDana._izabranaDanas && (
           <View style={{ alignItems: 'center', margin: 24 }}>
-            <Text style={{ color: "red", fontSize: 20, marginBottom: 5, fontWeight: 'bold' }}>
-              Već si izabrao kartu dana!
-            </Text>
+            {/* Samo ako NIJE upravo izvucena prikazuj crveni tekst */}
+            {!upravoIzvucena && (
+              <Text style={{ color: "red", fontSize: 20, marginBottom: 5, fontWeight: 'bold' }}>
+                {t('common:dailyCard.alreadyPicked', { defaultValue: 'Već si izabrao kartu dana!' })}
+              </Text>
+            )}
             <Text style={{ color: "#ffd700", fontSize: 17, marginTop: 10, marginBottom: 26, }}>
-              Vrati se sutra za novu kartu. 🌞
+              {t('common:dailyCard.comeBackTomorrow', { defaultValue: 'Vrati se sutra za novu kartu. 🌞' })}
             </Text>
             <Image
               source={getCardImagePath(kartaDana.label)}
@@ -380,13 +508,24 @@ const { dukati, platiOtvaranje } = useDukati();
               marginTop: 10,
               textAlign: "center"
             }}>
-              {cardMeanings.cards[kartaDana.label]?.name || kartaDana.label}
+              {/* START: i18n ime karte sa fallback-om */}
+              {t(`cardMeanings:cards.${kartaDana.label}.name`, {
+                defaultValue: (cardMeanings.cards[kartaDana.label]?.name) || kartaDana.label
+              })}
+              {/* END: i18n ime karte */}
             </Text>
             <Text style={{ marginTop: 26, fontSize: 24, textAlign: 'center', color: "#fff" }}>
-              {extendedMeanings[kartaDana.label]?.daily || 'Nema opisa za ovu kartu.'}
+              {/* START: i18n daily opis sa fallback-om */}
+              {t(`extendedMeanings:${kartaDana.label}.daily`, {
+                defaultValue: extendedMeanings[kartaDana.label]?.daily || t('common:messages.noDescription', { defaultValue: 'Nema opisa za ovu kartu.' })
+              })}
+              {/* END: i18n daily opis */}
             </Text>
           </View>
         )}
+        {/* END: Prikaz karte dana sa uslovom za crveni tekst */}
+
+
 
         {!(tip === "karta-dana" && kartaDana?._izabranaDanas) && (
           <>
@@ -474,43 +613,74 @@ const { dukati, platiOtvaranje } = useDukati();
             )}
 
             {instantAnswer && (
-              <Text style={styles.instantAnswer}>Odgovor: {instantAnswer}</Text>
+              <Text style={styles.instantAnswer}>
+                {/* START: i18n oznaka odgovora */}
+                {t('common:labels.answer', { defaultValue: 'Odgovor' })}: {instantAnswer}
+                {/* END: i18n oznaka odgovora */}
+              </Text>
             )}
 
-            {/* START: SVG strelice iznad lepeze */}
-            <View style={{
-              width: dimensions.width,
-              alignItems: 'center',
-              position: "absolute",
-              top: dimensions.height - 220 - 48,
-              zIndex: 5,
-              pointerEvents: "none",
-            }}>
-              <Svg width={dimensions.width * 0.75} height={64} viewBox="0 0 300 64">
-                <Path
-                  d="M20 24 Q150 -12 280 24"
-                  stroke="#ffd700"
-                  strokeWidth={5}
-                  fill="none"
-                  strokeLinecap="round"
-                />
-                <Path
-                  d="M28 15 l-10 8 10 8"
-                  stroke="#ffd700"
-                  strokeWidth={5}
-                  fill="none"
-                  strokeLinejoin="round"
-                />
-                <Path
-                  d="M272 15 l10 8 -10 8"
-                  stroke="#ffd700"
-                  strokeWidth={5}
-                  fill="none"
-                  strokeLinejoin="round"
-                />
-              </Svg>
-            </View>
-            {/* END: SVG strelice iznad lepeze */}
+            {/* START: (ISKLJUČENO) — stari luk ostavljen radi istorije */}
+            {false && (
+              <View style={{
+                position: "absolute",
+                top: dimensions.height - 220 - fanBaseTop,
+                width: dimensions.width,
+                height: 220,
+                zIndex: 5,
+                pointerEvents: "none",
+              }}>
+                <Svg width={dimensions.width} height={220}>
+                  {/* Luk */}
+                  {/* <Path d={arrowPath} stroke="#ffd700" strokeWidth={5} fill="none" strokeLinecap="round" /> */}
+                </Svg>
+              </View>
+            )}
+            {/* END: (ISKLJUČENO) — stari luk */}
+
+            {/* START: Chevron hint — kompaktan i žut */}
+            {SHOW_CHEVRON_HINT && (
+              <View style={{
+                position: "absolute",
+                top: dimensions.height - 220 - fanBaseTop,
+                width: dimensions.width,
+                height: 220,
+                zIndex: 6,
+                pointerEvents: "none",
+              }}>
+                {/* Levi chevron */}
+                <Animated.View style={{
+                  position: "absolute",
+                  top: CHEVRON_TOP,
+                  left: (dimensions.width / 2) - CHEVRON_DISTANCE - 24,
+                  opacity: chevOpacity,
+                  transform: [{ translateX: leftShift }, { rotate: `-${CHEVRON_TILT_DEG}deg` }],
+
+                }}>
+                  <Svg width={48} height={48} viewBox="0 0 48 48">
+                    {/* dupli chevron << */}
+                    <Path d="M30 8 L14 24 L30 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    <Path d="M18 8 L2 24 L18 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  </Svg>
+                </Animated.View>
+                {/* Desni chevron */}
+                <Animated.View style={{
+                  position: "absolute",
+                  top: CHEVRON_TOP,
+                  left: (dimensions.width / 2) + CHEVRON_DISTANCE - 24,
+                  opacity: Animated.add(chevOpacity, 0),
+                  transform: [{ translateX: rightShift }, { rotate: `${CHEVRON_TILT_DEG}deg` }],
+
+                }}>
+                  <Svg width={48} height={48} viewBox="0 0 48 48">
+                    {/* dupli chevron >> */}
+                    <Path d="M18 8 L34 24 L18 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    <Path d="M 6 8 L22 24 L 6 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  </Svg>
+                </Animated.View>
+              </View>
+            )}
+            {/* END: Chevron hint */}
 
             {/* --- Lepeza sa PanResponder-om za fluidni drag --- */}
             <View
@@ -519,7 +689,7 @@ const { dukati, platiOtvaranje } = useDukati();
                 styles.cardsCircle,
                 {
                   position: "absolute",
-                  top: dimensions.height - 220 - 270,
+                  top: dimensions.height - 220 - fanBaseTop, // koristi promenljivu za visinu od dna
                   width: dimensions.width,
                   height: 220,
                 },
@@ -574,22 +744,26 @@ const { dukati, platiOtvaranje } = useDukati();
 
             {/* Dugme fiksirano na dnu */}
             {selectedCards.length === numPlaceholders && (
-        <TouchableOpacity
-        style={[
-         styles.answerBtn,
-            loadingAnswer && { opacity: 0.6 }
-              ]}
-             onPress={handleGoToAnswer}
-             activeOpacity={0.85}
-            disabled={loadingAnswer}
-       >
-            {loadingAnswer ? (
-            <ActivityIndicator color="#222" size="small" />
-           ) : (
-              <Text style={styles.answerBtnText}>Odgovor</Text>
-           )}
-           </TouchableOpacity>
-           )}
+              <TouchableOpacity
+                style={[
+                  styles.answerBtn,
+                  loadingAnswer && { opacity: 0.6 }
+                ]}
+                onPress={handleGoToAnswer}
+                activeOpacity={0.85}
+                disabled={loadingAnswer}
+              >
+                {loadingAnswer ? (
+                  <ActivityIndicator color="#222" size="small" />
+                ) : (
+                  <Text style={styles.answerBtnText}>
+                    {/* START: i18n dugme Odgovor */}
+                    {t('common:buttons.answer', { defaultValue: 'Odgovor' })}
+                    {/* END: i18n dugme Odgovor */}
+                  </Text>
+                )}
+              </TouchableOpacity>
+            )}
 
           </>
         )}
@@ -597,9 +771,12 @@ const { dukati, platiOtvaranje } = useDukati();
     </View>
   );
 };
- // END: IzborKarataModal
 
- const styles = StyleSheet.create({
+
+
+// END: IzborKarataModal
+
+const styles = StyleSheet.create({
   modalBg: {
     flex: 1,
     backgroundColor: "#000",
@@ -720,6 +897,21 @@ const { dukati, platiOtvaranje } = useDukati();
     zIndex: 99,
   },
   answerBtnText: { color: "#222", fontWeight: "bold", fontSize: 18 },
+
 });
+
+// START: Helperi za geometriju luka (ostavljeni iako luk ne prikazujemo)
+function polarToCartesian(cx, cy, r, angleDeg) {
+  const rad = (angleDeg * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+function describeArc(cx, cy, r, startAngle, endAngle) {
+  const start = polarToCartesian(cx, cy, r, startAngle);
+  const end = polarToCartesian(cx, cy, r, endAngle);
+  const largeArcFlag = Math.abs(endAngle - startAngle) <= 180 ? 0 : 1;
+  // sweepFlag=1 za smer kazaljke na satu
+  return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArcFlag} 1 ${end.x} ${end.y}`;
+}
+// END: Helperi za geometriju luka
 
 export default IzborKarataModal;

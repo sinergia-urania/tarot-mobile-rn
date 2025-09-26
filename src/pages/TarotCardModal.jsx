@@ -1,12 +1,18 @@
 // START: Uvoz svih potrebnih podataka za modal
 import React from 'react';
 import { Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import cardMeanings from '../locales/sr/cardMeanings.json';
-import extendedMeanings from '../locales/sr/extendedMeanings.json';
+// START: (uklonjeno) Lokalni SR JSON-ovi — prelazimo na i18n za live switching
+// import cardMeanings from '../locales/sr/cardMeanings.json';
+// import extendedMeanings from '../locales/sr/extendedMeanings.json';
+// END: (uklonjeno)
 // START: Import helper funkcije za slike
 import { getCardImagePath } from '../utils/getCardImagePath';
 // END: Import helper funkcije za slike
 // END: Uvoz svih potrebnih podataka za modal
+
+// START: i18n import
+import { useTranslation } from 'react-i18next';
+// END: i18n import
 
 const TarotCardModal = ({
   card,
@@ -15,12 +21,29 @@ const TarotCardModal = ({
 }) => {
   if (!card) return null;
 
-  // START: Povuci podatke za prikaz iz JSON fajlova
+  // START: i18n hook (+ ns za karte/opise)
+  const { t } = useTranslation(['common', 'cardMeanings', 'extendedMeanings']);
+  // END: i18n hook
+
+  // START: Ključ karte + i18n izvori (live switching)
   // card.key je npr. "theFool", "sevenOfPentacles" itd
   const cardKey = card.key;
-  const cardData = cardMeanings.cards[cardKey] || {};
-  const extended = extendedMeanings[cardKey] || {};
-  // END: Povuci podatke za prikaz iz JSON fajlova
+
+  // Naslov (ime karte)
+  const title = t(`cards.${cardKey}.name`, {
+    ns: 'cardMeanings',
+    defaultValue: card.name || cardKey,
+  });
+
+  // Opisi (extended)
+  const symbolism = t(`${cardKey}.symbolism`, { ns: 'extendedMeanings', defaultValue: '' });
+  const upright = t(`${cardKey}.uprightExtended`, { ns: 'extendedMeanings', defaultValue: '' });
+  const reversed = t(`${cardKey}.reversedExtended`, { ns: 'extendedMeanings', defaultValue: '' });
+  const daily = t(`${cardKey}.daily`, { ns: 'extendedMeanings', defaultValue: '' });
+
+  // Helper: prikaži sekciju samo ako ima teksta (sprečava React dev warninge)
+  const hasText = (s) => typeof s === 'string' && s.trim().length > 0;
+  // END: Ključ karte + i18n izvori (live switching)
 
   return (
     <Modal
@@ -43,40 +66,42 @@ const TarotCardModal = ({
               resizeMode="contain"
             />
             {/* END: Prikaz slike karte preko helper funkcije */}
-            <Text style={styles.title}>{cardData.name || card.name || cardKey}</Text>
 
-            {/* START: Sekcija SIMBOLIKA */}
-            {extended.symbolism && (
+            {/* Naslov karte (i18n) */}
+            <Text style={styles.title}>{title}</Text>
+
+            {/* START: Sekcija SIMBOLIKA (i18n) */}
+            {hasText(symbolism) && (
               <>
-                <Text style={styles.sectionTitle}>Simbolika:</Text>
-                <Text style={styles.description}>{extended.symbolism}</Text>
+                <Text style={styles.sectionTitle}>{t('common:sections.symbolism', { defaultValue: 'Symbolism' })}:</Text>
+                <Text style={styles.description}>{symbolism}</Text>
               </>
             )}
             {/* END: Sekcija SIMBOLIKA */}
 
-            {/* START: Uspravno značenje */}
-            {extended.uprightExtended && (
+            {/* START: Uspravno značenje (i18n) */}
+            {hasText(upright) && (
               <>
-                <Text style={styles.sectionTitle}>Uspravno značenje:</Text>
-                <Text style={styles.description}>{extended.uprightExtended}</Text>
+                <Text style={styles.sectionTitle}>{t('common:sections.upright', { defaultValue: 'Upright meaning' })}:</Text>
+                <Text style={styles.description}>{upright}</Text>
               </>
             )}
             {/* END: Uspravno značenje */}
 
-            {/* START: Obrnuto značenje */}
-            {extended.reversedExtended && (
+            {/* START: Obrnuto značenje (i18n) */}
+            {hasText(reversed) && (
               <>
-                <Text style={styles.sectionTitle}>Obrnuto značenje:</Text>
-                <Text style={styles.description}>{extended.reversedExtended}</Text>
+                <Text style={styles.sectionTitle}>{t('common:sections.reversed', { defaultValue: 'Reversed meaning' })}:</Text>
+                <Text style={styles.description}>{reversed}</Text>
               </>
             )}
             {/* END: Obrnuto značenje */}
 
-            {/* START: Značenje kao karta dana */}
-            {extended.daily && (
+            {/* START: Značenje kao karta dana (i18n) */}
+            {hasText(daily) && (
               <>
-                <Text style={styles.sectionTitle}>Značenje kao karta dana:</Text>
-                <Text style={styles.description}>{extended.daily}</Text>
+                <Text style={styles.sectionTitle}>{t('common:sections.daily', { defaultValue: 'Meaning as Card of the Day' })}:</Text>
+                <Text style={styles.description}>{daily}</Text>
               </>
             )}
             {/* END: Značenje kao karta dana */}

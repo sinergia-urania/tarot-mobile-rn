@@ -1,0 +1,367 @@
+{
+  "watchAdForCoins": "Ver un anuncio por monedas",
+  "appName": "Tarot",
+  "groups": {
+    "velika": "Arcanos Mayores",
+    "stapovi": "Bastos",
+    "pehari": "Copas",
+    "macevi": "Espadas",
+    "zlatnici": "Oros"
+  },
+  "menu": {
+    "allSpreads": "Todas las tiradas",
+    "dailyCard": "Carta del día",
+    "yesNo": "Sí / No",
+    "meanings": "Significados de cartas",
+    "history": "Historial de lecturas",
+    "access": "Acceso y planes"
+  },
+  "soundControls": {
+    "music": "Música",
+    "effects": "Efectos",
+    "test": "Probar sonido"
+  },
+  "info": {
+    "allSpreads": "Estas son tiradas con el intérprete de IA.",
+    "dailyCard": "Esta es una tirada intuitiva: piensa una pregunta antes de elegir una carta.",
+    "yesNo": "Esta es una tirada intuitiva: piensa una pregunta antes de elegir una carta."
+  },
+  "buttons": {
+    "askFollowUp": "Enviar seguimiento",
+    "back": "Atrás",
+    "ok": "OK",
+    "cancel": "Cancelar",
+    "backToTarotHome": "Volver a inicio de Tarot",
+    "close": "Cerrar",
+    "answer": "$t(labels.answer)",
+    "buyCoins": "Añadir monedas",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "saveProfile": "Guardar perfil",
+    "register": "Registrarse",
+    "savePassword": "Guardar contraseña"
+  },
+  "messages": {
+    "loading": "Cargando...",
+    "error": "Se produjo un error",
+    "notImplemented": "Aún no implementado: {{group}}",
+    "noCardSelected": "No se ha extraído ninguna carta. Vuelve e inténtalo de nuevo.",
+    "cardDrawnWithOrientation": "La carta fue extraída {{orientation}}.",
+    "tryAgain": "Inténtalo de nuevo.",
+    "tryAgainNav": "Vuelve e inténtalo de nuevo.",
+    "loadingDailyCard": "Cargando la carta del día...",
+    "noDescription": "No hay descripción para esta carta.",
+    "successTitle": "¡Éxito!",
+    "successGeneric": "¡Éxito!",
+    "notLoggedInBlurb": "No has iniciado sesión. ¡Inicia sesión para usar la IA y ganar monedas!",
+    "notLoggedInSettings": "No has iniciado sesión. Inicia sesión para acceder a la configuración.",
+    "nameNotSet": "No has introducido un nombre",
+    "profileSaved": "¡Perfil guardado!",
+    "noQuestion": "No hay pregunta.",
+    "waitingAI": "Esperando la respuesta de la IA..."
+  },
+  "titles": {
+    "yesNoAnswer": "Respuesta a tu pregunta:",
+    "settings": "Configuración",
+    "sound": "Sonido",
+    "selectLanguage": "Seleccionar idioma"
+  },
+  "sections": {
+    "symbolism": "Simbolismo",
+    "upright": "Significado al derecho",
+    "reversed": "Significado invertido",
+    "daily": "Significado como carta del día"
+  },
+  "answers": {
+    "yes": "SÍ",
+    "no": "NO"
+  },
+  "orientation": {
+    "upright": "al derecho",
+    "reversed": "invertida"
+  },
+  "badges": {
+    "proOnly": "(Solo PRO)",
+    "proOrPremium": "(Pro/Premium)"
+  },
+  "questions": {
+    "dailyCardPrompt": "Tu carta del día es...",
+    "yesNoPrompt": "Tu pregunta de Sí/No...",
+    "introBlurb": "Elige un tema y una pregunta de ejemplo para empezar rápido."
+  },
+  "accessibility": {
+    "menu": "Menú",
+    "back": "Atrás",
+    "home": "Inicio",
+    "language": "Idioma",
+    "coins": "Monedas",
+    "soundOn": "Activar sonido",
+    "soundOff": "Desactivar sonido",
+    "info": "Info"
+  },
+  "labels": {
+    "answer": "Respuesta",
+    "notifications": "Notificaciones",
+    "language": "Idioma:",
+    "currentName": "Nombre actual:",
+    "user": "Usuario",
+    "orTypeYourQuestion": "O escribe tu pregunta",
+    "chooseCards": "Elegir cartas",
+    "status": "Estado:",
+    "coins": "Monedas",
+    "spread": "Tirada",
+    "updatedAt": "Actualizado",
+    "openOnWeb": "Abrir en la web",
+    "card": "Carta"
+  },
+  "classic": {
+    "title": "Elige una tirada",
+    "options": {
+      "love": "Yo – Él/Ella",
+      "pastPresentFuture": "Pasado – Presente – Futuro",
+      "pathOfInsight": "Camino del conocimiento"
+    }
+  },
+  "placeholders": {
+    "enterQuestion": "Introduce una pregunta",
+    "enterName": "Introduce un nombre",
+    "selectGender": "Selecciona género",
+    "pickDate": "Elige una fecha",
+    "pickSign": "Selecciona signo",
+    "pickAscendant": "Selecciona ascendente",
+    "enterEmail": "Email",
+    "enterPassword": "Contraseña",
+    "newPassword": "Nueva contraseña",
+    "repeatPassword": "Repite la contraseña"
+  },
+  "options": {
+    "includeReversed": "Incluir cartas invertidas"
+  },
+  "membership": {
+    "packages": {
+      "guest": "Invitado",
+      "free": "Free",
+      "premium": "Premium",
+      "pro": "Pro"
+    },
+    "features": {
+      "meanings": "Significados de cartas",
+      "classicSpreads": "Tiradas clásicas",
+      "celticCross": "Cruz Celta",
+      "astrologicalSpread": "Tirada astrológica",
+      "kabbalisticSpread": "Tirada cabalística",
+      "aiFollowups": "Seguimientos con IA",
+      "historyArchive": "Historial de lecturas",
+      "astrologicalTransits": "Tránsitos astrológicos"
+    },
+    "values": {
+      "ads": "Anuncios",
+      "noAds": "Sin anuncios",
+      "aiModelMini": "Modelo de IA: Mini",
+      "aiModelLarge": "Modelo de IA: Grande"
+    },
+    "notes": {
+      "freeCoinsAd": "Las monedas se ganan viendo anuncios (solo usuarios Free)."
+    },
+    "cta": {
+      "alreadyPremium": "Ya tienes Premium",
+      "buyPremium": "Comprar Premium ({{price}} {{currency}} / mes)",
+      "alreadyPro": "Ya tienes PRO",
+      "buyPro": "Comprar PRO ({{price}} {{currency}} / mes)"
+    },
+    "topup": {
+      "title": "Recargar monedas",
+      "buyCoins": "Comprar {{amount}} monedas — {{price}} {{currency}}"
+    },
+    "toast": {
+      "upgradedPremium": "Tu cuenta ahora es Premium. ¡Has recibido {{bonus}} monedas!",
+      "upgradedPro": "Tu cuenta ahora es PRO. ¡Has recibido {{bonus}} monedas!",
+      "topupDone": "Has recibido {{amount}} monedas."
+    }
+  },
+  "errors": {
+    "invalidLayoutTemplate": "Error: ¡No se proporcionó un layoutTemplate válido!",
+    "notEnoughCoinsTitle": "No hay suficientes monedas",
+    "notEnoughCoinsMessage": "Esta tirada requiere {{required}} monedas y tienes {{balance}}.",
+    "genericTitle": "Error",
+    "tryAgain": "Inténtalo de nuevo.",
+    "notLoggedIn": "No has iniciado sesión.",
+    "adLimitReached": "Se alcanzó el límite diario de anuncios.",
+    "topupFailed": "No fue posible añadir monedas.",
+    "updateNotifFail": "No se pudo actualizar las notificaciones.",
+    "nameRequired": "¡El nombre no puede estar vacío!",
+    "aiAnswerFailed": "No se pudo obtener la respuesta de la IA",
+    "aiFollowupFailed": "¡No se pudo obtener el seguimiento de la IA!",
+    "notEnoughCoinsServerRejected": "El pago fue rechazado por el servidor. Recarga tus monedas e inténtalo de nuevo.",
+    "notEnoughCoinsFollowup": "¡No tienes suficientes monedas para un seguimiento con IA!",
+    "aiAnswerFailedDetailed": "Ocurrió un error al obtener la respuesta.{{extra}}",
+    "rateLimited": "Se superó el límite de solicitudes. Inténtalo más tarde.",
+    "modelUnavailable": "Modelo no disponible o solicitud no válida.",
+    "upstreamFailed": "El servicio de IA no está disponible temporalmente (upstream).",
+    "aiServiceComm": "Hubo un error al comunicarse con el servicio de IA.",
+    "edgeTimeout": "La solicitud a la IA agotó el tiempo. Inténtalo de nuevo."
+  },
+  "dailyCard": {
+    "alreadyPicked": "¡Ya has elegido tu carta del día!",
+    "comeBackTomorrow": "Vuelve mañana para una nueva carta. 🌞"
+  },
+  "legal": {
+    "title": "Documentos legales",
+    "disclaimer": "Aviso legal",
+    "terms": "Términos de servicio",
+    "contact": "Contacto",
+    "privacy": "Política de privacidad",
+    "dataDeletion": "Eliminación de datos"
+  },
+  "support": {
+    "title": "Apoyar la app",
+    "rateUs": "Califícanos",
+    "shareToFriends": "Compartir con amigos",
+    "shareMessage": "¡Prueba la app Tarot AI! https://play.google.com/store/apps/details?id=com.mare82.tarotmobile"
+  },
+  "auth": {
+    "loginTitle": "Iniciar sesión",
+    "registerTitle": "Registrarse",
+    "googleSignIn": "Iniciar sesión con Google",
+    "googleOpening": "Abriendo Google…",
+    "facebookSignIn": "Iniciar sesión con Facebook",
+    "facebookOpening": "Abriendo Facebook…",
+    "toggleHaveAccount": "¿Ya tienes cuenta? Inicia sesión",
+    "toggleNoAccount": "¿No tienes cuenta? Regístrate",
+    "loginFailed": "Fallo al iniciar sesión.",
+    "registerFailed": "Fallo en el registro.",
+    "googleFailed": "Falló el inicio de sesión con Google.",
+    "facebookFailed": "Falló el inicio de sesión con Facebook.",
+    "checkEmail": "Revisa tu email y confirma tu cuenta.",
+    "emailRequired": "Ingresa tu correo electrónico.",
+    "resetEmailSent": "Si la cuenta existe, hemos enviado un correo con instrucciones para restablecer la contraseña.",
+    "resetEmailFailed": "No se pudo enviar el correo de restablecimiento.",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "resetPasswordTitle": "Restablecer contraseña",
+    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
+    "passwordsDontMatch": "Las contraseñas no coinciden.",
+    "passwordUpdated": "Tu contraseña ha sido actualizada. Inicia sesión con la nueva contraseña.",
+    "passwordUpdateFailed": "Error al actualizar la contraseña."
+  },
+  "ads": {
+    "errorTitle": "¡Error de anuncio!",
+    "errorGeneric": "Hubo un error con el anuncio. Por favor, inténtalo más tarde.",
+    "notReady": "El anuncio no está listo.",
+    "loading": "Cargando anuncio…",
+    "showing": "Mostrando anuncio...",
+    "buttonReady": "Ver un anuncio por {{amount}} monedas",
+    "buttonLoading": "Cargando anuncio...",
+    "thanksTitle": "¡Gracias!",
+    "rewardToast": "Has recibido {{amount}} monedas.",
+    "grantError": "Error al otorgar monedas",
+    "plusCoins": "+{{amount}} monedas!",
+    "reward": {
+      "title": "Ver un anuncio por monedas",
+      "watch": "Ver un anuncio por {{amount}} monedas",
+      "loading": "Cargando anuncio…",
+      "showing": "Mostrando anuncio...",
+      "toast": {
+        "thanks": "¡Gracias!",
+        "granted": "Has recibido {{amount}} monedas.",
+        "errorGrant": "Error al otorgar monedas",
+        "errorGeneric": "Hubo un error de anuncio."
+      },
+      "done": {
+        "plusCoins": "+{{amount}} monedas!",
+        "ok": "OK"
+      }
+    }
+  },
+  "home": {
+    "menu": {
+      "profile": "Perfil",
+      "settings": "Configuración",
+      "about": "Acerca de",
+      "packagesAccess": "Acceso y planes",
+      "allSpreads": "$t(menu.allSpreads)",
+      "dailyCard": "$t(menu.dailyCard)",
+      "yesNo": "$t(menu.yesNo)",
+      "meanings": "$t(menu.meanings)",
+      "history": "$t(menu.history)",
+      "access": "$t(menu.access)"
+    },
+    "info": {
+      "allSpreads": "$t(info.allSpreads)",
+      "dailyCard": "$t(info.dailyCard)",
+      "yesNo": "$t(info.yesNo)"
+    },
+    "watchAdForCoins": "$t(watchAdForCoins)"
+  },
+  "profile": {
+    "title": "👤 Perfil",
+    "nameLabel": "Nombre:",
+    "gender": {
+      "label": "Género:",
+      "male": "Hombre",
+      "female": "Mujer",
+      "other": "Otro"
+    },
+    "birthDate": "Fecha de nacimiento:",
+    "sunSign": "Signo:",
+    "ascendant": "Ascendente:"
+  },
+  "astrology": {
+    "signs": {
+      "aries": "♈ Aries",
+      "taurus": "♉ Tauro",
+      "gemini": "♊ Géminis",
+      "cancer": "♋ Cáncer",
+      "leo": "♌ Leo",
+      "virgo": "♍ Virgo",
+      "libra": "♎ Libra",
+      "scorpio": "♏ Escorpio",
+      "sagittarius": "♐ Sagitario",
+      "capricorn": "♑ Capricornio",
+      "aquarius": "♒ Acuario",
+      "pisces": "♓ Piscis"
+    }
+  },
+  "push": {
+    "titleTest": "Prueba de push",
+    "permDenied": "No se concedieron permisos de notificaciones.",
+    "noToken": "Sin token (verifica permisos/FCM).",
+    "noUserId": "¡Sin ID de usuario!",
+    "tokenWriteFail": "¡El token NO se guardó!",
+    "tokenWriteOk": "¡El token se guardó!",
+    "profileNoToken": "No hay token en el perfil. Pulsa primero “Probar escritura de token push”.",
+    "localTitle": "LOCAL ✅",
+    "localBody": "Notificación local (primer plano/segundo plano)",
+    "remoteTitle": "REMOTE ✅",
+    "remoteBody": "Push de Expo (enviado inmediatamente)",
+    "sentMinimize": "Enviado ✔️ — minimiza la app ahora para ver el banner.",
+    "notAccepted": "Push no aceptado:",
+    "sendError": "Error al enviar: ",
+    "debugTitle": "Notificación de depuración",
+    "localBgTitle": "LOCAL 🔔",
+    "localBgBody": "Prueba local en segundo plano",
+    "scheduled5s": "Programado en 5 s — minimiza la app ahora.",
+    "fcmTitle": "Token FCM (dispositivo)",
+    "btnWriteToken": "Probar escritura de token push",
+    "btnLocal": "Probar notificación (local)",
+    "btnRemote": "Probar notificación (remota)",
+    "btnShowFcm": "Mostrar token FCM (dispositivo)",
+    "btnDebug": "Depurar notificaciones",
+    "btnLocalBg": "Probar local (segundo plano)"
+  },
+  "detail": {
+    "question": "Pregunta:",
+    "answer": "Respuesta:",
+    "drawnCards": "Cartas extraídas:",
+    "followup": "Seguimiento:",
+    "followupAnswer": "Respuesta al seguimiento:",
+    "loveReading": "Lectura de amor",
+    "pathOfInsightReading": "Camino del conocimiento",
+    "classic": "Tirada clásica",
+    "kabbalisticTree": "Árbol de la Vida cabalístico",
+    "astrologicalSpread": "Tirada astrológica",
+    "celticCross": "Cruz Celta"
+  },
+  "history": {
+    "empty30Days": "No hay lecturas archivadas en los últimos 30 días."
+  }
+}

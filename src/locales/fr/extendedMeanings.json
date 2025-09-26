@@ -1,0 +1,470 @@
+{
+  "theFool": {
+    "symbolism": "Le Mat se tient au bord d’une falaise, prêt à faire le premier pas dans l’inconnu. La rose en main symbolise l’innocence, tandis que le chien derrière lui représente l’instinct et la protection intérieure.",
+    "uprightExtended": "À l’endroit, Le Mat marque le début d’une aventure et la confiance en la vie. Il symbolise l’ouverture au changement, la spontanéité et une nouvelle phase sans peur.",
+    "reversedExtended": "À l’envers, cette carte pointe l’imprudence, la naïveté et l’évitement des responsabilités. On avance sans mesurer les conséquences.",
+    "daily": "Aujourd’hui, lâche les attentes et fais confiance à l’inconnu. Le Mat te rappelle que chaque erreur fait simplement partie du voyage."
+  },
+  "theMagician": {
+    "symbolism": "Le Bateleur lève une main vers le ciel et l’autre vers la terre — lien entre monde spirituel et monde matériel. Les outils des quatre éléments sur la table montrent son pouvoir de manifester.",
+    "uprightExtended": "À l’endroit, Le Bateleur indique le pouvoir personnel, la focalisation et la capacité de transformer les idées en réalité. C’est le moment d’agir avec tous les moyens disponibles.",
+    "reversedExtended": "À l’envers, il peut signaler manipulation, illusion ou potentiel inexploité. On sous-utilise ses dons — ou on les emploie égoïstement.",
+    "daily": "Reconnais aujourd’hui tes talents et manifeste ce qui compte vraiment. Le Bateleur te dit : tu as tout ce qu’il faut — utilise-le en pleine conscience."
+  },
+  "theHighPriestess": {
+    "symbolism": "La Papesse est assise entre deux colonnes, symbolisant l’équilibre des contraires. Le voile derrière elle cache un savoir mystique, tandis que le rouleau dans ses mains représente la sagesse cachée.",
+    "uprightExtended": "Cette carte incarne l’intuition, le silence et la connaissance intérieure. Elle invite à écouter ta voix intérieure et à chercher les réponses en toi.",
+    "reversedExtended": "À l’envers, elle signale intuition réprimée, confusion émotionnelle ou coupure d’avec les valeurs spirituelles. On ignore les signes intérieurs.",
+    "daily": "Fais confiance à ton intuition aujourd’hui. Les réponses que tu cherches sont déjà en toi — apaise l’esprit et écoute ta voix intérieure."
+  },
+  "theEmpress": {
+    "symbolism": "L’Impératrice est assise au cœur d’une nature fertile, entourée d’épis et d’arbres — abondance et fertilité. Sa couronne d’étoiles la relie à l’univers.",
+    "uprightExtended": "L’Impératrice symbolise l’énergie maternelle, la création, l’amour et le soin. Temps fertile en tout sens — créatif, émotionnel ou physique.",
+    "reversedExtended": "À l’envers peut signifier dépendance aux autres, épuisement émotionnel ou blocage créatif. Prends soin de toi pour pouvoir prendre soin des autres.",
+    "daily": "C’est un jour pour cultiver ce qui grandit — idée, relation ou paix intérieure. L’Impératrice rappelle que la douceur envers soi porte ses fruits à l’extérieur."
+  },
+  "theEmperor": {
+    "symbolism": "L’Empereur est assis sur un trône de pierre orné de béliers — force, discipline et autorité. Il représente la stabilité et l’ordre.",
+    "uprightExtended": "À l’endroit signifie contrôle, responsabilité et leadership. La carte suggère de structurer ta vie et de décider fermement.",
+    "reversedExtended": "À l’envers, elle pointe tyrannie, obstination ou froideur émotionnelle. Le pouvoir peut être utilisé de façon destructrice.",
+    "daily": "La stabilité et la structure sont tes alliées aujourd’hui. L’Empereur t’invite à poser des limites et décider avec confiance en ta propre autorité."
+  },
+  "theHierophant": {
+    "symbolism": "Le Pape est assis entre deux colonnes — autorité institutionnelle et savoir spirituel. Ses mains bénissent, tandis que des fidèles s’agenouillent.",
+    "uprightExtended": "Cette carte évoque tradition, autorité spirituelle et apprentissage via les institutions. Respecte les lois spirituelles et les enseignants.",
+    "reversedExtended": "À l’envers, elle indique rejet des règles, révolte spirituelle ou rigidité qui étouffe la croissance. Peut signaler une fausse autorité.",
+    "daily": "Cherche la sagesse dans la tradition ou le conseil d’une personne de confiance. Aujourd’hui, honore la connaissance qui nous précède."
+  },
+  "theLovers": {
+    "symbolism": "Un homme et une femme se tiennent nus sous un ange — pure connexion et union divine. À l’arrière-plan : l’arbre de la connaissance et le feu de la passion.",
+    "uprightExtended": "À l’endroit, Les Amoureux symbolisent lien profond, harmonie et choix faits par amour. Peut viser la relation comme les grandes décisions morales.",
+    "reversedExtended": "À l’envers indique dysharmonie, désalignement dans la relation ou mauvais choix. Réexamine le cœur de la décision émotionnelle.",
+    "daily": "Aujourd’hui, choisis avec ton cœur. Les Amoureux rappellent que les relations sont des miroirs — ce que tu offres, tu le reçois."
+  },
+  "theChariot": {
+    "symbolism": "Le Cocher se tient entre un sphinx noir et un blanc, tenant les rênes des forces spirituelles et matérielles. L’étoile sur son front symbolise la guidance divine.",
+    "uprightExtended": "Cette carte signifie volonté, victoire et progrès malgré les obstacles. Elle suggère un contrôle ferme et l’équilibre des contraires.",
+    "reversedExtended": "À l’envers, Le Chariot pointe perte de contrôle, conflit intérieur ou renoncement. Réaligne ta force intérieure.",
+    "daily": "Prends les rênes et avance vers ton but. Le Cocher sait : même les forces opposées s’unissent quand tu connais ta direction."
+  },
+  "strength": {
+    "symbolism": "Une femme ferme doucement la gueule d’un lion — la puissance de la compassion et de la force intérieure. Le lemniscate au-dessus de sa tête signifie le potentiel infini de l’esprit.",
+    "uprightExtended": "À l’endroit, La Force évoque patience, courage et maîtrise subtile. La vraie force naît du calme et de la compréhension, pas de l’agression.",
+    "reversedExtended": "À l’envers indique doute de soi, manque de courage ou cession aux impulsions. Restaure l’équilibre intérieur.",
+    "daily": "Ta force aujourd’hui vient de la patience et de la bonté. Pas besoin de crier pour être fort·e — le calme du cœur connaît la voie."
+  },
+  "theHermit": {
+    "symbolism": "L’Hermite se tient au sommet d’une montagne avec une lampe — sagesse, introspection et quête de vérité. Son bâton soutient la solitude spirituelle.",
+    "uprightExtended": "La carte signale besoin de retrait, de silence et de réflexion intérieure. Il est temps d’écouter ta voix et de chercher une direction spirituelle.",
+    "reversedExtended": "À l’envers, elle parle d’isolement, de blocages intérieurs ou de refus de se confronter à soi. Ouvre-toi aussi à la sagesse des autres.",
+    "daily": "Jour de silence, de recul et d’écoute de la vérité intérieure. L’Hermite te guide vers la lumière que tu portes en toi."
+  },
+  "wheelOfFortune": {
+    "symbolism": "La Roue de Fortune montre la nature cyclique de la vie avec des symboles divins, un serpent et un sphinx. Elle signifie changement constant et forces universelles qui régissent le destin.",
+    "uprightExtended": "Cette carte marque destin, changement et tournants inévitables. Des événements soudains peuvent survenir et modifier ta trajectoire.",
+    "reversedExtended": "À l’envers indique résistance au changement, impression de déclin ou tourner en rond. Lâche prise et fais confiance au flux naturel.",
+    "daily": "La roue tourne — accueille le changement et prépare-toi aux surprises. La Roue apporte des opportunités quand on s’y attend le moins."
+  },
+  "justice": {
+    "symbolism": "La Justice est assise entre deux colonnes, avec une épée et une balance — symboles de vérité et d’équilibre. Son regard direct indique clarté et impartialité.",
+    "uprightExtended": "À l’endroit, La Justice évoque vérité, équilibre, justice karmique et responsabilité. Les affaires seront tranchées équitablement.",
+    "reversedExtended": "À l’envers, elle indique injustice, parti pris ou évitement des responsabilités. Il est temps d’affronter la vérité.",
+    "daily": "L’honnêteté est requise aujourd’hui — envers toi-même et envers les autres. La Justice rappelle que l’équilibre est la clé de la paix et que la vérité éclaire tout."
+  },
+  "theHangedMan": {
+    "symbolism": "Le Pendu est suspendu la tête en bas mais garde une expression paisible. Le halo autour de sa tête symbolise l’illumination par l’abandon.",
+    "uprightExtended": "Cette carte appelle à la pause, à la contemplation et au changement de perspective. Le progrès vient par l’acceptation et le sacrifice.",
+    "reversedExtended": "À l’envers, elle pointe la résistance au changement, les retards ou l’attachement obstiné à un ancien point de vue. Lâche le contrôle.",
+    "daily": "Stop. Change d’angle. Le Pendu te dit : parfois, l’action la plus sage, c’est de se rendre."
+  },
+  "death": {
+    "symbolism": "La Mort chevauche un cheval blanc et porte une bannière noire aux roses blanches — symboles de fin et de renaissance. Les figures autour acceptent l’inévitable.",
+    "uprightExtended": "À l’endroit, La Mort signifie transformation, fins et nouveaux commencements. Libère l’ancien pour faire place au nouveau.",
+    "reversedExtended": "À l’envers montre la peur du changement, le blocage ou la stagnation. La transformation est résistée — mais elle est inévitable.",
+    "daily": "Lâche ce qui ne te sert plus. Aujourd’hui est pour la transformation intérieure — après chaque fin vient un nouveau départ."
+  },
+  "temperance": {
+    "symbolism": "Un ange verse un liquide d’une coupe dans une autre, symbolisant l’équilibre et l’harmonie. Un pied dans l’eau, l’autre sur la terre — esprit et matière en accord.",
+    "uprightExtended": "Cette carte signifie équilibre, patience et modération. Elle appelle à harmoniser les contraires et à une approche calme des défis.",
+    "reversedExtended": "À l’envers, elle pointe les extrêmes, l’impatience ou le chaos intérieur. Restaure ton équilibre intime.",
+    "daily": "Apaise l’esprit et équilibre les désirs. Tempérance rappelle : les miracles surviennent quand le corps et l’âme sont accordés."
+  },
+  "theDevil": {
+    "symbolism": "Le Diable est assis sur un trône, des chaînes autour d’un homme et d’une femme — attachement au matériel, aux passions et aux illusions.",
+    "uprightExtended": "À l’endroit indique addiction, tentation et esclavage d’idéaux trompeurs. Libère-toi des chaînes que tu t’imposes.",
+    "reversedExtended": "À l’envers signale réveil et libération. On prend conscience de ses limites et le processus de délivrance commence.",
+    "daily": "Reconnais ce qui t’enchaîne. Le Diable murmure des illusions — aujourd’hui tu peux les dévoiler et faire le premier pas vers la liberté."
+  },
+  "theTower": {
+    "symbolism": "La Tour s’effondre frappée par la foudre, des personnes en tombent. Elle symbolise le changement soudain, le choc et l’écroulement des illusions.",
+    "uprightExtended": "Cette carte pointe des événements inattendus qui renversent de vieilles bases. Bien que douloureux, cela permet de rebâtir sur plus sain.",
+    "reversedExtended": "À l’envers indique bouleversement intérieur, déni du changement ou peur de perdre le contrôle. La libération vient de l’intérieur.",
+    "daily": "Le changement peut faire mal, mais démolir le faux mène à la vérité. La Tour t’appelle à lâcher ce qui n’était qu’en apparence solide."
+  },
+  "theStar": {
+    "symbolism": "Une femme verse de l’eau dans un bassin et sur la terre sous un ciel étoilé — espoir, inspiration et renouveau spirituel.",
+    "uprightExtended": "À l’endroit apporte la lumière après l’obscurité, la guidance spirituelle et la foi en un lendemain meilleur. Force et inspiration se renouvellent.",
+    "reversedExtended": "À l’envers symbolise perte de foi, pessimisme ou distance avec la source spirituelle. Restaure la confiance dans le flux de la vie.",
+    "daily": "L’espoir revient. L’Étoile te rappelle que même dans la nuit la plus sombre, une lumière demeure — en toi."
+  },
+  "theMoon": {
+    "symbolism": "Un chemin serpente entre deux tours dans l’obscurité, éclairé par la Lune. Un chien et un loup lui hurlent, tandis qu’un écrevisse sort de l’eau — symboles d’inconscient et d’intuition.",
+    "uprightExtended": "Cette carte pointe rêves, intuition et sens cachés. Il est temps d’écouter ta voix intérieure et de te méfier des illusions.",
+    "reversedExtended": "À l’envers indique confusion, anxiété et perceptions déformées. Trouve la clarté dans le calme.",
+    "daily": "Aujourd’hui, écoute l’intuition plus que la logique. La Lune éclaire les vérités cachées — si tu acceptes de regarder en toi."
+  },
+  "theSun": {
+    "symbolism": "Un enfant chevauche un cheval blanc devant un mur de tournesols, tandis que le Soleil brille — joie, clarté et vie.",
+    "uprightExtended": "Cette carte apporte bonheur, succès, vitalité et clarté. Tout s’illumine et l’énergie circule librement.",
+    "reversedExtended": "À l’envers pointe une baisse passagère de joie, une ombre d’incertitude ou un ego gonflé. La lumière est toujours là — seulement voilée.",
+    "daily": "Jour de joie, de clarté et de gratitude. Le Soleil te dit : rayonne — et tout autour de toi s’éclairera."
+  },
+  "judgement": {
+    "symbolism": "Un ange sonne de la trompette depuis les cieux tandis que les morts se lèvent — éveil, pardon et jugement karmique. La scène résonne d’un appel spirituel.",
+    "uprightExtended": "Cette carte symbolise l’éveil, le renouveau et les décisions importantes. Elle appelle à se libérer du passé et à s’ouvrir à un niveau de conscience supérieur.",
+    "reversedExtended": "À l’envers indique peur du jugement, occasions manquées ou refus de la responsabilité personnelle. Fais face à la vérité.",
+    "daily": "Aujourd’hui, temps de pardon et de nouveau départ. Le Jugement t’invite à sortir de l’ancienne version de toi et à entrer dans une vérité plus haute."
+  },
+  "theWorld": {
+    "symbolism": "Une figure danse au sein d’une couronne, entourée des symboles des quatre vivants. La scène marque l’accomplissement, la plénitude et l’unité.",
+    "uprightExtended": "Le Monde symbolise réussite, accomplissement et clôture d’un cycle. Le succès vient en intégrant toutes tes expériences.",
+    "reversedExtended": "À l’envers pointe le sentiment qu’il manque encore quelque chose, des retards d’achèvement ou la répétition des mêmes schémas. Relie toutes les parts en un tout.",
+    "daily": "Achève ce qui a été commencé et célèbre la complétude. Le Monde apporte un sentiment d’unité — tu es à la fois le voyageur et la destination."
+  },
+  "aceOfWands": {
+    "symbolism": "Une main sort d’un nuage et tient un bâton enflammé — symbole de feu spirituel, d’initiative et d’énergie créative.",
+    "uprightExtended": "À l’endroit, cette carte annonce un nouveau départ, une étincelle créative et un potentiel de croissance. C’est le moment d’agir et de mettre ton idée en mouvement.",
+    "reversedExtended": "À l’envers, elle indique une inspiration bloquée, des retards au démarrage ou la peur de prendre l’initiative.",
+    "daily": "Aujourd’hui est propice à l’action et aux nouveaux départs. L’As de Bâtons t’encourage à saisir l’inspiration et à allumer ton feu intérieur."
+  },
+  "twoOfWands": {
+    "symbolism": "Une figure tient un globe et regarde au loin depuis une tour — planification, vision et maîtrise de son domaine.",
+    "uprightExtended": "À l’endroit signifie projection vers l’avenir, prise de décision et élargissement des horizons. Les plans sont posés — il est temps d’oser.",
+    "reversedExtended": "À l’envers pointe l’hésitation, l’indécision et la peur de l’inconnu. La vision est là, mais le courage de bouger manque encore.",
+    "daily": "Sors de ta zone de confort et embrasse une vue d’ensemble. Le Deux de Bâtons apporte plans et vision — ose les suivre."
+  },
+  "threeOfWands": {
+    "symbolism": "Une figure se tient en hauteur et observe les navires — symbole d’attente et d’échanges.",
+    "uprightExtended": "Cette carte symbolise expansion, réussite et progrès fondés sur les efforts déjà investis. Les fruits de ton travail arrivent.",
+    "reversedExtended": "À l’envers, elle indique retards, attentes déçues ou chemin à venir peu clair.",
+    "daily": "Les premiers mouvements deviennent visibles aujourd’hui. Le Trois de Bâtons rappelle que tes efforts ont déjà envoyé une énergie dans le monde — une réponse est en route."
+  },
+  "fourOfWands": {
+    "symbolism": "Des personnes célèbrent sous un dais décoré — symbole de paix, d’harmonie et de joie partagée.",
+    "uprightExtended": "La carte pointe la stabilité, la célébration et des relations harmonieuses. Fêtes possibles, mariage ou retour heureux.",
+    "reversedExtended": "À l’envers signale disharmonie dans la communauté, insécurité intérieure ou joie passée inaperçue. L’équilibre doit être restauré.",
+    "daily": "Célèbre les petites victoires. Le Quatre de Bâtons apporte stabilité, union et sens de la maison — fût-il symbolique."
+  },
+  "fiveOfWands": {
+    "symbolism": "Cinq figures brandissent des bâtons, comme en joute — symbole de compétition et de conflit.",
+    "uprightExtended": "À l’endroit représente désaccords, rivalité ou lutte constructive. L’effort mène à la croissance.",
+    "reversedExtended": "À l’envers indique disputes stériles, conflit intérieur ou besoin de compromis.",
+    "daily": "Tu pourrais rencontrer un choc d’opinions ou une bataille d’ego. Le Cinq de Bâtons t’offre l’occasion d’affermir tes limites à travers le défi."
+  },
+  "sixOfWands": {
+    "symbolism": "Un cavalier porte une couronne de laurier, acclamé par la foule — reconnaissance publique et réussite.",
+    "uprightExtended": "À l’endroit représente triomphe, reconnaissance et confiance. Succès comme résultat d’efforts et de luttes passées.",
+    "reversedExtended": "À l’envers pointe effort non reconnu, doute de soi ou peur de l’échec. Un travail sur l’estime est nécessaire.",
+    "daily": "Reconnaissance et réussite t’accompagnent aujourd’hui. Le Six de Bâtons rappelle qu’il est juste d’accueillir les applaudissements — tu les as gagnés."
+  },
+  "sevenOfWands": {
+    "symbolism": "Une personne, en surplomb, se défend contre six assaillants — détermination et tenue de position.",
+    "uprightExtended": "La carte appelle à prendre position et défendre ton point de vue. C’est exigeant, mais le combat en vaut la peine.",
+    "reversedExtended": "À l’envers signale submersion, défensive excessive ou retrait avant l’épreuve. Il faut du courage pour persévérer.",
+    "daily": "Tiens bon sur ce en quoi tu crois. Le Sept de Bâtons amène des défis, mais aussi la force de défendre ta posture — tête haute."
+  },
+  "eightOfWands": {
+    "symbolism": "Huit bâtons volent dans les airs — vitesse, mouvement et progrès sans obstacle.",
+    "uprightExtended": "À l’endroit indique mouvement rapide, bonnes nouvelles et accélération des événements. L’énergie circule, tout s’enchaîne vite.",
+    "reversedExtended": "À l’envers pointe retards, blocages de communication ou confusion. Aligne pensée et action.",
+    "daily": "Le temps s’accélère. Le Huit de Bâtons apporte nouvelles soudaines, échanges rapides ou bond en avant — garde le focus."
+  },
+  "nineOfWands": {
+    "symbolism": "Un guerrier blessé se tient avec un bâton, les autres derrière — persévérance et protection.",
+    "uprightExtended": "Cette carte signifie endurance, persistance et défense. Fatigué, oui, mais prêt à protéger ce qui t’appartient.",
+    "reversedExtended": "À l’envers pointe épuisement, paranoïa ou impression d’être sans cesse attaqué. Il est temps de renouveler ton énergie.",
+    "daily": "Tu es peut-être las, mais tu es toujours là. Le Neuf de Bâtons rappelle que tu as beaucoup enduré et que ta force est plus proche que tu ne crois."
+  },
+  "tenOfWands": {
+    "symbolism": "Une figure peine à porter dix bâtons — fardeaux et responsabilités assumés personnellement.",
+    "uprightExtended": "À l’endroit signifie surcharge, responsabilité et dernier tronçon d’une grande tâche. Envisage de déléguer.",
+    "reversedExtended": "À l’envers indique refus d’aide, sentiment d’enfermement ou lourdeur émotionnelle. Allège la charge.",
+    "daily": "Si tu portes trop, aujourd’hui est le jour pour déposer quelque chose. Le Dix de Bâtons t’invite à partager le fardeau ou à réordonner tes priorités."
+  },
+  "pageOfWands": {
+    "symbolism": "Un jeune personnage en tenue exotique étudie un bâton — nouvelles idées, messages et curiosité spirituelle.",
+    "uprightExtended": "À l’endroit indique message, nouvelles ou début d’inspiration. Explore et découvre ton feu intérieur.",
+    "reversedExtended": "À l’envers pointe insécurité, impulsivité ou report de l’expression de soi. Courage et authenticité requis.",
+    "daily": "Éveille ta curiosité aujourd’hui. Le Valet de Bâtons apporte une énergie juvénile — tente quelque chose de nouveau, même petit."
+  },
+  "knightOfWands": {
+    "symbolism": "Un chevalier charge en avant avec un bâton — courage, impulsion et passion en mouvement.",
+    "uprightExtended": "À l’endroit signifie action vive, enthousiasme et désir de conquérir. L’énergie est intense et pleine d’initiative.",
+    "reversedExtended": "À l’envers indique témérité, précipitation excessive ou manque de patience. Aligne l’action sur le but.",
+    "daily": "Suis ta passion — sans foncer tête baissée. Le Chevalier de Bâtons te donne le vent dans le dos ; mets-le au service d’un but, pas d’une course."
+  },
+  "queenOfWands": {
+    "symbolism": "Une reine assise avec un tournesol et un chat — confiance, charisme et force spirituelle.",
+    "uprightExtended": "À l’endroit signifie chaleur, magnétisme et assurance intérieure. La Reine inspire les autres à rayonner.",
+    "reversedExtended": "À l’envers pointe insécurité, jalousie ou manipulation par le charme. Le leadership requiert l’honnêteté.",
+    "daily": "Tu rayonnes de charisme et de confiance. La Reine de Bâtons t’invite à ne pas cacher ta lumière — inspire en étant pleinement toi."
+  },
+  "kingOfWands": {
+    "symbolism": "Un roi tient un bâton et regarde vers l’avant — leadership, vision et passion d’autorité.",
+    "uprightExtended": "À l’endroit représente leadership visionnaire, courage et décision. Il est temps de prendre les rênes avec inspiration.",
+    "reversedExtended": "À l’envers indique autoritarisme, arrogance ou ordres sans fondement. Dirige par l’exemple, pas par la force.",
+    "daily": "Prends l’initiative — avec vision. Le Roi de Bâtons te donne le pouvoir de guider par l’exemple, non par le contrôle."
+  },
+  "aceOfCups": {
+    "symbolism": "Une main sort d’un nuage tenant une coupe d’or d’où l’eau déborde — symbole d’émotion, d’amour et de ressourcement spirituel.",
+    "uprightExtended": "À l’endroit, annonce un nouveau départ émotionnel, un cœur ouvert et une abondance de sentiments. Moment idéal pour l’amour, l’intuition et la guérison.",
+    "reversedExtended": "À l’envers, indique des blocages émotionnels, des sentiments refoulés ou une difficulté à recevoir l’amour. Le cœur a besoin de s’ouvrir.",
+    "daily": "Ouvre ton cœur à de nouveaux ressentis. L’As de Coupes apporte une opportunité d’amour, de pardon ou d’accomplissement spirituel — aujourd’hui, tout commence par l’émotion."
+  },
+  "twoOfCups": {
+    "symbolism": "Un homme et une femme échangent des coupes sous la bénédiction d’une tête de lion — symbole d’équilibre et de lien émotionnel.",
+    "uprightExtended": "À l’endroit symbolise partenariat, connexion romantique ou spirituelle, harmonie et échange. Excellente carte pour toutes les relations.",
+    "reversedExtended": "À l’envers pointe malentendus, séparations ou sentiments non réciproques. L’équilibre émotionnel doit être restauré.",
+    "daily": "Les relations sont au premier plan aujourd’hui. Le Deux de Coupes t’invite à nourrir l’équilibre, l’échange et la connexion authentique avec quelqu’un."
+  },
+  "threeOfCups": {
+    "symbolism": "Trois femmes célèbrent en levant leurs coupes, entourées des fruits de la terre — symbole de convivialité et de joie.",
+    "uprightExtended": "Cette carte indique célébration, amitié, retrouvailles et bonheur partagé. Il est temps de partager ta joie.",
+    "reversedExtended": "À l’envers signale isolement, jalousie ou rupture des liens sociaux. Réexamine relations et confiance.",
+    "daily": "Célèbre l’amitié, la joie et les petits moments. Le Trois de Coupes apporte la bonne humeur et rappelle que tu n’as pas à être seul·e."
+  },
+  "fourOfCups": {
+    "symbolism": "Une personne songe sous un arbre, tandis qu’une main sortie d’un nuage offre une autre coupe — insatisfaction émotionnelle et phase introspective.",
+    "uprightExtended": "À l’endroit pointe apathie, ennui ou occasion manquée. Il est temps d’élargir ton regard.",
+    "reversedExtended": "À l’envers signale un réveil nouveau, la sortie de l’apathie et une disponibilité à grandir émotionnellement.",
+    "daily": "Tu te focalises peut-être trop sur ce qui manque. Le Quatre de Coupes rappelle d’ouvrir le champ — une chance est peut-être juste devant toi."
+  },
+  "fiveOfCups": {
+    "symbolism": "Une silhouette en cape noire regarde des coupes renversées tandis que deux sont intactes derrière — symbole de perte mais aussi d’espoir.",
+    "uprightExtended": "La carte indique chagrin, déception ou regret. Elle appelle à accepter la perte et à s’ouvrir à de nouvelles possibilités.",
+    "reversedExtended": "À l’envers signale pardon, guérison émotionnelle et recentrage sur ce qui reste précieux. L’espoir revient.",
+    "daily": "Le deuil est naturel, mais n’est pas la fin. Le Cinq de Coupes t’invite à reconnaître la perte puis à te tourner vers ce qui demeure."
+  },
+  "sixOfCups": {
+    "symbolism": "Deux enfants s’échangent une coupe dans un jardin — souvenirs, nostalgie et innocence du passé.",
+    "uprightExtended": "La carte pointe souvenirs, enfance, nostalgie et don sans attente. Ravive l’esprit d’innocence.",
+    "reversedExtended": "À l’envers indique attachement au passé, immaturité ou besoin de libérer de vieux liens émotionnels.",
+    "daily": "Rappelle-toi quelque chose de beau du passé. Le Six de Coupes apporte la nostalgie — et la force de puiser dans ces joies pour le présent."
+  },
+  "sevenOfCups": {
+    "symbolism": "Une figure se tient devant sept coupes flottantes remplies de symboles — illusions, tentations et possibilités.",
+    "uprightExtended": "À l’endroit indique de nombreux choix, imagination et confusion. Choisis avec le cœur, pas seulement avec les yeux.",
+    "reversedExtended": "À l’envers pointe énergie dispersée, fantasmes sans base ou enfin un choix clair parmi plusieurs options.",
+    "daily": "Les possibilités sont nombreuses — mais toutes ne sont pas réelles. Le Sept de Coupes t’appelle à distinguer l’illusion du vrai désir."
+  },
+  "eightOfCups": {
+    "symbolism": "Une figure quitte huit coupes et marche vers les montagnes — quête spirituelle et départ du familier.",
+    "uprightExtended": "La carte signifie retrait émotionnel, recherche de sens et besoin d’accomplissement intérieur.",
+    "reversedExtended": "À l’envers dénote départ reporté, évitement de confrontation ou retour à de vieux schémas.",
+    "daily": "Il est peut-être temps de quitter ce qui ne te nourrit plus. Le Huit de Coupes rappelle : ce n’est pas abandonner — c’est chercher un sens plus profond."
+  },
+  "nineOfCups": {
+    "symbolism": "Une figure satisfaite est assise devant neuf coupes — vœux exaucés, satisfaction et plénitude émotionnelle.",
+    "uprightExtended": "À l’endroit apporte contentement émotionnel, objectifs atteints et gratitude. Profite des fruits de tes efforts.",
+    "reversedExtended": "À l’envers signifie plaisir superficiel, excès ou attentes déçues. Cherche un accomplissement plus profond.",
+    "daily": "La satisfaction vient de l’intérieur. Le Neuf de Coupes apporte la plénitude émotionnelle — aujourd’hui, place à la gratitude (et à un soupçon d’hédonisme)."
+  },
+  "tenOfCups": {
+    "symbolism": "Une famille se tient sous un arc-en-ciel de dix coupes — amour idéal, harmonie et accomplissement émotionnel.",
+    "uprightExtended": "La carte apporte plénitude émotionnelle, harmonie familiale et paix spirituelle. Un sommet de joie en amour et relations.",
+    "reversedExtended": "À l’envers indique failles sous le tableau parfait, tensions familiales ou attentes irréalistes.",
+    "daily": "Amour, famille, accomplissement — aujourd’hui, tu es entouré·e d’un sentiment de plénitude. Le Dix de Coupes célèbre le fait d’être ensemble au sens large."
+  },
+  "pageOfCups": {
+    "symbolism": "Un·e jeune tient une coupe d’où surgit un poisson — intuition soudaine, messages et émotion.",
+    "uprightExtended": "Cette carte symbolise douceur des sentiments, créativité et début d’un éclairage émotionnel. Ouvre ton cœur à l’inconnu.",
+    "reversedExtended": "À l’envers pointe immaturité, désinvolture émotionnelle ou évitement des vrais sentiments.",
+    "daily": "Sois ouvert·e à un message du cœur — même s’il paraît étrange. Le Valet de Coupes apporte inspiration artistique, surprises et émotions douces."
+  },
+  "knightOfCups": {
+    "symbolism": "Un chevalier sur un cheval blanc tient une coupe — messager d’amour, d’art et d’aspirations spirituelles.",
+    "uprightExtended": "À l’endroit indique offre romantique, quête spirituelle et idéalisme. Tu es mû par l’émotion et la vision.",
+    "reversedExtended": "À l’envers pointe illusion, manipulation émotionnelle ou attentes irréalistes en amour.",
+    "daily": "Aujourd’hui, tu parles (ou reçois) des mots du cœur. Le Chevalier de Coupes apporte le romantisme — et t’invite à suivre ce que murmure ton âme."
+  },
+  "queenOfCups": {
+    "symbolism": "Une reine assise près de la mer tient une coupe fermée — sagesse intuitive et profondeur émotionnelle.",
+    "uprightExtended": "La carte pointe compassion, soin et profondeur spirituelle. Elle écoute avec le cœur et comprend l’indicible.",
+    "reversedExtended": "À l’envers dénote épuisement émotionnel, passivité ou submersion par les émotions des autres.",
+    "daily": "Nourris-toi de l’intérieur. La Reine de Coupes apporte une profonde sagesse émotionnelle — aujourd’hui, tu n’as rien à réparer, seulement à ressentir."
+  },
+  "kingOfCups": {
+    "symbolism": "Un roi siège sur un trône au milieu des eaux, calme malgré les vagues — maîtrise des émotions.",
+    "uprightExtended": "À l’endroit signifie stabilité émotionnelle, sagesse et soutien sincère. Tu guides les autres avec cœur et expérience.",
+    "reversedExtended": "À l’envers indique émotions refoulées, manipulation ou distance affective. Aligne tête et cœur.",
+    "daily": "Reste calme dans ton océan de sentiments. Le Roi de Coupes enseigne qu’il n’est pas nécessaire de réprimer — porte tes émotions avec sagesse."
+  },
+  "aceOfSwords": {
+    "symbolism": "Une main sort d’un nuage tenant une épée dressée, couronnée d’une couronne de laurier — symbole de vérité, de clarté et de percée intellectuelle.",
+    "uprightExtended": "Cette carte symbolise un nouveau départ par la vérité, l’esprit clair et la détermination. Il est temps de décider et de trancher les illusions.",
+    "reversedExtended": "À l’envers, elle dénote confusion, blocages mentaux ou mauvais jugement. La clarté se regagne dans le calme.",
+    "daily": "La clarté naît aujourd’hui. L’As d’Épées apporte la vérité et la puissance des mots — dis ce que tu penses, avec conscience."
+  },
+  "twoOfSwords": {
+    "symbolism": "Une femme, les yeux bandés, tient deux épées croisées — symbole d’indécision et de conflit intérieur.",
+    "uprightExtended": "À l’endroit dénote l’équilibre entre deux options, le report d’une décision et le besoin de paix intérieure avant d’agir.",
+    "reversedExtended": "À l’envers pointe l’incapacité à décider, un blocage émotionnel ou l’évitement de la vérité.",
+    "daily": "Tu évites peut-être une décision — mais il est temps d’affronter la vérité. Le Deux d’Épées demande l’équilibre entre logique et ressenti."
+  },
+  "threeOfSwords": {
+    "symbolism": "Trois épées transpercent un cœur rouge sous un ciel gris — symbole de peine, de cœur brisé et de perte.",
+    "uprightExtended": "Cette carte apporte douleur, déception et fin d’un lien affectif. Mais à travers le deuil naît la guérison.",
+    "reversedExtended": "À l’envers signale processus de guérison, libération de la douleur ou chagrin refoulé qui doit émerger.",
+    "daily": "La peine doit être reconnue pour s’en aller. Le Trois d’Épées blesse, mais il ouvre le cœur à quelque chose de plus vrai."
+  },
+  "fourOfSwords": {
+    "symbolism": "Une figure repose dans une église, mains jointes — symbole de repos, de contemplation et de renouveau spirituel.",
+    "uprightExtended": "La carte appelle à la pause, au repos et au silence intérieur. Régénère corps et esprit avant la prochaine étape.",
+    "reversedExtended": "À l’envers indique agitation, refus de se reposer ou épuisement intérieur. La réflexion est urgente.",
+    "daily": "Le repos est un remède. Le Quatre d’Épées t’invite à te retirer, apaiser l’esprit et restaurer tes forces avant d’avancer."
+  },
+  "fiveOfSwords": {
+    "symbolism": "Une figure ramasse des épées tandis que d’autres s’éloignent — victoire au prix du conflit et du respect perdu.",
+    "uprightExtended": "À l’endroit dénote conflit, manipulation ou victoire sans vraie satisfaction. Réexamine tes motifs.",
+    "reversedExtended": "À l’envers pointe besoin de réconciliation, évitement du conflit ou sortie d’une situation toxique.",
+    "daily": "Méfie-toi d’une victoire creuse. Le Cinq d’Épées rappelle que tout conflit n’en vaut pas la peine — choisis la paix, pas la domination."
+  },
+  "sixOfSwords": {
+    "symbolism": "Une figure traverse l’eau en barque, portant six épées — passage, guérison et changement de contexte.",
+    "uprightExtended": "La carte indique transition apaisée, guérison émotionnelle et retour à l’équilibre. Il est temps de laisser le passé derrière.",
+    "reversedExtended": "À l’envers indique difficulté à tourner la page, bagage émotionnel ou report d’un changement nécessaire.",
+    "daily": "Tu te diriges vers des eaux plus calmes. Le Six d’Épées apporte un soulagement après une période difficile — accueille la transition."
+  },
+  "sevenOfSwords": {
+    "symbolism": "Une figure s’éclipse avec des épées en se retournant — tromperie, intentions cachées et auto-illusion.",
+    "uprightExtended": "À l’endroit dénote ruse, stratégie ou évitement des responsabilités. Quelqu’un cache peut-être quelque chose.",
+    "reversedExtended": "À l’envers pointe vérité révélée, remords ou appel à l’honnêteté.",
+    "daily": "Sois avisé·e et prudent·e. Le Sept d’Épées suggère que quelqu’un (peut-être toi) évite la vérité — il est temps d’être honnête."
+  },
+  "eightOfSwords": {
+    "symbolism": "Une femme est entravée et entourée d’épées — emprisonnement mental, peur et limitation.",
+    "uprightExtended": "Cette carte dénote la sensation d’être piégé·e, sans issue visible. Les limites sont surtout intérieures.",
+    "reversedExtended": "À l’envers symbolise libération, prise de conscience et premier pas vers la liberté mentale.",
+    "daily": "Le sentiment d’enfermement vient de l’intérieur. Le Huit d’Épées te rappelle que tes pensées sont la barrière — et que tu détiens la clé."
+  },
+  "nineOfSwords": {
+    "symbolism": "Une personne, assise dans son lit, la tête dans les mains sous neuf épées — inquiétude, insomnie et remords.",
+    "uprightExtended": "À l’endroit pointe tourment mental, anxiété ou culpabilité. Les pensées sont devenues un fardeau.",
+    "reversedExtended": "À l’envers apporte rétablissement, allègement des soucis ou reconnaissance des enjeux intérieurs.",
+    "daily": "Les soucis te saisissent peut-être la nuit, mais ils ne sont pas tout le monde. Le Neuf d’Épées murmure : tu n’es pas seul·e — et tu n’es pas ce que tu crains."
+  },
+  "tenOfSwords": {
+    "symbolism": "Une figure gît, dix épées dans le dos sous un ciel sombre — fin, trahison et effondrement final.",
+    "uprightExtended": "Cette carte dénote fin de cycle, déception ou trahison émotionnelle — puis une aube nouvelle après la nuit.",
+    "reversedExtended": "À l’envers signifie survie, rétablissement et sortie d’une situation difficile. Il est temps d’un nouveau départ.",
+    "daily": "La fin peut être douloureuse, mais elle apporte le soulagement. Le Dix d’Épées clôt un chapitre et libère de la place pour le renouveau."
+  },
+  "pageOfSwords": {
+    "symbolism": "Un·e jeune se tient l’épée en garde — curiosité, vigilance intellectuelle et prudence.",
+    "uprightExtended": "Cette carte pointe acuité mentale, communication et enquête. C’est le moment d’un dialogue honnête et d’apprendre.",
+    "reversedExtended": "À l’envers dénote ragots, manque de focus ou défensive excessive. Calme l’esprit et clarifie.",
+    "daily": "Sois curieux·se, mais prudent·e. Le Valet d’Épées apporte des informations nouvelles — écoute, observe et évite les conclusions hâtives."
+  },
+  "knightOfSwords": {
+    "symbolism": "Un chevalier charge, l’épée levée — action, détermination et impulsion guidée par l’idée.",
+    "uprightExtended": "À l’endroit dénote vitesse, percée intellectuelle et courage. Il est temps d’agir avec décision, sans délai.",
+    "reversedExtended": "À l’envers pointe précipitation, agressivité verbale ou chaos mental. Canalise l’énergie plus sagement.",
+    "daily": "Tes pensées filent vite — veille à ne pas trancher ce que tu veux garder. Le Chevalier d’Épées appelle à l’équilibre entre passion et raison."
+  },
+  "queenOfSwords": {
+    "symbolism": "Une reine, épée levée d’une main, l’autre qui invite — symbole d’équité et de force intellectuelle.",
+    "uprightExtended": "La carte dénote objectivité, sagesse et approche analytique. La vraie vérité se révèle.",
+    "reversedExtended": "À l’envers signifie froideur, intolérance ou distance émotionnelle. Il faut l’équilibre entre tête et cœur.",
+    "daily": "Sois claire et vraie, même si cela semble froid. La Reine d’Épées apporte une sagesse sans illusions — tu vois les choses telles qu’elles sont."
+  },
+  "kingOfSwords": {
+    "symbolism": "Un roi est assis sur un trône avec une épée — vérité, justice et rationalité.",
+    "uprightExtended": "À l’endroit représente autorité, logique et rectitude morale. Guide avec intellect et clarté.",
+    "reversedExtended": "À l’envers dénote manipulation, abus de pouvoir ou rationalisme extrême. Une juste mesure est requise.",
+    "daily": "Aujourd’hui, la logique règne. Le Roi d’Épées demande décision et objectivité — dirige par l’exemple, pas par l’émotion."
+  },
+  "aceOfPentacles": {
+    "symbolism": "Une main sort d’un nuage tenant un denier d’or — symbole de nouvelles opportunités matérielles et de dons de l’univers.",
+    "uprightExtended": "La carte indique un nouveau départ dans l’argent, la santé ou la carrière. Il est temps de rendre les choses tangibles.",
+    "reversedExtended": "À l’envers pointe occasion manquée, bases fragiles ou retards de manifestation.",
+    "daily": "Aujourd’hui, une nouvelle opportunité s’ouvre dans le monde matériel — argent, travail, santé. L’As de Deniers est la graine de la stabilité — plante-la avec soin."
+  },
+  "twoOfPentacles": {
+    "symbolism": "Une figure jongle avec deux deniers reliés par le signe de l’infini — gestion des flux de la vie.",
+    "uprightExtended": "À l’endroit symbolise l’équilibre entre travail et vie privée, la flexibilité et la débrouillardise.",
+    "reversedExtended": "À l’envers indique chaos, stress ou négligence d’un domaine de vie. Une meilleure organisation est nécessaire.",
+    "daily": "Tu fais tourner beaucoup de choses à la fois ? Le Deux de Deniers t’apprend à trouver ton rythme — l’équilibre est ton meilleur outil aujourd’hui."
+  },
+  "threeOfPentacles": {
+    "symbolism": "Un artiste, un prêtre et un artisan collaborent à la construction d’une cathédrale — travail d’équipe et valeurs partagées.",
+    "uprightExtended": "La carte dénote coopération, reconnaissance du savoir-faire et construction sur des bases solides.",
+    "reversedExtended": "À l’envers signale manque de coopération, équipe désalignée ou refus des conseils.",
+    "daily": "La coopération porte ses fruits. Le Trois de Deniers rappelle que le succès grandit quand chacun apporte sa part — et respecte l’effort des autres."
+  },
+  "fourOfPentacles": {
+    "symbolism": "Un homme serre un denier, deux sous ses pieds et un sur sa couronne — sécurité matérielle et attachement.",
+    "uprightExtended": "À l’endroit dénote épargne, besoin de contrôle et préservation des ressources. Temps de stabilité.",
+    "reversedExtended": "À l’envers pointe avarice, entêtement ou peur de perdre. Ouvre-toi au flux.",
+    "daily": "Tiens-tu quelque chose trop fort ? Le Quatre de Deniers dit que la protection ne doit pas devenir prison — la sécurité vient aussi de la confiance."
+  },
+  "fiveOfPentacles": {
+    "symbolism": "Deux indigents passent devant une église sous la neige — pénurie, isolement et besoin corporel ou spirituel.",
+    "uprightExtended": "La carte pointe difficultés financières, maladie ou solitude émotionnelle. L’aide existe, mais il faut la demander.",
+    "reversedExtended": "À l’envers symbolise rétablissement, sortie de la pénurie et espoir. Une lumière apparaît.",
+    "daily": "Si tu te sens exclu·e ou en insécurité, cherche du soutien. Le Cinq de Deniers rappelle que tu n’es pas seul·e — la porte est peut-être plus proche que tu ne crois."
+  },
+  "sixOfPentacles": {
+    "symbolism": "Un homme aisé donne de l’argent aux pauvres en tenant une balance — équilibre, don et réception.",
+    "uprightExtended": "Cette carte dénote générosité, aide et équilibre dans l’échange. C’est le moment de donner ou de recevoir avec gratitude.",
+    "reversedExtended": "À l’envers pointe déséquilibre, dépendance ou aide assortie d’attentes. Clarifie les intentions réelles.",
+    "daily": "Souviens-toi de la réciprocité aujourd’hui. Le Six de Deniers t’invite à donner — ou recevoir — avec équilibre, gratitude et sans culpabilité."
+  },
+  "sevenOfPentacles": {
+    "symbolism": "Un cultivateur observe sa récolte — attente, évaluation et patience dans le processus de croissance.",
+    "uprightExtended": "À l’endroit dénote bilan, investissement d’efforts et attente des résultats. La patience paie.",
+    "reversedExtended": "À l’envers pointe impatience, doute sur tes efforts ou besoin de réévaluer la direction.",
+    "daily": "La patience est clé. Le Sept de Deniers annonce que les fruits arrivent — mais requièrent soin et temps. N’abandonne pas maintenant."
+  },
+  "eightOfPentacles": {
+    "symbolism": "Un ouvrier façonne inlassablement des deniers — maîtrise, dévouement et artisanat.",
+    "uprightExtended": "La carte dénote travail appliqué, apprentissage et progrès par la pratique. C’est le moment de la discipline.",
+    "reversedExtended": "À l’envers indique routine sans inspiration, erreurs par précipitation ou refus d’apprendre.",
+    "daily": "C’est en forgeant qu’on devient forgeron. Le Huit de Deniers t’invite à fournir l’effort et développer tes compétences — chaque pas compte."
+  },
+  "nineOfPentacles": {
+    "symbolism": "Une femme se tient dans un jardin avec un faucon — indépendance, luxe et confiance en soi.",
+    "uprightExtended": "La carte apporte fruits du travail, autonomie et plaisir du chemin parcouru. Tiens-toi fièrement sur tes bases.",
+    "reversedExtended": "À l’envers pointe dépendance, manque d’authenticité ou peur de l’indépendance. Renforce l’estime de toi.",
+    "daily": "Indépendance et savourer tes fruits durement gagnés mènent la danse aujourd’hui. Le Neuf de Deniers te rappelle que tu es capable et digne d’abondance."
+  },
+  "tenOfPentacles": {
+    "symbolism": "Une famille entourée de symboles d’abondance — sécurité matérielle, tradition familiale et héritage.",
+    "uprightExtended": "Cette carte dénote stabilité à long terme, valeurs familiales et achèvement d’un cycle prospère.",
+    "reversedExtended": "À l’envers indique discorde familiale, tensions financières ou perte de valeurs héritées.",
+    "daily": "Pense long terme. Le Dix de Deniers apporte appartenance, héritage et sécurité — aujourd’hui, tu poses des fondations pour demain."
+  },
+  "pageOfPentacles": {
+    "symbolism": "Un·e jeune étudie un denier d’or avec concentration — apprentissage, potentiel matériel et intention concrète.",
+    "uprightExtended": "La carte dénote curiosité, apprenti·e et premier pas vers un accomplissement pratique. Apprends en faisant.",
+    "reversedExtended": "À l’envers signale manque de focus, occasions manquées ou démarrage repoussé. Dévouement à l’objectif requis.",
+    "daily": "Jour idéal pour apprendre ou fixer des objectifs. Le Valet de Deniers murmure : si tu crois à l’idée — prépare-toi à la nourrir."
+  },
+  "knightOfPentacles": {
+    "symbolism": "Un chevalier, calme sur sa monture, tient un denier — responsabilité, patience et action appliquée.",
+    "uprightExtended": "À l’endroit dénote persévérance, dévouement et progrès régulier et réaliste. Suis la voie fiable.",
+    "reversedExtended": "À l’envers pointe entêtement, stagnation ou lenteur excessive. Aligne ton rythme sur ton but.",
+    "daily": "La constance et l’attention au détail sont tes alliées. Le Chevalier de Deniers rappelle : lentement et sûrement — ainsi se construit ce qui dure."
+  },
+  "queenOfPentacles": {
+    "symbolism": "Une reine en pleine nature tient un denier avec soin — foyer, stabilité et énergie maternelle.",
+    "uprightExtended": "La carte apporte sécurité, soin et pragmatisme. Elle crée l’harmonie par l’organisation et la douceur.",
+    "reversedExtended": "À l’envers dénote négligence de soi, matérialisme excessif ou retrait émotionnel.",
+    "daily": "Prends soin de ton monde — dehors et dedans. La Reine de Deniers apporte chaleur, sens pratique et stabilité — veille au corps, au foyer et à la routine."
+  },
+  "kingOfPentacles": {
+    "symbolism": "Un roi siège sur un trône orné de taureaux et de vignes — pouvoir, richesse et stabilité établie.",
+    "uprightExtended": "Cette carte symbolise réussite matérielle acquise, gestion sage des ressources et sécurité.",
+    "reversedExtended": "À l’envers pointe dureté d’esprit, avidité ou contrôle excessif. Laisse entrer le flux de la vie.",
+    "daily": "Prends aujourd’hui des décisions qui bâtissent des fondations durables. Le Roi de Deniers rappelle que ta force réside dans une gestion avisée des ressources."
+  }
+}

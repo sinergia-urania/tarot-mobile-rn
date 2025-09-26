@@ -110,3 +110,5 @@ const styles = StyleSheet.create({
   },
 });
 // END: TarotHeaderBanner.jsx - magijski red sa zvezdicama i animacijom
+
+

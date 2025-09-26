@@ -1,0 +1,67 @@
+{
+  "titles": {
+    "aiReply": "Una responds",
+    "housesAnalysis": "Interpretation by astrological houses",
+    "sefirotAnalysis": "Interpretation by sefirot",
+    "celticAnalysis": "Celtic Cross interpretation",
+    "followupPrompt": "Add a follow-up question (PRO):",
+    "astroHouses": "Interpretation by astrological houses:",
+    "sefirot": "Interpretation by Sefirot:",
+    "celticInterpretation": "Celtic Cross interpretation:"
+  },
+  "labels": {
+    "question": "Question:",
+    "spreadType": "Spread type: {{value}}. "
+  },
+  "placeholders": {
+    "followup": "Enter a follow-up..."
+  },
+  "summary": {
+    "label": "Suma sumarum:"
+  },
+  "houses": [
+    "1st House (Self)",
+    "2nd House (Finances)",
+    "3rd House (Communication)",
+    "4th House (Home & Family)",
+    "5th House (Creativity)",
+    "6th House (Health)",
+    "7th House (Partnerships)",
+    "8th House (Transformation)",
+    "9th House (Travel & Beliefs)",
+    "10th House (Career)",
+    "11th House (Friends & Community)",
+    "12th House (Subconscious)"
+  ],
+  "celticPositions": [
+    "1. Present situation",
+    "2. Obstacle / Challenge",
+    "3. Foundation (Unconscious)",
+    "4. Past",
+    "5. Conscious / Possibilities",
+    "6. Near future",
+    "7. Attitude toward the situation",
+    "8. Environmental influence",
+    "9. Hopes / Fears",
+    "10. Outcome"
+  ],
+  "sefirot": [
+    "Keter (Crown)",
+    "Chokhmah (Wisdom)",
+    "Binah (Understanding)",
+    "Chesed (Mercy)",
+    "Gevurah (Severity)",
+    "Tiferet (Beauty)",
+    "Netzach (Eternity)",
+    "Hod (Glory)",
+    "Yesod (Foundation)",
+    "Malkhut (Kingdom)"
+  ],
+  "misc": {
+    "proOnly": "Follow-ups are available for PRO only.",
+    "followupTitle": "Send a follow-up (PRO):",
+    "followupAnswer": "Follow-up answer:",
+    "oneFollowupNote": "You can ask a new follow-up only in the next reading.",
+    "cardPlaceholder": "Card {{index}}"
+  }
+}

@@ -1,0 +1,470 @@
+{
+  "theFool": {
+    "symbolism": "Der Narr steht am Rand einer Klippe, bereit für den ersten Schritt ins Unbekannte. Eine Rose in der Hand symbolisiert Unschuld, während der Hund hinter ihm Instinkt und inneren Schutz verkörpert.",
+    "uprightExtended": "Aufrecht markiert der Narr den Beginn eines Abenteuers und das Vertrauen ins Leben. Er symbolisiert Offenheit für Wandel, Spontaneität und eine neue Phase ohne Angst.",
+    "reversedExtended": "Umgekehrt weist diese Karte auf Leichtsinn, Naivität und das Meiden von Verantwortung hin. Man schreitet womöglich voran, ohne sich der Konsequenzen bewusst zu sein.",
+    "daily": "Heute ist es an der Zeit, Erwartungen loszulassen und mit Vertrauen ins Unbekannte zu treten. Der Narr erinnert dich: Jeder Fehler ist einfach Teil der Reise."
+  },
+  "theMagician": {
+    "symbolism": "Der Magier steht mit einer Hand zum Himmel und der anderen zur Erde – er symbolisiert die Verbindung zwischen geistiger und materieller Welt. Die Werkzeuge aller Elemente auf dem Tisch zeigen seine Fähigkeit, zu manifestieren.",
+    "uprightExtended": "Aufrecht weist der Magier auf persönliche Kraft, Fokus und die Fähigkeit hin, Ideen in die Wirklichkeit zu überführen. Es ist Zeit zum Handeln – mit allen verfügbaren Mitteln.",
+    "reversedExtended": "Umgekehrt kann der Magier auf Manipulation, Illusion und ungenutztes Potenzial hindeuten. Jemand könnte seine Gaben zu wenig – oder eigennützig – einsetzen.",
+    "daily": "Nutze den heutigen Tag, um deine Talente anzuerkennen und das zu manifestieren, was wirklich zählt. Die Botschaft des Magiers: Du hast alles, was du brauchst – setze es bewusst ein."
+  },
+  "theHighPriestess": {
+    "symbolism": "Die Hohepriesterin sitzt zwischen zwei Säulen – Symbol für das Gleichgewicht der Gegensätze. Der Schleier hinter ihr verbirgt mystisches Wissen, die Schriftrolle in ihren Händen steht für verborgene Weisheit.",
+    "uprightExtended": "Diese Karte verkörpert Intuition, Stille und inneres Wissen. Sie mahnt, auf deine innere Stimme zu hören und Antworten in dir selbst zu suchen.",
+    "reversedExtended": "Umgekehrt signalisiert sie unterdrückte Intuition, emotionale Verwirrung oder eine Abkopplung von spirituellen Werten. Innere Zeichen könnten ignoriert werden.",
+    "daily": "Vertraue heute deiner Intuition. Die Antworten, die du suchst, trägst du bereits in dir – beruhige den Geist und lausche deiner inneren Stimme."
+  },
+  "theEmpress": {
+    "symbolism": "Die Herrscherin sitzt in fruchtbarer Natur, umgeben von Korn und Bäumen – Sinnbild für Fülle und Fruchtbarkeit. Ihre Sternenkrone verbindet sie mit dem Universum.",
+    "uprightExtended": "Die Herrscherin symbolisiert mütterliche Energie, Schöpfung, Liebe und Fürsorge. Sie kündigt eine fruchtbare Zeit in jeder Hinsicht an – kreativ, emotional oder physisch.",
+    "reversedExtended": "Umgekehrt kann sie Abhängigkeit von anderen, emotionale Erschöpfung oder kreative Blockaden bedeuten. Nähre dich selbst, damit du andere nähren kannst.",
+    "daily": "Heute ist ein Tag, um das zu pflegen, was wächst – sei es eine Idee, eine Beziehung oder dein eigener Frieden. Die Herrscherin erinnert: Sanftmut mit dir selbst trägt nach außen Früchte."
+  },
+  "theEmperor": {
+    "symbolism": "Der Herrscher sitzt auf einem steinernen Thron, geschmückt mit Widdern – Sinnbild für Stärke, Disziplin und Autorität. Er steht für Stabilität und die Welt der Ordnung.",
+    "uprightExtended": "Aufrecht bedeutet er Kontrolle, Verantwortung und Führung. Die Karte legt nahe, dein Leben zu strukturieren und entschlossene Entscheidungen zu treffen.",
+    "reversedExtended": "Umgekehrt deutet er auf Tyrannei, Sturheit oder emotionale Kälte hin. Macht könnte destruktiv eingesetzt werden.",
+    "daily": "Stabilität und Struktur sind heute deine Verbündeten. Der Herrscher ermutigt dich, Grenzen zu setzen und mit Vertrauen in deine eigene Autorität zu entscheiden."
+  },
+  "theHierophant": {
+    "symbolism": "Der Hierophant sitzt zwischen zwei Säulen – Symbol institutioneller Autorität und spirituellen Wissens. Mit erhobenen Händen segnet er, während Jünger vor ihm knien.",
+    "uprightExtended": "Diese Karte steht für Tradition, spirituelle Autorität und Lernen durch Institutionen. Sie weist auf die Achtung spiritueller Gesetze und Lehrender hin.",
+    "reversedExtended": "Umgekehrt zeigt sie Regelablehnung, spirituelle Rebellion oder eine Starrheit, die Wachstum hemmt. Sie kann auch falsche Autorität signalisieren.",
+    "daily": "Suche Weisheit in der Tradition oder Rat bei jemandem, dem du vertraust. Heute gilt es, Wissen zu ehren, das vor uns bestand."
+  },
+  "theLovers": {
+    "symbolism": "Ein Mann und eine Frau stehen nackt unter einem Engel – Sinnbild reiner Verbindung und göttlicher Vereinigung. Im Hintergrund: der Baum der Erkenntnis und das Feuer der Leidenschaft.",
+    "uprightExtended": "Aufrecht symbolisieren die Liebenden tiefe Verbundenheit, Harmonie und Entscheidungen aus Liebe. Sie können sowohl auf Beziehungen als auch auf wegweisende moralische Entscheidungen hindeuten.",
+    "reversedExtended": "Umgekehrt zeigt sich Disharmonie, Fehlanpassung in einer Beziehung oder eine falsche Wahl. Prüfe den Kern der emotionalen Entscheidung.",
+    "daily": "Wähle heute mit dem Herzen. Die Liebenden erinnern: Beziehungen sind Spiegel – was du gibst, kommt zu dir zurück."
+  },
+  "theChariot": {
+    "symbolism": "Der Wagenlenker steht selbstbewusst zwischen einer schwarzen und einer weißen Sphinx und hält die Zügel geistiger und materieller Kräfte. Der Stern auf seiner Stirn symbolisiert göttliche Führung.",
+    "uprightExtended": "Diese Karte steht für Willenskraft, Sieg und Fortschritt trotz Hindernissen. Sie deutet auf starken Selbstkontroll- und Ausgleich der Gegensätze hin.",
+    "reversedExtended": "Umgekehrt weist der Wagen auf Kontrollverlust, inneren Konflikt oder Resignation hin. Richte deine innere Stärke neu aus.",
+    "daily": "Ergreife die Zügel und steuere deinem Ziel entgegen. Der Wagen weiß: Auch Gegensätze vereinen sich, wenn du dein Ziel klar kennst."
+  },
+  "strength": {
+    "symbolism": "Eine Frau schließt sanft das Maul eines Löwen – ein Bild für die Kraft von Mitgefühl und innerer Stärke. Die Lemniskate über ihrem Kopf steht für das unendliche Potenzial des Geistes.",
+    "uprightExtended": "Aufrecht weist die Kraft auf Geduld, Mut und subtile Kontrolle hin. Wahre Stärke erwächst aus Ruhe und Verständnis, nicht aus Aggression.",
+    "reversedExtended": "Umgekehrt zeigt sie Selbstzweifel, mangelnden Mut oder das Nachgeben gegenüber Impulsen. Stelle dein inneres Gleichgewicht wieder her.",
+    "daily": "Deine Stärke entspringt heute Geduld und Güte. Du musst nicht laut sein, um stark zu sein – die Stille deines Herzens kennt den Weg."
+  },
+  "theHermit": {
+    "symbolism": "Der Eremit steht auf einem Berggipfel mit einer Lampe in der Hand – Symbol für Weisheit, Innenschau und die Suche nach Wahrheit. Sein Stab bietet Halt in spiritueller Einsamkeit.",
+    "uprightExtended": "Die Karte weist auf Rückzug, Stille und innere Reflexion hin. Es ist Zeit, deiner inneren Stimme zu lauschen und spirituelle Ausrichtung zu suchen.",
+    "reversedExtended": "Umgekehrt spricht sie von Isolation, inneren Blockaden oder der Weigerung, sich selbst zu begegnen. Öffne dich der Weisheit anderer.",
+    "daily": "Heute ist ein Tag für Stille, Rückzug und das Hören auf die innere Wahrheit. Der Eremit führt dich zu dem Licht, das du in dir trägst."
+  },
+  "wheelOfFortune": {
+    "symbolism": "Das Rad des Schicksals zeigt die zyklische Natur des Lebens – mit Göttersymbolen, einer Schlange und einer Sphinx. Es steht für steten Wandel und die universellen Kräfte, die das Schicksal lenken.",
+    "uprightExtended": "Diese Karte markiert Bestimmung, Veränderung und unvermeidliche Wendepunkte. Unerwartete Ereignisse können eintreten und den Lebensweg verändern.",
+    "reversedExtended": "Umgekehrt zeigt sie Widerstand gegen Veränderung, das Gefühl eines Abwärtstrends oder im Kreis zu laufen. Lass los und vertraue dem natürlichen Fluss.",
+    "daily": "Das Schicksal dreht sich – begrüße den Wandel und sei bereit für Überraschungen. Das Rad bringt Chancen, wenn du sie am wenigsten erwartest."
+  },
+  "justice": {
+    "symbolism": "Die Gerechtigkeit sitzt zwischen zwei Säulen mit Schwert und Waage – Symbole für Wahrheit und Ausgleich. Ihr direkter Blick steht für Klarheit und Fairness.",
+    "uprightExtended": "Aufrecht steht die Gerechtigkeit für Wahrheit, Balance, karmische Ausgleichung und Verantwortungsübernahme. Angelegenheiten werden fair geklärt.",
+    "reversedExtended": "Umgekehrt weist sie auf Ungerechtigkeit, Voreingenommenheit oder das Meiden von Verantwortung hin. Es ist Zeit, der Wahrheit ins Auge zu sehen.",
+    "daily": "Heute ist Ehrlichkeit gefragt – dir selbst und anderen gegenüber. Die Gerechtigkeit erinnert: Balance ist der Schlüssel zum Frieden, und die Wahrheit ist das Licht."
+  },
+  "theHangedMan": {
+    "symbolism": "Der Gehängte hängt kopfüber und trägt dennoch einen friedvollen Ausdruck. Ein Heiligenschein um sein Haupt symbolisiert Erleuchtung durch Hingabe.",
+    "uprightExtended": "Diese Karte ruft zu Pause, Besinnung und Perspektivwechsel auf. Fortschritt entsteht durch Annahme und Opferbereitschaft.",
+    "reversedExtended": "Umgekehrt deutet sie auf Widerstand gegen Veränderung, Verzögerungen oder das starre Festhalten an einer alten Sicht hin. Lass die Kontrolle los.",
+    "daily": "Stopp. Wechsle den Blickwinkel. Der Gehängte sagt: Manchmal ist die weiseste Handlung das Sich-Hingeben."
+  },
+  "death": {
+    "symbolism": "Der Tod reitet auf einem weißen Pferd und trägt ein schwarzes Banner mit weißen Rosen – Sinnbild für Enden und Wiedergeburt. Die Umstehenden akzeptieren das Unvermeidliche.",
+    "uprightExtended": "Aufrecht steht der Tod für Transformation, Abschlüsse und Neuanfänge. Lass das Alte los, um Raum für das Neue zu schaffen.",
+    "reversedExtended": "Umgekehrt zeigt er Angst vor Veränderung, Blockaden oder Stagnation. Die Wandlung wird abgelehnt – doch sie ist unvermeidlich.",
+    "daily": "Lass los, was dir nicht mehr dient. Heute ist Tag der inneren Verwandlung – auf jedes Ende folgt ein neuer Anfang."
+  },
+  "temperance": {
+    "symbolism": "Ein Engel gießt Flüssigkeit von einem Kelch in den anderen – Symbol für Ausgleich und Harmonie. Ein Fuß im Wasser, der andere auf dem Land: Geist und Materie im Einklang.",
+    "uprightExtended": "Diese Karte steht für Balance, Geduld und Mäßigung. Sie ruft zu Harmonie der Gegensätze und einem ruhigen Umgang mit Herausforderungen auf.",
+    "reversedExtended": "Umgekehrt weist sie auf Extreme, Ungeduld oder inneres Chaos hin. Stelle dein inneres Gleichgewicht wieder her.",
+    "daily": "Beruhige den Geist und gleiche deine Wünsche aus. Die Mäßigkeit erinnert: Wunder geschehen, wenn Körper und Seele im Einklang sind."
+  },
+  "theDevil": {
+    "symbolism": "Der Teufel sitzt auf einem Thron; Ketten um Mann und Frau symbolisieren Bindung an Materielles, Leidenschaften und Illusionen.",
+    "uprightExtended": "Aufrecht weist er auf Abhängigkeit, Versuchung und Gefangenschaft in falschen Idealen hin. Befreie dich von Ketten, die du dir selbst angelegt hast.",
+    "reversedExtended": "Umgekehrt signalisiert er Erwachen und Befreiung. Man erkennt die eigenen Begrenzungen und beginnt, sich zu lösen.",
+    "daily": "Erkenne, was dich bindet. Der Teufel flüstert Illusionen – heute kannst du sie entlarven und den ersten Schritt in die Freiheit gehen."
+  },
+  "theTower": {
+    "symbolism": "Der Turm stürzt nach einem Blitzschlag ein, Menschen fallen herab. Das steht für plötzliche Veränderung, Schock und das Zusammenbrechen von Illusionen.",
+    "uprightExtended": "Diese Karte weist auf unerwartete Ereignisse hin, die alte Fundamente zu Fall bringen. So schmerzhaft es ist, ermöglicht es einen Neubau auf gesünderem Grund.",
+    "reversedExtended": "Umgekehrt zeigt sie innere Erschütterung, Verneinung von Wandel oder die Angst, die Kontrolle zu verlieren. Die Befreiung geschieht von innen.",
+    "daily": "Veränderung kann weh tun, doch das Einreißen des Falschen führt zur Wahrheit. Der Turm ruft dich auf, loszulassen, was nur scheinbar stabil war."
+  },
+  "theStar": {
+    "symbolism": "Unter sternenklarem Himmel gießt eine Frau Wasser in einen Teich und auf die Erde – Symbol für Hoffnung, Inspiration und spirituelle Erneuerung.",
+    "uprightExtended": "Aufrecht bringt der Stern Licht nach der Dunkelheit, geistige Führung und Vertrauen in ein besseres Morgen. Er signalisiert erneuerte Kraft und Inspiration.",
+    "reversedExtended": "Umgekehrt steht er für Verlust des Glaubens, Pessimismus oder das Gefühl, von der spirituellen Quelle entfernt zu sein. Stelle das Vertrauen in den Lebensfluss wieder her.",
+    "daily": "Die Hoffnung kehrt zurück. Der Stern erinnert: Selbst im dunkelsten Moment gibt es Licht – in dir."
+  },
+  "theMoon": {
+    "symbolism": "Ein Pfad verläuft zwischen zwei Türmen durch die Dunkelheit, vom Mond beleuchtet. Hund und Wolf heulen, ein Krebs steigt aus dem Wasser – Symbole des Unbewussten und der Intuition.",
+    "uprightExtended": "Diese Karte weist auf Träume, Intuition und verborgene Bedeutungen hin. Es ist Zeit, deiner inneren Stimme zu lauschen und dich vor Illusionen zu hüten.",
+    "reversedExtended": "Umgekehrt deutet sie auf Verwirrung, Ängste und verzerrte Wahrnehmungen hin. Finde Klarheit in der Stille.",
+    "daily": "Vertraue heute mehr der Intuition als der Logik. Der Mond beleuchtet verborgene Wahrheiten – wenn du bereit bist, nach innen zu blicken."
+  },
+  "theSun": {
+    "symbolism": "Ein Kind reitet auf einem weißen Pferd vor einer Mauer aus Sonnenblumen, während die Sonne hell scheint – Symbol für Freude, Klarheit und Lebenskraft.",
+    "uprightExtended": "Aufrecht bringt die Sonne Glück, Erfolg, Vitalität und Klarheit. Alles wird erhellt und die Energie fließt frei.",
+    "reversedExtended": "Umgekehrt weist sie auf ein vorübergehendes Tief, einen Schatten der Ungewissheit oder aufgeblähtes Ego hin. Das Licht ist noch da – nur getrübt.",
+    "daily": "Dies ist ein Tag der Freude, Klarheit und Dankbarkeit. Die Sonne sagt: Strahle – und alles um dich wird heller."
+  },
+  "judgement": {
+    "symbolism": "Ein Engel trompetet vom Himmel, während die Toten aus den Gräbern steigen – Symbol für Erwachen, Vergebung und karmisches Gericht. Die Szene ist von einer geistigen Berufung erfüllt.",
+    "uprightExtended": "Diese Karte steht für Erwachen, Erneuerung und wichtige Entscheidungen. Sie ruft zur Befreiung von der Vergangenheit und zur Bereitschaft für ein höheres Bewusstsein.",
+    "reversedExtended": "Umgekehrt deutet sie auf Angst vor Bewertung, verpasste Chancen oder die Weigerung hin, persönliche Verantwortung zu übernehmen. Stell dich der Wahrheit.",
+    "daily": "Heute ist Zeit für Vergebung und einen Neubeginn. Das Gericht lädt dich ein, aus einer alten Version deiner selbst zu erwachen und in eine höhere Wahrheit zu treten."
+  },
+  "theWorld": {
+    "symbolism": "Eine Gestalt tanzt in einem Kranz, umgeben von den Symbolen der vier Lebewesen. Die Szene markiert Vollendung, Ganzheit und Einheit.",
+    "uprightExtended": "Die Welt symbolisiert Erfüllung, Vollendung und den Abschluss eines Zyklus. Erfolg entsteht durch die Integration deiner Erfahrungen.",
+    "reversedExtended": "Umgekehrt weist sie auf das Gefühl hin, dass noch etwas fehlt, auf Verzögerungen beim Abschluss oder das Wiederholen gleicher Muster. Verbinde alle Teile zu einem Ganzen.",
+    "daily": "Schließe Begonnenes ab und feiere die Ganzheit. Die Welt bringt ein Gefühl von Vollständigkeit – du bist zugleich Reisende:r und Ziel."
+  },
+  "aceOfWands": {
+    "symbolism": "Eine Hand, die aus einer Wolke erscheint, hält einen flammenden Stab – ein Symbol für geistiges Feuer, Initiative und kreative Energie.",
+    "uprightExtended": "Aufrecht symbolisiert diese Karte einen frischen Anfang, einen kreativen Funken und Wachstumspotenzial. Es ist Zeit zu handeln und deine Idee in Bewegung zu setzen.",
+    "reversedExtended": "Umgekehrt weist sie auf blockierte Inspiration, Verzögerungen beim Start oder Angst vor Eigeninitiative hin.",
+    "daily": "Heute ist ein Tag für Aktion und Neubeginn. Das As der Stäbe ermutigt dich, nach Inspiration zu greifen und dein inneres Feuer zu entfachen."
+  },
+  "twoOfWands": {
+    "symbolism": "Eine Gestalt hält eine Weltkugel und blickt von einem Turm in die Ferne – Sinnbild für Planung, Vision und Kontrolle über das eigene Terrain.",
+    "uprightExtended": "Aufrecht steht sie für Weitblick, Entscheidungen und die Erweiterung des Horizonts. Pläne sind geschmiedet – jetzt heißt es wagen.",
+    "reversedExtended": "Umgekehrt deutet sie auf Schwanken, Unentschlossenheit und Angst vor dem Unbekannten hin. Die Vision ist da, der Mut zum Schritt noch nicht.",
+    "daily": "Verlasse deine Komfortzone und nimm das große Ganze in den Blick. Die Zwei der Stäbe bringt Pläne und Vision – wage, ihnen zu folgen."
+  },
+  "threeOfWands": {
+    "symbolism": "Eine Gestalt steht erhöht und beobachtet an- und ablegende Schiffe – ein Symbol für Erwartung und Handel.",
+    "uprightExtended": "Diese Karte steht für Expansion, Erfolg und Fortschritt auf Basis bereits investierter Mühe. Die Früchte deiner Arbeit treffen ein.",
+    "reversedExtended": "Umgekehrt weist sie auf Verzögerungen, unerfüllte Erwartungen oder einen unklaren weiteren Weg hin.",
+    "daily": "Die ersten Bewegungen werden heute sichtbar. Die Drei der Stäbe erinnert dich: Deine Anstrengungen haben bereits Energie in die Welt gesandt – eine Antwort ist unterwegs."
+  },
+  "fourOfWands": {
+    "symbolism": "Menschen feiern unter einem geschmückten Baldachin – Symbol für Frieden, Harmonie und geteilte Freude.",
+    "uprightExtended": "Die Karte weist auf Stabilität, Feier und harmonische Beziehungen hin. Mögliche Festlichkeiten, eine Hochzeit oder eine glückliche Heimkehr.",
+    "reversedExtended": "Umgekehrt signalisiert sie Disharmonie in der Gemeinschaft, innere Unsicherheit oder übersehene Freude. Das Gleichgewicht will wiederhergestellt werden.",
+    "daily": "Feiere kleine Siege. Die Vier der Stäbe bringt Stabilität, Verbundenheit und ein Gefühl von Zuhause – auch wenn nur sinnbildlich."
+  },
+  "fiveOfWands": {
+    "symbolism": "Fünf Figuren schwingen Stäbe, als würden sie kämpfen oder üben – Symbol für Wettbewerb und Konflikt.",
+    "uprightExtended": "Aufrecht steht sie für Meinungsverschiedenheiten, Rivalität oder konstruktiven Streit. Anstrengung führt zu Wachstum.",
+    "reversedExtended": "Umgekehrt weist sie auf sinnlose Streitigkeiten, inneren Konflikt oder die Notwendigkeit zum Kompromiss hin.",
+    "daily": "Du könntest heute auf Meinungsclashs oder Ego-Kämpfe stoßen. Die Fünf der Stäbe bietet die Chance, deine Grenzen durch Herausforderung zu stärken."
+  },
+  "sixOfWands": {
+    "symbolism": "Ein Reiter trägt einen Lorbeer des Sieges, während ihn die Menge begrüßt – Symbol für öffentliche Anerkennung und Errungenschaft.",
+    "uprightExtended": "Aufrecht steht sie für Triumph, Anerkennung und Selbstvertrauen. Erfolg als Ergebnis vorheriger Mühe und Kämpfe.",
+    "reversedExtended": "Umgekehrt deutet sie auf unerkannte Leistung, Selbstzweifel oder Angst vor Scheitern hin. Arbeit am Selbstwert ist gefragt.",
+    "daily": "Anerkennung und Erfolg begleiten dich heute. Die Sechs der Stäbe erinnert dich: Applaus anzunehmen ist okay – du hast ihn verdient."
+  },
+  "sevenOfWands": {
+    "symbolism": "Eine Person steht auf höherem Boden und verteidigt sich gegen sechs Angreifer – Symbol für Entschlossenheit und Standhaftigkeit.",
+    "uprightExtended": "Die Karte ruft dazu auf, Stellung zu beziehen und deine Position zu verteidigen. Obwohl herausfordernd, lohnt sich der Einsatz.",
+    "reversedExtended": "Umgekehrt signalisiert sie Überforderung, Abwehrhaltung oder Rückzug vor Herausforderungen. Mut ist nötig, um dranzubleiben.",
+    "daily": "Steh für das ein, woran du glaubst. Die Sieben der Stäbe bringt Herausforderungen, aber auch die Kraft, deinen Standpunkt erhobenen Hauptes zu verteidigen."
+  },
+  "eightOfWands": {
+    "symbolism": "Acht Stäbe sausen durch die Luft – ein Symbol für Tempo, Bewegung und ungehinderten Fortschritt.",
+    "uprightExtended": "Aufrecht weist sie auf schnelle Bewegung, gute Nachrichten und eine Beschleunigung der Ereignisse hin. Die Energie fließt frei, Dinge geschehen rasch.",
+    "reversedExtended": "Umgekehrt deutet sie auf Verzögerungen, Kommunikationsblockaden oder Verwirrung hin. Bringe Gedanken und Handeln in Einklang.",
+    "daily": "Die Zeit beschleunigt sich. Die Acht der Stäbe bringt plötzliche Nachrichten, schnelle Kommunikation oder einen Sprung nach vorn – halte den Fokus."
+  },
+  "nineOfWands": {
+    "symbolism": "Ein verwundeter Krieger stützt sich auf einen Stab, die übrigen stehen hinter ihm – Symbol für Ausdauer und Schutz.",
+    "uprightExtended": "Diese Karte steht für Durchhaltevermögen, Beharrlichkeit und Verteidigung. Trotz Müdigkeit bist du bereit, dein Eigenes zu schützen.",
+    "reversedExtended": "Umgekehrt weist sie auf Burnout, Misstrauen oder das Gefühl ständiger Bedrohung hin. Es ist Zeit, deine Energie zu erneuern.",
+    "daily": "Vielleicht bist du erschöpft, doch du bist noch da. Die Neun der Stäbe erinnert: Du hast viel überstanden – deine Stärke ist näher, als du denkst."
+  },
+  "tenOfWands": {
+    "symbolism": "Eine Gestalt trägt zehn Stäbe und geht mühsam – Symbol für Lasten und selbst übernommene Verantwortung.",
+    "uprightExtended": "Aufrecht steht sie für Überlastung, Pflichtgefühl und die letzte Etappe einer großen Aufgabe. Es ist an der Zeit, zu delegieren.",
+    "reversedExtended": "Umgekehrt deutet sie auf das Ablehnen von Hilfe, Gefangensein im Pflichtgefühl oder emotionale Schwere hin. Erleichtere deine Last.",
+    "daily": "Wenn du zu viel trägst, ist heute der Tag, etwas abzulegen. Die Zehn der Stäbe lädt dich ein, die Bürde zu teilen oder Prioritäten neu zu ordnen."
+  },
+  "pageOfWands": {
+    "symbolism": "Ein junger Mensch in exotischer Kleidung betrachtet einen Stab – Symbol für neue Ideen, Botschaften und geistige Neugier.",
+    "uprightExtended": "Aufrecht weist sie auf eine Nachricht, Neuigkeiten oder den Beginn der Inspiration hin. Es ist Zeit, zu erkunden und dein inneres Feuer zu entdecken.",
+    "reversedExtended": "Umgekehrt deutet sie auf Unsicherheit, Impulsivität oder das Aufschieben des Selbstausdrucks hin. Mut und Authentizität sind gefragt.",
+    "daily": "Wecke heute deine Neugier. Der Page der Stäbe bringt jugendliche Energie – probiere etwas Neues, auch wenn es klein ist."
+  },
+  "knightOfWands": {
+    "symbolism": "Ein Ritter stürmt mit einem Stab voran – Symbol für Mut, Impuls und Leidenschaft in Bewegung.",
+    "uprightExtended": "Aufrecht steht er für entschlossenes Handeln, Enthusiasmus und den Wunsch, zu erobern. Die Energie ist intensiv und voller Initiative.",
+    "reversedExtended": "Umgekehrt weist er auf Leichtsinn, übermäßige Hast oder mangelnde Geduld hin. Richte Handeln am Zweck aus.",
+    "daily": "Folge deiner Leidenschaft – ohne kopflos zu stürmen. Der Ritter der Stäbe gibt Rückenwind; nutze ihn für ein Ziel, nicht nur für ein Rennen."
+  },
+  "queenOfWands": {
+    "symbolism": "Eine Königin sitzt mit Sonnenblume und Katze – Symbole für Selbstvertrauen, Charisma und geistige Stärke.",
+    "uprightExtended": "Aufrecht steht sie für Wärme, Magnetismus und innere Gewissheit. Die Königin inspiriert andere zu strahlen.",
+    "reversedExtended": "Umgekehrt deutet sie auf Unsicherheit, Eifersucht oder Manipulation durch Charme hin. Führung braucht Ehrlichkeit.",
+    "daily": "Du strahlst Charisma und Selbstvertrauen aus. Die Königin der Stäbe ermutigt dich, dein Licht nicht zu verbergen – inspiriere andere, indem du ganz du selbst bist."
+  },
+  "kingOfWands": {
+    "symbolism": "Ein König sitzt mit einem Stab in der Hand und blickt nach vorn – Symbol für Führung, Vision und entschlossene Leidenschaft.",
+    "uprightExtended": "Aufrecht steht er für visionäre Führung, Mut und Entschlusskraft. Es ist Zeit, die Führung mit Inspiration zu übernehmen.",
+    "reversedExtended": "Umgekehrt weist er auf Autoritarismus, Arroganz oder befehlendes Auftreten ohne Grundlage hin. Führe durch Vorbild, nicht durch Zwang.",
+    "daily": "Übernimm die Führung – mit Vision. Der König der Stäbe gibt dir die Kraft, andere durch Beispiel zu leiten, nicht durch Kontrolle."
+  },
+  "aceOfCups": {
+    "symbolism": "Eine Hand taucht aus einer Wolke auf und hält einen goldenen Kelch, aus dem Wasser überfließt – Symbol für Gefühl, Liebe und spirituelle Erneuerung.",
+    "uprightExtended": "Aufrecht signalisiert sie einen neuen emotionalen Anfang, ein offenes Herz und Fülle an Gefühlen. Ein idealer Moment für Liebe, Intuition und Heilung.",
+    "reversedExtended": "Umgekehrt steht sie für emotionale Blockaden, unterdrückte Gefühle oder die Unfähigkeit, Liebe anzunehmen. Das Herz möchte sich öffnen.",
+    "daily": "Öffne dein Herz für neue Gefühle. Das As der Kelche bringt Gelegenheit für Liebe, Vergebung oder spirituelle Erfüllung – heute beginnt alles mit Emotion."
+  },
+  "twoOfCups": {
+    "symbolism": "Ein Mann und eine Frau tauschen Kelche unter dem Segen eines Löwenkopfes – Symbol für Ausgleich und emotionale Verbindung.",
+    "uprightExtended": "Aufrecht steht sie für Partnerschaft, romantische oder spirituelle Verbindung, Harmonie und Austausch. Eine ausgezeichnete Karte für Beziehungen jeder Art.",
+    "reversedExtended": "Umgekehrt weist sie auf Missverständnisse, Trennungen oder nicht erwiderte Gefühle hin. Der emotionale Ausgleich will wiederhergestellt werden.",
+    "daily": "Beziehungen stehen heute im Fokus. Die Zwei der Kelche lädt dich ein, Ausgleich, Austausch und echte Verbindung mit jemandem zu pflegen."
+  },
+  "threeOfCups": {
+    "symbolism": "Drei Frauen feiern und heben ihre Kelche, umringt von den Früchten der Erde – Symbol für Verbundenheit und Freude.",
+    "uprightExtended": "Diese Karte steht für Feier, Freundschaft, Zusammenkünfte und geteiltes Glück. Es ist Zeit, deine Freude mit anderen zu teilen.",
+    "reversedExtended": "Umgekehrt deutet sie auf Isolation, Eifersucht oder brüchige soziale Bindungen hin. Prüfe Beziehungen und Vertrauen.",
+    "daily": "Feiere Freundschaft, Freude und kleine Momente. Die Drei der Kelche bringt Heiterkeit und erinnert: Du musst nicht allein sein."
+  },
+  "fourOfCups": {
+    "symbolism": "Eine Person sitzt nachdenklich unter einem Baum, während eine Hand aus einer Wolke einen weiteren Kelch anbietet – Symbol für Unzufriedenheit und eine introspektive Phase.",
+    "uprightExtended": "Aufrecht weist sie auf emotionale Apathie, Langeweile oder das Übersehen einer Chance hin. Zeit, den Blick zu weiten.",
+    "reversedExtended": "Umgekehrt signalisiert sie ein frisches Erwachen, das Verlassen der Apathie und Bereitschaft für emotionales Wachstum.",
+    "daily": "Vielleicht fokussierst du dich zu sehr auf das, was fehlt. Die Vier der Kelche erinnert: Schau weiter – eine Gelegenheit könnte direkt vor dir liegen."
+  },
+  "fiveOfCups": {
+    "symbolism": "Eine Gestalt im schwarzen Mantel blickt auf verschüttete Kelche, während zwei dahinter stehen – Symbol für Verlust, aber auch Hoffnung.",
+    "uprightExtended": "Die Karte steht für Kummer, Enttäuschung oder Reue. Sie ruft dazu auf, Verlust anzunehmen und sich neuen Möglichkeiten zu öffnen.",
+    "reversedExtended": "Umgekehrt signalisiert sie Vergebung, emotionale Erholung und den Fokus auf das, was wertvoll geblieben ist. Hoffnung kehrt zurück.",
+    "daily": "Trauer ist natürlich, aber nicht das Ende. Die Fünf der Kelche lädt ein, den Verlust anzuerkennen und sich dann dem Zukünftigen zuzuwenden."
+  },
+  "sixOfCups": {
+    "symbolism": "Zwei Kinder in einem Garten reichen sich einen Kelch – Symbol für Erinnerungen, Nostalgie und die Unschuld der Vergangenheit.",
+    "uprightExtended": "Die Karte weist auf Erinnerungen, Kindheit, Nostalgie und Geben ohne Erwartung hin. Erneuere den Geist der Unschuld.",
+    "reversedExtended": "Umgekehrt deutet sie auf Festhalten an der Vergangenheit, Unreife oder die Notwendigkeit, alte emotionale Bindungen zu lösen.",
+    "daily": "Erinnere dich an etwas Schönes aus der Vergangenheit. Die Sechs der Kelche bringt Nostalgie – und die Chance, aus früherer Freude Kraft für das Jetzt zu schöpfen."
+  },
+  "sevenOfCups": {
+    "symbolism": "Eine Gestalt steht vor sieben schwebenden Kelchen voller Symbole – Illusionen, Versuchungen und Möglichkeiten.",
+    "uprightExtended": "Aufrecht weist sie auf viele Optionen, Vorstellungskraft und Verwirrung hin. Wähle mit dem Herzen, nicht nur mit den Augen.",
+    "reversedExtended": "Umgekehrt spricht sie für zerstreute Energie, haltlose Fantasien oder die endlich getroffene Wahl unter vielen Optionen.",
+    "daily": "Es gibt viele Möglichkeiten – aber nicht alle sind real. Die Sieben der Kelche ruft dazu auf, Illusion und wahres Begehren zu unterscheiden."
+  },
+  "eightOfCups": {
+    "symbolism": "Eine Gestalt lässt acht Kelche zurück und geht in die Berge – Symbol für spirituelle Suche und das Verlassen des Vertrauten.",
+    "uprightExtended": "Die Karte bedeutet emotionalen Rückzug, Sinnsuche und das Bedürfnis nach innerer Erfüllung.",
+    "reversedExtended": "Umgekehrt steht sie für aufgeschobenen Abschied, das Meiden von Konfrontation oder die Rückkehr in alte Muster.",
+    "daily": "Es könnte Zeit sein, zu verlassen, was dich nicht mehr erfüllt. Die Acht der Kelche erinnert: Das ist kein Aufgeben – es ist die Suche nach tieferem Sinn."
+  },
+  "nineOfCups": {
+    "symbolism": "Eine zufriedene Gestalt sitzt vor neun Kelchen – Symbol für erfüllte Wünsche, Zufriedenheit und emotionale Fülle.",
+    "uprightExtended": "Aufrecht bringt sie emotionale Zufriedenheit, erreichte Ziele und Dankbarkeit. Genieße die Früchte deiner Arbeit.",
+    "reversedExtended": "Umgekehrt steht sie für oberflächliches Vergnügen, Maßlosigkeit oder enttäuschte Erwartungen. Suche tiefere Erfüllung.",
+    "daily": "Zufriedenheit kommt von innen. Die Neun der Kelche bringt emotionale Erfüllung – heute ist Tag für Dankbarkeit und eine Prise Hedonismus."
+  },
+  "tenOfCups": {
+    "symbolism": "Eine Familie steht unter einem Regenbogen aus zehn Kelchen – Symbol für ideale Liebe, Harmonie und emotionale Erfüllung.",
+    "uprightExtended": "Die Karte bringt emotionale Erfüllung, familiäre Harmonie und inneren Frieden. Ein Gipfel der Freude in Liebe und Beziehungen.",
+    "reversedExtended": "Umgekehrt weist sie auf Risse hinter dem perfekten Bild, familiäre Spannungen oder unrealistische Erwartungen hin.",
+    "daily": "Liebe, Familie, Erfüllung – heute umgibt dich ein Gefühl der Ganzheit. Die Zehn der Kelche feiert Verbundenheit im weitesten Sinn."
+  },
+  "pageOfCups": {
+    "symbolism": "Ein junger Mensch hält einen Kelch, aus dem ein Fisch auftaucht – Symbol für plötzliche Intuition, Botschaften und Gefühl.",
+    "uprightExtended": "Diese Karte steht für zarte Gefühle, Kreativität und den Beginn emotionaler Einsicht. Öffne dein Herz für das Unbekannte.",
+    "reversedExtended": "Umgekehrt deutet sie auf Unreife, Flapsigkeit in Gefühlen oder das Meiden wahrer Emotionen hin.",
+    "daily": "Sei offen für eine Botschaft des Herzens – so seltsam sie wirkt. Der Page der Kelche bringt künstlerische Inspiration, Überraschungen und sanfte Emotionen."
+  },
+  "knightOfCups": {
+    "symbolism": "Ein Ritter auf weißem Pferd trägt einen Kelch – Bote der Liebe, der Kunst und spiritueller Sehnsucht.",
+    "uprightExtended": "Aufrecht steht er für romantisches Angebot, spirituelle Suche und Idealismus. Emotion und Vision bewegen dich.",
+    "reversedExtended": "Umgekehrt weist er auf Täuschung, emotionale Manipulation oder unrealistische Erwartungen in der Liebe hin.",
+    "daily": "Heute sprichst du (oder empfängst) Worte aus dem Herzen. Der Ritter der Kelche bringt Romantik – und den Ruf, der Stimme deiner Seele zu folgen."
+  },
+  "queenOfCups": {
+    "symbolism": "Eine Königin sitzt am Meer und hält einen geschlossenen Kelch – Symbol für intuitive Weisheit und emotionale Tiefe.",
+    "uprightExtended": "Die Karte steht für Mitgefühl, Fürsorge und spirituelle Tiefe. Sie hört mit dem Herzen und versteht das Ungesagte.",
+    "reversedExtended": "Umgekehrt steht sie für emotionale Erschöpfung, Passivität oder Überwältigtsein durch die Gefühle anderer.",
+    "daily": "Nähre dich von innen. Die Königin der Kelche bringt tiefe emotionale Weisheit – heute musst du nichts reparieren, nur fühlen."
+  },
+  "kingOfCups": {
+    "symbolism": "Ein König sitzt auf einem Thron im Wasser, ruhig trotz der Wellen – Symbol für Meisterschaft über Emotionen.",
+    "uprightExtended": "Aufrecht steht er für emotionale Stabilität, Weisheit und aufrichtige Unterstützung. Du führst andere mit Herz und Erfahrung.",
+    "reversedExtended": "Umgekehrt deutet er auf unterdrückte Emotionen, Manipulation oder emotionale Distanz hin. Bringe Kopf und Herz in Einklang.",
+    "daily": "Bleib ruhig in deinem Ozean der Gefühle. Der König der Kelche lehrt: Du musst Emotionen nicht unterdrücken – trage sie weise."
+  },
+  "aceOfSwords": {
+    "symbolism": "Eine Hand taucht aus einer Wolke auf und hält ein aufgerichtetes Schwert, gekrönt von einem Lorbeer – Symbol für Wahrheit, Klarheit und geistigen Durchbruch.",
+    "uprightExtended": "Diese Karte steht für einen Neubeginn durch Wahrheit, einen klaren Geist und Entschlossenheit. Es ist Zeit, Entscheidungen zu treffen und Illusionen zu durchschneiden.",
+    "reversedExtended": "Umgekehrt bedeutet sie Verwirrung, mentale Blockaden oder Fehlurteil. Klarheit will in der Stille wiedergefunden werden.",
+    "daily": "Heute wird Klarheit geboren. Das As der Schwerter bringt Wahrheit und die Kraft der Worte – sage, was du meinst, aber bewusst."
+  },
+  "twoOfSwords": {
+    "symbolism": "Eine Frau sitzt mit verbundenen Augen und hält zwei gekreuzte Schwerter – Symbol für Unentschlossenheit und inneren Konflikt.",
+    "uprightExtended": "Aufrecht steht sie für das Abwägen zwischen zwei Optionen, das Aufschieben einer Entscheidung und das Bedürfnis nach innerem Frieden vor dem Handeln.",
+    "reversedExtended": "Umgekehrt weist sie auf Unfähigkeit zur Entscheidung, einen emotionalen Block oder das Ignorieren der Wahrheit hin.",
+    "daily": "Vielleicht vermeidest du eine Entscheidung – doch es ist Zeit, der Wahrheit zu begegnen. Die Zwei der Schwerter verlangt Balance zwischen Logik und Gefühl."
+  },
+  "threeOfSwords": {
+    "symbolism": "Drei Schwerter durchbohren ein rotes Herz vor grauem Himmel – Symbol für Kummer, Herzschmerz und Verlust.",
+    "uprightExtended": "Diese Karte bringt Schmerz, Enttäuschung und das Ende von etwas Emotionalem. Doch durch Trauer entsteht Heilung.",
+    "reversedExtended": "Umgekehrt signalisiert sie einen Heilungsprozess, das Loslassen von Schmerz oder verdrängte Trauer, die an die Oberfläche will.",
+    "daily": "Kummer will anerkannt werden, damit er gehen kann. Die Drei der Schwerter schmerzt, öffnet aber das Herz für etwas Wahreres."
+  },
+  "fourOfSwords": {
+    "symbolism": "Eine Gestalt liegt in einer Kirche mit gefalteten Händen – Symbol für Ruhe, Kontemplation und spirituelle Erneuerung.",
+    "uprightExtended": "Die Karte ruft zu Pause, Erholung und geistiger Stille auf. Regeneriere Körper und Geist vor der nächsten Phase.",
+    "reversedExtended": "Umgekehrt weist sie auf Unruhe, die Weigerung zu ruhen oder innere Erschöpfung hin. Einkehr ist dringend nötig.",
+    "daily": "Ruhe ist Medizin. Die Vier der Schwerter rät, dich zurückzuziehen, den Geist zu beruhigen und Kraft zu sammeln, bevor es weitergeht."
+  },
+  "fiveOfSwords": {
+    "symbolism": "Eine Gestalt sammelt Schwerter ein, während andere sich zurückziehen – Symbol für Sieg zum Preis von Konflikt und verlorenem Respekt.",
+    "uprightExtended": "Aufrecht steht sie für Konflikt, Manipulation oder einen Sieg ohne echte Befriedigung. Hinterfrage deine Motive.",
+    "reversedExtended": "Umgekehrt ruft sie nach Versöhnung, dem Meiden von Streit oder dem Ausstieg aus einer toxischen Situation.",
+    "daily": "Hüte dich vor einem hohlen Sieg. Die Fünf der Schwerter erinnert: Nicht jeder Konflikt lohnt – wähle Frieden statt Dominanz."
+  },
+  "sixOfSwords": {
+    "symbolism": "Eine Gestalt überquert im Boot das Wasser und trägt sechs Schwerter – Symbol für Übergang, Heilung und Kontextwechsel.",
+    "uprightExtended": "Die Karte bedeutet ruhigen Übergang, emotionale Heilung und die Rückkehr zum Gleichgewicht. Es ist Zeit, die Vergangenheit hinter dir zu lassen.",
+    "reversedExtended": "Umgekehrt zeigt sie Schwierigkeiten beim Loslassen, emotionales Gepäck oder das Aufschieben notwendiger Veränderung.",
+    "daily": "Du steuerst ruhigeren Gewässern entgegen. Die Sechs der Schwerter bringt Erleichterung nach einer harten Phase – akzeptiere den Übergang."
+  },
+  "sevenOfSwords": {
+    "symbolism": "Eine Gestalt schleicht mit Schwertern davon und blickt zurück – Symbol für Täuschung, versteckte Absichten und Selbstbetrug.",
+    "uprightExtended": "Aufrecht steht sie für List, Strategie oder das Meiden von Verantwortung. Jemand könnte etwas verbergen.",
+    "reversedExtended": "Umgekehrt weist sie auf aufgedeckte Wahrheit, Gewissensbisse oder den Ruf zur Ehrlichkeit hin.",
+    "daily": "Sei klug und wachsam. Die Sieben der Schwerter deutet an, dass jemand (vielleicht du) der Wahrheit ausweicht – es ist Zeit für Aufrichtigkeit."
+  },
+  "eightOfSwords": {
+    "symbolism": "Eine Frau ist gefesselt und von Schwertern umringt – Symbol für geistiges Gefängnis, Angst und Begrenzung.",
+    "uprightExtended": "Diese Karte steht für das Gefühl, gefangen zu sein und keinen Ausweg zu sehen. Die Grenzen sind größtenteils innerer Natur.",
+    "reversedExtended": "Umgekehrt symbolisiert sie Befreiung, Bewusstwerdung und den ersten Schritt in geistige Freiheit.",
+    "daily": "Das Gefühl der Gefangenheit entsteht innen. Die Acht der Schwerter erinnert: Deine Gedanken sind die Barriere – und du hältst den Schlüssel."
+  },
+  "nineOfSwords": {
+    "symbolism": "Eine Person sitzt im Bett mit den Händen am Kopf, unter neun Schwertern – Symbol für Sorge, Schlaflosigkeit und Reue.",
+    "uprightExtended": "Aufrecht weist sie auf seelische Qual, Angst oder Schuldgefühle hin. Gedanken sind zur Last geworden.",
+    "reversedExtended": "Umgekehrt bringt sie Erholung, abklingende Sorgen oder das Anerkennen innerer Themen.",
+    "daily": "Sorgen greifen vielleicht nachts – doch sie sind nicht die ganze Welt. Die Neun der Schwerter flüstert: Du bist nicht allein – und nicht das, wovor du dich fürchtest."
+  },
+  "tenOfSwords": {
+    "symbolism": "Eine Gestalt liegt mit zehn Schwertern im Rücken unter dunklem Himmel – Symbol für Ende, Verrat und endgültigen Zusammenbruch.",
+    "uprightExtended": "Diese Karte steht für das Ende eines Zyklus, Enttäuschung oder emotionalen Verrat – und eine neue Morgenröte nach der Dunkelheit.",
+    "reversedExtended": "Umgekehrt bedeutet sie Überleben, Erholung und das Auftauchen aus einer schweren Lage. Zeit für einen Neustart.",
+    "daily": "Das Ende mag schmerzhaft sein, doch es bringt Erleichterung. Die Zehn der Schwerter schließt ein Kapitel und macht Platz für Erneuerung."
+  },
+  "pageOfSwords": {
+    "symbolism": "Ein junger Mensch steht mit einem Schwert in wachsamer Haltung – Symbol für Neugier, geistige Wachheit und Vorsicht.",
+    "uprightExtended": "Diese Karte steht für geistige Schärfe, Kommunikation und Recherche. Es ist Zeit für ehrliche Gespräche und Lernen.",
+    "reversedExtended": "Umgekehrt weist sie auf Klatsch, fehlenden Fokus oder übermäßige Abwehr hin. Beruhige den Geist und werde klarer.",
+    "daily": "Sei neugierig, aber umsichtig. Der Page der Schwerter bringt neue Informationen – höre zu, beobachte und spring nicht zu schnellen Schlüssen."
+  },
+  "knightOfSwords": {
+    "symbolism": "Ein Ritter stürmt mit erhobenem Schwert voran – Symbol für Aktion, Entschlossenheit und ideengetriebenen Impuls.",
+    "uprightExtended": "Aufrecht steht er für Tempo, geistigen Durchbruch und Mut. Es ist Zeit für entschlossenes Handeln ohne Zögern.",
+    "reversedExtended": "Umgekehrt weist er auf Übereifer, aggressive Kommunikation oder geistiges Chaos hin. Kanalisier die Energie weiser.",
+    "daily": "Deine Gedanken rasen – achte darauf, nicht zu zerschneiden, was du behalten willst. Der Ritter der Schwerter verlangt Balance zwischen Leidenschaft und Vernunft."
+  },
+  "queenOfSwords": {
+    "symbolism": "Eine Königin sitzt mit erhobenem Schwert; die andere Hand lädt ein – Symbol für Fairness und geistige Stärke.",
+    "uprightExtended": "Die Karte steht für Objektivität, Weisheit und einen analytischen Ansatz. Die wirkliche Wahrheit kommt ans Licht.",
+    "reversedExtended": "Umgekehrt bedeutet sie Kälte, Intoleranz oder emotionale Distanz. Es braucht Balance zwischen Verstand und Herz.",
+    "daily": "Sei klar und wahrhaftig, auch wenn es kühl wirkt. Die Königin der Schwerter bringt illusionsfreie Weisheit – du siehst die Dinge, wie sie sind."
+  },
+  "kingOfSwords": {
+    "symbolism": "Ein König sitzt auf einem Thron mit einem Schwert – Symbol für Wahrheit, Gerechtigkeit und Rationalität.",
+    "uprightExtended": "Aufrecht steht er für Autorität, Logik und moralische Standfestigkeit. Führe mit Intellekt und Klarheit.",
+    "reversedExtended": "Umgekehrt weist er auf Manipulation, Machtmissbrauch oder extremen Rationalismus hin. Ein gerechter Ausgleich ist nötig.",
+    "daily": "Heute regiert die Logik. Der König der Schwerter ruft zu Entschlossenheit und Objektivität – führe durch Vorbild, nicht durch Emotion."
+  },
+  "aceOfPentacles": {
+    "symbolism": "Eine Hand taucht aus einer Wolke auf und hält ein goldenes Münz-Pentakel – Symbol für neue materielle Chancen und Geschenke des Universums.",
+    "uprightExtended": "Die Karte weist auf einen Neubeginn in Geld, Gesundheit oder Karriere hin. Es ist Zeit, Dinge greifbar zu machen.",
+    "reversedExtended": "Umgekehrt deutet sie auf verpasste Chancen, wacklige Grundlagen oder Verzögerungen bei der Manifestation hin.",
+    "daily": "Heute öffnet sich eine neue Möglichkeit in der materiellen Welt – Geld, Arbeit, Gesundheit. Das As der Münzen ist der Samen der Stabilität – pflanze ihn achtsam."
+  },
+  "twoOfPentacles": {
+    "symbolism": "Eine Gestalt jongliert zwei Münzen, verbunden durch das Unendlichkeitssymbol – Sinnbild für das Meistern der Lebensströme.",
+    "uprightExtended": "Aufrecht steht sie für Balance zwischen Arbeit und Privatleben, Flexibilität und Einfallsreichtum.",
+    "reversedExtended": "Umgekehrt weist sie auf Chaos, Stress oder das Vernachlässigen eines Lebensbereichs hin. Bessere Organisation ist nötig.",
+    "daily": "Drehst du viele Teller gleichzeitig? Die Zwei der Münzen lehrt dich, deinen Rhythmus zu finden – Balance ist heute dein bestes Werkzeug."
+  },
+  "threeOfPentacles": {
+    "symbolism": "Künstler, Priester und Handwerker arbeiten gemeinsam an einer Kathedrale – Symbol für Teamarbeit und geteilte Werte.",
+    "uprightExtended": "Die Karte steht für Kooperation, Anerkennung von Können und Bauen auf solidem Fundament.",
+    "reversedExtended": "Umgekehrt signalisiert sie mangelnde Zusammenarbeit, Team-Fehlanpassung oder das Ablehnen von Rat.",
+    "daily": "Zusammenarbeit bringt Ergebnisse. Die Drei der Münzen erinnert: Erfolg wächst, wenn jeder seinen Teil beiträgt – und die Leistung der anderen respektiert."
+  },
+  "fourOfPentacles": {
+    "symbolism": "Ein Mann klammert eine Münze, zwei stehen unter seinen Füßen, eine auf seiner Krone – Symbol für materielle Sicherheit und Anhaftung.",
+    "uprightExtended": "Aufrecht steht sie für Sparen, Kontrollbedürfnis und Ressourcenschonung. Es ist Zeit für Stabilität.",
+    "reversedExtended": "Umgekehrt deutet sie auf Gier, Sturheit oder Angst vor Verlust hin. Öffne dich dem Fluss.",
+    "daily": "Hältst du etwas zu fest? Die Vier der Münzen mahnt: Schutz darf kein Gefängnis werden – Sicherheit entsteht auch aus Vertrauen."
+  },
+  "fiveOfPentacles": {
+    "symbolism": "Zwei Bedürftige gehen im Schnee an einer Kirche vorbei – Symbol für Mangel, Isolation und körperliche oder geistige Not.",
+    "uprightExtended": "Die Karte weist auf finanzielle Not, Krankheit oder emotionale Einsamkeit hin. Hilfe existiert, aber sie muss erbeten werden.",
+    "reversedExtended": "Umgekehrt symbolisiert sie Erholung, das Herauskommen aus dem Mangel und Hoffnung. Ein Licht erscheint.",
+    "daily": "Wenn du dich ausgeschlossen oder unsicher fühlst, suche Unterstützung. Die Fünf der Münzen erinnert: Du bist nicht allein – die Tür ist näher, als du denkst."
+  },
+  "sixOfPentacles": {
+    "symbolism": "Ein Wohlhabender gibt Geld an Bedürftige und hält dabei eine Waage – Symbol für Ausgleich, Geben und Empfangen.",
+    "uprightExtended": "Diese Karte steht für Großzügigkeit, Hilfe und Balance im Austausch. Es ist Zeit, dankbar zu geben oder zu empfangen.",
+    "reversedExtended": "Umgekehrt weist sie auf Ungleichgewicht, Abhängigkeit oder Hilfe mit Erwartungen hin. Hinterfrage die wahren Absichten.",
+    "daily": "Denke heute an Gegenseitigkeit. Die Sechs der Münzen lädt ein, mit Ausgleich, Dankbarkeit und ohne Schuld zu geben – oder anzunehmen."
+  },
+  "sevenOfPentacles": {
+    "symbolism": "Ein Gärtner betrachtet seine Ernte – Symbol für Warten, Bewertung und Geduld im Wachstumsprozess.",
+    "uprightExtended": "Aufrecht steht sie für Bestandsaufnahme, Einsatz von Mühe und geduldiges Warten auf Resultate. Geduld zahlt sich aus.",
+    "reversedExtended": "Umgekehrt deutet sie auf Ungeduld, Zweifel an der eigenen Mühe oder die Notwendigkeit hin, die Richtung neu zu prüfen.",
+    "daily": "Geduld ist der Schlüssel. Die Sieben der Münzen sagt: Die Früchte kommen – doch sie brauchen Pflege und Zeit. Gib jetzt nicht auf."
+  },
+  "eightOfPentacles": {
+    "symbolism": "Ein Arbeiter fertigt unermüdlich Münzen – Symbol für Meisterschaft, Hingabe und Handwerkskunst.",
+    "uprightExtended": "Diese Karte steht für engagierte Arbeit, Lernen und Fortschritt durch Übung. Es ist Zeit für Disziplin.",
+    "reversedExtended": "Umgekehrt weist sie auf uninspirierte Routine, Fehler durch Hast oder die Weigerung zu lernen hin.",
+    "daily": "Übung macht Meister:in. Die Acht der Münzen lädt ein, Einsatz zu zeigen und deine Fähigkeiten zu entwickeln – jeder Schritt zählt."
+  },
+  "nineOfPentacles": {
+    "symbolism": "Eine Frau steht im Garten mit einem Falken – Symbol für Unabhängigkeit, Luxus und Selbstvertrauen.",
+    "uprightExtended": "Die Karte bringt die Früchte der Arbeit, Selbstständigkeit und Freude am Erreichten. Steh stolz auf eigenen Füßen.",
+    "reversedExtended": "Umgekehrt weist sie auf Abhängigkeit, Unauthentizität oder Angst vor Eigenständigkeit hin. Baue deinen Selbstwert auf.",
+    "daily": "Unabhängigkeit und Genuss deiner hart erarbeiteten Früchte führen heute. Die Neun der Münzen erinnert: Du bist fähig – und würdig von Fülle."
+  },
+  "tenOfPentacles": {
+    "symbolism": "Eine Familie, umgeben von Symbolen der Fülle – Sinnbild für materielle Sicherheit, Familientradition und Erbe.",
+    "uprightExtended": "Diese Karte steht für langfristige Stabilität, Familienwerte und den Abschluss eines erfolgreichen Zyklus.",
+    "reversedExtended": "Umgekehrt deutet sie auf familiäre Spannungen, finanzielle Konflikte oder den Verlust geerbter Werte hin.",
+    "daily": "Denk langfristig. Die Zehn der Münzen bringt Zugehörigkeit, Vermächtnis und Sicherheit – heute legst du Fundamente für morgen."
+  },
+  "pageOfPentacles": {
+    "symbolism": "Ein junger Mensch betrachtet konzentriert ein goldenes Pentakel – Symbol für Lernen, materielles Potenzial und konkreten Vorsatz.",
+    "uprightExtended": "Die Karte steht für Neugier, Lehrjahre und den ersten Schritt zur praktischen Verwirklichung. Lernen durch Tun.",
+    "reversedExtended": "Umgekehrt signalisiert sie fehlenden Fokus, vertane Chancen oder das Aufschieben des Starts. Zielstrebigkeit ist gefragt.",
+    "daily": "Heute ist ideal zum Lernen oder Ziele setzen. Der Page der Münzen flüstert: Wenn du an die Idee glaubst – sei bereit, sie zu nähren."
+  },
+  "knightOfPentacles": {
+    "symbolism": "Ein Ritter sitzt ruhig auf einem Pferd und hält ein Pentakel – Symbol für Verantwortung, Geduld und gründliches Handeln.",
+    "uprightExtended": "Aufrecht steht er für Ausdauer, Hingabe und stetigen, realistischen Fortschritt. Folge dem verlässlichen Weg.",
+    "reversedExtended": "Umgekehrt weist er auf Sturheit, Stagnation oder übermäßige Langsamkeit hin. Richte dein Tempo an deinem Zweck aus.",
+    "daily": "Beständigkeit und Liebe zum Detail sind deine Verbündeten. Der Ritter der Münzen erinnert: Langsam und stetig – so baust du, was Bestand hat."
+  },
+  "queenOfPentacles": {
+    "symbolism": "Eine Königin in der Natur hält fürsorglich ein Pentakel – Symbol für Zuhause, Stabilität und mütterliche Energie.",
+    "uprightExtended": "Die Karte bringt Sicherheit, Fürsorge und Pragmatismus. Sie schafft Harmonie durch Organisation und Sanftmut.",
+    "reversedExtended": "Umgekehrt steht sie für Selbstvernachlässigung, übermäßigen Materialismus oder emotionalen Rückzug.",
+    "daily": "Nähre deine Welt – außen wie innen. Die Königin der Münzen bringt Wärme, Praktikabilität und Stabilität – kümmere dich um Körper, Zuhause und Routine."
+  },
+  "kingOfPentacles": {
+    "symbolism": "Ein König sitzt auf einem Thron, geschmückt mit Stieren und Ranken – Symbol für Macht, Wohlstand und etablierte Stabilität.",
+    "uprightExtended": "Diese Karte steht für erreichten materiellen Erfolg, kluge Ressourcenverwaltung und Sicherheit.",
+    "reversedExtended": "Umgekehrt weist sie auf Dickköpfigkeit, Gier oder Überkontrolle hin. Lass den Fluss des Lebens zu.",
+    "daily": "Triff heute Entscheidungen, die langfristige Grundlagen schaffen. Der König der Münzen erinnert: Deine Stärke liegt in weiser Hüterschaft der Ressourcen."
+  }
+}

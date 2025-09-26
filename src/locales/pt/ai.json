@@ -1,0 +1,67 @@
+{
+  "titles": {
+    "aiReply": "Una responde",
+    "housesAnalysis": "Interpretação por casas astrológicas",
+    "sefirotAnalysis": "Interpretação por sefirot",
+    "celticAnalysis": "Interpretação da Cruz Celta",
+    "followupPrompt": "Adicione uma pergunta de acompanhamento (PRO):",
+    "astroHouses": "Interpretação por casas astrológicas:",
+    "sefirot": "Interpretação por Sefirot:",
+    "celticInterpretation": "Interpretação da Cruz Celta:"
+  },
+  "labels": {
+    "question": "Pergunta:",
+    "spreadType": "Tipo de tiragem: {{value}}. "
+  },
+  "placeholders": {
+    "followup": "Digite uma pergunta de acompanhamento..."
+  },
+  "summary": {
+    "label": "Resumo geral:"
+  },
+  "houses": [
+    "1ª Casa (Eu)",
+    "2ª Casa (Finanças)",
+    "3ª Casa (Comunicação)",
+    "4ª Casa (Lar e Família)",
+    "5ª Casa (Criatividade)",
+    "6ª Casa (Saúde)",
+    "7ª Casa (Parcerias)",
+    "8ª Casa (Transformação)",
+    "9ª Casa (Viagens e Crenças)",
+    "10ª Casa (Carreira)",
+    "11ª Casa (Amigos e Comunidade)",
+    "12ª Casa (Subconsciente)"
+  ],
+  "celticPositions": [
+    "1. Situação atual",
+    "2. Obstáculo / Desafio",
+    "3. Base (Inconsciente)",
+    "4. Passado",
+    "5. Consciente / Possibilidades",
+    "6. Futuro próximo",
+    "7. Atitude em relação à situação",
+    "8. Influência do ambiente",
+    "9. Esperanças / Medos",
+    "10. Resultado"
+  ],
+  "sefirot": [
+    "Keter (Coroa)",
+    "Chokhmah (Sabedoria)",
+    "Binah (Compreensão)",
+    "Chesed (Misericórdia)",
+    "Gevurah (Rigor)",
+    "Tiferet (Beleza)",
+    "Netzach (Eternidade)",
+    "Hod (Glória)",
+    "Yesod (Fundação)",
+    "Malkhut (Reino)"
+  ],
+  "misc": {
+    "proOnly": "Perguntas de acompanhamento estão disponíveis apenas para PRO.",
+    "followupTitle": "Enviar pergunta de acompanhamento (PRO):",
+    "followupAnswer": "Resposta da pergunta de acompanhamento:",
+    "oneFollowupNote": "Você pode fazer uma nova pergunta de acompanhamento apenas na próxima leitura.",
+    "cardPlaceholder": "Carta {{index}}"
+  }
+}

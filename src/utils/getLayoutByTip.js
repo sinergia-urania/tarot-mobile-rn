@@ -41,3 +41,5 @@ const getLayoutByTip = (tip, subtip) => {
 
 export default getLayoutByTip;
 // END: Migracija getLayoutByTip za React Native
+
+

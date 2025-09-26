@@ -1,0 +1,76 @@
+{
+    "categories": {
+        "love": {
+            "name": "Love",
+            "icon": "❤️",
+            "items": [
+                "Do they love me?",
+                "What does our future look like?",
+                "Will we reconcile?",
+                "Will I meet someone special soon?",
+                "How can I improve my love life?",
+                "Is my partner honest with me?"
+            ]
+        },
+        "work": {
+            "name": "Work",
+            "icon": "💼",
+            "items": [
+                "Will I get the job I want?",
+                "What career path awaits me?",
+                "Is it time to change jobs?",
+                "How can I advance at work?",
+                "Will my effort be recognized?",
+                "How can I find a job that fulfills me?"
+            ]
+        },
+        "health": {
+            "name": "Health",
+            "icon": "🧘",
+            "items": [
+                "Will I recover?",
+                "What should I pay attention to?",
+                "How can I improve my health?",
+                "Is the current treatment the right choice?",
+                "How can I improve my mental health?",
+                "Should I seek a second opinion?"
+            ]
+        },
+        "finance": {
+            "name": "Finances",
+            "icon": "💰",
+            "items": [
+                "How can I improve my finances?",
+                "Is it a wise investment?",
+                "Will I have financial stability?",
+                "How can I manage my money more wisely?",
+                "Will I pay off my debts?",
+                "Is a gain coming my way?"
+            ]
+        },
+        "spiritual": {
+            "name": "Spiritual growth",
+            "icon": "🌀",
+            "items": [
+                "What is my purpose?",
+                "What is my soul telling me?",
+                "What should I work on spiritually?",
+                "What is the next step in my growth?",
+                "How can I find inner peace?",
+                "What lesson keeps repeating for me?"
+            ]
+        },
+        "family": {
+            "name": "Family & relationships",
+            "icon": "🏡",
+            "items": [
+                "How can I improve family relationships?",
+                "Will the situation in the family calm down?",
+                "How can I help a family member?",
+                "Will my relationship with [name] improve?",
+                "How can I support my partner?",
+                "Are we expecting peace at home?"
+            ]
+        }
+    }
+}

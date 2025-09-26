@@ -1,11 +1,30 @@
-{
+﻿{
+  "cli": {
+    "appVersionSource": "remote"
+  },
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_AI_DEBUG": "1",
+        "EXPO_PUBLIC_VERBOSE_AI_LOGS": "1",
+        "EXPO_PUBLIC_AI_DEDUPE_WINDOW_MS": "1200",
+        "EXPO_PUBLIC_AI_LANG_GUARD": "1",
+        "EXPO_PUBLIC_AI_LANG_GUARD_TRANSLATE": "1",
+        "EXPO_PUBLIC_AI_LANG_GUARD_MAXCHARS": "6000",
+        "EXPO_PUBLIC_AI_MODEL_UTIL": "gpt-4.1-mini",
+        "EXPO_PUBLIC_ADS_ENV": "prod"
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
     },
     "production": {
       "android": {

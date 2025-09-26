@@ -1,0 +1,76 @@
+{
+    "categories": {
+        "love": {
+            "name": "Amor",
+            "icon": "❤️",
+            "items": [
+                "Ela/e me ama?",
+                "Como será o nosso futuro?",
+                "Vamos nos reconciliar?",
+                "Vou conhecer alguém especial em breve?",
+                "Como posso melhorar minha vida amorosa?",
+                "Meu parceiro está sendo honesto comigo?"
+            ]
+        },
+        "work": {
+            "name": "Trabalho",
+            "icon": "💼",
+            "items": [
+                "Vou conseguir o trabalho que eu quero?",
+                "Qual caminho de carreira me aguarda?",
+                "É hora de mudar de emprego?",
+                "Como posso crescer no trabalho?",
+                "Meu esforço será reconhecido?",
+                "Como posso encontrar um trabalho que me realize?"
+            ]
+        },
+        "health": {
+            "name": "Saúde",
+            "icon": "🧘",
+            "items": [
+                "Vou me recuperar?",
+                "Com o que devo me preocupar?",
+                "Como posso melhorar minha saúde?",
+                "O tratamento atual é a escolha certa?",
+                "Como posso melhorar minha saúde mental?",
+                "Devo buscar uma segunda opinião?"
+            ]
+        },
+        "finance": {
+            "name": "Finanças",
+            "icon": "💰",
+            "items": [
+                "Como posso melhorar minhas finanças?",
+                "É um investimento sábio?",
+                "Terei estabilidade financeira?",
+                "Como posso administrar meu dinheiro com mais sabedoria?",
+                "Vou quitar minhas dívidas?",
+                "Um ganho está a caminho para mim?"
+            ]
+        },
+        "spiritual": {
+            "name": "Crescimento espiritual",
+            "icon": "🌀",
+            "items": [
+                "Qual é o meu propósito?",
+                "O que minha alma está me dizendo?",
+                "No que devo trabalhar espiritualmente?",
+                "Qual é o próximo passo no meu crescimento?",
+                "Como posso encontrar paz interior?",
+                "Que lição continua se repetindo para mim?"
+            ]
+        },
+        "family": {
+            "name": "Família e relacionamentos",
+            "icon": "🏡",
+            "items": [
+                "Como posso melhorar os relacionamentos familiares?",
+                "A situação na família vai se acalmar?",
+                "Como posso ajudar um membro da família?",
+                "Meu relacionamento com [name] vai melhorar?",
+                "Como posso apoiar meu parceiro?",
+                "Teremos paz em casa?"
+            ]
+        }
+    }
+}

@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { getCardImagePath } from '../utils/getCardImagePath';
 import TarotCardModal from './TarotCardModal';
 // START: Dodaj import za imena karata iz JSON-a
 import cardMeanings from '../locales/sr/cardMeanings.json';
 // END: Dodaj import za imena karata iz JSON-a
-
+// START: i18n hook (cardMeanings)
+import { useTranslation } from 'react-i18next';
+// END: i18n hook (cardMeanings)
 
 const CardGroupList = ({ cards, title, groupIcon, onCardView }) => {
   const [selectedCard, setSelectedCard] = useState(null);
+  // START: init i18n
+  const { t } = useTranslation(['cardMeanings']);
+  // END: init i18n
 
   // START: Pravi grid sa 3 kolone + poziv parent handlera
   const handleCardPress = (item) => {
@@ -19,16 +24,19 @@ const CardGroupList = ({ cards, title, groupIcon, onCardView }) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.cardContainer} onPress={() => handleCardPress(item)}>
       <Image source={getCardImagePath(item.key)} style={styles.cardImage} />
-      <Text style={styles.cardTitle}>{cardMeanings.cards[item.key]?.name ?? item.key}</Text>
+      {/* START: naziv karte preko i18n (cardMeanings) sa fallback-om na lokalni sr JSON */}
+      <Text style={styles.cardTitle}>
+        {t(`cardMeanings:cards.${item.key}.name`, {
+          defaultValue: (cardMeanings?.cards?.[item.key]?.name) ?? item.key
+        })}
+      </Text>
+      {/* END: naziv karte preko i18n (cardMeanings) sa fallback-om */}
     </TouchableOpacity>
   );
   // END: Pravi grid sa 3 kolone + poziv parent handlera
 
-
   return (
     <View style={styles.screen}>
-      
-
       {/* START: Ikonica grupe odmah ispod headera (opciono) */}
       {groupIcon && (
         <Image source={groupIcon} style={styles.groupIcon} />
@@ -112,3 +120,5 @@ const styles = StyleSheet.create({
 });
 
 export default CardGroupList;
+
+

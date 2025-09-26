@@ -1,0 +1,367 @@
+{
+  "watchAdForCoins": "Gledaj reklamu za dukate",
+  "appName": "Tarot",
+  "groups": {
+    "velika": "Velika Arkana",
+    "stapovi": "Štapovi",
+    "pehari": "Pehari",
+    "macevi": "Mačevi",
+    "zlatnici": "Zlatnici"
+  },
+  "menu": {
+    "allSpreads": "Sva otvaranja",
+    "dailyCard": "Karta dana",
+    "yesNo": "Da / Ne",
+    "meanings": "Značenje karata",
+    "history": "Arhiva otvaranja",
+    "access": "Pristup aplikaciji"
+  },
+  "soundControls": {
+    "music": "Muzika",
+    "effects": "Efekti",
+    "test": "Test zvuka"
+  },
+  "info": {
+    "allSpreads": "Ovo su otvaranja sa AI tumačem.",
+    "dailyCard": "Ovo je intuitivno otvaranje, zamislite pitanje pre odabira karte.",
+    "yesNo": "Ovo je intuitivno otvaranje, zamislite pitanje pre odabira karte."
+  },
+  "buttons": {
+    "askFollowUp": "Pošalji podpitanje",
+    "back": "Nazad",
+    "ok": "U redu",
+    "cancel": "Otkaži",
+    "backToTarotHome": "Nazad na Tarot početnu",
+    "close": "Zatvori",
+    "answer": "$t(labels.answer)",
+    "buyCoins": "Dodaj dukate",
+    "login": "Prijavi se",
+    "logout": "Odjavi se",
+    "saveProfile": "Sačuvaj profil",
+    "register": "Registruj se",
+    "savePassword": "Sačuvaj lozinku"
+  },
+  "messages": {
+    "loading": "Čekaj...",
+    "error": "Došlo je do greške",
+    "notImplemented": "Još nije implementirano: {{group}}",
+    "noCardSelected": "Nema izvučene karte. Vratite se i pokušajte ponovo.",
+    "cardDrawnWithOrientation": "Karta je izvučena {{orientation}}.",
+    "tryAgain": "Pokušajte ponovo.",
+    "tryAgainNav": "Vratite se i pokušajte ponovo.",
+    "loadingDailyCard": "Učitavanje karte dana...",
+    "noDescription": "Nema opisa za ovu kartu.",
+    "successTitle": "Uspeh!",
+    "successGeneric": "Uspešno!",
+    "notLoggedInBlurb": "Niste prijavljeni. Prijavite se da biste koristili AI i skupljali dukate!",
+    "notLoggedInSettings": "Niste prijavljeni. Prijavite se da biste pristupili podešavanjima.",
+    "nameNotSet": "Niste uneli ime",
+    "profileSaved": "Profil je sačuvan!",
+    "noQuestion": "Nema pitanja.",
+    "waitingAI": "Čekam odgovor AI..."
+  },
+  "titles": {
+    "yesNoAnswer": "Odgovor na tvoje pitanje:",
+    "settings": "Podešavanja",
+    "sound": "Zvuk",
+    "selectLanguage": "Izaberi jezik"
+  },
+  "sections": {
+    "symbolism": "Simbolizam",
+    "upright": "Uspravno značenje",
+    "reversed": "Obrnuto značenje",
+    "daily": "Značenje kao karta dana"
+  },
+  "answers": {
+    "yes": "DA",
+    "no": "NE"
+  },
+  "orientation": {
+    "upright": "uspravno",
+    "reversed": "obrnuto"
+  },
+  "badges": {
+    "proOnly": "(Samo za PRO)",
+    "proOrPremium": "(Pro/Premium)"
+  },
+  "questions": {
+    "dailyCardPrompt": "Tvoja karta dana je...",
+    "yesNoPrompt": "Tvoje pitanje za Da/Ne...",
+    "introBlurb": "Izaberi neku od tema i primera pitanja za brzi start."
+  },
+  "accessibility": {
+    "menu": "Meni",
+    "back": "Nazad",
+    "home": "Početna",
+    "language": "Jezik",
+    "coins": "Dukati",
+    "soundOn": "Uključi zvuk",
+    "soundOff": "Isključi zvuk",
+    "info": "Informacije"
+  },
+  "labels": {
+    "answer": "Odgovor",
+    "notifications": "Notifikacije",
+    "language": "Jezik:",
+    "updatedAt": "Ažurirano",
+    "openOnWeb": "Otvori na webu",
+    "currentName": "Trenutno ime:",
+    "user": "Korisnik",
+    "orTypeYourQuestion": "Ili unesi svoje pitanje",
+    "chooseCards": "Izbor karata",
+    "status": "Status:",
+    "coins": "Dukati",
+    "spread": "Otvaranje",
+    "card": "Karta"
+  },
+  "classic": {
+    "title": "Izaberi otvaranje",
+    "options": {
+      "love": "Ja – On/Ona",
+      "pastPresentFuture": "Prošlost – Sadašnjost – Budućnost",
+      "pathOfInsight": "Put spoznaje"
+    }
+  },
+  "placeholders": {
+    "enterQuestion": "Unesi pitanje",
+    "enterName": "Unesi ime",
+    "selectGender": "Izaberi pol",
+    "pickDate": "Izaberi datum",
+    "pickSign": "Izaberi znak",
+    "pickAscendant": "Izaberi podznak",
+    "enterEmail": "Email",
+    "enterPassword": "Lozinka",
+    "newPassword": "Nova lozinka",
+    "repeatPassword": "Ponovi lozinku"
+  },
+  "options": {
+    "includeReversed": "Uključi obrnute karte"
+  },
+  "membership": {
+    "packages": {
+      "guest": "Gost",
+      "free": "Free",
+      "premium": "Premium",
+      "pro": "Pro"
+    },
+    "features": {
+      "meanings": "Značenje karata",
+      "classicSpreads": "Klasična otvaranja",
+      "celticCross": "Keltski krst",
+      "astrologicalSpread": "Astrološko otvaranje",
+      "kabbalisticSpread": "Kabalističko otvaranje",
+      "aiFollowups": "AI potpitanja",
+      "historyArchive": "Arhiva otvaranja",
+      "astrologicalTransits": "Astro tranziti"
+    },
+    "values": {
+      "ads": "Reklame",
+      "noAds": "Bez reklama",
+      "aiModelMini": "AI model: Mini",
+      "aiModelLarge": "AI model: Large"
+    },
+    "notes": {
+      "freeCoinsAd": "Dukati se osvajaju gledanjem reklama (samo za free korisnike)."
+    },
+    "cta": {
+      "alreadyPremium": "Već imate Premium",
+      "buyPremium": "Kupi Premium ({{price}} {{currency}} / mesec)",
+      "alreadyPro": "Već imate PRO",
+      "buyPro": "Kupi PRO ({{price}} {{currency}} / mesec)"
+    },
+    "topup": {
+      "title": "Dopuni dukate",
+      "buyCoins": "Kupi {{amount}} dukata — {{price}} {{currency}}"
+    },
+    "toast": {
+      "upgradedPremium": "Vaš nalog je sada Premium. Dobili ste još {{bonus}} dukata!",
+      "upgradedPro": "Vaš nalog je sada PRO. Dobili ste još {{bonus}} dukata!",
+      "topupDone": "Dobili ste {{amount}} dukata."
+    }
+  },
+  "errors": {
+    "invalidLayoutTemplate": "Greška: Nije prosleđen validan layoutTemplate!",
+    "notEnoughCoinsTitle": "Nedovoljno dukata",
+    "notEnoughCoinsMessage": "Za ovo otvaranje treba {{required}} dukata, a imaš {{balance}}.",
+    "genericTitle": "Greška",
+    "tryAgain": "Pokušajte ponovo.",
+    "notLoggedIn": "Niste ulogovani.",
+    "adLimitReached": "Dnevni limit oglasa je iskorišćen.",
+    "topupFailed": "Nije moguće dodati dukate.",
+    "updateNotifFail": "Nije moguće ažurirati notifikacije.",
+    "nameRequired": "Ime ne može biti prazno!",
+    "aiAnswerFailed": "Greška pri dobijanju AI odgovora",
+    "aiFollowupFailed": "Greška pri dobijanju AI odgovora!",
+    "notEnoughCoinsServerRejected": "Server je odbio naplatu. Dopuni dukate pa pokušaj ponovo.",
+    "notEnoughCoinsFollowup": "Nemaš dovoljno dukata za AI podpitanje!",
+    "aiAnswerFailedDetailed": "Došlo je do greške prilikom dobijanja odgovora.{{extra}}",
+    "rateLimited": "Prekoračen limit poziva. Pokušajte kasnije.",
+    "modelUnavailable": "Model nije dostupan ili zahtev nije validan.",
+    "upstreamFailed": "AI servis trenutno nije dostupan (upstream).",
+    "aiServiceComm": "Došlo je do greške pri komunikaciji sa AI servisom.",
+    "edgeTimeout": "Isteklo je vreme za AI zahtev. Pokušajte ponovo."
+  },
+  "dailyCard": {
+    "alreadyPicked": "Već si izabrao kartu dana!",
+    "comeBackTomorrow": "Vrati se sutra za novu kartu. 🌞"
+  },
+  "legal": {
+    "title": "Pravna dokumenta",
+    "disclaimer": "Odricanje od odgovornosti",
+    "terms": "Uslovi korišćenja",
+    "privacy": "Politika privatnosti",
+    "dataDeletion": "Brisanje podataka",
+    "contact": "Kontakt"
+  },
+  "support": {
+    "title": "Podrži aplikaciju",
+    "rateUs": "Oceni nas",
+    "shareToFriends": "Podeli prijateljima",
+    "shareMessage": "Probaj Tarot AI aplikaciju! https://play.google.com/store/apps/details?id=com.mare82.tarotmobile"
+  },
+  "auth": {
+    "loginTitle": "Prijava",
+    "registerTitle": "Registracija",
+    "googleSignIn": "Prijava preko Google-a",
+    "googleOpening": "Otvaram Google…",
+    "facebookSignIn": "Prijava preko Facebook-a",
+    "facebookOpening": "Otvaram Facebook…",
+    "toggleHaveAccount": "Već imaš nalog? Prijavi se",
+    "toggleNoAccount": "Nemaš nalog? Registruj se",
+    "loginFailed": "Neuspešna prijava.",
+    "registerFailed": "Neuspešna registracija.",
+    "googleFailed": "Google prijava nije uspela.",
+    "facebookFailed": "Facebook prijava nije uspela.",
+    "checkEmail": "Proverite email i potvrdite nalog.",
+    "emailRequired": "Unesite email adresu.",
+    "resetEmailSent": "Ako nalog postoji, poslali smo email sa uputstvima za reset lozinke.",
+    "resetEmailFailed": "Slanje emaila nije uspelo.",
+    "forgotPassword": "Zaboravljena lozinka?",
+    "resetPasswordTitle": "Reset lozinke",
+    "passwordTooShort": "Lozinka mora imati bar 8 karaktera.",
+    "passwordsDontMatch": "Lozinke se ne poklapaju.",
+    "passwordUpdated": "Lozinka je ažurirana. Prijavite se novom lozinkom.",
+    "passwordUpdateFailed": "Ažuriranje lozinke nije uspelo."
+  },
+  "ads": {
+    "errorTitle": "Greška sa reklamom!",
+    "errorGeneric": "Došlo je do greške sa reklamom. Pokušajte ponovo kasnije.",
+    "notReady": "Reklama nije spremna.",
+    "loading": "Reklama se učitava…",
+    "showing": "Prikazivanje reklame...",
+    "buttonReady": "Pogledaj reklamu za {{amount}} dukata",
+    "buttonLoading": "Reklama se učitava...",
+    "thanksTitle": "Hvala!",
+    "rewardToast": "Dobili ste {{amount}} dukata.",
+    "grantError": "Greška pri dodeli dukata",
+    "plusCoins": "+{{amount}} dukata!",
+    "reward": {
+      "title": "Gledaj reklamu za dukate",
+      "watch": "Pogledaj reklamu za {{amount}} dukata",
+      "loading": "Reklama se učitava…",
+      "showing": "Prikazivanje reklame...",
+      "toast": {
+        "thanks": "Hvala!",
+        "granted": "Dobili ste {{amount}} dukata.",
+        "errorGrant": "Greška pri dodeli dukata",
+        "errorGeneric": "Došlo je do greške sa reklamom."
+      },
+      "done": {
+        "plusCoins": "+{{amount}} dukata!",
+        "ok": "U redu"
+      }
+    }
+  },
+  "home": {
+    "menu": {
+      "profile": "Profil",
+      "settings": "Podešavanja",
+      "about": "O aplikaciji",
+      "packagesAccess": "Pristup i paketi",
+      "allSpreads": "$t(menu.allSpreads)",
+      "dailyCard": "$t(menu.dailyCard)",
+      "yesNo": "$t(menu.yesNo)",
+      "meanings": "$t(menu.meanings)",
+      "history": "$t(menu.history)",
+      "access": "$t(menu.access)"
+    },
+    "info": {
+      "allSpreads": "$t(info.allSpreads)",
+      "dailyCard": "$t(info.dailyCard)",
+      "yesNo": "$t(info.yesNo)"
+    },
+    "watchAdForCoins": "$t(watchAdForCoins)"
+  },
+  "profile": {
+    "title": "👤 Profil",
+    "nameLabel": "Ime:",
+    "gender": {
+      "label": "Pol:",
+      "male": "Muški",
+      "female": "Ženski",
+      "other": "Drugo"
+    },
+    "birthDate": "Datum rođenja:",
+    "sunSign": "Znak:",
+    "ascendant": "Podznak:"
+  },
+  "astrology": {
+    "signs": {
+      "aries": "♈ Ovan",
+      "taurus": "♉ Bik",
+      "gemini": "♊ Blizanci",
+      "cancer": "♋ Rak",
+      "leo": "♌ Lav",
+      "virgo": "♍ Devica",
+      "libra": "♎ Vaga",
+      "scorpio": "♏ Škorpija",
+      "sagittarius": "♐ Strelac",
+      "capricorn": "♑ Jarac",
+      "aquarius": "♒ Vodolija",
+      "pisces": "♓ Ribe"
+    }
+  },
+  "push": {
+    "titleTest": "Push test",
+    "permDenied": "Dozvole za notifikacije nisu odobrene.",
+    "noToken": "Nema tokena (proveri dozvole/FCM).",
+    "noUserId": "Nema user id!",
+    "tokenWriteFail": "Token NIJE upisan!",
+    "tokenWriteOk": "Token JE upisan!",
+    "profileNoToken": "Nema tokena u profilu. Pritisni prvo 'Test push token upis'.",
+    "localTitle": "LOKALNO ✅",
+    "localBody": "Lokalna notifikacija (foreground/pozadina)",
+    "remoteTitle": "REMOTE ✅",
+    "remoteBody": "Expo push (odmah po slanju)",
+    "sentMinimize": "Poslato ✔️ — minimizuj app odmah da vidiš baner.",
+    "notAccepted": "Push nije prihvaćen:",
+    "sendError": "Greška pri slanju: ",
+    "debugTitle": "Debug notifikacija",
+    "localBgTitle": "LOCAL 🔔",
+    "localBgBody": "Pozadinski lokalni test",
+    "scheduled5s": "Zakazano za 5s — minimizuj app sada.",
+    "fcmTitle": "FCM token (uređaj)",
+    "btnWriteToken": "Test push token upis",
+    "btnLocal": "Test notifikacija (lokalno)",
+    "btnRemote": "Test notifikacija (remote)",
+    "btnShowFcm": "Prikaži FCM token (device)",
+    "btnDebug": "Debug notifikacije",
+    "btnLocalBg": "Test lokalno (pozadina)"
+  },
+  "detail": {
+    "question": "Pitanje:",
+    "answer": "Odgovor:",
+    "drawnCards": "Izvučene karte:",
+    "followup": "Podpitanje:",
+    "followupAnswer": "Odgovor na podpitanje:",
+    "loveReading": "Ljubavno čitanje",
+    "pathOfInsightReading": "Put spoznaje",
+    "classic": "Klasično otvaranje",
+    "kabbalisticTree": "Kabalističko drvo života",
+    "astrologicalSpread": "Astrološko otvaranje",
+    "celticCross": "Keltski krst"
+  },
+  "history": {
+    "empty30Days": "Nema arhiviranih otvaranja u poslednjih 30 dana."
+  }
+}

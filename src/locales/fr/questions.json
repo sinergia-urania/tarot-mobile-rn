@@ -1,0 +1,76 @@
+{
+    "categories": {
+        "love": {
+            "name": "Amour",
+            "icon": "❤️",
+            "items": [
+                "Est-ce qu’il/elle m’aime ?",
+                "À quoi ressemble notre avenir ?",
+                "Allons-nous nous réconcilier ?",
+                "Vais-je bientôt rencontrer quelqu’un de spécial ?",
+                "Comment améliorer ma vie amoureuse ?",
+                "Mon/ma partenaire est-il/elle honnête avec moi ?"
+            ]
+        },
+        "work": {
+            "name": "Travail",
+            "icon": "💼",
+            "items": [
+                "Vais-je obtenir le poste que je veux ?",
+                "Quel chemin de carrière m’attend ?",
+                "Est-il temps de changer de travail ?",
+                "Comment puis-je évoluer au travail ?",
+                "Mes efforts seront-ils reconnus ?",
+                "Comment trouver un travail qui m’épanouit ?"
+            ]
+        },
+        "health": {
+            "name": "Santé",
+            "icon": "🧘",
+            "items": [
+                "Vais-je guérir ?",
+                "À quoi devrais-je faire attention ?",
+                "Comment améliorer ma santé ?",
+                "Le traitement actuel est-il le bon choix ?",
+                "Comment améliorer ma santé mentale ?",
+                "Devrais-je demander un deuxième avis ?"
+            ]
+        },
+        "finance": {
+            "name": "Finances",
+            "icon": "💰",
+            "items": [
+                "Comment améliorer mes finances ?",
+                "Est-ce un investissement judicieux ?",
+                "Aurais-je une stabilité financière ?",
+                "Comment gérer mon argent plus sagement ?",
+                "Vais-je rembourser mes dettes ?",
+                "Un gain arrive-t-il vers moi ?"
+            ]
+        },
+        "spiritual": {
+            "name": "Croissance spirituelle",
+            "icon": "🌀",
+            "items": [
+                "Quelle est ma raison d’être ?",
+                "Que me dit mon âme ?",
+                "Sur quoi travailler spirituellement ?",
+                "Quelle est la prochaine étape de ma croissance ?",
+                "Comment trouver la paix intérieure ?",
+                "Quelle leçon se répète pour moi ?"
+            ]
+        },
+        "family": {
+            "name": "Famille & relations",
+            "icon": "🏡",
+            "items": [
+                "Comment améliorer les relations familiales ?",
+                "La situation dans la famille va-t-elle s’apaiser ?",
+                "Comment aider un membre de la famille ?",
+                "Ma relation avec [name] va-t-elle s’améliorer ?",
+                "Comment soutenir mon/ma partenaire ?",
+                "Peut-on s’attendre à la paix à la maison ?"
+            ]
+        }
+    }
+}

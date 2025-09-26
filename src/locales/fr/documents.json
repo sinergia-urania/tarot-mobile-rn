@@ -1,0 +1,89 @@
+{
+  "about": {
+    "title": "À propos de l’app",
+    "updatedAt": "28 août 2025",
+    "body": [
+      "AiTarot Una est une app qui combine des technologies d’IA modernes avec les symboles archétypaux du Tarot pour offrir des interprétations personnalisées, réfléchies et utiles. L’IA ne génère pas des messages au hasard — elle analyse dans le contexte de ta question et du tirage.",
+      "Tous les tirages de l’app (sauf « Carte du jour » et « Oui/Non », qui sont de nature intuitive) analysent les cartes via un système symbolique à plusieurs couches et cherchent à reconnaître la logique interne par rapport à ta demande.",
+      "Comment ça marche : l’app propose une liste de questions fréquentes, mais tu peux toujours saisir ta propre question si elle n’apparaît pas dans les suggestions — tu reçois ainsi une interprétation vraiment personnelle et pertinente.",
+      "Accès & offres :",
+      "• Gratuit : accès de base avec un nombre limité de tirages et de fonctionnalités.",
+      "• Premium : déverrouille des types de tirages et des éclairages supplémentaires.",
+      "• Pro : accès complet à tous les outils, analyses et personnalisations.",
+      "En plus des offres, il existe l’option AdReward — en regardant des publicités, tu peux déverrouiller certaines fonctions comme alternative au paiement.",
+      "Note : l’app ne prédit pas l’avenir de façon déterministe ; elle éclaire des pistes possibles et des schémas intérieurs à travers le langage archétypal des cartes et des symboles.",
+      "Version de l’app : 1.0.0"
+    ]
+  },
+  "terms": {
+    "title": "Conditions d’utilisation",
+    "updatedAt": "28 août 2025",
+    "sourceUrl": "terms-of-service-fr.html",
+    "body": [
+      "En utilisant cette app, tu acceptes les conditions et règles suivantes. Si tu n’es pas d’accord avec une partie de ces conditions, merci de ne pas utiliser l’app.",
+      "• L’app est destinée à un usage personnel et non commercial.",
+      "• Tu ne peux pas copier, distribuer ou modifier le contenu sans l’autorisation de l’auteur.",
+      "• Nous pouvons modifier les Conditions d’utilisation à tout moment, sans préavis.",
+      "En continuant d’utiliser l’app, tu confirmes avoir lu, compris et accepté ces conditions."
+    ]
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "updatedAt": "28 août 2025",
+    "sourceUrl": "privacy-policy-fr.html",
+    "body": [
+      "Ta vie privée compte pour nous. Ce document résume quelles données nous collectons, pourquoi et comment nous les protégeons.",
+      "Ce que nous collectons : (a) données de compte (e-mail, nom affiché, langue), (b) données de profil optionnelles (genre, date de naissance, signe/ascendant), (c) données techniques (ID utilisateur, jeton push Expo, langue/région de l’appareil), (d) métadonnées sur l’usage des fonctionnalités.",
+      "Où nous stockons : Supabase (base de données et authentification). Expo est utilisé pour l’envoi des notifications push (jeton appareil). Zoho Mail est utilisé pour le support client.",
+      "Pourquoi : fournir les fonctionnalités de l’app, synchroniser les réglages, envoyer les notifications que tu demandes et améliorer la qualité du produit.",
+      "Partage : nous ne vendons pas de données personnelles. Nous partageons des données seulement avec les prestataires nécessaires au fonctionnement de l’app (p. ex., Supabase, Expo) dans le cadre d’accords appropriés de traitement des données.",
+      "Conservation & suppression : nous conservons les données aussi longtemps que nécessaire pour fournir le service. Tu peux demander l’export ou la suppression de ton compte en contactant le support.",
+      "Sécurité : nous appliquons des mesures techniques et organisationnelles ; toutefois, aucun système n’est sûr à 100 %. ",
+      "Tes droits : accès, rectification, suppression, opposition, retrait du consentement lorsque applicable.",
+      "Contact confidentialité : info@infohelm.org"
+    ]
+  },
+  "support": {
+    "title": "Support & dons",
+    "updatedAt": "28 août 2025",
+    "body": [
+      "Si tu souhaites soutenir le développement de l’app :",
+      "• Déverrouille l’abonnement PRO/Premium selon tes besoins — tu obtiens plus de tirages et moins de limites.",
+      "• Regarde de courtes publicités pour des deniers gratuits (AdReward).",
+      "• Laisse une note et un avis sur le store — ça compte beaucoup !",
+      "• Partage l’app avec des ami·e·s.",
+      "Pour toute aide additionnelle ou suggestion, écris à : info@infohelm.org"
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "updatedAt": "28 août 2025",
+    "body": [
+      "Si tu as des questions, des suggestions ou un souci technique, n’hésite pas à nous contacter.",
+      "E-mail : info@infohelm.org",
+      "Nous répondons sous 24 h les jours ouvrables."
+    ]
+  },
+  "disclaimer": {
+    "title": "Avertissement",
+    "updatedAt": "28 août 2025",
+    "body": [
+      "Cette app utilise l’intelligence artificielle pour interpréter les symboles et répondre aux questions, comme le ferait un·e lecteur·rice de Tarot expérimenté·e. Bien que l’IA analyse des schémas et fournisse des éclairages, ses réponses ne remplacent pas un avis professionnel dans des domaines comme la santé, le droit ou la finance.",
+      "Les utilisateurs et utilisatrices prennent leurs propres décisions sur la base des messages et éclairages reçus. Le créateur de l’app n’assume pas la responsabilité des conséquences liées à l’usage du contenu.",
+      "En utilisant l’app, tu acceptes ces conditions."
+    ]
+  },
+  "dataDeletion": {
+    "title": "Suppression des données",
+    "updatedAt": "28 août 2025",
+    "sourceUrl": "data-deletion-fr.html",
+    "body": [
+      "Tu peux demander la suppression de ton compte et de tes données à tout moment.",
+      "Comment faire : envoie un e-mail depuis l’adresse liée à ton compte à info@infohelm.org avec une courte note indiquant que tu souhaites supprimer tes données. Si possible, ajoute ton identifiant utilisateur (UID) depuis le profil.",
+      "Ce que nous supprimons : profil (e-mail, nom affiché, préférences de langue), jetons de notification push enregistrés, historique des tirages/interprétations et autres données liées au compte.",
+      "Ce que nous pouvons conserver : les traces minimales nécessaires pour répondre aux obligations légales ou aux besoins de sécurité, conformément à la Politique de confidentialité.",
+      "Délais : les demandes sont généralement traitées sous 30 jours après confirmation d’identité.",
+      "Plus de détails et la version officielle du document sont disponibles sur notre site (utilise le bouton « Ouvrir sur le web »)."
+    ]
+  }
+}

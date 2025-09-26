@@ -1,51 +1,41 @@
-import { Audio } from "expo-av";
-import React, { useState } from "react";
+// src/pages/TarotOtvaranja.jsx
+// START: expo-audio migracija (umesto expo-av)
+// import { Audio } from "expo-av";
+import { createAudioPlayer } from "expo-audio";
+// END: expo-audio migracija
+import React, { useRef, useState } from "react";
 import { Image, ImageBackground, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import TarotHeader from "../components/TarotHeader";
 import { ASTROLOSKO, KABALISTICKO, KELTSKI_KRST } from "../data/layoutTemplates";
 import KlasicnoModal from "./KlasicnoModal";
-// START: Import DukatiContext
+// START: Import DukatiContext (+ userPlan za PRO gate)
 import { useDukati } from "../context/DukatiContext";
 // END: Import DukatiContext
-const icons = [
-  {
-    key: "klasicno",
-    icon: require("../assets/icons/otvaranje-klasicno.webp"),
-    label: "Klasično otvaranje",
-  },
-  {
-    key: "keltski",
-    icon: require("../assets/icons/otvaranje-keltski.webp"),
-    label: "Keltski krst",
-  },
-  {
-    key: "astrološko",
-    icon: require("../assets/icons/otvaranje-astro.webp"),
-    label: "Astrološko otvaranje",
-  },
-  {
-    key: "drvo",
-    icon: require("../assets/icons/otvaranje-drvo.webp"),
-    label: "Kabalističko otvaranje",
-  },
-];
-
-const clickSound = require("../assets/sounds/hover-click.mp3");
-
-const playClickSound = async () => {
-  try {
-    const { sound } = await Audio.Sound.createAsync(clickSound, { shouldPlay: true });
-    sound.setOnPlaybackStatusUpdate((status) => {
-      if (status.didJustFinish) sound.unloadAsync();
-    });
-  } catch (e) {}
-};
-// END: zvuk klik dugmeta
 // START: Importuj cene otvaranja
 import { READING_PRICES } from "../constants/readingPrices";
 // END: Importuj cene otvaranja
+// i18n
+import { useFocusEffect } from '@react-navigation/native';
+import { useTranslation } from "react-i18next";
+
+
+const clickSound = require("../assets/sounds/hover-click.mp3");
+
+// START: click SFX sa expo-audio
+const playClickSound = async () => {
+  try {
+    const p = createAudioPlayer(clickSound);
+    p.loop = false;
+    p.volume = 1;
+    await p.seekTo(0);
+    p.play();
+    setTimeout(() => { try { p.remove?.(); } catch { } }, 1200);
+  } catch (e) { }
+};
+// END: click SFX sa expo-audio
 
 const TarotOtvaranja = ({ navigation }) => {
+  const { t } = useTranslation(["common"]);
   const [showModal, setShowModal] = useState(false);
 
   // START: State za modal nedostatka dukata
@@ -53,27 +43,85 @@ const TarotOtvaranja = ({ navigation }) => {
   const [noDukesText, setNoDukesText] = useState("");
   // END: State za modal nedostatka dukata
 
-  // START: Uzimanje dukata iz context-a
-  const { dukati } = useDukati();
-  // END: Uzimanje dukata iz context-a
+  // START: Uzimanje dukata i plana iz context-a (PRO gate)
+  const { dukati, userPlan } = useDukati();
+  // END: Uzimanje dukata i plana iz context-a
+
+  // ANTIDUPLI KLIK (debounce) – sprečava dvostruki SFX i duple navigacije
+  const selectingRef = useRef(false);
+  useFocusEffect(React.useCallback(() => {
+    selectingRef.current = false;
+    return () => { selectingRef.current = false; };
+  }, []));
+
+
+  // START: redosled ikonica — Astrološko poslednje, Kabalističko pre njega (labeli iz postojećih ključeva)
+  const icons = [
+    {
+      key: "klasicno",
+      icon: require("../assets/icons/otvaranje-klasicno.webp"),
+      label: t("common:membership.features.classicSpreads", { defaultValue: "Klasična otvaranja" }),
+    },
+    {
+      key: "keltski",
+      icon: require("../assets/icons/otvaranje-keltski.webp"),
+      label: t("common:membership.features.celticCross", { defaultValue: "Keltski krst" }),
+    },
+    {
+      key: "drvo",
+      icon: require("../assets/icons/otvaranje-drvo.webp"),
+      label: t("common:membership.features.kabbalisticSpread", { defaultValue: "Kabalističko otvaranje" }),
+    },
+    {
+      key: "astrološko",
+      icon: require("../assets/icons/otvaranje-astro.webp"),
+      label: t("common:membership.features.astrologicalSpread", { defaultValue: "Astrološko otvaranje" }),
+    },
+  ];
+  // END: redosled ikonica
 
   const handleSelect = async (key) => {
+    if (selectingRef.current) return; // debounce
+    selectingRef.current = true;
+    const autoRelease = setTimeout(() => { selectingRef.current = false; }, 1000);
+
+
     await playClickSound();
 
-    // BESPLATNO: za klasično samo modal, ništa drugo
+    // PRO gate za Astrološko (ostaje isto)
+    if (key === "astrološko" && userPlan !== "pro") {
+      selectingRef.current = false;
+      clearTimeout(autoRelease);
+
+      return;
+    }
+
+    // BESPLATNO: za klasično samo modal
     if (key === "klasicno") {
       setShowModal(true);
+      // dozvoli ponovni klik nakon otvaranja modala
+      setTimeout(() => { selectingRef.current = false; }, 300);
+      clearTimeout(autoRelease);
+
       return;
     }
 
     // Logika za ostala otvaranja (naplata)
-    // *** Definiši subtip/cenu na osnovu key ***
     const cena = READING_PRICES[key] || 0;
 
     // Guard: nemaš dovoljno dukata?
     if (cena > 0 && dukati < cena) {
-      setNoDukesText(`Nemaš dovoljno dukata za ovo otvaranje! Potrebno: ${cena} 🪙`);
+      setNoDukesText(
+        t("common:errors.notEnoughCoinsMessage", {
+          required: cena,
+          balance: dukati,
+          defaultValue: `Za ovo otvaranje treba ${cena} dukata, a imaš ${dukati}.`,
+        })
+      );
       setShowNoDukes(true);
+      selectingRef.current = false;
+      clearTimeout(autoRelease);
+
       return;
     }
 
@@ -100,6 +148,8 @@ const TarotOtvaranja = ({ navigation }) => {
         brojKarata: 10,
       });
     }
+    clearTimeout(autoRelease);
+    // nakon navigacije komponenta će se unmount-ovati; nije potrebno resetovati selectingRef
   };
 
   const goHome = () => navigation.navigate("Home");
@@ -140,7 +190,7 @@ const TarotOtvaranja = ({ navigation }) => {
             fontSize: 18,
             textAlign: "center"
           }}>
-            {noDukesText || "Nemaš dovoljno dukata za ovo otvaranje!"}
+            {noDukesText || t("common:errors.notEnoughCoinsTitle", { defaultValue: "Nedovoljno dukata" })}
           </Text>
           <TouchableOpacity
             onPress={() => setShowNoDukes(false)}
@@ -156,39 +206,72 @@ const TarotOtvaranja = ({ navigation }) => {
               color: "#222",
               fontWeight: "bold",
               fontSize: 16,
-            }}>OK</Text>
+            }}>
+              {t("common:buttons.ok", { defaultValue: "U redu" })}
+            </Text>
           </TouchableOpacity>
         </View>
       )}
       {/* END: Modal za nedovoljno dukata */}
 
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title}>Odaberite vrstu otvaranja</Text>
+        <Text style={styles.title}>
+          {t("common:home.menu.allSpreads", { defaultValue: "Sva otvaranja" })}
+        </Text>
 
         <View style={styles.verticalList}>
-          {icons.map((opt) => (
-            <TouchableOpacity
-              key={opt.key}
-              style={styles.iconButton}
-              onPress={() => handleSelect(opt.key)}
-              activeOpacity={0.85}
-            >
-              <View style={styles.iconBox}>
-                <Image source={opt.icon} style={styles.icon} />
-              </View>
-              <Text style={styles.iconLabel}>{opt.label}</Text>
-              {/* Prikaz samo tri dukata za klasično */}
-              {opt.key === "klasicno" ? (
-                <Text style={styles.iconPrice}>
-                  🪙🪙🪙
-                </Text>
-              ) : (
-                <Text style={styles.iconPrice}>
-                  {READING_PRICES[opt.key] ? `${READING_PRICES[opt.key]} 🪙` : ""}
-                </Text>
-              )}
-            </TouchableOpacity>
-          ))}
+          {icons.map((opt) => {
+            // START: lock logika (astrološko: samo PRO; drvo: PRO/PREMIUM, FREE nema)
+            const isAstro = opt.key === "astrološko";
+            const isDrvo = opt.key === "drvo";
+            const astroLocked = isAstro && userPlan !== "pro";         // samo PRO
+            const drvoLocked = isDrvo && userPlan === "free";          // PRO & PREMIUM imaju pristup
+            const locked = astroLocked || drvoLocked;
+            // END: lock logika
+
+            return (
+              <TouchableOpacity
+                key={opt.key}
+                style={[
+                  styles.iconButton,
+                  locked && styles.disabledCard, // vizuelno zatamnjenje
+                ]}
+                onPress={() => {
+                  if (locked) return; // blokiraj tap kada je zaključano
+                  handleSelect(opt.key);
+                }}
+                activeOpacity={locked ? 1 : 0.85}
+              >
+                <View style={styles.iconBox}>
+                  <Image source={opt.icon} style={styles.icon} />
+                </View>
+
+                <Text style={styles.iconLabel}>{opt.label}</Text>
+
+                {/* START: Lock bedževi */}
+                {astroLocked && (
+                  <Text style={{ color: "#ffd700", fontSize: 13, marginTop: 4, fontWeight: "bold" }}>
+                    {t("common:badges.proOnly", { defaultValue: "(Samo za PRO)" })}
+                  </Text>
+                )}
+                {drvoLocked && (
+                  <Text style={{ color: "#ffd700", fontSize: 13, marginTop: 4, fontWeight: "bold" }}>
+                    {t("common:badges.proOrPremium", { defaultValue: "(Pro/Premium)" })}
+                  </Text>
+                )}
+                {/* END: Lock bedževi */}
+
+                {/* Cene / specijalni prikaz za klasično */}
+                {opt.key === "klasicno" ? (
+                  <Text style={styles.iconPrice}>🪙🪙🪙</Text>
+                ) : (
+                  <Text style={styles.iconPrice}>
+                    {READING_PRICES[opt.key] ? `${READING_PRICES[opt.key]} 🪙` : ""}
+                  </Text>
+                )}
+              </TouchableOpacity>
+            );
+          })}
         </View>
       </ScrollView>
 
@@ -198,9 +281,11 @@ const TarotOtvaranja = ({ navigation }) => {
         transparent={true}
       >
         <KlasicnoModal
-          onClose={async () => {
-            await playClickSound();
+          onClose={async (silent) => {
+            if (!silent) { await playClickSound(); }
             setShowModal(false);
+            // dozvoli ponovni klik posle zatvaranja
+            setTimeout(() => { selectingRef.current = false; }, 200);
           }}
           navigation={navigation}
         />
@@ -258,6 +343,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#facc15",
   },
+  // START: vizuelni lock – zatamnjeno kada je zaključano
+  disabledCard: {
+    opacity: 0.5,
+  },
+  // END: vizuelni lock
   iconBox: {
     width: 68,
     height: 68,

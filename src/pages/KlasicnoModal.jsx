@@ -1,30 +1,48 @@
+// src/pages/KlasicnoModal.jsx
 
-import { Audio } from "expo-av";
-import React, { useState } from "react";
+// START: expo-audio migracija (umesto expo-av)
+// import { Audio } from "expo-av";
+import { createAudioPlayer } from "expo-audio";
+// END: expo-audio migracija
+import React, { useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { READING_PRICES } from "../constants/readingPrices";
 import { LJUBAVNO_OTVARANJE, PET_KARATA, TRI_KARTE } from "../data/layoutTemplates";
 
 import { useDukati } from "../context/DukatiContext";
 
+// i18n
+import { useTranslation } from "react-i18next";
 
 const clickSound = require("../assets/sounds/hover-click.mp3");
+
+// START: click SFX sa expo-audio
 const playClickSound = async () => {
   try {
-    const { sound } = await Audio.Sound.createAsync(clickSound, { shouldPlay: true });
-    sound.setOnPlaybackStatusUpdate((status) => {
-      if (status.didJustFinish) sound.unloadAsync();
-    });
-  } catch (e) {}
+    const p = createAudioPlayer(clickSound);
+    p.loop = false;
+    p.volume = 1;
+    await p.seekTo(0);
+    p.play();
+    setTimeout(() => { try { p.remove?.(); } catch { } }, 1200);
+  } catch (e) { }
 };
+// END: click SFX sa expo-audio
 
-const options = [
-  { key: '2', label: 'Ja – On/Ona', icon: require("../assets/icons/love.webp"), subtip: "ljubavno" },
-  { key: '3', label: 'Prošlost – Sadašnjost – Budućnost', icon: require("../assets/icons/history.webp"), subtip: "tri" },
-  { key: '5', label: 'Put spoznaje', icon: require("../assets/icons/five-cards.webp"), subtip: "pet" },
-];
+// START: Anti-dupli klik zvuk (lokalno za ovaj modal)
+const CLICK_GAP = 180; // ms
+let _lastClickAt = 0;
+const playClickOnceLocal = async () => {
+  const now = Date.now();
+  if (now - _lastClickAt < CLICK_GAP) return; // ignoriši drugi poziv u istom gestu
+  _lastClickAt = now;
+  await playClickSound();
+};
+// END: Anti-dupli klik zvuk (lokalno za ovaj modal)
 
 const KlasicnoModal = ({ onClose, navigation }) => {
+  const { t } = useTranslation(["common"]);
+
   // START: State za modal nedostatka dukata
   const [showNoDukes, setShowNoDukes] = useState(false);
   const [noDukesText, setNoDukesText] = useState("");
@@ -34,43 +52,87 @@ const KlasicnoModal = ({ onClose, navigation }) => {
   const { dukati } = useDukati();
   // END: Uzimanje dukata iz context-a
 
+  // ANTIDUPLI KLIK (debounce)
+  const selectingRef = useRef(false);
+
+  // Opcije (i18n)
+  const optionsUi = [
+    {
+      key: "2",
+      label: t("common:classic.options.love", { defaultValue: "Ja – On/Ona" }),
+      icon: require("../assets/icons/love.webp"),
+      subtip: "ljubavno",
+    },
+    {
+      key: "3",
+      label: t("common:classic.options.pastPresentFuture", {
+        defaultValue: "Prošlost – Sadašnjost – Budućnost",
+      }),
+      icon: require("../assets/icons/history.webp"),
+      subtip: "tri",
+    },
+    {
+      key: "5",
+      label: t("common:classic.options.pathOfInsight", { defaultValue: "Put spoznaje" }),
+      icon: require("../assets/icons/five-cards.webp"),
+      subtip: "pet",
+    },
+  ];
+
   const handleSelect = async (key) => {
-    await playClickSound();
-    const opt = options.find(o => o.key === key);
-    if (!opt) return;
+    if (selectingRef.current) return; // debounce
+    selectingRef.current = true;
+
+    // START: koristimo lokalni anti-dupli SFX
+    await playClickOnceLocal();
+    // END: koristimo lokalni anti-dupli SFX
+
+    const opt = optionsUi.find((o) => o.key === key);
+    if (!opt) { selectingRef.current = false; return; }
 
     // GUARD: Provera dukata po subtipu
     const cena = READING_PRICES[opt.subtip] || 0;
     if (cena > 0 && dukati < cena) {
-      setNoDukesText(`Nemaš dovoljno dukata za ovo otvaranje! Potrebno: ${cena} 🪙`);
+      setNoDukesText(
+        t("common:errors.notEnoughCoinsMessage", {
+          required: cena,
+          balance: dukati,
+          defaultValue: `Za ovo otvaranje treba ${cena} dukata, a imaš ${dukati}.`,
+        })
+      );
       setShowNoDukes(true);
+      selectingRef.current = false;
       return;
     }
 
     // Navigacija na odgovarajuće otvaranje (ako ima dovoljno dukata)
-    if (key === '2') {
+    if (key === "2") {
       navigation.navigate("PitanjeIzbor", {
-        layoutTemplate: LJUBAVNO_OTVARANJE.layout,        
+        layoutTemplate: LJUBAVNO_OTVARANJE.layout,
         tip: "klasicno",
         subtip: "ljubavno",
-        opisOtvaranja: "Ja – On/Ona"
+        opisOtvaranja: t("common:classic.options.love", { defaultValue: "Ja – On/Ona" }),
       });
-    } else if (key === '3') {
+    } else if (key === "3") {
       navigation.navigate("PitanjeIzbor", {
-        layoutTemplate: TRI_KARTE.layout,  
+        layoutTemplate: TRI_KARTE.layout,
         tip: "klasicno",
         subtip: "tri",
-        opisOtvaranja: "Prošlost – Sadašnjost – Budućnost"
+        opisOtvaranja: t("common:classic.options.pastPresentFuture", {
+          defaultValue: "Prošlost – Sadašnjost – Budućnost",
+        }),
       });
-    } else if (key === '5') {
+    } else if (key === "5") {
       navigation.navigate("PitanjeIzbor", {
-        layoutTemplate: PET_KARATA.layout,   
+        layoutTemplate: PET_KARATA.layout,
         tip: "klasicno",
         subtip: "pet",
-        opisOtvaranja: "Put spoznaje"
+        opisOtvaranja: t("common:classic.options.pathOfInsight", { defaultValue: "Put spoznaje" }),
       });
     }
-    if (onClose) onClose();
+
+    onClose?.(true);
+    // nema potrebe da vraćamo selectingRef na false — modal se zatvara / komponenta unmount
   };
 
   return (
@@ -79,9 +141,11 @@ const KlasicnoModal = ({ onClose, navigation }) => {
         <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
           <Text style={{ color: "#bbb", fontSize: 28 }}>✕</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>Izaberi otvaranje</Text>
+        <Text style={styles.title}>
+          {t("common:classic.title", { defaultValue: "Izaberi otvaranje" })}
+        </Text>
         <View style={styles.options}>
-          {options.map((opt) => (
+          {optionsUi.map((opt) => (
             <TouchableOpacity
               key={opt.key}
               onPress={() => handleSelect(opt.key)}
@@ -93,34 +157,39 @@ const KlasicnoModal = ({ onClose, navigation }) => {
               </View>
               <Text style={styles.optionText}>{opt.label}</Text>
               {/* Cena po subtipu */}
-              <Text style={styles.priceText}>
-                {READING_PRICES[opt.subtip]} 🪙
-              </Text>
+              <Text style={styles.priceText}>{READING_PRICES[opt.subtip]} 🪙</Text>
             </TouchableOpacity>
           ))}
         </View>
         {/* START: Modal za nedovoljno dukata */}
         {showNoDukes && (
-          <View style={{
-            position: "absolute",
-            top: "36%",
-            left: "6%",
-            width: "88%",
-            backgroundColor: "#220",
-            borderColor: "#ffd700",
-            borderWidth: 2,
-            borderRadius: 15,
-            padding: 18,
-            zIndex: 999,
-            alignSelf: "center",
-          }}>
-            <Text style={{
-              color: "#ffd700",
-              fontWeight: "bold",
-              fontSize: 17,
-              textAlign: "center"
-            }}>
-              {noDukesText || "Nemaš dovoljno dukata za ovo otvaranje!"}
+          <View
+            style={{
+              position: "absolute",
+              top: "36%",
+              left: "6%",
+              width: "88%",
+              backgroundColor: "#220",
+              borderColor: "#ffd700",
+              borderWidth: 2,
+              borderRadius: 15,
+              padding: 18,
+              zIndex: 999,
+              alignSelf: "center",
+            }}
+          >
+            <Text
+              style={{
+                color: "#ffd700",
+                fontWeight: "bold",
+                fontSize: 17,
+                textAlign: "center",
+              }}
+            >
+              {noDukesText ||
+                t("common:errors.notEnoughCoinsTitle", {
+                  defaultValue: "Nedovoljno dukata",
+                })}
             </Text>
             <TouchableOpacity
               onPress={() => setShowNoDukes(false)}
@@ -130,12 +199,17 @@ const KlasicnoModal = ({ onClose, navigation }) => {
                 backgroundColor: "#ffd700",
                 paddingHorizontal: 20,
                 paddingVertical: 8,
-                borderRadius: 8
-              }}>
-              <Text style={{
-                color: "#222",
-                fontWeight: "bold"
-              }}>OK</Text>
+                borderRadius: 8,
+              }}
+            >
+              <Text
+                style={{
+                  color: "#222",
+                  fontWeight: "bold",
+                }}
+              >
+                {t("common:buttons.ok", { defaultValue: "U redu" })}
+              </Text>
             </TouchableOpacity>
           </View>
         )}

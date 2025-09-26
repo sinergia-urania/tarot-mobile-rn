@@ -1,238 +1,228 @@
-// START: Uvoz potrebnog za rewarded ad
-import { useEffect, useRef, useState } from "react";
-import { createRewardedAdInstance, RewardedAdEventType } from "../utils/ads";
-// END: Uvoz za rewarded ad
-
+// src/components/AdRewardModal.jsx
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Audio } from "expo-av";
-import {
-  ActivityIndicator,
-  Modal,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+// START: expo-audio za SFX umesto expo-av
+import { createAudioPlayer } from "expo-audio";
+// END: expo-audio za SFX umesto expo-av
+import React, { useEffect, useRef, useState } from "react";
+import { ActivityIndicator, Modal, Text, TouchableOpacity, View } from "react-native";
 import Toast from "react-native-toast-message";
 
+// AdMob
+import { AdEventType, RewardedAdEventType } from "react-native-google-mobile-ads";
+import { createRewardedAdInstance } from "../utils/ads";
+
+// App konteksti
 import { useDukati } from "../context/DukatiContext";
 import { useTreasureRef } from "../context/TreasureRefContext";
 
-export default function AdRewardModal({ visible = true, onClose, onFlyCoin }) {
-  const [loading, setLoading] = useState(false);
-  const [coinAnim, setCoinAnim] = useState(false);
+// START: i18n
+import { useTranslation } from 'react-i18next';
+// END: i18n
 
-  const [adReady, setAdReady] = useState(false); // da li je reklama spremna
+const REWARD_AMOUNT = 30; // centralizovan iznos nagrade
+
+export default function AdRewardModal({ visible = false, onClose, onFlyCoin }) {
+  const [loading, setLoading] = useState(false);
+  const [adReady, setAdReady] = useState(false);
+  const [coinAnim, setCoinAnim] = useState(false);
   const [adError, setAdError] = useState(null);
 
-  const [lastWatched, setLastWatched] = useState(null); // FE cooldown
-  const rewardGiven = useRef(false); // da ne dodeli reward dvaput
-
   const adButtonRef = useRef(null);
+  const rewardedRef = useRef(null);
+  const rewardGiven = useRef(false);
+  const shouldAnimateRef = useRef(false);
+
   const treasureRef = useTreasureRef();
+  const { dodeliDukatePrekoBackenda, fetchDukatiSaServera } = useDukati();
 
-  const { dukati, dodeliDukatePrekoBackenda, fetchDukatiSaServera } = useDukati();
+  // START: i18n hook
+  const { t } = useTranslation(['common']);
+  // END: i18n hook
 
-  // Callback koji prikazuje "+30 dukata" i "U redu" dugme nakon flying coin animacije
   const handleCoinAnim = () => setCoinAnim(true);
 
-  // START: Nova logika za rewarded ad instance
-  const rewardedRef = useRef(null);
-
+  // Učitavanje rewarded instance kad je modal vidljiv
   useEffect(() => {
-    let isMounted = true;
+    if (!visible) return;
+
+    setLoading(true);
+    setAdReady(false);
+    setAdError(null);
     rewardGiven.current = false;
-    if (visible) {
-      setLoading(true);
-      setAdReady(false);
-      setAdError(null);
+    shouldAnimateRef.current = false;
 
-      // --- Nova logika učitavanja reklame ---
-      try {
-        // Očisti prethodnu instancu ako postoji
-        if (rewardedRef.current) {
-          rewardedRef.current = null;
-        }
+    const rewarded = createRewardedAdInstance();
+    rewardedRef.current = rewarded;
 
-        const rewarded = createRewardedAdInstance();
-        rewardedRef.current = rewarded;
+    const loadedSub = rewarded.addAdEventListener(
+      RewardedAdEventType.LOADED,
+      () => {
+        console.log("[REWARDED][LOAD] LOADED");
+        setAdReady(true);
+        setLoading(false);
+      }
+    );
 
-        // Kad se reklama učita, dozvoli klik
-        const loadedListener = rewarded.addAdEventListener(
-          RewardedAdEventType.LOADED,
-          () => {
-            if (isMounted) {
-              setAdReady(true);
-              setLoading(false);
-            }
-          }
-        );
-
-        // Greška pri učitavanju
-        const errorListener = rewarded.addAdEventListener(
-          RewardedAdEventType.ERROR,
-          (err) => {
-            if (isMounted) {
-              setAdError(err);
-              setLoading(false);
-              setAdReady(false);
-            }
-            Toast.show({
-              type: "error",
-              text1: "Greška sa reklamom!",
-              text2: err.message,
-              position: "bottom",
-            });
-          }
-        );
-
-        rewarded.load();
-
-        return () => {
-          loadedListener && loadedListener();
-          errorListener && errorListener();
-          isMounted = false;
-        };
-      } catch (err) {
+    const errorSub = rewarded.addAdEventListener(
+      AdEventType.ERROR,
+      (err) => {
+        console.log("[REWARDED][LOAD][ERROR]", err?.code, err?.message, err);
         setAdError(err);
         setLoading(false);
         setAdReady(false);
+        const msg = `${err?.code ?? ""} ${err?.message ?? ""}`.trim();
+        Toast.show({
+          type: "error",
+          text1: t('common:ads.errorTitle', { defaultValue: 'Greška sa reklamom!' }),
+          text2: msg || t('common:ads.errorGeneric', { defaultValue: 'Pokušajte ponovo kasnije.' }),
+          position: "bottom",
+        });
       }
-    }
-  }, [visible]);
-  // END: Loadovanje rewarded ad
+    );
 
-  // START: Prikaz reklame i flying coin nakon uspeha
+    rewarded.load();
+
+    return () => {
+      try { loadedSub && loadedSub(); } catch { }
+      try { errorSub && errorSub(); } catch { }
+      rewardedRef.current = null;
+    };
+  }, [visible]);
+
+  // Ako LOADED ne stigne (spora mreža) – pokušaj opet
+  useEffect(() => {
+    if (!visible || adReady || !loading) return;
+    const tmo = setTimeout(() => {
+      console.log("[REWARDED][RETRY] ponovni load");
+      try { rewardedRef.current?.load(); } catch { }
+    }, 8000);
+    return () => clearTimeout(tmo);
+  }, [visible, adReady, loading]);
+
   const handleWatchAd = async () => {
-    const now = Date.now();
-    if (lastWatched && now - lastWatched < 20_000) {
-      Toast.show({
-        type: "info",
-        text1: "Morate sačekati",
-        text2: "Možete gledati reklamu na svakih 20 sekundi.",
-        position: "bottom",
-        visibilityTime: 2000,
-      });
-      return;
-    }
     if (!adReady) {
       Toast.show({
         type: "info",
-        text1: "Reklama nije spremna",
-        text2: "Pokušajte ponovo za par sekundi.",
+        text1: t('common:ads.loading', { defaultValue: 'Reklama se učitava…' }),
         position: "bottom",
-        visibilityTime: 2000,
       });
       return;
     }
     setLoading(true);
     setAdError(null);
 
-    try {
-      rewardGiven.current = false; // reset za svaki prikaz
-      const rewarded = rewardedRef.current;
-
-      if (!rewarded) throw new Error("Rewarded ad nije inicijalizovan!");
-
-      // Dodaj event listenere za prikaz i nagradu
-      const earnedListener = rewarded.addAdEventListener(
-        RewardedAdEventType.EARNED_REWARD,
-        (reward) => {
-          if (!rewardGiven.current) {
-            rewardGiven.current = true;
-            adButtonRef.current?.measureInWindow?.((startX, startY, width, height) => {
-              treasureRef.current?.measureInWindow?.((endX, endY, endWidth, endHeight) => {
-                if (onFlyCoin) {
-                  onFlyCoin(
-                    { x: startX + width / 2, y: startY + height / 2 },
-                    { x: endX + endWidth / 2, y: endY + endHeight / 2 },
-                    handleCoinAnim
-                  );
-                }
-              });
-            });
-          }
-        }
-      );
-
-      const closedListener = rewarded.addAdEventListener(
-        RewardedAdEventType.CLOSED,
-        () => {
-          earnedListener && earnedListener();
-          closedListener && closedListener();
-          setAdReady(false);
-        }
-      );
-
-      rewarded.show();
-      setLastWatched(now);
-      setAdReady(false);
-    } catch (err) {
-      setAdError(err);
+    const rewarded = rewardedRef.current;
+    if (!rewarded) {
+      setLoading(false);
       Toast.show({
         type: "error",
-        text1: "Greška!",
-        text2: err.message || "Došlo je do greške sa reklamom.",
+        text1: t('common:errors.genericTitle', { defaultValue: 'Greška' }),
+        text2: t('common:ads.notReady', { defaultValue: 'Reklama nije spremna.' }),
+        position: "bottom"
+      });
+      return;
+    }
+
+    // 1) Dodela dukata NA EARNED_REWARD (dok još traje oglas)
+    const earnedSub = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      async () => {
+        if (rewardGiven.current) return;
+        rewardGiven.current = true;
+        shouldAnimateRef.current = true; // animaciju ćemo pustiti tek na CLOSED
+
+        try {
+          await dodeliDukatePrekoBackenda(REWARD_AMOUNT);
+          await fetchDukatiSaServera(); // osveži header odmah
+          Toast.show({
+            type: "success",
+            text1: t('common:ads.thanksTitle', { defaultValue: 'Hvala!' }),
+            text2: t('common:ads.rewardToast', { amount: REWARD_AMOUNT, defaultValue: `Dobili ste ${REWARD_AMOUNT} dukata.` }),
+            position: "bottom",
+          });
+        } catch (e) {
+          Toast.show({
+            type: "error",
+            text1: t('common:ads.grantError', { defaultValue: 'Greška pri dodeli dukata' }),
+            text2: String(e?.message || e),
+            position: "bottom",
+          });
+        }
+      }
+    );
+
+    // 2) Animacija i preload SLEDEĆE reklame TEK kad se oglas zatvori
+    const closedSub = rewarded.addAdEventListener(AdEventType.CLOSED, () => {
+      console.log("[REWARDED][CLOSED]");
+      fetchDukatiSaServera().catch(() => { });
+      // očisti ovaj ciklus
+      try { earnedSub && earnedSub(); } catch { }
+      try { closedSub && closedSub(); } catch { }
+
+      setAdReady(false);
+
+      // Prvo preload sledećeg
+      try { setLoading(true); rewarded.load(); } catch { }
+
+      // Onda animacija (iznad UI-a, bez preklapanja oglasa)
+      if (shouldAnimateRef.current) {
+        setTimeout(() => {
+          let started = false;
+          adButtonRef.current?.measureInWindow?.((sx, sy, w, h) => {
+            treasureRef.current?.measureInWindow?.((tx, ty, tw, th) => {
+              started = true;
+              onFlyCoin?.(
+                { x: sx + (w || 0) / 2, y: sy + (h || 0) / 2 },
+                { x: tx + (tw || 0) / 2, y: ty + (th || 0) / 2 },
+                handleCoinAnim
+              );
+            });
+          });
+          setTimeout(() => { if (!started) handleCoinAnim(); }, 120);
+        }, 120);
+      }
+      shouldAnimateRef.current = false;
+      setLoading(false);
+    });
+
+    try {
+      rewarded.show();
+      setAdReady(false);
+    } catch (e) {
+      console.log("[REWARDED][SHOW][ERROR]", e);
+      setAdError(e);
+      Toast.show({
+        type: "error",
+        text1: t('common:errors.genericTitle', { defaultValue: 'Greška' }),
+        text2: String(e?.message || e) || t('common:ads.errorGeneric', { defaultValue: 'Došlo je do greške sa reklamom. Pokušajte ponovo kasnije.' }),
         position: "bottom",
       });
-    } finally {
       setLoading(false);
     }
   };
-  // END: Prikaz reklame i flying coin
 
-  // START: Nova handleCoinComplete logika sa toast-om i proverom (ostaje tvoja backend nagrada)
+  // START: SFX sa expo-audio (jednokratni “bling”)
   const handleCoinComplete = async () => {
-    let sound;
-    let stariBrojDukata = dukati;
     try {
-      const noviBroj = await dodeliDukatePrekoBackenda(50, "ad_reward");
-      if (fetchDukatiSaServera) await fetchDukatiSaServera();
-
-      if (noviBroj === stariBrojDukata) {
-        Toast.show({
-          type: "info",
-          text1: "Morate sačekati",
-          text2: "Možete gledati reklamu na svakih 20 sekundi.",
-          position: "bottom",
-        });
-      } else {
-        const res = await Audio.Sound.createAsync(
-          require("../assets/sounds/bling.mp3")
-        );
-        sound = res.sound;
-        await sound.playAsync();
-      }
-    } catch (e) {
-      Toast.show({
-        type: "error",
-        text1: "Greška!",
-        text2: e.message || "Došlo je do greške.",
-        position: "bottom",
-      });
-    } finally {
-      if (sound) await sound.unloadAsync();
+      const p = createAudioPlayer(require("../assets/sounds/bling.mp3"));
+      p.loop = false;
+      p.volume = 1;
+      await p.seekTo(0);
+      p.play();
+      // grubo uklanjanje posle ~1.5s (kratak SFX); po želji koriguj trajanje
+      setTimeout(() => { try { p.remove?.(); } catch { } }, 1500);
+    } catch { }
+    finally {
       setCoinAnim(false);
       setLoading(false);
-      onClose();
+      onClose?.();
     }
   };
-  // END: Nova handleCoinComplete logika
+  // END: SFX sa expo-audio
 
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="fade"
-      onRequestClose={onClose}
-    >
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: "rgba(0,0,0,0.3)",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+      <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.3)", justifyContent: "center", alignItems: "center" }}>
         <View
           style={{
             backgroundColor: "#18181b",
@@ -245,7 +235,7 @@ export default function AdRewardModal({ visible = true, onClose, onFlyCoin }) {
             position: "relative",
           }}
         >
-          {/* X dugme */}
+          {/* X */}
           <TouchableOpacity
             onPress={onClose}
             style={{
@@ -265,19 +255,11 @@ export default function AdRewardModal({ visible = true, onClose, onFlyCoin }) {
             <Text style={{ color: "#222", fontWeight: "bold", fontSize: 22 }}>×</Text>
           </TouchableOpacity>
 
-          <Text
-            style={{
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: 20,
-              marginBottom: 18,
-              textAlign: "center",
-            }}
-          >
-            Gledaj reklamu za dukate
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20, marginBottom: 18, textAlign: "center" }}>
+            {t('common:home.watchAdForCoins', { defaultValue: 'Gledaj reklamu za dukate' })}
           </Text>
 
-          {/* Dugme za pokretanje reklame */}
+          {/* Dugme */}
           {!loading && !coinAnim && (
             <TouchableOpacity
               ref={adButtonRef}
@@ -296,41 +278,33 @@ export default function AdRewardModal({ visible = true, onClose, onFlyCoin }) {
               disabled={!adReady}
             >
               <Text style={{ color: "#222", fontWeight: "bold", fontSize: 17 }}>
-                {adReady ? "Pogledaj reklamu za 30 dukata" : "Reklama se učitava..."}
+                {adReady
+                  ? t('common:ads.buttonReady', { amount: REWARD_AMOUNT, defaultValue: `Pogledaj reklamu za ${REWARD_AMOUNT} dukata` })
+                  : t('common:ads.buttonLoading', { defaultValue: 'Reklama se učitava...' })
+                }
               </Text>
             </TouchableOpacity>
           )}
 
-          {/* Loading animacija */}
+          {/* Loading */}
           {loading && !coinAnim && (
             <View style={{ alignItems: "center", marginTop: 24 }}>
               <ActivityIndicator color="#facc15" size="large" />
-              <Text
-                style={{
-                  color: "#facc15",
-                  fontWeight: "bold",
-                  fontSize: 15,
-                  marginTop: 12,
-                }}
-              >
-                {adReady ? "Prikazivanje reklame..." : "Učitavanje reklame..."}
+              <Text style={{ color: "#facc15", fontWeight: "bold", fontSize: 15, marginTop: 12 }}>
+                {adReady
+                  ? t('common:ads.showing', { defaultValue: 'Prikazivanje reklame...' })
+                  : t('common:ads.loading', { defaultValue: 'Učitavanje reklame...' })
+                }
               </Text>
             </View>
           )}
 
-          {/* Animacija novčića + "U redu" dugme */}
+          {/* Animacija + potvrda */}
           {coinAnim && (
             <View style={{ alignItems: "center", marginTop: 22 }}>
-              <MaterialCommunityIcons name="coin" size={54} color="#ffd700" />
-              <Text
-                style={{
-                  color: "#ffd700",
-                  fontWeight: "bold",
-                  fontSize: 19,
-                  marginTop: 6,
-                }}
-              >
-                +30 dukata!
+              <MaterialCommunityIcons name="currency-usd" size={54} color="#ffd700" />
+              <Text style={{ color: "#ffd700", fontWeight: "bold", fontSize: 19, marginTop: 6 }}>
+                {t('common:ads.plusCoins', { amount: REWARD_AMOUNT, defaultValue: `+${REWARD_AMOUNT} dukata!` })}
               </Text>
               <TouchableOpacity
                 style={{
@@ -343,23 +317,17 @@ export default function AdRewardModal({ visible = true, onClose, onFlyCoin }) {
                 }}
                 onPress={handleCoinComplete}
               >
-                <Text
-                  style={{
-                    color: "#222",
-                    fontWeight: "bold",
-                    fontSize: 17,
-                  }}
-                >
-                  U redu
+                <Text style={{ color: "#222", fontWeight: "bold", fontSize: 17 }}>
+                  {t('common:buttons.ok', { defaultValue: 'U redu' })}
                 </Text>
               </TouchableOpacity>
             </View>
           )}
 
-          {/* Greška sa reklamom */}
-          {adError && (
+          {/* Greška */}
+          {adError && !coinAnim && (
             <Text style={{ color: "red", marginTop: 14, textAlign: "center" }}>
-              Došlo je do greške sa reklamom. Pokušajte ponovo kasnije.
+              {t('common:ads.errorGeneric', { defaultValue: 'Došlo je do greške sa reklamom. Pokušajte ponovo kasnije.' })}
             </Text>
           )}
         </View>

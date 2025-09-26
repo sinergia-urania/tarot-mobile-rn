@@ -100,3 +100,4 @@ export const DVE_KARTE = {
     { x: 1, y: 0 },
   ],
 };
+

@@ -1,140 +1,125 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useState } from "react";
-import { Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import TarotHeader from "../components/TarotHeader"; // prilagodi putanju ako treba
+import React, { useRef, useState } from "react";
+// START: i18n hook (common + questions)
+import { useTranslation } from 'react-i18next'; // 👈 NOVO
+// END: i18n hook (common + questions)
+// START: Modal import za OblastModal
+import { InteractionManager, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+// END: Modal import za OblastModal
+// START: lokalni klik SFX (expo-audio) samo za ovaj ekran
+import { createAudioPlayer } from 'expo-audio';
+const _clickSound = require('../assets/sounds/hover-click.mp3');
+let _player = null;
+const playClickOnceLocal = async () => {
+  try {
+    if (!_player) {
+      _player = createAudioPlayer(_clickSound);
+      _player.loop = false;
+      _player.volume = 1;
+    }
+    await _player.seekTo(0);
+    _player.play();
+  } catch { }
+};
+// END: lokalni klik SFX (expo-audio) samo za ovaj ekran
+import TarotHeader from "../components/TarotHeader";
 
-// ... tvoja lista oblasti (ostaje nepromenjena)
-const oblasti = [
-  {
-    naziv: "Ljubav",
-    ikonica: "❤️",
-    pitanja: [
-      "Da li me voli?",
-      "Kakva je naša budućnost?",
-      "Da li ćemo se pomiriti?",
-      "Da li ću uskoro upoznati nekog posebnog?",
-      "Kako mogu poboljšati svoj ljubavni život?",
-      "Da li je moj partner iskren prema meni?",
-    ],
-  },
-  {
-    naziv: "Posao",
-    ikonica: "💼",
-    pitanja: [
-      "Da li ću dobiti posao koji želim?",
-      "Kakva me karijera čeka?",
-      "Da li je vreme za promenu posla?",
-      "Kako da napredujem na poslu?",
-      "Da li će moj trud biti prepoznat?",
-      "Kako da pronađem posao koji me ispunjava?",
-    ],
-  },
-  {
-    naziv: "Zdravlje",
-    ikonica: "🧘",
-    pitanja: [
-      "Da li me očekuje oporavak?",
-      "Na šta treba da obratim pažnju?",
-      "Kako da unapredim svoje zdravlje?",
-      "Da li je trenutni tretman pravi izbor?",
-      "Kako mogu poboljšati mentalno zdravlje?",
-      "Da li treba da tražim drugo mišljenje?",
-    ],
-  },
-  {
-    naziv: "Finansije",
-    ikonica: "💰",
-    pitanja: [
-      "Kako da poboljšam svoje finansije?",
-      "Da li je pametno ulaganje?",
-      "Da li ću imati stabilnost?",
-      "Kako da raspolažem novcem pametnije?",
-      "Da li ću otplatiti dugove?",
-      "Da li mi sledi dobitak?",
-    ],
-  },
-  {
-    naziv: "Duhovni razvoj",
-    ikonica: "🌀",
-    pitanja: [
-      "Koja je moja svrha?",
-      "Šta mi duša poručuje?",
-      "Na čemu treba da radim duhovno?",
-      "Koji je sledeći korak u mom razvoju?",
-      "Kako da pronađem unutrašnji mir?",
-      "Koja lekcija mi se ponavlja?",
-    ],
-  },
-  {
-    naziv: "Porodica i odnosi",
-    ikonica: "🏡",
-    pitanja: [
-      "Kako da poboljšam porodične odnose?",
-      "Da li će se situacija u porodici smiriti?",
-      "Kako da pomognem članu porodice?",
-      "Da li će se odnos sa [ime] popraviti?",
-      "Kako da budem podrška partneru/partnerki?",
-      "Da li nas očekuje mir u kući?",
-    ],
-  },
-  
-];
+// START: ✅ NOVO – import za guardovani baner i userPlan
+import { useDukati } from "../context/DukatiContext";
+import { AdBannerIfEligible } from "../utils/ads";
+// END: ✅ NOVO – import za guardovani baner i userPlan
 
+// START: Implementacija OblastModal (umesto stuba)
 function OblastModal({ oblast, visible, onClose, onSelect }) {
+  const { t } = useTranslation(['common']);
+  if (!oblast) return null;
+
   return (
-    <Modal visible={visible} transparent animationType="fade">
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View style={styles.modalOverlay}>
         <View style={styles.modalBox}>
-          <Text style={styles.modalTitle}>{oblast.naziv} pitanja</Text>
-          <ScrollView style={{ maxHeight: 260 }}>
-            {oblast.pitanja.map((p, idx) => (
-              <TouchableOpacity
-                key={idx}
-                style={styles.questionBtn}
-                onPress={() => {
-                  onSelect(p);
-                  onClose();
-                }}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.questionText}>{p}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-          <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
-            <Text style={{ color: "#bbb", fontSize: 18 }}>Zatvori</Text>
+          <Text style={styles.modalTitle}>
+            <Text style={styles.ikona}>{oblast.ikonica}</Text> {oblast.naziv} <Text style={styles.ikona}>{oblast.ikonica}</Text>
+          </Text>
+
+          {(oblast.pitanja || []).map((p, idx) => (
+            <TouchableOpacity
+              key={idx}
+              style={styles.questionBtn}
+              // START: klik SFX na izbor pitanja
+              onPress={async () => { await playClickOnceLocal(); onSelect?.(p); }}
+              // END: klik SFX na izbor pitanja
+              activeOpacity={0.9}
+            >
+              <Text style={styles.questionText}>{p}</Text>
+            </TouchableOpacity>
+          ))}
+
+          {/* START: klik SFX na Zatvori */}
+          <TouchableOpacity style={styles.closeBtn} onPress={async () => { await playClickOnceLocal(); onClose?.(); }}>
+            <Text style={{ color: '#facc15', fontWeight: 'bold' }}>
+              {t('common:buttons.close', { defaultValue: 'Zatvori' })}
+            </Text>
           </TouchableOpacity>
+          {/* END: klik SFX na Zatvori */}
         </View>
       </View>
     </Modal>
   );
 }
+// END: Implementacija OblastModal (umesto stuba)
 
 export default function PitanjeIzbor() {
   const navigation = useNavigation();
   const route = useRoute();
   const { layoutTemplate, tip, subtip } = route.params || {};
+  const { t } = useTranslation();
 
   const [pitanje, setPitanje] = useState("");
   const [openModal, setOpenModal] = useState(null);
 
-  const handleNastavi = () => {
-    if (!pitanje.trim()) return;
-    // START: Navigacija - subtip je obavezno u props, naplata će raditi ispravno
-    navigation.navigate("IzborKarata", {
-      layoutTemplate,
-      pitanje,
-      tip,
-      subtip, // <-- sada je subtip SVUDA prisutan
+  const pressLockRef = useRef(false);
+  // START: handleNastavi sa opcionim isključenjem zvuka (da izbegnemo dupli klik)
+  const handleNastavi = async (suppressSound = false) => {
+    const q = pitanje.trim();
+    if (!q) return;
+    if (pressLockRef.current) return;
+    pressLockRef.current = true;
+    if (!suppressSound) { await playClickOnceLocal(); }
+    InteractionManager.runAfterInteractions(() => {
+      navigation.navigate("IzborKarata", {
+        layoutTemplate,
+        pitanje: q,
+        tip,
+        tipOtvaranja: subtip,
+        subtip,
+      });
+      setTimeout(() => (pressLockRef.current = false), 300);
     });
-    // END: Navigacija - subtip uvek ide dalje!
   };
+  // END: handleNastavi sa opcionim isključenjem zvuka (da izbegnemo dupli klik)
 
-  // Prikaz oblasti: samo ljubavne za "ljubavno" subtip, inače sve
+  // 👇 Učitaj kategorije iz i18n
+  const categoriesObj = t('categories', { ns: 'questions', returnObjects: true }) || {};
+  const categories = Object.entries(categoriesObj).map(([key, v]) => ({
+    key,
+    naziv: v.name,
+    ikonica: v.icon,
+    pitanja: v.items || [],
+  }));
+
+  // Filter za "ljubavno" — prikaži samo ljubavnu kategoriju
   const prikazOblasti =
     subtip === "ljubavno"
-      ? oblasti.filter((o) => o.naziv === "Ljubav")
-      : oblasti;
+      ? categories.filter((o) => o.key === "love")
+      : categories;
+
+  // START: ✅ NOVO – pribavi userPlan + mapiraj na session/profile za guard
+  const { userPlan } = useDukati(); // 'guest' | 'gost' | 'free' | 'premium' | 'pro'
+  const isGuest = userPlan === 'guest' || userPlan === 'gost';
+  const sessionLike = isGuest ? null : { uid: 'local-session' };
+  const profileLike = { subscription_tier: userPlan };
+  // END: ✅ NOVO – pribavi userPlan + mapiraj na session/profile za guard
 
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
@@ -146,54 +131,79 @@ export default function PitanjeIzbor() {
         showMenu={false}
       />
 
-      <ScrollView
-        style={{ flex: 1 }}
-        contentContainerStyle={{ paddingBottom: 32 }}
-      >
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 32 }}>
         <View style={styles.container}>
+          {/* START: intro poruka iz i18n (poseban ključ za ovaj ekran) */}
           <Text style={styles.infoMsg}>
-            Izaberi neko od ponuđenih pitanja ili postavi svoje pitanje AI tumaču.
+            {t('common:questions.introBlurb', {
+              defaultValue: 'Izaberi neku od tema i primera pitanja ili postavi svoje pitanje AI tumaču.'
+            })}
           </Text>
+          {/* END: intro poruka iz i18n */}
+
           <View style={styles.oblastiCol}>
             {prikazOblasti.map((oblast, idx) => (
-              <View key={oblast.naziv} style={{ width: "100%" }}>
+              <View key={oblast.key} style={{ width: "100%" }}>
                 <TouchableOpacity
                   style={styles.oblastBtn}
-                  onPress={() => setOpenModal(idx)}
+                  // START: klik SFX na otvaranje modala oblasti
+                  onPress={async () => { await playClickOnceLocal(); setOpenModal(idx); }}
+                  // END: klik SFX na otvaranje modala oblasti
                   activeOpacity={0.87}
                 >
                   <Text style={styles.oblastText}>
                     <Text style={styles.ikona}>{oblast.ikonica}</Text> {oblast.naziv} <Text style={styles.ikona}>{oblast.ikonica}</Text>
                   </Text>
                 </TouchableOpacity>
+
                 <OblastModal
                   oblast={oblast}
                   visible={openModal === idx}
                   onClose={() => setOpenModal(null)}
                   onSelect={(p) => {
                     setPitanje(p);
-                    setTimeout(handleNastavi, 250);
+                    // START: zatvori modal pre navigacije
+                    setOpenModal(null);
+                    // END: zatvori modal pre navigacije
+                    // START: izbegni dupli zvuk — modal klik već svira
+                    setTimeout(() => handleNastavi(true), 200);
+                    // END: izbegni dupli zvuk — modal klik već svira
                   }}
                 />
               </View>
             ))}
           </View>
-          <Text style={styles.subTitle}>Ili unesi svoje pitanje</Text>
+
+          <Text style={styles.subTitle}>{t('labels.orTypeYourQuestion', { defaultValue: 'Ili unesi svoje pitanje' })}</Text>
           <TextInput
             value={pitanje}
             onChangeText={setPitanje}
-            placeholder="Unesi pitanje"
+            placeholder={t('placeholders.enterQuestion', { defaultValue: 'Unesi pitanje' })}
             placeholderTextColor="#aaa"
             style={styles.input}
           />
-          <TouchableOpacity style={styles.nastaviBtn} onPress={handleNastavi}>
-            <Text style={styles.nastaviText}>Izbor karata</Text>
+          {/* START: Aktiviraj dugme samo na osnovu unetog pitanja */}
+          <TouchableOpacity
+            style={[styles.nastaviBtn, !pitanje.trim() && { opacity: 0.6 }]}
+            onPress={() => handleNastavi(false)}
+            disabled={!pitanje.trim()}
+          >
+            <Text style={styles.nastaviText}>{t('labels.chooseCards', { defaultValue: 'Izbor karata' })}</Text>
           </TouchableOpacity>
+          {/* END: Aktiviraj dugme samo na osnovu unetog pitanja */}
+
+          {/* START: ✅ NOVO – nenametljiv banner ispod dugmeta (skriva se premium/pro) */}
+          <View style={styles.inlineBanner}>
+            <AdBannerIfEligible session={sessionLike} profile={profileLike} />
+          </View>
+          {/* END: ✅ NOVO – nenametljiv banner ispod dugmeta */}
         </View>
       </ScrollView>
     </View>
   );
 }
+
+// ... styles ostaju tvoji ...
 
 const styles = StyleSheet.create({
   stickyHeader: {
@@ -317,4 +327,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 17,
   },
+  // START: ✅ NOVO – stil za inline banner (mala margina, centriran)
+  inlineBanner: {
+    marginTop: 8,
+    alignItems: 'center',
+  },
+  // END: ✅ NOVO – stil za inline banner
 });

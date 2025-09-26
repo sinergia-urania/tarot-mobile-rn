@@ -1,4 +1,4 @@
-const cardImages = {
+﻿const cardImages = {
   the_fool: require('../assets/cards/the_fool.webp'),
   the_magician: require('../assets/cards/the_magician.webp'),
   the_high_priestess: require('../assets/cards/the_high_priestess.webp'),
@@ -87,3 +87,5 @@ export const getCardImagePath = (key) => {
   const snakeKey = toSnakeCase(key);
   return cardImages[snakeKey] || require('../assets/cards/back.webp');
 };
+
+

@@ -1,0 +1,238 @@
+{
+  "cards": {
+    "theFool": {
+      "name": "द फूल"
+    },
+    "theMagician": {
+      "name": "द मैजिशियन"
+    },
+    "theHighPriestess": {
+      "name": "द हाई प्रीस्टेस"
+    },
+    "theEmpress": {
+      "name": "द एम्प्रेस"
+    },
+    "theEmperor": {
+      "name": "द एम्परर"
+    },
+    "theHierophant": {
+      "name": "द हायरोफैंट"
+    },
+    "theLovers": {
+      "name": "द लवर्स"
+    },
+    "theChariot": {
+      "name": "द चैरियट"
+    },
+    "strength": {
+      "name": "स्ट्रेंथ"
+    },
+    "theHermit": {
+      "name": "द हर्मिट"
+    },
+    "wheelOfFortune": {
+      "name": "व्हील ऑफ फॉर्च्यून"
+    },
+    "justice": {
+      "name": "जस्टिस"
+    },
+    "theHangedMan": {
+      "name": "द हैंग्ड मैन"
+    },
+    "death": {
+      "name": "डेथ"
+    },
+    "temperance": {
+      "name": "टेम्परेंस"
+    },
+    "theDevil": {
+      "name": "द डेविल"
+    },
+    "theTower": {
+      "name": "द टावर"
+    },
+    "theStar": {
+      "name": "द स्टार"
+    },
+    "theMoon": {
+      "name": "द मून"
+    },
+    "theSun": {
+      "name": "द सन"
+    },
+    "judgement": {
+      "name": "जजमेंट"
+    },
+    "theWorld": {
+      "name": "द वर्ल्ड"
+    },
+    "aceOfWands": {
+      "name": "ऐस ऑफ वैंड्स"
+    },
+    "twoOfWands": {
+      "name": "टू ऑफ वैंड्स"
+    },
+    "threeOfWands": {
+      "name": "थ्री ऑफ वैंड्स"
+    },
+    "fourOfWands": {
+      "name": "फोर ऑफ वैंड्स"
+    },
+    "fiveOfWands": {
+      "name": "फाइव ऑफ वैंड्स"
+    },
+    "sixOfWands": {
+      "name": "सिक्स ऑफ वैंड्स"
+    },
+    "sevenOfWands": {
+      "name": "सेवन ऑफ वैंड्स"
+    },
+    "eightOfWands": {
+      "name": "एट ऑफ वैंड्स"
+    },
+    "nineOfWands": {
+      "name": "नाइन ऑफ वैंड्स"
+    },
+    "tenOfWands": {
+      "name": "टेन ऑफ वैंड्स"
+    },
+    "pageOfWands": {
+      "name": "पेज ऑफ वैंड्स"
+    },
+    "knightOfWands": {
+      "name": "नाइट ऑफ वैंड्स"
+    },
+    "queenOfWands": {
+      "name": "क्वीन ऑफ वैंड्स"
+    },
+    "kingOfWands": {
+      "name": "किंग ऑफ वैंड्स"
+    },
+    "aceOfCups": {
+      "name": "ऐस ऑफ कप्स"
+    },
+    "twoOfCups": {
+      "name": "टू ऑफ कप्स"
+    },
+    "threeOfCups": {
+      "name": "थ्री ऑफ कप्स"
+    },
+    "fourOfCups": {
+      "name": "फोर ऑफ कप्स"
+    },
+    "fiveOfCups": {
+      "name": "फाइव ऑफ कप्स"
+    },
+    "sixOfCups": {
+      "name": "सिक्स ऑफ कप्स"
+    },
+    "sevenOfCups": {
+      "name": "सेवन ऑफ कप्स"
+    },
+    "eightOfCups": {
+      "name": "एट ऑफ कप्स"
+    },
+    "nineOfCups": {
+      "name": "नाइन ऑफ कप्स"
+    },
+    "tenOfCups": {
+      "name": "टेन ऑफ कप्स"
+    },
+    "pageOfCups": {
+      "name": "पेज ऑफ कप्स"
+    },
+    "knightOfCups": {
+      "name": "नाइट ऑफ कप्स"
+    },
+    "queenOfCups": {
+      "name": "क्वीन ऑफ कप्स"
+    },
+    "kingOfCups": {
+      "name": "किंग ऑफ कप्स"
+    },
+    "aceOfSwords": {
+      "name": "ऐस ऑफ तलवारें"
+    },
+    "twoOfSwords": {
+      "name": "टू ऑफ तलवारें"
+    },
+    "threeOfSwords": {
+      "name": "थ्री ऑफ तलवारें"
+    },
+    "fourOfSwords": {
+      "name": "फोर ऑफ तलवारें"
+    },
+    "fiveOfSwords": {
+      "name": "फाइव ऑफ तलवारें"
+    },
+    "sixOfSwords": {
+      "name": "सिक्स ऑफ तलवारें"
+    },
+    "sevenOfSwords": {
+      "name": "सेवन ऑफ तलवारें"
+    },
+    "eightOfSwords": {
+      "name": "एट ऑफ तलवारें"
+    },
+    "nineOfSwords": {
+      "name": "नाइन ऑफ तलवारें"
+    },
+    "tenOfSwords": {
+      "name": "टेन ऑफ तलवारें"
+    },
+    "pageOfSwords": {
+      "name": "पेज ऑफ तलवारें"
+    },
+    "knightOfSwords": {
+      "name": "नाइट ऑफ तलवारें"
+    },
+    "queenOfSwords": {
+      "name": "क्वीन ऑफ तलवारें"
+    },
+    "kingOfSwords": {
+      "name": "किंग ऑफ तलवारें"
+    },
+    "aceOfPentacles": {
+      "name": "ऐस ऑफ पेंटाकल्स"
+    },
+    "twoOfPentacles": {
+      "name": "टू ऑफ पेंटाकल्स"
+    },
+    "threeOfPentacles": {
+      "name": "थ्री ऑफ पेंटाकल्स"
+    },
+    "fourOfPentacles": {
+      "name": "फोर ऑफ पेंटाकल्स"
+    },
+    "fiveOfPentacles": {
+      "name": "फाइव ऑफ पेंटाकल्स"
+    },
+    "sixOfPentacles": {
+      "name": "सिक्स ऑफ पेंटाकल्स"
+    },
+    "sevenOfPentacles": {
+      "name": "सेवन ऑफ पेंटाकल्स"
+    },
+    "eightOfPentacles": {
+      "name": "एट ऑफ पेंटाकल्स"
+    },
+    "nineOfPentacles": {
+      "name": "नाइन ऑफ पेंटाकल्स"
+    },
+    "tenOfPentacles": {
+      "name": "टेन ऑफ पेंटाकल्स"
+    },
+    "pageOfPentacles": {
+      "name": "पेज ऑफ पेंटाकल्स"
+    },
+    "knightOfPentacles": {
+      "name": "नाइट ऑफ पेंटाकल्स"
+    },
+    "queenOfPentacles": {
+      "name": "क्वीन ऑफ पेंटाकल्स"
+    },
+    "kingOfPentacles": {
+      "name": "किंग ऑफ पेंटाकल्स"
+    }
+  }
+}

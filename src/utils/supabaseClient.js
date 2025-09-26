@@ -1,5 +1,7 @@
+﻿
+import 'react-native-get-random-values';
+import 'react-native-url-polyfill/auto';
 // START: React Native/Expo Supabase client sa AsyncStorage
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
 
@@ -16,3 +18,5 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
 });
 
 // END: React Native/Expo Supabase client sa AsyncStorage
+
+

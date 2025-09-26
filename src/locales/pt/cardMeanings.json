@@ -1,0 +1,238 @@
+{
+  "cards": {
+    "theFool": {
+      "name": "O Louco"
+    },
+    "theMagician": {
+      "name": "O Mago"
+    },
+    "theHighPriestess": {
+      "name": "A Sacerdotisa"
+    },
+    "theEmpress": {
+      "name": "A Imperatriz"
+    },
+    "theEmperor": {
+      "name": "O Imperador"
+    },
+    "theHierophant": {
+      "name": "O Hierofante"
+    },
+    "theLovers": {
+      "name": "Os Enamorados"
+    },
+    "theChariot": {
+      "name": "O Carro"
+    },
+    "strength": {
+      "name": "A Força"
+    },
+    "theHermit": {
+      "name": "O Eremita"
+    },
+    "wheelOfFortune": {
+      "name": "A Roda da Fortuna"
+    },
+    "justice": {
+      "name": "A Justiça"
+    },
+    "theHangedMan": {
+      "name": "O Enforcado"
+    },
+    "death": {
+      "name": "A Morte"
+    },
+    "temperance": {
+      "name": "A Temperança"
+    },
+    "theDevil": {
+      "name": "O Diabo"
+    },
+    "theTower": {
+      "name": "A Torre"
+    },
+    "theStar": {
+      "name": "A Estrela"
+    },
+    "theMoon": {
+      "name": "A Lua"
+    },
+    "theSun": {
+      "name": "O Sol"
+    },
+    "judgement": {
+      "name": "O Julgamento"
+    },
+    "theWorld": {
+      "name": "O Mundo"
+    },
+    "aceOfWands": {
+      "name": "Ás de Bastos"
+    },
+    "twoOfWands": {
+      "name": "Dois de Bastos"
+    },
+    "threeOfWands": {
+      "name": "Três de Bastos"
+    },
+    "fourOfWands": {
+      "name": "Quatro de Bastos"
+    },
+    "fiveOfWands": {
+      "name": "Cinco de Bastos"
+    },
+    "sixOfWands": {
+      "name": "Seis de Bastos"
+    },
+    "sevenOfWands": {
+      "name": "Sete de Bastos"
+    },
+    "eightOfWands": {
+      "name": "Oito de Bastos"
+    },
+    "nineOfWands": {
+      "name": "Nove de Bastos"
+    },
+    "tenOfWands": {
+      "name": "Dez de Bastos"
+    },
+    "pageOfWands": {
+      "name": "Valete de Bastos"
+    },
+    "knightOfWands": {
+      "name": "Cavaleiro de Bastos"
+    },
+    "queenOfWands": {
+      "name": "Rainha de Bastos"
+    },
+    "kingOfWands": {
+      "name": "Rei de Bastos"
+    },
+    "aceOfCups": {
+      "name": "Ás de Copas"
+    },
+    "twoOfCups": {
+      "name": "Dois de Copas"
+    },
+    "threeOfCups": {
+      "name": "Três de Copas"
+    },
+    "fourOfCups": {
+      "name": "Quatro de Copas"
+    },
+    "fiveOfCups": {
+      "name": "Cinco de Copas"
+    },
+    "sixOfCups": {
+      "name": "Seis de Copas"
+    },
+    "sevenOfCups": {
+      "name": "Sete de Copas"
+    },
+    "eightOfCups": {
+      "name": "Oito de Copas"
+    },
+    "nineOfCups": {
+      "name": "Nove de Copas"
+    },
+    "tenOfCups": {
+      "name": "Dez de Copas"
+    },
+    "pageOfCups": {
+      "name": "Valete de Copas"
+    },
+    "knightOfCups": {
+      "name": "Cavaleiro de Copas"
+    },
+    "queenOfCups": {
+      "name": "Rainha de Copas"
+    },
+    "kingOfCups": {
+      "name": "Rei de Copas"
+    },
+    "aceOfSwords": {
+      "name": "Ás de Espadas"
+    },
+    "twoOfSwords": {
+      "name": "Dois de Espadas"
+    },
+    "threeOfSwords": {
+      "name": "Três de Espadas"
+    },
+    "fourOfSwords": {
+      "name": "Quatro de Espadas"
+    },
+    "fiveOfSwords": {
+      "name": "Cinco de Espadas"
+    },
+    "sixOfSwords": {
+      "name": "Seis de Espadas"
+    },
+    "sevenOfSwords": {
+      "name": "Sete de Espadas"
+    },
+    "eightOfSwords": {
+      "name": "Oito de Espadas"
+    },
+    "nineOfSwords": {
+      "name": "Nove de Espadas"
+    },
+    "tenOfSwords": {
+      "name": "Dez de Espadas"
+    },
+    "pageOfSwords": {
+      "name": "Valete de Espadas"
+    },
+    "knightOfSwords": {
+      "name": "Cavaleiro de Espadas"
+    },
+    "queenOfSwords": {
+      "name": "Rainha de Espadas"
+    },
+    "kingOfSwords": {
+      "name": "Rei de Espadas"
+    },
+    "aceOfPentacles": {
+      "name": "Ás de Ouros"
+    },
+    "twoOfPentacles": {
+      "name": "Dois de Ouros"
+    },
+    "threeOfPentacles": {
+      "name": "Três de Ouros"
+    },
+    "fourOfPentacles": {
+      "name": "Quatro de Ouros"
+    },
+    "fiveOfPentacles": {
+      "name": "Cinco de Ouros"
+    },
+    "sixOfPentacles": {
+      "name": "Seis de Ouros"
+    },
+    "sevenOfPentacles": {
+      "name": "Sete de Ouros"
+    },
+    "eightOfPentacles": {
+      "name": "Oito de Ouros"
+    },
+    "nineOfPentacles": {
+      "name": "Nove de Ouros"
+    },
+    "tenOfPentacles": {
+      "name": "Dez de Ouros"
+    },
+    "pageOfPentacles": {
+      "name": "Valete de Ouros"
+    },
+    "knightOfPentacles": {
+      "name": "Cavaleiro de Ouros"
+    },
+    "queenOfPentacles": {
+      "name": "Rainha de Ouros"
+    },
+    "kingOfPentacles": {
+      "name": "Rei de Ouros"
+    }
+  }
+}

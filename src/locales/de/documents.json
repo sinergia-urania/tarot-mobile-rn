@@ -1,0 +1,89 @@
+{
+  "about": {
+    "title": "Über die App",
+    "updatedAt": "28. August 2025",
+    "body": [
+      "AiTarot Una ist eine App, die moderne KI-Technologien mit archetypischen Symbolen aus der Welt des Tarots verbindet, um dir persönliche, durchdachte und hilfreiche Deutungen zu liefern. Die KI generiert keine zufälligen Nachrichten – sie analysiert im Kontext deiner Frage und der Kartenlegung.",
+      "Alle Legungen in der App (außer „Tageskarte“ und „Ja/Nein“, die intuitiver Natur sind) betrachten die Karten durch ein vielschichtiges Symbolsystem und versuchen, die innere Logik in Bezug auf deine Frage zu erkennen.",
+      "So funktioniert’s: Die App bietet eine Liste häufig gestellter Fragen, aber du kannst jederzeit deine eigene Frage eingeben, falls sie nicht unter den Vorschlägen ist – so erhältst du eine wirklich persönliche und relevante Deutung.",
+      "Zugang & Pläne:",
+      "• Free: Basiszugang mit einer begrenzten Anzahl von Legungen und Funktionen.",
+      "• Premium: schaltet zusätzliche Legungstypen und Einsichten frei.",
+      "• Pro: voller Zugriff auf alle Werkzeuge, Analysen und Personalisierung.",
+      "Neben den Plänen gibt es die Option AdReward – durch das Ansehen von Werbung kannst du bestimmte Funktionen freischalten, als Alternative zur Zahlung.",
+      "Hinweis: Die App sagt die Zukunft nicht deterministisch voraus; sie beleuchtet mögliche Richtungen und innere Muster durch die archetypische Sprache der Karten und der Symbolik.",
+      "App-Version: 1.0.0"
+    ]
+  },
+  "terms": {
+    "title": "Nutzungsbedingungen",
+    "updatedAt": "28. August 2025",
+    "sourceUrl": "terms-of-service-de.html",
+    "body": [
+      "Durch die Nutzung dieser App stimmst du den folgenden Bedingungen und Regeln zu. Wenn du mit einem Teil dieser Bedingungen nicht einverstanden bist, nutze die App bitte nicht.",
+      "• Die App ist für den persönlichen, nicht-kommerziellen Gebrauch bestimmt.",
+      "• Du darfst Inhalte nicht ohne Erlaubnis des Autors kopieren, verbreiten oder verändern.",
+      "• Wir können die Nutzungsbedingungen jederzeit ohne vorherige Ankündigung ändern.",
+      "Durch die fortgesetzte Nutzung der App bestätigst du, dass du diese Bedingungen gelesen, verstanden und akzeptiert hast."
+    ]
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "updatedAt": "28. August 2025",
+    "sourceUrl": "privacy-policy-de.html",
+    "body": [
+      "Deine Privatsphäre ist uns wichtig. Dieses Dokument fasst zusammen, welche Daten wir erheben, warum und wie wir sie schützen.",
+      "Was wir erheben: (a) Kontodaten (E-Mail, Anzeigename, Sprache), (b) optionale Profildaten (Geschlecht, Geburtsdatum, Zeichen/Aszendent), (c) technische Daten (Benutzer-ID, Expo-Push-Token, Gerätesprache/-region), (d) Metadaten zur Funktionsnutzung.",
+      "Wo wir speichern: Supabase (Datenbank und Authentifizierung). Expo wird für die Zustellung von Push-Benachrichtigungen verwendet (Geräte-Token). Zoho Mail wird für den Kundensupport verwendet.",
+      "Warum: um die App-Funktionalität bereitzustellen, Einstellungen zu synchronisieren, angeforderte Benachrichtigungen zu senden und die Produktqualität zu verbessern.",
+      "Weitergabe: Wir verkaufen keine personenbezogenen Daten. Wir teilen Daten nur mit Dienstleistern, die für die Funktion der App notwendig sind (z. B. Supabase, Expo) und unter entsprechenden Auftragsverarbeitungsverträgen.",
+      "Aufbewahrung & Löschung: Wir bewahren Daten so lange auf, wie es zur Erbringung des Dienstes erforderlich ist. Du kannst den Export oder die Löschung deines Kontos beantragen, indem du den Support kontaktierst.",
+      "Sicherheit: Wir wenden technische und organisatorische Maßnahmen an; dennoch ist kein System zu 100 % sicher.",
+      "Deine Rechte: Auskunft, Berichtigung, Löschung, Widerspruch, Widerruf der Einwilligung – soweit anwendbar.",
+      "Kontakt Datenschutz: info@infohelm.org"
+    ]
+  },
+  "support": {
+    "title": "Support & Spenden",
+    "updatedAt": "28. August 2025",
+    "body": [
+      "Wenn du die Weiterentwicklung der App unterstützen möchtest:",
+      "• Schalte PRO/Premium entsprechend deinen Bedürfnissen frei – du erhältst mehr Legungen und weniger Limits.",
+      "• Sieh dir kurze Werbungen für kostenlose Münzen an (AdReward).",
+      "• Hinterlasse eine Bewertung und Rezension im Store – das hilft enorm!",
+      "• Teile die App mit Freundinnen und Freunden.",
+      "Für zusätzliche Hilfe oder Vorschläge schreibe an: info@infohelm.org"
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "updatedAt": "28. August 2025",
+    "body": [
+      "Wenn du Fragen, Vorschläge oder technische Probleme hast, kontaktiere uns gerne.",
+      "E-Mail: info@infohelm.org",
+      "Wir antworten innerhalb von 24 Stunden an Werktagen."
+    ]
+  },
+  "disclaimer": {
+    "title": "Haftungsausschluss",
+    "updatedAt": "28. August 2025",
+    "body": [
+      "Diese App nutzt künstliche Intelligenz, um Symbole zu deuten und Fragen zu beantworten – ähnlich wie es eine erfahrene Tarot-Leser:in tun würde. Obwohl die KI Muster analysiert und Einblicke liefert, ersetzen ihre Antworten keine professionelle Beratung in Bereichen wie Gesundheit, Recht oder Finanzen.",
+      "Nutzerinnen und Nutzer treffen ihre eigenen Entscheidungen auf Basis der erhaltenen Nachrichten und Einsichten. Der/die App-Ersteller:in übernimmt keine Verantwortung für Konsequenzen, die aus der Nutzung der Inhalte entstehen.",
+      "Mit der Nutzung der App stimmst du diesen Bedingungen zu."
+    ]
+  },
+  "dataDeletion": {
+    "title": "Datenlöschung",
+    "updatedAt": "28. August 2025",
+    "sourceUrl": "data-deletion-de.html",
+    "body": [
+      "Du kannst jederzeit die Löschung deines Kontos und deiner Daten beantragen.",
+      "So stellst du einen Antrag: Sende eine E-Mail von der mit deinem Konto verknüpften Adresse an info@infohelm.org mit einem kurzen Hinweis, dass du deine Daten löschen lassen möchtest. Wenn möglich, füge deine Benutzer-ID (UID) aus dem Profil hinzu.",
+      "Was wir löschen: Profil (E-Mail, Anzeigename, Spracheinstellungen), gespeicherte Push-Benachrichtigungstokens, Verlauf der Legungen/Deutungen und andere kontobezogene Daten.",
+      "Was wir ggf. aufbewahren: minimale Nachweise, die zur Erfüllung gesetzlicher Pflichten oder Sicherheitsbedürfnisse erforderlich sind – im Einklang mit der Datenschutzerklärung.",
+      "Zeitplan: Anfragen werden in der Regel innerhalb von 30 Tagen nach Identitätsbestätigung bearbeitet.",
+      "Mehr Details und die offizielle Dokumentversion findest du auf unserer Website (nutze den Button „Im Web öffnen“)."
+    ]
+  }
+}

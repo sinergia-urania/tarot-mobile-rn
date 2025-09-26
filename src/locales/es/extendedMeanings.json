@@ -1,0 +1,470 @@
+{
+  "theFool": {
+    "symbolism": "El Loco está al borde de un acantilado, listo para dar el primer paso hacia lo desconocido. Una rosa en la mano simboliza la inocencia, mientras que el perro a su espalda representa el instinto y la protección interior.",
+    "uprightExtended": "Al derecho, El Loco marca el inicio de una aventura y la confianza en la vida. Simboliza apertura al cambio, espontaneidad y una nueva etapa sin miedo.",
+    "reversedExtended": "Invertido, esta carta señala imprudencia, ingenuidad y evasión de responsabilidades. Puede haber avance sin conciencia de las consecuencias.",
+    "daily": "Hoy es momento de soltar expectativas y dar un paso a lo desconocido con confianza. El Loco te recuerda que cada error es simplemente parte del camino."
+  },
+  "theMagician": {
+    "symbolism": "El Mago está con una mano alzada hacia los cielos y la otra hacia la tierra, simbolizando el vínculo entre los mundos espiritual y material. Las herramientas de todos los elementos sobre la mesa muestran su capacidad de manifestar.",
+    "uprightExtended": "Al derecho, El Mago indica poder personal, enfoque y la capacidad de convertir ideas en realidad. Es hora de actuar usando todos los medios disponibles.",
+    "reversedExtended": "Invertido, El Mago puede señalar manipulación, ilusión y potencial no aprovechado. La persona podría estar infrautilizando sus dones—o usándolos de manera egoísta.",
+    "daily": "Aprovecha el día para reconocer tus talentos y manifestar lo que realmente importa. El Mago te dice: tienes todo lo que necesitas—úsalo conscientemente."
+  },
+  "theHighPriestess": {
+    "symbolism": "La Sacerdotisa se sienta entre dos columnas, simbolizando el equilibrio entre opuestos. El velo detrás de ella oculta conocimiento místico, mientras que el pergamino en sus manos representa sabiduría oculta.",
+    "uprightExtended": "Esta carta representa intuición, silencio y saber interior. Advierte sobre la necesidad de escuchar tu voz interna y buscar las respuestas dentro de ti.",
+    "reversedExtended": "Invertida, señala intuición reprimida, confusión emocional o desconexión de los valores espirituales. Puede que se estén ignorando señales internas.",
+    "daily": "Confía hoy en tu intuición. Las respuestas que buscas ya están dentro de ti—silencia la mente y escucha tu voz interior."
+  },
+  "theEmpress": {
+    "symbolism": "La Emperatriz se sienta en la naturaleza fértil, rodeada de grano y árboles, simbolizando abundancia y fertilidad. Su corona de estrellas la conecta con el universo.",
+    "uprightExtended": "La Emperatriz simboliza energía maternal, creación, amor y cuidado. Señala un tiempo fértil en todo sentido—creativo, emocional o físico.",
+    "reversedExtended": "Invertida puede indicar dependencia de los demás, agotamiento emocional o bloqueo creativo. Cuídate para poder cuidar a otros.",
+    "daily": "Hoy es un día para atender lo que crece—sea una idea, una relación o tu propia paz. La Emperatriz te recuerda que la gentileza contigo da frutos hacia afuera."
+  },
+  "theEmperor": {
+    "symbolism": "El Emperador se sienta en un trono de piedra adornado con carneros, lo que significa fuerza, disciplina y autoridad. Representa estabilidad y el mundo del orden.",
+    "uprightExtended": "Al derecho significa control, responsabilidad y liderazgo. La carta sugiere estructurar tu vida y tomar decisiones firmes.",
+    "reversedExtended": "Invertida apunta a tiranía, terquedad o frialdad emocional. Puede haber un uso destructivo del poder.",
+    "daily": "La estabilidad y la estructura son tus aliadas hoy. El Emperador te insta a marcar límites y decidir con confianza en tu propia autoridad."
+  },
+  "theHierophant": {
+    "symbolism": "El Hierofante se sienta entre dos columnas, simbolizando autoridad institucional y conocimiento espiritual. Sus manos alzadas bendicen mientras los seguidores se arrodillan ante él.",
+    "uprightExtended": "Esta carta denota tradición, autoridad espiritual y aprendizaje mediante instituciones. Indica respeto por las leyes espirituales y los maestros.",
+    "reversedExtended": "Invertida, indica rechazo de las normas, rebeldía espiritual o rigidez que sofoca el crecimiento. También puede señalar falsa autoridad.",
+    "daily": "Busca sabiduría en la tradición o consejo de alguien en quien confíes. Hoy se trata de honrar el conocimiento que existía antes que nosotros."
+  },
+  "theLovers": {
+    "symbolism": "Un hombre y una mujer están desnudos bajo un ángel, representando conexión pura y unión divina. Al fondo, el árbol del conocimiento y el fuego de la pasión.",
+    "uprightExtended": "Al derecho, Los Enamorados simbolizan conexión profunda, armonía y decisiones tomadas desde el amor. Pueden señalar relaciones así como decisiones morales clave.",
+    "reversedExtended": "Invertida indica desarmonía, desalineación en la relación o una decisión equivocada. Reexamina el núcleo de la decisión emocional.",
+    "daily": "Hoy, elige con el corazón. Los Enamorados te recuerdan que las relaciones son espejos—lo que ofreces es lo que recibes."
+  },
+  "theChariot": {
+    "symbolism": "El auriga se alza confiado entre una esfinge negra y una blanca, sosteniendo las riendas de fuerzas espirituales y materiales. La estrella en su frente simboliza guía divina.",
+    "uprightExtended": "Esta carta señala fuerza de voluntad, victoria y avance pese a los obstáculos. Sugiere control firme y equilibrio entre opuestos.",
+    "reversedExtended": "Invertido, El Carro apunta a pérdida de control, conflicto interno o rendición. Reorienta tu fuerza interior.",
+    "daily": "Toma las riendas y avanza hacia tu objetivo. El auriga sabe: incluso fuerzas opuestas pueden unirse cuando sabes adónde vas."
+  },
+  "strength": {
+    "symbolism": "Una mujer cierra suavemente la boca de un león, mostrando el poder de la compasión y la fuerza interior. La lemniscata sobre su cabeza significa el potencial infinito del espíritu.",
+    "uprightExtended": "Al derecho, La Fuerza señala paciencia, coraje y control sutil. La verdadera fuerza nace de la calma y la comprensión, no de la agresión.",
+    "reversedExtended": "Invertida indica dudas sobre uno mismo, falta de valor o ceder a los impulsos. Restaura el equilibrio interior.",
+    "daily": "Tu fuerza hoy proviene de la paciencia y la amabilidad. No necesitas alzar la voz para ser fuerte—el silencio de tu corazón conoce el camino."
+  },
+  "theHermit": {
+    "symbolism": "El Ermitaño está en la cima de una montaña con una lámpara en la mano, simbolizando sabiduría, introspección y la búsqueda de la verdad. Su bastón es apoyo en la soledad espiritual.",
+    "uprightExtended": "La carta señala necesidad de retiro, silencio y reflexión interior. Es momento de escuchar tu voz interna y buscar dirección espiritual.",
+    "reversedExtended": "Invertida, habla de aislamiento, bloqueos internos o negativa a mirarse a uno mismo. Ábrete a la sabiduría de los demás.",
+    "daily": "Hoy es para el silencio, el retiro y escuchar la verdad interior. El Ermitaño te guía hacia la luz que llevas dentro."
+  },
+  "wheelOfFortune": {
+    "symbolism": "La Rueda de la Fortuna muestra la naturaleza cíclica de la vida con símbolos de dioses, una serpiente y una esfinge. Significa cambio constante y fuerzas universales que rigen el destino.",
+    "uprightExtended": "Esta carta marca el destino, el cambio y giros inevitables. Pueden presentarse acontecimientos repentinos que alteren el rumbo de la vida.",
+    "reversedExtended": "Invertida indica resistencia al cambio, sensación de que todo va cuesta abajo o de estar dando vueltas en círculo. Suelta y confía en el flujo natural.",
+    "daily": "El destino gira: abraza el cambio y prepárate para sorpresas. La Rueda trae oportunidades cuando menos lo esperas."
+  },
+  "justice": {
+    "symbolism": "La Justicia se sienta entre dos columnas con una espada y una balanza, símbolos de verdad y equilibrio. Su mirada directa señala claridad e imparcialidad.",
+    "uprightExtended": "Al derecho, La Justicia denota verdad, equilibrio, justicia kármica y rendición de cuentas. Los asuntos se resolverán con imparcialidad.",
+    "reversedExtended": "Invertida indica injusticia, sesgo o evasión de responsabilidades. Es momento de enfrentar la verdad.",
+    "daily": "Hoy se requiere honestidad—contigo y con los demás. La Justicia te recuerda que el equilibrio es la clave de la paz, y la verdad, la luz."
+  },
+  "theHangedMan": {
+    "symbolism": "El Colgado cuelga boca abajo y aun así muestra una expresión de paz. Un halo alrededor de su cabeza simboliza la iluminación a través de la entrega.",
+    "uprightExtended": "Esta carta pide pausa, contemplación y cambio de perspectiva. El progreso llega mediante la aceptación y el sacrificio.",
+    "reversedExtended": "Invertida apunta a resistencia al cambio, demoras o aferrarse con terquedad a una visión antigua. Suelta el control.",
+    "daily": "Detente. Cambia el ángulo. El Colgado te dice: a veces la acción más sabia es la rendición."
+  },
+  "death": {
+    "symbolism": "La Muerte cabalga un caballo blanco y porta un estandarte negro con rosas blancas, simbolizando finales y renacimiento. Quienes la rodean aceptan lo inevitable.",
+    "uprightExtended": "Al derecho, La Muerte significa transformación, finales y nuevos comienzos. Suelta lo viejo para hacer espacio a lo nuevo.",
+    "reversedExtended": "Invertida muestra miedo al cambio, bloqueo o estancamiento. Se resiste la transformación—pero es inevitable.",
+    "daily": "Deja ir lo que ya no sirve. Hoy es para la transformación interior—después de cada final llega un nuevo inicio."
+  },
+  "temperance": {
+    "symbolism": "Un ángel vierte líquido de una copa a otra, simbolizando equilibrio y armonía. Un pie en el agua y otro en tierra: espíritu y materia en consonancia.",
+    "uprightExtended": "Esta carta significa equilibrio, paciencia y moderación. Llama a la armonía entre opuestos y a un enfoque sereno ante los retos.",
+    "reversedExtended": "Invertida apunta a extremos, impaciencia o caos interior. Restaura tu equilibrio interno.",
+    "daily": "Calma tu mente y equilibra tus deseos. La Templanza te recuerda: los milagros ocurren cuando cuerpo y alma están en sintonía."
+  },
+  "theDevil": {
+    "symbolism": "El Diablo se sienta en un trono con cadenas alrededor de un hombre y una mujer, simbolizando apego a lo material, a las pasiones y a las ilusiones.",
+    "uprightExtended": "Al derecho indica adicción, tentación y esclavitud a ideales falsos. Libérate de las cadenas que tú mismo te pones.",
+    "reversedExtended": "Invertida señala despertar y liberación. Uno toma conciencia de sus limitaciones y comienza el proceso de soltarlas.",
+    "daily": "Reconoce lo que te ata. El Diablo susurra ilusiones—hoy puedes exponerlas y dar el primer paso hacia la libertad."
+  },
+  "theTower": {
+    "symbolism": "La Torre se derrumba bajo un rayo mientras personas caen de ella. Simboliza cambio súbito, choque y la caída de las ilusiones.",
+    "uprightExtended": "Esta carta señala eventos inesperados que derriban viejos cimientos. Aunque duela, permite reconstruir sobre bases más sanas.",
+    "reversedExtended": "Invertida indica agitación interior, negación del cambio o miedo a perder el control. La liberación ocurre desde dentro.",
+    "daily": "El cambio puede doler, pero derribar lo falso conduce a la verdad. La Torre te llama a soltar lo que solo parecía estable."
+  },
+  "theStar": {
+    "symbolism": "Una mujer vierte agua en un estanque y sobre la tierra bajo un cielo estrellado, simbolizando esperanza, inspiración y renovación espiritual.",
+    "uprightExtended": "Al derecho trae luz después de la oscuridad, guía espiritual y fe en un mañana mejor. Señala fuerza e inspiración renovadas.",
+    "reversedExtended": "Invertida simboliza pérdida de fe, pesimismo o sentirte lejos de la fuente espiritual. Restaura la confianza en el fluir de la vida.",
+    "daily": "La esperanza regresa. La Estrella te recuerda que incluso en el momento más oscuro hay luz—dentro de ti."
+  },
+  "theMoon": {
+    "symbolism": "Un camino discurre entre dos torres en la oscuridad, iluminado por la Luna. Un perro y un lobo le aúllan mientras un cangrejo emerge del agua—símbolos del inconsciente y la intuición.",
+    "uprightExtended": "Esta carta señala sueños, intuición y significados ocultos. Es momento de escuchar tu voz interior y cuidarte de las ilusiones.",
+    "reversedExtended": "Invertida indica confusión, ansiedad y percepciones distorsionadas. Encuentra claridad a través del silencio.",
+    "daily": "Hoy, escucha más a la intuición que a la lógica. La Luna ilumina verdades ocultas—pero solo si estás dispuesto a mirar hacia dentro."
+  },
+  "theSun": {
+    "symbolism": "Un niño cabalga un caballo blanco frente a un muro de girasoles mientras el Sol brilla intensamente arriba. Simboliza alegría, claridad y vida.",
+    "uprightExtended": "Esta carta trae felicidad, éxito, vitalidad y claridad. Todo se ilumina y la energía fluye libremente.",
+    "reversedExtended": "Invertida apunta a una baja temporal de alegría, una sombra de incertidumbre o un ego desmedido. La luz sigue ahí—solo está nublada.",
+    "daily": "Este es un día de alegría, claridad y gratitud. El Sol te dice: brilla—y todo a tu alrededor se iluminará."
+  },
+  "judgement": {
+    "symbolism": "Un ángel hace sonar una trompeta desde los cielos mientras los muertos se levantan de sus tumbas, simbolizando despertar, perdón y juicio kármico. La escena rebosa llamado espiritual.",
+    "uprightExtended": "Esta carta simboliza despertar, renovación y tomar decisiones importantes. Llama a soltar el pasado y a estar listo para un nivel superior de conciencia.",
+    "reversedExtended": "Invertida indica miedo al juicio, oportunidades perdidas o negarse a aceptar la responsabilidad personal. Enfrenta la verdad.",
+    "daily": "Hoy es tiempo de perdón y de un nuevo comienzo. El Juicio te invita a despertar de una versión antigua de ti y entrar en una verdad más elevada."
+  },
+  "theWorld": {
+    "symbolism": "Una figura danza dentro de una corona de laurel, rodeada por los símbolos de las cuatro criaturas vivientes. Esta escena marca culminación, plenitud y unidad.",
+    "uprightExtended": "El Mundo simboliza logro, realización y cierre de ciclo. El éxito llega al integrar tus experiencias.",
+    "reversedExtended": "Invertida apunta a la sensación de que aún falta algo, demoras en concluir o repetir los mismos patrones. Conecta todas las partes en un todo.",
+    "daily": "Termina lo comenzado y celebra la plenitud. El Mundo trae una sensación de totalidad—eres tanto el viajero como el destino."
+  },
+  "aceOfWands": {
+    "symbolism": "Una mano que emerge de una nube sostiene una vara llameante — símbolo del fuego espiritual, la iniciativa y la energía creativa.",
+    "uprightExtended": "Al derecho, esta carta simboliza un nuevo comienzo, una chispa creativa y potencial de crecimiento. Es hora de actuar y poner en marcha tu idea.",
+    "reversedExtended": "Invertida, indica inspiración bloqueada, retrasos al empezar o miedo a tomar la iniciativa.",
+    "daily": "Hoy es un día para la acción y los nuevos comienzos. El As de Bastos te anima a alcanzar la inspiración y encender tu fuego interior."
+  },
+  "twoOfWands": {
+    "symbolism": "Una figura sostiene un globo y mira a lo lejos desde una torre — simboliza planificación, visión y dominio de su territorio.",
+    "uprightExtended": "Al derecho señala pensamiento a futuro, toma de decisiones y expansión de horizontes. Los planes están listos — ahora es momento de atreverse.",
+    "reversedExtended": "Invertida apunta a titubeo, indecisión y miedo a lo desconocido. Puedes tener la visión pero aún no el valor para avanzar.",
+    "daily": "Sal de tu zona de confort y abraza la perspectiva amplia. El Dos de Bastos trae planes y visión — atrévete a seguirlos."
+  },
+  "threeOfWands": {
+    "symbolism": "Una figura se alza mirando barcos que van y vienen — símbolo de expectativa e intercambio.",
+    "uprightExtended": "Esta carta simboliza expansión, éxito y progreso basado en el esfuerzo ya invertido. Los frutos de tu trabajo están llegando.",
+    "reversedExtended": "Invertida apunta a retrasos, expectativas no cumplidas o un camino hacia adelante poco claro.",
+    "daily": "Hoy se hace visible el primer movimiento. El Tres de Bastos te recuerda que tus esfuerzos ya enviaron energía al mundo — la respuesta está en camino."
+  },
+  "fourOfWands": {
+    "symbolism": "Personas celebran bajo un dosel decorado — símbolo de paz, armonía y alegría compartida.",
+    "uprightExtended": "La carta señala estabilidad, celebración y relaciones armoniosas. Posibles festejos, una boda o un regreso exitoso al hogar.",
+    "reversedExtended": "Invertida indica desarmonía en la comunidad, inseguridad interior o una alegría pasada por alto. Es necesario restaurar el equilibrio.",
+    "daily": "Celebra las pequeñas victorias. El Cuatro de Bastos trae estabilidad, unión y sensación de hogar — aunque sea simbólica."
+  },
+  "fiveOfWands": {
+    "symbolism": "Cinco figuras blanden bastos, en aparente pelea o práctica — símbolo de competencia y conflicto.",
+    "uprightExtended": "Al derecho representa desacuerdos, rivalidad o lucha constructiva. El esfuerzo conduce al crecimiento.",
+    "reversedExtended": "Invertida indica discusiones inútiles, conflicto interno o necesidad de compromiso.",
+    "daily": "Puedes toparte con un choque de opiniones o una batalla de egos. El Cinco de Bastos ofrece la oportunidad de fortalecer tus límites a través del reto."
+  },
+  "sixOfWands": {
+    "symbolism": "Un jinete a caballo porta una corona de laurel de victoria mientras la multitud le saluda — símbolo de reconocimiento público y logro.",
+    "uprightExtended": "Al derecho representa triunfo, reconocimiento y confianza. Éxito como resultado del esfuerzo y la lucha previos.",
+    "reversedExtended": "Invertida apunta a esfuerzo no reconocido, dudas sobre uno mismo o miedo al fracaso. Es necesario trabajar la autoestima.",
+    "daily": "Hoy te acompañan el reconocimiento y el éxito. El Seis de Bastos te recuerda que está bien recibir aplausos — te lo has ganado."
+  },
+  "sevenOfWands": {
+    "symbolism": "Una persona, en terreno elevado, se defiende de seis atacantes — símbolo de determinación y de mantener tu posición.",
+    "uprightExtended": "La carta pide tomar postura y defender tu posición. Aunque sea un desafío, vale la pena la lucha.",
+    "reversedExtended": "Invertida señala sentirse abrumado, a la defensiva o retirarse ante los retos. Se necesita valor para persistir.",
+    "daily": "Defiende lo que crees. El Siete de Bastos trae desafíos, pero también la fuerza para sostener tu postura — con la cabeza en alto."
+  },
+  "eightOfWands": {
+    "symbolism": "Ocho bastos vuelan por el aire — símbolo de rapidez, movimiento y progreso sin obstáculos.",
+    "uprightExtended": "Al derecho indica movimiento veloz, buenas noticias y aceleración de los acontecimientos. La energía fluye libremente y las cosas suceden rápido.",
+    "reversedExtended": "Invertida apunta a retrasos, bloqueos en la comunicación o confusión. Alinea pensamiento y acción.",
+    "daily": "El tiempo se acelera. El Ocho de Bastos trae noticias repentinas, comunicación rápida o un salto hacia adelante — mantén el enfoque."
+  },
+  "nineOfWands": {
+    "symbolism": "Un guerrero herido sostiene un basto mientras los demás quedan atrás — símbolo de perseverancia y protección.",
+    "uprightExtended": "Esta carta denota resistencia, constancia y defensa. Aunque cansado, aún estás listo para proteger lo que es tuyo.",
+    "reversedExtended": "Invertida apunta a agotamiento, paranoia o sentirte constantemente atacado. Es hora de renovar tu energía.",
+    "daily": "Puede que estés fatigado, pero sigues aquí. El Nueve de Bastos te recuerda que has resistido mucho y tu fuerza está más cerca de lo que crees."
+  },
+  "tenOfWands": {
+    "symbolism": "Una figura carga con diez bastos y avanza con dificultad — símbolo de cargas y responsabilidades asumidas personalmente.",
+    "uprightExtended": "Al derecho denota sobrecarga, responsabilidad y el tramo final de una gran tarea. Es momento de considerar delegar.",
+    "reversedExtended": "Invertida indica rechazar ayuda, sentirse atrapado o pesadez emocional. Es hora de aligerar la carga.",
+    "daily": "Si cargas demasiado, hoy es el día para soltar algo. El Diez de Bastos te invita a compartir el peso o reordenar prioridades."
+  },
+  "pageOfWands": {
+    "symbolism": "Un joven con vestiduras exóticas observa un basto — símbolo de ideas nuevas, mensajes y curiosidad espiritual.",
+    "uprightExtended": "Al derecho indica un mensaje, noticias o el inicio de la inspiración. Es tiempo de explorar y descubrir tu fuego interior.",
+    "reversedExtended": "Invertida apunta a inseguridad, impulsividad o postergar la expresión propia. Se necesitan valentía y autenticidad.",
+    "daily": "Despierta tu curiosidad hoy. La Sota de Bastos trae energía juvenil — prueba algo nuevo, aunque sea pequeño."
+  },
+  "knightOfWands": {
+    "symbolism": "Un caballero arremete con un basto — símbolo de coraje, impulso y pasión en movimiento.",
+    "uprightExtended": "Al derecho señala acción decidida, entusiasmo y deseo de conquistar. La energía es intensa y llena de iniciativa.",
+    "reversedExtended": "Invertida indica temeridad, prisa excesiva o falta de paciencia. Alinea la acción con el propósito.",
+    "daily": "Sigue tu pasión — sin lanzarte de cabeza. El Caballero de Bastos te da viento a favor; úsalo para un objetivo, no solo para correr."
+  },
+  "queenOfWands": {
+    "symbolism": "Una reina se sienta en su trono con un girasol y un gato — símbolos de confianza, carisma y fuerza espiritual.",
+    "uprightExtended": "Al derecho denota calidez, magnetismo y seguridad interior. La Reina inspira a otros a brillar.",
+    "reversedExtended": "Invertida apunta a inseguridad, celos o manipulación mediante el encanto. El liderazgo exige honestidad.",
+    "daily": "Irradias carisma y confianza. La Reina de Bastos te insta a no ocultar tu luz — inspira a otros siendo plenamente tú."
+  },
+  "kingOfWands": {
+    "symbolism": "Un rey está sentado con un basto en la mano, mirando al frente — símbolo de liderazgo, visión y pasión con autoridad.",
+    "uprightExtended": "Al derecho representa liderazgo visionario, valentía y determinación. Es momento de tomar las riendas con inspiración.",
+    "reversedExtended": "Invertida indica autoritarismo, arrogancia o mandar sin fundamento. Lidera con el ejemplo, no con la fuerza.",
+    "daily": "Toma la delantera — con visión. El Rey de Bastos te da el poder de guiar a otros mediante el ejemplo, no el control."
+  },
+  "aceOfCups": {
+    "symbolism": "Una mano emerge de una nube sosteniendo una copa dorada de la que desborda agua — símbolo de emoción, amor y renovación espiritual.",
+    "uprightExtended": "Al derecho señala un nuevo comienzo emocional, un corazón abierto y abundancia de sentimiento. Momento ideal para el amor, la intuición y la sanación.",
+    "reversedExtended": "Invertida denota bloqueos emocionales, sentimientos reprimidos o incapacidad para recibir amor. Es preciso abrir el corazón.",
+    "daily": "Abre tu corazón a nuevos sentimientos. El As de Copas trae una oportunidad de amor, perdón o plenitud espiritual — hoy todo comienza con la emoción."
+  },
+  "twoOfCups": {
+    "symbolism": "Un hombre y una mujer intercambian copas bajo la bendición de una cabeza de león — símbolo de equilibrio y conexión emocional.",
+    "uprightExtended": "Al derecho simboliza asociación, vínculo romántico o espiritual, armonía e intercambio. Excelente carta para todo tipo de relaciones.",
+    "reversedExtended": "Invertida apunta a malentendidos, rupturas o sentimientos no correspondidos. Es necesario restaurar el equilibrio emocional.",
+    "daily": "Las relaciones están en foco hoy. El Dos de Copas te invita a cultivar equilibrio, intercambio y conexión genuina con alguien."
+  },
+  "threeOfCups": {
+    "symbolism": "Tres mujeres celebran alzando sus copas, rodeadas por los frutos de la tierra — símbolo de unión y alegría.",
+    "uprightExtended": "Esta carta denota celebración, amistad, reuniones y felicidad compartida. Es momento de compartir tu alegría con otros.",
+    "reversedExtended": "Invertida indica aislamiento, celos o quiebre de lazos sociales. Reexamina relaciones y confianza.",
+    "daily": "Celebra la amistad, la alegría y los pequeños momentos. El Tres de Copas trae ánimo y te recuerda que no tienes por qué estar solo."
+  },
+  "fourOfCups": {
+    "symbolism": "Una persona se sienta bajo un árbol, pensativa, mientras una mano desde una nube ofrece otra copa — símbolo de insatisfacción emocional y fase introspectiva.",
+    "uprightExtended": "Al derecho apunta a apatía emocional, aburrimiento o dejar pasar una oportunidad. Es hora de ampliar tu mirada.",
+    "reversedExtended": "Invertida señala un despertar fresco, salir de la apatía y disposición para el crecimiento emocional.",
+    "daily": "Puede que estés demasiado centrado en lo que falta. El Cuatro de Copas te recuerda mirar más amplio — una oportunidad podría estar justo frente a ti."
+  },
+  "fiveOfCups": {
+    "symbolism": "Una figura con capa negra mira copas derramadas mientras dos permanecen detrás — símbolo de pérdida, pero también de esperanza.",
+    "uprightExtended": "La carta denota dolor, desilusión o arrepentimiento. Llama a aceptar la pérdida y abrirse a nuevas posibilidades.",
+    "reversedExtended": "Invertida señala perdón, recuperación emocional y reenfoque en lo que sigue siendo valioso. La esperanza vuelve.",
+    "daily": "El duelo es natural, pero no es el final. El Cinco de Copas te invita a reconocer la pérdida y luego orientarte hacia lo que permanece."
+  },
+  "sixOfCups": {
+    "symbolism": "Dos niños en un jardín intercambian una copa — símbolo de recuerdos, nostalgia e inocencia del pasado.",
+    "uprightExtended": "La carta apunta a recuerdos, infancia, nostalgia y dar sin expectativa. Renueva el espíritu de inocencia.",
+    "reversedExtended": "Invertida indica quedarse estancado en el pasado, inmadurez o necesidad de soltar viejos lazos emocionales.",
+    "daily": "Recuerda algo hermoso del pasado. El Seis de Copas trae nostalgia—y la oportunidad de extraer fuerza de las alegrías pasadas para el presente."
+  },
+  "sevenOfCups": {
+    "symbolism": "Una figura está frente a siete copas flotantes llenas de símbolos — ilusiones, tentaciones y posibilidades.",
+    "uprightExtended": "Al derecho denota muchas opciones, imaginación y confusión. Elige con el corazón, no solo con los ojos.",
+    "reversedExtended": "Invertida apunta a energía dispersa, fantasías sin base o finalmente tomar una decisión entre muchas opciones.",
+    "daily": "Hay muchas posibilidades — pero no todas son reales. El Siete de Copas te llama a distinguir la ilusión del deseo verdadero."
+  },
+  "eightOfCups": {
+    "symbolism": "Una figura deja ocho copas y se dirige hacia las montañas — símbolo de búsqueda espiritual y de dejar atrás lo conocido.",
+    "uprightExtended": "La carta significa retiro emocional, búsqueda de sentido y necesidad de plenitud interior.",
+    "reversedExtended": "Invertida denota posponer la partida, evitar el enfrentamiento o volver a viejos patrones.",
+    "daily": "Puede que sea momento de dejar lo que ya no te llena. El Ocho de Copas te recuerda: esto no es rendirse — es una búsqueda de sentido más profundo."
+  },
+  "nineOfCups": {
+    "symbolism": "Una figura satisfecha se sienta ante nueve copas — símbolo de deseos cumplidos, satisfacción y plenitud emocional.",
+    "uprightExtended": "Al derecho trae satisfacción emocional, metas alcanzadas y gratitud. Es tiempo de disfrutar los frutos de tu labor.",
+    "reversedExtended": "Invertida significa placer superficial, exceso o expectativas defraudadas. Busca una plenitud más profunda.",
+    "daily": "La satisfacción nace de dentro. El Nueve de Copas trae contento emocional — hoy es para la gratitud y un toque de hedonismo."
+  },
+  "tenOfCups": {
+    "symbolism": "Una familia está bajo un arcoíris de diez copas — símbolo de amor ideal, armonía y plenitud emocional.",
+    "uprightExtended": "La carta trae plenitud emocional, armonía familiar y paz espiritual. Un punto culminante de alegría en el amor y las relaciones.",
+    "reversedExtended": "Invertida indica fisuras bajo la imagen perfecta, tensión familiar o expectativas poco realistas.",
+    "daily": "Amor, familia, plenitud — hoy te rodea una sensación de totalidad. El Diez de Copas celebra la unión en el sentido más amplio."
+  },
+  "pageOfCups": {
+    "symbolism": "Un joven sostiene una copa de la que emerge un pez — símbolo de intuición repentina, mensajes y emoción.",
+    "uprightExtended": "Esta carta simboliza sentimientos tiernos, creatividad e inicio de comprensión emocional. Abre tu corazón a lo desconocido.",
+    "reversedExtended": "Invertida apunta a inmadurez, frivolidad en lo emocional o evitar los verdaderos sentimientos.",
+    "daily": "Mantente abierto a un mensaje del corazón—por extraño que parezca. La Sota de Copas trae inspiración artística, sorpresas y emociones suaves."
+  },
+  "knightOfCups": {
+    "symbolism": "Un caballero sobre un caballo blanco sostiene una copa como mensajero del amor, el arte y las aspiraciones espirituales.",
+    "uprightExtended": "Al derecho denota oferta romántica, búsqueda espiritual e idealismo. Te mueven la emoción y la visión.",
+    "reversedExtended": "Invertida apunta a ilusión, manipulación emocional o expectativas poco realistas en el amor.",
+    "daily": "Hoy dices (o recibes) palabras del corazón. El Caballero de Copas trae romance—y un llamado a seguir lo que susurra tu alma."
+  },
+  "queenOfCups": {
+    "symbolism": "Una reina se sienta junto al mar sosteniendo una copa cerrada — símbolo de sabiduría intuitiva y profundidad emocional.",
+    "uprightExtended": "La carta apunta a compasión, cuidado y hondura espiritual. Ella escucha con el corazón y comprende lo no dicho.",
+    "reversedExtended": "Invertida denota agotamiento emocional, pasividad o estar desbordado por los sentimientos ajenos.",
+    "daily": "Nutre tu interior. La Reina de Copas trae profunda sabiduría emocional — hoy no tienes que arreglar nada, solo sentir."
+  },
+  "kingOfCups": {
+    "symbolism": "Un rey se sienta en un trono en medio del agua, sereno pese a las olas — símbolo de dominio de la emoción.",
+    "uprightExtended": "Al derecho significa estabilidad emocional, sabiduría y apoyo sincero. Guías a otros con corazón y experiencia.",
+    "reversedExtended": "Invertida indica emociones reprimidas, manipulación o distancia afectiva. Alinea cabeza y corazón.",
+    "daily": "Permanece sereno en tu océano de sentimientos. El Rey de Copas enseña que no necesitas reprimir emociones — llévalas con sabiduría."
+  },
+  "aceOfSwords": {
+    "symbolism": "Una mano emerge de una nube sosteniendo una espada erguida coronada con una guirnalda de laurel — símbolo de verdad, claridad y avance intelectual.",
+    "uprightExtended": "Esta carta simboliza un nuevo comienzo a través de la verdad, la mente clara y la determinación. Es momento de tomar decisiones y cortar a través de las ilusiones.",
+    "reversedExtended": "Invertida denota confusión, bloqueos mentales o mal juicio. La claridad debe recuperarse en el silencio.",
+    "daily": "Hoy nace la claridad. El As de Espadas trae verdad y el poder de las palabras — di lo que quieres decir, pero con conciencia."
+  },
+  "twoOfSwords": {
+    "symbolism": "Una mujer sentada con los ojos vendados sostiene dos espadas cruzadas — símbolo de indecisión y conflicto interno.",
+    "uprightExtended": "Al derecho denota equilibrar entre dos opciones, posponer una decisión y la necesidad de paz interior antes de actuar.",
+    "reversedExtended": "Invertida apunta a incapacidad para decidir, bloqueo emocional o ignorar la verdad.",
+    "daily": "Puede que estés evitando una decisión — pero es hora de enfrentar la verdad. El Dos de Espadas pide equilibrio entre lógica y sentimiento."
+  },
+  "threeOfSwords": {
+    "symbolism": "Tres espadas atraviesan un corazón rojo bajo un cielo gris — símbolo de dolor, desamor y pérdida.",
+    "uprightExtended": "Esta carta trae dolor, desilusión y el final de algo emocional. Sin embargo, a través del duelo llega la sanación.",
+    "reversedExtended": "Invertida señala un proceso de curación, liberación del dolor o penas reprimidas que deben salir a la luz.",
+    "daily": "El dolor debe reconocerse para que pueda irse. El Tres de Espadas duele, pero abre el corazón a algo más verdadero."
+  },
+  "fourOfSwords": {
+    "symbolism": "Una figura yace en una iglesia con las manos juntas — símbolo de descanso, contemplación y renovación espiritual.",
+    "uprightExtended": "La carta pide una pausa, descanso y silencio espiritual. Regenera el cuerpo y la mente antes de la siguiente fase.",
+    "reversedExtended": "Invertida indica inquietud, negarse a descansar o agotamiento interior. La reflexión es urgente.",
+    "daily": "El descanso es medicina. El Cuatro de Espadas te dice que te retires, aquietes la mente y repongas fuerzas antes de seguir."
+  },
+  "fiveOfSwords": {
+    "symbolism": "Una figura recoge espadas mientras otros se retiran — símbolo de victoria a costa del conflicto y del respeto perdido.",
+    "uprightExtended": "Al derecho denota conflicto, manipulación o una victoria sin verdadera satisfacción. Reexamina tus motivos.",
+    "reversedExtended": "Invertida apunta a necesidad de reconciliación, evitar el conflicto o apartarse de una situación tóxica.",
+    "daily": "Cuídate de una victoria vacía. El Cinco de Espadas recuerda que no todo conflicto vale la pena — elige la paz, no la dominación."
+  },
+  "sixOfSwords": {
+    "symbolism": "Una figura en un bote cruza el agua llevando seis espadas — símbolo de tránsito, sanación y cambio de contexto.",
+    "uprightExtended": "La carta denota una transición serena, sanación emocional y retorno al equilibrio. Es tiempo de dejar el pasado atrás.",
+    "reversedExtended": "Invertida indica dificultad para seguir adelante, equipaje emocional o posponer un cambio necesario.",
+    "daily": "Te diriges a aguas más calmadas. El Seis de Espadas trae alivio tras un periodo duro — acepta la transición."
+  },
+  "sevenOfSwords": {
+    "symbolism": "Una figura se escabulle cargando espadas mientras mira hacia atrás — símbolo de engaño, intenciones ocultas y autoengaño.",
+    "uprightExtended": "Al derecho denota astucia, estrategia o evitar la responsabilidad. Alguien puede estar ocultando algo.",
+    "reversedExtended": "Invertida apunta a verdad revelada, punzadas de conciencia o un llamado a la honestidad.",
+    "daily": "Sé sabio y cauteloso. El Siete de Espadas sugiere que alguien (quizá tú) evita la verdad — es hora de la honestidad."
+  },
+  "eightOfSwords": {
+    "symbolism": "Una mujer está atada y rodeada de espadas — símbolo de encarcelamiento mental, miedo y limitación.",
+    "uprightExtended": "Esta carta denota sentirse atrapado e incapaz de ver una salida. Los límites son en su mayoría internos.",
+    "reversedExtended": "Invertida simboliza liberación, toma de conciencia y el primer paso hacia la libertad mental.",
+    "daily": "La sensación de estar atrapado nace dentro. El Ocho de Espadas te recuerda que tus pensamientos son la barrera — y tú tienes la llave para soltarte."
+  },
+  "nineOfSwords": {
+    "symbolism": "Una persona se incorpora en la cama con la cabeza entre las manos bajo nueve espadas — símbolo de preocupación, insomnio y remordimiento.",
+    "uprightExtended": "Al derecho apunta a angustia mental, ansiedad o culpa. Los pensamientos se han vuelto una carga.",
+    "reversedExtended": "Invertida trae recuperación, alivio de preocupaciones o reconocimiento de asuntos internos.",
+    "daily": "Las preocupaciones pueden atraparte de noche, pero no son todo tu mundo. El Nueve de Espadas susurra: no estás solo — y no eres lo que temes."
+  },
+  "tenOfSwords": {
+    "symbolism": "Una figura yace con diez espadas en la espalda bajo un cielo oscuro — símbolo de final, traición y colapso definitivo.",
+    "uprightExtended": "Esta carta denota el fin de un ciclo, desilusión o traición emocional — y un nuevo amanecer tras la oscuridad.",
+    "reversedExtended": "Invertida significa supervivencia, recuperación y salir de una situación difícil. Es tiempo de un nuevo comienzo.",
+    "daily": "El final puede doler, pero trae alivio. El Diez de Espadas cierra un capítulo y abre espacio para la renovación."
+  },
+  "pageOfSwords": {
+    "symbolism": "Un joven de pie con una espada en postura de guardia — símbolo de curiosidad, alerta intelectual y cautela.",
+    "uprightExtended": "Esta carta apunta a agudeza mental, comunicación e indagación. Es tiempo de conversación honesta y aprendizaje.",
+    "reversedExtended": "Invertida denota chismes, falta de enfoque o sobrerreacción defensiva. Calma la mente y sé más claro.",
+    "daily": "Sé curioso, pero prudente. La Sota de Espadas trae información nueva — escucha, observa y no saques conclusiones apresuradas."
+  },
+  "knightOfSwords": {
+    "symbolism": "Un caballero arremete con la espada en alto — símbolo de acción, determinación e impulso guiado por una idea.",
+    "uprightExtended": "Al derecho denota velocidad, avance intelectual y valentía. Es momento de actuar con decisión, sin demora.",
+    "reversedExtended": "Invertida apunta a precipitación, comunicación agresiva o caos mental. Canaliza la energía con más sabiduría.",
+    "daily": "Tus pensamientos vuelan rápido — pero cuida no cortar lo que quieres conservar. El Caballero de Espadas pide equilibrio entre pasión y razón."
+  },
+  "queenOfSwords": {
+    "symbolism": "Una reina sentada en su trono alza una espada mientras con la otra mano invita — símbolo de ecuanimidad y fortaleza intelectual.",
+    "uprightExtended": "La carta denota objetividad, sabiduría y un enfoque analítico. La verdad real sale a la luz.",
+    "reversedExtended": "Invertida significa frialdad, intolerancia o distancia emocional. Se requiere equilibrio entre mente y corazón.",
+    "daily": "Sé clara y veraz, aunque parezca frío. La Reina de Espadas trae sabiduría sin ilusiones — ves las cosas como son."
+  },
+  "kingOfSwords": {
+    "symbolism": "Un rey se sienta en un trono con una espada que simboliza verdad, justicia y racionalidad.",
+    "uprightExtended": "Al derecho representa autoridad, lógica y firmeza moral. Lidera con intelecto y claridad.",
+    "reversedExtended": "Invertida denota manipulación, abuso de poder o racionalismo extremo. Se requiere un equilibrio justo.",
+    "daily": "Hoy manda la lógica. El Rey de Espadas pide decisión y objetividad — lidera con el ejemplo, no con la emoción."
+  },
+  "aceOfPentacles": {
+    "symbolism": "Una mano emerge de una nube sosteniendo un pentáculo dorado — símbolo de nuevas oportunidades materiales y dones del universo.",
+    "uprightExtended": "La carta indica un nuevo comienzo en dinero, salud o carrera. Es hora de hacer las cosas tangibles.",
+    "reversedExtended": "Invertida apunta a una oportunidad perdida, bases inestables o retrasos en la manifestación.",
+    "daily": "Hoy se abre una nueva oportunidad en el plano material — dinero, trabajo, salud. El As de Oros es la semilla de la estabilidad — plántala con cuidado."
+  },
+  "twoOfPentacles": {
+    "symbolism": "Una figura hace malabares con dos oros unidos por el signo de infinito — símbolo de gestionar las corrientes de la vida.",
+    "uprightExtended": "Al derecho simboliza equilibrio entre trabajo y vida privada, flexibilidad e ingenio.",
+    "reversedExtended": "Invertida indica caos, estrés o descuidar un área de la vida. Se necesita mejor organización.",
+    "daily": "¿Haces malabares con muchas cosas a la vez? El Dos de Oros te enseña a encontrar tu ritmo — el equilibrio es tu mejor herramienta hoy."
+  },
+  "threeOfPentacles": {
+    "symbolism": "Un artista, un sacerdote y un artesano colaboran en la construcción de una catedral — símbolo de trabajo en equipo y valores compartidos.",
+    "uprightExtended": "La carta denota cooperación, reconocimiento de la habilidad y construcción sobre bases sólidas.",
+    "reversedExtended": "Invertida señala falta de cooperación, desalineación del equipo o negativa a aceptar consejos.",
+    "daily": "La cooperación trae resultados. El Tres de Oros recuerda que el éxito crece cuando todos aportan su parte — y respetan el esfuerzo ajeno."
+  },
+  "fourOfPentacles": {
+    "symbolism": "Un hombre aferra un oro mientras dos están bajo sus pies y uno sobre su corona — símbolo de seguridad material y apego.",
+    "uprightExtended": "Al derecho denota ahorro, necesidad de control y preservación de recursos. Es tiempo de estabilidad.",
+    "reversedExtended": "Invertida apunta a codicia, terquedad o miedo a la pérdida. Ábrete al flujo.",
+    "daily": "¿Sujetas algo con demasiada fuerza? El Cuatro de Oros te dice que la protección no debe convertirse en prisión — la seguridad también nace de la confianza."
+  },
+  "fiveOfPentacles": {
+    "symbolism": "Dos indigentes pasan junto a una iglesia bajo la nieve — símbolo de escasez, aislamiento y necesidad corporal o espiritual.",
+    "uprightExtended": "La carta apunta a apuros financieros, enfermedad o soledad emocional. La ayuda existe, pero hay que pedirla.",
+    "reversedExtended": "Invertida simboliza recuperación, salir de la escasez y esperanza. Empieza a verse una luz.",
+    "daily": "Si te sientes excluido o inseguro, busca apoyo. El Cinco de Oros recuerda que no estás solo — la puerta puede estar más cerca de lo que crees."
+  },
+  "sixOfPentacles": {
+    "symbolism": "Un hombre adinerado da dinero a los pobres mientras sostiene una balanza — símbolo de equilibrio, dar y recibir.",
+    "uprightExtended": "Esta carta denota generosidad, ayuda y equilibrio en el intercambio. Es tiempo de dar o recibir con gratitud.",
+    "reversedExtended": "Invertida apunta a desequilibrio, dependencia o ayuda con condiciones. Considera las verdaderas intenciones.",
+    "daily": "Recuerda hoy la reciprocidad. El Seis de Oros te invita a dar —o recibir— con equilibrio, gratitud y sin culpa."
+  },
+  "sevenOfPentacles": {
+    "symbolism": "Un campesino observa su cultivo — símbolo de espera, evaluación y paciencia en el proceso de crecimiento.",
+    "uprightExtended": "Al derecho denota hacer balance, invertir esfuerzo y esperar resultados. La paciencia rinde frutos.",
+    "reversedExtended": "Invertida apunta a impaciencia, duda de tus esfuerzos o necesidad de reevaluar tu rumbo.",
+    "daily": "La paciencia es clave. El Siete de Oros trae el mensaje de que los frutos llegarán — pero requieren cuidado y tiempo. No abandones ahora."
+  },
+  "eightOfPentacles": {
+    "symbolism": "Un artesano labra pentáculos sin descanso — símbolo de maestría, dedicación y oficio.",
+    "uprightExtended": "Esta carta denota trabajo dedicado, aprendizaje y progreso mediante la práctica. Es tiempo de disciplina.",
+    "reversedExtended": "Invertida indica rutina sin inspiración, errores por prisa o negarse a aprender.",
+    "daily": "La práctica hace al maestro. El Ocho de Oros te invita a esforzarte y desarrollar tus habilidades — cada paso cuenta."
+  },
+  "nineOfPentacles": {
+    "symbolism": "Una mujer se encuentra en un jardín con un halcón — símbolo de independencia, lujo y autoestima.",
+    "uprightExtended": "La carta trae frutos del trabajo, autosuficiencia y disfrute de lo logrado. Mantente erguido en lo tuyo.",
+    "reversedExtended": "Invertida apunta a dependencia, inautenticidad o miedo a la independencia. Construye tu valía.",
+    "daily": "La independencia y el disfrute de tus frutos conquistados llevan la batuta hoy. El Nueve de Oros te recuerda que eres capaz y mereces abundancia."
+  },
+  "tenOfPentacles": {
+    "symbolism": "Una familia rodeada de símbolos de abundancia — símbolo de seguridad material, tradición familiar y herencia.",
+    "uprightExtended": "Esta carta denota estabilidad a largo plazo, valores familiares y culminación de un ciclo exitoso.",
+    "reversedExtended": "Invertida indica discordia familiar, tensiones financieras o pérdida de valores heredados.",
+    "daily": "Piensa a largo plazo. El Diez de Oros trae pertenencia, legado y seguridad — hoy sientas bases para el mañana."
+  },
+  "pageOfPentacles": {
+    "symbolism": "Un joven estudia un pentáculo dorado con atención — símbolo de aprendizaje, potencial material e intención concreta.",
+    "uprightExtended": "La carta denota curiosidad, el aprendiz y el primer paso hacia un logro práctico. Aprende haciendo.",
+    "reversedExtended": "Invertida señala falta de enfoque, oportunidades perdidas o posponer el inicio. Se necesita dedicación al objetivo.",
+    "daily": "Hoy es ideal para aprender o fijar metas. La Sota de Oros susurra: si crees en la idea — prepárate para nutrirla."
+  },
+  "knightOfPentacles": {
+    "symbolism": "Un caballero, sereno sobre su caballo, sostiene un pentáculo — símbolo de responsabilidad, paciencia y acción minuciosa.",
+    "uprightExtended": "Al derecho denota perseverancia, dedicación y progreso constante y realista. Sigue el camino confiable.",
+    "reversedExtended": "Invertida apunta a terquedad, estancamiento o lentitud excesiva. Alinea tu ritmo con tu propósito.",
+    "daily": "La constancia y la atención al detalle son tus aliadas. El Caballero de Oros recuerda: despacio y con buena letra — así se construye lo que perdura."
+  },
+  "queenOfPentacles": {
+    "symbolism": "Una reina en la naturaleza sostiene un pentáculo con cuidado — símbolo de hogar, estabilidad y energía maternal.",
+    "uprightExtended": "La carta trae seguridad, cuidado y practicidad. Crea armonía mediante organización y dulzura.",
+    "reversedExtended": "Invertida denota descuidarte a ti mismo, materialismo excesivo o retraimiento emocional.",
+    "daily": "Nutre tu mundo — por fuera y por dentro. La Reina de Oros trae calidez, practicidad y estabilidad — atiende cuerpo, hogar y rutina."
+  },
+  "kingOfPentacles": {
+    "symbolism": "Un rey se sienta en un trono adornado con toros y vides — símbolo de poder, riqueza y estabilidad consolidada.",
+    "uprightExtended": "Esta carta simboliza éxito material logrado, gestión sabia de recursos y seguridad.",
+    "reversedExtended": "Invertida apunta a testarudez, avaricia o exceso de control. Deja entrar el flujo de la vida.",
+    "daily": "Toma hoy decisiones que construyan cimientos a largo plazo. El Rey de Oros te recuerda que tu fuerza está en administrar los recursos con sabiduría."
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "titles": {
+    "aiReply": "Una antwortet",
+    "housesAnalysis": "Interpretation nach astrologischen Häusern",
+    "sefirotAnalysis": "Interpretation nach Sefirot",
+    "celticAnalysis": "Deutung des Keltischen Kreuzes",
+    "followupPrompt": "Füge eine Rückfrage hinzu (PRO):",
+    "astroHouses": "Interpretation nach astrologischen Häusern:",
+    "sefirot": "Interpretation nach Sefirot:",
+    "celticInterpretation": "Deutung des Keltischen Kreuzes:"
+  },
+  "labels": {
+    "question": "Frage:",
+    "spreadType": "Legungstyp: {{value}}. "
+  },
+  "placeholders": {
+    "followup": "Rückfrage eingeben..."
+  },
+  "summary": {
+    "label": "Zusammenfassung:"
+  },
+  "houses": [
+    "1. Haus (Selbst)",
+    "2. Haus (Finanzen)",
+    "3. Haus (Kommunikation)",
+    "4. Haus (Zuhause & Familie)",
+    "5. Haus (Kreativität)",
+    "6. Haus (Gesundheit)",
+    "7. Haus (Partnerschaften)",
+    "8. Haus (Transformation)",
+    "9. Haus (Reisen & Glauben)",
+    "10. Haus (Karriere)",
+    "11. Haus (Freunde & Gemeinschaft)",
+    "12. Haus (Unterbewusstsein)"
+  ],
+  "celticPositions": [
+    "1. Gegenwart",
+    "2. Hindernis / Herausforderung",
+    "3. Grundlage (Unbewusstes)",
+    "4. Vergangenheit",
+    "5. Bewusstes / Möglichkeiten",
+    "6. Nahe Zukunft",
+    "7. Haltung zur Situation",
+    "8. Umwelteinfluss",
+    "9. Hoffnungen / Ängste",
+    "10. Ergebnis"
+  ],
+  "sefirot": [
+    "Keter (Krone)",
+    "Chokhmah (Weisheit)",
+    "Binah (Verständnis)",
+    "Chesed (Güte)",
+    "Gevurah (Strenge)",
+    "Tiferet (Schönheit)",
+    "Netzach (Ewigkeit)",
+    "Hod (Herrlichkeit)",
+    "Yesod (Fundament)",
+    "Malkhut (Königtum)"
+  ],
+  "misc": {
+    "proOnly": "Rückfragen sind nur für PRO verfügbar.",
+    "followupTitle": "Rückfrage senden (PRO):",
+    "followupAnswer": "Antwort auf Rückfrage:",
+    "oneFollowupNote": "Du kannst eine neue Rückfrage erst in der nächsten Legung stellen.",
+    "cardPlaceholder": "Karte {{index}}"
+  }
+}

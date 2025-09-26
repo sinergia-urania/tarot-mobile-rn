@@ -1,0 +1,470 @@
+{
+  "theFool": {
+    "symbolism": "The Fool stands on the edge of a cliff, ready for the first step into the unknown. A rose in hand symbolizes innocence, while the dog behind them represents instinct and inner protection.",
+    "uprightExtended": "Upright, The Fool marks the beginning of an adventure and trust in life. It symbolizes openness to change, spontaneity, and a new phase without fear.",
+    "reversedExtended": "Reversed, this card points to recklessness, naivety, and avoiding responsibility. One may be moving forward without awareness of the consequences.",
+    "daily": "Today is the time to release expectations and step into the unknown with trust. The Fool reminds you that every mistake is simply part of the journey."
+  },
+  "theMagician": {
+    "symbolism": "The Magician stands with one hand raised to the heavens and the other to the earth—symbolizing the link between the spiritual and material worlds. The tools of all elements on the table show his ability to manifest.",
+    "uprightExtended": "Upright, the Magician points to personal power, focus, and the ability to turn ideas into reality. It’s time for action using all available means.",
+    "reversedExtended": "Reversed, the Magician can indicate manipulation, illusion, and untapped potential. A person may be underusing their gifts—or using them selfishly.",
+    "daily": "Use today to recognize your talents and manifest what truly matters. The Magician tells you: you have everything you need—use it consciously."
+  },
+  "theHighPriestess": {
+    "symbolism": "The High Priestess sits between two pillars, symbolizing balance between opposites. The veil behind her hides mystical knowledge, while the scroll in her hands represents hidden wisdom.",
+    "uprightExtended": "This card represents intuition, silence, and inner knowing. It warns of the need to listen to your inner voice and seek answers within.",
+    "reversedExtended": "Reversed, it signals suppressed intuition, emotional confusion, or disconnection from spiritual values. One may be ignoring inner signs.",
+    "daily": "Trust your intuition today. The answers you seek are already within you—quiet the mind and listen to your inner voice."
+  },
+  "theEmpress": {
+    "symbolism": "The Empress sits in fertile nature, surrounded by grain and trees, symbolizing abundance and fertility. Her crown of stars connects her with the universe.",
+    "uprightExtended": "The Empress symbolizes maternal energy, creation, love, and nurture. It signals a fertile time in every sense—creative, emotional, or physical.",
+    "reversedExtended": "Reversed can mean dependency on others, emotional exhaustion, or creative block. Nurture yourself so you can nurture others.",
+    "daily": "Today is a day to tend to what grows—be it an idea, a relationship, or your own peace. The Empress reminds you that gentleness with yourself bears fruit outwardly."
+  },
+  "theEmperor": {
+    "symbolism": "The Emperor sits on a stone throne adorned with rams, signifying strength, discipline, and authority. He represents stability and the world of order.",
+    "uprightExtended": "Upright signifies control, responsibility, and leadership. The card suggests structuring your life and making firm decisions.",
+    "reversedExtended": "Reversed points to tyranny, stubbornness, or emotional coldness. One may be using power destructively.",
+    "daily": "Stability and structure are your allies today. The Emperor urges you to set boundaries and decide with confidence in your own authority."
+  },
+  "theHierophant": {
+    "symbolism": "The Hierophant sits between two pillars, symbolizing institutional authority and spiritual knowledge. His hands are raised in blessing while followers kneel before him.",
+    "uprightExtended": "This card denotes tradition, spiritual authority, and learning through institutions. It points to respecting spiritual laws and teachers.",
+    "reversedExtended": "Reversed, it indicates rejecting rules, spiritual rebellion, or rigidity that stifles growth. It can also signal false authority.",
+    "daily": "Seek wisdom in tradition or advice from someone you trust. Today calls for honoring knowledge that existed before us."
+  },
+  "theLovers": {
+    "symbolism": "A man and a woman stand naked beneath an angel, representing pure connection and divine union. In the background are the tree of knowledge and the fire of passion.",
+    "uprightExtended": "Upright, the Lovers symbolize deep connection, harmony, and choices made from love. They can point to relationships as well as pivotal moral decisions.",
+    "reversedExtended": "Reversed indicates disharmony, misalignment in a relationship, or a wrong choice. Re-examine the core of the emotional decision.",
+    "daily": "Today, choose with your heart. The Lovers remind you that relationships are mirrors—what you offer is what you receive."
+  },
+  "theChariot": {
+    "symbolism": "The charioteer stands confidently between a black and a white sphinx, holding the reins of spiritual and material forces. The star on his forehead symbolizes divine guidance.",
+    "uprightExtended": "This card denotes willpower, victory, and progress despite obstacles. It suggests strong control and balance between opposites.",
+    "reversedExtended": "Reversed, The Chariot points to loss of control, inner conflict, or giving up. Realign your inner strength.",
+    "daily": "Take the reins and drive toward your goal. The Charioteer knows: even opposing forces can unite when you know where you’re going."
+  },
+  "strength": {
+    "symbolism": "A woman gently closes a lion’s mouth, showing the power of compassion and inner strength. The lemniscate above her head signifies the spirit’s infinite potential.",
+    "uprightExtended": "Upright, Strength points to patience, courage, and subtle control. True strength comes from calm and understanding, not aggression.",
+    "reversedExtended": "Reversed indicates self-doubt, lack of courage, or giving in to impulses. Restore inner balance.",
+    "daily": "Your strength today comes from patience and kindness. You don’t need to shout to be strong—the quiet of your heart knows the way."
+  },
+  "theHermit": {
+    "symbolism": "The Hermit stands on a mountain peak with a lamp in hand, symbolizing wisdom, introspection, and the search for truth. His staff is support through spiritual solitude.",
+    "uprightExtended": "The card points to the need for withdrawal, silence, and inner reflection. It’s time to listen to your inner voice and seek spiritual direction.",
+    "reversedExtended": "Reversed, it speaks of isolation, inner blockages, or refusal to face oneself. Open to the wisdom of others.",
+    "daily": "Today is for silence, retreat, and listening to inner truth. The Hermit guides you toward the light you carry within."
+  },
+  "wheelOfFortune": {
+    "symbolism": "The Wheel of Fortune shows life’s cyclical nature with symbols of gods, a serpent, and a sphinx. It signifies constant change and universal forces that govern fate.",
+    "uprightExtended": "This card marks destiny, change, and inevitable turning points. Sudden events may arrive that alter life’s course.",
+    "reversedExtended": "Reversed indicates resistance to change, a sense that everything is going downhill, or running in circles. Let go and trust the natural flow.",
+    "daily": "Fate turns—embrace change and be ready for surprises. The Wheel brings opportunities when you least expect them."
+  },
+  "justice": {
+    "symbolism": "Justice sits between two pillars with a sword and scales—symbols of truth and balance. Her gaze is direct, signaling clarity and fairness.",
+    "uprightExtended": "Upright, Justice denotes truth, balance, karmic justice, and accountability. Matters will be resolved fairly.",
+    "reversedExtended": "Reversed indicates injustice, bias, or avoiding responsibility. It’s time to face the truth.",
+    "daily": "Honesty is required today—toward yourself and others. Justice reminds you that balance is the key to peace, and truth is the light."
+  },
+  "theHangedMan": {
+    "symbolism": "The Hanged Man hangs upside down yet bears a peaceful expression. A halo around his head symbolizes enlightenment through surrender.",
+    "uprightExtended": "This card calls for pause, contemplation, and a change of perspective. Progress comes through acceptance and sacrifice.",
+    "reversedExtended": "Reversed points to resistance to change, delays, or clinging stubbornly to an old view. Let go of control.",
+    "daily": "Stop. Shift your angle. The Hanged Man tells you: sometimes the wisest action is surrender."
+  },
+  "death": {
+    "symbolism": "Death rides a white horse and carries a black banner with white roses, symbolizing endings and rebirth. Those around accept the inevitable.",
+    "uprightExtended": "Upright, Death signifies transformation, endings, and new beginnings. Release the old to make space for the new.",
+    "reversedExtended": "Reversed shows fear of change, blockage, or stagnation. The transformation is being resisted—but it is inevitable.",
+    "daily": "Let go of what no longer serves. Today is for inner transformation—after every ending comes a new beginning."
+  },
+  "temperance": {
+    "symbolism": "An angel pours liquid from one cup to another, symbolizing balance and harmony. One foot is in water, the other on land—spirit and matter in harmony.",
+    "uprightExtended": "This card signifies balance, patience, and moderation. It calls for harmony between opposites and a calm approach to challenges.",
+    "reversedExtended": "Reversed points to extremes, impatience, or inner chaos. Restore your inner equilibrium.",
+    "daily": "Calm your mind and balance your desires. Temperance reminds you: miracles happen when body and soul are in tune."
+  },
+  "theDevil": {
+    "symbolism": "The Devil sits on a throne with chains around a man and a woman, symbolizing attachment to the material, to passions, and to illusions.",
+    "uprightExtended": "Upright indicates addiction, temptation, and bondage to false ideals. Free yourself from the chains you put on yourself.",
+    "reversedExtended": "Reversed signals awakening and liberation. One becomes aware of their limitations and begins the process of release.",
+    "daily": "Recognize what binds you. The Devil whispers illusions—today you can expose them and take the first step toward freedom."
+  },
+  "theTower": {
+    "symbolism": "The Tower crumbles under a lightning strike as people fall from it. It symbolizes sudden change, shock, and the collapse of illusions.",
+    "uprightExtended": "This card points to unexpected events that topple old foundations. Though painful, it allows rebuilding on healthier ground.",
+    "reversedExtended": "Reversed indicates an inner upheaval, denial of change, or fear of losing control. The release happens from within.",
+    "daily": "Change can hurt, but tearing down the false leads to truth. The Tower calls you to release what only seemed stable."
+  },
+  "theStar": {
+    "symbolism": "A woman pours water into a pool and onto the earth under a starry night sky, symbolizing hope, inspiration, and spiritual renewal.",
+    "uprightExtended": "Upright brings light after darkness, spiritual guidance, and faith in a better tomorrow. It signals renewed strength and inspiration.",
+    "reversedExtended": "Reversed symbolizes loss of faith, pessimism, or feeling distant from the spiritual source. Restore trust in life’s flow.",
+    "daily": "Hope returns. The Star reminds you that even in the darkest moment there is light—within you."
+  },
+  "theMoon": {
+    "symbolism": "A path runs between two towers through darkness, lit by the Moon. A dog and a wolf howl at it while a crayfish rises from the water—symbols of the unconscious and intuition.",
+    "uprightExtended": "This card points to dreams, intuition, and hidden meanings. It’s time to listen to your inner voice and beware of illusions.",
+    "reversedExtended": "Reversed indicates confusion, anxiety, and distorted perceptions. Find clarity through quiet.",
+    "daily": "Today, listen to intuition more than logic. The Moon illuminates hidden truths—but only if you’re willing to look within."
+  },
+  "theSun": {
+    "symbolism": "A child rides a white horse before a wall of sunflowers as the Sun shines brightly overhead. It symbolizes joy, clarity, and life.",
+    "uprightExtended": "This card brings happiness, success, vitality, and clarity. Everything becomes illuminated and energy flows freely.",
+    "reversedExtended": "Reversed points to a temporary dip in joy, a shadow of uncertainty, or an overblown ego. The light is still there—just clouded.",
+    "daily": "This is a day of joy, clarity, and gratitude. The Sun tells you: shine—and everything around you will brighten."
+  },
+  "judgement": {
+    "symbolism": "An angel sounds a horn from the heavens as the dead rise from graves, symbolizing awakening, forgiveness, and karmic judgement. The scene is full of spiritual calling.",
+    "uprightExtended": "This card symbolizes awakening, renewal, and making important decisions. It calls for release from the past and readiness for a higher level of awareness.",
+    "reversedExtended": "Reversed indicates fear of judgement, missed opportunities, or refusal to accept personal responsibility. Face the truth.",
+    "daily": "Today is a time for forgiveness and a new beginning. Judgement invites you to awaken from an old version of yourself and step into higher truth."
+  },
+  "theWorld": {
+    "symbolism": "A figure dances within a wreath, surrounded by the symbols of the four living creatures. This scene marks completion, wholeness, and unity.",
+    "uprightExtended": "The World symbolizes achievement, fulfillment, and the closing of a cycle. Success comes through integrating your experiences.",
+    "reversedExtended": "Reversed points to the sense that something is still missing, delays in completion, or repeating the same patterns. Connect all parts into a whole.",
+    "daily": "Finish what was started and celebrate completeness. The World brings a sense of wholeness—you are both the traveler and the destination."
+  },
+  "aceOfWands": {
+    "symbolism": "A hand emerging from a cloud holds a flaming wand — a symbol of spiritual fire, initiative, and creative energy.",
+    "uprightExtended": "Upright, this card symbolizes a fresh beginning, a creative spark, and potential for growth. It’s time for action and to set your idea in motion.",
+    "reversedExtended": "Reversed, it indicates blocked inspiration, delays in getting started, or fear of taking initiative.",
+    "daily": "Today is a day for action and new beginnings. The Ace of Wands encourages you to reach for inspiration and ignite your inner fire."
+  },
+  "twoOfWands": {
+    "symbolism": "A figure holds a globe and looks into the distance from a tower — symbolizing planning, vision, and command over one’s domain.",
+    "uprightExtended": "Upright signifies forward thinking, decision-making, and expanding horizons. Plans are in place — now is the time to dare.",
+    "reversedExtended": "Reversed points to wavering, indecision, and fear of the unknown. You may have the vision but not yet the courage to move.",
+    "daily": "Step out of your comfort zone and take in the bigger picture. The Two of Wands brings plans and vision — dare to follow them."
+  },
+  "threeOfWands": {
+    "symbolism": "A figure stands on a rise watching ships come and go — a symbol of expectation and trade.",
+    "uprightExtended": "This card symbolizes expansion, success, and progress based on effort already invested. The fruits of your work are arriving.",
+    "reversedExtended": "Reversed points to delays, unmet expectations, or an unclear path forward.",
+    "daily": "First movement becomes visible today. The Three of Wands reminds you that your efforts have already sent energy into the world — a response is on its way."
+  },
+  "fourOfWands": {
+    "symbolism": "People celebrate beneath a decorated canopy — a symbol of peace, harmony, and shared joy.",
+    "uprightExtended": "The card points to stability, celebration, and harmonious relationships. Possible festivities, a wedding, or a successful homecoming.",
+    "reversedExtended": "Reversed signals disharmony in the community, inner insecurity, or overlooked joy. Balance needs to be restored.",
+    "daily": "Celebrate small victories. The Four of Wands brings stability, togetherness, and a sense of home — even if only symbolic."
+  },
+  "fiveOfWands": {
+    "symbolism": "Five figures brandish wands, seeming to fight or spar — a symbol of competition and conflict.",
+    "uprightExtended": "Upright represents disagreements, rivalry, or constructive struggle. Effort leads to growth.",
+    "reversedExtended": "Reversed indicates pointless arguments, inner conflict, or a need for compromise.",
+    "daily": "You may encounter a clash of opinions or a battle of egos. The Five of Wands offers a chance to strengthen your boundaries through challenge."
+  },
+  "sixOfWands": {
+    "symbolism": "A rider on horseback bears a laurel of victory while the crowd greets them — a symbol of public recognition and achievement.",
+    "uprightExtended": "Upright represents triumph, acknowledgment, and confidence. Success as the result of prior effort and struggle.",
+    "reversedExtended": "Reversed points to unrecognized effort, self-doubt, or fear of failure. Work on self-worth is needed.",
+    "daily": "Recognition and success accompany you today. The Six of Wands reminds you it’s okay to receive applause — you’ve earned it."
+  },
+  "sevenOfWands": {
+    "symbolism": "A person stands on higher ground defending against six attackers — a symbol of resolve and standing your ground.",
+    "uprightExtended": "The card calls for taking a stand and defending your position. Though challenging, it’s worth the fight.",
+    "reversedExtended": "Reversed signals feeling overwhelmed, defensive, or withdrawing before challenges. Courage is needed to persist.",
+    "daily": "Stand up for what you believe in. The Seven of Wands brings challenges, but also the strength to defend your stance — head held high."
+  },
+  "eightOfWands": {
+    "symbolism": "Eight wands fly through the air — a symbol of speed, movement, and unobstructed progress.",
+    "uprightExtended": "Upright indicates swift movement, good news, and an acceleration of events. Energy flows freely and things happen quickly.",
+    "reversedExtended": "Reversed points to delays, communication blocks, or confusion. Align thoughts and action.",
+    "daily": "Time speeds up. The Eight of Wands brings sudden news, fast communication, or a leap forward — keep your focus."
+  },
+  "nineOfWands": {
+    "symbolism": "A wounded warrior stands with one wand while the rest stand behind — a symbol of perseverance and protection.",
+    "uprightExtended": "This card denotes endurance, persistence, and defense. Though tired, you’re still ready to protect what’s yours.",
+    "reversedExtended": "Reversed points to burnout, paranoia, or feeling constantly under attack. It’s time to renew your energy.",
+    "daily": "You may be weary, but you’re still here. The Nine of Wands reminds you that you’ve endured much and your strength is closer than you think."
+  },
+  "tenOfWands": {
+    "symbolism": "A figure carries ten wands and walks with difficulty — a symbol of burdens and responsibilities taken on personally.",
+    "uprightExtended": "Upright denotes overload, responsibility, and the final stretch of a major task. It’s time to consider delegating.",
+    "reversedExtended": "Reversed indicates refusing help, feeling trapped, or emotional heaviness. It’s time to lighten the load.",
+    "daily": "If you’re carrying too much, today is the day to set something down. The Ten of Wands invites you to share the burden or reorder priorities."
+  },
+  "pageOfWands": {
+    "symbolism": "A youth in exotic garments studies a wand — a symbol of new ideas, messages, and spiritual curiosity.",
+    "uprightExtended": "Upright indicates a message, news, or the beginning of inspiration. It’s time to explore and discover your inner fire.",
+    "reversedExtended": "Reversed points to insecurity, impulsiveness, or delaying self-expression. Courage and authenticity are needed.",
+    "daily": "Awaken your curiosity today. The Page of Wands brings youthful energy — try something new, even a small thing."
+  },
+  "knightOfWands": {
+    "symbolism": "A knight charges forward with a wand — a symbol of courage, impulse, and passion in motion.",
+    "uprightExtended": "Upright signifies strong action, enthusiasm, and the desire to conquer. The energy is intense and full of initiative.",
+    "reversedExtended": "Reversed indicates recklessness, excessive haste, or lack of patience. Align action with purpose.",
+    "daily": "Follow your passion — without rushing headlong. The Knight of Wands gives wind to your back; use it for a goal, not just a race."
+  },
+  "queenOfWands": {
+    "symbolism": "A queen sits on her throne with a sunflower and a cat — symbols of confidence, charisma, and spiritual strength.",
+    "uprightExtended": "Upright denotes warmth, magnetism, and inner assurance. The Queen inspires others to shine.",
+    "reversedExtended": "Reversed points to insecurity, jealousy, or manipulation through charm. Leadership requires honesty.",
+    "daily": "You radiate charisma and confidence. The Queen of Wands urges you not to hide your light — inspire others by being fully yourself."
+  },
+  "kingOfWands": {
+    "symbolism": "A king sits with a wand in hand, looking forward — a symbol of leadership, vision, and authoritative passion.",
+    "uprightExtended": "Upright represents visionary leadership, courage, and decisiveness. It’s time to take charge with inspiration.",
+    "reversedExtended": "Reversed indicates authoritarianism, arrogance, or baseless commanding. Lead by example, not by force.",
+    "daily": "Take the lead — with vision. The King of Wands gives you the power to guide others through example, not control."
+  },
+  "aceOfCups": {
+    "symbolism": "A hand emerges from a cloud holding a golden cup from which water overflows — a symbol of emotion, love, and spiritual replenishment.",
+    "uprightExtended": "Upright signals a new emotional beginning, an open heart, and an abundance of feeling. An ideal moment for love, intuition, and healing.",
+    "reversedExtended": "Reversed denotes emotional blockages, suppressed feelings, or an inability to receive love. The heart needs to open.",
+    "daily": "Open your heart to new feelings. The Ace of Cups brings an opportunity for love, forgiveness, or spiritual fulfillment — today everything begins with emotion."
+  },
+  "twoOfCups": {
+    "symbolism": "A man and a woman exchange cups under the blessing of a lion’s head — a symbol of balance and emotional connection.",
+    "uprightExtended": "Upright symbolizes partnership, romantic or spiritual connection, harmony, and exchange. An excellent card for all kinds of relationships.",
+    "reversedExtended": "Reversed points to misunderstandings, breakups, or unreciprocated feelings. Emotional balance needs restoring.",
+    "daily": "Relationships are in focus today. The Two of Cups invites you to nurture balance, exchange, and genuine connection with someone."
+  },
+  "threeOfCups": {
+    "symbolism": "Three women celebrate, raising their cups, surrounded by the fruits of the earth — a symbol of togetherness and joy.",
+    "uprightExtended": "This card denotes celebration, friendship, gatherings, and shared happiness. It’s time to share your joy with others.",
+    "reversedExtended": "Reversed indicates isolation, jealousy, or a break in social ties. Re-examine relationships and trust.",
+    "daily": "Celebrate friendship, joy, and small moments. The Three of Cups brings cheer and reminds you that you don’t have to be alone."
+  },
+  "fourOfCups": {
+    "symbolism": "A person sits under a tree, pensive, while a hand from a cloud offers another cup — a symbol of emotional dissatisfaction and an introspective phase.",
+    "uprightExtended": "Upright points to emotional apathy, boredom, or missing an opportunity. It’s time to widen your view.",
+    "reversedExtended": "Reversed signals a fresh awakening, emerging from apathy, and readiness for emotional growth.",
+    "daily": "You may be too focused on what’s missing. The Four of Cups reminds you to look wider — a chance might be right in front of you."
+  },
+  "fiveOfCups": {
+    "symbolism": "A figure in a black cloak looks at spilled cups while two stand behind — a symbol of loss, but also of hope.",
+    "uprightExtended": "The card denotes sorrow, disappointment, or regret. It calls for accepting loss and opening to new possibilities.",
+    "reversedExtended": "Reversed signals forgiveness, emotional recovery, and refocusing on what remains valuable. Hope returns.",
+    "daily": "Grief is natural, but it isn’t the end. The Five of Cups invites you to acknowledge loss and then turn toward what remains."
+  },
+  "sixOfCups": {
+    "symbolism": "Two children in a garden exchange a cup — a symbol of memories, nostalgia, and the innocence of the past.",
+    "uprightExtended": "The card points to memories, childhood, nostalgia, and giving without expectation. Renew the spirit of innocence.",
+    "reversedExtended": "Reversed indicates being stuck in the past, immaturity, or the need to release old emotional ties.",
+    "daily": "Recall something beautiful from the past. The Six of Cups brings nostalgia—and the chance to draw strength from past joys for the present moment."
+  },
+  "sevenOfCups": {
+    "symbolism": "A figure stands before seven floating cups filled with symbols — illusions, temptations, and possibilities.",
+    "uprightExtended": "Upright denotes many options, imagination, and confusion. Choose with the heart, not only with the eyes.",
+    "reversedExtended": "Reversed points to scattered energy, groundless fantasies, or finally making a choice among many options.",
+    "daily": "There are many possibilities — but not all are real. The Seven of Cups calls you to distinguish illusion from true desire."
+  },
+  "eightOfCups": {
+    "symbolism": "A figure leaves eight cups and heads toward the mountains — a symbol of spiritual seeking and leaving the familiar behind.",
+    "uprightExtended": "The card signifies emotional withdrawal, searching for meaning, and the need for inner fulfillment.",
+    "reversedExtended": "Reversed denotes postponing departure, avoiding confrontation, or returning to old patterns.",
+    "daily": "It may be time to leave what no longer fulfills you. The Eight of Cups reminds you: this isn’t giving up — it’s a search for deeper meaning."
+  },
+  "nineOfCups": {
+    "symbolism": "A content figure sits before nine cups — a symbol of wishes fulfilled, satisfaction, and emotional fullness.",
+    "uprightExtended": "Upright brings emotional satisfaction, goals achieved, and gratitude. It’s time to enjoy the fruits of your labor.",
+    "reversedExtended": "Reversed signifies superficial pleasure, overindulgence, or missed expectations. Seek deeper fulfillment.",
+    "daily": "Satisfaction comes from within. The Nine of Cups brings emotional contentment — today is for gratitude and a touch of hedonism."
+  },
+  "tenOfCups": {
+    "symbolism": "A family stands beneath a rainbow of ten cups — a symbol of ideal love, harmony, and emotional fulfillment.",
+    "uprightExtended": "The card brings emotional fulfillment, family harmony, and spiritual peace. A pinnacle of joy in love and relationships.",
+    "reversedExtended": "Reversed indicates cracks beneath the perfect picture, family tension, or unrealistic expectations.",
+    "daily": "Love, family, fulfillment — today you’re surrounded by a sense of wholeness. The Ten of Cups celebrates togetherness in the broadest sense."
+  },
+  "pageOfCups": {
+    "symbolism": "A youth holds a cup from which a fish emerges — a symbol of sudden intuition, messages, and emotion.",
+    "uprightExtended": "This card symbolizes tender feelings, creativity, and the start of emotional insight. Open your heart to the unknown.",
+    "reversedExtended": "Reversed points to immaturity, flippancy in emotions, or avoiding true feelings.",
+    "daily": "Be open to a message from the heart—no matter how odd it seems. The Page of Cups brings artistic inspiration, surprises, and gentle emotions."
+  },
+  "knightOfCups": {
+    "symbolism": "A knight on a white horse holds a cup as a messenger of love, art, and spiritual aspirations.",
+    "uprightExtended": "Upright denotes a romantic offer, spiritual quest, and idealism. You’re moved by emotion and vision.",
+    "reversedExtended": "Reversed points to delusion, emotional manipulation, or unrealistic expectations in love.",
+    "daily": "Today you speak (or receive) words from the heart. The Knight of Cups brings romance—and a call to follow what your soul whispers."
+  },
+  "queenOfCups": {
+    "symbolism": "A queen sits by the sea holding a closed cup — a symbol of intuitive wisdom and emotional depth.",
+    "uprightExtended": "The card points to compassion, care, and spiritual depth. She listens with the heart and understands the unspoken.",
+    "reversedExtended": "Reversed denotes emotional exhaustion, passivity, or being overwhelmed by others’ feelings.",
+    "daily": "Nurture yourself from within. The Queen of Cups brings deep emotional wisdom — today you don’t have to fix anything, only feel."
+  },
+  "kingOfCups": {
+    "symbolism": "A king sits on a throne amid water, calm despite the waves — a symbol of mastery over emotion.",
+    "uprightExtended": "Upright signifies emotional stability, wisdom, and sincere support. You lead others with heart and experience.",
+    "reversedExtended": "Reversed indicates suppressed emotions, manipulation, or emotional distance. Align head and heart.",
+    "daily": "Remain calm in your ocean of feelings. The King of Cups teaches that you don’t have to suppress emotions — carry them wisely."
+  },
+  "aceOfSwords": {
+    "symbolism": "A hand emerges from a cloud holding an upright sword crowned with a laurel wreath — a symbol of truth, clarity, and intellectual breakthrough.",
+    "uprightExtended": "This card symbolizes a new beginning through truth, a clear mind, and resolve. It’s time to make decisions and cut through illusions.",
+    "reversedExtended": "Reversed denotes confusion, mental blocks, or poor judgment. Clarity must be regained through quiet.",
+    "daily": "Clarity is born today. The Ace of Swords brings truth and the power of words — say what you mean, but with awareness."
+  },
+  "twoOfSwords": {
+    "symbolism": "A woman sits blindfolded holding two crossed swords — a symbol of indecision and inner conflict.",
+    "uprightExtended": "Upright denotes balancing between two options, postponing a decision, and the need for inner peace before action.",
+    "reversedExtended": "Reversed points to inability to decide, an emotional block, or ignoring the truth.",
+    "daily": "You may be avoiding a decision — but it’s time to face the truth. The Two of Swords asks for balance between logic and feeling."
+  },
+  "threeOfSwords": {
+    "symbolism": "Three swords pierce a red heart against a gray sky — a symbol of sorrow, heartbreak, and loss.",
+    "uprightExtended": "This card brings pain, disappointment, and the end of something emotional. Yet through grief comes healing.",
+    "reversedExtended": "Reversed signals a healing process, release of pain, or suppressed sorrow that must surface.",
+    "daily": "Sorrow must be acknowledged so it can leave. The Three of Swords hurts, but it opens the heart to something truer."
+  },
+  "fourOfSwords": {
+    "symbolism": "A figure lies in a church with hands folded — a symbol of rest, contemplation, and spiritual renewal.",
+    "uprightExtended": "The card calls for a pause, rest, and spiritual silence. Regenerate body and mind before the next phase.",
+    "reversedExtended": "Reversed indicates restlessness, refusal to rest, or inner exhaustion. Reflection is urgently needed.",
+    "daily": "Rest is medicine. The Four of Swords tells you to withdraw, quiet the mind, and restore your strength before moving on."
+  },
+  "fiveOfSwords": {
+    "symbolism": "A figure gathers swords while others withdraw — a symbol of victory at the cost of conflict and lost respect.",
+    "uprightExtended": "Upright denotes conflict, manipulation, or a victory without real satisfaction. Re-examine your motives.",
+    "reversedExtended": "Reversed points to a need for reconciliation, avoiding conflict, or stepping away from a toxic situation.",
+    "daily": "Beware of a hollow victory. The Five of Swords reminds you that not every conflict is worth pursuing — choose peace, not dominance."
+  },
+  "sixOfSwords": {
+    "symbolism": "A figure in a boat crosses the water carrying six swords — a symbol of passage, healing, and a change of context.",
+    "uprightExtended": "The card denotes a calm transition, emotional healing, and a return to balance. It’s time to leave the past behind.",
+    "reversedExtended": "Reversed indicates difficulty moving on, emotional baggage, or postponing necessary change.",
+    "daily": "You are heading toward calmer waters. The Six of Swords brings relief after a hard period — accept the transition."
+  },
+  "sevenOfSwords": {
+    "symbolism": "A figure sneaks away carrying swords, looking back — a symbol of deceit, hidden intentions, and self-deception.",
+    "uprightExtended": "Upright denotes cunning, strategy, or avoiding responsibility. Someone may be hiding something.",
+    "reversedExtended": "Reversed points to truth revealed, pangs of conscience, or a call to honesty.",
+    "daily": "Be wise and cautious. The Seven of Swords suggests someone (perhaps you) is avoiding the truth — it’s time for honesty."
+  },
+  "eightOfSwords": {
+    "symbolism": "A woman is bound and surrounded by swords — a symbol of mental imprisonment, fear, and limitation.",
+    "uprightExtended": "This card denotes feeling trapped and unable to see a way out. The limits are mostly internal.",
+    "reversedExtended": "Reversed symbolizes liberation, awareness, and the first step toward mental freedom.",
+    "daily": "The feeling of being trapped comes from within. The Eight of Swords reminds you that your thoughts are the barrier — and you hold the key to release."
+  },
+  "nineOfSwords": {
+    "symbolism": "A person sits up in bed with head in hands beneath nine swords — a symbol of worry, sleeplessness, and remorse.",
+    "uprightExtended": "Upright points to mental anguish, anxiety, or guilt. Thoughts have become a burden.",
+    "reversedExtended": "Reversed brings recovery, worries lifting, or acknowledgment of inner issues.",
+    "daily": "Worries may grip you at night, but they aren’t the whole world. The Nine of Swords whispers: you’re not alone — and you are not what you fear."
+  },
+  "tenOfSwords": {
+    "symbolism": "A figure lies with ten swords in their back under a dark sky — a symbol of ending, betrayal, and final collapse.",
+    "uprightExtended": "This card denotes the end of a cycle, disappointment, or emotional betrayal — and a new dawn after darkness.",
+    "reversedExtended": "Reversed signifies survival, recovery, and emerging from a difficult situation. It’s time for a fresh start.",
+    "daily": "The end may be painful, but it brings relief. The Ten of Swords closes a chapter and makes space for renewal."
+  },
+  "pageOfSwords": {
+    "symbolism": "A youth stands with a sword in a guarded stance — a symbol of curiosity, intellectual alertness, and caution.",
+    "uprightExtended": "This card points to mental sharpness, communication, and inquiry. It’s time for honest conversation and learning.",
+    "reversedExtended": "Reversed denotes gossip, lack of focus, or over-defensiveness. Calm the mind and be clearer.",
+    "daily": "Be curious, yet careful. The Page of Swords brings new information — listen, observe, and don’t jump to conclusions."
+  },
+  "knightOfSwords": {
+    "symbolism": "A knight charges forward with raised sword — a symbol of action, resolve, and an idea-driven impulse.",
+    "uprightExtended": "Upright denotes speed, intellectual breakthrough, and courage. It’s time for decisive action without delay.",
+    "reversedExtended": "Reversed points to rashness, aggressive communication, or mental chaos. Channel the energy more wisely.",
+    "daily": "Your thoughts fly fast — but take care not to cut what you wish to keep. The Knight of Swords calls for balance between passion and reason."
+  },
+  "queenOfSwords": {
+    "symbolism": "A queen sits on her throne with a raised sword in one hand while the other beckons — a symbol of fairness and intellectual strength.",
+    "uprightExtended": "The card denotes objectivity, wisdom, and an analytical approach. The real truth comes to light.",
+    "reversedExtended": "Reversed signifies coldness, intolerance, or emotional distance. Balance between mind and heart is needed.",
+    "daily": "Be clear and truthful, even if it seems cold. The Queen of Swords brings wisdom without illusions — you see things as they are."
+  },
+  "kingOfSwords": {
+    "symbolism": "A king sits on a throne with a sword that symbolizes truth, justice, and rationality.",
+    "uprightExtended": "Upright represents authority, logic, and moral firmness. Lead with intellect and clarity.",
+    "reversedExtended": "Reversed denotes manipulation, abuse of power, or extreme rationalism. A just balance is required.",
+    "daily": "Today, logic rules. The King of Swords calls for decisiveness and objectivity — lead by example, not emotion."
+  },
+  "aceOfPentacles": {
+    "symbolism": "A hand emerges from a cloud holding a golden pentacle — a symbol of new material opportunities and gifts from the universe.",
+    "uprightExtended": "The card indicates a new beginning in money, health, or career. It’s time to make things tangible.",
+    "reversedExtended": "Reversed points to a missed opportunity, shaky foundations, or delays in manifestation.",
+    "daily": "A new opportunity opens today in the material world — money, work, health. The Ace of Pentacles is the seed of stability — plant it with care."
+  },
+  "twoOfPentacles": {
+    "symbolism": "A figure juggles two pentacles linked by the infinity sign — a symbol of managing life’s currents.",
+    "uprightExtended": "Upright symbolizes balance between work and private life, flexibility, and resourcefulness.",
+    "reversedExtended": "Reversed indicates chaos, stress, or neglecting one area of life. Better organization is needed.",
+    "daily": "Spinning many things at once? The Two of Pentacles teaches you to find your rhythm — balance is your best tool today."
+  },
+  "threeOfPentacles": {
+    "symbolism": "An artist, a priest, and a craftsman collaborate on building a cathedral — a symbol of teamwork and shared values.",
+    "uprightExtended": "The card denotes cooperation, recognition of skill, and building on solid foundations.",
+    "reversedExtended": "Reversed signals lack of cooperation, team misalignment, or refusal to take advice.",
+    "daily": "Cooperation brings results. The Three of Pentacles reminds you that success grows when everyone contributes their part — and respects others’ effort."
+  },
+  "fourOfPentacles": {
+    "symbolism": "A man clutches one pentacle while two are under his feet and one on his crown — a symbol of material security and attachment.",
+    "uprightExtended": "Upright denotes saving, a need for control, and preserving resources. It’s a time for stability.",
+    "reversedExtended": "Reversed points to greed, stubbornness, or fear of loss. Open yourself to the flow.",
+    "daily": "Are you holding something too tightly? The Four of Pentacles tells you that protection mustn’t become a prison — security also comes from trust."
+  },
+  "fiveOfPentacles": {
+    "symbolism": "Two paupers pass a church in the snow — a symbol of scarcity, isolation, and bodily or spiritual need.",
+    "uprightExtended": "The card points to financial hardship, illness, or emotional loneliness. Help exists, but it must be asked for.",
+    "reversedExtended": "Reversed symbolizes recovery, emerging from scarcity, and hope. A light begins to appear.",
+    "daily": "If you feel excluded or unsafe, seek support. The Five of Pentacles reminds you that you’re not alone — the door may be closer than you think."
+  },
+  "sixOfPentacles": {
+    "symbolism": "A wealthy man gives money to the poor while holding scales — a symbol of balance, giving, and receiving.",
+    "uprightExtended": "This card denotes generosity, aid, and balance in exchange. It’s time to give or receive with gratitude.",
+    "reversedExtended": "Reversed points to imbalance, dependency, or help with expectations attached. Consider the true intentions.",
+    "daily": "Remember reciprocity today. The Six of Pentacles invites you to give — or receive — with balance, gratitude, and without guilt."
+  },
+  "sevenOfPentacles": {
+    "symbolism": "A farmer observes his crop — a symbol of waiting, assessment, and patience in the growth process.",
+    "uprightExtended": "Upright denotes taking stock, investing effort, and waiting for results. Patience pays off.",
+    "reversedExtended": "Reversed points to impatience, doubt in your efforts, or the need to reassess your direction.",
+    "daily": "Patience is key. The Seven of Pentacles brings the message that the fruits are coming — but they require care and time. Don’t quit now."
+  },
+  "eightOfPentacles": {
+    "symbolism": "A worker tirelessly crafts pentacles — a symbol of mastery, dedication, and craftsmanship.",
+    "uprightExtended": "This card denotes dedicated work, learning, and progress through practice. It’s time for discipline.",
+    "reversedExtended": "Reversed indicates uninspired routine, mistakes from rushing, or refusal to learn.",
+    "daily": "Practice makes the master. The Eight of Pentacles invites you to put in the effort and develop your skills — every step counts."
+  },
+  "nineOfPentacles": {
+    "symbolism": "A woman stands in a garden with a falcon — a symbol of independence, luxury, and self-confidence.",
+    "uprightExtended": "The card brings the fruits of labor, self-reliance, and enjoyment of what’s been achieved. Stand proudly on your own.",
+    "reversedExtended": "Reversed points to dependency, inauthenticity, or fear of independence. Build your self-worth.",
+    "daily": "Independence and enjoyment of your hard-won fruits take the lead today. The Nine of Pentacles is your reminder that you are capable and worthy of abundance."
+  },
+  "tenOfPentacles": {
+    "symbolism": "A family surrounded by symbols of abundance — a symbol of material security, family tradition, and inheritance.",
+    "uprightExtended": "This card denotes long-term stability, family values, and the completion of a successful cycle.",
+    "reversedExtended": "Reversed indicates family discord, financial tensions, or loss of inherited values.",
+    "daily": "Think long-term. The Ten of Pentacles brings a sense of belonging, legacy, and security — today you’re laying foundations for tomorrow."
+  },
+  "pageOfPentacles": {
+    "symbolism": "A youth studies a golden pentacle with focus — a symbol of learning, material potential, and concrete intent.",
+    "uprightExtended": "The card denotes curiosity, the apprentice, and the first step toward practical achievement. Learn by doing.",
+    "reversedExtended": "Reversed signals lack of focus, missed chances, or postponing the start. Dedication to the goal is needed.",
+    "daily": "Today is ideal for learning or setting goals. The Page of Pentacles whispers: if you believe in the idea — be ready to nurture it."
+  },
+  "knightOfPentacles": {
+    "symbolism": "A knight sits calmly on a horse holding a pentacle — a symbol of responsibility, patience, and thorough action.",
+    "uprightExtended": "Upright denotes perseverance, dedication, and steady, realistic progress. Follow the reliable path.",
+    "reversedExtended": "Reversed points to stubbornness, stagnation, or excessive slowness. Align your pace with your purpose.",
+    "daily": "Consistency and attention to detail are your allies. The Knight of Pentacles reminds you: slow and steady — that’s how you build what lasts."
+  },
+  "queenOfPentacles": {
+    "symbolism": "A queen in nature holds a pentacle with care — a symbol of home, stability, and maternal energy.",
+    "uprightExtended": "The card brings security, nurture, and practicality. She creates harmony through organization and gentleness.",
+    "reversedExtended": "Reversed denotes neglecting oneself, excessive materialism, or emotional withdrawal.",
+    "daily": "Nurture your world — outside and within. The Queen of Pentacles brings warmth, practicality, and stability — tend to body, home, and routine."
+  },
+  "kingOfPentacles": {
+    "symbolism": "A king sits on a throne adorned with bulls and vines — a symbol of power, wealth, and established stability.",
+    "uprightExtended": "This card symbolizes achieved material success, wise resource management, and security.",
+    "reversedExtended": "Reversed points to hardheadedness, greed, or overcontrol. Let life’s flow in.",
+    "daily": "Make decisions today that build long-term foundations. The King of Pentacles reminds you that your strength lies in wise stewardship of resources."
+  }
+}

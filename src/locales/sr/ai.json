@@ -1,0 +1,67 @@
+{
+  "titles": {
+    "aiReply": "Una odgovara",
+    "housesAnalysis": "Tumačenje po astrološkim kućama:",
+    "sefirotAnalysis": "Tumačenje po sefirotima:",
+    "celticAnalysis": "Tumačenje Keltskog krsta:",
+    "followupPrompt": "Postavi dodatno podpitanje (PRO):",
+    "astroHouses": "Tumačenje po astrološkim kućama:",
+    "sefirot": "Tumačenje po sefirotima:",
+    "celticInterpretation": "Tumačenje Keltskog krsta:"
+  },
+  "labels": {
+    "question": "Pitanje:",
+    "spreadType": "Tip otvaranja: {{value}}. "
+  },
+  "placeholders": {
+    "followup": "Unesi podpitanje..."
+  },
+  "summary": {
+    "label": "Suma sumarum:"
+  },
+  "houses": [
+    "1. kuća (Ličnost)",
+    "2. kuća (Finansije)",
+    "3. kuća (Komunikacija)",
+    "4. kuća (Dom i porodica)",
+    "5. kuća (Kreativnost)",
+    "6. kuća (Zdravlje)",
+    "7. kuća (Partnerstva)",
+    "8. kuća (Transformacija)",
+    "9. kuća (Putovanja i uverenja)",
+    "10. kuća (Karijera)",
+    "11. kuća (Prijatelji i zajednica)",
+    "12. kuća (Podsvest)"
+  ],
+  "celticPositions": [
+    "1. Sadašnja situacija",
+    "2. Prepreka / izazov",
+    "3. Temelj (nesvesno)",
+    "4. Prošlost",
+    "5. Svesno / mogućnosti",
+    "6. Bliska budućnost",
+    "7. Stav prema situaciji",
+    "8. Uticaj okoline",
+    "9. Nada / strah",
+    "10. Ishod"
+  ],
+  "sefirot": [
+    "Keter (Kruna)",
+    "Hokmah (Mudrost)",
+    "Binah (Razumevanje)",
+    "Hesed (Milosrđe)",
+    "Gevurah (Stroga pravda)",
+    "Tiferet (Lepota)",
+    "Necah (Večnost)",
+    "Hod (Slava)",
+    "Jesod (Temelj)",
+    "Malhut (Carstvo)"
+  ],
+  "misc": {
+    "proOnly": "Dodatna podpitanja dostupna su samo za Pro korisnike.",
+    "followupTitle": "Postavi dodatno podpitanje (PRO):",
+    "followupAnswer": "Odgovor na podpitanje:",
+    "oneFollowupNote": "Možete postaviti novo podpitanje tek pri sledećem otvaranju.",
+    "cardPlaceholder": "Karta {{index}}"
+  }
+}

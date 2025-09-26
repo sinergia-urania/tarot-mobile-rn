@@ -1,10 +1,12 @@
-{
+﻿{
   "expo": {
     "name": "TarotMobile",
     "slug": "tarot-mobile",
-    "version": "1.0.0",
+    "owner": "mare82",
+    "version": "1.5.0",
     "orientation": "portrait",
     "sdkVersion": "53.0.0",
+    "scheme": "com.mare82.tarotmobile",
     "extra": {
       "eas": {
         "projectId": "1c8251b9-7c40-4b86-92b5-96612afcc36b"
@@ -12,12 +14,24 @@
     },
     "android": {
       "package": "com.mare82.tarotmobile",
-       "googleServicesFile": "./google-services.json"
-
+      "googleServicesFile": "./google-services.json",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ],
+          "data": [
+            {
+              "scheme": "com.mare82.tarotmobile"
+            }
+          ]
+        }
+      ]
     },
     "ios": {
       "bundleIdentifier": "com.mare82.tarotmobile"
-      
     },
     "plugins": [
       [
@@ -27,7 +41,15 @@
           "iosAppId": "ca-app-pub-2786609619751533~5646433485"
         }
       ],
-      "expo-font"
-    ]
+      "expo-notifications",
+      "expo-font",
+      "expo-web-browser",
+      "expo-audio"
+    ],
+    "splash": {
+      "image": "./assets/una.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B1026"
+    }
   }
 }

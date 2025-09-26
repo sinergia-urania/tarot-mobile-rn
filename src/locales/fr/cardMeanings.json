@@ -1,0 +1,238 @@
+{
+  "cards": {
+    "theFool": {
+      "name": "Le Mat"
+    },
+    "theMagician": {
+      "name": "Le Bateleur"
+    },
+    "theHighPriestess": {
+      "name": "La Papesse"
+    },
+    "theEmpress": {
+      "name": "L’Impératrice"
+    },
+    "theEmperor": {
+      "name": "L’Empereur"
+    },
+    "theHierophant": {
+      "name": "Le Pape"
+    },
+    "theLovers": {
+      "name": "Les Amoureux"
+    },
+    "theChariot": {
+      "name": "Le Chariot"
+    },
+    "strength": {
+      "name": "La Force"
+    },
+    "theHermit": {
+      "name": "L’Hermite"
+    },
+    "wheelOfFortune": {
+      "name": "La Roue de Fortune"
+    },
+    "justice": {
+      "name": "La Justice"
+    },
+    "theHangedMan": {
+      "name": "Le Pendu"
+    },
+    "death": {
+      "name": "La Mort"
+    },
+    "temperance": {
+      "name": "Tempérance"
+    },
+    "theDevil": {
+      "name": "Le Diable"
+    },
+    "theTower": {
+      "name": "La Tour"
+    },
+    "theStar": {
+      "name": "L’Étoile"
+    },
+    "theMoon": {
+      "name": "La Lune"
+    },
+    "theSun": {
+      "name": "Le Soleil"
+    },
+    "judgement": {
+      "name": "Le Jugement"
+    },
+    "theWorld": {
+      "name": "Le Monde"
+    },
+    "aceOfWands": {
+      "name": "As de Bâtons"
+    },
+    "twoOfWands": {
+      "name": "Deux de Bâtons"
+    },
+    "threeOfWands": {
+      "name": "Trois de Bâtons"
+    },
+    "fourOfWands": {
+      "name": "Quatre de Bâtons"
+    },
+    "fiveOfWands": {
+      "name": "Cinq de Bâtons"
+    },
+    "sixOfWands": {
+      "name": "Six de Bâtons"
+    },
+    "sevenOfWands": {
+      "name": "Sept de Bâtons"
+    },
+    "eightOfWands": {
+      "name": "Huit de Bâtons"
+    },
+    "nineOfWands": {
+      "name": "Neuf de Bâtons"
+    },
+    "tenOfWands": {
+      "name": "Dix de Bâtons"
+    },
+    "pageOfWands": {
+      "name": "Valet de Bâtons"
+    },
+    "knightOfWands": {
+      "name": "Chevalier de Bâtons"
+    },
+    "queenOfWands": {
+      "name": "Reine de Bâtons"
+    },
+    "kingOfWands": {
+      "name": "Roi de Bâtons"
+    },
+    "aceOfCups": {
+      "name": "As de Coupes"
+    },
+    "twoOfCups": {
+      "name": "Deux de Coupes"
+    },
+    "threeOfCups": {
+      "name": "Trois de Coupes"
+    },
+    "fourOfCups": {
+      "name": "Quatre de Coupes"
+    },
+    "fiveOfCups": {
+      "name": "Cinq de Coupes"
+    },
+    "sixOfCups": {
+      "name": "Six de Coupes"
+    },
+    "sevenOfCups": {
+      "name": "Sept de Coupes"
+    },
+    "eightOfCups": {
+      "name": "Huit de Coupes"
+    },
+    "nineOfCups": {
+      "name": "Neuf de Coupes"
+    },
+    "tenOfCups": {
+      "name": "Dix de Coupes"
+    },
+    "pageOfCups": {
+      "name": "Valet de Coupes"
+    },
+    "knightOfCups": {
+      "name": "Chevalier de Coupes"
+    },
+    "queenOfCups": {
+      "name": "Reine de Coupes"
+    },
+    "kingOfCups": {
+      "name": "Roi de Coupes"
+    },
+    "aceOfSwords": {
+      "name": "As d’Épées"
+    },
+    "twoOfSwords": {
+      "name": "Deux d’Épées"
+    },
+    "threeOfSwords": {
+      "name": "Trois d’Épées"
+    },
+    "fourOfSwords": {
+      "name": "Quatre d’Épées"
+    },
+    "fiveOfSwords": {
+      "name": "Cinq d’Épées"
+    },
+    "sixOfSwords": {
+      "name": "Six d’Épées"
+    },
+    "sevenOfSwords": {
+      "name": "Sept d’Épées"
+    },
+    "eightOfSwords": {
+      "name": "Huit d’Épées"
+    },
+    "nineOfSwords": {
+      "name": "Neuf d’Épées"
+    },
+    "tenOfSwords": {
+      "name": "Dix d’Épées"
+    },
+    "pageOfSwords": {
+      "name": "Valet d’Épées"
+    },
+    "knightOfSwords": {
+      "name": "Chevalier d’Épées"
+    },
+    "queenOfSwords": {
+      "name": "Reine d’Épées"
+    },
+    "kingOfSwords": {
+      "name": "Roi d’Épées"
+    },
+    "aceOfPentacles": {
+      "name": "As de Deniers"
+    },
+    "twoOfPentacles": {
+      "name": "Deux de Deniers"
+    },
+    "threeOfPentacles": {
+      "name": "Trois de Deniers"
+    },
+    "fourOfPentacles": {
+      "name": "Quatre de Deniers"
+    },
+    "fiveOfPentacles": {
+      "name": "Cinq de Deniers"
+    },
+    "sixOfPentacles": {
+      "name": "Six de Deniers"
+    },
+    "sevenOfPentacles": {
+      "name": "Sept de Deniers"
+    },
+    "eightOfPentacles": {
+      "name": "Huit de Deniers"
+    },
+    "nineOfPentacles": {
+      "name": "Neuf de Deniers"
+    },
+    "tenOfPentacles": {
+      "name": "Dix de Deniers"
+    },
+    "pageOfPentacles": {
+      "name": "Valet de Deniers"
+    },
+    "knightOfPentacles": {
+      "name": "Chevalier de Deniers"
+    },
+    "queenOfPentacles": {
+      "name": "Reine de Deniers"
+    },
+    "kingOfPentacles": {
+      "name": "Roi de Deniers"
+    }
+  }
+}
