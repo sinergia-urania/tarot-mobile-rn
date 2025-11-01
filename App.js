@@ -1,4 +1,9 @@
 ﻿// App.js
+// START: globalni mute za logove (pre svih ostalih importova)
+import { installConsoleMute } from "./src/utils/logger";
+installConsoleMute({ keepWarnError: true });
+// END: globalni mute za logove
+
 import { NavigationContainer } from "@react-navigation/native";
 import { navigationRef } from "./src/utils/navigationRef";
 // START: Navigation reset import (CommonActions)
@@ -10,9 +15,12 @@ import { useDukati } from "./src/context/DukatiContext";
 // START: AdGate V1 import (ostavljamo, ali ne koristimo u ovom fajlu)
 // import { recordRouteView } from "./src/utils/adService";
 // END: AdGate V1 import
-// START: AdGate V2 import
-import { recordRouteViewV2 } from "./src/utils/adService";
+// START: AdGate V2 import (legacy linija – ostavljamo zakomentarisano)
+// import { recordRouteViewV2 } from "./src/utils/adService";
 // END: AdGate V2 import
+// START: AdGate STRICT import (zakucan gate: nema reklama dok ne znamo plan)
+import { recordRouteView } from "./src/utils/adService";
+// END: AdGate STRICT import
 
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect } from "react";
@@ -135,7 +143,7 @@ function RootNavigator() {
   );
 }
 
-// START: Nav wrapper sa globalnim interstitial gate-om (V2)
+// START: Nav wrapper sa globalnim interstitial gate-om (STRICT)
 function NavWithAdGate({ linking, children }) {
   const { userPlan } = useDukati();
   const { recoveryActive } = useAuth(); // Recovery shield
@@ -199,15 +207,28 @@ function NavWithAdGate({ linking, children }) {
     return () => sub?.subscription?.unsubscribe?.();
   }, []);
 
+  // START: STRICT gate – dok plan NIJE poznat, ne palimo ad logiku uopšte
+  if (userPlan == null) {
+    return (
+      <NavigationContainer linking={linking} ref={navRef}>
+        {children}
+      </NavigationContainer>
+    );
+  }
+  // END: STRICT gate – čekanje plana
+
   return (
     <NavigationContainer
       linking={linking}
       ref={navRef}
       onReady={() => {
         lastRouteRef.current = navRef.getCurrentRoute()?.name ?? null;
-        // START: AdGate V2 – prvi ekran
-        recordRouteViewV2(userPlan);
+        // START: AdGate V2 – prvi ekran (legacy, ostaje kao referenca)
+        // recordRouteViewV2(userPlan);
         // END: AdGate V2 – prvi ekran
+        // START: AdGate STRICT – prvi ekran
+        recordRouteView(userPlan);
+        // END: AdGate STRICT – prvi ekran
 
         // Recovery pending trigger u onReady
         if (pendingRecoveryNavRef.current) {
@@ -241,9 +262,12 @@ function NavWithAdGate({ linking, children }) {
         const current = navRef.getCurrentRoute()?.name ?? null;
         if (current && current !== lastRouteRef.current) {
           lastRouteRef.current = current;
-          // START: AdGate V2 – na svaku promenu rute
-          recordRouteViewV2(userPlan);
+          // START: AdGate V2 – na svaku promenu rute (legacy, ostaje kao referenca)
+          // recordRouteViewV2(userPlan);
           // END: AdGate V2
+          // START: AdGate STRICT – na svaku promenu rute
+          recordRouteView(userPlan);
+          // END: AdGate STRICT
         }
 
         // Recovery shield – blokiraj skretanje sa ResetPassword dok traje recovery
@@ -266,7 +290,7 @@ function NavWithAdGate({ linking, children }) {
     </NavigationContainer>
   );
 }
-// END: Nav wrapper sa globalnim interstitial gate-om (V2)
+// END: Nav wrapper sa globalnim interstitial gate-om (STRICT)
 
 export default function App() {
   // START: AdMob init (v15 API)

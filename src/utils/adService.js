@@ -8,8 +8,14 @@ const THROTTLE_MS = 50_000;  // ne više od jedne reklame na ~50s (legacy)
 const GUEST_EVERY = 5;       // na svaku 5. promenu ekrana (legacy)
 const FREE_EVERY = 8;        // na svaku 8. promenu ekrana (legacy)
 
-// === V1 LOGIKA (ostaje zbog kompatibilnosti) ===
-export async function recordRouteView(userPlan) {
+/**
+ * ========================================================================
+ * V1 LOGIKA (legacy) — sačuvano zbog kompatibilnosti
+ * ========================================================================
+ */
+
+// START: preserve V1 legacy copy (originalni recordRouteView pre refaktora)
+export async function recordRouteViewV1Legacy(userPlan) {
   try {
     const now = Date.now();
     const raw = await AsyncStorage.getItem(KEY);
@@ -31,10 +37,93 @@ export async function recordRouteView(userPlan) {
     if (fire) showInterstitialAd().catch(() => { });
   } catch { }
 }
+// END: preserve V1 legacy copy (originalni recordRouteView pre refaktora)
 
+/**
+ * ========================================================================
+ * V2 STRICT gate — nema reklame dok ne znamo plan + globalni cooldown
+ * + first-impression delay (preživljava restart)
+ * ========================================================================
+ */
+
+// START: V2 STRICT gate — nema reklame dok ne znamo plan + globalni cooldown + first-impression delay
+// Odvojeni ključ da ne diramo legacy/hibrid state
+const KEY_STRICT = "adgate:v2:strict";
+const COOLDOWN_MS_STRICT = 50_000;            // striktni globalni cooldown (50s)
+const FIRST_IMPRESSION_DELAY_MS = 60_000;     // prvi oglas najranije 60s posle starta
+const GUEST_EVERY_STRICT = 4;
+const FREE_EVERY_STRICT = 6;
+
+export async function recordRouteView(userPlan) {
+  try {
+    // 1) Plan mora biti poznat – u suprotnom ništa ne radimo (nema pretpostavke "guest/free")
+    if (userPlan == null) return;
+
+    // 2) Plaćeni planovi nikad ne vide oglas i ne diramo state
+    const planNorm = String(userPlan).toLowerCase();
+    const isPaid = planNorm === "pro" || planNorm === "premium";
+    if (isPaid) return;
+
+    const now = Date.now();
+    const raw = await AsyncStorage.getItem(KEY_STRICT);
+    const st = raw
+      ? JSON.parse(raw)
+      : { count: 0, lastShown: 0, appStartedAt: now };
+
+    // migracija starijeg state-a bez appStartedAt
+    if (!st.appStartedAt) st.appStartedAt = now;
+
+    // 3) First impression delay – ne prikazuj pre nego što protekne X ms od starta appa
+    if (now - st.appStartedAt < FIRST_IMPRESSION_DELAY_MS) {
+      await AsyncStorage.setItem(KEY_STRICT, JSON.stringify(st));
+      return;
+    }
+
+    // 4) Globalni cooldown
+    if (now - (st.lastShown || 0) < COOLDOWN_MS_STRICT) {
+      await AsyncStorage.setItem(KEY_STRICT, JSON.stringify(st));
+      return;
+    }
+
+    // 5) Brojanje i odluka
+    const count = (st.count || 0) + 1;
+    let fire = false;
+    if (planNorm === "guest" && count % GUEST_EVERY_STRICT === 0) fire = true;
+    if (planNorm === "free" && count % FREE_EVERY_STRICT === 0) fire = true;
+
+    // 6) Upis lastShown PRE poziva SDK (idempotentno na padovima)
+    const newState = { ...st, count, lastShown: fire ? now : st.lastShown };
+    await AsyncStorage.setItem(KEY_STRICT, JSON.stringify(newState));
+
+    if (fire) {
+      showInterstitialAd().catch(() => { /* ignorišemo greške SDK-a */ });
+    }
+  } catch {
+    // oglasi su ne-kritični; tiho ignoriši
+  }
+}
+
+// Pomoćni reset samo za strict varijantu (ne dira legacy ključeve)
+export async function resetAdGateStrict() {
+  try { await AsyncStorage.removeItem(KEY_STRICT); } catch { }
+}
+// END: V2 STRICT gate — nema reklame dok ne znamo plan + globalni cooldown + first-impression delay
+
+/**
+ * ========================================================================
+ * V1 reset (legacy) — ostaje netaknut
+ * ========================================================================
+ */
 export async function resetAdGate() {
   try { await AsyncStorage.removeItem(KEY); } catch { }
 }
+
+/**
+ * ========================================================================
+ * V2 hibridni gate – cooldown + grace + must-show-once (guest)
+ * (TVOJ POSTOJEĆI BLOK — ostavljam netaknut)
+ * ========================================================================
+ */
 
 // ========================================================================
 // START: V2 hibridni gate – cooldown + grace + must-show-once (guest)
@@ -53,7 +142,7 @@ const COOLDOWN_MS = 50_000;              // minimalni razmak između 2 interstit
 const MIN_VIEWS_BEFORE_FIRST_AD = 2;     // “grace” – bar 2 interakcije pre prve reklame
 const MUST_SHOW_ONCE_GUEST = true;       // gost: garantuj ≥1 prikaz po sesiji (uz cooldown)
 const GUEST_TACT = 3;                    // gost: svaka 3. promena ekrana
-const FREE_TACT = 5;                    // free: svaka 5. promena ekrana
+const FREE_TACT = 5;                     // free: svaka 5. promena ekrana
 
 const normPlan = (p) => {
   const s = String(p || "guest").toLowerCase();

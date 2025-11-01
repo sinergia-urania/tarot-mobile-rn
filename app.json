@@ -14,6 +14,7 @@
     },
     "android": {
       "package": "com.mare82.tarotmobile",
+      "versionCode": 15,
       "googleServicesFile": "./google-services.json",
       "intentFilters": [
         {

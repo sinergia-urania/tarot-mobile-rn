@@ -1,4 +1,4 @@
-// src/screens/OdgovorAI.jsx
+// src/page/OdgovorAI.jsx
 // START: back → TarotOtvaranja import
 import { CommonActions } from "@react-navigation/native";
 // END: back → TarotOtvaranja import
@@ -13,9 +13,9 @@ import uuid from "react-native-uuid";
 import i18n from '../../i18n';
 import TarotHeader from "../components/TarotHeader";
 import UnaSpinner from "../components/UnaSpinner";
+import { READING_PRICES } from "../constants/readingPrices";
 import { useAuth } from '../context/AuthProvider';
 import { useDukati } from '../context/DukatiContext';
-
 import { getAIAnswer } from "../utils/api/getAIAnswer";
 import { getCardImagePath } from "../utils/getCardImagePath";
 import getLayoutByTip from "../utils/getLayoutByTip";
@@ -191,6 +191,7 @@ const OdgovorAI = () => {
   const { userPlan, userId, dukati, platiOtvaranje } = useDukati();
   const jezikAplikacije = i18n.language;
   const ime = undefined;
+  const FOLLOWUP_PRICE = Number(READING_PRICES?.podpitanje ?? 60);
 
   const {
     tip,
@@ -355,7 +356,14 @@ const OdgovorAI = () => {
         datumOtvaranja,
         tranzitiTekst,                           // 👈 sad je “skraćen”
       })
-        .then(({ odgovor, sessionId: sid }) => {
+        // START: robustniji prihvat i čuvanje sessionId
+        .then(async (resp) => {
+          const { odgovor } = resp || {};
+          const sid =
+            resp?.sessionId ??
+            resp?.session_id ??
+            resp?.id ??
+            null;
           if (isNedovoljnoDukata(odgovor)) {
             Toast.show({
               type: "error",
@@ -369,9 +377,15 @@ const OdgovorAI = () => {
             navigation.goBack();
             return;
           }
-          if (sid) setSessionId(sid);
+          if (sid) {
+            setSessionId(String(sid));
+            try { await AsyncStorage.setItem('last_session_id', String(sid)); } catch { }
+          } else if (__DEV__) {
+            console.log('[AI][main] Nema sessionId u odgovoru (dev okruženje?)', resp);
+          }
           setAiOdgovor(odgovor);
         })
+        // END: robustniji prihvat i čuvanje sessionId
         .catch((err) => {
           console.log("AI ERROR:", err);
           Toast.show({
@@ -421,10 +435,18 @@ const OdgovorAI = () => {
   const handlePodpitanje = async () => {
     try {
       setLoadingPodpitanje(true);
+      // START: pokušaj da pribaviš sessionId iz state-a ili local storage-a (fallback)
+      let sid = sessionId;
+      if (!sid) { try { sid = await AsyncStorage.getItem('last_session_id'); } catch { } }
+      if (!sid && __DEV__) {
+        console.log('[AI][followup] DEV fallback: nastavljam bez sessionId (stateless follow-up).');
+      }
+      // END: pokušaj da pribaviš sessionId iz state-a ili local storage-a (fallback)
+
       // START: DEBUG followup context
       if (__DEV__) {
         console.log('[AI][payload.followup.prep]', {
-          sessionId,
+          sessionId: sid || null,
           tip,
           subtip,
           labels: {
@@ -443,7 +465,7 @@ const OdgovorAI = () => {
       const podpitanjeDatum = datumrodjenja;
       // START: DEBUG followup payload call
       if (__DEV__) {
-        console.log('[AI][payload.followup.calling]', { sessionId, tip, subtip });
+        console.log('[AI][payload.followup.calling]', { sessionId: sid || null, tip, subtip });
       }
       // END: DEBUG followup payload call
 
@@ -451,7 +473,9 @@ const OdgovorAI = () => {
         jePodpitanje: true,
         userId,
         podpitanjeMod: true,
-        sessionId,
+        // START: prosledi sessionId samo ako postoji (u DEV-u sme i bez njega)
+        ...(sid ? { sessionId: sid } : {}),
+        // END: prosledi sessionId samo ako postoji
         tipOtvaranja: tip,
         subtip,
         // START: AI follow-up – takođe normalizovane karte
@@ -686,7 +710,13 @@ const OdgovorAI = () => {
                     <Text style={{ color: "#ffd700", fontWeight: "bold", marginBottom: 6 }}>
                       {t('ai:titles.followupPrompt', { defaultValue: 'Postavi dodatno podpitanje (PRO):' })}
                     </Text>
-
+                    {/* START: prikaz samo vrednosti cene (ako je > 0) */}
+                    {Number.isFinite(FOLLOWUP_PRICE) && FOLLOWUP_PRICE > 0 && (
+                      <Text style={{ color: "#facc15", marginBottom: 6, fontWeight: "bold" }}>
+                        {FOLLOWUP_PRICE} 🪙
+                      </Text>
+                    )}
+                    {/* END: prikaz samo vrednosti cene */}
                     <TextInput
                       value={podpitanje}
                       onChangeText={setPodpitanje}
