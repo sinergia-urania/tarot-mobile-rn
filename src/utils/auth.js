@@ -83,104 +83,29 @@ export async function proveriIstekPaketa(userId) {
   }
 }
 
-/* ===========================================================================
-   START: LEGACY OAuth implementacije (sačuvano zbog pravila – ne brišemo kod)
-   Napomena: OVE FUNKCIJE SE VIŠE NE KORISTE. Umesto njih koristimo
-   loginWithGoogle/loginWithFacebook delegirane na utils/oauthProxy.js
-   (custom scheme + PKCE, ujednačeno sa recovery/reset tokovima).
-=========================================================================== */
+// START: Nova logika za dodelu dukata
+export async function dodeliDukateZaFreeKorisnika(userId) {
+  try {
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("coins")
+      .eq("id", userId)
+      .single();
 
-/*
-// Google OAuth preko AuthSession proxy-ja (legacy)
-export async function loginWithGoogle_LEGACY() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: REDIRECT_URI,
-      flowType: "pkce",
-      queryParams: { access_type: "offline", prompt: "consent" },
-    },
-  });
-  if (error) throw error;
-  if (!data?.url) throw new Error("Nije vraćen auth URL iz Supabase-a.");
+    if (error) throw error;
 
-  console.log("[OAUTH] openURL =", data.url);
+    const noviDukati = (data?.coins || 0) + 150;
 
-  const result = await AuthSession.startAsync({
-    authUrl: data.url,
-    returnUrl: REDIRECT_URI,
-  });
-  console.log("[OAUTH] AuthSession result =", result);
+    await supabase
+      .from("profiles")
+      .update({ coins: noviDukati })
+      .eq("id", userId);
 
-  if (result.type !== "success" || !result.url) {
-    await new Promise((r) => setTimeout(r, 1200));
-    const { data: s } = await supabase.auth.getSession();
-    if (s?.session?.user) {
-      console.log("[OAUTH] session present after fallback polling");
-      return { ok: true, via: "poll" };
-    }
-    throw new Error("Prijava prekinuta.");
+    return { noviDukati };
+  } catch (err) {
+    console.error("Greška u dodeli dukata:", err);
+    return { greska: String(err?.message || err) };
   }
-
-  const { code, access_token, refresh_token } = parseFromAnyUrl(result.url);
-
-  if (code) {
-    const { error: exErr } = await supabase.auth.exchangeCodeForSession({ code });
-    if (exErr) throw exErr;
-    return { ok: true, via: "code" };
-  }
-  if (access_token && refresh_token) {
-    const { error: ssErr } = await supabase.auth.setSession({ access_token, refresh_token });
-    if (ssErr) throw ssErr;
-    return { ok: true, via: "tokens" };
-  }
-  throw new Error("Nepoznat redirect format.");
 }
 
-// Facebook OAuth preko AuthSession proxy-ja (legacy)
-export async function loginWithFacebook_LEGACY() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "facebook",
-    options: {
-      redirectTo: REDIRECT_URI,
-      flowType: "pkce",
-    },
-  });
-  if (error) throw error;
-  if (!data?.url) throw new Error("Nije vraćen auth URL iz Supabase-a.");
-
-  console.log("[OAUTH] openURL =", data.url);
-
-  const result = await AuthSession.startAsync({
-    authUrl: data.url,
-    returnUrl: REDIRECT_URI,
-  });
-  console.log("[OAUTH] AuthSession result =", result);
-
-  if (result.type !== "success" || !result.url) {
-    await new Promise((r) => setTimeout(r, 1200));
-    const { data: s } = await supabase.auth.getSession();
-    if (s?.session?.user) {
-      console.log("[OAUTH] session present after fallback polling");
-      return { ok: true, via: "poll" };
-    }
-    throw new Error("Prijava prekinuta.");
-  }
-
-  const { code, access_token, refresh_token } = parseFromAnyUrl(result.url);
-
-  if (code) {
-    const { error: exErr } = await supabase.auth.exchangeCodeForSession({ code });
-    if (exErr) throw exErr;
-    return { ok: true, via: "code" };
-  }
-  if (access_token && refresh_token) {
-    const { error: ssErr } = await supabase.auth.setSession({ access_token, refresh_token });
-    if (ssErr) throw ssErr;
-    return { ok: true, via: "tokens" };
-  }
-  throw new Error("Nepoznat redirect format.");
-}
-*/
-
-/* =============================== END LEGACY =============================== */
+// Nova logika za autentifikaciju sa novim OAuth sistemom (preko proxyja)

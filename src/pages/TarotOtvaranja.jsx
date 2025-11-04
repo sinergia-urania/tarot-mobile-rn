@@ -4,7 +4,10 @@
 import { createAudioPlayer } from "expo-audio";
 // END: expo-audio migracija
 import React, { useRef, useState } from "react";
-import { Image, ImageBackground, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// START: import cleanup (ostavljam stari u komentaru)
+// import { Image, ImageBackground, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// END: import cleanup
 import TarotHeader from "../components/TarotHeader";
 import { ASTROLOSKO, KABALISTICKO, KELTSKI_KRST } from "../data/layoutTemplates";
 import KlasicnoModal from "./KlasicnoModal";
@@ -18,6 +21,9 @@ import { READING_PRICES } from "../constants/readingPrices";
 import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from "react-i18next";
 
+// START: SafeImage (expo-image) za WebP background i ikone
+import SafeImage from "../components/SafeImage";
+// END: SafeImage (expo-image) za WebP background i ikone
 
 const clickSound = require("../assets/sounds/hover-click.mp3");
 
@@ -44,7 +50,11 @@ const TarotOtvaranja = ({ navigation }) => {
   // END: State za modal nedostatka dukata
 
   // START: Uzimanje dukata i plana iz context-a (PRO gate)
-  const { dukati, userPlan } = useDukati();
+  // const { dukati, userPlan } = useDukati();
+  // START: isPro iz konteksta (Pro i ProPlus)
+  const { dukati, userPlan, isPro } = useDukati();
+  const isProTier = !!isPro;
+  // END: isPro iz konteksta (Pro i ProPlus)
   // END: Uzimanje dukata i plana iz context-a
 
   // ANTIDUPLI KLIK (debounce) – sprečava dvostruki SFX i duple navigacije
@@ -85,16 +95,16 @@ const TarotOtvaranja = ({ navigation }) => {
     selectingRef.current = true;
     const autoRelease = setTimeout(() => { selectingRef.current = false; }, 1000);
 
-
     await playClickSound();
 
-    // PRO gate za Astrološko (ostaje isto)
-    if (key === "astrološko" && userPlan !== "pro") {
+    // START: PRO/ProPlus gate za Astrološko
+    // if (key === "astrološko" && userPlan !== "pro") {
+    if (key === "astrološko" && !isProTier) {
       selectingRef.current = false;
       clearTimeout(autoRelease);
-
       return;
     }
+    // END: PRO/ProPlus gate za Astrološko
 
     // BESPLATNO: za klasično samo modal
     if (key === "klasicno") {
@@ -102,7 +112,6 @@ const TarotOtvaranja = ({ navigation }) => {
       // dozvoli ponovni klik nakon otvaranja modala
       setTimeout(() => { selectingRef.current = false; }, 300);
       clearTimeout(autoRelease);
-
       return;
     }
 
@@ -121,7 +130,6 @@ const TarotOtvaranja = ({ navigation }) => {
       setShowNoDukes(true);
       selectingRef.current = false;
       clearTimeout(autoRelease);
-
       return;
     }
 
@@ -155,142 +163,164 @@ const TarotOtvaranja = ({ navigation }) => {
   const goHome = () => navigation.navigate("Home");
 
   return (
-    <ImageBackground
-      source={require("../assets/icons/background-space.webp")}
-      style={styles.background}
-      imageStyle={{ resizeMode: "cover" }}
-    >
-      <View style={styles.headerWrapper}>
-        <TarotHeader
-          showBack={true}
-          onBack={goHome}
-          onHome={goHome}
-          showMenu={false}
+    <>
+      {/* START: View + SafeImage kao background (WebP-friendly za iOS) */}
+      {/* ORIGINALNO:
+        <ImageBackground
+          source={require("../assets/icons/background-space.webp")}
+          style={styles.background}
+          imageStyle={{ resizeMode: "cover" }}
+        >
+      */}
+      <View style={styles.background}>
+        <SafeImage
+          source={require("../assets/icons/background-space.webp")}
+          style={StyleSheet.absoluteFillObject}
+          contentFit="cover"
         />
-      </View>
+        {/* END: View + SafeImage background */}
 
-      {/* START: Modal za nedovoljno dukata */}
-      {showNoDukes && (
-        <View style={{
-          position: "absolute",
-          top: "40%",
-          left: "5%",
-          width: "90%",
-          backgroundColor: "#220",
-          borderColor: "#ffd700",
-          borderWidth: 2,
-          borderRadius: 16,
-          padding: 24,
-          zIndex: 500,
-          alignSelf: "center",
-        }}>
-          <Text style={{
-            color: "#ffd700",
-            fontWeight: "bold",
-            fontSize: 18,
-            textAlign: "center"
+        <View style={styles.headerWrapper}>
+          <TarotHeader
+            showBack={true}
+            onBack={goHome}
+            onHome={goHome}
+            showMenu={false}
+          />
+        </View>
+
+        {/* START: Modal za nedovoljno dukata */}
+        {showNoDukes && (
+          <View style={{
+            position: "absolute",
+            top: "40%",
+            left: "5%",
+            width: "90%",
+            backgroundColor: "#220",
+            borderColor: "#ffd700",
+            borderWidth: 2,
+            borderRadius: 16,
+            padding: 24,
+            zIndex: 500,
+            alignSelf: "center",
           }}>
-            {noDukesText || t("common:errors.notEnoughCoinsTitle", { defaultValue: "Nedovoljno dukata" })}
-          </Text>
-          <TouchableOpacity
-            onPress={() => setShowNoDukes(false)}
-            style={{
-              marginTop: 18,
-              alignSelf: "center",
-              backgroundColor: "#ffd700",
-              paddingHorizontal: 28,
-              paddingVertical: 10,
-              borderRadius: 9
-            }}>
             <Text style={{
-              color: "#222",
+              color: "#ffd700",
               fontWeight: "bold",
-              fontSize: 16,
+              fontSize: 18,
+              textAlign: "center"
             }}>
-              {t("common:buttons.ok", { defaultValue: "U redu" })}
+              {noDukesText || t("common:errors.notEnoughCoinsTitle", { defaultValue: "Nedovoljno dukata" })}
             </Text>
-          </TouchableOpacity>
-        </View>
-      )}
-      {/* END: Modal za nedovoljno dukata */}
+            <TouchableOpacity
+              onPress={() => setShowNoDukes(false)}
+              style={{
+                marginTop: 18,
+                alignSelf: "center",
+                backgroundColor: "#ffd700",
+                paddingHorizontal: 28,
+                paddingVertical: 10,
+                borderRadius: 9
+              }}>
+              <Text style={{
+                color: "#222",
+                fontWeight: "bold",
+                fontSize: 16,
+              }}>
+                {t("common:buttons.ok", { defaultValue: "U redu" })}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        {/* END: Modal za nedovoljno dukata */}
 
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title}>
-          {t("common:home.menu.allSpreads", { defaultValue: "Sva otvaranja" })}
-        </Text>
+        <ScrollView contentContainerStyle={styles.content}>
+          <Text style={styles.title}>
+            {t("common:home.menu.allSpreads", { defaultValue: "Sva otvaranja" })}
+          </Text>
 
-        <View style={styles.verticalList}>
-          {icons.map((opt) => {
-            // START: lock logika (astrološko: samo PRO; drvo: PRO/PREMIUM, FREE nema)
-            const isAstro = opt.key === "astrološko";
-            const isDrvo = opt.key === "drvo";
-            const astroLocked = isAstro && userPlan !== "pro";         // samo PRO
-            const drvoLocked = isDrvo && userPlan === "free";          // PRO & PREMIUM imaju pristup
-            const locked = astroLocked || drvoLocked;
-            // END: lock logika
+          <View style={styles.verticalList}>
+            {icons.map((opt) => {
+              // START: lock logika (astrološko: samo PRO; drvo: PRO/PREMIUM, FREE nema)
+              const isAstro = opt.key === "astrološko";
+              const isDrvo = opt.key === "drvo";
+              // const astroLocked = isAstro && userPlan !== "pro";         // samo PRO
+              // START: PRO/ProPlus otključano za Astrološko
+              const astroLocked = isAstro && !isProTier;                    // Pro ili ProPlus → otključano
+              // END: PRO/ProPlus otključano za Astrološko
+              const drvoLocked = isDrvo && userPlan === "free";          // PRO & PREMIUM imaju pristup
+              const locked = astroLocked || drvoLocked;
+              // END: lock logika
 
-            return (
-              <TouchableOpacity
-                key={opt.key}
-                style={[
-                  styles.iconButton,
-                  locked && styles.disabledCard, // vizuelno zatamnjenje
-                ]}
-                onPress={() => {
-                  if (locked) return; // blokiraj tap kada je zaključano
-                  handleSelect(opt.key);
-                }}
-                activeOpacity={locked ? 1 : 0.85}
-              >
-                <View style={styles.iconBox}>
-                  <Image source={opt.icon} style={styles.icon} />
-                </View>
+              return (
+                <TouchableOpacity
+                  key={opt.key}
+                  style={[
+                    styles.iconButton,
+                    locked && styles.disabledCard, // vizuelno zatamnjenje
+                  ]}
+                  onPress={() => {
+                    if (locked) return; // blokiraj tap kada je zaključano
+                    handleSelect(opt.key);
+                  }}
+                  activeOpacity={locked ? 1 : 0.85}
+                >
+                  <View style={styles.iconBox}>
+                    {/* START: prelazak na SafeImage (expo-image) za WebP ikone */}
+                    {/* <Image source={opt.icon} style={styles.icon} /> */}
+                    <SafeImage source={opt.icon} style={styles.icon} contentFit="contain" />
+                    {/* END: prelazak na SafeImage (expo-image) */}
+                  </View>
 
-                <Text style={styles.iconLabel}>{opt.label}</Text>
+                  <Text style={styles.iconLabel}>{opt.label}</Text>
 
-                {/* START: Lock bedževi */}
-                {astroLocked && (
-                  <Text style={{ color: "#ffd700", fontSize: 13, marginTop: 4, fontWeight: "bold" }}>
-                    {t("common:badges.proOnly", { defaultValue: "(Samo za PRO)" })}
-                  </Text>
-                )}
-                {drvoLocked && (
-                  <Text style={{ color: "#ffd700", fontSize: 13, marginTop: 4, fontWeight: "bold" }}>
-                    {t("common:badges.proOrPremium", { defaultValue: "(Pro/Premium)" })}
-                  </Text>
-                )}
-                {/* END: Lock bedževi */}
+                  {/* START: Lock bedževi */}
+                  {astroLocked && (
+                    <Text style={{ color: "#ffd700", fontSize: 13, marginTop: 4, fontWeight: "bold" }}>
+                      {t("common:badges.proOnly", { defaultValue: "(Samo za PRO)" })}
+                    </Text>
+                  )}
+                  {drvoLocked && (
+                    <Text style={{ color: "#ffd700", fontSize: 13, marginTop: 4, fontWeight: "bold" }}>
+                      {t("common:badges.proOrPremium", { defaultValue: "(Pro/Premium)" })}
+                    </Text>
+                  )}
+                  {/* END: Lock bedževi */}
 
-                {/* Cene / specijalni prikaz za klasično */}
-                {opt.key === "klasicno" ? (
-                  <Text style={styles.iconPrice}>🪙🪙🪙</Text>
-                ) : (
-                  <Text style={styles.iconPrice}>
-                    {READING_PRICES[opt.key] ? `${READING_PRICES[opt.key]} 🪙` : ""}
-                  </Text>
-                )}
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-      </ScrollView>
+                  {/* Cene / specijalni prikaz za klasično */}
+                  {opt.key === "klasicno" ? (
+                    <Text style={styles.iconPrice}>🪙🪙🪙</Text>
+                  ) : (
+                    <Text style={styles.iconPrice}>
+                      {READING_PRICES[opt.key] ? `${READING_PRICES[opt.key]} 🪙` : ""}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </ScrollView>
 
-      <Modal
-        visible={showModal}
-        animationType="slide"
-        transparent={true}
-      >
-        <KlasicnoModal
-          onClose={async (silent) => {
-            if (!silent) { await playClickSound(); }
-            setShowModal(false);
-            // dozvoli ponovni klik posle zatvaranja
-            setTimeout(() => { selectingRef.current = false; }, 200);
-          }}
-          navigation={navigation}
-        />
-      </Modal>
-    </ImageBackground>
+        <Modal
+          visible={showModal}
+          animationType="slide"
+          transparent={true}
+        >
+          <KlasicnoModal
+            onClose={async (silent) => {
+              if (!silent) { await playClickSound(); }
+              setShowModal(false);
+              // dozvoli ponovni klik posle zatvaranja
+              setTimeout(() => { selectingRef.current = false; }, 200);
+            }}
+            navigation={navigation}
+          />
+        </Modal>
+
+        {/* START: zatvaranje View background omota */}
+      </View>
+      {/* END: zatvaranje View background omota */}
+    </>
   );
 };
 

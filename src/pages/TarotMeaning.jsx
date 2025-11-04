@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useCallback, useRef, useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { AdEventType, RewardedAdEventType } from 'react-native-google-mobile-ads';
 import Toast from 'react-native-toast-message';
 import SidebarMenu from '../components/SidebarMenu';
@@ -16,6 +16,9 @@ import { useTranslation } from 'react-i18next';
 import { useAudioPlayer } from 'expo-audio';
 const clickSound = require('../assets/sounds/click-card.mp3');
 // END: zvuk klika
+// START: import SafeImage (expo-image wrapper)
+import SafeImage from '../components/SafeImage';
+// END: import SafeImage (expo-image wrapper)
 
 const groupMap = {
   velika: { label: 'Velika Arkana', icon: require('../assets/icons/major.webp') },
@@ -68,8 +71,6 @@ const TarotMeaning = () => {
 
   const playClick = useCallback(() => {
     try {
-      // expo-audio ne resetuje automatski poziciju nakon završetka —
-      // za „klik” SFX radi kratko seek pa play
       player.seekTo(0);
       player.play();
     } catch (e) {
@@ -77,7 +78,6 @@ const TarotMeaning = () => {
     }
   }, [player]);
   // END: audio player — hook
-
 
   // Rewarded helper – jedna instanca, idempotent dodela
   const prikaziRewardedReklamu = useCallback(() => {
@@ -115,7 +115,6 @@ const TarotMeaning = () => {
         const unsubEarned = rewarded.addAdEventListener(RewardedAdEventType.EARNED_REWARD, async (reward) => {
           console.log('[REWARDED][EARNED] (Znacenje)', reward);
           if (awarded) return; // idempotentno
-          awarded = true;
           try {
             await dodeliDukatePrekoBackenda(30);
             await fetchDukatiSaServera?.();
@@ -151,17 +150,16 @@ const TarotMeaning = () => {
     });
   }, [dodeliDukatePrekoBackenda, fetchDukatiSaServera]);
 
+  /*
+  // START: ORIGINAL – handleCardView sa guest/free granama
   // START: handleCardView – must-watch za guest, mix za free
   const handleCardView = () => {
-    // START: zvuk na pregled/izbor karte
     playClick();
-    // END: zvuk
     setCardViewCount(prev => {
       const next = prev + 1;
       const isGuest = (userPlan === 'guest' || userPlan === 'gost');
 
       if (isGuest) {
-        // svaka 4. karta – interstitial
         if (next % 4 === 0) {
           showInterstitialAd().catch(e => console.log('[INTERSTITIAL][guest]', e?.code, e?.message));
         }
@@ -169,7 +167,6 @@ const TarotMeaning = () => {
       }
 
       if (userPlan === 'free') {
-        // 4. klik – ponudi rewarded (tap na Toast otvara rewarded)
         if (next === 4 && !offerShown) {
           Toast.show({
             type: 'info',
@@ -187,39 +184,81 @@ const TarotMeaning = () => {
           });
         }
 
-        // 6. klik – “force” rewarded ako je ponuda već bila viđena
         if (next === 6 && offerShown) {
           prikaziRewardedReklamu().catch(e => console.log('[REWARDED][force free]', e));
         }
 
-        // svaka 5. – interstitial (blago)
         if (next % 5 === 0) {
           showInterstitialAd().catch(e => console.log('[INTERSTITIAL][free]', e?.code, e?.message));
         }
         return next;
       }
 
-      // premium/pro – bez oglasa
       return next;
     });
   };
   // END: handleCardView
+  // END: ORIGINAL – handleCardView sa guest/free granama
+  */
 
-  const generateCardList = (keys) =>
-    keys.map((key) => ({ key, name: key }));
+  // START: uklanjanje guest/gost logike – unified free-only oglasi
+  const handleCardView = () => {
+    playClick();
+    setCardViewCount(prev => {
+      const next = prev + 1;
+
+      if (userPlan === 'free') {
+        if (next === 4 && !offerShown) {
+          Toast.show({
+            type: 'info',
+            text1: 'Dukati za reklamu',
+            text2: 'Pogledaj reklamu i osvoji dukate!',
+            position: 'bottom',
+            autoHide: true,
+            visibilityTime: 6000,
+            onPress: async () => {
+              try { await prikaziRewardedReklamu(); } catch { }
+              setOfferShown(true);
+              Toast.hide();
+            },
+            onHide: () => setOfferShown(true),
+          });
+        }
+
+        if (next === 6 && offerShown) {
+          prikaziRewardedReklamu().catch(e => console.log('[REWARDED][force free]', e));
+        }
+
+        if (next % 5 === 0) {
+          showInterstitialAd().catch(e => console.log('[INTERSTITIAL][free]', e?.code, e?.message));
+        }
+      }
+
+      // Plaćeni planovi: bez oglasa
+      return next;
+    });
+  };
+  // END: uklanjanje guest/gost logike – unified free-only oglasi
+
+  // START: memo nizovi — stabilni props za CardGroupList
+  const wandCards = useMemo(() => wandKeys.map((key) => ({ key, name: key })), []);
+  const cupCards = useMemo(() => cupKeys.map((key) => ({ key, name: key })), []);
+  const swordCards = useMemo(() => swordKeys.map((key) => ({ key, name: key })), []);
+  const pentacleCards = useMemo(() => pentacleKeys.map((key) => ({ key, name: key })), []);
+  // END: memo nizovi
 
   const renderGroup = () => {
     switch (selectedGroup) {
       case 'velika':
         return <VelikaArkanaList onCardView={handleCardView} />;
       case 'stapovi':
-        return <CardGroupList cards={generateCardList(wandKeys)} onCardView={handleCardView} />;
+        return <CardGroupList cards={wandCards} onCardView={handleCardView} />;
       case 'pehari':
-        return <CardGroupList cards={generateCardList(cupKeys)} onCardView={handleCardView} />;
+        return <CardGroupList cards={cupCards} onCardView={handleCardView} />;
       case 'macevi':
-        return <CardGroupList cards={generateCardList(swordKeys)} onCardView={handleCardView} />;
+        return <CardGroupList cards={swordCards} onCardView={handleCardView} />;
       case 'zlatnici':
-        return <CardGroupList cards={generateCardList(pentacleKeys)} onCardView={handleCardView} />;
+        return <CardGroupList cards={pentacleCards} onCardView={handleCardView} />;
       default:
         return (
           <Text style={styles.notImplemented}>
@@ -261,7 +300,9 @@ const TarotMeaning = () => {
               ]}
               activeOpacity={0.7}
             >
-              <Image source={icon} style={styles.iconImg} />
+              {/* START: SafeImage — dodati cache/transition */}
+              <SafeImage source={icon} style={styles.iconImg} transition={100} cachePolicy="disk" />
+              {/* END: SafeImage */}
             </TouchableOpacity>
           ))}
         </ScrollView>

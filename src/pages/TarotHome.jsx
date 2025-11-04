@@ -7,7 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 import { createAudioPlayer } from 'expo-audio';
 // END: expo-audio za click SFX
 import { useRef, useState } from 'react';
-import { Image, ImageBackground, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+// START: import cleanup – sklanjamo ImageBackground i Image iz RN (ostavljeni u komentarima)
+// import { Image, ImageBackground, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+// END: import cleanup
 import AdRewardModal from "../components/AdRewardModal";
 import FlyingCoin from "../components/FlyingCoin";
 import SidebarMenu from '../components/SidebarMenu';
@@ -28,9 +31,12 @@ import { AdBanner } from '../utils/ads';
 import { AdBannerIfEligible } from '../utils/ads';
 // END: ✅ NOVO – uvezimo guardovani banner iz utils/ads
 
+// START: ✅ NOVO – SafeImage (expo-image) za iOS WebP
+import SafeImage from '../components/SafeImage';
+// END: ✅ NOVO – SafeImage (expo-image) za iOS WebP
+
 const clickSound = require('../assets/sounds/hover-click.mp3');
 
-// START: click SFX sa expo-audio
 const playClickSound = async () => {
   try {
     const p = createAudioPlayer(clickSound);
@@ -41,75 +47,59 @@ const playClickSound = async () => {
     setTimeout(() => { try { p.remove?.(); } catch { } }, 1200);
   } catch (e) { }
 };
-// END: click SFX sa expo-audio
 
-// START: deprecated infoTexts (i18n je jedini izvor istine)
 const infoTexts = {
   "Sva otvaranja": "Ovo su otvaranja sa AI tumačem.",
   "Karta dana": "Ovo je intuitivno otvaranje, zamislite pitanje pre odabira karte.",
   "Da / Ne": "Ovo je intuitivno otvaranje, zamislite pitanje pre odabira karte.",
 };
-// Napomena: ovaj objekat više se ne koristi — ostavljen je zbog kompatibilnosti.
-// END: deprecated infoTexts (i18n je jedini izvor istine)
 
 const TarotHome = () => {
   const [openModal, setOpenModal] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigation = useNavigation();
   const [showAdModal, setShowAdModal] = useState(false);
-  const { userPlan } = useDukati();
-  // START: i18n init
+  // START: isPro iz konteksta (Pro i ProPlus)
+  // const { userPlan } = useDukati();
+  const { userPlan, isPro } = useDukati();
+  const isProTier = !!isPro;
+  // END: isPro iz konteksta (Pro i ProPlus)
   const { t } = useTranslation(['common']);
-  // END: i18n init
-  // START: State za flying coin animaciju
+
   const [flying, setFlying] = useState(false);
   const [flyStart, setFlyStart] = useState({ x: 0, y: 0 });
   const [flyEnd, setFlyEnd] = useState({ x: 0, y: 0 });
   const [onCoinAnim, setOnCoinAnim] = useState(null);
-  // END: State za flying coin animaciju
 
   const brojacOtvaranja = useRef(0);
 
-  // START: handleOtvaranje – guest/free interstitial gate
+  // START: uklanjanje guest logike u handleOtvaranje (samo free prikazuje interstitial po N)
   const handleOtvaranje = () => {
     brojacOtvaranja.current += 1;
     const n = brojacOtvaranja.current;
-
-    const isGuest = (userPlan === 'guest' || userPlan === 'gost');
-
-    if (isGuest) {
-      if (n % 3 === 0) {
-        showInterstitialAd().catch(e => console.log('[INTERSTITIAL][guest]', e?.code, e?.message));
-      }
-      return;
-    }
 
     if (userPlan === 'free') {
       if (n % 5 === 0) {
         showInterstitialAd().catch(e => console.log('[INTERSTITIAL][free]', e?.code, e?.message));
       }
-      return;
     }
-
-    // premium/pro: bez oglasa
+    // plaćeni planovi: bez oglasa
   };
-  // END: handleOtvaranje
+  // END: uklanjanje guest logike u handleOtvaranje
 
-  // START: ✅ NOVO – mapiraj userPlan na session/profile za guardovani banner
-  // Gosti nemaju session, svi ostali imaju (placeholder je dovoljan)
-  const isGuest = userPlan === 'guest' || userPlan === 'gost';
-  const sessionLike = isGuest ? null : { uid: 'local-session' };
-  const profileLike = { subscription_tier: userPlan }; // 'free' | 'premium' | 'pro' | 'guest'
-  console.log('[BANNER][DEBUG] userPlan=', userPlan, 'isGuest=', isGuest);
-  // END: ✅ NOVO – mapiranje
-  // END: Handler za root-level flying coin animaciju iz modala
+  // START: uklonjeni guest stubovi za baner (koristimo realan kontekst unutar AdBannerIfEligible)
+  // const isGuest = userPlan === 'guest' || userPlan === 'gost';
+  // const sessionLike = isGuest ? null : { uid: 'local-session' };
+  // const profileLike = { subscription_tier: userPlan };
+  // console.log('[BANNER][DEBUG] userPlan=', userPlan, 'isGuest=', isGuest);
+  // END: uklonjeni guest stubovi
+
   const handleFlyCoin = (start, end, coinAnimCallback) => {
     setFlyStart(start);
     setFlyEnd(end);
     setOnCoinAnim(() => coinAnimCallback);
     setFlying(true);
   };
-  // END: Handler za root-level flying coin animaciju
 
   return (
     <>
@@ -126,11 +116,21 @@ const TarotHome = () => {
           }}
         />
       )}
-      <ImageBackground
+
+      {/* START: View + SafeImage kao pozadina (WebP-friendly za iOS) */}
+      {/* <ImageBackground
         source={require('../assets/icons/background-space.webp')}
         style={styles.background}
         imageStyle={{ resizeMode: 'cover' }}
-      >
+      > */}
+      <View style={styles.background}>
+        <SafeImage
+          source={require('../assets/icons/background-space.webp')}
+          style={StyleSheet.absoluteFillObject}
+          contentFit="cover"
+        />
+        {/* END: View + SafeImage kao pozadina */}
+
         {/* TAROT HEADER JE VAN SCROLLVIEW-a: UVEK VIDLJIV */}
         <TarotHeader swapTreasureMenu isHome={true} onMenu={() => setSidebarOpen(true)} />
 
@@ -138,48 +138,38 @@ const TarotHome = () => {
           <View style={styles.grid}>
             <MenuButton
               icon={require('../assets/icons/history.webp')}
-              // START: i18n label
               label={t('common:home.menu.allSpreads', { defaultValue: 'Sva otvaranja' })}
               infoId="allSpreads"
-              // END: i18n label
               onPress={() => {
-                handleOtvaranje(); // Poziva funkciju za reklamu
+                handleOtvaranje();
                 navigation.navigate('TarotOtvaranja');
               }}
             />
 
             <MenuButton
               icon={require('../assets/icons/daily.webp')}
-              // START: i18n label
               label={t('common:home.menu.dailyCard', { defaultValue: 'Karta dana' })}
               infoId="dailyCard"
-              // END: i18n label
               onPress={() => {
                 handleOtvaranje();
                 navigation.navigate('IzborKarata', {
                   tip: 'karta-dana',
                   layoutTemplate: [{}], // OBAVEZNO!
-                  // START: i18n pitanje
                   pitanje: t('common:questions.dailyCardPrompt', { defaultValue: 'Tvoja karta dana je...' })
-                  // END: i18n pitanje
                 })
               }}
             />
 
             <MenuButton
               icon={require('../assets/icons/yes.no.webp')}
-              // START: i18n label
               label={t('common:home.menu.yesNo', { defaultValue: 'Da / Ne' })}
               infoId="yesNo"
-              // END: i18n label
               onPress={() => {
                 handleOtvaranje();
                 navigation.navigate('IzborKarata', {
                   tip: 'dane',
                   layoutTemplate: [{}], // OBAVEZNO!
-                  // START: i18n pitanje
                   pitanje: t('common:questions.yesNoPrompt', { defaultValue: 'Tvoje pitanje za Da/Ne...' })
-                  // END: i18n pitanje
                 })
               }}
             />
@@ -194,12 +184,19 @@ const TarotHome = () => {
               icon={require('../assets/icons/old-book.webp')}
               label={t('common:home.menu.history', { defaultValue: 'Arhiva otvaranja' })}
               onPress={() => {
-                if (userPlan === "pro") {
+                // START: gating preko isPro (obuhvata i ProPlus)
+                // if (userPlan === "pro") {
+                //   navigation.navigate('ArhivaOtvaranja');
+                // }
+                if (isProTier) {
                   navigation.navigate('ArhivaOtvaranja');
                 }
-                // Ako nije pro, klik ne radi ništa
+                // END: gating preko isPro
               }}
-              disabled={userPlan !== "pro"}
+              // START: disable preko isPro (umesto userPlan === 'pro')
+              // disabled={userPlan !== "pro"}
+              disabled={!isProTier}
+              // END: disable preko isPro
               isProOnly
             />
 
@@ -209,7 +206,6 @@ const TarotHome = () => {
               onPress={() => setOpenModal(true)}
             />
 
-            {/* START: Dugme za gledanje reklame samo free */}
             {userPlan === "free" && (
               <TouchableOpacity
                 style={{
@@ -226,7 +222,6 @@ const TarotHome = () => {
                 </Text>
               </TouchableOpacity>
             )}
-            {/* END: Dugme za gledanje reklame samo free */}
           </View>
 
           {openModal && <MembershipModal onClose={() => setOpenModal(false)} />}
@@ -239,22 +234,23 @@ const TarotHome = () => {
 
         <SidebarMenu visible={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        {/* START: Test banner pri dnu ekrana (vidljiv u dev, free i guest) */}
-        {/* START: ❌ ORIGINALNI USLOV – ostavljen samo kao reference, ne izvrsava se */}
+        {/* START: Test banner pri dnu ekrana (vidljiv u dev i free) */}
         {false && (
           <View style={styles.bannerWrap}>
-            {(__DEV__ || userPlan === 'free' || userPlan === 'guest' || userPlan === 'gost') && <AdBanner />}
+            {(__DEV__ || userPlan === 'free') && <AdBanner />}
           </View>
         )}
-        {/* END: ❌ ORIGINALNI USLOV */}
+        {/* END: Test banner pri dnu ekrana (bez guest/gost) */}
 
         {/* START: ✅ NOVO – guardovani banner (skriva se za premium/pro čak i u dev buildu) */}
         <View style={styles.bannerWrap}>
-          <AdBannerIfEligible session={sessionLike} profile={profileLike} />
+          {/* START: pojednostavljen AdBannerIfEligible – bez stub sesije/profila */}
+          <AdBannerIfEligible />
+          {/* END: pojednostavljen AdBannerIfEligible */}
         </View>
         {/* END: ✅ NOVO – guardovani banner */}
-        {/* END: Test banner pri dnu */}
-      </ImageBackground>
+        {/* </ImageBackground> */}
+      </View>
     </>
   );
 };
@@ -264,10 +260,7 @@ const MenuButton = ({ icon, label, onPress, disabled = false, isProOnly = false,
   const { t } = useTranslation(['common']);
   const [showInfo, setShowInfo] = useState(false);
 
-  // START: i18n info modal bez fallback-a
-  // Info modal prikazujemo samo ako imamo infoId
   const hasInfo = !!infoId;
-  // END: i18n info modal bez fallback-a
 
   return (
     <>
@@ -277,15 +270,16 @@ const MenuButton = ({ icon, label, onPress, disabled = false, isProOnly = false,
           await playClickSound();
           if (onPress) onPress();
         }}
-        // START: style niz – ispravka zagrada
         style={[
           styles.button,
           disabled && { opacity: 0.5 },
         ]}
-        // END: style niz – ispravka zagrada
         activeOpacity={disabled ? 1 : 0.8}
       >
-        <Image source={icon} style={styles.icon} />
+        {/* START: SafeImage umesto Image za ikonice (WebP na iOS) */}
+        {/* <Image source={icon} style={styles.icon} /> */}
+        <SafeImage source={icon} style={styles.icon} contentFit="contain" />
+        {/* END: SafeImage umesto Image */}
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <Text style={styles.label}>{label}</Text>
           {isProOnly && disabled && (
@@ -294,7 +288,6 @@ const MenuButton = ({ icon, label, onPress, disabled = false, isProOnly = false,
             </Text>
           )}
           {hasInfo && (
-            // START: pristupačnost info dugmeta (sr label iz i18n)
             <Pressable
               onPress={() => setShowInfo(true)}
               style={{ marginLeft: 10 }}
@@ -304,12 +297,10 @@ const MenuButton = ({ icon, label, onPress, disabled = false, isProOnly = false,
             >
               <Ionicons name="information-circle-outline" size={18} color="#FFD700" />
             </Pressable>
-            // END: pristupačnost info dugmeta (sr label iz i18n)
           )}
         </View>
       </TouchableOpacity>
 
-      {/* Modal za info */}
       {hasInfo && (
         <Modal
           visible={showInfo}
@@ -347,9 +338,7 @@ const MenuButton = ({ icon, label, onPress, disabled = false, isProOnly = false,
                 textAlign: 'center',
                 marginBottom: 18,
               }}>
-                {/* START: i18n telo info modala (bez lokalnih fallbackova) */}
                 {t(`common:home.info.${infoId}`, { defaultValue: '' })}
-                {/* END: i18n telo info modala (bez lokalnih fallbackova) */}
               </Text>
               <TouchableOpacity onPress={() => setShowInfo(false)}>
                 <Text style={{
@@ -367,7 +356,7 @@ const MenuButton = ({ icon, label, onPress, disabled = false, isProOnly = false,
     </>
   );
 };
-// END: MenuButton prima opcioni infoId za i18n info–modal
+// END: MenuButton
 
 const styles = StyleSheet.create({
   background: {
@@ -380,7 +369,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding: 20,
-    paddingBottom: 110, // START: prostor da sadržaj ne uđe ispod fiksiranog bannera
+    paddingBottom: 110, // prostor da sadržaj ne uđe ispod fiksiranog bannera
     backgroundColor: 'rgba(0,0,0,0.6)',
   },
   grid: {
@@ -422,7 +411,6 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
   },
-  // START: fiksirani banner pri dnu
   bannerWrap: {
     position: 'absolute',
     left: 0, right: 0, bottom: 0,
@@ -430,7 +418,6 @@ const styles = StyleSheet.create({
     paddingTop: 6, paddingBottom: 8,
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
-  // END: fiksirani banner
 });
 
 export default TarotHome;

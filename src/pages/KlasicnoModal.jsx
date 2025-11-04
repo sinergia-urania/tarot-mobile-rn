@@ -1,11 +1,12 @@
-// src/pages/KlasicnoModal.jsx
-
 // START: expo-audio migracija (umesto expo-av)
 // import { Audio } from "expo-av";
 import { createAudioPlayer } from "expo-audio";
 // END: expo-audio migracija
 import React, { useRef, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// START: import cleanup (zadržavamo original u komentaru)
+// import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// END: import cleanup
 import { READING_PRICES } from "../constants/readingPrices";
 import { LJUBAVNO_OTVARANJE, PET_KARATA, TRI_KARTE } from "../data/layoutTemplates";
 
@@ -13,6 +14,10 @@ import { useDukati } from "../context/DukatiContext";
 
 // i18n
 import { useTranslation } from "react-i18next";
+
+// START: SafeImage (expo-image) — WebP safe na iOS
+import SafeImage from "../components/SafeImage";
+// END: SafeImage
 
 const clickSound = require("../assets/sounds/hover-click.mp3");
 
@@ -153,7 +158,18 @@ const KlasicnoModal = ({ onClose, navigation }) => {
               activeOpacity={0.85}
             >
               <View style={styles.iconBox}>
-                <Image source={opt.icon} style={styles.icon} />
+                {/* START: SafeImage hardening — disk cache, recycling, priority i error log */}
+                <SafeImage
+                  source={opt.icon}
+                  style={styles.icon}
+                  contentFit="contain"
+                  transition={120}
+                  cachePolicy="disk"
+                  recyclingKey={`classic-${opt.key}`}
+                  priority="high"
+                  onError={(e) => { if (__DEV__) console.log('[classic-icon][err]', opt.key, e?.nativeEvent); }}
+                />
+                {/* END: SafeImage hardening */}
               </View>
               <Text style={styles.optionText}>{opt.label}</Text>
               {/* Cena po subtipu */}
@@ -284,7 +300,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 64,
     height: 64,
-    resizeMode: "contain",
   },
   optionText: {
     fontSize: 17,

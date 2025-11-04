@@ -1,11 +1,29 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+// import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import TarotHeader from "../components/TarotHeader";
 import { formatDateLocal } from "../utils/formatDate";
 import { getCardImagePath } from "../utils/getCardImagePath";
 // i18n
 import { useTranslation } from "react-i18next";
+// START: SafeImage (expo-image) za iOS/WebP
+import SafeImage from "../components/SafeImage";
+// END: SafeImage
+
+// START: helper za detekciju obrnutih karata (orientation)
+const isCardReversed = (card) => {
+  if (!card) return false;
+  if (typeof card.reversed === 'boolean') return card.reversed;
+  if (typeof card.isReversed === 'boolean') return card.isReversed;
+  if (typeof card.obrnuto === 'boolean') return card.obrnuto;
+  if (typeof card.upravno === 'boolean') return !card.upravno;
+  if (typeof card.isUpright === 'boolean') return !card.isUpright;
+  if (typeof card.orientation === 'string') return /revers|reverse|obrn/i.test(card.orientation);
+  if (typeof card.polozaj === 'string') return /revers|obrn/i.test(card.polozaj);
+  return false;
+};
+// END: helper za detekciju obrnutih karata (orientation)
 
 const DetaljOtvaranja = () => {
   const navigation = useNavigation();
@@ -56,12 +74,23 @@ const DetaljOtvaranja = () => {
               {t("common:detail.drawnCards", { defaultValue: "Izvučene karte:" })}
             </Text>
             <View style={styles.cardsContainer}>
-              {cards.map((card, idx) => (
-                <View key={idx} style={styles.cardBox}>
-                  <Image source={getCardImagePath(card.label)} style={styles.cardImg} />
-                  <Text style={styles.cardLabel}>{card.label}</Text>
-                </View>
-              ))}
+              {cards.map((card, idx) => {
+                // START: primeni orijentaciju iz arhive
+                const reversed = isCardReversed(card);
+                // END: primeni orijentaciju iz arhive
+                return (
+                  <View key={idx} style={styles.cardBox}>
+                    <SafeImage
+                      source={getCardImagePath(card.label)}
+                      // START: rotacija slike ako je karta obrnuta
+                      style={[styles.cardImg, reversed && { transform: [{ rotate: "180deg" }] }]}
+                      // END: rotacija slike ako je karta obrnuta
+                      contentFit="contain"
+                    />
+                    <Text style={styles.cardLabel}>{card.label}</Text>
+                  </View>
+                );
+              })}
             </View>
           </>
         )}

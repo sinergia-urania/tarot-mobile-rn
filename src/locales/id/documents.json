@@ -1,0 +1,89 @@
+{
+  "about": {
+    "title": "Tentang Aplikasi",
+    "updatedAt": "August 28, 2025",
+    "body": [
+      "AiTarot Una adalah aplikasi yang menggabungkan teknologi AI modern dengan simbol-simbol arketipal dari dunia Tarot untuk memberikan interpretasi yang personal, matang, dan bermanfaat bagi pengguna. AI tidak membuat pesan secara acak — ia menganalisis sesuai konteks pertanyaan pengguna dan tata letak kartu.",
+      "Semua tebaran (spread) dalam aplikasi (kecuali “Kartu Harian” dan “Ya/Tidak” yang bersifat intuitif) menganalisis kartu melalui sistem simbolik berlapis dan berupaya mengenali logika batin terkait pertanyaan pengguna.",
+      "Cara kerja: aplikasi menawarkan daftar pertanyaan yang sering diajukan, tetapi kamu selalu bisa memasukkan pertanyaanmu sendiri jika tidak ada di saran — dengan begitu kamu menerima interpretasi yang benar-benar personal dan relevan.",
+      "Akses & paket:",
+      "• Gratis: akses dasar dengan jumlah tebaran dan fitur yang terbatas.",
+      "• Premium: membuka jenis tebaran dan wawasan tambahan.",
+      "• Pro: akses penuh ke semua alat, analisis, dan personalisasi.",
+      "Selain paket, ada opsi AdReward — dengan menonton iklan kamu bisa membuka fitur tertentu sebagai alternatif pembayaran.",
+      "Catatan: aplikasi ini tidak memprediksi masa depan secara deterministik; ia memberi penerangan pada arah potensial dan pola batin melalui bahasa arketipal kartu dan simbolisme.",
+      "Versi aplikasi: 1.0.0"
+    ]
+  },
+  "terms": {
+    "title": "Ketentuan Layanan",
+    "updatedAt": "August 28, 2025",
+    "sourceUrl": "terms-of-service-id.html",
+    "body": [
+      "Dengan menggunakan aplikasi ini, kamu menyetujui ketentuan dan aturan berikut. Jika kamu tidak setuju dengan sebagian ketentuan, mohon untuk tidak menggunakan aplikasi.",
+      "• Aplikasi ditujukan untuk penggunaan pribadi dan non-komersial.",
+      "• Kamu tidak boleh menyalin, mendistribusikan, atau memodifikasi konten tanpa izin penulis.",
+      "• Kami dapat mengubah Ketentuan Layanan kapan saja tanpa pemberitahuan sebelumnya.",
+      "Dengan terus menggunakan aplikasi, kamu menegaskan telah membaca, memahami, dan menerima ketentuan ini."
+    ]
+  },
+  "privacy": {
+    "title": "Kebijakan Privasi",
+    "updatedAt": "August 28, 2025",
+    "sourceUrl": "privacy-policy-id.html",
+    "body": [
+      "Kami peduli pada privasimu. Dokumen ini merangkum data apa yang kami kumpulkan, alasannya, dan bagaimana kami melindunginya.",
+      "Apa yang kami kumpulkan: (a) data akun (email, nama tampilan, bahasa), (b) data profil opsional (gender, tanggal lahir, zodiak/ascendant), (c) data teknis (ID pengguna, token push Expo, bahasa/wilayah perangkat), (d) metadata tentang penggunaan fitur.",
+      "Tempat penyimpanan: Supabase (basis data dan autentikasi). Expo digunakan untuk pengiriman notifikasi push (token perangkat). Zoho Mail digunakan untuk dukungan pelanggan.",
+      "Mengapa: untuk menyediakan fungsi aplikasi, menyinkronkan pengaturan, mengirim notifikasi yang kamu minta, dan meningkatkan kualitas produk.",
+      "Berbagi: kami tidak menjual data pribadi. Kami hanya membagikan data dengan penyedia layanan yang diperlukan untuk menjalankan aplikasi (mis., Supabase, Expo) di bawah perjanjian pemrosesan data yang semestinya.",
+      "Retensi & penghapusan: kami menyimpan data selama diperlukan untuk menyediakan layanan. Kamu dapat meminta ekspor atau penghapusan akun dengan menghubungi dukungan.",
+      "Keamanan: kami menerapkan langkah teknis dan organisatoris; namun tak ada sistem yang 100% aman.",
+      "Hak-hakmu: akses, koreksi, penghapusan, keberatan, penarikan persetujuan jika berlaku.",
+      "Kontak privasi: info@infohelm.org"
+    ]
+  },
+  "support": {
+    "title": "Dukungan & Donasi",
+    "updatedAt": "August 28, 2025",
+    "body": [
+      "Jika ingin mendukung pengembangan aplikasi:",
+      "• Buka keanggotaan PRO/Premium sesuai kebutuhan — kamu mendapat lebih banyak tebaran dan batasan yang lebih sedikit.",
+      "• Tonton iklan singkat untuk koin gratis (AdReward).",
+      "• Beri rating dan ulasan di toko — itu sangat berarti!",
+      "• Bagikan aplikasi kepada teman.",
+      "Untuk bantuan tambahan atau saran, tulis ke: info@infohelm.org"
+    ]
+  },
+  "contact": {
+    "title": "Kontak",
+    "updatedAt": "August 28, 2025",
+    "body": [
+      "Jika kamu memiliki pertanyaan, saran, atau masalah teknis, jangan ragu untuk menghubungi kami.",
+      "Email: info@infohelm.org",
+      "Kami merespons dalam 24 jam pada hari kerja."
+    ]
+  },
+  "disclaimer": {
+    "title": "Penafian",
+    "updatedAt": "August 28, 2025",
+    "body": [
+      "Aplikasi ini menggunakan kecerdasan buatan untuk menafsirkan simbol dan menjawab pertanyaan, mirip seperti pembaca Tarot berpengalaman. Meski AI menganalisis pola dan memberi wawasan, jawabannya bukan pengganti nasihat profesional di bidang seperti kesehatan, hukum, atau keuangan.",
+      "Pengguna mengambil keputusan sendiri berdasarkan pesan dan wawasan yang diterima. Pembuat aplikasi tidak bertanggung jawab atas konsekuensi apa pun yang timbul dari penggunaan konten.",
+      "Dengan menggunakan aplikasi, kamu menyetujui ketentuan ini."
+    ]
+  },
+  "dataDeletion": {
+    "title": "Penghapusan Data",
+    "updatedAt": "August 28, 2025",
+    "sourceUrl": "data-deletion-id.html",
+    "body": [
+      "Kamu dapat meminta penghapusan akun dan data kapan saja.",
+      "Cara mengajukan permohonan: kirim email dari alamat yang tertaut ke akunmu ke info@infohelm.org dengan catatan singkat bahwa kamu ingin datamu dihapus. Jika memungkinkan, sertakan ID pengguna (UID) dari profil.",
+      "Apa yang kami hapus: profil (email, nama tampilan, preferensi bahasa), token notifikasi push yang tersimpan, riwayat pembacaan/interpretasi, dan data lain yang terkait akun.",
+      "Apa yang mungkin kami simpan: catatan minimal yang diperlukan untuk memenuhi kewajiban hukum atau kebutuhan keamanan, sesuai Kebijakan Privasi.",
+      "Jangka waktu: permintaan biasanya diproses dalam 30 hari setelah konfirmasi identitas.",
+      "Detail lebih lanjut dan versi dokumen resmi tersedia di situs web kami (gunakan tombol “Open on web”)."
+    ]
+  }
+}

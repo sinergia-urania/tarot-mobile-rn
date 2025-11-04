@@ -190,13 +190,31 @@ const SidebarMenu = ({ visible, onClose }) => {
     fn?.();
   };
 
+  // START: uklanjanje "guest" badge-a i etikete
   const renderStatusBadge = () => {
-    if (!user) return <Text style={styles.statusBadgeGuest}>🟢 {t('common:membership.packages.guest', { defaultValue: 'Gost' })}</Text>;
-    if (userPlan === 'premium') return <Text style={styles.statusBadgePremium}>🟡 {t('common:membership.packages.premium', { defaultValue: 'Premium' })}</Text>;
-    if (userPlan === 'pro') return <Text style={styles.statusBadgePro}>🔵 {t('common:membership.packages.pro', { defaultValue: 'Pro' })}</Text>;
-    return <Text style={styles.statusBadgeFree}>⚪ {t('common:membership.packages.free', { defaultValue: 'Free' })}</Text>;
+    // Neulogovan korisnik → neutralni status (nema više "Gost")
+    // START: neutralan status za sign-out
+    return !user ? (
+      <Text style={styles.statusBadgeAnon}>
+        ⚪ {t('common:labels.signedOut', { defaultValue: 'Niste prijavljeni' })}
+      </Text>
+    ) : (
+      // Plaćeni/free statusi
+      userPlan === 'premium' ? (
+        <Text style={styles.statusBadgePremium}>🟡 {t('common:membership.packages.premium', { defaultValue: 'Premium' })}</Text>
+      ) : userPlan === 'proplus' ? (
+        <Text style={styles.statusBadgePro}>🔵 {t('common:membership.packages.proplus', { defaultValue: 'ProPlus' })}</Text>
+      ) : userPlan === 'pro' ? (
+        <Text style={styles.statusBadgePro}>🔵 {t('common:membership.packages.pro', { defaultValue: 'Pro' })}</Text>
+      ) : (
+        <Text style={styles.statusBadgeFree}>⚪ {t('common:membership.packages.free', { defaultValue: 'Free' })}</Text>
+      )
+    );
+    // END: neutralan status za sign-out
   };
+  // END: uklanjanje "guest" badge-a i etikete
 
+  // START: user box – uklonjena "Gost" etiketa
   const renderUserBox = () => {
     if (loading && user) {
       return (
@@ -209,7 +227,11 @@ const SidebarMenu = ({ visible, onClose }) => {
     if (!user) {
       return (
         <View style={styles.userBox}>
-          <Text style={styles.userName}>{t('common:membership.packages.guest', { defaultValue: 'Gost' })}</Text>
+          {/* START: zamena "Gost" -> neutralna poruka */}
+          <Text style={styles.userName}>
+            {t('common:labels.signedOut', { defaultValue: 'Niste prijavljeni' })}
+          </Text>
+          {/* END: zamena "Gost" -> neutralna poruka */}
           <View style={styles.statusBox}>{renderStatusBadge()}</View>
           <Text style={{ color: "#aaa", marginTop: 5, fontSize: 14 }}>
             {t('common:messages.notLoggedInBlurb', {
@@ -228,6 +250,7 @@ const SidebarMenu = ({ visible, onClose }) => {
       </View>
     );
   };
+  // END: user box – uklonjena "Gost" etiketa
 
   return (
     <Modal visible={visible} transparent animationType="slide">
@@ -458,6 +481,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     fontSize: 14,
   },
+  // START: deprecated – stil je zadržan radi kompatibilnosti, ali se više ne koristi
   statusBadgeGuest: {
     color: '#fff',
     backgroundColor: '#059669',
@@ -465,6 +489,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     fontSize: 14,
   },
+  // END: deprecated
+  // START: novi neutralni badge za neulogovanog korisnika
+  statusBadgeAnon: {
+    color: '#fff',
+    backgroundColor: '#222',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    fontSize: 14,
+  },
+  // END: novi neutralni badge
   item: {
     paddingVertical: 14,
     borderBottomWidth: 1,

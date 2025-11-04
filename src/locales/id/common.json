@@ -1,0 +1,367 @@
+{
+  "watchAdForCoins": "Tonton iklan untuk koin",
+  "appName": "Tarot",
+  "groups": {
+    "velika": "Arkana Mayor",
+    "stapovi": "Tongkat",
+    "pehari": "Piala",
+    "macevi": "Pedang",
+    "zlatnici": "Pentakel"
+  },
+  "menu": {
+    "allSpreads": "Semua tebaran",
+    "dailyCard": "Kartu Harian",
+    "yesNo": "Ya / Tidak",
+    "meanings": "Arti kartu",
+    "history": "Arsip pembacaan",
+    "access": "Akses & paket"
+  },
+  "soundControls": {
+    "music": "Musik",
+    "effects": "Efek",
+    "test": "Uji suara"
+  },
+  "info": {
+    "allSpreads": "Ini adalah tebaran dengan penerjemah AI.",
+    "dailyCard": "Ini tebaran intuitif — pikirkan sebuah pertanyaan sebelum memilih kartu.",
+    "yesNo": "Ini tebaran intuitif — pikirkan sebuah pertanyaan sebelum memilih kartu."
+  },
+  "buttons": {
+    "askFollowUp": "Kirim tindak lanjut",
+    "back": "Kembali",
+    "ok": "OK",
+    "cancel": "Batal",
+    "backToTarotHome": "Kembali ke Beranda Tarot",
+    "close": "Tutup",
+    "answer": "$t(labels.answer)",
+    "buyCoins": "Tambah koin",
+    "login": "Masuk",
+    "logout": "Keluar",
+    "saveProfile": "Simpan profil",
+    "register": "Daftar",
+    "savePassword": "Simpan kata sandi"
+  },
+  "messages": {
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "notImplemented": "Belum tersedia: {{group}}",
+    "noCardSelected": "Tidak ada kartu yang ditarik. Kembali dan coba lagi.",
+    "cardDrawnWithOrientation": "Kartu ditarik dalam posisi {{orientation}}.",
+    "tryAgain": "Coba lagi.",
+    "tryAgainNav": "Kembali dan coba lagi.",
+    "loadingDailyCard": "Memuat Kartu Harian...",
+    "noDescription": "Tidak ada deskripsi untuk kartu ini.",
+    "successTitle": "Berhasil!",
+    "successGeneric": "Berhasil!",
+    "notLoggedInBlurb": "Kamu belum masuk. Masuk untuk memakai AI dan mengumpulkan koin!",
+    "notLoggedInSettings": "Kamu belum masuk. Masuk untuk mengakses pengaturan.",
+    "nameNotSet": "Kamu belum memasukkan nama",
+    "profileSaved": "Profil disimpan!",
+    "noQuestion": "Tidak ada pertanyaan.",
+    "waitingAI": "Menunggu respons AI..."
+  },
+  "titles": {
+    "yesNoAnswer": "Jawaban atas pertanyaanmu:",
+    "settings": "Pengaturan",
+    "sound": "Suara",
+    "selectLanguage": "Pilih bahasa"
+  },
+  "sections": {
+    "symbolism": "Simbolisme",
+    "upright": "Makna tegak",
+    "reversed": "Makna terbalik",
+    "daily": "Makna sebagai Kartu Harian"
+  },
+  "answers": {
+    "yes": "YA",
+    "no": "TIDAK"
+  },
+  "orientation": {
+    "upright": "tegak",
+    "reversed": "terbalik"
+  },
+  "badges": {
+    "proOnly": "(Hanya PRO)",
+    "proOrPremium": "(Pro/Premium)"
+  },
+  "questions": {
+    "dailyCardPrompt": "Kartu harianmu adalah...",
+    "yesNoPrompt": "Pertanyaan Ya/Tidak-mu...",
+    "introBlurb": "Pilih topik dan contoh pertanyaan untuk mulai cepat."
+  },
+  "accessibility": {
+    "menu": "Menu",
+    "back": "Kembali",
+    "home": "Beranda",
+    "language": "Bahasa",
+    "coins": "Koin",
+    "soundOn": "Nyalakan suara",
+    "soundOff": "Matikan suara",
+    "info": "Info"
+  },
+  "labels": {
+    "answer": "Jawaban",
+    "notifications": "Notifikasi",
+    "language": "Bahasa:",
+    "currentName": "Nama saat ini:",
+    "user": "Pengguna",
+    "orTypeYourQuestion": "Atau ketik pertanyaanmu",
+    "chooseCards": "Pilih kartu",
+    "status": "Status:",
+    "coins": "Koin",
+    "spread": "Tebaran",
+    "updatedAt": "Diperbarui",
+    "openOnWeb": "Buka di web",
+    "card": "Kartu"
+  },
+  "classic": {
+    "title": "Pilih tebaran",
+    "options": {
+      "love": "Aku – Dia",
+      "pastPresentFuture": "Masa Lalu – Kini – Depan",
+      "pathOfInsight": "Jalur Wawasan"
+    }
+  },
+  "placeholders": {
+    "enterQuestion": "Masukkan pertanyaan",
+    "enterName": "Masukkan nama",
+    "selectGender": "Pilih jenis kelamin",
+    "pickDate": "Pilih tanggal",
+    "pickSign": "Pilih zodiak",
+    "pickAscendant": "Pilih ascendant",
+    "enterEmail": "Email",
+    "enterPassword": "Kata sandi",
+    "newPassword": "Kata sandi baru",
+    "repeatPassword": "Ulangi kata sandi"
+  },
+  "options": {
+    "includeReversed": "Sertakan kartu terbalik"
+  },
+  "membership": {
+    "packages": {
+      "guest": "Tamu",
+      "free": "Gratis",
+      "premium": "Premium",
+      "pro": "Pro"
+    },
+    "features": {
+      "meanings": "Arti kartu",
+      "classicSpreads": "Tebaran klasik",
+      "celticCross": "Silang Keltik",
+      "astrologicalSpread": "Tebaran astrologi",
+      "kabbalisticSpread": "Tebaran kabbalistik",
+      "aiFollowups": "Tindak lanjut AI",
+      "historyArchive": "Arsip pembacaan",
+      "astrologicalTransits": "Transit astrologi"
+    },
+    "values": {
+      "ads": "Iklan",
+      "noAds": "Tanpa iklan",
+      "aiModelMini": "Model AI: Mini",
+      "aiModelLarge": "Model AI: Besar"
+    },
+    "notes": {
+      "freeCoinsAd": "Koin didapat dengan menonton iklan (khusus pengguna gratis)."
+    },
+    "cta": {
+      "alreadyPremium": "Kamu sudah Premium",
+      "buyPremium": "Beli Premium ({{price}} {{currency}} / bulan)",
+      "alreadyPro": "Kamu sudah PRO",
+      "buyPro": "Beli PRO ({{price}} {{currency}} / bulan)"
+    },
+    "topup": {
+      "title": "Isi ulang koin",
+      "buyCoins": "Beli {{amount}} koin — {{price}} {{currency}}"
+    },
+    "toast": {
+      "upgradedPremium": "Akunmu kini Premium. Kamu menerima {{bonus}} koin!",
+      "upgradedPro": "Akunmu kini PRO. Kamu menerima {{bonus}} koin!",
+      "topupDone": "Kamu menerima {{amount}} koin."
+    }
+  },
+  "errors": {
+    "invalidLayoutTemplate": "Kesalahan: layoutTemplate yang valid tidak diberikan!",
+    "notEnoughCoinsTitle": "Koin tidak cukup",
+    "notEnoughCoinsMessage": "Tebaran ini memerlukan {{required}} koin, dan kamu memiliki {{balance}}.",
+    "genericTitle": "Kesalahan",
+    "tryAgain": "Coba lagi.",
+    "notLoggedIn": "Kamu belum masuk.",
+    "adLimitReached": "Batas iklan harian tercapai.",
+    "topupFailed": "Tidak dapat menambah koin.",
+    "updateNotifFail": "Tidak dapat memperbarui notifikasi.",
+    "nameRequired": "Nama tidak boleh kosong!",
+    "aiAnswerFailed": "Gagal mendapatkan respons AI",
+    "aiFollowupFailed": "Gagal mendapatkan respons tindak lanjut AI!",
+    "notEnoughCoinsServerRejected": "Pembayaran ditolak server. Isi ulang koin lalu coba lagi.",
+    "notEnoughCoinsFollowup": "Koinmu tidak cukup untuk tindak lanjut AI!",
+    "aiAnswerFailedDetailed": "Terjadi kesalahan saat mengambil respons.{{extra}}",
+    "rateLimited": "Batas frekuensi terlampaui. Coba lagi nanti.",
+    "modelUnavailable": "Model tidak tersedia atau permintaan tidak valid.",
+    "upstreamFailed": "Layanan AI sementara tidak tersedia (hulu).",
+    "aiServiceComm": "Terjadi kesalahan saat berkomunikasi dengan layanan AI.",
+    "edgeTimeout": "Permintaan AI kedaluwarsa. Coba lagi."
+  },
+  "dailyCard": {
+    "alreadyPicked": "Kamu sudah mengambil kartu harianmu!",
+    "comeBackTomorrow": "Kembali besok untuk kartu baru. 🌞"
+  },
+  "legal": {
+    "title": "Dokumen hukum",
+    "disclaimer": "Penafian",
+    "terms": "Ketentuan Layanan",
+    "contact": "Kontak",
+    "privacy": "Kebijakan Privasi",
+    "dataDeletion": "Penghapusan Data"
+  },
+  "support": {
+    "title": "Dukung aplikasi",
+    "rateUs": "Beri rating",
+    "shareToFriends": "Bagikan ke teman",
+    "shareMessage": "Coba aplikasi Tarot AI! https://play.google.com/store/apps/details?id=com.mare82.tarotmobile"
+  },
+  "auth": {
+    "loginTitle": "Masuk",
+    "registerTitle": "Daftar",
+    "googleSignIn": "Masuk dengan Google",
+    "googleOpening": "Membuka Google…",
+    "facebookSignIn": "Masuk dengan Facebook",
+    "facebookOpening": "Membuka Facebook…",
+    "toggleHaveAccount": "Sudah punya akun? Masuk",
+    "toggleNoAccount": "Belum punya akun? Daftar",
+    "loginFailed": "Gagal masuk.",
+    "registerFailed": "Gagal mendaftar.",
+    "googleFailed": "Gagal masuk dengan Google.",
+    "facebookFailed": "Gagal masuk dengan Facebook.",
+    "checkEmail": "Periksa emailmu dan konfirmasi akun.",
+    "emailRequired": "Masukkan alamat email.",
+    "resetEmailSent": "Jika akun ada, kami telah mengirim email berisi instruksi untuk mengatur ulang kata sandi.",
+    "resetEmailFailed": "Gagal mengirim email pengaturan ulang.",
+    "forgotPassword": "Lupa kata sandi?",
+    "resetPasswordTitle": "Atur ulang kata sandi",
+    "passwordTooShort": "Kata sandi harus minimal 8 karakter.",
+    "passwordsDontMatch": "Kata sandi tidak cocok.",
+    "passwordUpdated": "Kata sandimu telah diperbarui. Silakan masuk dengan kata sandi baru.",
+    "passwordUpdateFailed": "Gagal memperbarui kata sandi."
+  },
+  "ads": {
+    "errorTitle": "Kesalahan iklan!",
+    "errorGeneric": "Terjadi kesalahan pada iklan. Coba lagi nanti.",
+    "notReady": "Iklan belum siap.",
+    "loading": "Memuat iklan…",
+    "showing": "Menayangkan iklan...",
+    "buttonReady": "Tonton iklan untuk {{amount}} koin",
+    "buttonLoading": "Memuat iklan...",
+    "thanksTitle": "Terima kasih!",
+    "rewardToast": "Kamu menerima {{amount}} koin.",
+    "grantError": "Kesalahan memberikan koin",
+    "plusCoins": "+{{amount}} koin!",
+    "reward": {
+      "title": "Tonton iklan untuk koin",
+      "watch": "Tonton iklan untuk {{amount}} koin",
+      "loading": "Memuat iklan…",
+      "showing": "Menayangkan iklan...",
+      "toast": {
+        "thanks": "Terima kasih!",
+        "granted": "Kamu menerima {{amount}} koin.",
+        "errorGrant": "Kesalahan memberikan koin",
+        "errorGeneric": "Terjadi kesalahan iklan."
+      },
+      "done": {
+        "plusCoins": "+{{amount}} koin!",
+        "ok": "OK"
+      }
+    }
+  },
+  "home": {
+    "menu": {
+      "profile": "Profil",
+      "settings": "Pengaturan",
+      "about": "Tentang",
+      "packagesAccess": "Akses & paket",
+      "allSpreads": "$t(menu.allSpreads)",
+      "dailyCard": "$t(menu.dailyCard)",
+      "yesNo": "$t(menu.yesNo)",
+      "meanings": "$t(menu.meanings)",
+      "history": "$t(menu.history)",
+      "access": "$t(menu.access)"
+    },
+    "info": {
+      "allSpreads": "$t(info.allSpreads)",
+      "dailyCard": "$t(info.dailyCard)",
+      "yesNo": "$t(info.yesNo)"
+    },
+    "watchAdForCoins": "$t(watchAdForCoins)"
+  },
+  "profile": {
+    "title": "👤 Profil",
+    "nameLabel": "Nama:",
+    "gender": {
+      "label": "Jenis kelamin:",
+      "male": "Laki-laki",
+      "female": "Perempuan",
+      "other": "Lainnya"
+    },
+    "birthDate": "Tanggal lahir:",
+    "sunSign": "Zodiak:",
+    "ascendant": "Ascendant:"
+  },
+  "astrology": {
+    "signs": {
+      "aries": "♈ Aries",
+      "taurus": "♉ Taurus",
+      "gemini": "♊ Gemini",
+      "cancer": "♋ Cancer",
+      "leo": "♌ Leo",
+      "virgo": "♍ Virgo",
+      "libra": "♎ Libra",
+      "scorpio": "♏ Scorpio",
+      "sagittarius": "♐ Sagittarius",
+      "capricorn": "♑ Capricorn",
+      "aquarius": "♒ Aquarius",
+      "pisces": "♓ Pisces"
+    }
+  },
+  "push": {
+    "titleTest": "Uji push",
+    "permDenied": "Izin notifikasi tidak diberikan.",
+    "noToken": "Tidak ada token (periksa izin/FCM).",
+    "noUserId": "Tidak ada ID pengguna!",
+    "tokenWriteFail": "Token TIDAK tersimpan!",
+    "tokenWriteOk": "Token tersimpan!",
+    "profileNoToken": "Tidak ada token di profil. Tekan “Tulis token push (uji)” terlebih dahulu.",
+    "localTitle": "LOKAL ✅",
+    "localBody": "Notifikasi lokal (foreground/background)",
+    "remoteTitle": "REMOTE ✅",
+    "remoteBody": "Push Expo (dikirim segera)",
+    "sentMinimize": "Terkirim ✔️ — kecilkan aplikasi sekarang untuk melihat banner.",
+    "notAccepted": "Push tidak diterima:",
+    "sendError": "Kesalahan kirim: ",
+    "debugTitle": "Notifikasi debug",
+    "localBgTitle": "LOKAL 🔔",
+    "localBgBody": "Uji lokal latar belakang",
+    "scheduled5s": "Dijadwalkan 5 dtk — kecilkan aplikasi sekarang.",
+    "fcmTitle": "Token FCM (perangkat)",
+    "btnWriteToken": "Tulis token push (uji)",
+    "btnLocal": "Uji notifikasi (lokal)",
+    "btnRemote": "Uji notifikasi (remote)",
+    "btnShowFcm": "Tampilkan token FCM (perangkat)",
+    "btnDebug": "Debug notifikasi",
+    "btnLocalBg": "Uji lokal (background)"
+  },
+  "detail": {
+    "question": "Pertanyaan:",
+    "answer": "Jawaban:",
+    "drawnCards": "Kartu yang ditarik:",
+    "followup": "Tindak lanjut:",
+    "followupAnswer": "Jawaban tindak lanjut:",
+    "loveReading": "Pembacaan cinta",
+    "pathOfInsightReading": "Jalur Wawasan",
+    "classic": "Tebaran klasik",
+    "kabbalisticTree": "Pohon Kehidupan Kabbalah",
+    "astrologicalSpread": "Tebaran astrologi",
+    "celticCross": "Silang Keltik"
+  },
+  "history": {
+    "empty30Days": "Tidak ada pembacaan yang diarsipkan dalam 30 hari terakhir."
+  }
+}

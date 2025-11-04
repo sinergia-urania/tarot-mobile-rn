@@ -1,0 +1,238 @@
+{
+  "cards": {
+    "theFool": {
+      "name": "Sang Fool"
+    },
+    "theMagician": {
+      "name": "Sang Penyihir"
+    },
+    "theHighPriestess": {
+      "name": "Imam Besar Perempuan"
+    },
+    "theEmpress": {
+      "name": "Permaisuri"
+    },
+    "theEmperor": {
+      "name": "Kaisar"
+    },
+    "theHierophant": {
+      "name": "Imam Besar"
+    },
+    "theLovers": {
+      "name": "Para Kekasih"
+    },
+    "theChariot": {
+      "name": "Kereta Perang"
+    },
+    "strength": {
+      "name": "Kekuatan"
+    },
+    "theHermit": {
+      "name": "Pertapa"
+    },
+    "wheelOfFortune": {
+      "name": "Roda Keberuntungan"
+    },
+    "justice": {
+      "name": "Keadilan"
+    },
+    "theHangedMan": {
+      "name": "Orang Tergantung"
+    },
+    "death": {
+      "name": "Kematian"
+    },
+    "temperance": {
+      "name": "Temperance"
+    },
+    "theDevil": {
+      "name": "Iblis"
+    },
+    "theTower": {
+      "name": "Menara"
+    },
+    "theStar": {
+      "name": "Bintang"
+    },
+    "theMoon": {
+      "name": "Bulan"
+    },
+    "theSun": {
+      "name": "Matahari"
+    },
+    "judgement": {
+      "name": "Penghakiman"
+    },
+    "theWorld": {
+      "name": "Dunia"
+    },
+    "aceOfWands": {
+      "name": "As Tongkat"
+    },
+    "twoOfWands": {
+      "name": "Dua Tongkat"
+    },
+    "threeOfWands": {
+      "name": "Tiga Tongkat"
+    },
+    "fourOfWands": {
+      "name": "Empat Tongkat"
+    },
+    "fiveOfWands": {
+      "name": "Lima Tongkat"
+    },
+    "sixOfWands": {
+      "name": "Enam Tongkat"
+    },
+    "sevenOfWands": {
+      "name": "Tujuh Tongkat"
+    },
+    "eightOfWands": {
+      "name": "Delapan Tongkat"
+    },
+    "nineOfWands": {
+      "name": "Sembilan Tongkat"
+    },
+    "tenOfWands": {
+      "name": "Sepuluh Tongkat"
+    },
+    "pageOfWands": {
+      "name": "Putra Tongkat"
+    },
+    "knightOfWands": {
+      "name": "Ksatria Tongkat"
+    },
+    "queenOfWands": {
+      "name": "Ratu Tongkat"
+    },
+    "kingOfWands": {
+      "name": "Raja Tongkat"
+    },
+    "aceOfCups": {
+      "name": "As Piala"
+    },
+    "twoOfCups": {
+      "name": "Dua Piala"
+    },
+    "threeOfCups": {
+      "name": "Tiga Piala"
+    },
+    "fourOfCups": {
+      "name": "Empat Piala"
+    },
+    "fiveOfCups": {
+      "name": "Lima Piala"
+    },
+    "sixOfCups": {
+      "name": "Enam Piala"
+    },
+    "sevenOfCups": {
+      "name": "Tujuh Piala"
+    },
+    "eightOfCups": {
+      "name": "Delapan Piala"
+    },
+    "nineOfCups": {
+      "name": "Sembilan Piala"
+    },
+    "tenOfCups": {
+      "name": "Sepuluh Piala"
+    },
+    "pageOfCups": {
+      "name": "Putra Piala"
+    },
+    "knightOfCups": {
+      "name": "Ksatria Piala"
+    },
+    "queenOfCups": {
+      "name": "Ratu Piala"
+    },
+    "kingOfCups": {
+      "name": "Raja Piala"
+    },
+    "aceOfSwords": {
+      "name": "As Pedang"
+    },
+    "twoOfSwords": {
+      "name": "Dua Pedang"
+    },
+    "threeOfSwords": {
+      "name": "Tiga Pedang"
+    },
+    "fourOfSwords": {
+      "name": "Empat Pedang"
+    },
+    "fiveOfSwords": {
+      "name": "Lima Pedang"
+    },
+    "sixOfSwords": {
+      "name": "Enam Pedang"
+    },
+    "sevenOfSwords": {
+      "name": "Tujuh Pedang"
+    },
+    "eightOfSwords": {
+      "name": "Delapan Pedang"
+    },
+    "nineOfSwords": {
+      "name": "Sembilan Pedang"
+    },
+    "tenOfSwords": {
+      "name": "Sepuluh Pedang"
+    },
+    "pageOfSwords": {
+      "name": "Putra Pedang"
+    },
+    "knightOfSwords": {
+      "name": "Ksatria Pedang"
+    },
+    "queenOfSwords": {
+      "name": "Ratu Pedang"
+    },
+    "kingOfSwords": {
+      "name": "Raja Pedang"
+    },
+    "aceOfPentacles": {
+      "name": "As Pentakel"
+    },
+    "twoOfPentacles": {
+      "name": "Dua Pentakel"
+    },
+    "threeOfPentacles": {
+      "name": "Tiga Pentakel"
+    },
+    "fourOfPentacles": {
+      "name": "Empat Pentakel"
+    },
+    "fiveOfPentacles": {
+      "name": "Lima Pentakel"
+    },
+    "sixOfPentacles": {
+      "name": "Enam Pentakel"
+    },
+    "sevenOfPentacles": {
+      "name": "Tujuh Pentakel"
+    },
+    "eightOfPentacles": {
+      "name": "Delapan Pentakel"
+    },
+    "nineOfPentacles": {
+      "name": "Sembilan Pentakel"
+    },
+    "tenOfPentacles": {
+      "name": "Sepuluh Pentakel"
+    },
+    "pageOfPentacles": {
+      "name": "Putra Pentakel"
+    },
+    "knightOfPentacles": {
+      "name": "Ksatria Pentakel"
+    },
+    "queenOfPentacles": {
+      "name": "Ratu Pentakel"
+    },
+    "kingOfPentacles": {
+      "name": "Raja Pentakel"
+    }
+  }
+}

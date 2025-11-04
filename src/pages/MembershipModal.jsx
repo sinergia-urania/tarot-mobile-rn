@@ -1,7 +1,7 @@
 // src/pages/MembershipModal.jsx
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from "react";
-import { ActivityIndicator, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Linking, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Toast from 'react-native-toast-message';
 import { useDukati } from "../context/DukatiContext";
 import { supabase } from "../utils/supabaseClient";
@@ -11,7 +11,9 @@ import { useTranslation } from 'react-i18next';
 
 // START: fallback bonus vrednosti (dodato objašnjenje)
 // const PAKET_BONUSI = { free: 150, premium: 4000, pro: 7000 };
-const PAKET_BONUSI = { free: 150, premium: 4000, pro: 7000 }; // fallback ako server ne odgovori
+/* START: PAKET_BONUSI proplus fallback */
+const PAKET_BONUSI = { free: 150, premium: 4000, pro: 6500, proplus: 70000 }; // +ProPlus fallback (70k)
+/* END: PAKET_BONUSI proplus fallback */
 // END: fallback bonus vrednosti (dodato objašnjenje)
 
 // START: packages – dodati labelKey/valueKey uz postojeće label/value (fallback ostaje)
@@ -79,6 +81,25 @@ const packages = [
       { label: "", value: "Bez reklama", valueKey: "noAds", color: "#ae7ffb" },
     ],
   },
+  /* START: ProPlus (godišnji) – nova kartica */
+  {
+    name: "ProPlus",
+    key: "proplus",
+    color: "#ef4444",
+    features: [
+      { label: "", value: "AI model: Large", valueKey: "aiModelLarge", color: "#ef4444" },
+      { label: "Značenje karata", labelKey: "meanings", icon: "bank-outline" },
+      { label: "Klasična otvaranja", labelKey: "classicSpreads", icon: "bank-outline" },
+      { label: "Keltski krst", labelKey: "celticCross", icon: "bank-outline" },
+      { label: "Kabalističko otvaranje", labelKey: "kabbalisticSpread", icon: "bank-outline" },
+      { label: "Astrološko otvaranje", labelKey: "astrologicalSpread", icon: "bank-outline" },
+      { label: "Astro tranziti", labelKey: "astrologicalTransits", icon: "bank-outline" },
+      { label: "AI potpitanja", labelKey: "aiFollowups", icon: "bank-outline" },
+      { label: "Arhiva otvaranja", labelKey: "historyArchive", icon: "bank-outline" },
+      { label: "", value: "Bez reklama", valueKey: "noAds", color: "#ef4444" },
+    ],
+  },
+  /* END: ProPlus (godišnji) – nova kartica */
 ];
 // END: packages – dodati labelKey/valueKey
 
@@ -98,6 +119,10 @@ export default function MembershipModal({ visible, onClose }) {
   const [loadingPremium, setLoadingPremium] = React.useState(false);
   const [loadingPro, setLoadingPro] = React.useState(false);
   const [loadingTopUp, setLoadingTopUp] = React.useState(false);
+  /* START: ProPlus state & env */
+  const [loadingProPlus, setLoadingProPlus] = React.useState(false); // ProPlus CTA state
+  const PRO_PLUS_ANNUAL_PRICE_ID = process.env.EXPO_PUBLIC_STRIPE_PRICE_PRO_PLUS_YEAR;
+  /* END: ProPlus state & env */
 
   // START: remote membership pricing (čitamo sa Edge funkcije)
   const [mPricing, setMPricing] = React.useState(null);
@@ -117,10 +142,16 @@ export default function MembershipModal({ visible, onClose }) {
     free: mPricing?.packages?.free?.coinsBonus ?? PAKET_BONUSI.free,
     premium: mPricing?.packages?.premium?.coinsBonus ?? PAKET_BONUSI.premium,
     pro: mPricing?.packages?.pro?.coinsBonus ?? PAKET_BONUSI.pro,
+    /* START: BONUS ProPlus */
+    proplus: mPricing?.packages?.proplus?.coinsBonus ?? PAKET_BONUSI.proplus,
+    /* END: BONUS ProPlus */
   };
   const PRICE = {
     premium: mPricing?.packages?.premium?.price ?? { amount: 599, currency: 'RSD', period: 'mesec' },
     pro: mPricing?.packages?.pro?.price ?? { amount: 999, currency: 'RSD', period: 'mesec' },
+    /* START: PRICE ProPlus (godišnje) */
+    proplus: mPricing?.packages?.proplus?.price ?? { amount: 7999, currency: 'RSD', period: 'godina' },
+    /* END: PRICE ProPlus (godišnje) */
     topup500: mPricing?.topups?.coins_500?.price ?? { amount: 100, currency: 'RSD' },
     topup1000: mPricing?.topups?.coins_1000?.price ?? { amount: 170, currency: 'RSD' },
   };
@@ -129,18 +160,25 @@ export default function MembershipModal({ visible, onClose }) {
   // START: helper — sigurno upiši package (RPC → verify → direct UPDATE → verify)
   const writePackage = React.useCallback(async (uid, pkg) => {
     const target = String(pkg || "").toLowerCase();
-    // 1) RPC pokušaj
+    // START: RPC pokušaj — prvo novi RPC sa istekom, pa fallback na stari
     try {
-      const { error: rpcErr } = await supabase.rpc("set_package", {
+      const { error: rpcErr1 } = await supabase.rpc("set_package_with_expiry", {
         p_user: uid,
         p_package: target,
       });
-      if (rpcErr) {
-        if (__DEV__) console.warn("[set_package RPC] error:", rpcErr);
+      if (rpcErr1) {
+        if (__DEV__) console.warn("[set_package_with_expiry RPC] error:", rpcErr1);
+        const { error: rpcErr2 } = await supabase.rpc("set_package", {
+          p_user: uid,
+          p_package: target,
+        });
+        if (rpcErr2 && __DEV__) console.warn("[set_package RPC] error:", rpcErr2);
       }
     } catch (e) {
-      if (__DEV__) console.warn("[set_package RPC] threw:", e);
+      if (__DEV__) console.warn("[set_package*_ RPC] threw:", e);
     }
+    // END: RPC pokušaj — prvo novi RPC sa istekom, pa fallback na stari
+
     // 1a) VERIFY posle RPC-a
     try {
       const { data: v1 } = await supabase
@@ -312,6 +350,57 @@ export default function MembershipModal({ visible, onClose }) {
     }
   };
 
+  /* START: ProPlus handler (godišnji plan) */
+  const handleKupiProPlus = async () => {
+    setLoadingProPlus(true);
+    try {
+      const uid = await getUid();
+      if (!uid) throw new Error(t('common:errors.notLoggedIn', { defaultValue: 'Niste ulogovani.' }));
+
+      // Ako postoji priceId (ENV ili edge config), idemo kroz checkout
+      const priceId = mPricing?.packages?.proplus?.stripePriceId || PRO_PLUS_ANNUAL_PRICE_ID;
+      if (priceId) {
+        const { data, error } = await supabase.functions.invoke('create-checkout-session', {
+          body: { priceId, mode: 'subscription', plan: 'proplus' },
+        });
+        if (error) throw error;
+        if (data?.url) {
+          Linking.openURL(data.url);
+          return; // nastavak je preko webhook-a → on setuje package/premium_until
+        }
+      }
+
+      // Fallback (dev/test): direktno dodeli bonus i postavi package
+      await supabase.rpc("add_coins", { p_user: uid, p_amount: BONUS.proplus, p_reason: "upgrade_proplus" });
+      const ok = await writePackage(uid, "proplus");
+      if (!ok) throw new Error("PACKAGE_UPDATE_FAILED");
+
+      await fetchDukatiSaServera();
+      await refreshUserPlan();
+      onClose?.();
+
+      Toast.show({
+        type: "success",
+        text1: t('common:messages.successTitle', { defaultValue: 'Uspeh!' }),
+        text2: t('common:membership.toast.upgradedProPlus', {
+          bonus: BONUS.proplus,
+          defaultValue: 'Vaš nalog je sada ProPlus. Dobili ste još {{bonus}} dukata!'
+        }),
+        position: "bottom",
+      });
+    } catch (err) {
+      Toast.show({
+        type: "error",
+        text1: t('common:errors.genericTitle', { defaultValue: 'Greška' }),
+        text2: err?.message || t('common:errors.tryAgain', { defaultValue: 'Pokušajte ponovo.' }),
+        position: "bottom",
+      });
+    } finally {
+      setLoadingProPlus(false);
+    }
+  };
+  /* END: ProPlus handler (godišnji plan) */
+
   return (
     <Modal transparent animationType="fade" visible={visible} onRequestClose={onClose}>
       <View style={styles.overlay}>
@@ -346,7 +435,21 @@ export default function MembershipModal({ visible, onClose }) {
                     paddingVertical: 18,
                   },
                   pkg.name === "Pro" && styles.cardBest,
+                  /* START: istakni ProPlus karticu */
+                  pkg.key === "proplus" && styles.cardBestPlus,
+                  /* END: istakni ProPlus karticu */
                 ]}>
+                  {/* START: Best offer bedž za ProPlus */}
+                  {pkg.key === "proplus" && (
+                    <View style={styles.bestOfferBadge}>
+                      <Text style={styles.bestOfferText}>
+                        {/* i18n label sa fallbackom */}
+                        ⭐ {t('common:membership.proplus.bestOffer', { defaultValue: 'Najbolja ponuda' })}
+                      </Text>
+                    </View>
+                  )}
+                  {/* END: Best offer bedž za ProPlus */}
+
                   <Text style={[
                     styles.cardTitle,
                     { color: pkg.color }
@@ -470,6 +573,40 @@ export default function MembershipModal({ visible, onClose }) {
                       )}
                     </TouchableOpacity>
                   )}
+                  {/* START: CTA ProPlus (godišnje) */}
+                  {pkg.key === "proplus" && (
+                    <TouchableOpacity
+                      style={{
+                        backgroundColor: "#ef4444",
+                        borderRadius: 7,
+                        padding: 10,
+                        marginTop: 12,
+                        alignSelf: "center",
+                        opacity: userPlan === "proplus" || loadingProPlus ? 0.45 : 1,
+                      }}
+                      onPress={handleKupiProPlus}
+                      disabled={userPlan === "proplus" || loadingProPlus}
+                    >
+                      {loadingProPlus ? (
+                        <ActivityIndicator color="#222" size="small" />
+                      ) : (
+                        <Text style={{
+                          color: userPlan === "proplus" ? "#7d1a1a" : "#2b0a0a",
+                          fontWeight: "bold",
+                          fontSize: 16
+                        }}>
+                          {userPlan === "proplus"
+                            ? t('common:membership.cta.alreadyProPlus', { defaultValue: 'Već imate ProPlus' })
+                            : t('common:membership.cta.buyProPlus', {
+                              price: PRICE.proplus.amount,
+                              currency: PRICE.proplus.currency,
+                              defaultValue: 'Kupi ProPlus ({{price}} {{currency}} / godinu)'
+                            })}
+                        </Text>
+                      )}
+                    </TouchableOpacity>
+                  )}
+                  {/* END: CTA ProPlus (godišnje) */}
                 </View>
               </View>
             ))}
@@ -592,6 +729,32 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 7,
   },
+  /* START: styles ProPlus (istaknuto) */
+  cardBestPlus: {
+    borderColor: "#ef4444",
+    shadowColor: "#ef4444",
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  bestOfferBadge: {
+    position: "absolute",
+    top: -10,
+    right: -8,
+    backgroundColor: "#ef4444",
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ffb4b4",
+  },
+  bestOfferText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 12,
+    letterSpacing: 0.3,
+  },
+  /* END: styles ProPlus (istaknuto) */
   cardTitle: {
     fontWeight: "bold",
     fontSize: 19,

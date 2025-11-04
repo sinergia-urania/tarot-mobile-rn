@@ -1,57 +1,75 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useCallback, useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { getCardImagePath } from '../utils/getCardImagePath';
 import TarotCardModal from './TarotCardModal';
-// START: Dodaj import za imena karata iz JSON-a
-import cardMeanings from '../locales/sr/cardMeanings.json';
-// END: Dodaj import za imena karata iz JSON-a
-// START: i18n hook (cardMeanings)
+// START: i18n
 import { useTranslation } from 'react-i18next';
-// END: i18n hook (cardMeanings)
+import cardMeanings from '../locales/sr/cardMeanings.json';
+// END: i18n
+// START: SafeImage (expo-image) za karte
+import SafeImage from '../components/SafeImage';
+// END: SafeImage
 
 const CardGroupList = ({ cards, title, groupIcon, onCardView }) => {
   const [selectedCard, setSelectedCard] = useState(null);
-  // START: init i18n
   const { t } = useTranslation(['cardMeanings']);
-  // END: init i18n
 
-  // START: Pravi grid sa 3 kolone + poziv parent handlera
-  const handleCardPress = (item) => {
+  // START: memo handler
+  const handleCardPress = useCallback((item) => {
     setSelectedCard(item);
     if (onCardView) onCardView();
-  };
+  }, [onCardView]);
+  // END: memo handler
 
-  const renderItem = ({ item }) => (
+  // START: memo keyExtractor
+  const keyExtractor = useCallback((it) => it.key, []);
+  // END: memo keyExtractor
+
+  // START: memo renderItem + SafeImage props
+  const renderItem = useCallback(({ item }) => (
     <TouchableOpacity style={styles.cardContainer} onPress={() => handleCardPress(item)}>
-      <Image source={getCardImagePath(item.key)} style={styles.cardImage} />
-      {/* START: naziv karte preko i18n (cardMeanings) sa fallback-om na lokalni sr JSON */}
+      <SafeImage
+        source={getCardImagePath(item.key)}
+        style={styles.cardImage}
+        contentFit="contain"
+        transition={120}
+        cachePolicy="disk"
+        recyclingKey={item.key}
+      />
       <Text style={styles.cardTitle}>
         {t(`cardMeanings:cards.${item.key}.name`, {
           defaultValue: (cardMeanings?.cards?.[item.key]?.name) ?? item.key
         })}
       </Text>
-      {/* END: naziv karte preko i18n (cardMeanings) sa fallback-om */}
     </TouchableOpacity>
-  );
-  // END: Pravi grid sa 3 kolone + poziv parent handlera
+  ), [handleCardPress, t]);
+  // END: memo renderItem + SafeImage props
 
   return (
     <View style={styles.screen}>
-      {/* START: Ikonica grupe odmah ispod headera (opciono) */}
+      {/* Ikonica grupe (ostaje RN Image jer je mala i retko se menja) */}
       {groupIcon && (
         <Image source={groupIcon} style={styles.groupIcon} />
       )}
-      {/* END: Ikonica grupe */}
 
       <Text style={styles.groupTitle}>{title}</Text>
+
       <FlatList
         data={cards}
         renderItem={renderItem}
-        keyExtractor={(item) => item.key}
+        keyExtractor={keyExtractor}
         numColumns={3}
         contentContainerStyle={styles.cardsList}
         showsVerticalScrollIndicator={false}
+        // START: FlatList tuning
+        initialNumToRender={9}
+        windowSize={5}
+        maxToRenderPerBatch={9}
+        updateCellsBatchingPeriod={50}
+        removeClippedSubviews
+      // END: FlatList tuning
       />
+
       {selectedCard && (
         <TarotCardModal
           card={selectedCard}
@@ -120,5 +138,3 @@ const styles = StyleSheet.create({
 });
 
 export default CardGroupList;
-
-

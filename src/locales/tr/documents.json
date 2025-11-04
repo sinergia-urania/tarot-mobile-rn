@@ -1,0 +1,89 @@
+{
+  "about": {
+    "title": "Uygulama Hakkında",
+    "updatedAt": "28 Ağustos 2025",
+    "body": [
+      "AiTarot Una, kullanıcılara kişiselleştirilmiş, düşünceli ve faydalı yorumlar sunmak için modern yapay zekâ teknolojileri ile Tarot dünyasının arketipsel sembollerini bir araya getiren bir uygulamadır. YZ rastgele mesajlar üretmez — kullanıcının sorusu ve kart yerleşimi bağlamında analiz eder.",
+      "Uygulamadaki tüm açılımlar (doğası gereği sezgisel olan “Günün Kartı” ve “Evet/Hayır” hariç) kartları çok katmanlı bir sembolik sistem üzerinden inceler ve kullanıcının sorusuna göre içsel mantığı tanımaya çalışır.",
+      "Nasıl çalışır: Uygulama sık sorulan sorulardan oluşan bir liste sunar; ancak öneriler arasında yoksa her zaman kendi sorunuzu girebilirsiniz — böylece gerçekten kişisel ve ilgili bir yorum alırsınız.",
+      "Erişim ve planlar:",
+      "• Ücretsiz: sınırlı sayıda açılım ve özellikle temel erişim.",
+      "• Premium: ek açılım türlerinin ve içgörülerin kilidini açar.",
+      "• Pro: tüm araçlara, analizlere ve kişiselleştirmeye tam erişim.",
+      "Planlara ek olarak AdReward seçeneği vardır — reklam izleyerek ödemeye alternatif olarak bazı özelliklerin kilidini açabilirsiniz.",
+      "Not: Uygulama geleceği deterministik anlamda öngörmez; kartların ve sembolizmin arketipsel dili üzerinden olası yönleri ve içsel örüntüleri aydınlatır.",
+      "Uygulama sürümü: 1.0.0"
+    ]
+  },
+  "terms": {
+    "title": "Hizmet Şartları",
+    "updatedAt": "28 Ağustos 2025",
+    "sourceUrl": "terms-of-service-tr.html",
+    "body": [
+      "Bu uygulamayı kullanarak aşağıdaki şart ve kuralları kabul etmiş olursunuz. Bu şartların herhangi bir bölümünü kabul etmiyorsanız, lütfen uygulamayı kullanmayın.",
+      "• Uygulama kişisel ve ticari olmayan kullanım içindir.",
+      "• Yazarın izni olmadan içeriği kopyalayamaz, dağıtamaz veya değiştiremezsiniz.",
+      "• Hizmet Şartları’nı önceden bildirim olmaksızın istediğimiz zaman değiştirebiliriz.",
+      "Uygulamayı kullanmaya devam ederek bu şartları okuduğunuzu, anladığınızı ve kabul ettiğinizi onaylarsınız."
+    ]
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "updatedAt": "28 Ağustos 2025",
+    "sourceUrl": "privacy-policy-tr.html",
+    "body": [
+      "Gizliliğinize önem veriyoruz. Bu belge, hangi verileri neden topladığımızı ve nasıl koruduğumuzu özetler.",
+      "Ne topluyoruz: (a) hesap verileri (e-posta, görünen ad, dil), (b) isteğe bağlı profil verileri (cinsiyet, doğum tarihi, burç/yükselen), (c) teknik veriler (kullanıcı kimliği, Expo push token, cihaz dili/bölgesi), (d) özellik kullanımına ilişkin meta veriler.",
+      "Nerede saklıyoruz: Supabase (veritabanı ve kimlik doğrulama). Push bildirimlerinin iletimi için Expo kullanılır (cihaz token’ı). Müşteri desteği için Zoho Mail kullanılır.",
+      "Neden: uygulama işlevlerini sağlamak, ayarları eşitlemek, talep ettiğiniz bildirimleri yollamak ve ürün kalitesini iyileştirmek.",
+      "Paylaşım: kişisel verileri satmıyoruz. Verileri yalnızca uygulamanın çalışması için gerekli hizmet sağlayıcılarla (ör. Supabase, Expo) uygun veri işleme anlaşmaları kapsamında paylaşıyoruz.",
+      "Saklama ve silme: hizmeti sunmak için gereken süre boyunca verileri saklarız. Destek ile iletişime geçerek hesabınızın dışa aktarımını veya silinmesini talep edebilirsiniz.",
+      "Güvenlik: teknik ve organizasyonel önlemler uygularız; ancak hiçbir sistem %100 güvenli değildir.",
+      "Haklarınız: erişim, düzeltme, silme, itiraz, uygun olduğunda rızayı geri çekme.",
+      "Gizlilik iletişimi: info@infohelm.org"
+    ]
+  },
+  "support": {
+    "title": "Destek ve Bağışlar",
+    "updatedAt": "28 Ağustos 2025",
+    "body": [
+      "Uygulama geliştirmesini desteklemek isterseniz:",
+      "• İhtiyacınıza göre PRO/Premium üyeliğin kilidini açın — daha fazla açılım ve daha az kısıtlamaya sahip olursunuz.",
+      "• Ücretsiz jetonlar için kısa reklamlar izleyin (AdReward).",
+      "• Mağazada puan verip yorum bırakın — bizim için çok değerli!",
+      "• Uygulamayı arkadaşlarınızla paylaşın.",
+      "Ek yardım veya öneriler için şu adrese yazın: info@infohelm.org"
+    ]
+  },
+  "contact": {
+    "title": "İletişim",
+    "updatedAt": "28 Ağustos 2025",
+    "body": [
+      "Herhangi bir sorunuz, öneriniz veya teknik sorununuz varsa bizimle iletişime geçmekten çekinmeyin.",
+      "E-posta: info@infohelm.org",
+      "İş günlerinde 24 saat içinde yanıt veriyoruz."
+    ]
+  },
+  "disclaimer": {
+    "title": "Feragatname",
+    "updatedAt": "28 Ağustos 2025",
+    "body": [
+      "Bu uygulama, bir Tarot uzmanının yapacağına benzer şekilde sembolleri yorumlamak ve soruları yanıtlamak için yapay zekâ kullanır. YZ örüntüleri analiz etse ve içgörüler sağlasa da; yanıtları sağlık, hukuk veya finans gibi alanlarda profesyonel danışmanın yerine geçmez.",
+      "Kullanıcılar, aldıkları mesaj ve içgörülere dayanarak kendi kararlarını verirler. İçeriğin kullanımından doğabilecek sonuçlardan uygulamanın geliştiricisi sorumlu tutulamaz.",
+      "Uygulamayı kullanarak bu koşulları kabul etmiş olursunuz."
+    ]
+  },
+  "dataDeletion": {
+    "title": "Veri Silme",
+    "updatedAt": "28 Ağustos 2025",
+    "sourceUrl": "data-deletion-tr.html",
+    "body": [
+      "Hesabınızın ve verilerinizin silinmesini istediğiniz zaman talep edebilirsiniz.",
+      "Talep nasıl iletilir: hesabınıza bağlı e-posta adresinden info@infohelm.org adresine verilerinizin silinmesini istediğinizi belirten kısa bir notla yazın. Mümkünse profilinizdeki kullanıcı kimliğini (UID) ekleyin.",
+      "Neleri siliyoruz: profil (e-posta, görünen ad, dil tercihleri), kaydedilmiş push bildirim token’ları, açılım/yorum geçmişi ve hesaba bağlı diğer veriler.",
+      "Neleri saklayabiliriz: Gizlilik Politikası’na uygun olarak yasal yükümlülükler veya güvenlik ihtiyaçları için gerekli asgari kayıtlar.",
+      "Süre: kimlik doğrulamasından sonra talepler genellikle 30 gün içinde işlenir.",
+      "Daha fazla ayrıntı ve resmî belge sürümü web sitemizde mevcuttur (“Web’de aç” düğmesini kullanın)."
+    ]
+  }
+}

@@ -10,6 +10,10 @@ import { supabase } from '../utils/supabaseClient';
 import { useTranslation } from 'react-i18next';
 // END: i18n
 
+// START: plan normalizacija (ProPlus podrška)
+import { normalizePlanCanon } from '../constants/plans';
+// END: plan normalizacija (ProPlus podrška)
+
 // Pol (gender) opcije
 const GENDER_OPCIJE = [
   { label: 'Muški', value: 'male' },
@@ -55,6 +59,8 @@ const ProfilModal = ({
     de: 'de-DE',
     hi: 'hi-IN',
     fr: 'fr-FR',
+    tr: 'tr-TR',
+    id: 'id-ID',
   };
   const uiLocale = localeMap[i18n.language?.slice(0, 2)] || 'sr-RS';
   // END: i18n hook + helpers
@@ -146,31 +152,35 @@ const ProfilModal = ({
 
   // Dinamički badge za status
   const statusBadge = () => {
-    if (status === 'premium') {
+    // START: ProPlus podrška + kanonikalizacija statusa
+    const canon = normalizePlanCanon(status);
+    if (canon === 'premium') {
       return (
         <Text style={styles.statusBadgePremium}>
-          {/* START: i18n premium label */}
           🟡 {t('common:membership.packages.premium', { defaultValue: 'Premium' })}
-          {/* END: i18n premium label */}
         </Text>
       );
     }
-    if (status === 'pro') {
+    if (canon === 'proplus') {
       return (
         <Text style={styles.statusBadgePro}>
-          {/* START: i18n pro label */}
+          🔵 {t('common:membership.packages.proplus', { defaultValue: 'ProPlus' })}
+        </Text>
+      );
+    }
+    if (canon === 'pro') {
+      return (
+        <Text style={styles.statusBadgePro}>
           🔵 {t('common:membership.packages.pro', { defaultValue: 'Pro' })}
-          {/* END: i18n pro label */}
         </Text>
       );
     }
     return (
       <Text style={styles.statusBadgeFree}>
-        {/* START: i18n free label */}
         ⚪ {t('common:membership.packages.free', { defaultValue: 'Free' })}
-        {/* END: i18n free label */}
       </Text>
     );
+    // END: ProPlus podrška + kanonikalizacija statusa
   };
 
   return (
@@ -184,24 +194,18 @@ const ProfilModal = ({
             showsVerticalScrollIndicator
           >
             <Text style={styles.sectionTitle}>
-              {/* START: i18n naslov */}
               {t('common:profile.title', { defaultValue: '👤 Profil' })}
-              {/* END: i18n naslov */}
             </Text>
 
             {/* --- Ime korisnika (edit) --- */}
             <Text style={styles.sectionText}>
-              {/* START: i18n label Ime */}
               {t('common:profile.nameLabel', { defaultValue: 'Ime:' })}
-              {/* END: i18n label Ime */}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
               <TextInput
                 value={displayName}
                 onChangeText={setDisplayName}
-                // START: i18n placeholder ime
                 placeholder={t('common:placeholders.enterName', { defaultValue: 'Unesi ime' })}
-                // END: i18n placeholder ime
                 style={{
                   flex: 1,
                   borderWidth: 1,
@@ -220,9 +224,7 @@ const ProfilModal = ({
 
             <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 14 }}>
               <Text style={styles.sectionText}>
-                {/* START: i18n "Dukati" label (koristimo accessibility kao fallback) */}
                 {t('common:labels.coins', { defaultValue: t('common:accessibility.coins', { defaultValue: 'Dukati' }) })}
-                {/* END: i18n "Dukati" label */}
                 :{' '}
               </Text>
               {loading ? (
@@ -234,32 +236,23 @@ const ProfilModal = ({
 
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text style={styles.sectionText}>
-                {/* START: i18n "Status" */}
-                {t('common:labels.status', { defaultValue: 'Status:' })}
-                {/* END: i18n "Status" */}
-                {' '}
+                {t('common:labels.status', { defaultValue: 'Status:' })}{' '}
               </Text>
               {statusBadge()}
             </View>
 
             {/* --- Pol korisnika --- */}
             <Text style={styles.sectionText}>
-              {/* START: i18n "Pol" */}
               {t('common:profile.gender.label', { defaultValue: 'Pol:' })}
-              {/* END: i18n "Pol" */}
             </Text>
             <DropDownPicker
               open={openGender}
               setOpen={setOpenGender}
               value={gender}
               setValue={setGender}
-              // START: i18n items
               items={genderOpcijeI18n}
-              // END: i18n items
               listMode="MODAL"
-              // START: i18n placeholder
               placeholder={t('common:placeholders.selectGender', { defaultValue: 'Izaberi pol' })}
-              // END: i18n placeholder
               style={{ marginBottom: openGender ? 60 : 8, zIndex: 4000 }}
               zIndex={4000}
               zIndexInverse={1100}
@@ -268,9 +261,7 @@ const ProfilModal = ({
             {/* --- Astropodaci unos/prikaz --- */}
             <View style={{ marginTop: 12, marginBottom: 6 }}>
               <Text style={styles.sectionText}>
-                {/* START: i18n "Datum rođenja" */}
                 {t('common:profile.birthDate', { defaultValue: 'Datum rođenja:' })}
-                {/* END: i18n "Datum rođenja" */}
               </Text>
               <TouchableOpacity onPress={() => setPrikaziDatePicker(true)} style={{ marginBottom: 10 }}>
                 <Text style={styles.sectionText}>
@@ -298,44 +289,32 @@ const ProfilModal = ({
               )}
 
               <Text style={styles.sectionText}>
-                {/* START: i18n "Znak" */}
                 {t('common:profile.sunSign', { defaultValue: 'Znak:' })}
-                {/* END: i18n "Znak" */}
               </Text>
               <DropDownPicker
                 open={openZnak}
                 setOpen={setOpenZnak}
                 value={znak}
                 setValue={setZnak}
-                // START: i18n items
                 items={znakoviI18n}
-                // END: i18n items
                 listMode="MODAL"
-                // START: i18n placeholder
                 placeholder={t('common:placeholders.pickSign', { defaultValue: 'Izaberi znak' })}
-                // END: i18n placeholder
                 style={{ marginBottom: openZnak ? 60 : 8, zIndex: 3000 }}
                 zIndex={3000}
                 zIndexInverse={1000}
               />
 
               <Text style={styles.sectionText}>
-                {/* START: i18n "Podznak" */}
                 {t('common:profile.ascendant', { defaultValue: 'Podznak:' })}
-                {/* END: i18n "Podznak" */}
               </Text>
               <DropDownPicker
                 open={openPodznak}
                 setOpen={setOpenPodznak}
                 value={podznak}
                 setValue={setPodznak}
-                // START: i18n items (možemo reciklirati istu listu znakova)
                 items={znakoviI18n}
-                // END: i18n items
                 listMode="MODAL"
-                // START: i18n placeholder
                 placeholder={t('common:placeholders.pickAscendant', { defaultValue: 'Izaberi podznak' })}
-                // END: i18n placeholder
                 style={{ marginBottom: openPodznak ? 60 : 8, zIndex: 2000 }}
                 zIndex={2000}
                 zIndexInverse={900}

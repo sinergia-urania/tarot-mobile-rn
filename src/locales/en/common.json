@@ -142,7 +142,16 @@
       "guest": "Guest",
       "free": "Free",
       "premium": "Premium",
-      "pro": "Pro"
+      "pro": "Pro",
+      "proplus": "ProPlus"
+    },
+    "proplus": {
+      "title": "ProPlus Annual",
+      "subtitle": "For power users. No limits, no ads.",
+      "pricePerYear": "{{price}} {{currency}} / year",
+      "saveXPercent": "Save {{percent}}%",
+      "bestOffer": "Best offer",
+      "coinsIncluded": "{{count}} coins included"
     },
     "features": {
       "meanings": "Card meanings",
@@ -167,7 +176,9 @@
       "alreadyPremium": "You already have Premium",
       "buyPremium": "Buy Premium ({{price}} {{currency}} / month)",
       "alreadyPro": "You already have PRO",
-      "buyPro": "Buy PRO ({{price}} {{currency}} / month)"
+      "buyPro": "Buy PRO ({{price}} {{currency}} / month)",
+      "alreadyProPlus": "You already have ProPlus",
+      "buyProPlus": "Buy ProPlus ({{price}} {{currency}} / year)"
     },
     "topup": {
       "title": "Top up coins",
@@ -176,6 +187,7 @@
     "toast": {
       "upgradedPremium": "Your account is now Premium. You received {{bonus}} coins!",
       "upgradedPro": "Your account is now PRO. You received {{bonus}} coins!",
+      "upgradedProPlus": "Your account is now ProPlus. You received {{bonus}} coins!",
       "topupDone": "You received {{amount}} coins."
     }
   },

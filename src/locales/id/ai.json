@@ -1,0 +1,67 @@
+{
+  "titles": {
+    "aiReply": "Una menjawab",
+    "housesAnalysis": "Interpretasi menurut rumah astrologi",
+    "sefirotAnalysis": "Interpretasi menurut sefirot",
+    "celticAnalysis": "Interpretasi Silang Keltik",
+    "followupPrompt": "Tambahkan pertanyaan tindak lanjut (PRO):",
+    "astroHouses": "Interpretasi menurut rumah astrologi:",
+    "sefirot": "Interpretasi menurut Sefirot:",
+    "celticInterpretation": "Interpretasi Silang Keltik:"
+  },
+  "labels": {
+    "question": "Pertanyaan:",
+    "spreadType": "Jenis tebaran: {{value}}. "
+  },
+  "placeholders": {
+    "followup": "Masukkan tindak lanjut..."
+  },
+  "summary": {
+    "label": "Simpulan:"
+  },
+  "houses": [
+    "Rumah ke-1 (Diri)",
+    "Rumah ke-2 (Keuangan)",
+    "Rumah ke-3 (Komunikasi)",
+    "Rumah ke-4 (Rumah & Keluarga)",
+    "Rumah ke-5 (Kreativitas)",
+    "Rumah ke-6 (Kesehatan)",
+    "Rumah ke-7 (Kemitraan)",
+    "Rumah ke-8 (Transformasi)",
+    "Rumah ke-9 (Perjalanan & Keyakinan)",
+    "Rumah ke-10 (Karier)",
+    "Rumah ke-11 (Teman & Komunitas)",
+    "Rumah ke-12 (Bawah sadar)"
+  ],
+  "celticPositions": [
+    "1. Situasi saat ini",
+    "2. Hambatan / Tantangan",
+    "3. Dasar (Bawah sadar)",
+    "4. Masa lalu",
+    "5. Sadar / Kemungkinan",
+    "6. Masa depan dekat",
+    "7. Sikap terhadap situasi",
+    "8. Pengaruh lingkungan",
+    "9. Harapan / Ketakutan",
+    "10. Hasil"
+  ],
+  "sefirot": [
+    "Keter (Mahkota)",
+    "Chokhmah (Kebijaksanaan)",
+    "Binah (Pemahaman)",
+    "Chesed (Belas Kasih)",
+    "Gevurah (Ketegasan)",
+    "Tiferet (Keindahan)",
+    "Netzach (Keabadian)",
+    "Hod (Kemuliaan)",
+    "Yesod (Pondasi)",
+    "Malkhut (Kerajaan)"
+  ],
+  "misc": {
+    "proOnly": "Tindak lanjut hanya tersedia untuk PRO.",
+    "followupTitle": "Kirim tindak lanjut (PRO):",
+    "followupAnswer": "Jawaban tindak lanjut:",
+    "oneFollowupNote": "Kamu dapat mengajukan tindak lanjut baru hanya pada pembacaan berikutnya.",
+    "cardPlaceholder": "Kartu {{index}}"
+  }
+}

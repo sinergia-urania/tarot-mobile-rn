@@ -1,0 +1,238 @@
+{
+  "cards": {
+    "theFool": {
+      "name": "Deli"
+    },
+    "theMagician": {
+      "name": "Büyücü"
+    },
+    "theHighPriestess": {
+      "name": "Başrahibe"
+    },
+    "theEmpress": {
+      "name": "İmparatoriçe"
+    },
+    "theEmperor": {
+      "name": "İmparator"
+    },
+    "theHierophant": {
+      "name": "Aziz"
+    },
+    "theLovers": {
+      "name": "Aşıklar"
+    },
+    "theChariot": {
+      "name": "Savaş Arabası"
+    },
+    "strength": {
+      "name": "Güç"
+    },
+    "theHermit": {
+      "name": "Ermiş"
+    },
+    "wheelOfFortune": {
+      "name": "Kader Çarkı"
+    },
+    "justice": {
+      "name": "Adalet"
+    },
+    "theHangedMan": {
+      "name": "Asılan Adam"
+    },
+    "death": {
+      "name": "Ölüm"
+    },
+    "temperance": {
+      "name": "Denge"
+    },
+    "theDevil": {
+      "name": "Şeytan"
+    },
+    "theTower": {
+      "name": "Kule"
+    },
+    "theStar": {
+      "name": "Yıldız"
+    },
+    "theMoon": {
+      "name": "Ay"
+    },
+    "theSun": {
+      "name": "Güneş"
+    },
+    "judgement": {
+      "name": "Yargı"
+    },
+    "theWorld": {
+      "name": "Dünya"
+    },
+    "aceOfWands": {
+      "name": "Değnek Ası"
+    },
+    "twoOfWands": {
+      "name": "Değnek İkilisi"
+    },
+    "threeOfWands": {
+      "name": "Değnek Üçlüsü"
+    },
+    "fourOfWands": {
+      "name": "Değnek Dörtlüsü"
+    },
+    "fiveOfWands": {
+      "name": "Değnek Beşlisi"
+    },
+    "sixOfWands": {
+      "name": "Değnek Altılısı"
+    },
+    "sevenOfWands": {
+      "name": "Değnek Yedilisi"
+    },
+    "eightOfWands": {
+      "name": "Değnek Sekizlisi"
+    },
+    "nineOfWands": {
+      "name": "Değnek Dokuzlusu"
+    },
+    "tenOfWands": {
+      "name": "Değnek Onlusu"
+    },
+    "pageOfWands": {
+      "name": "Değnek Valesi"
+    },
+    "knightOfWands": {
+      "name": "Değnek Şövalyesi"
+    },
+    "queenOfWands": {
+      "name": "Değnek Kraliçesi"
+    },
+    "kingOfWands": {
+      "name": "Değnek Kralı"
+    },
+    "aceOfCups": {
+      "name": "Kupa Ası"
+    },
+    "twoOfCups": {
+      "name": "Kupa İkilisi"
+    },
+    "threeOfCups": {
+      "name": "Kupa Üçlüsü"
+    },
+    "fourOfCups": {
+      "name": "Kupa Dörtlüsü"
+    },
+    "fiveOfCups": {
+      "name": "Kupa Beşlisi"
+    },
+    "sixOfCups": {
+      "name": "Kupa Altılısı"
+    },
+    "sevenOfCups": {
+      "name": "Kupa Yedilisi"
+    },
+    "eightOfCups": {
+      "name": "Kupa Sekizlisi"
+    },
+    "nineOfCups": {
+      "name": "Kupa Dokuzlusu"
+    },
+    "tenOfCups": {
+      "name": "Kupa Onlusu"
+    },
+    "pageOfCups": {
+      "name": "Kupa Valesi"
+    },
+    "knightOfCups": {
+      "name": "Kupa Şövalyesi"
+    },
+    "queenOfCups": {
+      "name": "Kupa Kraliçesi"
+    },
+    "kingOfCups": {
+      "name": "Kupa Kralı"
+    },
+    "aceOfSwords": {
+      "name": "Kılıç Ası"
+    },
+    "twoOfSwords": {
+      "name": "Kılıç İkilisi"
+    },
+    "threeOfSwords": {
+      "name": "Kılıç Üçlüsü"
+    },
+    "fourOfSwords": {
+      "name": "Kılıç Dörtlüsü"
+    },
+    "fiveOfSwords": {
+      "name": "Kılıç Beşlisi"
+    },
+    "sixOfSwords": {
+      "name": "Kılıç Altılısı"
+    },
+    "sevenOfSwords": {
+      "name": "Kılıç Yedilisi"
+    },
+    "eightOfSwords": {
+      "name": "Kılıç Sekizlisi"
+    },
+    "nineOfSwords": {
+      "name": "Kılıç Dokuzlusu"
+    },
+    "tenOfSwords": {
+      "name": "Kılıç Onlusu"
+    },
+    "pageOfSwords": {
+      "name": "Kılıç Valesi"
+    },
+    "knightOfSwords": {
+      "name": "Kılıç Şövalyesi"
+    },
+    "queenOfSwords": {
+      "name": "Kılıç Kraliçesi"
+    },
+    "kingOfSwords": {
+      "name": "Kılıç Kralı"
+    },
+    "aceOfPentacles": {
+      "name": "Tılsım Ası"
+    },
+    "twoOfPentacles": {
+      "name": "Tılsım İkilisi"
+    },
+    "threeOfPentacles": {
+      "name": "Tılsım Üçlüsü"
+    },
+    "fourOfPentacles": {
+      "name": "Tılsım Dörtlüsü"
+    },
+    "fiveOfPentacles": {
+      "name": "Tılsım Beşlisi"
+    },
+    "sixOfPentacles": {
+      "name": "Tılsım Altılısı"
+    },
+    "sevenOfPentacles": {
+      "name": "Tılsım Yedilisi"
+    },
+    "eightOfPentacles": {
+      "name": "Tılsım Sekizlisi"
+    },
+    "nineOfPentacles": {
+      "name": "Tılsım Dokuzlusu"
+    },
+    "tenOfPentacles": {
+      "name": "Tılsım Onlusu"
+    },
+    "pageOfPentacles": {
+      "name": "Tılsım Valesi"
+    },
+    "knightOfPentacles": {
+      "name": "Tılsım Şövalyesi"
+    },
+    "queenOfPentacles": {
+      "name": "Tılsım Kraliçesi"
+    },
+    "kingOfPentacles": {
+      "name": "Tılsım Kralı"
+    }
+  }
+}

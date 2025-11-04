@@ -7,7 +7,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
-import { Button, Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+// START: import cleanup (ostavljen stari u komentaru)
+// import { Button, Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Dimensions, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+// END: import cleanup
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
 import i18n from '../../i18n';
@@ -21,6 +24,10 @@ import { getCardImagePath } from "../utils/getCardImagePath";
 import getLayoutByTip from "../utils/getLayoutByTip";
 // ⭐ Novi import: pametni tranziti
 import { getTranzitiZaPeriodAdvanced } from '../utils/getTranzitiZaPeriod';
+
+// START: SafeImage (expo-image) wrapper
+import SafeImage from "../components/SafeImage";
+// END: SafeImage (expo-image) wrapper
 
 // START: Prosta heuristika detekcije jezika pitanja
 function detectLangFromQuestion(q = "") {
@@ -188,7 +195,11 @@ function buildTransitTextForTip(tip, startISO, overrideFormat) {
 const OdgovorAI = () => {
   const route = useRoute();
   const navigation = useNavigation();
-  const { userPlan, userId, dukati, platiOtvaranje } = useDukati();
+  // START: isPro iz konteksta (gating za Pro i ProPlus)
+  // const { userPlan, userId, dukati, platiOtvaranje } = useDukati();
+  const { userPlan, userId, dukati, platiOtvaranje, isPro } = useDukati();
+  const isProTier = !!isPro;
+  // END: isPro iz konteksta (gating za Pro i ProPlus)
   const jezikAplikacije = i18n.language;
   const ime = undefined;
   const FOLLOWUP_PRICE = Number(READING_PRICES?.podpitanje ?? 60);
@@ -407,10 +418,13 @@ const OdgovorAI = () => {
 
   const cenaOtvaranja = route.params?.cena || 0;
 
-  // Lokalna arhiva (PRO)
+  // Lokalna arhiva (PRO/ProPlus)
   useEffect(() => {
     const sacuvajOtvaranje = async () => {
-      if (!userPlan || userPlan !== "pro" || !aiOdgovor) return;
+      // START: gating preko isPro (obuhvata i ProPlus)
+      // if (!userPlan || userPlan !== "pro" || !aiOdgovor) return;
+      if (!isProTier || !aiOdgovor) return;
+      // END: gating preko isPro (obuhvata i ProPlus)
       const novoOtvaranje = {
         id: uuid.v4(),
         question: pitanje,
@@ -429,7 +443,7 @@ const OdgovorAI = () => {
       } catch { }
     };
     sacuvajOtvaranje();
-  }, [aiOdgovor, userPlan, pitanje, prikazaneKarte, tip]);
+  }, [aiOdgovor, isProTier, pitanje, prikazaneKarte, tip, podpitanje, podpitanjeOdgovor]);
 
   // Follow-up (server naplata)
   const handlePodpitanje = async () => {
@@ -540,11 +554,20 @@ const OdgovorAI = () => {
   }
 
   return (
-    <ImageBackground
-      source={backgroundImg}
-      style={{ flex: 1, width: "100%", height: "100%" }}
-      imageStyle={{ resizeMode: "cover" }}
-    >
+    // START: View + SafeImage kao background (WebP na iOS)
+    // <ImageBackground
+    //   source={backgroundImg}
+    //   style={{ flex: 1, width: "100%", height: "100%" }}
+    //   imageStyle={{ resizeMode: "cover" }}
+    // >
+    <View style={{ flex: 1, width: "100%", height: "100%" }}>
+      <SafeImage
+        source={backgroundImg}
+        style={StyleSheet.absoluteFillObject}
+        contentFit="cover"
+      />
+      {/* END: View + SafeImage background */}
+
       <View style={styles.headerWrapper}>
         <TarotHeader
           showBack={false}
@@ -571,7 +594,8 @@ const OdgovorAI = () => {
         ) : (
           <ScrollView style={{ flex: 1 }}>
             <View style={styles.root}>
-              <Image source={unaAvatar} style={styles.avatar} />
+              {/* <Image source={unaAvatar} style={styles.avatar} /> */}
+              <SafeImage source={unaAvatar} style={styles.avatar} contentFit="cover" />
               {/* START: i18n "Pitanje:" */}
               <Text style={styles.pitanjeLabel}>
                 {t('ai:labels.question', { defaultValue: 'Pitanje:' })}
@@ -615,16 +639,23 @@ const OdgovorAI = () => {
                       }}
                     >
                       {card && card.label ? (
-                        <Image
+                        // <Image
+                        //   source={getCardImagePath(card.label)}
+                        //   style={{
+                        //     width: "100%",
+                        //     height: "100%",
+                        //     resizeMode: "cover",
+                        //     transform: isReversed ? [{ rotate: "180deg" }] : undefined,
+                        //   }}
+                        // />
+                        <SafeImage
                           source={getCardImagePath(card.label)}
-                          // START: vizuelna rotacija samo slike karte kad je obrnuta
                           style={{
                             width: "100%",
                             height: "100%",
-                            resizeMode: "cover",
                             transform: isReversed ? [{ rotate: "180deg" }] : undefined,
                           }}
-                        // END: vizuelna rotacija samo slike karte kad je obrnuta
+                          contentFit="cover"
                         />
                       ) : (
                         // START: i18n placeholder pozicije
@@ -641,7 +672,8 @@ const OdgovorAI = () => {
               {/* AI odgovor + kontekst */}
               <View style={styles.odgovorBox}>
                 <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 8, justifyContent: "center" }}>
-                  <Image source={unaAvatar} style={{ width: 44, height: 44, borderRadius: 24, marginRight: 8 }} />
+                  {/* <Image source={unaAvatar} style={{ width: 44, height: 44, borderRadius: 24, marginRight: 8 }} /> */}
+                  <SafeImage source={unaAvatar} style={{ width: 44, height: 44, borderRadius: 24, marginRight: 8 }} contentFit="cover" />
                   <Text style={{ color: "#ffd700", fontSize: 18, fontWeight: "bold" }}>
                     {t('ai:titles.aiReply', { defaultValue: 'Una odgovara' })}:
                   </Text>
@@ -704,8 +736,10 @@ const OdgovorAI = () => {
                   </View>
                 )}
 
-                {/* PRO follow-up */}
-                {userPlan === "pro" && !podpitanjeOdgovor && aiOdgovor && (
+                {/* PRO/ProPlus follow-up (gating preko isPro) */}
+                {/* START: PRO/ProPlus follow-up (gating preko isPro) */}
+                {/* {userPlan === "pro" && !podpitanjeOdgovor && aiOdgovor && ( */}
+                {isProTier && !podpitanjeOdgovor && aiOdgovor && (
                   <View style={{ marginTop: 22, backgroundColor: "#332", borderRadius: 12, padding: 12 }}>
                     <Text style={{ color: "#ffd700", fontWeight: "bold", marginBottom: 6 }}>
                       {t('ai:titles.followupPrompt', { defaultValue: 'Postavi dodatno podpitanje (PRO):' })}
@@ -741,34 +775,28 @@ const OdgovorAI = () => {
                     />
                   </View>
                 )}
+                {/* )} */}
+                {/* END: PRO/ProPlus follow-up (gating preko isPro) */}
 
-                {/* Odgovor na PRO follow-up */}
-                {podpitanjeOdgovor ? (
-                  <View style={{ marginTop: 10, backgroundColor: "#221", borderRadius: 8, padding: 10 }}>
-                    <Text style={{ color: "#fff", fontSize: 15, marginBottom: 3, fontWeight: "bold" }}>
-                      {t('ai:misc.followupAnswer', { defaultValue: 'Odgovor na podpitanje:' })}
-                    </Text>
-                    <Text style={{ color: "#ffd700" }}>{podpitanjeOdgovor}</Text>
-                    <Text style={{ color: "#fff", fontSize: 13, marginTop: 8, fontStyle: "italic" }}>
-                      {t('ai:misc.oneFollowupNote', { defaultValue: 'Možete postaviti novo podpitanje tek pri sledećem otvaranju.' })}
-                    </Text>
-                  </View>
-                ) : null}
-
-                {/* Info za ne-PRO */}
-                {userPlan !== "pro" && (
+                {/* Info za ne-PRO (tj. !isPro → ni Pro ni ProPlus) */}
+                {/* START: Info za ne-PRO → koristimo !isProTier */}
+                {/* {userPlan !== "pro" && ( */}
+                {!isProTier && (
                   <View style={{ marginTop: 20, alignItems: "center" }}>
                     <Text style={{ color: "#ffd700", fontStyle: "italic" }}>
                       {t('ai:misc.proOnly', { defaultValue: 'Dodatna podpitanja dostupna su samo za Pro korisnike.' })}
                     </Text>
                   </View>
                 )}
+                {/* )} */}
+                {/* END: Info za ne-PRO → koristimo !isProTier */}
               </View>
             </View>
           </ScrollView>
         )
       }
-    </ImageBackground>
+      {/* </ImageBackground> */}
+    </View>
   );
 };
 

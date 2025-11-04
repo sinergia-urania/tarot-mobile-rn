@@ -1,11 +1,12 @@
-
-
-// START: Supabase invoke umesto fetch + anon key; server-side naplata
+// src/utils/api/getAIAnswer.js
 import { supabase } from "../supabaseClient";
 import { buildAIPrompt } from "./buildAIPrompt";
 // START: Hindi sniff helpers
 import { hiPostEdit, looksHindi } from "../langSniff";
 // END: Hindi sniff helpers
+// START: plan normalizacija (ProPlus ≙ Pro) — centralizovano
+import { normalizePlanCanon } from "../../constants/plans";
+// END: plan normalizacija
 
 // START: single-flight + dedupe + quiet logs
 const AI_DEBUG = process.env.EXPO_PUBLIC_AI_DEBUG === "1";
@@ -172,13 +173,17 @@ export async function getAIAnswer({
   questionLang,
   // END: NOVO
 }) {
-  const model = ["pro", "premium"].includes(userLevel) ? "gpt-4.1" : "gpt-4.1-mini";
+  // START: ProPlus tretman i centralna normalizacija plana
+  const planCanon = normalizePlanCanon(userLevel); // "free" | "premium" | "pro" | "proplus"
+  const MODEL_FREE = process.env.EXPO_PUBLIC_AI_MODEL_FREE || "gpt-4.1-mini";
+  const MODEL_PRO = process.env.EXPO_PUBLIC_AI_MODEL_PRO || "gpt-4.1";
+  const useProModel = (planCanon === "premium" || planCanon === "pro" || planCanon === "proplus");
+  const model = useProModel ? "gpt-4.1" : "gpt-4.1-mini";
+  const selectedModel = useProModel ? MODEL_PRO : MODEL_FREE;
+  // END: ProPlus tretman i centralna normalizacija plana
 
   // START: switch na GPT-4.1 porodicu + ENV override
   // (ne diramo postojeći `model` iznad; uvodimo `selectedModel` i dalje njega koristimo)
-  const MODEL_FREE = process.env.EXPO_PUBLIC_AI_MODEL_FREE || "gpt-4.1-mini";
-  const MODEL_PRO = process.env.EXPO_PUBLIC_AI_MODEL_PRO || "gpt-4.1";
-  const selectedModel = ["pro", "premium"].includes(userLevel) ? MODEL_PRO : MODEL_FREE;
   // END: switch na GPT-4.1 porodicu + ENV override
 
   // START: LIGHT ROLLBACK — prepustimo modelu autodetekciju jezika
@@ -406,7 +411,10 @@ export async function getAIAnswer({
       if (String(error.message || "").includes("Not enough coins")) {
         return { odgovor: "Nedovoljno dukata za ovo otvaranje.", sessionId: null };
       }
-      return { odgovor: error.message || "Došlo je do greške pri komunikaciji sa AI servisom.", sessionId: null };
+      return {
+        odgovor: error.message || "Došlo je do greške pri komunikaciji sa AI servisom.",
+        sessionId: null,
+      };
     }
 
     // START: robust edge response parsing & logging (JS)
@@ -675,6 +683,3 @@ export async function getAIAnswer({
     // END: release single-flight lock
   }
 }
-// END: Supabase invoke umesto fetch + anon key; server-side naplata
-
-// END: JS-compat patch

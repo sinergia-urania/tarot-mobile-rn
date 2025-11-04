@@ -1,6 +1,6 @@
-﻿{
+{
   "expo": {
-    "name": "TarotMobile",
+    "name": "Una Astro-Tarot AI",
     "slug": "tarot-mobile",
     "owner": "mare82",
     "version": "1.5.0",
@@ -14,7 +14,7 @@
     },
     "android": {
       "package": "com.mare82.tarotmobile",
-      "versionCode": 15,
+      "versionCode": 5,
       "googleServicesFile": "./google-services.json",
       "intentFilters": [
         {
@@ -32,7 +32,10 @@
       ]
     },
     "ios": {
-      "bundleIdentifier": "com.mare82.tarotmobile"
+      "bundleIdentifier": "com.mare82.tarotmobile",
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "We use your device identifier to show relevant ads (AdMob) and support the development of this app."
+      }
     },
     "plugins": [
       [
@@ -45,7 +48,8 @@
       "expo-notifications",
       "expo-font",
       "expo-web-browser",
-      "expo-audio"
+      "expo-audio",
+      "expo-tracking-transparency"
     ],
     "splash": {
       "image": "./assets/una.png",

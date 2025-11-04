@@ -1,0 +1,76 @@
+{
+    "categories": {
+        "love": {
+            "name": "Aşk",
+            "icon": "❤️",
+            "items": [
+                "Beni seviyor mu?",
+                "Geleceğimiz nasıl olacak?",
+                "Barışacak mıyız?",
+                "Yakında özel biriyle tanışacak mıyım?",
+                "Aşk hayatımı nasıl iyileştirebilirim?",
+                "Partnerim bana karşı dürüst mü?"
+            ]
+        },
+        "work": {
+            "name": "İş",
+            "icon": "💼",
+            "items": [
+                "İstediğim işi alacak mıyım?",
+                "Beni hangi kariyer yolu bekliyor?",
+                "İş değiştirme zamanı mı?",
+                "İşte nasıl ilerleyebilirim?",
+                "Emeklerim fark edilecek mi?",
+                "Beni tatmin eden bir iş nasıl bulabilirim?"
+            ]
+        },
+        "health": {
+            "name": "Sağlık",
+            "icon": "🧘",
+            "items": [
+                "İyileşecek miyim?",
+                "Nelere dikkat etmeliyim?",
+                "Sağlığımı nasıl iyileştirebilirim?",
+                "Mevcut tedavi doğru seçim mi?",
+                "Ruh sağlığımı nasıl iyileştirebilirim?",
+                "İkinci bir görüş almalı mıyım?"
+            ]
+        },
+        "finance": {
+            "name": "Finans",
+            "icon": "💰",
+            "items": [
+                "Mali durumumu nasıl iyileştirebilirim?",
+                "Bu akıllıca bir yatırım mı?",
+                "Mali istikrarım olacak mı?",
+                "Paramı daha akıllıca nasıl yönetebilirim?",
+                "Borçlarımı ödeyebilecek miyim?",
+                "Bir kazanç yolda mı?"
+            ]
+        },
+        "spiritual": {
+            "name": "Ruhsal gelişim",
+            "icon": "🌀",
+            "items": [
+                "Amacım nedir?",
+                "Ruhum bana ne söylüyor?",
+                "Ruhsal olarak ne üzerinde çalışmalıyım?",
+                "Gelişimimde bir sonraki adım nedir?",
+                "İç huzuru nasıl bulabilirim?",
+                "Bana tekrar tekrar gelen ders nedir?"
+            ]
+        },
+        "family": {
+            "name": "Aile ve ilişkiler",
+            "icon": "🏡",
+            "items": [
+                "Aile ilişkilerini nasıl iyileştirebilirim?",
+                "Ailedeki durum sakinleşecek mi?",
+                "Bir aile üyesine nasıl yardım edebilirim?",
+                "[name] ile ilişkim düzelecek mi?",
+                "Partnerimi nasıl destekleyebilirim?",
+                "Evde huzur olacak mı?"
+            ]
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+  "titles": {
+    "aiReply": "Una yanıtlıyor",
+    "housesAnalysis": "Astrolojik evlere göre yorum",
+    "sefirotAnalysis": "Sefirot'a göre yorum",
+    "celticAnalysis": "Kelt Haçı yorumu",
+    "followupPrompt": "Takip sorusu ekle (PRO):",
+    "astroHouses": "Astrolojik evlere göre yorum:",
+    "sefirot": "Sefirot'a göre yorum:",
+    "celticInterpretation": "Kelt Haçı yorumu:"
+  },
+  "labels": {
+    "question": "Soru:",
+    "spreadType": "Yay türü: {{value}}. "
+  },
+  "placeholders": {
+    "followup": "Bir takip sorusu girin..."
+  },
+  "summary": {
+    "label": "Özetle:"
+  },
+  "houses": [
+    "1. Ev (Benlik)",
+    "2. Ev (Finans)",
+    "3. Ev (İletişim)",
+    "4. Ev (Ev ve Aile)",
+    "5. Ev (Yaratıcılık)",
+    "6. Ev (Sağlık)",
+    "7. Ev (Ortaklıklar)",
+    "8. Ev (Dönüşüm)",
+    "9. Ev (Seyahat ve İnançlar)",
+    "10. Ev (Kariyer)",
+    "11. Ev (Arkadaşlar ve Topluluk)",
+    "12. Ev (Bilinçdışı)"
+  ],
+  "celticPositions": [
+    "1. Mevcut durum",
+    "2. Engel / Zorluk",
+    "3. Temel (Bilinçdışı)",
+    "4. Geçmiş",
+    "5. Bilinç / Olasılıklar",
+    "6. Yakın gelecek",
+    "7. Duruma karşı tutum",
+    "8. Çevresel etki",
+    "9. Umutlar / Korkular",
+    "10. Sonuç"
+  ],
+  "sefirot": [
+    "Keter (Taç)",
+    "Chokhmah (Bilgelik)",
+    "Binah (Anlayış)",
+    "Chesed (Merhamet)",
+    "Gevurah (Sertlik)",
+    "Tiferet (Güzellik)",
+    "Netzach (Sonsuzluk)",
+    "Hod (Görkem)",
+    "Yesod (Temel)",
+    "Malkhut (Krallık)"
+  ],
+  "misc": {
+    "proOnly": "Takip soruları yalnızca PRO için kullanılabilir.",
+    "followupTitle": "Takip sorusu gönder (PRO):",
+    "followupAnswer": "Takip sorusunun yanıtı:",
+    "oneFollowupNote": "Yeni bir takip sorusunu yalnızca bir sonraki açılımda sorabilirsiniz.",
+    "cardPlaceholder": "Kart {{index}}"
+  }
+}

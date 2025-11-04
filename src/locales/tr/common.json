@@ -1,0 +1,367 @@
+{
+  "watchAdForCoins": "Jetonlar için reklam izle",
+  "appName": "Tarot",
+  "groups": {
+    "velika": "Büyük Arkana",
+    "stapovi": "Değnekler",
+    "pehari": "Kupalar",
+    "macevi": "Kılıçlar",
+    "zlatnici": "Tılsımlar"
+  },
+  "menu": {
+    "allSpreads": "Tüm açılımlar",
+    "dailyCard": "Günün Kartı",
+    "yesNo": "Evet / Hayır",
+    "meanings": "Kart anlamları",
+    "history": "Açılım arşivi",
+    "access": "Erişim ve planlar"
+  },
+  "soundControls": {
+    "music": "Müzik",
+    "effects": "Efektler",
+    "test": "Sesi test et"
+  },
+  "info": {
+    "allSpreads": "Bunlar yapay zekâ yorumcusu ile açılımlardır.",
+    "dailyCard": "Bu sezgisel bir açılımdır — kart seçmeden önce bir soru düşün.",
+    "yesNo": "Bu sezgisel bir açılımdır — kart seçmeden önce bir soru düşün."
+  },
+  "buttons": {
+    "askFollowUp": "Takip sorusu gönder",
+    "back": "Geri",
+    "ok": "Tamam",
+    "cancel": "İptal",
+    "backToTarotHome": "Tarot Ana Sayfasına dön",
+    "close": "Kapat",
+    "answer": "$t(labels.answer)",
+    "buyCoins": "Jeton ekle",
+    "login": "Giriş yap",
+    "logout": "Çıkış yap",
+    "saveProfile": "Profili kaydet",
+    "register": "Kayıt ol",
+    "savePassword": "Şifreyi kaydet"
+  },
+  "messages": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "notImplemented": "Henüz uygulanmadı: {{group}}",
+    "noCardSelected": "Hiç kart çekilmedi. Geri dön ve tekrar dene.",
+    "cardDrawnWithOrientation": "Kart {{orientation}} çekildi.",
+    "tryAgain": "Tekrar dene.",
+    "tryAgainNav": "Geri dön ve tekrar dene.",
+    "loadingDailyCard": "Günün Kartı yükleniyor...",
+    "noDescription": "Bu kart için açıklama yok.",
+    "successTitle": "Başarılı!",
+    "successGeneric": "Başarılı!",
+    "notLoggedInBlurb": "Giriş yapmadınız. Yapay zekâyı kullanmak ve jeton toplamak için giriş yapın!",
+    "notLoggedInSettings": "Giriş yapmadınız. Ayarlara erişmek için giriş yapın.",
+    "nameNotSet": "İsim girmediniz",
+    "profileSaved": "Profil kaydedildi!",
+    "noQuestion": "Soru yok.",
+    "waitingAI": "Yapay zekâ yanıtı bekleniyor..."
+  },
+  "titles": {
+    "yesNoAnswer": "Sorunuza yanıt:",
+    "settings": "Ayarlar",
+    "sound": "Ses",
+    "selectLanguage": "Dil seçin"
+  },
+  "sections": {
+    "symbolism": "Sembolizm",
+    "upright": "Düz anlam",
+    "reversed": "Ters anlam",
+    "daily": "Günün Kartı anlamı"
+  },
+  "answers": {
+    "yes": "EVET",
+    "no": "HAYIR"
+  },
+  "orientation": {
+    "upright": "düz",
+    "reversed": "ters"
+  },
+  "badges": {
+    "proOnly": "(yalnızca PRO)",
+    "proOrPremium": "(Pro/Premium)"
+  },
+  "questions": {
+    "dailyCardPrompt": "Günün kartı...",
+    "yesNoPrompt": "Evet/Hayır sorunuzu yazın...",
+    "introBlurb": "Hızlı başlangıç için bir konu ve örnek soru seçin."
+  },
+  "accessibility": {
+    "menu": "Menü",
+    "back": "Geri",
+    "home": "Ana sayfa",
+    "language": "Dil",
+    "coins": "Jetonlar",
+    "soundOn": "Sesi aç",
+    "soundOff": "Sesi kapat",
+    "info": "Bilgi"
+  },
+  "labels": {
+    "answer": "Yanıt",
+    "notifications": "Bildirimler",
+    "language": "Dil:",
+    "currentName": "Geçerli ad:",
+    "user": "Kullanıcı",
+    "orTypeYourQuestion": "Ya da sorunuzu yazın",
+    "chooseCards": "Kartları seçin",
+    "status": "Durum:",
+    "coins": "Jetonlar",
+    "spread": "Açılım",
+    "updatedAt": "Güncellendi",
+    "openOnWeb": "Web'de aç",
+    "card": "Kart"
+  },
+  "classic": {
+    "title": "Bir açılım seçin",
+    "options": {
+      "love": "Ben – O",
+      "pastPresentFuture": "Geçmiş – Şimdi – Gelecek",
+      "pathOfInsight": "İçgörü Yolu"
+    }
+  },
+  "placeholders": {
+    "enterQuestion": "Bir soru girin",
+    "enterName": "Ad girin",
+    "selectGender": "Cinsiyet seçin",
+    "pickDate": "Tarih seçin",
+    "pickSign": "Burç seçin",
+    "pickAscendant": "Yükseleni seçin",
+    "enterEmail": "E-posta",
+    "enterPassword": "Şifre",
+    "newPassword": "Yeni şifre",
+    "repeatPassword": "Şifreyi tekrar edin"
+  },
+  "options": {
+    "includeReversed": "Ters kartları dahil et"
+  },
+  "membership": {
+    "packages": {
+      "guest": "Misafir",
+      "free": "Ücretsiz",
+      "premium": "Premium",
+      "pro": "PRO"
+    },
+    "features": {
+      "meanings": "Kart anlamları",
+      "classicSpreads": "Klasik açılımlar",
+      "celticCross": "Kelt Haçı",
+      "astrologicalSpread": "Astrolojik açılım",
+      "kabbalisticSpread": "Kabalistik açılım",
+      "aiFollowups": "YZ takip soruları",
+      "historyArchive": "Açılım arşivi",
+      "astrologicalTransits": "Astrolojik geçişler"
+    },
+    "values": {
+      "ads": "Reklamlar",
+      "noAds": "Reklamsız",
+      "aiModelMini": "YZ modeli: Mini",
+      "aiModelLarge": "YZ modeli: Büyük"
+    },
+    "notes": {
+      "freeCoinsAd": "Jetonlar, reklam izleyerek kazanılır (yalnızca ücretsiz kullanıcılar)."
+    },
+    "cta": {
+      "alreadyPremium": "Zaten Premium'sunuz",
+      "buyPremium": "Premium satın al ({{price}} {{currency}} / ay)",
+      "alreadyPro": "Zaten PRO'sunuz",
+      "buyPro": "PRO satın al ({{price}} {{currency}} / ay)"
+    },
+    "topup": {
+      "title": "Jeton yükle",
+      "buyCoins": "{{amount}} jeton satın al — {{price}} {{currency}}"
+    },
+    "toast": {
+      "upgradedPremium": "Hesabınız artık Premium. {{bonus}} jeton aldınız!",
+      "upgradedPro": "Hesabınız artık PRO. {{bonus}} jeton aldınız!",
+      "topupDone": "{{amount}} jeton aldınız."
+    }
+  },
+  "errors": {
+    "invalidLayoutTemplate": "Hata: Geçerli bir layoutTemplate sağlanmadı!",
+    "notEnoughCoinsTitle": "Yeterli jeton yok",
+    "notEnoughCoinsMessage": "Bu açılım {{required}} jeton gerektirir, sizde {{balance}} var.",
+    "genericTitle": "Hata",
+    "tryAgain": "Tekrar dene.",
+    "notLoggedIn": "Giriş yapmadınız.",
+    "adLimitReached": "Günlük reklam sınırına ulaşıldı.",
+    "topupFailed": "Jeton eklenemedi.",
+    "updateNotifFail": "Bildirimler güncellenemedi.",
+    "nameRequired": "Ad boş olamaz!",
+    "aiAnswerFailed": "YZ yanıtı alınamadı",
+    "aiFollowupFailed": "YZ takip yanıtı alınamadı!",
+    "notEnoughCoinsServerRejected": "Ödeme sunucu tarafından reddedildi. Jeton yükleyip tekrar deneyin.",
+    "notEnoughCoinsFollowup": "YZ takip sorusu için yeterli jetonunuz yok!",
+    "aiAnswerFailedDetailed": "Yanıt alınırken hata oluştu.{{extra}}",
+    "rateLimited": "Hız sınırı aşıldı. Lütfen daha sonra tekrar deneyin.",
+    "modelUnavailable": "Model kullanılamıyor veya geçersiz istek.",
+    "upstreamFailed": "YZ servisi geçici olarak kullanılamıyor (üst akış).",
+    "aiServiceComm": "YZ servisiyle iletişimde hata oluştu.",
+    "edgeTimeout": "YZ isteği zaman aşımına uğradı. Lütfen tekrar deneyin."
+  },
+  "dailyCard": {
+    "alreadyPicked": "Günün kartınızı zaten seçtiniz!",
+    "comeBackTomorrow": "Yarın yeni bir kart için geri gelin. 🌞"
+  },
+  "legal": {
+    "title": "Hukuki belgeler",
+    "disclaimer": "Feragatname",
+    "terms": "Hizmet Şartları",
+    "contact": "İletişim",
+    "privacy": "Gizlilik Politikası",
+    "dataDeletion": "Veri Silme"
+  },
+  "support": {
+    "title": "Uygulamayı destekle",
+    "rateUs": "Bizi değerlendirin",
+    "shareToFriends": "Arkadaşlarla paylaş",
+    "shareMessage": "Tarot AI uygulamasını deneyin! https://play.google.com/store/apps/details?id=com.mare82.tarotmobile"
+  },
+  "auth": {
+    "loginTitle": "Giriş Yap",
+    "registerTitle": "Kayıt Ol",
+    "googleSignIn": "Google ile giriş yap",
+    "googleOpening": "Google açılıyor…",
+    "facebookSignIn": "Facebook ile giriş yap",
+    "facebookOpening": "Facebook açılıyor…",
+    "toggleHaveAccount": "Zaten hesabınız var mı? Giriş yapın",
+    "toggleNoAccount": "Hesabınız yok mu? Kayıt olun",
+    "loginFailed": "Giriş başarısız.",
+    "registerFailed": "Kayıt başarısız.",
+    "googleFailed": "Google ile giriş başarısız.",
+    "facebookFailed": "Facebook ile giriş başarısız.",
+    "checkEmail": "E-postanızı kontrol edin ve hesabınızı onaylayın.",
+    "emailRequired": "Lütfen e-posta adresinizi girin.",
+    "resetEmailSent": "Bir hesap varsa, şifre sıfırlama talimatları e-postayla gönderildi.",
+    "resetEmailFailed": "Sıfırlama e-postası gönderilemedi.",
+    "forgotPassword": "Şifreyi mi unuttunuz?",
+    "resetPasswordTitle": "Şifreyi sıfırla",
+    "passwordTooShort": "Şifre en az 8 karakter olmalıdır.",
+    "passwordsDontMatch": "Şifreler eşleşmiyor.",
+    "passwordUpdated": "Şifreniz güncellendi. Lütfen yeni şifreyle giriş yapın.",
+    "passwordUpdateFailed": "Şifre güncellenemedi."
+  },
+  "ads": {
+    "errorTitle": "Reklam hatası!",
+    "errorGeneric": "Reklamda bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
+    "notReady": "Reklam hazır değil.",
+    "loading": "Reklam yükleniyor…",
+    "showing": "Reklam gösteriliyor...",
+    "buttonReady": "{{amount}} jeton için reklam izle",
+    "buttonLoading": "Reklam yükleniyor...",
+    "thanksTitle": "Teşekkürler!",
+    "rewardToast": "{{amount}} jeton aldınız.",
+    "grantError": "Jeton verme hatası",
+    "plusCoins": "+{{amount}} jeton!",
+    "reward": {
+      "title": "Jetonlar için reklam izle",
+      "watch": "{{amount}} jeton için reklam izle",
+      "loading": "Reklam yükleniyor…",
+      "showing": "Reklam gösteriliyor...",
+      "toast": {
+        "thanks": "Teşekkürler!",
+        "granted": "{{amount}} jeton aldınız.",
+        "errorGrant": "Jeton verme hatası",
+        "errorGeneric": "Bir reklam hatası oluştu."
+      },
+      "done": {
+        "plusCoins": "+{{amount}} jeton!",
+        "ok": "Tamam"
+      }
+    }
+  },
+  "home": {
+    "menu": {
+      "profile": "Profil",
+      "settings": "Ayarlar",
+      "about": "Hakkında",
+      "packagesAccess": "Erişim ve planlar",
+      "allSpreads": "$t(menu.allSpreads)",
+      "dailyCard": "$t(menu.dailyCard)",
+      "yesNo": "$t(menu.yesNo)",
+      "meanings": "$t(menu.meanings)",
+      "history": "$t(menu.history)",
+      "access": "$t(menu.access)"
+    },
+    "info": {
+      "allSpreads": "$t(info.allSpreads)",
+      "dailyCard": "$t(info.dailyCard)",
+      "yesNo": "$t(info.yesNo)"
+    },
+    "watchAdForCoins": "$t(watchAdForCoins)"
+  },
+  "profile": {
+    "title": "👤 Profil",
+    "nameLabel": "Ad:",
+    "gender": {
+      "label": "Cinsiyet:",
+      "male": "Erkek",
+      "female": "Kadın",
+      "other": "Diğer"
+    },
+    "birthDate": "Doğum tarihi:",
+    "sunSign": "Burç:",
+    "ascendant": "Yükselen:"
+  },
+  "astrology": {
+    "signs": {
+      "aries": "♈ Koç",
+      "taurus": "♉ Boğa",
+      "gemini": "♊ İkizler",
+      "cancer": "♋ Yengeç",
+      "leo": "♌ Aslan",
+      "virgo": "♍ Başak",
+      "libra": "♎ Terazi",
+      "scorpio": "♏ Akrep",
+      "sagittarius": "♐ Yay",
+      "capricorn": "♑ Oğlak",
+      "aquarius": "♒ Kova",
+      "pisces": "♓ Balık"
+    }
+  },
+  "push": {
+    "titleTest": "Push testi",
+    "permDenied": "Bildirim izinleri verilmedi.",
+    "noToken": "Token yok (izinleri/FCM'yi kontrol edin).",
+    "noUserId": "Kullanıcı kimliği yok!",
+    "tokenWriteFail": "Token KAYDEDİLMEDİ!",
+    "tokenWriteOk": "Token kaydedildi!",
+    "profileNoToken": "Profilde token yok. Önce “Push token yazma testi”ne basın.",
+    "localTitle": "YEREL ✅",
+    "localBody": "Yerel bildirim (ön/arka plan)",
+    "remoteTitle": "UZAK ✅",
+    "remoteBody": "Expo push (hemen gönderildi)",
+    "sentMinimize": "Gönderildi ✔️ — bildirimi görmek için şimdi uygulamayı küçültün.",
+    "notAccepted": "Push kabul edilmedi:",
+    "sendError": "Gönderim hatası: ",
+    "debugTitle": "Hata ayıklama bildirimi",
+    "localBgTitle": "YEREL 🔔",
+    "localBgBody": "Arka planda yerel test",
+    "scheduled5s": "5 sn içinde zamanlandı — şimdi uygulamayı küçültün.",
+    "fcmTitle": "FCM token (cihaz)",
+    "btnWriteToken": "Push token yazma testi",
+    "btnLocal": "Test bildirimi (yerel)",
+    "btnRemote": "Test bildirimi (uzak)",
+    "btnShowFcm": "FCM tokenını göster (cihaz)",
+    "btnDebug": "Bildirimleri hata ayıkla",
+    "btnLocalBg": "Yerelde test (arka plan)"
+  },
+  "detail": {
+    "question": "Soru:",
+    "answer": "Yanıt:",
+    "drawnCards": "Çekilen kartlar:",
+    "followup": "Takip:",
+    "followupAnswer": "Takibe yanıt:",
+    "loveReading": "Aşk açılımı",
+    "pathOfInsightReading": "İçgörü Yolu",
+    "classic": "Klasik açılım",
+    "kabbalisticTree": "Kabalistik Hayat Ağacı",
+    "astrologicalSpread": "Astrolojik açılım",
+    "celticCross": "Kelt Haçı"
+  },
+  "history": {
+    "empty30Days": "Son 30 günde arşivlenmiş açılım yok."
+  }
+}

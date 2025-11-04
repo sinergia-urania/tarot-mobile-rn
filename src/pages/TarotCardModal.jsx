@@ -1,57 +1,85 @@
 // START: Uvoz svih potrebnih podataka za modal
-import React from 'react';
-import { Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-// START: (uklonjeno) Lokalni SR JSON-ovi — prelazimo na i18n za live switching
-// import cardMeanings from '../locales/sr/cardMeanings.json';
-// import extendedMeanings from '../locales/sr/extendedMeanings.json';
-// END: (uklonjeno)
+// START: perf(import) — dodaj useMemo i memo
+import React, { memo, useMemo } from 'react';
+// END: perf(import)
+import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // START: Import helper funkcije za slike
 import { getCardImagePath } from '../utils/getCardImagePath';
 // END: Import helper funkcije za slike
 // END: Uvoz svih potrebnih podataka za modal
 
 // START: i18n import
+// START: perf(i18n) — koristimo i i18n.language za memo deps
 import { useTranslation } from 'react-i18next';
+// END: perf(i18n)
 // END: i18n import
+
+// START: SafeImage (expo-image) za iOS/WebP
+import SafeImage from '../components/SafeImage';
+// END: SafeImage
+
+// START: helper – detekcija obrnute karte
+const isCardReversed = (card) => {
+  if (!card) return false;
+  if (typeof card.reversed === 'boolean') return card.reversed;
+  if (typeof card.isReversed === 'boolean') return card.isReversed;
+  if (typeof card.obrnuto === 'boolean') return card.obrnuto;
+  if (typeof card.upravno === 'boolean') return !card.upravno;
+  if (typeof card.isUpright === 'boolean') return !card.isUpright;
+  if (typeof card.orientation === 'string') return /revers|reverse|obrn/i.test(card.orientation);
+  if (typeof card.polozaj === 'string') return /revers|obrn/i.test(card.polozaj);
+  return false;
+};
+// END: helper – detekcija obrnute karte
 
 const TarotCardModal = ({
   card,
   isOpen,
   onClose,
 }) => {
-  if (!card) return null;
+  // START: guard — ako nema karte ili modal nije otvoren, ne renderuj ništa
+  if (!card || !isOpen) return null;
+  // END: guard
 
   // START: i18n hook (+ ns za karte/opise)
-  const { t } = useTranslation(['common', 'cardMeanings', 'extendedMeanings']);
+  const { t, i18n } = useTranslation(['common', 'cardMeanings', 'extendedMeanings']);
   // END: i18n hook
 
-  // START: Ključ karte + i18n izvori (live switching)
-  // card.key je npr. "theFool", "sevenOfPentacles" itd
+  // START: Ključ karte + i18n izvori (live switching) + memo za revers
   const cardKey = card.key;
 
+  // memo: da izbegnemo re-kalkulaciju pri svakom renderu
+  const reversed = useMemo(() => isCardReversed(card), [card]);
+
   // Naslov (ime karte)
-  const title = t(`cards.${cardKey}.name`, {
-    ns: 'cardMeanings',
-    defaultValue: card.name || cardKey,
-  });
+  const title = useMemo(() => (
+    t(`cards.${cardKey}.name`, {
+      ns: 'cardMeanings',
+      defaultValue: card.name || cardKey,
+    })
+  ), [cardKey, t, i18n.language]);
 
   // Opisi (extended)
-  const symbolism = t(`${cardKey}.symbolism`, { ns: 'extendedMeanings', defaultValue: '' });
-  const upright = t(`${cardKey}.uprightExtended`, { ns: 'extendedMeanings', defaultValue: '' });
-  const reversed = t(`${cardKey}.reversedExtended`, { ns: 'extendedMeanings', defaultValue: '' });
-  const daily = t(`${cardKey}.daily`, { ns: 'extendedMeanings', defaultValue: '' });
+  const symbolism = useMemo(() => t(`${cardKey}.symbolism`, { ns: 'extendedMeanings', defaultValue: '' }), [cardKey, t, i18n.language]);
+  const upright = useMemo(() => t(`${cardKey}.uprightExtended`, { ns: 'extendedMeanings', defaultValue: '' }), [cardKey, t, i18n.language]);
+  const reversedText = useMemo(() => t(`${cardKey}.reversedExtended`, { ns: 'extendedMeanings', defaultValue: '' }), [cardKey, t, i18n.language]);
+  const daily = useMemo(() => t(`${cardKey}.daily`, { ns: 'extendedMeanings', defaultValue: '' }), [cardKey, t, i18n.language]);
 
-  // Helper: prikaži sekciju samo ako ima teksta (sprečava React dev warninge)
   const hasText = (s) => typeof s === 'string' && s.trim().length > 0;
   // END: Ključ karte + i18n izvori (live switching)
 
   return (
+    // START: Modal perf — statusBarTranslucent/hardwareAccelerated/presentationStyle
     <Modal
-      visible={isOpen}
+      visible
       transparent
       animationType="fade"
       onRequestClose={onClose}
+      statusBarTranslucent
+      hardwareAccelerated
+      presentationStyle="overFullScreen"
     >
+      {/* END: Modal perf */}
       <View style={styles.overlay}>
         <View style={styles.modal}>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
@@ -59,11 +87,14 @@ const TarotCardModal = ({
           </TouchableOpacity>
 
           <ScrollView contentContainerStyle={styles.content}>
-            {/* START: Prikaz slike karte preko helper funkcije */}
-            <Image
+            {/* START: Prikaz slike karte preko helper funkcije (SafeImage) + perf props */}
+            <SafeImage
               source={getCardImagePath(cardKey)}
-              style={styles.cardImage}
-              resizeMode="contain"
+              style={[styles.cardImage, reversed && { transform: [{ rotate: '180deg' }] }]}
+              contentFit="contain"
+              transition={150}
+              cachePolicy="disk"
+              recyclingKey={cardKey}
             />
             {/* END: Prikaz slike karte preko helper funkcije */}
 
@@ -89,10 +120,10 @@ const TarotCardModal = ({
             {/* END: Uspravno značenje */}
 
             {/* START: Obrnuto značenje (i18n) */}
-            {hasText(reversed) && (
+            {hasText(reversedText) && (
               <>
                 <Text style={styles.sectionTitle}>{t('common:sections.reversed', { defaultValue: 'Reversed meaning' })}:</Text>
-                <Text style={styles.description}>{reversed}</Text>
+                <Text style={styles.description}>{reversedText}</Text>
               </>
             )}
             {/* END: Obrnuto značenje */}
@@ -111,6 +142,10 @@ const TarotCardModal = ({
     </Modal>
   );
 };
+
+// START: memo wrap — sprečava nepotrebne re-render-e kada parent menja state
+export default memo(TarotCardModal);
+// END: memo wrap
 
 const styles = StyleSheet.create({
   overlay: {
@@ -188,5 +223,3 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
 });
-
-export default TarotCardModal;

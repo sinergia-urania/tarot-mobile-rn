@@ -1,7 +1,11 @@
 // START: Migracija DaNeOdgovor u React Native - minimalistički home
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// START: SafeImage (expo-image) za iOS/WebP
+import SafeImage from "../components/SafeImage";
+// END: SafeImage
 // START: i18n
 import { useTranslation } from "react-i18next";
 // END: i18n
@@ -69,14 +73,16 @@ const DaNeOdgovor = () => {
             })}
           </Text>
           {/* END: i18n – naslov */}
-          <Image
+          {/* START: SafeImage umesto Image (WebP friendly na iOS) */}
+          <SafeImage
             source={karta.slika}
             style={[
               styles.image,
               !isUspravna && { transform: [{ rotate: "180deg" }] }
             ]}
-            resizeMode="contain"
+            contentFit="contain"
           />
+          {/* END: SafeImage */}
           {/* START: i18n – DA/NE */}
           <Text style={[styles.answer, isUspravna ? styles.yes : styles.no]}>
             {isUspravna
@@ -196,5 +202,3 @@ const styles = StyleSheet.create({
 
 export default DaNeOdgovor;
 // END: Migracija DaNeOdgovor u React Native - minimalistički home
-
-

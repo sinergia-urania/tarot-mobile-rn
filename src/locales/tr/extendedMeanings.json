@@ -1,0 +1,470 @@
+{
+  "theFool": {
+    "symbolism": "Deli, bilinmeyene atılacak ilk adımın eşiğinde, bir uçurumun kenarında durur. Elindeki gül masumiyeti simgelerken, arkasındaki köpek içgüdüyü ve içsel korunmayı temsil eder.",
+    "uprightExtended": "Düz konumda, Deli bir maceranın başlangıcını ve hayata duyulan güveni işaret eder. Değişime açıklığı, kendiliğindenliği ve korkusuz yeni bir evreyi simgeler.",
+    "reversedExtended": "Ters konumda bu kart, düşüncesizlik, saflık ve sorumluluktan kaçınmaya işaret eder. Kişi, sonuçların farkında olmadan ilerliyor olabilir.",
+    "daily": "Bugün beklentileri bırakıp güvenle bilinmeyene adım atma zamanı. Deli, her hatanın yolculuğun doğal bir parçası olduğunu hatırlatır."
+  },
+  "theMagician": {
+    "symbolism": "Büyücü bir elini göklere, diğerini yere uzatır — ruhsal ve maddi âlemler arasındaki bağı simgeler. Masadaki dört elementin araçları, tezahür ettirme gücünü gösterir.",
+    "uprightExtended": "Düz konumda, Büyücü kişisel güç, odak ve fikirleri gerçeğe dönüştürme yeteneğine işaret eder. Tüm mevcut imkânları kullanarak eyleme geçme zamanıdır.",
+    "reversedExtended": "Ters konumda, Büyücü manipülasyon, yanılsama ve kullanılmamış potansiyeli gösterebilir. Kişi yeteneklerini yeterince kullanmıyor — ya da bencilce kullanıyor olabilir.",
+    "daily": "Bugünü, yeteneklerini fark edip gerçekten önemli olanı somutlaştırmak için kullan. Büyücü şöyle der: ihtiyacın olan her şeye sahipsin — bilinçle kullan."
+  },
+  "theHighPriestess": {
+    "symbolism": "Başrahibe, karşıtlar arasındaki dengeyi simgeleyen iki sütun arasında oturur. Ardındaki perde mistik bilgiyi gizlerken, elindeki tomar saklı bilgeliği temsil eder.",
+    "uprightExtended": "Bu kart sezgiyi, suskunluğu ve içsel bilinci temsil eder. İç sesini dinleme ve yanıtları içeride arama gereğini hatırlatır.",
+    "reversedExtended": "Ters konumda, bastırılmış sezgi, duygusal karmaşa veya ruhsal değerlerden kopukluk sinyali verir. Kişi içsel işaretleri yok sayıyor olabilir.",
+    "daily": "Bugün sezgine güven. Aradığın yanıtlar zaten içinde — zihni sakinleştir ve iç sesini dinle."
+  },
+  "theEmpress": {
+    "symbolism": "İmparatoriçe, bereketi ve verimliliği simgeleyen başaklar ve ağaçlarla çevrili, doğanın içinde oturur. Yıldız tacı onu evrenle bağlar.",
+    "uprightExtended": "İmparatoriçe, annelik enerjisini, yaratımı, sevgiyi ve şefkati simgeler. Her anlamda verimli bir dönemi — yaratıcı, duygusal veya fiziksel — haber verir.",
+    "reversedExtended": "Ters konum, başkalarına bağımlılık, duygusal tükenmişlik veya yaratıcı tıkanmayı gösterebilir. Başkalarını besleyebilmek için önce kendini besle.",
+    "daily": "Bugün büyüyeni besleme günü — ister bir fikir, ister bir ilişki, isterse kendi huzurun olsun. İmparatoriçe, kendine nezaketin dış dünyada meyve verdiğini hatırlatır."
+  },
+  "theEmperor": {
+    "symbolism": "İmparator, koç başlarıyla süslü taş bir tahtta oturur; güç, disiplin ve otoriteyi simgeler. O, düzen ve istikrarın dünyasını temsil eder.",
+    "uprightExtended": "Düz konum, kontrol, sorumluluk ve liderliğe işaret eder. Hayatını yapılandırma ve sağlam kararlar alma zamanıdır.",
+    "reversedExtended": "Ters konum, zorbalık, inatçılık veya duygusal soğukluğu gösterebilir. Gücün yıkıcı biçimde kullanıldığına işaret eder.",
+    "daily": "Bugün müttefikin istikrar ve yapıdır. İmparator, sınır koymanı ve kendi otoritenin gücüne güvenerek karar vermeni öğütler."
+  },
+  "theHierophant": {
+    "symbolism": "Aziz, kurumsal otoriteyi ve ruhsal bilgiyi simgeleyen iki sütun arasında oturur. Elleri kutsama için kalkıktır; önünde diz çöken takipçiler vardır.",
+    "uprightExtended": "Bu kart, geleneği, ruhsal otoriteyi ve kurumlar aracılığıyla öğrenmeyi ifade eder. Ruhsal yasalara ve öğretmenlere saygıyı işaret eder.",
+    "reversedExtended": "Ters konumda, kuralları reddetme, ruhsal isyan veya gelişimi boğan katılık söz konusu olabilir. Sahte otoriteye de işaret edebilir.",
+    "daily": "Bugün, gelenekteki bilgeliğe ya da güvendiğin birinin öğüdüne başvur. Bizden önce var olmuş bilgiyi onurlandırma çağrısıdır."
+  },
+  "theLovers": {
+    "symbolism": "Bir melek altında, çıplak bir kadın ve erkek saf bağı ve ilahi birliği temsil eder. Arka planda bilgi ağacı ve tutkunun ateşi görünür.",
+    "uprightExtended": "Düz konumda, Âşıklar derin bağ, uyum ve sevgiden doğan seçimleri simgeler. Hem ilişkileri hem de belirleyici ahlaki kararları gösterebilir.",
+    "reversedExtended": "Ters konum, uyumsuzluk, ilişkide hizasızlık veya yanlış bir seçim anlamına gelebilir. Duygusal kararın özünü yeniden gözden geçir.",
+    "daily": "Bugün kalbinle seç. Âşıklar, ilişkilerin birer ayna olduğunu hatırlatır — ne verirsen onu alırsın."
+  },
+  "theChariot": {
+    "symbolism": "Savaş arabasını süren figür, siyah ve beyaz iki sfenksin arasında kendinden emin durur; ruhsal ve maddi güçlerin dizginlerini tutar. Alnındaki yıldız ilahi rehberliği simgeler.",
+    "uprightExtended": "Bu kart irade gücü, zafer ve engellere rağmen ilerlemeyi ifade eder. Zıtlıklar arasında güçlü kontrol ve dengeyi önerir.",
+    "reversedExtended": "Ters konumda, Savaş Arabası kontrol kaybı, iç çatışma veya pes etmeye işaret eder. İç gücünü yeniden hizala.",
+    "daily": "Dizginleri eline al ve hedefe doğru sür. Arabacı bilir: nereye gittiğini bildiğinde, karşıt güçler bile birleşir."
+  },
+  "strength": {
+    "symbolism": "Bir kadın, şefkatin ve iç gücün kudretini göstererek bir aslanın ağzını nazikçe kapatır. Başının üzerindeki lemniskat, ruhun sonsuz potansiyelini simgeler.",
+    "uprightExtended": "Düz konumda Güç, sabır, cesaret ve ince kontrolü gösterir. Gerçek güç saldırganlıktan değil, sükûnet ve anlayıştan gelir.",
+    "reversedExtended": "Ters konum, öz-kuşku, cesaret eksikliği veya dürtülere teslimiyet anlamına gelebilir. İç dengenı yeniden kur.",
+    "daily": "Bugünkü gücün sabır ve nezaketten gelir. Güçlü olmak için bağırman gerekmez — kalbinin sessizliği yolu bilir."
+  },
+  "theHermit": {
+    "symbolism": "Ermiş, elinde bir fenerle dağ zirvesinde durur; bilgelik, içe dönüş ve hakikat arayışını simgeler. Asası, ruhsal yalnızlıkta bir destektir.",
+    "uprightExtended": "Kart, geri çekilme, sessizlik ve içsel tefekküre ihtiyaç olduğunu gösterir. İç sesini dinleme ve ruhsal yön bulma zamanıdır.",
+    "reversedExtended": "Ters konumda, izolasyon, içsel tıkanıklıklar veya kendinle yüzleşmeyi reddetme söz konusu olabilir. Başkalarının bilgeliğine açıl.",
+    "daily": "Bugün sessizlik, geri çekilme ve iç hakikati dinleme günüdür. Ermiş, taşıdığın ışığa doğru yol gösterir."
+  },
+  "wheelOfFortune": {
+    "symbolism": "Kader Çarkı, tanrısal semboller, bir yılan ve bir sfenksle hayatın döngüsel doğasını gösterir. Kaderi yöneten evrensel güçleri ve sürekli değişimi simgeler.",
+    "uprightExtended": "Bu kart kaderi, değişimi ve kaçınılmaz dönüm noktalarını işaret eder. Hayatın seyrini değiştirebilecek ani olaylar gelebilir.",
+    "reversedExtended": "Ters konum, değişime direnç, her şeyin yokuş aşağı gittiği hissi veya kısır döngüler anlamına gelebilir. Bırak ve doğal akışa güven.",
+    "daily": "Kader döner — değişimi kucakla ve sürprizlere hazır ol. Çark, en beklemediğin anda fırsatlar getirir."
+  },
+  "justice": {
+    "symbolism": "Adalet iki sütun arasında oturur; kılıç ve terazi — hakikat ve dengenin sembolleridir. Bakışı nettir, açıklık ve adaleti işaret eder.",
+    "uprightExtended": "Düz konumda Adalet, hakikat, denge, karmik adalet ve hesap verebilirliği ifade eder. Meseleler adil biçimde çözülecektir.",
+    "reversedExtended": "Ters konum haksızlık, önyargı veya sorumluluktan kaçmayı gösterir. Gerçekle yüzleşme zamanı.",
+    "daily": "Bugün dürüstlük şart — hem kendine hem başkalarına karşı. Adalet hatırlatır: denge huzurun anahtarıdır, hakikat ise ışıktır."
+  },
+  "theHangedMan": {
+    "symbolism": "Asılan Adam başaşağı durur ama yüzünde huzurlu bir ifade vardır. Başındaki hale, teslimiyet yoluyla aydınlanmayı simgeler.",
+    "uprightExtended": "Bu kart duraklama, tefekkür ve bakış açısını değiştirme çağrısıdır. İlerleme, kabulleniş ve fedakârlıkla gelir.",
+    "reversedExtended": "Ters konum, değişime direnç, gecikmeler ya da eski bir görüşe inatla tutunmayı gösterir. Kontrolü bırak.",
+    "daily": "Dur. Açını değiştir. Asılan Adam der ki: bazen en bilge eylem teslimiyettir."
+  },
+  "death": {
+    "symbolism": "Ölüm, beyaz bir atın üstünde siyah zemin üzerinde beyaz güller bulunan bir sancak taşır; bitişleri ve yeniden doğuşu simgeler. Çevresindekiler kaçınılmaz olana boyun eğer.",
+    "uprightExtended": "Düz konumda Ölüm, dönüşüm, bitişler ve yeni başlangıçları ifade eder. Yenisine yer açmak için eskiyi bırak.",
+    "reversedExtended": "Ters konum, değişim korkusu, tıkanma veya durgunluk gösterir. Dönüşüme direniliyor — ancak kaçınılmazdır.",
+    "daily": "Artık hizmet etmeyeni bırak. Bugün içsel dönüşüm günü — her bitişin ardından bir başlangıç gelir."
+  },
+  "temperance": {
+    "symbolism": "Bir melek, bir kupadan diğerine sıvı döker; denge ve uyumu simgeler. Bir ayağı suda, diğeri karadadır — ruh ve madde uyum içindedir.",
+    "uprightExtended": "Bu kart denge, sabır ve ölçülülüğü ifade eder. Zıtlar arasında uyumu ve zorluklara sakin yaklaşımı çağırır.",
+    "reversedExtended": "Ters konum, uçlara savrulma, sabırsızlık veya içsel kaos anlamına gelir. İç dengenizi yeniden kurun.",
+    "daily": "Zihnini sakinleştir ve arzularını dengele. Denge hatırlatır: beden ve ruh uyumlandığında mucizeler olur."
+  },
+  "theDevil": {
+    "symbolism": "Şeytan bir tahtta oturur; bir kadın ve erkeğin boynundaki zincirler maddeye, tutkulara ve yanılsamalara bağımlılığı simgeler.",
+    "uprightExtended": "Düz konum, bağımlılık, ayartı ve sahte ideallere esareti gösterir. Kendi taktığın zincirlerden özgürleş.",
+    "reversedExtended": "Ters konum uyanış ve özgürleşmeye işaret eder. Kişi sınırlamalarının farkına varır ve bırakma süreci başlar.",
+    "daily": "Seni bağlayanı fark et. Şeytan yanılsamalar fısıldar — bugün onları ifşa edip özgürlüğe ilk adımı atabilirsin."
+  },
+  "theTower": {
+    "symbolism": "Kule, bir yıldırım darbesiyle yıkılırken insanlar aşağı düşer. Ani değişimi, şoku ve yanılsamaların çöküşünü simgeler.",
+    "uprightExtended": "Bu kart, eski temelleri yıkan beklenmedik olaylara işaret eder. Acı verici olsa da daha sağlıklı zeminde yeniden inşa etmeyi sağlar.",
+    "reversedExtended": "Ters konum, içsel bir altüst oluşu, değişimi inkârı veya kontrolü kaybetme korkusunu gösterir. Bırakış içeriden gerçekleşir.",
+    "daily": "Değişim acıtabilir; ama sahte olanı yıkmak hakikate götürür. Kule, sadece sağlam görüneni bırakmaya çağırır."
+  },
+  "theStar": {
+    "symbolism": "Yıldızlı gökyüzü altında bir kadın suyu havuza ve toprağa döker; umut, ilham ve ruhsal yenilenmeyi simgeler.",
+    "uprightExtended": "Düz konum, karanlıktan sonra ışığı, ruhsal rehberliği ve daha iyi bir yarına inancı getirir. Yenilenmiş güç ve ilhamı müjdeler.",
+    "reversedExtended": "Ters konum, inanç kaybı, karamsarlık veya ruhsal kaynaktan uzak hissetmeyi simgeler. Hayatın akışına güveni tazele.",
+    "daily": "Umut geri döner. Yıldız hatırlatır: en karanlık anda bile ışık vardır — içinde."
+  },
+  "theMoon": {
+    "symbolism": "Bir patika, Ay’ın aydınlattığı karanlıkta iki kulenin arasından uzanır. Bir köpek ve bir kurt aya ulurken sudan bir kerevit yükselir — bilinçdışı ve sezginin sembolleri.",
+    "uprightExtended": "Bu kart rüyaları, sezgiyi ve gizli anlamları işaret eder. İç sesini dinleme zamanı; yanılsamalara dikkat et.",
+    "reversedExtended": "Ters konum, kafa karışıklığı, kaygı ve çarpık algıları gösterir. Sükûnetle netliği bul.",
+    "daily": "Bugün mantıktan çok sezgini dinle. Ay, gizli gerçekleri aydınlatır — yalnızca içe bakmaya hazırsan."
+  },
+  "theSun": {
+    "symbolism": "Bir çocuk, ayçiçeklerinden bir duvarın önünde beyaz ata binerken Güneş tepede parlakça parlar. Neşe, açıklık ve yaşamı simgeler.",
+    "uprightExtended": "Bu kart mutluluk, başarı, canlılık ve berraklık getirir. Her şey aydınlanır ve enerji serbestçe akar.",
+    "reversedExtended": "Ters konum, neşte geçici bir düşüşü, belirsizlik gölgesini veya şişmiş egoyu gösterebilir. Işık hâlâ oradadır — sadece bulutlanmıştır.",
+    "daily": "Bu, neşe, açıklık ve şükran günü. Güneş der ki: parılda — ve her şey aydınlansın."
+  },
+  "judgement": {
+    "symbolism": "Bir melek göklerden boru çalar; ölüler mezarlardan yükselir — uyanış, bağışlama ve karmik yargının sembolüdür. Sahne ruhsal çağrıyla doludur.",
+    "uprightExtended": "Bu kart uyanış, yenilenme ve önemli kararları simgeler. Geçmişten özgürleşmeye ve daha yüksek bir farkındalık düzeyine hazırlığa çağırır.",
+    "reversedExtended": "Ters konum, yargılanma korkusu, kaçırılmış fırsatlar veya kişisel sorumluluğu kabullenmeme anlamına gelir. Gerçekle yüzleş.",
+    "daily": "Bugün bağışlama ve yeni bir başlangıç zamanıdır. Yargı, eski benliğinden uyanmaya ve daha yüksek hakikate adım atmaya davet eder."
+  },
+  "theWorld": {
+    "symbolism": "Bir figür bir çelengin içinde dans eder; çevresinde dört canlı varlığın sembolleri yer alır. Bu sahne tamamlanmayı, bütünlüğü ve birliği temsil eder.",
+    "uprightExtended": "Dünya, başarıyı, tatmini ve bir döngünün tamamlanışını simgeler. Deneyimlerini bütünleştirerek başarı gelir.",
+    "reversedExtended": "Ters konum, hâlâ eksik bir şey var hissi, tamamlanmada gecikme veya aynı kalıpları tekrarlama anlamına gelebilir. Tüm parçaları bir bütün hâline getir.",
+    "daily": "Başlananı bitir ve tamamlanmayı kutla. Dünya, bütünlük hissi getirir — hem yolcu hem de varışsın."
+  },
+  "aceOfWands": {
+    "symbolism": "Bir buluttan çıkan el, alevli bir değnek tutar — ruhsal ateşin, inisiyatifin ve yaratıcı enerjinin simgesi.",
+    "uprightExtended": "Düz konumda bu kart taze bir başlangıcı, yaratıcı kıvılcımı ve büyüme potansiyelini simgeler. Eyleme geçip fikrini hayata koyma zamanı.",
+    "reversedExtended": "Ters konum, ilhamın tıkanması, başlamakta gecikme veya inisiyatif almaktan duyulan korkuya işaret eder.",
+    "daily": "Bugün eylem ve yeni başlangıçlar günü. Değnek Ası, ilhamı uzanmaya ve içsel ateşini yakmaya davet eder."
+  },
+  "twoOfWands": {
+    "symbolism": "Bir figür bir küre tutup bir kuleden ufka bakar — planlamayı, vizyonu ve kendi alanı üzerindeki hâkimiyeti simgeler.",
+    "uprightExtended": "Düz konum ileri görüşlülüğü, karar almayı ve ufukları genişletmeyi ifade eder. Planlar hazır — şimdi cesaret zamanı.",
+    "reversedExtended": "Ters konum bocalama, kararsızlık ve bilinmeyenden korkuya işaret eder. Vizyon var ama hareket için cesaret eksik olabilir.",
+    "daily": "Konfor alanından çık ve büyük resmi gör. İki Değnek plan ve vizyon getirir — onları izlemeye cesaret et."
+  },
+  "threeOfWands": {
+    "symbolism": "Bir figür, gelip giden gemileri bir yükseltiden seyreder — beklenti ve alışverişin sembolü.",
+    "uprightExtended": "Bu kart, önceden verilmiş emeğe dayanan genişleme, başarı ve ilerlemeyi simgeler. Çabanın meyveleri yolda.",
+    "reversedExtended": "Ters konum, gecikmeler, karşılanmayan beklentiler veya belirsiz bir ilerleyişe işaret eder.",
+    "daily": "Bugün ilk hareket görünür oluyor. Üç Değnek, emeğinin dünyaya çoktan enerji gönderdiğini hatırlatır — yanıt geliyor."
+  },
+  "fourOfWands": {
+    "symbolism": "Süslü bir örtü altında insanlar kutlama yapar — barışın, uyumun ve paylaşılan sevincin sembolü.",
+    "uprightExtended": "Kart istikrar, kutlama ve uyumlu ilişkileri gösterir. Olası kutlamalar, bir düğün ya da başarılı bir eve dönüş.",
+    "reversedExtended": "Ters konum toplulukta uyumsuzluk, iç güvensizlik veya gözden kaçmış bir sevince işaret eder. Denge yeniden kurulmalı.",
+    "daily": "Küçük zaferleri kutla. Dört Değnek, istikrarı, birlikteliği ve sembolik de olsa bir yuva hissini getirir."
+  },
+  "fiveOfWands": {
+    "symbolism": "Beş figür değneklerini savurur; dövüş ya da idman hâlindedir — rekabet ve çatışmanın sembolü.",
+    "uprightExtended": "Düz konum anlaşmazlıklar, rekabet veya yapıcı mücadeleyi ifade eder. Çaba, büyümeye götürür.",
+    "reversedExtended": "Ters konum, anlamsız tartışmalar, iç çatışma veya uzlaşma ihtiyacını gösterir.",
+    "daily": "Görüşlerin çarpışması ya da egoların savaşıyla karşılaşabilirsin. Beş Değnek, sınırlarını sınayan bu süreçte onları güçlendirme fırsatı sunar."
+  },
+  "sixOfWands": {
+    "symbolism": "Bir binici, zafer defnesiyle kalabalığın alkışları arasında ilerler — kamusal takdir ve başarının sembolü.",
+    "uprightExtended": "Düz konum zaferi, takdiri ve özgüveni gösterir. Başarı, geçmiş emek ve mücadelenin sonucudur.",
+    "reversedExtended": "Ters konum, görünmeyen emek, öz-kuşku veya başarısızlık korkusuna işaret eder. Özdeğer üzerinde çalışmak gerekir.",
+    "daily": "Bugün tanınma ve başarı eşlik ediyor. Altı Değnek, alkışı kabul etmenin normal olduğunu hatırlatır — bunu hak ettin."
+  },
+  "sevenOfWands": {
+    "symbolism": "Bir kişi, daha yüksek bir noktadan altı saldırgana karşı savunma yapar — kararlılığın ve mevzini korumanın sembolü.",
+    "uprightExtended": "Kart, tutum almaya ve pozisyonunu savunmaya çağırır. Zorlayıcı olsa da mücadeleye değerdir.",
+    "reversedExtended": "Ters konum bunalmış hissetmeyi, aşırı savunmacılığı ya da zorluklar karşısında geri çekilmeyi gösterir. Sürdürmek için cesaret gerekir.",
+    "daily": "İnandığın şey için ayağa kalk. Yedi Değnek zorluk getirir ama duruşunu savunacak gücü de verir — başın dik."
+  },
+  "eightOfWands": {
+    "symbolism": "Sekiz değnek havada uçar — hızın, hareketin ve engelsiz ilerlemenin sembolü.",
+    "uprightExtended": "Düz konum hızlı ilerleme, iyi haberler ve olayların ivmelenmesini gösterir. Enerji serbestçe akar ve işler çabucak olur.",
+    "reversedExtended": "Ters konum gecikmeler, iletişim tıkanıklıkları veya karmaşaya işaret eder. Düşünceyle eylemi hizala.",
+    "daily": "Zaman hızlanıyor. Sekiz Değnek ani haberler, hızlı iletişim veya sıçrama getirir — odağını koru."
+  },
+  "nineOfWands": {
+    "symbolism": "Yaralı bir savaşçı bir değneğe dayanır; arkasında diğerleri durur — sebatın ve korunmanın sembolü.",
+    "uprightExtended": "Bu kart dayanıklılık, ısrar ve savunmayı ifade eder. Yorgun olsan da sana ait olanı korumaya hazırsın.",
+    "reversedExtended": "Ters konum tükenmişlik, kuruntu ya da sürekli saldırı altında hissetmeyi gösterir. Enerjini yenileme zamanı.",
+    "daily": "Yorgun olabilirsin ama hâlâ buradasın. Dokuz Değnek, çok şey atlattığını ve gücünün sandığından daha yakın olduğunu hatırlatır."
+  },
+  "tenOfWands": {
+    "symbolism": "Bir figür on değneği güçlükle taşır — şahsen üstlenilmiş yüklerin ve sorumlulukların sembolü.",
+    "uprightExtended": "Düz konum aşırı yük, sorumluluk ve büyük bir görevin son düzlüğünü gösterir. Yetki devrini düşünme zamanı.",
+    "reversedExtended": "Ters konum yardımı reddetme, kapana kısılmış hissetme veya duygusal ağırlığa işaret eder. Yükü hafletme zamanı.",
+    "daily": "Çok fazlasını taşıyorsan bugün bir şeyleri bırakma günü. On Değnek, yükü paylaşmaya veya öncelikleri yeniden düzenlemeye davet eder."
+  },
+  "pageOfWands": {
+    "symbolism": "Egzotik giysili bir genç bir değneği inceler — yeni fikirlerin, mesajların ve ruhsal merakın sembolü.",
+    "uprightExtended": "Düz konum bir mesajı, haberi veya ilhamın başlangıcını gösterir. Keşfe çıkıp iç ateşini bulma zamanı.",
+    "reversedExtended": "Ters konum güvensizlik, dürtüsellik veya kendini ifade etmeyi ertelemeyi gösterir. Cesaret ve sahicilik gerekir.",
+    "daily": "Bugün merakını uyandır. Değnek Valesi genç bir enerji getirir — küçük de olsa yeni bir şey dene."
+  },
+  "knightOfWands": {
+    "symbolism": "Bir şövalye değnekle ileri atılır — cesaretin, dürtünün ve hareketteki tutkunun sembolü.",
+    "uprightExtended": "Düz konum güçlü eylem, coşku ve fethetme arzusunu simgeler. Enerji yoğun ve inisiyatif doludur.",
+    "reversedExtended": "Ters konum düşüncesizlik, aşırı acele veya sabırsızlığa işaret eder. Eylemi amaçla hizala.",
+    "daily": "Tutkunu izle — ama başını alıp koşmadan. Değnek Şövalyesi rüzgârı arkana verir; onu bir hedef için kullan, sadece yarış için değil."
+  },
+  "queenOfWands": {
+    "symbolism": "Bir kraliçe, elinde ayçiçeği ve yanında bir kediyle tahtında oturur — özgüvenin, karizmanın ve ruhsal gücün sembolleri.",
+    "uprightExtended": "Düz konum sıcaklığı, çekim gücünü ve içsel güveni ifade eder. Kraliçe başkalarını parlamaya ilham eder.",
+    "reversedExtended": "Ters konum güvensizlik, kıskançlık veya cazibe yoluyla manipülasyonu gösterir. Liderlik dürüstlük ister.",
+    "daily": "Karizma ve özgüven yayıyorsun. Değnek Kraliçesi, ışığını gizlememeni öğütler — tam hâlinle başkalarına ilham ol."
+  },
+  "kingOfWands": {
+    "symbolism": "Bir kral elinde değnekle ileriye bakar — liderliğin, vizyonun ve tutkulu otoritenin sembolü.",
+    "uprightExtended": "Düz konum vizyoner liderlik, cesaret ve kararlılığı simgeler. İlhamla kontrolü ele alma zamanı.",
+    "reversedExtended": "Ters konum otoriterlik, kibir veya temelsiz buyurganlığa işaret eder. Zorla değil, örnek olarak liderlik et.",
+    "daily": "Liderliği al — vizyonla. Değnek Kralı, başkalarını kontrolle değil örnekle yönlendirme gücü verir."
+  },
+  "aceOfCups": {
+    "symbolism": "Bir buluttan çıkan el, içinden sular taşan altın bir kupa tutar — duygunun, sevginin ve ruhsal yenilenmenin simgesi.",
+    "uprightExtended": "Düz konum, yeni bir duygusal başlangıcı, açık bir kalbi ve duygu bolluğunu işaret eder. Aşk, sezgi ve şifa için ideal bir an.",
+    "reversedExtended": "Ters konum, duygusal tıkanıklıklar, bastırılmış hisler veya sevgiyi kabul edememeyi gösterir. Kalbin açılmaya ihtiyaç duyuyor.",
+    "daily": "Kalbini yeni hislere aç. Kupa Ası, aşk, bağışlama ya da ruhsal doyum için bir fırsat getirir — bugün her şey duyguda başlar."
+  },
+  "twoOfCups": {
+    "symbolism": "Bir erkek ve kadın, aslan başının kutsaması altında kupalarını değişir — denge ve duygusal bağın sembolü.",
+    "uprightExtended": "Düz konum, ortaklık, romantik ya da ruhsal bağlantı, uyum ve alışverişi simgeler. Her tür ilişki için mükemmel bir kart.",
+    "reversedExtended": "Ters konum, yanlış anlamalar, ayrılıklar veya karşılık bulmayan duygulara işaret eder. Duygusal denge yeniden kurulmalı.",
+    "daily": "Bugün ilişkiler odakta. İki Kupa, biriyle dengeyi, paylaşımı ve sahici bağı beslemeye çağırır."
+  },
+  "threeOfCups": {
+    "symbolism": "Üç kadın, kupalarını kaldırarak kutlar; etrafları yeryüzünün meyveleriyle çevrilidir — birliktelik ve neşenin sembolü.",
+    "uprightExtended": "Bu kart kutlama, dostluk, buluşmalar ve paylaşılan mutluluğu belirtir. Sevincini başkalarıyla paylaşma zamanı.",
+    "reversedExtended": "Ters konum, izolasyon, kıskançlık veya sosyal bağlarda kopuşa işaret eder. İlişkileri ve güveni yeniden gözden geçir.",
+    "daily": "Dostluğu, neşeyi ve küçük anları kutla. Üç Kupa neşe getirir ve yalnız olmak zorunda olmadığını hatırlatır."
+  },
+  "fourOfCups": {
+    "symbolism": "Bir kişi, bir ağacın altında dalgın otururken buluttan uzanan bir el ona bir başka kupa sunar — duygusal hoşnutsuzluğun ve içe dönük bir dönemin sembolü.",
+    "uprightExtended": "Düz konum, duygusal aldırmazlık, can sıkıntısı veya bir fırsatı kaçırmayı gösterir. Bakış açını genişletme zamanı.",
+    "reversedExtended": "Ters konum, taze bir uyanış, uyuşukluktan çıkış ve duygusal büyümeye hazır oluşu bildirir.",
+    "daily": "Eksik olana fazla odaklanıyor olabilirsin. Dört Kupa, daha geniş bakmanı hatırlatır — fırsat tam önünde olabilir."
+  },
+  "fiveOfCups": {
+    "symbolism": "Siyah pelerinli bir figür dökülmüş kupalara bakar; arkasında iki kupa ayakta durur — kaybın ama aynı zamanda umudun sembolü.",
+    "uprightExtended": "Kart, kederi, hayal kırıklığını veya pişmanlığı belirtir. Kaybı kabullenmeye ve yeni olasılıklara açılmaya çağırır.",
+    "reversedExtended": "Ters konum, bağışlama, duygusal iyileşme ve değerli olana yeniden odaklanmayı gösterir. Umut geri döner.",
+    "daily": "Yas doğaldır, ama son değildir. Beş Kupa, kaybı kabul etmeye ve sonra kalanlara dönmeye davet eder."
+  },
+  "sixOfCups": {
+    "symbolism": "Bahçede iki çocuk bir kupa değişir — anıların, nostaljinin ve geçmişin masumiyetinin sembolü.",
+    "uprightExtended": "Kart, anıları, çocukluğu, nostaljiyi ve karşılık beklemeden vermeyi işaret eder. Masumiyetin ruhunu tazele.",
+    "reversedExtended": "Ters konum, geçmişe takılı kalmayı, olgunlaşmamayı veya eski duygusal bağları bırakma gereğini bildirir.",
+    "daily": "Geçmişten güzel bir şeyi anımsa. Altı Kupa, nostalji getirir — geçmiş sevinçlerden bugüne güç devşirme fırsatı."
+  },
+  "sevenOfCups": {
+    "symbolism": "Bir figür, sembollerle dolu yüzen yedi kupanın önünde durur — yanılsamalar, ayartılar ve olasılıklar.",
+    "uprightExtended": "Düz konum, çok seçenek, hayal gücü ve kafa karışıklığını belirtir. Sadece gözle değil, kalple seç.",
+    "reversedExtended": "Ters konum, dağınık enerji, temelsiz hayaller veya nihayet çok seçenek arasından bir tercih yapmayı gösterir.",
+    "daily": "Birçok olasılık var — ama hepsi gerçek değil. Yedi Kupa, yanılsamayla gerçek arzuyu ayırt etmeye çağırır."
+  },
+  "eightOfCups": {
+    "symbolism": "Bir figür sekiz kupayı bırakıp dağlara doğru gider — ruhsal arayışın ve tanıdık olanı geride bırakmanın sembolü.",
+    "uprightExtended": "Kart, duygusal geri çekilmeyi, anlam arayışını ve içsel tatmin ihtiyacını belirtir.",
+    "reversedExtended": "Ters konum, ayrılışı ertelemeyi, yüzleşmeden kaçmayı veya eski kalıplara dönmeyi gösterir.",
+    "daily": "Artık seni doyurmayanı bırakma zamanı olabilir. Sekiz Kupa hatırlatır: bu pes etmek değil — daha derin anlam arayışıdır."
+  },
+  "nineOfCups": {
+    "symbolism": "Memnun bir figür dokuz kupanın önünde oturur — dileklerin gerçekleşmesi, tatmin ve duygusal doluluğun sembolü.",
+    "uprightExtended": "Düz konum, duygusal tatmin, hedeflerin gerçekleşmesi ve şükranı getirir. Emeğinin meyvelerinin tadını çıkarma zamanı.",
+    "reversedExtended": "Ters konum, yüzeysel haz, aşırılık veya karşılanmayan beklentileri işaret eder. Daha derin bir doyum ara.",
+    "daily": "Tatmin içeriden gelir. Dokuz Kupa duygusal huzur getirir — bugün şükran ve azıcık hedonizm günü."
+  },
+  "tenOfCups": {
+    "symbolism": "Bir aile, on kupadan oluşan bir gökkuşağının altında durur — ideal sevginin, uyumun ve duygusal tatminin sembolü.",
+    "uprightExtended": "Kart, duygusal tatmin, aile uyumu ve ruhsal huzur getirir. Aşk ve ilişkilerde neşenin zirvesi.",
+    "reversedExtended": "Ters konum, kusursuz görünen resmin altında çatlaklar, aile gerginliği veya gerçekçi olmayan beklentilere işaret eder.",
+    "daily": "Sevgi, aile, tatmin — bugün bir bütünlük duygusuyla çevrilisin. On Kupa, en geniş anlamıyla bir aradalığı kutlar."
+  },
+  "pageOfCups": {
+    "symbolism": "Bir genç, içinden balık çıkan bir kupa tutar — ani sezginin, mesajların ve duygunun sembolü.",
+    "uprightExtended": "Bu kart, nazik duyguları, yaratıcılığı ve duygusal içgörünün başlangıcını simgeler. Kalbini bilinmeyene aç.",
+    "reversedExtended": "Ters konum, olgunlaşmamışlık, duygularda laubalilik veya gerçek hislerden kaçınmayı gösterir.",
+    "daily": "Kalpten gelen bir mesaja açık ol — tuhaf görünse bile. Kupa Valesi sanatsal ilham, sürprizler ve yumuşak duygular getirir."
+  },
+  "knightOfCups": {
+    "symbolism": "Beyaz at üstündeki bir şövalye, aşkın, sanatın ve ruhsal ideallerin habercisi olarak bir kupa taşır.",
+    "uprightExtended": "Düz konum, romantik bir teklif, ruhsal arayış ve idealizmi gösterir. Duygu ve vizyon seni harekete geçirir.",
+    "reversedExtended": "Ters konum, aldanma, duygusal manipülasyon veya aşkta gerçekçi olmayan beklentileri gösterir.",
+    "daily": "Bugün kalpten konuşursun (ya da öyle bir söz alırsın). Kupa Şövalyesi romantizm getirir — ve ruhunun fısıldadığını izlemeye çağırır."
+  },
+  "queenOfCups": {
+    "symbolism": "Bir kraliçe, deniz kıyısında kapalı bir kupa tutar — sezgisel bilgelik ve duygusal derinliğin simgesi.",
+    "uprightExtended": "Kart, şefkati, ilgiyi ve ruhsal derinliği işaret eder. Kalbiyle dinler ve söylenmeyeni anlar.",
+    "reversedExtended": "Ters konum, duygusal tükenmişlik, pasiflik veya başkalarının duygularıyla bunalmayı gösterir.",
+    "daily": "Kendini içeriden besle. Kupa Kraliçesi derin duygusal bilgelik getirir — bugün hiçbir şeyi düzeltmek zorunda değilsin, sadece hisset."
+  },
+  "kingOfCups": {
+    "symbolism": "Bir kral, dalgalar arasında tahta oturur; dalgalarına rağmen sakindir — duygular üzerinde ustalığın sembolü.",
+    "uprightExtended": "Düz konum, duygusal istikrar, bilgelik ve içten desteği simgeler. Başkalarını kalbin ve deneyiminle yönlendirirsin.",
+    "reversedExtended": "Ters konum, bastırılmış duygular, manipülasyon veya duygusal mesafeyi gösterir. Zihin ile kalbi hizala.",
+    "daily": "Duygular okyanusunda sakin kal. Kupa Kralı, duyguları bastırmadan — onları bilgelikle taşımayı öğretir."
+  },
+  "aceOfSwords": {
+    "symbolism": "Bir buluttan çıkan el, defne çelengiyle taçlandırılmış dik bir kılıç tutar — hakikatin, berraklığın ve zihinsel atılımın sembolü.",
+    "uprightExtended": "Bu kart, hakikat yoluyla yeni bir başlangıcı, berrak zihni ve kararlılığı simgeler. Karar verme ve yanılsamaları kesip atma zamanı.",
+    "reversedExtended": "Ters konum, kafa karışıklığı, zihinsel bloklar veya hatalı muhakemeyi gösterir. Berraklık sükûnetle yeniden kazanılmalı.",
+    "daily": "Bugün berraklık doğar. Kılıç Ası, hakikati ve sözün gücünü getirir — demek istediğini söyle, ama farkındalıkla."
+  },
+  "twoOfSwords": {
+    "symbolism": "Gözleri bağlı bir kadın, çapraz iki kılıç tutar — kararsızlık ve iç çatışmanın sembolü.",
+    "uprightExtended": "Düz konum, iki seçenek arasında denge kurmayı, kararı ertelemeyi ve eylemden önce içsel huzur ihtiyacını gösterir.",
+    "reversedExtended": "Ters konum, karar verememeyi, duygusal bir blokajı veya gerçeği görmezden gelmeyi işaret eder.",
+    "daily": "Bir karardan kaçıyor olabilirsin — ama gerçekle yüzleşme zamanı. İki Kılıç, mantık ile duygu arasında denge ister."
+  },
+  "threeOfSwords": {
+    "symbolism": "Üç kılıç, gri bir gökyüzüne karşı kırmızı bir kalbi deler — kederin, yürek kırıklığının ve kaybın sembolü.",
+    "uprightExtended": "Bu kart acı, hayal kırıklığı ve duygusal bir şeyin sonunu getirir. Ancak yasla birlikte şifa gelir.",
+    "reversedExtended": "Ters konum, şifa sürecini, acının bırakılmasını veya yüzeye çıkması gereken bastırılmış kederi gösterir.",
+    "daily": "Ayrılıp gitmesi için acı kabul edilmelidir. Üç Kılıç can yakar; ama kalbi daha hakiki olana açar."
+  },
+  "fourOfSwords": {
+    "symbolism": "Bir figür, elleri birleşik hâlde bir kilisede uzanır — dinlenmenin, tefekkürün ve ruhsal yenilenmenin sembolü.",
+    "uprightExtended": "Kart, duraksamaya, dinlenmeye ve ruhsal sükûnete çağırır. Sonraki evreden önce beden ve zihni yenile.",
+    "reversedExtended": "Ters konum, huzursuzluk, dinlenmeyi reddetme veya içsel tükenmeyi gösterir. Tefekkür acilen gereklidir.",
+    "daily": "Dinlenmek ilaçtır. Dört Kılıç, çekilmeyi, zihni sakinleştirmeyi ve ilerlemeden önce gücünü toparlamayı söyler."
+  },
+  "fiveOfSwords": {
+    "symbolism": "Bir figür, diğerleri çekilirken kılıçları toplar — çatışma pahasına gelen zaferin ve kaybolan saygının sembolü.",
+    "uprightExtended": "Düz konum, çatışma, manipülasyon veya gerçek tatmin getirmeyen bir zaferi ifade eder. Niyetlerini yeniden gözden geçir.",
+    "reversedExtended": "Ters konum, uzlaşma ihtiyacına, çatışmadan kaçınmaya ya da toksik bir durumdan uzaklaşmaya işaret eder.",
+    "daily": "Boş bir zafere dikkat. Beş Kılıç hatırlatır: her çatışmanın peşine düşmeye değmez — üstünlüğü değil, barışı seç."
+  },
+  "sixOfSwords": {
+    "symbolism": "Bir figür, altı kılıç taşıyan bir kayıkla sudan geçer — geçişin, şifanın ve bağlam değişiminin sembolü.",
+    "uprightExtended": "Kart, sakin bir geçişi, duygusal iyileşmeyi ve dengeye dönüşü belirtir. Geçmişi geride bırakma zamanı.",
+    "reversedExtended": "Ters konum, ilerlemekte zorlanmayı, duygusal yükleri veya gerekli değişimi ertelemeyi gösterir.",
+    "daily": "Daha sakin sulara gidiyorsun. Altı Kılıç, zorlu bir dönemden sonra gelen ferahlığı getirir — geçişi kabul et."
+  },
+  "sevenOfSwords": {
+    "symbolism": "Bir figür, kılıçları taşıyarak gizlice uzaklaşır ve arkasına bakar — hilenin, saklı niyetlerin ve öz-kandırmanın sembolü.",
+    "uprightExtended": "Düz konum, kurnazlık, strateji veya sorumluluktan kaçınmayı gösterir. Birileri bir şeyi gizliyor olabilir.",
+    "reversedExtended": "Ters konum, hakikatin açığa çıkması, vicdan sızısı veya dürüstlüğe çağrıyı işaret eder.",
+    "daily": "Bilge ve tedbirli ol. Yedi Kılıç, birinin (belki de senin) gerçeği kaçındığını söyler — dürüstlük zamanı."
+  },
+  "eightOfSwords": {
+    "symbolism": "Bir kadın bağlıdır ve kılıçlarla çevrilidir — zihinsel hapsin, korkunun ve sınırlamanın sembolü.",
+    "uprightExtended": "Bu kart, çıkış yolu göremeyecek kadar kapana kısılmış hissetmeyi işaret eder. Sınırlar çoğunlukla içseldir.",
+    "reversedExtended": "Ters konum, özgürleşmeyi, farkındalığı ve zihinsel özgürlüğe atılan ilk adımı simgeler.",
+    "daily": "Tutsaklık hissi içeriden gelir. Sekiz Kılıç hatırlatır: engel düşüncelerindir — ve serbest kalmanın anahtarı sende."
+  },
+  "nineOfSwords": {
+    "symbolism": "Bir kişi yatakta doğrulmuş, başı ellerindedir; üzerinde dokuz kılıç — endişenin, uykusuzluğun ve pişmanlığın sembolü.",
+    "uprightExtended": "Düz konum, zihinsel ıstırap, kaygı veya suçluluk duygusuna işaret eder. Düşünceler yük hâline gelmiştir.",
+    "reversedExtended": "Ters konum, toparlanmayı, kaygıların hafiflemesini veya içsel meselelerin kabullenilmesini getirir.",
+    "daily": "Endişeler geceleri seni yakalayabilir; ama dünya bundan ibaret değil. Dokuz Kılıç fısıldar: yalnız değilsin — ve korktuğun şey sen değilsin."
+  },
+  "tenOfSwords": {
+    "symbolism": "Bir figür, sırtında on kılıçla karanlık bir göğün altında yatar — bitişin, ihanetin ve nihai çöküşün sembolü.",
+    "uprightExtended": "Bu kart, bir döngünün bitişini, hayal kırıklığını veya duygusal ihaneti — ve karanlıktan sonra yeni bir şafağı — gösterir.",
+    "reversedExtended": "Ters konum, hayatta kalmayı, iyileşmeyi ve zorlu bir durumdan çıkışı simgeler. Taze bir başlangıç zamanı.",
+    "daily": "Son acı verici olabilir; ama ferahlık getirir. On Kılıç bir bölümü kapatır ve yenilenmeye alan açar."
+  },
+  "pageOfSwords": {
+    "symbolism": "Bir genç, tetikte bir duruşla kılıcını tutar — merakın, zihinsel tetikliğin ve temkinin sembolü.",
+    "uprightExtended": "Bu kart, zihinsel keskinliği, iletişimi ve sorgulamayı işaret eder. Dürüst bir konuşma ve öğrenme zamanı.",
+    "reversedExtended": "Ters konum, dedikodu, odak eksikliği veya aşırı savunmacılığı gösterir. Zihni sakinleştir ve netleş.",
+    "daily": "Meraklı ol; ama dikkatli. Kılıç Valesi yeni bilgi getirir — dinle, gözlemle ve acele hüküm verme."
+  },
+  "knightOfSwords": {
+    "symbolism": "Bir şövalye, kaldırılmış kılıçla ileri atılır — eylemin, kararlılığın ve fikir güdümlü dürtünün sembolü.",
+    "uprightExtended": "Düz konum, hız, zihinsel atılım ve cesareti gösterir. Gecikmeden kararlı eylem zamanı.",
+    "reversedExtended": "Ters konum, düşüncesizlik, saldırgan iletişim veya zihinsel kaosu gösterir. Enerjiyi daha bilgece yönlendir.",
+    "daily": "Düşüncelerin hızla uçuyor — ama saklamak istediklerini kesmemeye dikkat et. Kılıç Şövalyesi, tutku ile akıl arasında denge ister."
+  },
+  "queenOfSwords": {
+    "symbolism": "Bir kraliçe, bir elinde kaldırılmış kılıçla tahtında oturur; diğer eli davet eder — adaletin ve zihinsel gücün sembolü.",
+    "uprightExtended": "Kart, nesnelliği, bilgeliği ve analitik yaklaşımı belirtir. Gerçek hakikat ortaya çıkar.",
+    "reversedExtended": "Ters konum, soğukluk, hoşgörüsüzlük veya duygusal mesafeyi gösterir. Zihinle kalp arasında denge gerekir.",
+    "daily": "Net ve dürüst ol; soğuk görünse bile. Kılıç Kraliçesi, yanılsamasız bilgeliği getirir — şeyleri oldukları gibi görüyorsun."
+  },
+  "kingOfSwords": {
+    "symbolism": "Bir kral, hakikat, adalet ve akılcılığı simgeleyen bir kılıçla tahtında oturur.",
+    "uprightExtended": "Düz konum, otoriteyi, mantığı ve ahlaki sağlamlığı temsil eder. Zekâ ve berraklıkla önderlik et.",
+    "reversedExtended": "Ters konum, manipülasyon, güç suistimali veya aşırı rasyonalizmi gösterir. Adil bir denge gerekir.",
+    "daily": "Bugün mantık hükmeder. Kılıç Kralı, kararlılık ve nesnellik çağrısı yapar — örnek olarak liderlik et, duyguyla değil."
+  },
+  "aceOfPentacles": {
+    "symbolism": "Bir buluttan çıkan el, altın bir tılsım tutar — yeni maddi fırsatların ve evrenden gelen armağanların simgesi.",
+    "uprightExtended": "Kart, para, sağlık veya kariyerde yeni bir başlangıcı gösterir. Şeyleri somutlaştırma zamanı.",
+    "reversedExtended": "Ters konum, kaçırılmış bir fırsata, sallantılı temellere veya tezahürde gecikmelere işaret eder.",
+    "daily": "Bugün maddi dünyada yeni bir fırsat açılıyor — para, iş, sağlık. Tılsım Ası istikrarın tohumudur — onu özenle ek."
+  },
+  "twoOfPentacles": {
+    "symbolism": "Bir figür, sonsuzluk işaretiyle bağlı iki tılsımı dengede tutar — hayatın akışlarını yönetmenin sembolü.",
+    "uprightExtended": "Düz konum, iş ve özel yaşam arasında dengeyi, esnekliği ve becerikliliği simgeler.",
+    "reversedExtended": "Ters konum, kaos, stres veya hayatın bir alanını ihmal etmeyi gösterir. Daha iyi organizasyon gerekir.",
+    "daily": "Aynı anda çok şey mi çeviriyorsun? İki Tılsım, ritmini bulmayı öğretir — bugün en iyi aracın dengedir."
+  },
+  "threeOfPentacles": {
+    "symbolism": "Bir sanatçı, bir din adamı ve bir zanaatkâr katedral inşasında işbirliği yapar — ekip çalışması ve ortak değerlerin sembolü.",
+    "uprightExtended": "Kart, işbirliğini, becerinin takdirini ve sağlam temeller üzerine inşa etmeyi ifade eder.",
+    "reversedExtended": "Ters konum, işbirliği eksikliği, ekip uyumsuzluğu veya öğüt kabul etmeyi reddetmeyi gösterir.",
+    "daily": "İşbirliği sonuç getirir. Üç Tılsım, herkes payına düşeni kattığında ve emeğe saygı duyulduğunda başarının büyüdüğünü hatırlatır."
+  },
+  "fourOfPentacles": {
+    "symbolism": "Bir adam bir tılsıma sıkıca tutunur; ikisi ayaklarının altında, biri de tacındadır — maddi güvenliğin ve bağlılığın sembolü.",
+    "uprightExtended": "Düz konum, birikimi, kontrol ihtiyacını ve kaynakları korumayı gösterir. İstikrar zamanı.",
+    "reversedExtended": "Ters konum, açgözlülük, inatçılık veya kayıp korkusuna işaret eder. Akışa açıl.",
+    "daily": "Bir şeyi fazla mı sıkıyorsun? Dört Tılsım, korumanın bir zindana dönüşmemesi gerektiğini söyler — güven, aynı zamanda güvenden de doğar."
+  },
+  "fiveOfPentacles": {
+    "symbolism": "İki yoksul, karda bir kilisenin önünden geçer — kıtlığın, yalnızlığın ve bedensel ya da ruhsal ihtiyacın sembolü.",
+    "uprightExtended": "Kart, maddi zorlukları, hastalığı veya duygusal yalnızlığı işaret eder. Yardım vardır, ama talep edilmelidir.",
+    "reversedExtended": "Ters konum, toparlanmayı, kıtlıktan çıkışı ve umudu simgeler. Bir ışık belirmeye başlar.",
+    "daily": "Dışlanmış ya da güvensiz hissediyorsan destek iste. Beş Tılsım, yalnız olmadığını hatırlatır — kapı sandığından daha yakın olabilir."
+  },
+  "sixOfPentacles": {
+    "symbolism": "Zengin bir adam teraziyi tutarken yoksullara para verir — dengenin, vermenin ve almanın sembolü.",
+    "uprightExtended": "Bu kart cömertliği, yardımı ve alışverişte dengeyi belirtir. Şükranla vermenin ya da almanın zamanıdır.",
+    "reversedExtended": "Ters konum, dengesizlik, bağımlılık veya beklenti yüklü yardımı gösterir. Niyetlerin gerçekliğini tart.",
+    "daily": "Bugün karşılıklılığı hatırla. Altı Tılsım, denge, şükran ve suçluluk duymadan vermeye — ya da almaya — davet eder."
+  },
+  "sevenOfPentacles": {
+    "symbolism": "Bir çiftçi mahsulünü seyreder — bekleyişin, değerlendirişin ve büyüme sürecindeki sabrın sembolü.",
+    "uprightExtended": "Düz konum, durumu gözden geçirmeyi, emek yatırmayı ve sonuçları beklemeyi gösterir. Sabır karşılık bulur.",
+    "reversedExtended": "Ters konum, sabırsızlık, emeğinden şüphe veya yönünü yeniden değerlendirme ihtiyacını belirtir.",
+    "daily": "Anahtar sabırdır. Yedi Tılsım, meyvenin geldiğini söyler — ama özen ve zaman ister. Şimdi vazgeçme."
+  },
+  "eightOfPentacles": {
+    "symbolism": "Bir işçi yılmadan tılsımlar işler — ustalığın, adanmışlığın ve zanaatin sembolü.",
+    "uprightExtended": "Bu kart özverili çalışmayı, öğrenmeyi ve pratikle ilerlemeyi gösterir. Disiplin zamanı.",
+    "reversedExtended": "Ters konum, ilhamsız rutini, aceleden doğan hataları veya öğrenmeyi reddetmeyi gösterir.",
+    "daily": "Pratik ustayı yapar. Sekiz Tılsım, emek vermeye ve becerilerini geliştirmeye çağırır — her adım sayılır."
+  },
+  "nineOfPentacles": {
+    "symbolism": "Bir kadın, bahçede bir doğanla durur — bağımsızlığın, lüksün ve öz-güvenin sembolü.",
+    "uprightExtended": "Kart, emeğin meyvesini, kendi ayakları üzerinde durmayı ve elde edilenlerin tadını çıkarmayı getirir. Gururla dimdik dur.",
+    "reversedExtended": "Ters konum, bağımlılık, sahicilikten uzaklaşma veya bağımsızlıktan korkmayı gösterir. Öz-değerini inşa et.",
+    "daily": "Bağımsızlık ve alın terinin meyvelerinin tadını çıkarma bugün öne çıkıyor. Dokuz Tılsım, yeterliliğini ve bolluğu hak ettiğini hatırlatır."
+  },
+  "tenOfPentacles": {
+    "symbolism": "Bolluk sembolleriyle çevrili bir aile — maddi güvenliğin, aile geleneğinin ve mirasın sembolü.",
+    "uprightExtended": "Bu kart uzun vadeli istikrarı, aile değerlerini ve başarılı bir döngünün tamamlanışını ifade eder.",
+    "reversedExtended": "Ters konum, aile içi uyumsuzluk, finansal gerilimler veya miras değerlerinin kaybına işaret eder.",
+    "daily": "Uzun vadeli düşün. On Tılsım aidiyet, miras ve güvenlik hissi getirir — bugün yarının temellerini atıyorsun."
+  },
+  "pageOfPentacles": {
+    "symbolism": "Bir genç, altın bir tılsımı dikkatle inceler — öğrenmenin, maddi potansiyelin ve somut niyetin sembolü.",
+    "uprightExtended": "Kart, merakı, çırağı ve pratik başarıya atılan ilk adımı simgeler. Yaparak öğren.",
+    "reversedExtended": "Ters konum, odak eksikliğini, kaçırılmış fırsatları veya başlangıcı ertelemeyi gösterir. Hedefe adanma gerekir.",
+    "daily": "Bugün öğrenmek veya hedef koymak için idealdir. Tılsım Valesi fısıldar: fikre inanıyorsan — onu büyütmeye hazır ol."
+  },
+  "knightOfPentacles": {
+    "symbolism": "Bir şövalye, elinde tılsımla sakince at üstünde durur — sorumluluğun, sabrın ve özenli eylemin sembolü.",
+    "uprightExtended": "Düz konum, sebatı, adanmışlığı ve istikrarlı, gerçekçi ilerlemeyi gösterir. Güvenilir yolu izle.",
+    "reversedExtended": "Ters konum, inatçılık, durgunluk veya aşırı yavaşlığı işaret eder. Temponu amacınla hizala.",
+    "daily": "Tutarlılık ve ayrıntılara dikkat bugün müttefikindir. Tılsım Şövalyesi hatırlatır: yavaş ve istikrarlı — kalıcı olan böyle inşa edilir."
+  },
+  "queenOfPentacles": {
+    "symbolism": "Doğanın içinde bir kraliçe tılsımı özenle tutar — evin, istikrarın ve anne enerjisinin sembolü.",
+    "uprightExtended": "Kart güvenliği, beslemeyi ve pratikliği getirir. Düzeni ve nezaketiyle uyum yaratır.",
+    "reversedExtended": "Ters konum, kendini ihmal etmeyi, aşırı maddeciliği veya duygusal geri çekilmeyi gösterebilir.",
+    "daily": "Dünyanı besle — dışarıda ve içeride. Tılsım Kraliçesi sıcaklık, pratiklik ve istikrar getirir — bedenine, evine ve rutinine özen göster."
+  },
+  "kingOfPentacles": {
+    "symbolism": "Bir kral, boğa kabartmaları ve asmalarla bezeli bir tahtta oturur — güç, zenginlik ve yerleşik istikrarın sembolü.",
+    "uprightExtended": "Bu kart, elde edilmiş maddi başarıyı, kaynakların bilgece yönetimini ve güvenliği simgeler.",
+    "reversedExtended": "Ters konum, dik kafalılık, açgözlülük veya aşırı kontrolü gösterir. Hayatın akışına yer aç.",
+    "daily": "Uzun vadeli temeller kuracak kararlar al. Tılsım Kralı, gücünün kaynakları bilgece idare etmekten geldiğini hatırlatır."
+  }
+}

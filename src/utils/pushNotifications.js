@@ -8,10 +8,23 @@ import { Platform } from 'react-native';
 // START: helper – samo proveri/traži dozvole, bez registracije tokena
 export async function ensurePushPermissions() {
   try {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    if (existingStatus === 'granted') return true;
-    const { status } = await Notifications.requestPermissionsAsync();
-    return status === 'granted';
+    const { status: existingStatus, ios } = await Notifications.getPermissionsAsync();
+    // START: iOS – 'provisional' je dovoljno za prikaz obaveštenja
+    const grantedLike =
+      existingStatus === 'granted' ||
+      existingStatus === 'authorized' ||
+      existingStatus === 'provisional';
+    if (grantedLike) return true;
+
+    const req = await Notifications.requestPermissionsAsync({
+      ios: { allowAlert: true, allowBadge: true, allowSound: true },
+    });
+    const final =
+      req.status === 'granted' ||
+      req.status === 'authorized' ||
+      req.status === 'provisional';
+    return final === true;
+    // END: iOS – 'provisional'
   } catch {
     return false;
   }
@@ -25,26 +38,45 @@ export async function registerForPushNotificationsAsync() {
       console.warn('[PUSH] Device.isDevice === false (dev build edge-case); nastavljam dalje.');
     }
 
-    // Android 8+ zahteva kanal pre nego što prva notifikacija stigne
+    // START: Android 8+ – kreiraj oba kanala (edge funkcije koriste 'alerts-high')
     if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync('alerts-high', {
+        name: 'High priority',
+        importance: Notifications.AndroidImportance.MAX,
+        sound: 'default',
+        vibrationPattern: [0, 250, 250, 250],
+        lockscreenVisibility: Notifications.AndroidNotificationVisibility.PUBLIC,
+      });
       await Notifications.setNotificationChannelAsync('default', {
-        name: 'default',
-        // START: smanji heads-up intenzitet (pre je bilo MAX)
+        name: 'Default',
         importance: Notifications.AndroidImportance.DEFAULT,
-        // END: smanji heads-up intenzitet
         vibrationPattern: [0, 250, 250, 250],
         lightColor: '#FF231F7C',
       });
     }
+    // END: Android kanali
 
-    // Dozvole (Android 13+ runtime permission)
+    // Dozvole (Android 13+ runtime permission, iOS sa alert/badge/sound)
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
     let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
+    const hasExistingGrant =
+      existingStatus === 'granted' ||
+      existingStatus === 'authorized' ||
+      existingStatus === 'provisional';
+
+    if (!hasExistingGrant) {
+      const { status } = await Notifications.requestPermissionsAsync({
+        ios: { allowAlert: true, allowBadge: true, allowSound: true },
+      });
       finalStatus = status;
     }
-    if (finalStatus !== 'granted') {
+
+    const isGranted =
+      finalStatus === 'granted' ||
+      finalStatus === 'authorized' ||
+      finalStatus === 'provisional';
+
+    if (!isGranted) {
       alert('Niste dozvolili notifikacije.');
       return null;
     }
@@ -52,7 +84,9 @@ export async function registerForPushNotificationsAsync() {
     // projectId je preporučen u EAS okruženju
     const projectId =
       Constants?.expoConfig?.extra?.eas?.projectId ??
-      Constants?.easConfig?.projectId;
+      Constants?.easConfig?.projectId ??
+      Constants?.expoConfig?.extra?.projectId ??
+      null;
 
     const { data: token } = await Notifications.getExpoPushTokenAsync(
       projectId ? { projectId } : undefined
@@ -73,7 +107,10 @@ export async function registerAndSavePushToken({ supabase, userId }) {
   try {
     // Proveri trenutno stanje dozvola (za UI flag)
     const perms = await Notifications.getPermissionsAsync();
-    const enabled = perms.status === 'granted';
+    const enabled =
+      perms.status === 'granted' ||
+      perms.status === 'authorized' ||
+      perms.status === 'provisional';
 
     // Učitaj postojeće vrednosti da ne pišemo uvek UPDATE
     const { data: prof, error: selErr } = await supabase

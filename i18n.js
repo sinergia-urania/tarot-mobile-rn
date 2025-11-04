@@ -68,6 +68,24 @@ import hi_extendedMeanings from './src/locales/hi/extendedMeanings.json';
 import hi_questions from './src/locales/hi/questions.json';
 // END: HI resursi
 
+// START: TR resursi (komplet – common, ai, cardMeanings, extendedMeanings, documents, questions)
+import tr_ai from './src/locales/tr/ai.json';
+import tr_cardMeanings from './src/locales/tr/cardMeanings.json';
+import tr_common from './src/locales/tr/common.json';
+import tr_documents from './src/locales/tr/documents.json';
+import tr_extendedMeanings from './src/locales/tr/extendedMeanings.json';
+import tr_questions from './src/locales/tr/questions.json';
+// END: TR resursi
+
+// START: ID resursi (komplet – common, ai, cardMeanings, extendedMeanings, documents, questions)
+import id_ai from './src/locales/id/ai.json';
+import id_cardMeanings from './src/locales/id/cardMeanings.json';
+import id_common from './src/locales/id/common.json';
+import id_documents from './src/locales/id/documents.json';
+import id_extendedMeanings from './src/locales/id/extendedMeanings.json';
+import id_questions from './src/locales/id/questions.json';
+// END: ID resursi
+
 // START: resources — sr/en/es (+ de + fr)
 const resources = {
   sr: {
@@ -140,6 +158,28 @@ const resources = {
     questions: hi_questions,
   },
   // END: hi resources
+
+  // START: tr resources (komplet)
+  tr: {
+    common: tr_common,
+    ai: tr_ai,
+    cardMeanings: tr_cardMeanings,
+    extendedMeanings: tr_extendedMeanings,
+    documents: tr_documents,
+    questions: tr_questions,
+  },
+  // END: tr resources
+
+  // START: id resources (komplet)
+  id: {
+    common: id_common,
+    ai: id_ai,
+    cardMeanings: id_cardMeanings,
+    extendedMeanings: id_extendedMeanings,
+    documents: id_documents,
+    questions: id_questions,
+  },
+  // END: id resources
 };
 // END: resources
 
@@ -167,13 +207,21 @@ i18n
       pt: ['pt', 'en', 'sr'], // portugalski: PT → EN → SR
       hi: ['hi', 'en', 'sr'], // hindski: HI → EN → SR
       // END: pt & hi fallbacks
+
+      // START: tr & id fallbacks
+      tr: ['tr', 'en', 'sr'], // turski: TR → EN → SR
+      id: ['id', 'en', 'sr'], // indonezijski: ID → EN → SR
+      // END: tr & id fallbacks
     },
     // END: pametan fallback
     lng: 'sr',
     // START: podržani jezici
     // START: add German & French - supportedLngs
-    supportedLngs: ['sr', 'en', 'es', 'de', 'fr', 'pt', 'hi'],
+    // supportedLngs: ['sr', 'en', 'es', 'de', 'fr', 'pt', 'hi'],
     // END: add German & French - supportedLngs
+    // START: add Turkish & Indonesian - supportedLngs (extend list)
+    supportedLngs: ['sr', 'en', 'es', 'de', 'fr', 'pt', 'hi', 'tr', 'id'],
+    // END: add Turkish & Indonesian - supportedLngs (extend list)
     load: 'languageOnly',        // en-US/sr-RS/es-ES → en/sr/es
     nonExplicitSupportedLngs: true,
     // END: podržani jezici

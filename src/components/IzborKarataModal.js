@@ -1,11 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
+// START: perf(import) — dodaj useMemo u React uvoz
+/* ORIGINAL:
 import { useCallback, useEffect, useRef, useState } from "react";
+*/
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+// END: perf(import) — dodaj useMemo u React uvoz
 import {
   ActivityIndicator,
   Alert,
   Animated,
   Dimensions,
-  Image,
   PanResponder,
   Pressable,
   ScrollView,
@@ -38,6 +42,10 @@ import { useTranslation } from 'react-i18next';
 // START: zvuk (expo-audio)
 import { useAudioPlayer } from "expo-audio";
 // END: zvuk (expo-audio)
+
+// START: SafeImage (expo-image wrapper) za iOS WebP
+import SafeImage from "../components/SafeImage";
+// END: SafeImage (expo-image wrapper)
 
 // START: IzborKarataModal
 const circleHeight = 220;
@@ -137,7 +145,6 @@ const IzborKarataModal = ({
   };
   const CHEVRON_TOP = chevronTopByTier[screenTier];
   // END: CHEVRON_TOP po tier-u
-
 
   // START: CHEVRON_DISTANCE po tier-u
   const distCapByTier = {
@@ -301,7 +308,7 @@ const IzborKarataModal = ({
     newAvailable[cardIndex].removed = true;
     setAvailableCards(newAvailable);
     const novaKarta = { label: cardKey, reversed: isReversed };
-    setSelectedCards((prev) => [...prev, novaKarta]);
+    setSelectedCards((prev) => [...prev, ...[novaKarta]]);
   };
 
   // START: handleGoToAnswer – jedna funkcija, server-side naplata i uvek navigacija
@@ -388,6 +395,8 @@ const IzborKarataModal = ({
   };
 
   // --- PanResponder za lepezu (fluidno pomeranje) ---
+  // START: perf(rAF throttle) — PanResponder sa rAF + cleanup
+  /* ORIGINAL:
   const pan = useRef({ last: 0 }).current;
   const panResponder = useRef(
     PanResponder.create({
@@ -415,6 +424,50 @@ const IzborKarataModal = ({
       },
     })
   ).current;
+  */
+  const pan = useRef({ last: 0 }).current;
+  const rafRef = useRef(null);
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (_, g) =>
+        Math.abs(g.dx) > 4 || Math.abs(g.dy) > 4,
+      onPanResponderGrant: () => {
+        angleOffset.stopAnimation();
+        pan.last = angleOffset.__getValue?.() ?? currentAngle;
+        setDragActive(true);
+      },
+      onPanResponderMove: (_, g) => {
+        if (rafRef.current) return;
+        rafRef.current = requestAnimationFrame(() => {
+          angleOffset.setValue(pan.last + g.dx / 230);
+          rafRef.current = null;
+        });
+      },
+      onPanResponderRelease: (_, g) => {
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = null;
+        }
+        const vx = isNaN(g.vx) ? 0 : g.vx;
+        Animated.decay(angleOffset, {
+          velocity: vx * 0.3,
+          deceleration: 0.992,
+          useNativeDriver: false,
+        }).start(() => {
+          pan.last = angleOffset.__getValue?.() ?? currentAngle;
+          setDragActive(false);
+        });
+      },
+    })
+  ).current;
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+  // END: perf(rAF throttle) — PanResponder sa rAF + cleanup
 
   // --- centar lepeze ---
   const total = allCardKeys.length;
@@ -426,6 +479,25 @@ const IzborKarataModal = ({
   const removedSet = new Set(
     availableCards.filter((c) => c.removed).map((c) => c.key)
   );
+
+  // START: perf(memo pozicije + trig)
+  const basePositions = useMemo(() => {
+    const totalInFan = Math.max(availableCards.length - 1, 1);
+    return availableCards.map((_, idx) => {
+      const baseDeg = startAngle + (idx * fanAngle) / totalInFan;
+      const baseRad = (baseDeg * Math.PI) / 180;
+      return {
+        baseDeg,
+        sinBase: Math.sin(baseRad),
+        cosBase: Math.cos(baseRad),
+      };
+    });
+  }, [availableCards.length, startAngle, fanAngle]);
+
+  const currentAngleRad = (currentAngle * Math.PI) / 180;
+  const sinCA = Math.sin(currentAngleRad);
+  const cosCA = Math.cos(currentAngleRad);
+  // END: perf(memo pozicije + trig)
 
   // START: (ISKLJUČENO) – priprema za stari luk, ostavljeno radi istorije
   // const containerTop = dimensions.height - 220 - fanBaseTop;
@@ -492,7 +564,8 @@ const IzborKarataModal = ({
             <Text style={{ color: "#ffd700", fontSize: 17, marginTop: 10, marginBottom: 26, }}>
               {t('common:dailyCard.comeBackTomorrow', { defaultValue: 'Vrati se sutra za novu kartu. 🌞' })}
             </Text>
-            <Image
+            {/* START: SafeImage umesto Image */}
+            {/* <Image
               source={getCardImagePath(kartaDana.label)}
               style={[
                 styles.cardImage,
@@ -500,7 +573,17 @@ const IzborKarataModal = ({
                 { width: 130, height: 200, marginBottom: 16 }
               ]}
               resizeMode="contain"
+            /> */}
+            <SafeImage
+              source={getCardImagePath(kartaDana.label)}
+              style={[
+                styles.cardImage,
+                kartaDana.reversed && { transform: [{ rotate: "180deg" }] },
+                { width: 130, height: 200, marginBottom: 16 }
+              ]}
+              contentFit="contain"
             />
+            {/* END: SafeImage umesto Image */}
             <Text style={{
               color: "#ffd700",
               fontSize: 26,
@@ -542,7 +625,18 @@ const IzborKarataModal = ({
                       ]}
                     >
                       {selectedCards[i] !== undefined && (
-                        <Image
+                        // START: SafeImage umesto Image
+                        // <Image
+                        //   source={getCardImagePath(selectedCards[i]?.label)}
+                        //   style={[
+                        //     styles.cardImage,
+                        //     selectedCards[i]?.reversed && {
+                        //       transform: [{ rotate: "180deg" }],
+                        //     },
+                        //   ]}
+                        //   resizeMode="contain"
+                        // />
+                        <SafeImage
                           source={getCardImagePath(selectedCards[i]?.label)}
                           style={[
                             styles.cardImage,
@@ -550,8 +644,9 @@ const IzborKarataModal = ({
                               transform: [{ rotate: "180deg" }],
                             },
                           ]}
-                          resizeMode="contain"
+                          contentFit="contain"
                         />
+                        // END: SafeImage umesto Image
                       )}
                     </View>
                   ))}
@@ -568,7 +663,18 @@ const IzborKarataModal = ({
                         ]}
                       >
                         {selectedCards[i + 6] !== undefined && (
-                          <Image
+                          // START: SafeImage umesto Image
+                          // <Image
+                          //   source={getCardImagePath(selectedCards[i + 6]?.label)}
+                          //   style={[
+                          //     styles.cardImage,
+                          //     selectedCards[i + 6]?.reversed && {
+                          //       transform: [{ rotate: "180deg" }],
+                          //     },
+                          //   ]}
+                          //   resizeMode="contain"
+                          // />
+                          <SafeImage
                             source={getCardImagePath(selectedCards[i + 6]?.label)}
                             style={[
                               styles.cardImage,
@@ -576,8 +682,9 @@ const IzborKarataModal = ({
                                 transform: [{ rotate: "180deg" }],
                               },
                             ]}
-                            resizeMode="contain"
+                            contentFit="contain"
                           />
+                          // END: SafeImage umesto Image
                         )}
                       </View>
                     ))}
@@ -596,7 +703,18 @@ const IzborKarataModal = ({
                     ]}
                   >
                     {selectedCards[i] !== undefined && (
-                      <Image
+                      // START: SafeImage umesto Image
+                      // <Image
+                      //   source={getCardImagePath(selectedCards[i]?.label)}
+                      //   style={[
+                      //     styles.cardImage,
+                      //     selectedCards[i]?.reversed && {
+                      //       transform: [{ rotate: "180deg" }],
+                      //     },
+                      //   ]}
+                      //   resizeMode="contain"
+                      // />
+                      <SafeImage
                         source={getCardImagePath(selectedCards[i]?.label)}
                         style={[
                           styles.cardImage,
@@ -604,8 +722,9 @@ const IzborKarataModal = ({
                             transform: [{ rotate: "180deg" }],
                           },
                         ]}
-                        resizeMode="contain"
+                        contentFit="contain"
                       />
+                      // END: SafeImage umesto Image
                     )}
                   </View>
                 ))}
@@ -697,6 +816,9 @@ const IzborKarataModal = ({
             >
               {availableCards.map((card, idx) => {
                 const cardKey = card.key;
+
+                // START: perf(render) — koristi memo pozicije + rotacione formule
+                /* ORIGINAL:
                 const angleDeg =
                   startAngle +
                   (idx * fanAngle) / ((availableCards.length - 1) || 1) +
@@ -705,6 +827,22 @@ const IzborKarataModal = ({
                 const x = centerX + radius * Math.cos(angleRad);
                 const y = centerY + radius * Math.sin(angleRad);
                 const rotate = angleDeg + 90;
+                */
+                const bp = basePositions[idx];
+                const baseDeg =
+                  bp?.baseDeg ?? (startAngle + (idx * fanAngle) / Math.max(availableCards.length - 1, 1));
+                const angleDeg = baseDeg + currentAngle;
+
+                // rotacione formule (izbegavamo sin/cos po karti)
+                const cb = bp?.cosBase ?? Math.cos((baseDeg * Math.PI) / 180);
+                const sb = bp?.sinBase ?? Math.sin((baseDeg * Math.PI) / 180);
+                const cosAngle = cb * cosCA - sb * sinCA;
+                const sinAngle = sb * cosCA + cb * sinCA;
+
+                const x = centerX + radius * cosAngle;
+                const y = centerY + radius * sinAngle;
+                const rotate = angleDeg + 90;
+                // END: perf(render)
 
                 return (
                   <View
@@ -727,11 +865,18 @@ const IzborKarataModal = ({
                           if (!dragActive) handleCardClick(cardKey);
                         }}
                       >
-                        <Image
+                        {/* START: SafeImage umesto Image za poleđinu karte */}
+                        {/* <Image
                           source={getCardImagePath("master_card")}
                           style={styles.cardImage}
                           resizeMode="contain"
+                        /> */}
+                        <SafeImage
+                          source={getCardImagePath("master_card")}
+                          style={styles.cardImage}
+                          contentFit="contain"
                         />
+                        {/* END: SafeImage umesto Image */}
                       </Pressable>
                     ) : (
                       <View style={{ width: '100%', height: '100%' }} />

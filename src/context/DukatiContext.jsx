@@ -9,6 +9,11 @@ import { supabase } from "../utils/supabaseClient";
 import { useTranslation } from "react-i18next";
 // END: i18n (DukatiContext - import useTranslation)
 
+// START: ProPlus helperi (centralizovana normalizacija i flag)
+// import { isProTier, normalizePlan as normalizePlanCanon } from "../constants/plans";
+import { isProTier, normalizePlanCanon } from "../constants/plans";
+// END: ProPlus helperi
+
 const DukatiContext = createContext();
 
 export const DukatiProvider = ({ children }) => {
@@ -22,20 +27,29 @@ export const DukatiProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   // START: canonical plan
+  // LEGACY normalizePlan (ostavljeno radi istorije; ne koristi se više)
   const normalizePlan = (p) => {
     const v = String(p ?? "free").trim().toLowerCase();
     if (v === "pro" || v === "premium") return v;
     return "free";
   };
-  const [userPlan, setUserPlan] = useState("guest");
+  // const [userPlan, setUserPlan] = useState("guest");
+  // START: ukidanje guest – za neulogovanog koristimo null (neutralno)
+  const [userPlan, setUserPlan] = useState(null);
+  // END: ukidanje guest
+  // START: isPro flag (Pro ili ProPlus)
+  const isPro = isProTier(userPlan || "free");
+  // END: isPro flag
   // END: canonical plan
 
   const prevDukati = useRef(0);
   const isSoundPlayingRef = useRef(false);
   const isFetchingRef = useRef(false);
-  // START: storage keys – namespacovani po korisniku
-  const keyDukati = (uid) => (uid ? `dukati:${uid}` : `dukati:guest`);
-  const keyPlan = (uid) => (uid ? `userPlan:${uid}` : `userPlan:guest`);
+  // START: storage keys – namespacovani po korisniku (guest→anon) + BK
+  // const keyDukati = (uid) => (uid ? `dukati:${uid}` : `dukati:guest`);
+  // const keyPlan = (uid) => (uid ? `userPlan:${uid}` : `userPlan:guest`);
+  const keyDukati = (uid) => (uid ? `dukati:${uid}` : `dukati:anon`);
+  const keyPlan = (uid) => (uid ? `userPlan:${uid}` : `userPlan:anon`);
   // END: storage keys – namespacovani po korisniku
 
   // --- helper: retry
@@ -66,19 +80,29 @@ export const DukatiProvider = ({ children }) => {
 
       try {
         if (!user?.id) {
-          // START: guest hard-reset – nikad ne preuzimaj stare vrednosti
+          // START: anon hard-reset – nikad ne preuzimaj stare vrednosti
           setDukati(0);
-          setUserPlan("guest");
+          setUserPlan(null);
           try {
-            await AsyncStorage.multiRemove(["dukati", "userPlan", keyDukati(), keyPlan()]);
+            await AsyncStorage.multiRemove([
+              "dukati",
+              "userPlan",
+              keyDukati(),
+              keyPlan(),
+              // BK: očisti stare guest ključeve
+              "dukati:guest",
+              "userPlan:guest",
+            ]);
           } catch { }
           return;
-          // END: guest hard-reset
+          // END: anon hard-reset
         }
 
         const { data } = await fetchProfileWithRetry(user.id);
         if (!cancelled) {
-          setUserPlan(normalizePlan(data?.package));
+          // START: Pro/ProPlus normalizacija iz constants/plans
+          setUserPlan(normalizePlanCanon(data?.package));
+          // END: Pro/ProPlus normalizacija iz constants/plans
           if (typeof data?.coins === "number") setDukati(data.coins);
         }
       } finally {
@@ -88,18 +112,26 @@ export const DukatiProvider = ({ children }) => {
     };
 
     load();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [user?.id]);
 
   // --- ručni refresh
   const refreshUserPlan = async () => {
-    if (!user?.id) { setUserPlan("guest"); setDukati(0); return; }
+    if (!user?.id) {
+      setUserPlan(null);
+      setDukati(0);
+      return;
+    }
     if (isFetchingRef.current) return;
     isFetchingRef.current = true;
     setLoading(true);
     try {
       const { data } = await fetchProfileWithRetry(user.id);
-      setUserPlan(normalizePlan(data?.package));
+      // START: Pro/ProPlus normalizacija iz constants/plans
+      setUserPlan(normalizePlanCanon(data?.package));
+      // END: Pro/ProPlus normalizacija iz constants/plans
       if (typeof data?.coins === "number") setDukati(data.coins);
     } finally {
       isFetchingRef.current = false;
@@ -112,20 +144,28 @@ export const DukatiProvider = ({ children }) => {
     if (!user?.id) return;
     setLoading(true);
 
-    const np = normalizePlan(plan);
+    // START: centralizovana normalizacija + rok važenja (pro=30d, proplus=365d)
+    const np = normalizePlanCanon(plan);
     let premiumUntil = null;
-    if (np === "premium" || np === "pro") {
+    if (np === "pro") {
       const d = new Date();
-      d.setDate(d.getDate() + 30);
+      d.setDate(d.getDate() + 30); // 30 dana (mesečno)
+      premiumUntil = d.toISOString();
+    } else if (np === "proplus") {
+      const d = new Date();
+      d.setDate(d.getDate() + 365); // 12 meseci (godišnje)
       premiumUntil = d.toISOString();
     }
+    // END: centralizovana normalizacija + rok važenja
 
-    await supabase
-      .from("profiles")
-      .update({ package: np, premium_until: premiumUntil })
-      .eq("id", user.id);
+    await supabase.from("profiles").update({ package: np, premium_until: premiumUntil }).eq("id", user.id);
 
-    try { await AsyncStorage.setItem("userPlan", np); } catch { }
+    try {
+      await AsyncStorage.setItem("userPlan", np);
+      // START: namespacovani upis za aktivnog korisnika (stabilnost offline)
+      await AsyncStorage.setItem(keyPlan(user.id), np);
+      // END: namespacovani upis
+    } catch { }
     await refreshUserPlan();
     setLoading(false);
   };
@@ -133,13 +173,8 @@ export const DukatiProvider = ({ children }) => {
   // --- full refresh
   const fetchDukatiSaServera = async () => {
     // START: i18n (notLoggedIn poruka)
-    /* original:
-    if (!user?.id) throw new Error("Niste ulogovani.");
-    */
     if (!user?.id) {
-      throw new Error(
-        t("common:errors.notLoggedIn", { defaultValue: "Niste ulogovani." })
-      );
+      throw new Error(t("common:errors.notLoggedIn", { defaultValue: "Niste ulogovani." }));
     }
     // END: i18n (notLoggedIn poruka)
     if (isFetchingRef.current) return;
@@ -149,21 +184,31 @@ export const DukatiProvider = ({ children }) => {
     try {
       const { data } = await fetchProfileWithRetry(user.id);
       if (data?.coins !== undefined) setDukati(data.coins);
-      if (data?.package) setUserPlan(normalizePlan(data?.package));
+      if (data?.package) {
+        // START: Pro/ProPlus normalizacija iz constants/plans
+        setUserPlan(normalizePlanCanon(data?.package));
+        // END: Pro/ProPlus normalizacija
+      }
 
       await AsyncStorage.setItem("dukati", String(data?.coins ?? 0));
-      await AsyncStorage.setItem("userPlan", normalizePlan(data?.package));
+      await AsyncStorage.setItem("userPlan", normalizePlanCanon(data?.package));
+      // START: namespacovani plan cache
+      if (user?.id) await AsyncStorage.setItem(keyPlan(user.id), normalizePlanCanon(data?.package));
+      // END: namespacovani plan cache
     } catch {
       // START: offline fallback – čitaj isključivo namespacovane ključeve aktivnog user-a
       if (!user?.id) {
-        // za gosta nikad ne vraćamo keš
+        // za neulogovanog nikad ne vraćamo keš
         setDukati(0);
-        setUserPlan("guest");
+        setUserPlan(null);
       } else {
         const dukatiLocal = await AsyncStorage.getItem(keyDukati(user.id));
         const planLocal = await AsyncStorage.getItem(keyPlan(user.id));
         if (dukatiLocal !== null) setDukati(Number(dukatiLocal));
-        if (planLocal) setUserPlan(planLocal === "guest" ? "guest" : normalizePlan(planLocal));
+        if (planLocal) {
+          const cleaned = (planLocal === "guest" || planLocal === "anon") ? null : normalizePlanCanon(planLocal);
+          setUserPlan(cleaned);
+        }
       }
       // END: offline fallback
     } finally {
@@ -185,13 +230,8 @@ export const DukatiProvider = ({ children }) => {
   // --- ad reward (RPC)
   const dodeliDukatePrekoBackenda = async (kolicina = 30) => {
     // START: i18n (notLoggedIn poruka)
-    /* original:
-    if (!user?.id) throw new Error("Niste ulogovani.");
-    */
     if (!user?.id) {
-      throw new Error(
-        t("common:errors.notLoggedIn", { defaultValue: "Niste ulogovani." })
-      );
+      throw new Error(t("common:errors.notLoggedIn", { defaultValue: "Niste ulogovani." }));
     }
     // END: i18n (notLoggedIn poruka)
 
@@ -201,8 +241,11 @@ export const DukatiProvider = ({ children }) => {
       p_reason: "ad_reward",
     });
     if (error) {
-      console.log('[RPC add_coins ERR]', {
-        code: error?.code, message: error?.message, details: error?.details, hint: error?.hint,
+      console.log("[RPC add_coins ERR]", {
+        code: error?.code,
+        message: error?.message,
+        details: error?.details,
+        hint: error?.hint,
       });
       throw error;
     }
@@ -212,20 +255,16 @@ export const DukatiProvider = ({ children }) => {
     if (!awarded) {
       const e = new Error(`AD_LIMIT_REACHED ${nextEligible ?? ""}`.trim());
       e.code = "AD_LIMIT_REACHED";
-      // START: i18n (AD_LIMIT_REACHED guidance)
-      /* UI primer:
-         if (e.code === "AD_LIMIT_REACHED") {
-           toast.show(t("common:errors.adLimitReached", { defaultValue: "Dnevni limit oglasa je iskorišćen." }));
-         }
-      */
-      // END: i18n (AD_LIMIT_REACHED guidance)
+      // i18n guidance u UI sloju
       throw e;
     }
 
     if (coinsAfter !== undefined) {
       setDukati(coinsAfter);
       // START: storage write – namespacovani ključ po korisniku
-      try { await AsyncStorage.setItem(keyDukati(user.id), String(coinsAfter)); } catch { }
+      try {
+        await AsyncStorage.setItem(keyDukati(user.id), String(coinsAfter));
+      } catch { }
       // END: storage write – namespacovani ključ po korisniku
     } else {
       const { data: prof } = await supabase
@@ -237,14 +276,20 @@ export const DukatiProvider = ({ children }) => {
       if (typeof prof?.coins === "number") {
         setDukati(prof.coins);
         // START: storage write – namespacovani ključ po korisniku
-        try { await AsyncStorage.setItem(keyDukati(user.id), String(prof.coins)); } catch { }
+        try {
+          await AsyncStorage.setItem(keyDukati(user.id), String(prof.coins));
+        } catch { }
         // END: storage write – namespacovani ključ po korisniku
       }
       if (prof?.package) {
-        const np = normalizePlan(prof.package);
+        // START: Pro/ProPlus normalizacija iz constants/plans
+        const np = normalizePlanCanon(prof.package);
+        // END: Pro/ProPlus normalizacija
         setUserPlan(np);
         // START: storage write – namespacovani ključ po korisniku
-        try { await AsyncStorage.setItem(keyPlan(user.id), np); } catch { }
+        try {
+          await AsyncStorage.setItem(keyPlan(user.id), np);
+        } catch { }
         // END: storage write – namespacovani ključ po korisniku
       }
     }
@@ -255,13 +300,8 @@ export const DukatiProvider = ({ children }) => {
   // --- mesečni bonus (RPC)
   const dodeliMesecneDukate = async (kolicina = 150) => {
     // START: i18n (notLoggedIn poruka)
-    /* original:
-    if (!user?.id) throw new Error("Niste ulogovani.");
-    */
     if (!user?.id) {
-      throw new Error(
-        t("common:errors.notLoggedIn", { defaultValue: "Niste ulogovani." })
-      );
+      throw new Error(t("common:errors.notLoggedIn", { defaultValue: "Niste ulogovani." }));
     }
     // END: i18n (notLoggedIn poruka)
 
@@ -277,7 +317,9 @@ export const DukatiProvider = ({ children }) => {
     if (coinsAfter !== undefined) {
       setDukati(coinsAfter);
       // START: storage write – namespacovani ključ po korisniku
-      try { await AsyncStorage.setItem(keyDukati(user.id), String(coinsAfter)); } catch { }
+      try {
+        await AsyncStorage.setItem(keyDukati(user.id), String(coinsAfter));
+      } catch { }
       // END: storage write – namespacovani ključ po korisniku
     } else {
       await fetchDukatiSaServera();
@@ -309,7 +351,9 @@ export const DukatiProvider = ({ children }) => {
         await p.seekTo(0);
         p.play();
         setTimeout(() => {
-          try { p.remove?.(); } catch { }
+          try {
+            p.remove?.();
+          } catch { }
           isSoundPlayingRef.current = false;
         }, 1200);
       } catch {
@@ -326,6 +370,9 @@ export const DukatiProvider = ({ children }) => {
         dukati,
         loading,
         userPlan,
+        // START: novi flag — koristi svuda umesto (userPlan === 'pro')
+        isPro,
+        // END: novi flag
         setUserPlan: setPlanInDatabase,
         refreshUserPlan,
         fetchDukatiSaServera,

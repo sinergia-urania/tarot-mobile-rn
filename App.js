@@ -1,35 +1,25 @@
-﻿// App.js
+﻿// START: obavezni side-effect importi (moraju biti PRVI!)
+import 'react-native-gesture-handler';
+import 'react-native-get-random-values';
+import 'react-native-reanimated';
+// END: obavezni side-effect importi
+
 // START: globalni mute za logove (pre svih ostalih importova)
 import { installConsoleMute } from "./src/utils/logger";
 installConsoleMute({ keepWarnError: true });
 // END: globalni mute za logove
 
-import { NavigationContainer } from "@react-navigation/native";
+import { CommonActions, NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import React, { useEffect, useRef } from "react";
+import { LogBox, Platform, SafeAreaView, StatusBar } from "react-native";
 import { navigationRef } from "./src/utils/navigationRef";
-// START: Navigation reset import (CommonActions)
-import { CommonActions } from "@react-navigation/native";
-// END: Navigation reset import (CommonActions)
-import { useRef } from "react";
 
 import { useDukati } from "./src/context/DukatiContext";
-// START: AdGate V1 import (ostavljamo, ali ne koristimo u ovom fajlu)
-// import { recordRouteView } from "./src/utils/adService";
-// END: AdGate V1 import
-// START: AdGate V2 import (legacy linija – ostavljamo zakomentarisano)
-// import { recordRouteViewV2 } from "./src/utils/adService";
-// END: AdGate V2 import
-// START: AdGate STRICT import (zakucan gate: nema reklama dok ne znamo plan)
 import { recordRouteView } from "./src/utils/adService";
-// END: AdGate STRICT import
 
-import { createStackNavigator } from "@react-navigation/stack";
-import React, { useEffect } from "react";
-// START: Expo notifikacije – Platform import dopuna
-import { Platform, SafeAreaView, StatusBar } from "react-native";
-// END: Expo notifikacije – Platform import dopuna
-// START: AdMob import fix - remove named initialize (v15 nema taj export)
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import mobileAds from "react-native-google-mobile-ads";
-// END: AdMob import fix
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
 
@@ -40,23 +30,44 @@ import { TreasureRefProvider } from "./src/context/TreasureRefContext";
 
 import * as ExpoLinking from "expo-linking";
 import * as Notifications from 'expo-notifications';
+// START: tap response hook za notifikacije
+import { useLastNotificationResponse } from 'expo-notifications';
+// END: tap response hook za notifikacije
 import UnaSpinner from "./src/components/UnaSpinner";
 
-// START: push - import registracije i supabase
+// START: push - registracija i supabase
 import { registerAndSavePushToken } from "./src/utils/pushNotifications";
 import { supabase } from "./src/utils/supabaseClient";
-// END: push - import registracije i supabase
-import { LogBox } from 'react-native';
+// END: push - registracija i supabase
+
+// START: ATT (iOS) – pre AdMob init-a
+import { getTrackingPermissionsAsync, requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
+// END: ATT (iOS)
+
 LogBox.ignoreLogs(['Expected static flag was missing']);
 
-// ✅ SDK 53+: novi handler – rešava warning i dozvoljava baner/listu
+// ✅ SDK 53+: handler (prikazuje alert i u foreground-u)
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
-    shouldShowAlert: false,
-    shouldPlaySound: false,
+    // START: push – prikaži alert i zvuk i u foreground-u
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    // END: push – prikaži alert i zvuk i u foreground-u
     shouldSetBadge: false,
   }),
 });
+
+// START: Notifications handler (SDK 51+) – bez deprecated polja + MAX prioritet (override prethodnog)
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowBanner: true,     // iOS heads-up
+    shouldShowList: true,       // iOS Notification Center
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+    priority: Notifications.AndroidNotificationPriority.MAX, // Android heads-up
+  }),
+});
+// END: Notifications handler (SDK 51+) – bez deprecated polja + MAX prioritet (override prethodnog)
 
 // Ekrani
 import ArhivaOtvaranja from "./src/pages/ArhivaOtvaranja";
@@ -81,24 +92,26 @@ import VelikaArkanaList from "./src/pages/VelikaArkanaList";
 
 const Stack = createStackNavigator();
 
-// START: linking map fix – prebacujemo sa "auth/callback" na "auth"
+// START: linking map – auth bez /callback + dodato "Home: home"
 const linking = {
-  prefixes: [ExpoLinking.createURL("/"), "com.mare82.tarotmobile://"],
+  prefixes: [ExpoLinking.createURL("/"), "com.mare82.tarotmobile://", "una://"],
   config: {
     screens: {
+      // START: dodato mapiranje za Home
+      // (nije obavezno jer više ne koristimo URL iz push-a, ali ostaje korisno)
+      Home: "home",
+      // END: dodato mapiranje za Home
       AuthConfirm: "auth",
       ResetPassword: "reset-password",
     },
   },
 };
-// END: linking map fix
+// END: linking map
 
 function RootNavigator() {
   const { user, authLoading } = useAuth();
 
   if (authLoading) return <UnaSpinner />;
-
-  console.log("[GATE] STACK user=" + (user?.id ?? "null"));
 
   return (
     <Stack.Navigator
@@ -146,19 +159,15 @@ function RootNavigator() {
 // START: Nav wrapper sa globalnim interstitial gate-om (STRICT)
 function NavWithAdGate({ linking, children }) {
   const { userPlan } = useDukati();
-  const { recoveryActive } = useAuth(); // Recovery shield
+  const { recoveryActive } = useAuth();
   const navRef = navigationRef;
   const lastRouteRef = useRef(null);
-
-  // Zapamti nameru recovery navigacije dok nav nije spremna
   const pendingRecoveryNavRef = useRef(false);
 
-  // Deep-link → samo routing (bez getSessionFromUrl) – reset password & ostalo
   useEffect(() => {
     const processUrl = async (url) => {
       try {
         if (!url) return;
-        console.log("[LINK] incoming url:", url);
         const isRecovery =
           /[?#&]type=recovery\b/i.test(url) ||
           /\brecovery\b/i.test(url) ||
@@ -181,14 +190,11 @@ function NavWithAdGate({ linking, children }) {
       }
     };
 
-    // Cold start
     ExpoLinking.getInitialURL().then((url) => processUrl(url));
-    // Dok je app živ
     const sub = ExpoLinking.addEventListener("url", ({ url }) => processUrl(url));
     return () => sub.remove();
   }, []);
 
-  // Supabase event – dodatna sigurnost za recovery scenario
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange((event) => {
       if (event === "PASSWORD_RECOVERY") {
@@ -207,7 +213,7 @@ function NavWithAdGate({ linking, children }) {
     return () => sub?.subscription?.unsubscribe?.();
   }, []);
 
-  // START: STRICT gate – dok plan NIJE poznat, ne palimo ad logiku uopšte
+  // Dok plan NIJE poznat, ne palimo ad logiku
   if (userPlan == null) {
     return (
       <NavigationContainer linking={linking} ref={navRef}>
@@ -215,7 +221,6 @@ function NavWithAdGate({ linking, children }) {
       </NavigationContainer>
     );
   }
-  // END: STRICT gate – čekanje plana
 
   return (
     <NavigationContainer
@@ -223,14 +228,8 @@ function NavWithAdGate({ linking, children }) {
       ref={navRef}
       onReady={() => {
         lastRouteRef.current = navRef.getCurrentRoute()?.name ?? null;
-        // START: AdGate V2 – prvi ekran (legacy, ostaje kao referenca)
-        // recordRouteViewV2(userPlan);
-        // END: AdGate V2 – prvi ekran
-        // START: AdGate STRICT – prvi ekran
         recordRouteView(userPlan);
-        // END: AdGate STRICT – prvi ekran
 
-        // Recovery pending trigger u onReady
         if (pendingRecoveryNavRef.current) {
           pendingRecoveryNavRef.current = false;
           try {
@@ -243,7 +242,6 @@ function NavWithAdGate({ linking, children }) {
           } catch { }
         }
 
-        // Recovery shield – ako je aktivan recovery, ostani na ResetPassword
         try {
           if (recoveryActive) {
             const cur = navRef.getCurrentRoute()?.name;
@@ -262,15 +260,9 @@ function NavWithAdGate({ linking, children }) {
         const current = navRef.getCurrentRoute()?.name ?? null;
         if (current && current !== lastRouteRef.current) {
           lastRouteRef.current = current;
-          // START: AdGate V2 – na svaku promenu rute (legacy, ostaje kao referenca)
-          // recordRouteViewV2(userPlan);
-          // END: AdGate V2
-          // START: AdGate STRICT – na svaku promenu rute
           recordRouteView(userPlan);
-          // END: AdGate STRICT
         }
 
-        // Recovery shield – blokiraj skretanje sa ResetPassword dok traje recovery
         try {
           if (recoveryActive) {
             const cur = navRef.getCurrentRoute()?.name;
@@ -293,23 +285,38 @@ function NavWithAdGate({ linking, children }) {
 // END: Nav wrapper sa globalnim interstitial gate-om (STRICT)
 
 export default function App() {
-  // START: AdMob init (v15 API)
+  // AdMob init + ATT prompt (iOS) PRE init-a
   useEffect(() => {
-    mobileAds()
-      .initialize()
-      .catch((e) => console.log('[ADMOB] init error:', e));
+    (async () => {
+      try {
+        if (Platform.OS === 'ios') {
+          const { status } = await getTrackingPermissionsAsync();
+          if (status !== 'granted') {
+            await requestTrackingPermissionsAsync();
+          }
+        }
+      } catch (e) {
+        if (__DEV__) console.log('[ATT] warn:', e?.message || e);
+      }
+      try {
+        await mobileAds().initialize();
+      } catch (e) {
+        console.log('[ADMOB] init error:', e?.message || e);
+      }
+    })();
   }, []);
-  // END: AdMob init
 
-  // START: Expo notifikacije – Android kanal "alerts-high"
+  // Android: kreiraj 'alerts-high' (MAX) kanal za push iz edge funkcija
   useEffect(() => {
     if (Platform.OS !== 'android') return;
     (async () => {
       try {
         await Notifications.setNotificationChannelAsync('alerts-high', {
           name: 'Alerts (High)',
-          importance: Notifications.AndroidImportance.HIGH,
+          // START: push – MAX za pouzdan heads-up
+          importance: Notifications.AndroidImportance.MAX,
           sound: 'default',
+          // END: push – MAX za pouzdan heads-up
           vibrationPattern: [0, 250, 250, 250],
           lockscreenVisibility: Notifications.AndroidNotificationVisibility.PUBLIC,
           bypassDnd: true,
@@ -321,40 +328,64 @@ export default function App() {
       }
     })();
   }, []);
-  // END: Expo notifikacije – Android kanal "alerts-high"
 
-  // START: default kanal premešten u util – deaktivirano u App.js
+  // START: tap na notifikaciju → uvek vodi na Home (TarotHome)
+  const lastResponse = useLastNotificationResponse();
   useEffect(() => {
-    if (Platform.OS !== 'android') return;
-    return;
-  }, []);
-  // END: default kanal premešten u util – deaktivirano u App.js
+    if (!lastResponse) return;
+    if (lastResponse.actionIdentifier !== Notifications.DEFAULT_ACTION_IDENTIFIER) return;
+
+    const data = lastResponse.notification?.request?.content?.data ?? {};
+    // PRETHODNO: koristili smo URL ili action za različite rute
+    /*
+    const url = typeof data?.url === 'string' ? data.url : null;
+    if (url) {
+      ExpoLinking.openURL(url).catch(() => {});
+      return;
+    }
+    const action = String(data?.action || '');
+    if (action === 'open_card_of_day') { ... } else if (action === 'open_monthly_bonus') { ... }
+    */
+
+    // START: override – uvek vodi na Home, prosledimo info radi analitike
+    if (navigationRef?.isReady?.()) {
+      navigationRef.dispatch(
+        CommonActions.navigate({
+          name: 'Home',
+          params: { fromPush: true, deeplink: String(data?.action || 'push') }
+        })
+      );
+    }
+    // END: override – uvek vodi na Home
+  }, [lastResponse]);
+  // END: tap na notifikaciju → uvek vodi na Home (TarotHome)
 
   return (
-    <SafeAreaProvider>
-      <AuthProvider>
-        <MusicProvider>
-          <DukatiProvider>
-            <TreasureRefProvider>
-              {/* START: push - registracija tokena čim postoji user */}
-              <RegisterPushOnLogin />
-              {/* END: push - registracija tokena */}
-              <NavWithAdGate linking={linking}>
-                <SafeAreaView style={{ flex: 1, backgroundColor: "#0d0d19" }}>
-                  <StatusBar barStyle="light-content" />
-                  <RootNavigator />
-                  <Toast />
-                </SafeAreaView>
-              </NavWithAdGate>
-            </TreasureRefProvider>
-          </DukatiProvider>
-        </MusicProvider>
-      </AuthProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <AuthProvider>
+          <MusicProvider>
+            <DukatiProvider>
+              <TreasureRefProvider>
+                {/* push token registracija čim postoji user */}
+                <RegisterPushOnLogin />
+                <NavWithAdGate linking={linking}>
+                  <SafeAreaView style={{ flex: 1, backgroundColor: "#0d0d19" }}>
+                    <StatusBar barStyle="light-content" />
+                    <RootNavigator />
+                    <Toast />
+                  </SafeAreaView>
+                </NavWithAdGate>
+              </TreasureRefProvider>
+            </DukatiProvider>
+          </MusicProvider>
+        </AuthProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 
-// START: push - pomoćna komponenta (ahimsa: ne remetimo App)
+// Pomoćna komponenta – ne remeti App
 function RegisterPushOnLogin() {
   const { user } = useAuth();
   useEffect(() => {
@@ -364,4 +395,3 @@ function RegisterPushOnLogin() {
   }, [user?.id]);
   return null;
 }
-// END: push - pomoćna komponenta

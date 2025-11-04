@@ -25,7 +25,6 @@ const playClickOnceLocal = async () => {
 import TarotHeader from "../components/TarotHeader";
 
 // START: ✅ NOVO – import za guardovani baner i userPlan
-import { useDukati } from "../context/DukatiContext";
 import { AdBannerIfEligible } from "../utils/ads";
 // END: ✅ NOVO – import za guardovani baner i userPlan
 
@@ -114,12 +113,18 @@ export default function PitanjeIzbor() {
       ? categories.filter((o) => o.key === "love")
       : categories;
 
-  // START: ✅ NOVO – pribavi userPlan + mapiraj na session/profile za guard
+  // START: ❌ Uklonjeni guest stubovi – baner koristi svoj kontekst (nema sessionLike/profileLike)
+  /*
   const { userPlan } = useDukati(); // 'guest' | 'gost' | 'free' | 'premium' | 'pro'
   const isGuest = userPlan === 'guest' || userPlan === 'gost';
   const sessionLike = isGuest ? null : { uid: 'local-session' };
   const profileLike = { subscription_tier: userPlan };
-  // END: ✅ NOVO – pribavi userPlan + mapiraj na session/profile za guard
+  */
+  // END: ❌ Uklonjeni guest stubovi – baner koristi svoj kontekst
+
+  // START: ✅ (opciono) Zadržavamo kontekst radi budućih gating-a (nije obavezno)
+  // const { isPro } = useDukati();
+  // END: ✅ (opciono) Zadržavamo kontekst radi budućih gating-a
 
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
@@ -194,7 +199,10 @@ export default function PitanjeIzbor() {
 
           {/* START: ✅ NOVO – nenametljiv banner ispod dugmeta (skriva se premium/pro) */}
           <View style={styles.inlineBanner}>
-            <AdBannerIfEligible session={sessionLike} profile={profileLike} />
+            {/* START: pojednostavljen poziv – bez session/profile stubova */}
+            {/* <AdBannerIfEligible session={sessionLike} profile={profileLike} /> */}
+            <AdBannerIfEligible />
+            {/* END: pojednostavljen poziv – bez session/profile stubova */}
           </View>
           {/* END: ✅ NOVO – nenametljiv banner ispod dugmeta */}
         </View>

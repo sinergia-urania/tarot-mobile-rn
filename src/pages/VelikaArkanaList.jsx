@@ -1,13 +1,14 @@
-﻿import React, { useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+﻿import React, { useCallback, useState } from 'react';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { getCardImagePath } from '../utils/getCardImagePath';
 import TarotCardModal from './TarotCardModal';
-// START: Uvoz srpskih naziva iz JSON-a
-import cardMeanings from '../locales/sr/cardMeanings.json';
-// END: Uvoz srpskih naziva iz JSON-a
-// START: i18n hook (cardMeanings)
+// START: i18n (nazivi karata)
 import { useTranslation } from 'react-i18next';
-// END: i18n hook (cardMeanings)
+import cardMeanings from '../locales/sr/cardMeanings.json';
+// END: i18n (nazivi karata)
+// START: SafeImage (expo-image) — iOS/WebP safe
+import SafeImage from '../components/SafeImage';
+// END: SafeImage
 
 const cardKeys = [
   'theFool', 'theMagician', 'theHighPriestess', 'theEmpress', 'theEmperor',
@@ -18,46 +19,60 @@ const cardKeys = [
 
 const VelikaArkanaList = (props) => {
   const [selectedCard, setSelectedCard] = useState(null);
-  // START: init i18n
   const { t } = useTranslation(['cardMeanings']);
-  // END: init i18n
 
-  const handleCardPress = (key) => {
+  // START: memoizovan handler (manje re-rendera itema)
+  const handleCardPress = useCallback((key) => {
     setSelectedCard({ key });
     if (props.onCardView) props.onCardView();
-  };
+  }, [props?.onCardView]);
+  // END: memoizovan handler
 
-  const renderItem = ({ item: key }) => (
+  // START: memoizovan keyExtractor (stabilan identitet)
+  const keyExtractor = useCallback((item) => item, []);
+  // END: memoizovan keyExtractor
+
+  // START: memoizovan renderItem + stabilni props za sliku (cache/recycling)
+  const renderItem = useCallback(({ item: key }) => (
     <TouchableOpacity
       key={key}
       style={styles.cardContainer}
       onPress={() => handleCardPress(key)}
       activeOpacity={0.7}
     >
-      <Image
+      <SafeImage
         source={getCardImagePath(key)}
         style={styles.image}
-        resizeMode="contain"
+        contentFit="contain"
+        transition={120}
+        cachePolicy="disk"
+        recyclingKey={key}
       />
-      {/* START: naziv karte iz i18n (cardMeanings) sa fallback-om na lokalni sr JSON */}
       <Text style={styles.name}>
         {t(`cardMeanings:cards.${key}.name`, {
           defaultValue: (cardMeanings?.cards?.[key]?.name) || key
         })}
       </Text>
-      {/* END: naziv karte iz i18n (cardMeanings) sa fallback-om */}
     </TouchableOpacity>
-  );
+  ), [handleCardPress, t]);
+  // END: memoizovan renderItem + stabilni props za sliku
 
   return (
     <View style={styles.screen}>
       <FlatList
         data={cardKeys}
         renderItem={renderItem}
-        keyExtractor={(item) => item}
+        keyExtractor={keyExtractor}
         numColumns={3}
         contentContainerStyle={styles.grid}
         showsVerticalScrollIndicator={false}
+        // START: FlatList tuning (render & memory)
+        initialNumToRender={9}
+        windowSize={5}
+        maxToRenderPerBatch={9}
+        updateCellsBatchingPeriod={50}
+        removeClippedSubviews
+      // END: FlatList tuning
       />
 
       <TarotCardModal
@@ -101,7 +116,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
   },
-  // START: Stil za grupnu ikonicu (dodaj svoju ikonicu kasnije)
+  // START: Stil za grupnu ikonicu (po želji ubaci kasnije svoju ikonicu)
   groupIcon: {
     width: 40,
     height: 40,
@@ -114,5 +129,3 @@ const styles = StyleSheet.create({
 });
 
 export default VelikaArkanaList;
-
-

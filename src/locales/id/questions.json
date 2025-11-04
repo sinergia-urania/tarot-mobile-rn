@@ -1,0 +1,76 @@
+{
+    "categories": {
+        "love": {
+            "name": "Cinta",
+            "icon": "❤️",
+            "items": [
+                "Apakah dia mencintaiku?",
+                "Seperti apa masa depan kami?",
+                "Apakah kami akan kembali bersama?",
+                "Akankah aku segera bertemu seseorang yang istimewa?",
+                "Bagaimana aku dapat memperbaiki kehidupan cintaku?",
+                "Apakah pasanganku jujur kepadaku?"
+            ]
+        },
+        "work": {
+            "name": "Pekerjaan",
+            "icon": "💼",
+            "items": [
+                "Apakah aku akan mendapatkan pekerjaan yang kuinginkan?",
+                "Apa jalur karier yang menantiku?",
+                "Apakah saatnya ganti pekerjaan?",
+                "Bagaimana aku bisa maju di tempat kerja?",
+                "Apakah usahaku akan diakui?",
+                "Bagaimana aku dapat menemukan pekerjaan yang memuaskan bagiku?"
+            ]
+        },
+        "health": {
+            "name": "Kesehatan",
+            "icon": "🧘",
+            "items": [
+                "Apakah aku akan sembuh?",
+                "Apa yang harus aku perhatikan?",
+                "Bagaimana aku dapat meningkatkan kesehatanku?",
+                "Apakah pengobatan saat ini pilihan yang tepat?",
+                "Bagaimana aku dapat meningkatkan kesehatan mentalku?",
+                "Haruskah aku mencari pendapat kedua?"
+            ]
+        },
+        "finance": {
+            "name": "Keuangan",
+            "icon": "💰",
+            "items": [
+                "Bagaimana aku dapat memperbaiki keuanganku?",
+                "Apakah ini investasi yang bijak?",
+                "Apakah aku akan memiliki stabilitas keuangan?",
+                "Bagaimana aku dapat mengelola uangku dengan lebih bijak?",
+                "Apakah aku akan melunasi utangku?",
+                "Apakah ada keuntungan yang akan datang kepadaku?"
+            ]
+        },
+        "spiritual": {
+            "name": "Pertumbuhan spiritual",
+            "icon": "🌀",
+            "items": [
+                "Apa tujuan hidupku?",
+                "Apa yang jiwaku sampaikan padaku?",
+                "Apa yang harus kukerjakan secara spiritual?",
+                "Apa langkah berikutnya dalam pertumbuhanku?",
+                "Bagaimana aku dapat menemukan kedamaian batin?",
+                "Pelajaran apa yang terus berulang bagiku?"
+            ]
+        },
+        "family": {
+            "name": "Keluarga & hubungan",
+            "icon": "🏡",
+            "items": [
+                "Bagaimana aku dapat memperbaiki hubungan keluarga?",
+                "Apakah situasi dalam keluarga akan mereda?",
+                "Bagaimana aku dapat membantu anggota keluarga?",
+                "Apakah hubunganku dengan [name] akan membaik?",
+                "Bagaimana aku dapat mendukung pasanganku?",
+                "Apakah kita akan mengalami kedamaian di rumah?"
+            ]
+        }
+    }
+}

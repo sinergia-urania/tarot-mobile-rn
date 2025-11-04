@@ -4,6 +4,9 @@ import React, { createContext, useContext, useEffect, useRef, useState } from "r
 import { AppState } from "react-native";
 import { registerForPushNotificationsAsync } from "../utils/pushNotifications";
 import { supabase } from "../utils/supabaseClient";
+// START: i18n import za sinhronizaciju jezika profil ⇄ app
+import i18n from "../../i18n";
+// END: i18n import
 
 const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
@@ -11,6 +14,11 @@ export const useAuth = () => useContext(AuthContext);
 // START: usklađeno – runtime generisani deep link ka /auth (bez /callback)
 const DEEP_LINK_REDIRECT = Linking.createURL("auth");
 // END: usklađeno – runtime generisani deep link ka /auth (bez /callback)
+
+// START: storage keys – preimenovanje 'guest' -> 'anon' (+ BK čišćenje)
+const keyDukati = (uid) => (uid ? `dukati:${uid}` : `dukati:anon`);
+const keyPlan = (uid) => (uid ? `userPlan:${uid}` : `userPlan:anon`);
+// END: storage keys
 
 /* -------------------- Helpers -------------------- */
 function parseTokensFromUrl(url) {
@@ -206,11 +214,22 @@ export const AuthProvider = ({ children }) => {
           }
         }, 250);
       } else if (event === "SIGNED_OUT") {
+        // START: očisti i namespacovane ključeve za prethodnog korisnika (+ BK guest)
+        const prevUid = session?.user?.id ?? user?.id ?? null;
         setUser(null);
         setProfile(null);
         try {
-          await AsyncStorage.multiRemove(["dukati", "userPlan"]);
+          await AsyncStorage.multiRemove([
+            "dukati",
+            "userPlan",
+            prevUid ? keyDukati(prevUid) : "dukati:anon",
+            prevUid ? keyPlan(prevUid) : "userPlan:anon",
+            // BK: očisti i stare ključeve ako postoje
+            "dukati:guest",
+            "userPlan:guest",
+          ]);
         } catch { }
+        // END: očisti i namespacovane ključeve
 
         // START: safety – na logout ugasi recovery lock
         setRecoveryActive(false);
@@ -263,6 +282,16 @@ export const AuthProvider = ({ children }) => {
     };
   }, [user?.id]);
 
+  // START: posle što učitamo profil → primeni jezik iz profila na i18n
+  useEffect(() => {
+    const profLang = profile?.language?.slice(0, 2);
+    const curr = i18n.language?.slice(0, 2);
+    if (profLang && profLang !== curr) {
+      i18n.changeLanguage(profLang);
+    }
+  }, [profile?.language]);
+  // END: posle što učitamo profil → primeni jezik iz profila na i18n
+
   // negde unutar AuthProvider-a
   const pushTokenRef = useRef(null);
 
@@ -287,6 +316,26 @@ export const AuthProvider = ({ children }) => {
       }
     })();
   }, [user?.id]);
+
+  // START: dvosmerna sinhronizacija – kad se i18n jezik promeni, upiši u profil ako je različit
+  useEffect(() => {
+    if (!user?.id) return;
+    const handler = async (lng) => {
+      try {
+        const short = (lng || "en").slice(0, 2);
+        if (profile?.language?.slice(0, 2) === short) return; // već usklađeno
+        await supabase
+          .from("profiles")
+          .update({ language: short }) // uklonjen updated_at (kolona ne postoji)
+          .eq("id", user.id);
+      } catch (e) {
+        console.warn("[AUTH] i18n languageChanged → update profiles.language failed:", e?.message || e);
+      }
+    };
+    i18n.on("languageChanged", handler);
+    return () => i18n.off("languageChanged", handler);
+  }, [user?.id, profile?.language]);
+  // END: dvosmerna sinhronizacija – kad se i18n jezik promeni, upiši u profil ako je različit
 
   /* ---------- API ---------- */
   const login = async (email, password) => {
@@ -323,11 +372,24 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     setAuthLoading(true);
     try {
+      // START: zadrži UID pre signOut-a, da bi očistili per-user keš
+      const prevUid = user?.id ?? null;
+      // END: zadrži UID
       await supabase.auth.signOut();
       setUser(null);
       setProfile(null);
       try {
-        await AsyncStorage.multiRemove(["dukati", "userPlan"]);
+        // START: očisti i namespacovane ključeve za prethodnog korisnika (+ BK guest)
+        await AsyncStorage.multiRemove([
+          "dukati",
+          "userPlan",
+          prevUid ? keyDukati(prevUid) : "dukati:anon",
+          prevUid ? keyPlan(prevUid) : "userPlan:anon",
+          // BK: očisti i stare ključeve ako postoje
+          "dukati:guest",
+          "userPlan:guest",
+        ]);
+        // END: očisti i namespacovane ključeve
       } catch { }
     } finally {
       setAuthLoading(false);
