@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
   headerWrapper: {
     zIndex: 99,
     width: "100%",
-    backgroundColor: "rgba(0,0,0,0.86)",
+    backgroundColor: "rgba(0,0,0,0.4)", // bilo 0.86, sada 0.4 kao na Home
     position: "relative",
   },
   content: {
@@ -343,6 +343,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 32,
     minHeight: 500,
+    backgroundColor: "rgba(0,0,0,0.4)", // dodato za konzistentnost sa Home
   },
   title: {
     fontSize: 22,
@@ -362,11 +363,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "flex-start",
-    marginVertical: 16,
-    backgroundColor: "rgba(20,20,40,0.24)",
-    borderRadius: 22,
-    paddingVertical: 18,
-    width: "90%",
+    marginVertical: 12, // bilo 16, sada 12 za kompaktniji izgled
+    backgroundColor: "rgba(20,20,40,0.3)", // bilo 0.24, sada 0.3
+    borderRadius: 16, // bilo 22, sada 16 (kao na Home)
+    paddingVertical: 14, // bilo 18, sada 14
+    width: "85%", // bilo 90%, sada 85% (kao na Home)
     shadowColor: "#fff",
     shadowOpacity: 0.10,
     shadowRadius: 12,
@@ -379,9 +380,9 @@ const styles = StyleSheet.create({
   },
   // END: vizuelni lock
   iconBox: {
-    width: 68,
-    height: 68,
-    borderRadius: 34,
+    width: 64, // bilo 68, sada 64
+    height: 64, // bilo 68, sada 64
+    borderRadius: 32, // bilo 34, sada 32
     backgroundColor: "rgba(10,10,40,0.22)",
     justifyContent: "center",
     alignItems: "center",

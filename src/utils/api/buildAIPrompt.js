@@ -119,6 +119,20 @@ Inline stil (poželjno, ali bez forsiranja):
 `.trim();
 // END: SOFT
 
+// START: v2 guardrails — tranziti i podpitanja (enforcer)
+// START: v2 guardrails — tranziti i podpitanja (enforcer)
+const TRANSIT_ENFORCER = `
+– **Tranziti (ako su dati):** napiši **min. 2, max. 4** kratke inline napomene (najviše 1 po kući/poziciji) i dodaj **obavezni** mini-odeljak "Transitus" (≤ 70 reči) koji sažima 2–3 najrelevantnije napomene. Ne započinji pasuse tranzitima.`;
+
+const FOLLOWUP_ENFORCER = `
+– **Za podpitanje:** ne ponavljaj uvod ni ceo raspored. Format:
+  1) Jedna rečenica – direktan odgovor.
+  2) Šta je novo u odnosu na prethodno (2–3 razlike; pozovi se na **karte/pozicije** po imenu).
+  3) Sledeći korak (2–3 praktične preporuke).
+  Anti-duplikat: ukloni rečenice koje su skoro iste kao u "Prethodno tumačenje".`;
+// END: v2 guardrails — tranziti i podpitanja (enforcer)
+// END: v2 guardrails — tranziti i podpitanja (enforcer)
+
 // START: light-rollback — srpska verzija „karte su primarne“
 const CARDS_FIRST_RULE = `VAŽNO: Karte su primarne. Tranziti su dopuna i ne zamenjuju karte. Ako nema karata, traži novo otvaranje.`.trim();
 // END: light-rollback
@@ -455,11 +469,19 @@ ${allowTransits ? FLOW_UKLAPANJE : ""}`.trim();
   // Follow-up text
   let podpitanjaTekst = "";
   if (podpitanja && podpitanja.length > 0) {
+    // START: follow-up structure & anti-dup
     podpitanjaTekst = `
-Ovo je podpitanje na osnovu prethodnog tumačenja.
-Ne ponavljaj celu analizu; daj kratak, direktan odgovor i smernicu (max ${LIMITI_REC["podpitanje"]} reči).
+Ovo je **podpitanje** zasnovano na prethodnom tumačenju iznad.
+Radi isključivo u okviru istih karata — **ne radi novo čitanje**.
+Napiši do ${LIMITI_REC["podpitanje"]} reči u 3 kratke celine:
+1) **Jedna rečenica** — direktan odgovor.
+2) **Šta je novo** u odnosu na prethodno (2–3 razlike; referiši **karte/pozicije** po imenu, npr. „Kralj pehara u Tiferetu“).
+3) **Sledeći korak** — 2–3 praktične preporuke.
+Anti-duplikat: izbegni copy–paste; ukloni rečenice koje se podudaraju sa „Prethodno tumačenje“.
+Ako je podpitanje suštinski isto kao glavno, fokusiraj se na **vremenski okvir, akciju i resurse** umesto ponavljanja.
 Podpitanje: ${podpitanja[0]}
 `.trim();
+    // END: follow-up structure & anti-dup
   }
 
   // Suma sumarum — uvek za duža otvaranja
@@ -537,9 +559,9 @@ ${ime
       : `– Ako ime nije dostupno, započni **neutralnim pozdravom u jeziku pitanja** (sr: "Zdravo,", en: "Hello,", it: "Ciao,").`
     }
 – Ako su poznati Sunčev znak i Podznak (ASC), **ukratko ih napiši u prvom pasusu** i veži za temu pitanja (npr. "Kao ${znak} sa ASC ${podznak}, …"). Nemoj izmišljati ako nisu poznati.
-${allowTransits ? '– Ako su dati tranziti: dodaj **2–3** kratke inline napomene uz konkretne karte/pozicije (max 1 po kući); ako ne deluje prirodno – preskoči.' : ''}
+${allowTransits ? '– Ako su dati tranziti: dodaj **min. 2, max. 4** kratke inline napomene uz konkretne karte/pozicije (max 1 po kući).' : ''}
 ${allowTransits ? '– Pri navođenju kuće koristi **lokalizovan oblik u jeziku odgovora** (sr: „11. kuća“, en: „11th house“, it: „11ª casa / Casa 11“); **H#** samo ako je nužno radi jasnoće.' : ''}
-${allowTransits ? '– Odeljak **Transitus** je opcion i **≤ 70 reči**; služi kao sažetak 2–3 napomene, bez ponavljanja.' : ''}
+${allowTransits ? '– Odeljak **Transitus** je **obavezan** i **≤ 70 reči**; sažmi 2–3 najrelevantnije napomene, bez ponavljanja.' : ''}
 ${allowTransits ? '– Bar **75%** teksta posveti kartama; tranziti su dopuna, ne osnova tumačenja.' : ''}
 – Nazive karata piši na jeziku odgovora; ako ulaz sadrži engleske “slugove” (npr. "queenOfSwords"), prevedi ih na standardne lokalne nazive.
 – Before sending, perform a **language self-check**: your answer must be in the **same language as the question**; if uncertain or you drifted, **translate the entire answer** to the question's language before sending. **Do not mix languages.**
@@ -547,6 +569,8 @@ ${allowTransits ? '– Bar **75%** teksta posveti kartama; tranziti su dopuna, n
 ${sumarumPravilo}
 ${REQUIRED_TRANSITS_MISSING}
 ${NO_TRANSITS_RULE}
+${allowTransits ? TRANSIT_ENFORCER : ''}
+${(podpitanja && podpitanja.length > 0) ? FOLLOWUP_ENFORCER : ''}
 – Potpiši se jednom kratkom linijom prevedenom na jezik odgovora (npr. EN: "Yours, Una"). "Suma sumarum" ostaje doslovno.
 
 // END: rules-neutral-greeting-and-sign-asc-first-paragraph

@@ -1,7 +1,17 @@
 // src/components/SidebarMenu.jsx
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Linking, Modal, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+// START: import Image + Platform za promo baner
+// START: Scrollable menu import (dodajemo ScrollView)
+import { ActivityIndicator, Image, Linking, Modal, Platform, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+// END: Scrollable menu import
+// END: import Image + Platform
+// START: RN import (dodato Pressable za promo)
+import { Pressable } from 'react-native';
+// END: RN import (dodato Pressable za promo)
+// START: safe area import
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// END: safe area import
 import { useAuth } from '../context/AuthProvider';
 import MembershipModal from "../pages/MembershipModal";
 import ProfilModal from './ProfilModal'; // prilagodi putanju ako treba
@@ -104,7 +114,7 @@ const PravnaModal = ({ visible, onClose, navigation, openDoc }) => {
 
         <TouchableOpacity
           style={styles.sectionCloseBtn}
-          onPress={async () => { await playUiClick(); onClose(); }}
+          onPress={async () => { try { await playUiClick(); } finally { onClose?.(); } }}
           accessibilityLabel={t('common:buttons.close', { defaultValue: 'Zatvori' })}
           accessibilityRole="button"
         >
@@ -118,6 +128,9 @@ const PravnaModal = ({ visible, onClose, navigation, openDoc }) => {
 
 const SidebarMenu = ({ visible, onClose }) => {
   const navigation = useNavigation();
+  // START: safe area insets
+  const insets = useSafeAreaInsets();
+  // END: safe area insets
   const { user, profile, logout, fetchProfile } = useAuth();
   const {
     loading,
@@ -163,6 +176,20 @@ const SidebarMenu = ({ visible, onClose }) => {
   };
   // END: centralna navigacija ka postojećim ekranima (bez "StaticDoc")
 
+  // START: DreamCodex – Play/AppStore URL + handler
+  const DREAM_ANDROID_PKG = process.env.EXPO_PUBLIC_ANDROID_PACKAGE || "com.mare82.aisanovnik";
+  const DREAM_IOS_APP_ID = process.env.EXPO_PUBLIC_IOS_APP_ID || "0";
+  const dreamPlayUrl = `https://play.google.com/store/apps/details?id=${DREAM_ANDROID_PKG}`;
+  const dreamAppStoreUrl = (DREAM_IOS_APP_ID && DREAM_IOS_APP_ID !== "0")
+    ? `https://apps.apple.com/app/id${DREAM_IOS_APP_ID}`
+    : dreamPlayUrl; // fallback na Play ako iOS ID nije postavljen
+  const openDreamCodex = async () => {
+    await playUiClick();
+    onClose?.();
+    Linking.openURL(Platform.OS === "ios" ? dreamAppStoreUrl : dreamPlayUrl);
+  };
+  // END: DreamCodex – Play/AppStore URL + handler
+
   const handleLogout = async () => {
     await playUiClick();
     setActiveSection(null);
@@ -192,14 +219,11 @@ const SidebarMenu = ({ visible, onClose }) => {
 
   // START: uklanjanje "guest" badge-a i etikete
   const renderStatusBadge = () => {
-    // Neulogovan korisnik → neutralni status (nema više "Gost")
-    // START: neutralan status za sign-out
     return !user ? (
       <Text style={styles.statusBadgeAnon}>
         ⚪ {t('common:labels.signedOut', { defaultValue: 'Niste prijavljeni' })}
       </Text>
     ) : (
-      // Plaćeni/free statusi
       userPlan === 'premium' ? (
         <Text style={styles.statusBadgePremium}>🟡 {t('common:membership.packages.premium', { defaultValue: 'Premium' })}</Text>
       ) : userPlan === 'proplus' ? (
@@ -210,7 +234,6 @@ const SidebarMenu = ({ visible, onClose }) => {
         <Text style={styles.statusBadgeFree}>⚪ {t('common:membership.packages.free', { defaultValue: 'Free' })}</Text>
       )
     );
-    // END: neutralan status za sign-out
   };
   // END: uklanjanje "guest" badge-a i etikete
 
@@ -254,85 +277,140 @@ const SidebarMenu = ({ visible, onClose }) => {
 
   return (
     <Modal visible={visible} transparent animationType="slide">
-      <TouchableOpacity style={styles.overlay} onPress={onClose} activeOpacity={1} />
-      <View style={styles.menu}>
-        {renderUserBox()}
-
-        {/* 👤 Profil – traži login */}
-        <TouchableOpacity
-          style={styles.item}
-          onPress={requireLogin(() => setActiveSection('profil'))}
-          accessibilityLabel={t('common:home.menu.profile', { defaultValue: 'Profil' })}
-          accessibilityRole="button"
+      <TouchableOpacity
+        style={styles.overlay}
+        onPress={async () => { try { await playUiClick(); } finally { onClose?.(); } }}
+        activeOpacity={1}
+      />
+      <View
+        style={[
+          styles.menu,
+          // START: safe area paddings (gore/dole)
+          {
+            paddingTop: Math.max(36, insets.top + 8),
+            paddingBottom: Math.max(20, insets.bottom + 8),
+          },
+          // END: safe area paddings
+        ]}
+      >
+        {/* START: scroll container oko sadržaja menija */}
+        <ScrollView
+          style={styles.menuScroll}
+          contentContainerStyle={styles.menuScrollContent}
+          showsVerticalScrollIndicator={false}
         >
-          <Text style={styles.text}>👤 {t('common:home.menu.profile', { defaultValue: 'Profil' })}</Text>
-        </TouchableOpacity>
+          {renderUserBox()}
 
-        <TouchableOpacity
-          style={styles.item}
-          onPress={async () => { await playUiClick(); onClose?.(); navigation.navigate('Podesavanja'); }}
-          accessibilityLabel={t('common:home.menu.settings', { defaultValue: 'Podešavanja' })}
-          accessibilityRole="button"
-        >
-          <Text style={styles.text}>⚙️ {t('common:home.menu.settings', { defaultValue: 'Podešavanja' })}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.item}
-          onPress={async () => { await playUiClick(); onClose?.(); navigation.navigate('OAplikaciji'); }}
-          accessibilityLabel={t('common:home.menu.about', { defaultValue: 'O aplikaciji' })}
-          accessibilityRole="button"
-        >
-          <Text style={styles.text}>📖 {t('common:home.menu.about', { defaultValue: 'O aplikaciji' })}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.item}
-          onPress={async () => { await playUiClick(); setActiveSection('podrzi'); }}
-          accessibilityLabel={t('common:support.title', { defaultValue: 'Podrži aplikaciju' })}
-          accessibilityRole="button"
-        >
-          <Text style={styles.text}>🌟 {t('common:support.title', { defaultValue: 'Podrži aplikaciju' })}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.item}
-          onPress={async () => { await playUiClick(); setActiveSection('pravna'); }}
-          accessibilityLabel={t('common:legal.title', { defaultValue: 'Pravna dokumenta' })}
-          accessibilityRole="button"
-        >
-          <Text style={styles.text}>📜 {t('common:legal.title', { defaultValue: 'Pravna dokumenta' })}</Text>
-        </TouchableOpacity>
-
-        {/* 💎 Paketi – traži login */}
-        <TouchableOpacity
-          style={styles.item}
-          onPress={requireLogin(() => setShowMembershipModal(true))}
-          accessibilityLabel={t('common:home.menu.packagesAccess', { defaultValue: 'Pristup i paketi' })}
-          accessibilityRole="button"
-        >
-          <Text style={[styles.text, { color: "#ffd700", fontWeight: "bold" }]}>💎 {t('common:home.menu.packagesAccess', { defaultValue: 'Pristup i paketi' })}</Text>
-        </TouchableOpacity>
-
-        {/* Prijava / Odjava */}
-        {!user ? (
-          <TouchableOpacity style={styles.logoutBtn} onPress={handleLogin} accessibilityLabel={t('common:buttons.login', { defaultValue: 'Prijavi se' })} accessibilityRole="button">
-            <Text style={[styles.text, { color: '#4ade80' }]}>{t('common:buttons.login', { defaultValue: 'Prijavi se' })}</Text>
+          {/* 👤 Profil – traži login */}
+          <TouchableOpacity
+            style={styles.item}
+            onPress={requireLogin(() => setActiveSection('profil'))}
+            accessibilityLabel={t('common:home.menu.profile', { defaultValue: 'Profil' })}
+            accessibilityRole="button"
+          >
+            <Text style={styles.text}>👤 {t('common:home.menu.profile', { defaultValue: 'Profil' })}</Text>
           </TouchableOpacity>
-        ) : (
-          <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout} accessibilityLabel={t('common:buttons.logout', { defaultValue: 'Odjavi se' })} accessibilityRole="button">
-            <Text style={[styles.text, { color: '#f87171' }]}>{t('common:buttons.logout', { defaultValue: 'Odjavi se' })}</Text>
-          </TouchableOpacity>
-        )}
 
-        <TouchableOpacity
-          style={styles.closeBtn}
-          onPress={async () => { await playUiClick(); onClose?.(); }}
-          accessibilityLabel={t('common:buttons.close', { defaultValue: 'Zatvori' })}
-          accessibilityRole="button"
-        >
-          <Text style={[styles.text, { color: '#facc15' }]}>{t('common:buttons.close', { defaultValue: 'Zatvori' })}</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={async () => { await playUiClick(); onClose?.(); navigation.navigate('Podesavanja'); }}
+            accessibilityLabel={t('common:home.menu.settings', { defaultValue: 'Podešavanja' })}
+            accessibilityRole="button"
+          >
+            <Text style={styles.text}>⚙️ {t('common:home.menu.settings', { defaultValue: 'Podešavanja' })}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.item}
+            onPress={async () => { await playUiClick(); onClose?.(); navigation.navigate('OAplikaciji'); }}
+            accessibilityLabel={t('common:home.menu.about', { defaultValue: 'O aplikaciji' })}
+            accessibilityRole="button"
+          >
+            <Text style={styles.text}>📖 {t('common:home.menu.about', { defaultValue: 'O aplikaciji' })}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.item}
+            onPress={async () => { await playUiClick(); setActiveSection('podrzi'); }}
+            accessibilityLabel={t('common:support.title', { defaultValue: 'Podrži aplikaciju' })}
+            accessibilityRole="button"
+          >
+            <Text style={styles.text}>🌟 {t('common:support.title', { defaultValue: 'Podrži aplikaciju' })}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.item}
+            onPress={async () => { await playUiClick(); setActiveSection('pravna'); }}
+            accessibilityLabel={t('common:legal.title', { defaultValue: 'Pravna dokumenta' })}
+            accessibilityRole="button"
+          >
+            <Text style={styles.text}>📜 {t('common:legal.title', { defaultValue: 'Pravna dokumenta' })}</Text>
+          </TouchableOpacity>
+
+          {/* 💎 Paketi – traži login */}
+          <TouchableOpacity
+            style={styles.item}
+            onPress={requireLogin(() => setShowMembershipModal(true))}
+            accessibilityLabel={t('common:home.menu.packagesAccess', { defaultValue: 'Pristup i paketi' })}
+            accessibilityRole="button"
+          >
+            <Text style={[styles.text, { color: "#ffd700", fontWeight: "bold" }]}>💎 {t('common:home.menu.packagesAccess', { defaultValue: 'Pristup i paketi' })}</Text>
+          </TouchableOpacity>
+
+          {/* START: Promo kartica – DreamCodex AI (a11y & UX poboljšanja) */}
+          <Pressable
+            style={styles.promoCard}
+            onPress={openDreamCodex}
+            accessibilityRole="button"
+            accessibilityLabel={t('common:promo.tryOurNewApp', { defaultValue: 'Try our new app' })}
+            accessibilityHint={
+              Platform.OS === 'ios'
+                ? t('common:promo.storeIos', { defaultValue: 'Available on the App Store' })
+                : t('common:promo.storeAndroid', { defaultValue: 'Get it on Google Play' })
+            }
+            android_ripple={Platform.OS === 'android' ? { color: '#1f2a5a33', borderless: false } : undefined}
+            testID="promo-dreamcodex"
+          >
+            <Text style={styles.promoTitle}>
+              {t('common:promo.tryOurNewApp', { defaultValue: 'Try our new app' })}
+            </Text>
+            {/* START: slika promo banera */}
+            <Image
+              source={require('../../assets/dreamcodex.jpg')}
+              style={styles.promoImage}
+              resizeMode="contain"
+              accessible={false}
+            />
+            {/* END: slika promo banera */}
+            <Text style={styles.promoHint}>
+              {Platform.OS === 'ios'
+                ? t('common:promo.storeIos', { defaultValue: 'Available on the App Store' })
+                : t('common:promo.storeAndroid', { defaultValue: 'Get it on Google Play' })}
+            </Text>
+          </Pressable>
+          {/* END: Promo kartica – DreamCodex AI (a11y & UX poboljšanja) */}
+
+          {/* Prijava / Odjava */}
+          {!user ? (
+            <TouchableOpacity style={styles.logoutBtn} onPress={handleLogin} accessibilityLabel={t('common:buttons.login', { defaultValue: 'Prijavi se' })} accessibilityRole="button">
+              <Text style={[styles.text, { color: '#4ade80' }]}>{t('common:buttons.login', { defaultValue: 'Prijavi se' })}</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout} accessibilityLabel={t('common:buttons.logout', { defaultValue: 'Odjavi se' })} accessibilityRole="button">
+              <Text style={[styles.text, { color: '#f87171' }]}>{t('common:buttons.logout', { defaultValue: 'Odjavi se' })}</Text>
+            </TouchableOpacity>
+          )}
+
+          <TouchableOpacity
+            style={styles.closeBtn}
+            onPress={async () => { try { await playUiClick(); } finally { onClose?.(); } }}
+            accessibilityLabel={t('common:buttons.close', { defaultValue: 'Zatvori' })}
+            accessibilityRole="button"
+          >
+            <Text style={[styles.text, { color: '#facc15' }]}>{t('common:buttons.close', { defaultValue: 'Zatvori' })}</Text>
+          </TouchableOpacity>
+        </ScrollView>
+        {/* END: scroll container oko sadržaja menija */}
 
         {/* MODALI */}
         <ProfilModal
@@ -405,7 +483,7 @@ const PodrziModal = ({ visible, onClose }) => {
 
         <TouchableOpacity
           style={styles.sectionCloseBtn}
-          onPress={async () => { await playUiClick(); onClose?.(); }}
+          onPress={async () => { try { await playUiClick(); } finally { onClose?.(); } }}
           accessibilityLabel={t('common:buttons.close', { defaultValue: 'Zatvori' })}
           accessibilityRole="button"
         >
@@ -418,8 +496,10 @@ const PodrziModal = ({ visible, onClose }) => {
 
 const styles = StyleSheet.create({
   overlay: {
-    flex: 1,
+    position: 'absolute',
+    top: 0, left: 0, right: 0, bottom: 0,
     backgroundColor: 'rgba(0,0,0,0.4)',
+    zIndex: 1,
   },
   menu: {
     position: 'absolute',
@@ -435,7 +515,16 @@ const styles = StyleSheet.create({
     elevation: 8,
     borderTopRightRadius: 12,
     borderBottomRightRadius: 12,
+    zIndex: 2,
   },
+  // START: skrol kontejner (ScrollView + padding na dnu)
+  menuScroll: {
+    flex: 1,
+  },
+  menuScrollContent: {
+    paddingBottom: 32, // prostor da se uvek vide Logout/Close i na manjim ekranima
+  },
+  // END: skrol kontejner
   userBox: {
     marginBottom: 24,
     alignItems: 'flex-start',
@@ -550,6 +639,36 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#333',
   },
+  // START: promo stilovi (slika + naslov)
+  promoCard: {
+    marginTop: 18,
+    padding: 10,
+    borderRadius: 14,
+    backgroundColor: '#111827',
+    borderWidth: 1,
+    borderColor: '#22293e',
+  },
+  promoTitle: {
+    color: '#9aa4ff',
+    fontSize: 14,
+    marginBottom: 8,
+    fontWeight: '700',
+  },
+  promoImage: {
+    width: '100%',
+    height: 180,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#1f2a5a',
+    backgroundColor: '#0b1026',
+  },
+  promoHint: {
+    marginTop: 8,
+    color: '#9aa4ff',
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  // END: promo stilovi
 });
 
 export default SidebarMenu;

@@ -1,6 +1,11 @@
 {
   "watchAdForCoins": "Tonton iklan untuk koin",
   "appName": "Tarot",
+  "promo": {
+    "tryOurNewApp": "Coba aplikasi baru kami",
+    "storeIos": "Tersedia di App Store",
+    "storeAndroid": "Unduh di Google Play"
+  },
   "groups": {
     "velika": "Arkana Mayor",
     "stapovi": "Tongkat",
@@ -40,6 +45,9 @@
     "saveProfile": "Simpan profil",
     "register": "Daftar",
     "savePassword": "Simpan kata sandi"
+  },
+  "misc": {
+    "cancel": "Tidak"
   },
   "messages": {
     "loading": "Memuat...",
@@ -142,7 +150,16 @@
       "guest": "Tamu",
       "free": "Gratis",
       "premium": "Premium",
-      "pro": "Pro"
+      "pro": "Pro",
+      "proplus": "ProPlus"
+    },
+    "proplus": {
+      "title": "ProPlus tahunan",
+      "subtitle": "Untuk pengguna intensif. Tanpa batas, tanpa iklan.",
+      "pricePerYear": "{{price}} {{currency}} / tahun",
+      "saveXPercent": "Hemat {{percent}}%",
+      "bestOffer": "Penawaran terbaik",
+      "coinsIncluded": "Termasuk {{count}} koin"
     },
     "features": {
       "meanings": "Arti kartu",
@@ -167,7 +184,16 @@
       "alreadyPremium": "Kamu sudah Premium",
       "buyPremium": "Beli Premium ({{price}} {{currency}} / bulan)",
       "alreadyPro": "Kamu sudah PRO",
-      "buyPro": "Beli PRO ({{price}} {{currency}} / bulan)"
+      "buyPro": "Beli PRO ({{price}} {{currency}} / bulan)",
+      "alreadyProPlus": "Kamu sudah ProPlus",
+      "buyProPlus": "Beli ProPlus ({{price}} {{currency}} / tahun)"
+    },
+    "cancel": {
+      "confirmTitle": "Batalkan langganan?",
+      "confirmBody": "Beralih ke paket FREE akan langsung berlaku. Kamu bisa berlangganan lagi kapan saja.",
+      "confirmCta": "Ya, batalkan",
+      "cta": "Batalkan langganan",
+      "scheduled": "Langganan dibatalkan. Kamu telah beralih ke paket FREE."
     },
     "topup": {
       "title": "Isi ulang koin",
@@ -176,6 +202,7 @@
     "toast": {
       "upgradedPremium": "Akunmu kini Premium. Kamu menerima {{bonus}} koin!",
       "upgradedPro": "Akunmu kini PRO. Kamu menerima {{bonus}} koin!",
+      "upgradedProPlus": "Akunmu kini ProPlus. Kamu menerima {{bonus}} koin!",
       "topupDone": "Kamu menerima {{amount}} koin."
     }
   },
@@ -199,7 +226,8 @@
     "modelUnavailable": "Model tidak tersedia atau permintaan tidak valid.",
     "upstreamFailed": "Layanan AI sementara tidak tersedia (hulu).",
     "aiServiceComm": "Terjadi kesalahan saat berkomunikasi dengan layanan AI.",
-    "edgeTimeout": "Permintaan AI kedaluwarsa. Coba lagi."
+    "edgeTimeout": "Permintaan AI kedaluwarsa. Coba lagi.",
+    "storeUnavailable": "Toko tidak tersedia."
   },
   "dailyCard": {
     "alreadyPicked": "Kamu sudah mengambil kartu harianmu!",
@@ -241,7 +269,14 @@
     "passwordTooShort": "Kata sandi harus minimal 8 karakter.",
     "passwordsDontMatch": "Kata sandi tidak cocok.",
     "passwordUpdated": "Kata sandimu telah diperbarui. Silakan masuk dengan kata sandi baru.",
-    "passwordUpdateFailed": "Gagal memperbarui kata sandi."
+    "passwordUpdateFailed": "Gagal memperbarui kata sandi.",
+    "appleSignIn": "Masuk dengan Apple",
+    "appleOpening": "Membuka Apple…",
+    "appleFailed": "Gagal masuk dengan Apple.",
+    "sendMagicLink": "Kirim tautan ajaib",
+    "magicLinkSent": "Kami telah mengirimkan tautan ajaib. Buka email di perangkat ini.",
+    "magicLinkFailed": "Gagal mengirim tautan ajaib.",
+    "resetTryAgainIn": "Coba lagi dalam {{s}} dtk"
   },
   "ads": {
     "errorTitle": "Kesalahan iklan!",
@@ -273,6 +308,9 @@
     }
   },
   "home": {
+    "welcome": "Selamat datang",
+    "user": "Pengguna",
+    "astroHintPremium": "✨ Anggota Premium/Pro: tambahkan zodiak & ascendant-mu di Profil untuk wawasan astrologi",
     "menu": {
       "profile": "Profil",
       "settings": "Pengaturan",

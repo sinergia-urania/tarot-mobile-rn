@@ -1,10 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
-// START: perf(import) — dodaj useMemo u React uvoz
-/* ORIGINAL:
-import { useCallback, useEffect, useRef, useState } from "react";
-*/
+import { useAudioPlayer } from "expo-audio";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-// END: perf(import) — dodaj useMemo u React uvoz
+import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   Alert,
@@ -18,34 +15,15 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import Svg, { Path } from "react-native-svg";
+import { READING_PRICES } from "../constants/readingPrices";
 import { useAuth } from "../context/AuthProvider";
+import { useDukati } from "../context/DukatiContext";
 import cardMeanings from '../locales/sr/cardMeanings.json';
 import extendedMeanings from '../locales/sr/extendedMeanings.json';
-import { getKartaDanaSmart } from '../utils/kartaDana';
-
-// START: Import SVG
-import Svg, { Path } from "react-native-svg";
-// END: Import SVG
-
-// START: Import getCardImagePath helper
 import { getCardImagePath } from '../utils/getCardImagePath';
-// END: Import getCardImagePath helper
-
-// START: Import naplata po subtipu
-import { READING_PRICES } from "../constants/readingPrices";
-// END: Import naplata po subtipu
-import { useDukati } from "../context/DukatiContext"; // DODATO
-// START: i18n
-import { useTranslation } from 'react-i18next';
-// END: i18n
-
-// START: zvuk (expo-audio)
-import { useAudioPlayer } from "expo-audio";
-// END: zvuk (expo-audio)
-
-// START: SafeImage (expo-image wrapper) za iOS WebP
-import SafeImage from "../components/SafeImage";
-// END: SafeImage (expo-image wrapper)
+import { getKartaDanaSmart } from '../utils/kartaDana';
+import SafeImage from "./SafeImage";
 
 // START: IzborKarataModal
 const circleHeight = 220;
@@ -285,11 +263,19 @@ const IzborKarataModal = ({
 
 
   const placeholderArray = Array.from({ length: numPlaceholders });
-  const DVA_REDA_OTVARANJA = ["keltski", "astrološko", "drvo"];
-  const trebaDvaReda = DVA_REDA_OTVARANJA.includes(tip);
-  const MAX_PER_ROW = 6;
-  const prviRed = placeholderArray.slice(0, MAX_PER_ROW);
-  const drugiRed = placeholderArray.slice(MAX_PER_ROW);
+  const MAX_PER_ROW = 4;
+
+  // indeksne grupe (npr. [0,1,2,3], [4,5,6,7], [8,9,10,11] za 12 karata)
+  const rows = useMemo(() => {
+    const total = numPlaceholders;
+    const rowCount = Math.ceil(total / MAX_PER_ROW);
+    return Array.from({ length: rowCount }, (_, r) => {
+      const start = r * MAX_PER_ROW;
+      const len = Math.min(MAX_PER_ROW, total - start);
+      return Array.from({ length: len }, (_, i) => start + i);
+    });
+  }, [numPlaceholders]);
+  // END: grid(4-per-row constants)
 
   const handleCardClick = (cardKey) => {
     if (selectedCards.length >= numPlaceholders) return;
@@ -379,13 +365,10 @@ const IzborKarataModal = ({
         subtip,
         cena: cenaOtvaranja,
         layoutTemplate,
-        // napomena: nema hardcode korisnikTip: "pro"
       });
     } finally {
       setLoadingAnswer(false);
-
     }
-
   };
   // END: handleGoToAnswer – jedna funkcija, server-side naplata i uvek navigacija
 
@@ -394,37 +377,6 @@ const IzborKarataModal = ({
     navigation.goBack();
   };
 
-  // --- PanResponder za lepezu (fluidno pomeranje) ---
-  // START: perf(rAF throttle) — PanResponder sa rAF + cleanup
-  /* ORIGINAL:
-  const pan = useRef({ last: 0 }).current;
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: (_, gestureState) =>
-        Math.abs(gestureState.dx) > 4 || Math.abs(gestureState.dy) > 4,
-      onPanResponderGrant: () => {
-        angleOffset.stopAnimation();
-        pan.last = angleOffset.__getValue?.() ?? currentAngle;
-        setDragActive(true);
-      },
-      onPanResponderMove: (_, gestureState) => {
-        angleOffset.setValue(pan.last + gestureState.dx / 230);
-      },
-      onPanResponderRelease: (_, gestureState) => {
-        const vx = isNaN(gestureState.vx) ? 0 : gestureState.vx;
-        Animated.decay(angleOffset, {
-          velocity: vx * 0.3,
-          deceleration: 0.992,
-          useNativeDriver: false,
-        }).start(() => {
-          pan.last = angleOffset.__getValue?.() ?? currentAngle;
-          setDragActive(false);
-        });
-      },
-    })
-  ).current;
-  */
   const pan = useRef({ last: 0 }).current;
   const rafRef = useRef(null);
   const panResponder = useRef(
@@ -497,22 +449,6 @@ const IzborKarataModal = ({
   const currentAngleRad = (currentAngle * Math.PI) / 180;
   const sinCA = Math.sin(currentAngleRad);
   const cosCA = Math.cos(currentAngleRad);
-  // END: perf(memo pozicije + trig)
-
-  // START: (ISKLJUČENO) – priprema za stari luk, ostavljeno radi istorije
-  // const containerTop = dimensions.height - 220 - fanBaseTop;
-  // const cxLocal = centerX;
-  // const cyLocal = centerY - containerTop;
-  // const ARROW_DELTA_R = 95;
-  // const arrowRadius = radius - ARROW_DELTA_R;
-  // const ARC_START = -115;
-  // const ARC_END   =  -65;
-  // const arrowPath = describeArc(cxLocal, cyLocal, arrowRadius, ARC_START, ARC_END);
-  // const startPt = polarToCartesian(cxLocal, cyLocal, arrowRadius, ARC_START);
-  // const endPt   = polarToCartesian(cxLocal, cyLocal, arrowRadius, ARC_END);
-  // const startTangent = ARC_START + 90 + 180;
-  // const endTangent   = ARC_END   + 90;
-  // END: (ISKLJUČENO)
 
   return (
     <View style={styles.modalBg}>
@@ -521,11 +457,9 @@ const IzborKarataModal = ({
         <Text style={styles.closeText}>×</Text>
       </TouchableOpacity>
 
-
-
       <ScrollView contentContainerStyle={styles.container}>
         {tip !== "dane" && tip !== "karta-dana" && (
-          <View className="row">
+          <View style={styles.row}>
             <TouchableOpacity
               style={[styles.checkbox, ukljuciObrnute && styles.checked]}
               onPress={() => setUkljuciObrnute((v) => !v)}
@@ -552,10 +486,8 @@ const IzborKarataModal = ({
         )}
 
         {/* START: Prikaz karte dana sa uslovom za crveni tekst */}
-
         {tip === "karta-dana" && !loadingKarta && kartaDana && kartaDana._izabranaDanas && (
           <View style={{ alignItems: 'center', margin: 24 }}>
-            {/* Samo ako NIJE upravo izvucena prikazuj crveni tekst */}
             {!upravoIzvucena && (
               <Text style={{ color: "red", fontSize: 20, marginBottom: 5, fontWeight: 'bold' }}>
                 {t('common:dailyCard.alreadyPicked', { defaultValue: 'Već si izabrao kartu dana!' })}
@@ -564,16 +496,6 @@ const IzborKarataModal = ({
             <Text style={{ color: "#ffd700", fontSize: 17, marginTop: 10, marginBottom: 26, }}>
               {t('common:dailyCard.comeBackTomorrow', { defaultValue: 'Vrati se sutra za novu kartu. 🌞' })}
             </Text>
-            {/* START: SafeImage umesto Image */}
-            {/* <Image
-              source={getCardImagePath(kartaDana.label)}
-              style={[
-                styles.cardImage,
-                kartaDana.reversed && { transform: [{ rotate: "180deg" }] },
-                { width: 130, height: 200, marginBottom: 16 }
-              ]}
-              resizeMode="contain"
-            /> */}
             <SafeImage
               source={getCardImagePath(kartaDana.label)}
               style={[
@@ -583,7 +505,6 @@ const IzborKarataModal = ({
               ]}
               contentFit="contain"
             />
-            {/* END: SafeImage umesto Image */}
             <Text style={{
               color: "#ffd700",
               fontSize: 26,
@@ -608,128 +529,39 @@ const IzborKarataModal = ({
         )}
         {/* END: Prikaz karte dana sa uslovom za crveni tekst */}
 
-
-
         {!(tip === "karta-dana" && kartaDana?._izabranaDanas) && (
           <>
-            {["keltski", "astrološko", "drvo"].includes(tip) ? (
-              <View style={styles.selectedCardsGridWrapper}>
-                <View style={styles.selectedCardsGrid}>
-                  {placeholderArray.slice(0, 6).map((_, i) => (
+
+            <View style={styles.selectedCardsGridWrapper}>
+              {rows.map((row, rIdx) => (
+                <View key={rIdx} style={styles.selectedCardsGrid}>
+                  {row.map((globalIdx) => (
                     <View
-                      key={i}
+                      key={globalIdx}
                       style={[
                         styles.cardPlaceholder,
                         getCardSizeStyle(numPlaceholders),
                         { borderRadius: 4 },
                       ]}
                     >
-                      {selectedCards[i] !== undefined && (
-                        // START: SafeImage umesto Image
-                        // <Image
-                        //   source={getCardImagePath(selectedCards[i]?.label)}
-                        //   style={[
-                        //     styles.cardImage,
-                        //     selectedCards[i]?.reversed && {
-                        //       transform: [{ rotate: "180deg" }],
-                        //     },
-                        //   ]}
-                        //   resizeMode="contain"
-                        // />
+                      {selectedCards[globalIdx] !== undefined && (
                         <SafeImage
-                          source={getCardImagePath(selectedCards[i]?.label)}
+                          source={getCardImagePath(selectedCards[globalIdx]?.label)}
                           style={[
                             styles.cardImage,
-                            selectedCards[i]?.reversed && {
+                            selectedCards[globalIdx]?.reversed && {
                               transform: [{ rotate: "180deg" }],
                             },
                           ]}
                           contentFit="contain"
                         />
-                        // END: SafeImage umesto Image
                       )}
                     </View>
                   ))}
                 </View>
-                {placeholderArray.length > 6 && (
-                  <View style={styles.selectedCardsGrid}>
-                    {placeholderArray.slice(6).map((_, i) => (
-                      <View
-                        key={i + 6}
-                        style={[
-                          styles.cardPlaceholder,
-                          getCardSizeStyle(numPlaceholders),
-                          { borderRadius: 4 },
-                        ]}
-                      >
-                        {selectedCards[i + 6] !== undefined && (
-                          // START: SafeImage umesto Image
-                          // <Image
-                          //   source={getCardImagePath(selectedCards[i + 6]?.label)}
-                          //   style={[
-                          //     styles.cardImage,
-                          //     selectedCards[i + 6]?.reversed && {
-                          //       transform: [{ rotate: "180deg" }],
-                          //     },
-                          //   ]}
-                          //   resizeMode="contain"
-                          // />
-                          <SafeImage
-                            source={getCardImagePath(selectedCards[i + 6]?.label)}
-                            style={[
-                              styles.cardImage,
-                              selectedCards[i + 6]?.reversed && {
-                                transform: [{ rotate: "180deg" }],
-                              },
-                            ]}
-                            contentFit="contain"
-                          />
-                          // END: SafeImage umesto Image
-                        )}
-                      </View>
-                    ))}
-                  </View>
-                )}
-              </View>
-            ) : (
-              <View style={styles.selectedCardsGrid}>
-                {placeholderArray.map((_, i) => (
-                  <View
-                    key={i}
-                    style={[
-                      styles.cardPlaceholder,
-                      getCardSizeStyle(numPlaceholders),
-                      { borderRadius: 4 },
-                    ]}
-                  >
-                    {selectedCards[i] !== undefined && (
-                      // START: SafeImage umesto Image
-                      // <Image
-                      //   source={getCardImagePath(selectedCards[i]?.label)}
-                      //   style={[
-                      //     styles.cardImage,
-                      //     selectedCards[i]?.reversed && {
-                      //       transform: [{ rotate: "180deg" }],
-                      //     },
-                      //   ]}
-                      //   resizeMode="contain"
-                      // />
-                      <SafeImage
-                        source={getCardImagePath(selectedCards[i]?.label)}
-                        style={[
-                          styles.cardImage,
-                          selectedCards[i]?.reversed && {
-                            transform: [{ rotate: "180deg" }],
-                          },
-                        ]}
-                        contentFit="contain"
-                      />
-                      // END: SafeImage umesto Image
-                    )}
-                  </View>
-                ))}
-              </View>
-            )}
+              ))}
+            </View>
+            {/* END: grid(4-per-row render) */}
 
             {instantAnswer && (
               <Text style={styles.instantAnswer}>
@@ -750,8 +582,7 @@ const IzborKarataModal = ({
                 pointerEvents: "none",
               }}>
                 <Svg width={dimensions.width} height={220}>
-                  {/* Luk */}
-                  {/* <Path d={arrowPath} stroke="#ffd700" strokeWidth={5} fill="none" strokeLinecap="round" /> */}
+
                 </Svg>
               </View>
             )}
@@ -774,10 +605,8 @@ const IzborKarataModal = ({
                   left: (dimensions.width / 2) - CHEVRON_DISTANCE - 24,
                   opacity: chevOpacity,
                   transform: [{ translateX: leftShift }, { rotate: `-${CHEVRON_TILT_DEG}deg` }],
-
                 }}>
                   <Svg width={48} height={48} viewBox="0 0 48 48">
-                    {/* dupli chevron << */}
                     <Path d="M30 8 L14 24 L30 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     <Path d="M18 8 L2 24 L18 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
                   </Svg>
@@ -789,10 +618,8 @@ const IzborKarataModal = ({
                   left: (dimensions.width / 2) + CHEVRON_DISTANCE - 24,
                   opacity: Animated.add(chevOpacity, 0),
                   transform: [{ translateX: rightShift }, { rotate: `${CHEVRON_TILT_DEG}deg` }],
-
                 }}>
                   <Svg width={48} height={48} viewBox="0 0 48 48">
-                    {/* dupli chevron >> */}
                     <Path d="M18 8 L34 24 L18 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     <Path d="M 6 8 L22 24 L 6 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
                   </Svg>
@@ -808,7 +635,7 @@ const IzborKarataModal = ({
                 styles.cardsCircle,
                 {
                   position: "absolute",
-                  top: dimensions.height - 220 - fanBaseTop, // koristi promenljivu za visinu od dna
+                  top: dimensions.height - 220 - fanBaseTop,
                   width: dimensions.width,
                   height: 220,
                 },
@@ -818,22 +645,11 @@ const IzborKarataModal = ({
                 const cardKey = card.key;
 
                 // START: perf(render) — koristi memo pozicije + rotacione formule
-                /* ORIGINAL:
-                const angleDeg =
-                  startAngle +
-                  (idx * fanAngle) / ((availableCards.length - 1) || 1) +
-                  currentAngle;
-                const angleRad = (angleDeg * Math.PI) / 180;
-                const x = centerX + radius * Math.cos(angleRad);
-                const y = centerY + radius * Math.sin(angleRad);
-                const rotate = angleDeg + 90;
-                */
                 const bp = basePositions[idx];
                 const baseDeg =
                   bp?.baseDeg ?? (startAngle + (idx * fanAngle) / Math.max(availableCards.length - 1, 1));
                 const angleDeg = baseDeg + currentAngle;
 
-                // rotacione formule (izbegavamo sin/cos po karti)
                 const cb = bp?.cosBase ?? Math.cos((baseDeg * Math.PI) / 180);
                 const sb = bp?.sinBase ?? Math.sin((baseDeg * Math.PI) / 180);
                 const cosAngle = cb * cosCA - sb * sinCA;
@@ -865,18 +681,11 @@ const IzborKarataModal = ({
                           if (!dragActive) handleCardClick(cardKey);
                         }}
                       >
-                        {/* START: SafeImage umesto Image za poleđinu karte */}
-                        {/* <Image
-                          source={getCardImagePath("master_card")}
-                          style={styles.cardImage}
-                          resizeMode="contain"
-                        /> */}
                         <SafeImage
                           source={getCardImagePath("master_card")}
                           style={styles.cardImage}
                           contentFit="contain"
                         />
-                        {/* END: SafeImage umesto Image */}
                       </Pressable>
                     ) : (
                       <View style={{ width: '100%', height: '100%' }} />
@@ -902,9 +711,7 @@ const IzborKarataModal = ({
                   <ActivityIndicator color="#222" size="small" />
                 ) : (
                   <Text style={styles.answerBtnText}>
-                    {/* START: i18n dugme Odgovor */}
                     {t('common:buttons.answer', { defaultValue: 'Odgovor' })}
-                    {/* END: i18n dugme Odgovor */}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -916,8 +723,6 @@ const IzborKarataModal = ({
     </View>
   );
 };
-
-
 
 // END: IzborKarataModal
 
@@ -971,6 +776,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     minHeight: 100,
   },
+  // START: grid(4-per-row styles) — wrapper za više redova
+  /* ORIGINAL: (nema selectedCardsGridWrapper) */
+  selectedCardsGridWrapper: {
+    width: "100%",
+    paddingHorizontal: 12,
+    alignItems: "center",
+  },
+  // END: grid(4-per-row styles)
   cardPlaceholder: {
     backgroundColor: "#222",
     borderColor: "#ffd700",

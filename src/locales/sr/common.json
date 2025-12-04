@@ -1,6 +1,11 @@
 {
   "watchAdForCoins": "Gledaj reklamu za dukate",
   "appName": "Tarot",
+  "promo": {
+    "tryOurNewApp": "Isprobaj našu novu aplikaciju",
+    "storeIos": "Dostupno na App Store-u",
+    "storeAndroid": "Preuzmi na Google Play"
+  },
   "groups": {
     "velika": "Velika Arkana",
     "stapovi": "Štapovi",
@@ -40,6 +45,9 @@
     "saveProfile": "Sačuvaj profil",
     "register": "Registruj se",
     "savePassword": "Sačuvaj lozinku"
+  },
+  "misc": {
+    "cancel": "Ne"
   },
   "messages": {
     "loading": "Čekaj...",
@@ -142,7 +150,16 @@
       "guest": "Gost",
       "free": "Free",
       "premium": "Premium",
-      "pro": "Pro"
+      "pro": "Pro",
+      "proplus": "ProPlus"
+    },
+    "proplus": {
+      "title": "ProPlus godišnja",
+      "subtitle": "Za napredne korisnike. Bez limita, bez reklama.",
+      "pricePerYear": "{{price}} {{currency}} / godina",
+      "saveXPercent": "Uštedi {{percent}}%",
+      "bestOffer": "Najbolja ponuda",
+      "coinsIncluded": "{{count}} dukata uključeno"
     },
     "features": {
       "meanings": "Značenje karata",
@@ -167,7 +184,16 @@
       "alreadyPremium": "Već imate Premium",
       "buyPremium": "Kupi Premium ({{price}} {{currency}} / mesec)",
       "alreadyPro": "Već imate PRO",
-      "buyPro": "Kupi PRO ({{price}} {{currency}} / mesec)"
+      "buyPro": "Kupi PRO ({{price}} {{currency}} / mesec)",
+      "alreadyProPlus": "Već imate ProPlus",
+      "buyProPlus": "Kupi ProPlus ({{price}} {{currency}} / godina)"
+    },
+    "cancel": {
+      "confirmTitle": "Otkaži pretplatu?",
+      "confirmBody": "Prelazak na FREE će biti odmah. Možeš ponovo da se pretplatiš bilo kada.",
+      "confirmCta": "Da, otkaži",
+      "cta": "Otkaži pretplatu",
+      "scheduled": "Pretplata je otkazana. Prešli ste na FREE plan."
     },
     "topup": {
       "title": "Dopuni dukate",
@@ -176,6 +202,7 @@
     "toast": {
       "upgradedPremium": "Vaš nalog je sada Premium. Dobili ste još {{bonus}} dukata!",
       "upgradedPro": "Vaš nalog je sada PRO. Dobili ste još {{bonus}} dukata!",
+      "upgradedProPlus": "Vaš nalog je sada ProPlus. Dobili ste još {{bonus}} dukata!",
       "topupDone": "Dobili ste {{amount}} dukata."
     }
   },
@@ -199,7 +226,8 @@
     "modelUnavailable": "Model nije dostupan ili zahtev nije validan.",
     "upstreamFailed": "AI servis trenutno nije dostupan (upstream).",
     "aiServiceComm": "Došlo je do greške pri komunikaciji sa AI servisom.",
-    "edgeTimeout": "Isteklo je vreme za AI zahtev. Pokušajte ponovo."
+    "edgeTimeout": "Isteklo je vreme za AI zahtev. Pokušajte ponovo.",
+    "storeUnavailable": "Prodavnica nije dostupna."
   },
   "dailyCard": {
     "alreadyPicked": "Već si izabrao kartu dana!",
@@ -241,7 +269,14 @@
     "passwordTooShort": "Lozinka mora imati bar 8 karaktera.",
     "passwordsDontMatch": "Lozinke se ne poklapaju.",
     "passwordUpdated": "Lozinka je ažurirana. Prijavite se novom lozinkom.",
-    "passwordUpdateFailed": "Ažuriranje lozinke nije uspelo."
+    "passwordUpdateFailed": "Ažuriranje lozinke nije uspelo.",
+    "appleSignIn": "Prijava preko Apple-a",
+    "appleOpening": "Otvaram Apple…",
+    "appleFailed": "Apple prijava nije uspela.",
+    "sendMagicLink": "Pošalji magic link",
+    "magicLinkSent": "Poslali smo ti magic link. Otvori email na ovom uređaju.",
+    "magicLinkFailed": "Slanje magic link-a nije uspelo.",
+    "resetTryAgainIn": "Pokušaj ponovo za {{s}}s"
   },
   "ads": {
     "errorTitle": "Greška sa reklamom!",
@@ -273,6 +308,9 @@
     }
   },
   "home": {
+    "welcome": "Dobrodošli",
+    "user": "Korisniče",
+    "astroHintPremium": "✨ Premium/Pro korisnici: Unesite znak i podznak u Profilu za astrološku analizu",
     "menu": {
       "profile": "Profil",
       "settings": "Podešavanja",

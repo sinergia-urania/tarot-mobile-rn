@@ -1,9 +1,10 @@
 {
   "expo": {
+    "icon": "./assets/icon.png",
     "name": "Una Astro-Tarot AI",
     "slug": "tarot-mobile",
     "owner": "mare82",
-    "version": "1.5.0",
+    "version": "1.7.0",
     "orientation": "portrait",
     "sdkVersion": "53.0.0",
     "scheme": "com.mare82.tarotmobile",
@@ -14,8 +15,11 @@
     },
     "android": {
       "package": "com.mare82.tarotmobile",
-      "versionCode": 5,
+      "versionCode": 7,
       "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "com.android.vending.BILLING"
+      ],
       "intentFilters": [
         {
           "action": "VIEW",
@@ -49,7 +53,8 @@
       "expo-font",
       "expo-web-browser",
       "expo-audio",
-      "expo-tracking-transparency"
+      "expo-tracking-transparency",
+      "expo-iap"
     ],
     "splash": {
       "image": "./assets/una.png",

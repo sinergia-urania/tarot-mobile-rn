@@ -1,6 +1,6 @@
 ﻿{
   "cli": {
-    "appVersionSource": "remote"
+    "appVersionSource": "local"
   },
   "build": {
     "development": {
@@ -27,7 +27,8 @@
         "EXPO_PUBLIC_IOS_APP_ID": "0",
         "EXPO_PUBLIC_TAROT_ANDROID_PACKAGE": "com.mare82.tarotmobile",
         "EXPO_PUBLIC_TAROT_IOS_APP_ID": "0",
-        "EXPO_PUBLIC_TAROT_MARKETING_URL": "https://infohelm.org/una-astro-tarot-ai"
+        "EXPO_PUBLIC_TAROT_MARKETING_URL": "https://infohelm.org/una-astro-tarot-ai",
+        "EXPO_PUBLIC_WEB_REDIRECT_URL": "https://infohelm.org/auth-redirect-v3.html"
       }
     },
     "preview": {
@@ -46,7 +47,8 @@
         "EXPO_PUBLIC_IOS_APP_ID": "0",
         "EXPO_PUBLIC_TAROT_ANDROID_PACKAGE": "com.mare82.tarotmobile",
         "EXPO_PUBLIC_TAROT_IOS_APP_ID": "0",
-        "EXPO_PUBLIC_TAROT_MARKETING_URL": "https://infohelm.org/una-astro-tarot-ai"
+        "EXPO_PUBLIC_TAROT_MARKETING_URL": "https://infohelm.org/una-astro-tarot-ai",
+        "EXPO_PUBLIC_WEB_REDIRECT_URL": "https://infohelm.org/auth-redirect-v3.html"
       }
     },
     "production": {
@@ -64,7 +66,8 @@
         "EXPO_PUBLIC_IOS_APP_ID": "0",
         "EXPO_PUBLIC_TAROT_ANDROID_PACKAGE": "com.mare82.tarotmobile",
         "EXPO_PUBLIC_TAROT_IOS_APP_ID": "0",
-        "EXPO_PUBLIC_TAROT_MARKETING_URL": "https://infohelm.org/una-astro-tarot-ai"
+        "EXPO_PUBLIC_TAROT_MARKETING_URL": "https://infohelm.org/una-astro-tarot-ai",
+        "EXPO_PUBLIC_WEB_REDIRECT_URL": "https://infohelm.org/auth-redirect-v3.html"
       }
     }
   }

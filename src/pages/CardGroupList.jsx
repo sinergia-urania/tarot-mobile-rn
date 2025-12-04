@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     alignItems: 'center',
-    margin: 7,
+    margin: 6,
     padding: 4,
     backgroundColor: '#18181b',
     borderRadius: 10,

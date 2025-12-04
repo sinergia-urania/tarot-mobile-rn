@@ -12,6 +12,25 @@ import { supabase } from "../utils/supabaseClient";
 // END: ispravna ruta Supabase klijenta
 import { useAuth } from "../context/AuthProvider";
 
+// START: normalizacija sesije (kanonska polja za UI)
+const normalizeSession = (r = {}) => {
+  const question = r.question ?? r.pitanje ?? r.query ?? null;
+  const answer =
+    r.answer ?? r.ai_answer ?? r.aiAnswer ?? r.response ?? r.result ?? r.odgovor ?? null;
+  const subquestion = r.subquestion ?? r.podpitanje ?? r.followup ?? null;
+  const subanswer =
+    r.subanswer ?? r.followup_answer ?? r.followupAnswer ?? r.odgovor2 ?? null;
+  const cards = r.cards ?? r.karte ?? r.drawn_cards ?? r.drawnCards ?? [];
+  const type = r.type ?? r.tip ?? r.spread_type ?? null;
+  const created_at = r.created_at ?? r.vreme ?? r.createdAt ?? null;
+  // START: dodato – subtip za lep prikaz
+  const subtip = r.subtip ?? r.subtype ?? r.variant ?? r.kind ?? null;
+  // END: dodato – subtip
+
+  return { ...r, question, answer, subquestion, subanswer, cards, type, created_at, subtip };
+};
+// END: normalizacija
+
 const ArhivaOtvaranja = () => {
   const navigation = useNavigation();
   // START: koristimo isPro (pokriva i 'pro' i 'proplus')
@@ -38,9 +57,24 @@ const ArhivaOtvaranja = () => {
   const PAGE = 20;
   // END: keyset + fallback state
 
-  // mapiranje “raw” tipova u lepe, lokalizovane labele
-  const prettyType = (raw) => {
+  // START: prettyType (raw + subtip) – hvata “tri/ljubavno/pet” i klasično
+  const prettyType = (raw, sub) => {
     const r = String(raw || "").toLowerCase().trim();
+    const s = String(sub || "").toLowerCase().trim();
+    const tokens = (r + " " + s).split(/[^a-zčćšđž0-9-]+/i).filter(Boolean);
+
+    // direktni podtipovi ili klasično+subtip
+    if (["tri", "proslost", "proslost-sadasnjost-buducnost"].some(k => tokens.includes(k))) {
+      return t("common:classic.options.pastPresentFuture", {
+        defaultValue: "Prošlost – Sadašnjost – Budućnost",
+      });
+    }
+    if (["ljubavno", "love"].some(k => tokens.includes(k))) {
+      return t("common:detail.loveReading", { defaultValue: "Ljubavno čitanje" });
+    }
+    if (["pet", "put", "putspoznaje", "path", "path-of-insight"].some(k => tokens.includes(k))) {
+      return t("common:detail.pathOfInsightReading", { defaultValue: "Put spoznaje" });
+    }
 
     if (["klasicno", "klasično", "classic"].includes(r)) {
       return t("common:detail.classic", { defaultValue: "Classic spread" });
@@ -68,6 +102,7 @@ const ArhivaOtvaranja = () => {
 
     return raw || t("common:labels.spread", { defaultValue: "Spread" });
   };
+  // END: prettyType
 
   // START: helper – lokalna arhiva (poslednjih 30 dana)
   const getLocalBackup = async () => {
@@ -78,7 +113,7 @@ const ArhivaOtvaranja = () => {
       data = data
         .filter((o) => !o.vreme || o.vreme >= cutoff)
         .sort((a, b) => (b.vreme || 0) - (a.vreme || 0));
-      return data;
+      return data.map(normalizeSession);
     } catch {
       return [];
     }
@@ -107,7 +142,7 @@ const ArhivaOtvaranja = () => {
 
     const { data, error } = await supabase
       .from("tarot_sessions")
-      .select("id, question, answer, created_at, type", { count: "exact" })
+      .select("*", { count: "exact" }) // 🚀 uzmi sve kolone, pa posle normalizuj
       .eq("user_id", userId)
       .gte("created_at", cutoffISO)
       .order("created_at", { ascending: false })
@@ -125,7 +160,7 @@ const ArhivaOtvaranja = () => {
       return;
     }
 
-    const rows = data ?? [];
+    const rows = (data ?? []).map(normalizeSession);
     setOtvaranja(rows);
 
     const local = await getLocalBackup();
@@ -147,7 +182,7 @@ const ArhivaOtvaranja = () => {
 
     let q = supabase
       .from("tarot_sessions")
-      .select("id, question, answer, created_at, type")
+      .select("*") // isto — sve kolone
       .eq("user_id", userId)
       .gte("created_at", cutoffISO)
       .order("created_at", { ascending: false })
@@ -163,7 +198,7 @@ const ArhivaOtvaranja = () => {
       return;
     }
 
-    const rows = data ?? [];
+    const rows = (data ?? []).map(normalizeSession);
     setOtvaranja((prev) => [...prev, ...rows]);
     setCursor(rows.length ? rows[rows.length - 1].created_at : cursor);
     setHasMore(rows.length === PAGE);
@@ -189,10 +224,13 @@ const ArhivaOtvaranja = () => {
         const createdISO = new Date(ts).toISOString();
         return {
           user_id: userId,
-          question: o.question ?? o.pitanje ?? "",
-          answer: o.answer ?? o.odgovor ?? null,
+          question: o.question ?? "",
+          answer: o.answer ?? null,
           created_at: createdISO,
-          type: o.type ?? o.tip ?? null,
+          type: o.type ?? null,
+          cards: o.cards ?? null, // ako kolona postoji u bazi — OK; ako ne, PostgREST ignoriše dodatna svojstva pri insertu
+          subquestion: o.subquestion ?? null,
+          subanswer: o.subanswer ?? null,
         };
       });
 
@@ -213,11 +251,11 @@ const ArhivaOtvaranja = () => {
   const renderOtvaranje = ({ item }) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.navigate("DetaljOtvaranja", { otvaranje: item })}
+      onPress={() => navigation.navigate("DetaljOtvaranja", { otvaranje: normalizeSession(item) })}
     >
-      <Text style={styles.type}>{prettyType(item.type ?? item.tip)}</Text>
-      <Text style={styles.q}>{item.question ?? item.pitanje}</Text>
-      <Text style={styles.date}>{formatDateLocal(item.created_at || item.vreme)}</Text>
+      <Text style={styles.type}>{prettyType(item.type, item.subtip)}</Text>
+      <Text style={styles.q}>{item.question}</Text>
+      <Text style={styles.date}>{formatDateLocal(item.created_at)}</Text>
     </TouchableOpacity>
   );
 
@@ -282,7 +320,7 @@ const ArhivaOtvaranja = () => {
 
       <FlatList
         data={listData}
-        keyExtractor={(item, idx) => String(item.id ?? item.created_at ?? item.vreme ?? idx)}
+        keyExtractor={(item, idx) => String(item.id ?? item.created_at ?? idx)}
         renderItem={renderOtvaranje}
         contentContainerStyle={{ paddingBottom: 20 }}
         initialNumToRender={PAGE}

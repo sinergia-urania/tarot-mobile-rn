@@ -206,6 +206,21 @@ export async function getAIAnswer({
   }
   // END: NOVO
 
+  // START: HOTFIX-2 — baseline glavnog odgovora pre follow-up-a (za svaki slučaj)
+  let __baselineAnswer = null;
+  try {
+    if (podpitanjeMod && sessionId) {
+      const { data: __row } = await supabase
+        .from("tarot_sessions")
+        .select("answer")
+        .eq("id", sessionId)
+        .single();
+      __baselineAnswer = __row?.answer ?? null;
+      dlog("[AI][baseline-answer]", { sessionId, hasBaseline: typeof __baselineAnswer === "string" });
+    }
+  } catch { /* tiho */ }
+  // END: HOTFIX-2
+
   // START: uvek koristi buildAIPrompt (glavno + podpitanje)
   let prompt = "";
 
@@ -660,10 +675,90 @@ export async function getAIAnswer({
     }
     // END: Approx output i cena + meta logovi
 
+    // --- persistuj odgovor u tarot_sessions (razdvojeno: glavno vs. podpitanje) ---
+    // START: HOTFIX — ne prepisuj glavni answer tokom follow-upa
+    try {
+      // START: robustan sessionId (može stići kao string payload ili iz props)
+      let sid = null;
+      try {
+        if (typeof data === "string") {
+          const p = JSON.parse(data);
+          sid = p?.sessionId ?? sessionId ?? null;
+        } else {
+          sid = data?.sessionId ?? sessionId ?? null;
+        }
+      } catch {
+        sid = data?.sessionId ?? sessionId ?? null;
+      }
+      // END: robustan sessionId
+
+      const persistType = (tipOtvaranja === "klasicno")
+        ? (subtip || "klasicno")
+        : (tipOtvaranja || null);
+
+      if (sid && uid) {
+        const isFollowUp = !!podpitanjeMod;
+        let patch;
+
+        if (isFollowUp) {
+          // FOLLOW-UP → menjamo SAMO subquestion/subanswer
+          patch = {
+            subquestion: podpitanje || null,
+            subanswer: odgovorText,
+            updated_at: new Date().toISOString(),
+          };
+          // safety-net: ako je server kojim slučajem dirao answer, vrati baseline
+          if (typeof __baselineAnswer === "string") {
+            patch.answer = __baselineAnswer;
+          }
+        } else {
+          // GLAVNI odgovor → normalno punimo answer (+ meta); opcionalno i karte
+          patch = {
+            answer: odgovorText,
+            type: persistType,
+            language: (jezikAplikacije || null),
+            updated_at: new Date().toISOString(),
+          };
+          if (Array.isArray(karte) && karte.length) {
+            patch.cards = karte.map(k => ({
+              key: k.key ?? k.label ?? k.name ?? k.id ?? null,
+              reversed:
+                (typeof k.reversed === "boolean") ? k.reversed :
+                  (typeof k.isReversed === "boolean") ? k.isReversed :
+                    (typeof k.obrnuto === "boolean") ? k.obrnuto :
+                      ((typeof k.upravno === "boolean") ? !k.upravno : null),
+            }));
+          }
+        }
+
+        await supabase.from("tarot_sessions").update(patch).eq("id", sid);
+        dlog("[sessions][update]", { sid, isFollowUp, fields: Object.keys(patch) });
+      }
+    } catch (e) {
+      if (typeof __DEV__ !== "undefined" && __DEV__) {
+        console.log("[sessions][update][warn]", e?.message || e);
+      }
+    }
+    // END: HOTFIX — ne prepisuj glavni answer tokom follow-upa
+
     // START: cache last result (for dedupe hits)
+    // START: robust sessionId za povratnu vrednost
+    let _sessionIdOut = null;
+    try {
+      if (typeof data === "string") {
+        const p = JSON.parse(data);
+        _sessionIdOut = p?.sessionId ?? sessionId ?? null;
+      } else {
+        _sessionIdOut = data?.sessionId ?? sessionId ?? null;
+      }
+    } catch {
+      _sessionIdOut = data?.sessionId ?? sessionId ?? null;
+    }
+    // END: robust sessionId za povratnu vrednost
+
     const _res = {
       odgovor: odgovorText,
-      sessionId: data?.sessionId ?? null,
+      sessionId: _sessionIdOut,
       // START: lang-guard meta (opciono za UI/debug)
       _translated: _lgApplied,
       _langTarget: _lgTarget,

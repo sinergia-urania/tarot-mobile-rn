@@ -90,13 +90,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#191a22',
   },
   grid: {
-    padding: 12,
+    padding: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
   cardContainer: {
     width: 110,
-    margin: 7,
+    margin: 6,
     alignItems: 'center',
     backgroundColor: '#18181b',
     borderRadius: 10,

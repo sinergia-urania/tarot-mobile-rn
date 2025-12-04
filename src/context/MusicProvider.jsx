@@ -12,7 +12,7 @@ export const useMusic = () => useContext(MusicContext);
 
 export const MusicProvider = ({ children }) => {
   const playerRef = useRef(null);
-  const [musicVolume, setMusicVolume] = useState(0.3);
+  const [musicVolume, setMusicVolume] = useState(0.25);
   const [isPlaying, setIsPlaying] = useState(true);
 
   // --- helpers: setovanje audio moda + Android kickstart ---
@@ -63,7 +63,7 @@ export const MusicProvider = ({ children }) => {
       try {
         const m = await AsyncStorage.getItem('musicVolume');
         if (m) setMusicVolume(JSON.parse(m));
-      } catch {}
+      } catch { }
     })();
   }, []);
 
@@ -94,7 +94,7 @@ export const MusicProvider = ({ children }) => {
 
     // cleanup – obavezno ukloni player
     return () => {
-      try { playerRef.current?.remove?.(); } catch {}
+      try { playerRef.current?.remove?.(); } catch { }
       playerRef.current = null;
     };
   }, []);
@@ -103,7 +103,7 @@ export const MusicProvider = ({ children }) => {
   useEffect(() => {
     const p = playerRef.current;
     if (!p) return;
-    try { p.volume = Math.max(0, Math.min(1, musicVolume)); } catch {}
+    try { p.volume = Math.max(0, Math.min(1, musicVolume)); } catch { }
   }, [musicVolume]);
 
   // Reaguj na play/pause
@@ -113,7 +113,7 @@ export const MusicProvider = ({ children }) => {
     try {
       if (isPlaying) {
         // uvek reset na početak (expo-audio ne resetuje automatski)
-        p.seekTo?.(0)?.catch?.(() => {});
+        p.seekTo?.(0)?.catch?.(() => { });
         if (Platform.OS === 'android') {
           kickstartAndroidAudio(p);
         } else {
@@ -122,14 +122,14 @@ export const MusicProvider = ({ children }) => {
       } else {
         p.pause();
       }
-    } catch {}
+    } catch { }
   }, [isPlaying]);
 
   // API
   const setVolume = async (v) => {
     const clamped = Math.max(0, Math.min(1, v ?? 0));
     setMusicVolume(clamped);
-    try { await AsyncStorage.setItem('musicVolume', JSON.stringify(clamped)); } catch {}
+    try { await AsyncStorage.setItem('musicVolume', JSON.stringify(clamped)); } catch { }
   };
   const mute = () => setIsPlaying(false);
   const unmute = () => setIsPlaying(true);
@@ -172,5 +172,3 @@ export const MusicProvider = ({ children }) => {
   );
 };
 // END: Migracija na expo-audio (novi API) + Android kickstart
-
-

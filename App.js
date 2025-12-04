@@ -8,41 +8,29 @@ import 'react-native-reanimated';
 import { installConsoleMute } from "./src/utils/logger";
 installConsoleMute({ keepWarnError: true });
 // END: globalni mute za logove
-
 import { CommonActions, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import * as ExpoLinking from "expo-linking";
+import * as Notifications from 'expo-notifications';
+import { useLastNotificationResponse } from 'expo-notifications';
+import { getTrackingPermissionsAsync, requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 import React, { useEffect, useRef } from "react";
 import { LogBox, Platform, SafeAreaView, StatusBar } from "react-native";
-import { navigationRef } from "./src/utils/navigationRef";
-
-import { useDukati } from "./src/context/DukatiContext";
-import { recordRouteView } from "./src/utils/adService";
-
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import mobileAds from "react-native-google-mobile-ads";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
-
-import { AuthProvider, useAuth } from "./src/context/AuthProvider";
-import { DukatiProvider } from "./src/context/DukatiContext";
-import { MusicProvider } from "./src/context/MusicProvider";
-import { TreasureRefProvider } from "./src/context/TreasureRefContext";
-
-import * as ExpoLinking from "expo-linking";
-import * as Notifications from 'expo-notifications';
-// START: tap response hook za notifikacije
-import { useLastNotificationResponse } from 'expo-notifications';
-// END: tap response hook za notifikacije
 import UnaSpinner from "./src/components/UnaSpinner";
-
-// START: push - registracija i supabase
+import { AuthProvider, useAuth } from "./src/context/AuthProvider";
+import { DukatiProvider, useDukati } from "./src/context/DukatiContext";
+import { MusicProvider } from "./src/context/MusicProvider";
+import { TarotIAPProvider } from "./src/context/TarotIAPProvider";
+import { TreasureRefProvider } from "./src/context/TreasureRefContext";
+import { recordRouteView } from "./src/utils/adService";
+import { navigationRef } from "./src/utils/navigationRef";
 import { registerAndSavePushToken } from "./src/utils/pushNotifications";
 import { supabase } from "./src/utils/supabaseClient";
-// END: push - registracija i supabase
 
-// START: ATT (iOS) – pre AdMob init-a
-import { getTrackingPermissionsAsync, requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
-// END: ATT (iOS)
 
 LogBox.ignoreLogs(['Expected static flag was missing']);
 
@@ -82,27 +70,25 @@ import OAplikaciji from "./src/pages/OAplikaciji";
 import OdgovorAI from "./src/pages/OdgovorAI";
 import PitanjeIzbor from "./src/pages/PitanjeIzbor";
 import Podesavanja from "./src/pages/Podesavanja";
-import ResetPasswordScreen from "./src/pages/ResetPasswordScreen";
 import TarotCardModal from "./src/pages/TarotCardModal";
 import TarotHome from "./src/pages/TarotHome";
 import TarotMeaning from "./src/pages/TarotMeaning";
 import TarotOtvaranja from "./src/pages/TarotOtvaranja";
 import Uslovi from "./src/pages/Uslovi";
 import VelikaArkanaList from "./src/pages/VelikaArkanaList";
+// START: Disclaimer ekran (lokalni)
+import Odricanje from "./src/pages/Odricanje";
+// END: Disclaimer ekran (lokalni)
 
 const Stack = createStackNavigator();
 
-// START: linking map – auth bez /callback + dodato "Home: home"
+// START: linking map – (ResetPassword ruta je uklonjena ranije)
 const linking = {
   prefixes: [ExpoLinking.createURL("/"), "com.mare82.tarotmobile://", "una://"],
   config: {
     screens: {
-      // START: dodato mapiranje za Home
-      // (nije obavezno jer više ne koristimo URL iz push-a, ali ostaje korisno)
       Home: "home",
-      // END: dodato mapiranje za Home
       AuthConfirm: "auth",
-      ResetPassword: "reset-password",
     },
   },
 };
@@ -113,105 +99,64 @@ function RootNavigator() {
 
   if (authLoading) return <UnaSpinner />;
 
+  // START: AUTH/APP split – ako nema user-a, prikaži Auth stack (Login, AuthConfirm),
+  // kada postoji user – prikaži App stack (Home + ostalo)
   return (
-    <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={{ headerShown: false, animation: "fade" }}
-    >
-      {/* App rute */}
-      <Stack.Screen name="Home" component={TarotHome} />
-      <Stack.Screen name="TarotOtvaranja" component={TarotOtvaranja} />
-      <Stack.Screen name="PitanjeIzbor" component={PitanjeIzbor} />
-      <Stack.Screen name="IzborKarata" component={IzborKarata} />
-      <Stack.Screen name="OdgovorAI" component={OdgovorAI} />
-      <Stack.Screen name="DaNeOdgovor" component={DaNeOdgovor} />
-      <Stack.Screen name="ArhivaOtvaranja" component={ArhivaOtvaranja} />
-      <Stack.Screen name="DetaljOtvaranja" component={DetaljOtvaranja} />
-      <Stack.Screen name="ZnacenjeKarata" component={TarotMeaning} />
-      <Stack.Screen name="VelikaArkanaList" component={VelikaArkanaList} />
-      <Stack.Screen name="TarotCardModal" component={TarotCardModal} />
-      <Stack.Screen name="CardGroupList" component={CardGroupList} />
-      <Stack.Screen name="Podesavanja" component={Podesavanja} />
-      <Stack.Screen name="Uslovi" component={Uslovi} />
-      <Stack.Screen name="Kontakt" component={Kontakt} />
-      <Stack.Screen name="OAplikaciji" component={OAplikaciji} />
-
-      {/* Pomoćni ekrani */}
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ presentation: "modal" }}
-      />
-      <Stack.Screen
-        name="AuthConfirm"
-        component={AuthConfirmScreen}
-        options={{ presentation: "modal" }}
-      />
-      <Stack.Screen
-        name="ResetPassword"
-        component={ResetPasswordScreen}
-        options={{ presentation: "modal", headerShown: false }}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false, animation: "fade" }}>
+      {user ? (
+        <>
+          {/* APP STACK */}
+          <Stack.Screen name="Home" component={TarotHome} />
+          <Stack.Screen name="TarotOtvaranja" component={TarotOtvaranja} />
+          <Stack.Screen name="PitanjeIzbor" component={PitanjeIzbor} />
+          <Stack.Screen name="IzborKarata" component={IzborKarata} />
+          <Stack.Screen name="OdgovorAI" component={OdgovorAI} />
+          <Stack.Screen name="DaNeOdgovor" component={DaNeOdgovor} />
+          <Stack.Screen name="ArhivaOtvaranja" component={ArhivaOtvaranja} />
+          <Stack.Screen name="DetaljOtvaranja" component={DetaljOtvaranja} />
+          <Stack.Screen name="ZnacenjeKarata" component={TarotMeaning} />
+          <Stack.Screen name="VelikaArkanaList" component={VelikaArkanaList} />
+          <Stack.Screen name="TarotCardModal" component={TarotCardModal} />
+          <Stack.Screen name="CardGroupList" component={CardGroupList} />
+          <Stack.Screen name="Podesavanja" component={Podesavanja} />
+          <Stack.Screen name="Uslovi" component={Uslovi} />
+          <Stack.Screen name="Kontakt" component={Kontakt} />
+          <Stack.Screen name="OAplikaciji" component={OAplikaciji} />
+          {/* START: lokalni Disclaimer (Odricanje) */}
+          <Stack.Screen
+            name="Odricanje"
+            component={Odricanje}
+            options={{ headerShown: true, title: 'Disclaimer' }}
+          />
+          {/* END: lokalni Disclaimer (Odricanje) */}
+        </>
+      ) : (
+        <>
+          {/* AUTH STACK */}
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="AuthConfirm" component={AuthConfirmScreen} />
+          {/* START: dostupno i bez login-a (Odricanje) */}
+          <Stack.Screen
+            name="Odricanje"
+            component={Odricanje}
+            options={{ headerShown: true, title: 'Disclaimer' }}
+          />
+          {/* END: dostupno i bez login-a */}
+        </>
+      )}
     </Stack.Navigator>
   );
+  // END: AUTH/APP split
 }
 
-// START: Nav wrapper sa globalnim interstitial gate-om (STRICT)
+// START: Nav wrapper – izbačen sav recovery/ResetPassword forward
 function NavWithAdGate({ linking, children }) {
   const { userPlan } = useDukati();
-  const { recoveryActive } = useAuth();
   const navRef = navigationRef;
   const lastRouteRef = useRef(null);
-  const pendingRecoveryNavRef = useRef(false);
 
-  useEffect(() => {
-    const processUrl = async (url) => {
-      try {
-        if (!url) return;
-        const isRecovery =
-          /[?#&]type=recovery\b/i.test(url) ||
-          /\brecovery\b/i.test(url) ||
-          /reset-password/i.test(url);
-
-        if (isRecovery) {
-          if (navRef.isReady()) {
-            navRef.dispatch(
-              CommonActions.reset({
-                index: 0,
-                routes: [{ name: "ResetPassword", params: { preventAutoRedirect: true } }],
-              })
-            );
-          } else {
-            pendingRecoveryNavRef.current = true;
-          }
-        }
-      } catch (e) {
-        console.log("[AUTH] processUrl catch:", e?.message || e);
-      }
-    };
-
-    ExpoLinking.getInitialURL().then((url) => processUrl(url));
-    const sub = ExpoLinking.addEventListener("url", ({ url }) => processUrl(url));
-    return () => sub.remove();
-  }, []);
-
-  useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "PASSWORD_RECOVERY") {
-        if (navRef.isReady()) {
-          navRef.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{ name: "ResetPassword", params: { preventAutoRedirect: true } }],
-            })
-          );
-        } else {
-          pendingRecoveryNavRef.current = true;
-        }
-      }
-    });
-    return () => sub?.subscription?.unsubscribe?.();
-  }, []);
+  // Uklonjen: recovery listener + deeplink preusmerenje na ResetPassword
+  // (više ne koristimo recovery tok)
 
   // Dok plan NIJE poznat, ne palimo ad logiku
   if (userPlan == null) {
@@ -229,32 +174,7 @@ function NavWithAdGate({ linking, children }) {
       onReady={() => {
         lastRouteRef.current = navRef.getCurrentRoute()?.name ?? null;
         recordRouteView(userPlan);
-
-        if (pendingRecoveryNavRef.current) {
-          pendingRecoveryNavRef.current = false;
-          try {
-            navRef.dispatch(
-              CommonActions.reset({
-                index: 0,
-                routes: [{ name: "ResetPassword", params: { preventAutoRedirect: true } }],
-              })
-            );
-          } catch { }
-        }
-
-        try {
-          if (recoveryActive) {
-            const cur = navRef.getCurrentRoute()?.name;
-            if (cur !== "ResetPassword") {
-              navRef.dispatch(
-                CommonActions.reset({
-                  index: 0,
-                  routes: [{ name: "ResetPassword", params: { preventAutoRedirect: true } }],
-                })
-              );
-            }
-          }
-        } catch { }
+        // Uklonjen: pendingRecoveryNavRef/recoveryActive guard
       }}
       onStateChange={() => {
         const current = navRef.getCurrentRoute()?.name ?? null;
@@ -262,27 +182,14 @@ function NavWithAdGate({ linking, children }) {
           lastRouteRef.current = current;
           recordRouteView(userPlan);
         }
-
-        try {
-          if (recoveryActive) {
-            const cur = navRef.getCurrentRoute()?.name;
-            if (cur !== "ResetPassword") {
-              navRef.dispatch(
-                CommonActions.reset({
-                  index: 0,
-                  routes: [{ name: "ResetPassword", params: { preventAutoRedirect: true } }],
-                })
-              );
-            }
-          }
-        } catch { }
+        // Uklonjen: recoveryActive guard
       }}
     >
       {children}
     </NavigationContainer>
   );
 }
-// END: Nav wrapper sa globalnim interstitial gate-om (STRICT)
+// END: Nav wrapper – izbačen sav recovery/ResetPassword forward
 
 export default function App() {
   // AdMob init + ATT prompt (iOS) PRE init-a
@@ -336,27 +243,26 @@ export default function App() {
     if (lastResponse.actionIdentifier !== Notifications.DEFAULT_ACTION_IDENTIFIER) return;
 
     const data = lastResponse.notification?.request?.content?.data ?? {};
-    // PRETHODNO: koristili smo URL ili action za različite rute
-    /*
-    const url = typeof data?.url === 'string' ? data.url : null;
-    if (url) {
-      ExpoLinking.openURL(url).catch(() => {});
-      return;
-    }
-    const action = String(data?.action || '');
-    if (action === 'open_card_of_day') { ... } else if (action === 'open_monthly_bonus') { ... }
-    */
 
-    // START: override – uvek vodi na Home, prosledimo info radi analitike
-    if (navigationRef?.isReady?.()) {
-      navigationRef.dispatch(
-        CommonActions.navigate({
-          name: 'Home',
-          params: { fromPush: true, deeplink: String(data?.action || 'push') }
-        })
-      );
-    }
-    // END: override – uvek vodi na Home
+    // ✅ ISPRAVLJENO: dodaj setTimeout da se navigation završi
+    const timer = setTimeout(() => {
+      if (navigationRef?.isReady?.()) {
+        try {
+          navigationRef.dispatch(
+            CommonActions.navigate({
+              name: 'Home',
+              params: { fromPush: true, deeplink: String(data?.action || 'push') }
+            })
+          );
+        } catch (err) {
+          console.warn('[PUSH NAVIGATION] Error:', err?.message);
+        }
+      } else {
+        console.warn('[PUSH NAVIGATION] Navigation not ready');
+      }
+    }, 1000); // ← daj vremena navigaciji da se inicijalizuje
+
+    return () => clearTimeout(timer);
   }, [lastResponse]);
   // END: tap na notifikaciju → uvek vodi na Home (TarotHome)
 
@@ -366,17 +272,19 @@ export default function App() {
         <AuthProvider>
           <MusicProvider>
             <DukatiProvider>
-              <TreasureRefProvider>
-                {/* push token registracija čim postoji user */}
-                <RegisterPushOnLogin />
-                <NavWithAdGate linking={linking}>
-                  <SafeAreaView style={{ flex: 1, backgroundColor: "#0d0d19" }}>
-                    <StatusBar barStyle="light-content" />
-                    <RootNavigator />
-                    <Toast />
-                  </SafeAreaView>
-                </NavWithAdGate>
-              </TreasureRefProvider>
+              <TarotIAPProvider>
+                <TreasureRefProvider>
+                  {/* push token registracija čim postoji user */}
+                  <RegisterPushOnLogin />
+                  <NavWithAdGate linking={linking}>
+                    <SafeAreaView style={{ flex: 1, backgroundColor: "#0d0d19" }}>
+                      <StatusBar barStyle="light-content" />
+                      <RootNavigator />
+                      <Toast />
+                    </SafeAreaView>
+                  </NavWithAdGate>
+                </TreasureRefProvider>
+              </TarotIAPProvider>
             </DukatiProvider>
           </MusicProvider>
         </AuthProvider>

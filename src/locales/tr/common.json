@@ -1,6 +1,11 @@
 {
   "watchAdForCoins": "Jetonlar için reklam izle",
   "appName": "Tarot",
+  "promo": {
+    "tryOurNewApp": "Yeni uygulamamızı deneyin",
+    "storeIos": "App Store’da mevcut",
+    "storeAndroid": "Google Play’den indirin"
+  },
   "groups": {
     "velika": "Büyük Arkana",
     "stapovi": "Değnekler",
@@ -40,6 +45,9 @@
     "saveProfile": "Profili kaydet",
     "register": "Kayıt ol",
     "savePassword": "Şifreyi kaydet"
+  },
+  "misc": {
+    "cancel": "Hayır"
   },
   "messages": {
     "loading": "Yükleniyor...",
@@ -142,7 +150,16 @@
       "guest": "Misafir",
       "free": "Ücretsiz",
       "premium": "Premium",
-      "pro": "PRO"
+      "pro": "PRO",
+      "proplus": "ProPlus"
+    },
+    "proplus": {
+      "title": "ProPlus Yıllık",
+      "subtitle": "Güç kullanıcıları için. Limitsiz, reklamsız.",
+      "pricePerYear": "{{price}} {{currency}} / yıl",
+      "saveXPercent": "{{percent}}% tasarruf edin",
+      "bestOffer": "En iyi teklif",
+      "coinsIncluded": "{{count}} jeton dahil"
     },
     "features": {
       "meanings": "Kart anlamları",
@@ -167,7 +184,16 @@
       "alreadyPremium": "Zaten Premium'sunuz",
       "buyPremium": "Premium satın al ({{price}} {{currency}} / ay)",
       "alreadyPro": "Zaten PRO'sunuz",
-      "buyPro": "PRO satın al ({{price}} {{currency}} / ay)"
+      "buyPro": "PRO satın al ({{price}} {{currency}} / ay)",
+      "alreadyProPlus": "Zaten ProPlus'sınız",
+      "buyProPlus": "ProPlus satın al ({{price}} {{currency}} / yıl)"
+    },
+    "cancel": {
+      "confirmTitle": "Abonelik iptal edilsin mi?",
+      "confirmBody": "FREE plana geçiş hemen gerçekleşecek. İstediğiniz zaman yeniden abone olabilirsiniz.",
+      "confirmCta": "Evet, iptal et",
+      "cta": "Aboneliği iptal et",
+      "scheduled": "Abonelik iptal edildi. FREE plana geçirildiniz."
     },
     "topup": {
       "title": "Jeton yükle",
@@ -176,6 +202,7 @@
     "toast": {
       "upgradedPremium": "Hesabınız artık Premium. {{bonus}} jeton aldınız!",
       "upgradedPro": "Hesabınız artık PRO. {{bonus}} jeton aldınız!",
+      "upgradedProPlus": "Hesabınız artık ProPlus. {{bonus}} jeton aldınız!",
       "topupDone": "{{amount}} jeton aldınız."
     }
   },
@@ -199,7 +226,8 @@
     "modelUnavailable": "Model kullanılamıyor veya geçersiz istek.",
     "upstreamFailed": "YZ servisi geçici olarak kullanılamıyor (üst akış).",
     "aiServiceComm": "YZ servisiyle iletişimde hata oluştu.",
-    "edgeTimeout": "YZ isteği zaman aşımına uğradı. Lütfen tekrar deneyin."
+    "edgeTimeout": "YZ isteği zaman aşımına uğradı. Lütfen tekrar deneyin.",
+    "storeUnavailable": "Mağaza kullanılamıyor."
   },
   "dailyCard": {
     "alreadyPicked": "Günün kartınızı zaten seçtiniz!",
@@ -241,7 +269,14 @@
     "passwordTooShort": "Şifre en az 8 karakter olmalıdır.",
     "passwordsDontMatch": "Şifreler eşleşmiyor.",
     "passwordUpdated": "Şifreniz güncellendi. Lütfen yeni şifreyle giriş yapın.",
-    "passwordUpdateFailed": "Şifre güncellenemedi."
+    "passwordUpdateFailed": "Şifre güncellenemedi.",
+    "appleSignIn": "Apple ile giriş yap",
+    "appleOpening": "Apple açılıyor…",
+    "appleFailed": "Apple ile giriş başarısız.",
+    "sendMagicLink": "Sihirli bağlantı gönder",
+    "magicLinkSent": "Sihirli bağlantıyı gönderdik. E-postayı bu cihazda açın.",
+    "magicLinkFailed": "Sihirli bağlantı gönderilemedi.",
+    "resetTryAgainIn": "{{s}} sn sonra tekrar deneyin"
   },
   "ads": {
     "errorTitle": "Reklam hatası!",
@@ -273,6 +308,9 @@
     }
   },
   "home": {
+    "welcome": "Hoş geldiniz",
+    "user": "Kullanıcı",
+    "astroHintPremium": "✨ Premium/Pro üyeler: astrolojik içgörüler için Profil bölümünde burcunuzu ve yükseleninizi ekleyin",
     "menu": {
       "profile": "Profil",
       "settings": "Ayarlar",

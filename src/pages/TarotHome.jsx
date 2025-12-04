@@ -1,5 +1,5 @@
 // src/pages/TarotHome.jsx
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 // START: expo-audio za click SFX (umesto expo-av)
@@ -61,7 +61,7 @@ const TarotHome = () => {
   const [showAdModal, setShowAdModal] = useState(false);
   // START: isPro iz konteksta (Pro i ProPlus)
   // const { userPlan } = useDukati();
-  const { userPlan, isPro } = useDukati();
+  const { userPlan, isPro, userProfile } = useDukati();
   const isProTier = !!isPro;
   // END: isPro iz konteksta (Pro i ProPlus)
   const { t } = useTranslation(['common']);
@@ -87,12 +87,7 @@ const TarotHome = () => {
   };
   // END: uklanjanje guest logike u handleOtvaranje
 
-  // START: uklonjeni guest stubovi za baner (koristimo realan kontekst unutar AdBannerIfEligible)
-  // const isGuest = userPlan === 'guest' || userPlan === 'gost';
-  // const sessionLike = isGuest ? null : { uid: 'local-session' };
-  // const profileLike = { subscription_tier: userPlan };
-  // console.log('[BANNER][DEBUG] userPlan=', userPlan, 'isGuest=', isGuest);
-  // END: uklonjeni guest stubovi
+
 
   const handleFlyCoin = (start, end, coinAnimCallback) => {
     setFlyStart(start);
@@ -135,6 +130,41 @@ const TarotHome = () => {
         <TarotHeader swapTreasureMenu isHome={true} onMenu={() => setSidebarOpen(true)} />
 
         <ScrollView contentContainerStyle={styles.container}>
+          {/* START: Welcome sekcija */}
+          <View style={styles.welcomeSection}>
+            {/* Slika */}
+            <SafeImage
+              source={require('../assets/icons/welcome-tarot.webp')}
+              style={styles.welcomeImage}
+              contentFit="cover"
+            />
+
+            <Text style={styles.welcomeTitle}>
+              {t('common:home.welcome', {
+                defaultValue: 'Welcome, {{name}}'
+              })}
+            </Text>
+
+            {/* Astro hint - samo za Premium/Pro/ProPlus bez astro podataka */}
+            {(userPlan === 'premium' || userPlan === 'pro' || userPlan === 'proplus') &&
+              (!userProfile?.sunSign || !userProfile?.ascendant) && (
+                <TouchableOpacity
+                  style={styles.astroHintContainer}
+                  onPress={() => setSidebarOpen(true)}
+                  activeOpacity={0.7}
+                >
+                  <MaterialCommunityIcons name="zodiac-leo" size={16} color="#ffd700" />
+                  <Text style={styles.astroHintText}>
+                    {t('common:home.astroHintPremium', {
+                      defaultValue: '✨ Premium/Pro members: Add your zodiac sign & ascendant in Profile for astrological insights'
+                    })}
+                  </Text>
+                  <MaterialCommunityIcons name="chevron-right" size={16} color="#ffd700" />
+                </TouchableOpacity>
+              )}
+          </View>
+          {/* END: Welcome sekcija */}
+
           <View style={styles.grid}>
             <MenuButton
               icon={require('../assets/icons/history.webp')}
@@ -370,14 +400,71 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 20,
     paddingBottom: 110, // prostor da sadržaj ne uđe ispod fiksiranog bannera
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.4)',
   },
+  // START: Welcome sekcija stilovi
+  welcomeSection: {
+    alignItems: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 16,
+    marginBottom: 12,
+    width: '100%',
+  },
+  welcomeImage: {
+    width: 160,
+    height: 160,
+    borderRadius: 70,
+    marginBottom: 16,
+    borderWidth: 3,
+    borderColor: '#ffd700',
+    // Shadow za iOS
+    shadowColor: '#ffd700',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
+    // Elevation za Android
+    elevation: 8,
+  },
+  welcomeTitle: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#ffd700',
+    marginBottom: 12,
+    textAlign: 'center',
+    letterSpacing: 0.5,
+  },
+  astroHintContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#1a1a2e',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#ffd70040',
+    marginTop: 8,
+    gap: 8,
+    maxWidth: '95%',
+    // Shadow
+    shadowColor: '#ffd700',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  astroHintText: {
+    flex: 1,
+    fontSize: 13,
+    color: '#ffd700cc',
+    lineHeight: 18,
+  },
+  // END: Welcome sekcija stilovi
   grid: {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
-    marginTop: 24,
+    marginTop: 12,
   },
   button: {
     alignItems: 'center',

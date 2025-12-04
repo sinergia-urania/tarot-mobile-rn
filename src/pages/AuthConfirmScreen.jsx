@@ -1,8 +1,4 @@
-// src/pages/AuthConfirmScreen.jsx
-import { useNavigation, useRoute } from "@react-navigation/native";
-// START: recovery-aware import (CommonActions)
-import { CommonActions } from "@react-navigation/native";
-// END: recovery-aware import (CommonActions)
+import { CommonActions, useNavigation, useRoute } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
@@ -36,30 +32,12 @@ function parseFromAnyUrl(url) {
   return {};
 }
 
-// START: helper – prepoznaj recovery deeplink (?type=recovery u query ili hash)
-function isRecoveryUrl(url) {
-  try {
-    if (!url) return false;
-    const u = new URL(url);
-    const qs = new URLSearchParams(u.search || "");
-    const hs = new URLSearchParams((u.hash || "").replace(/^#/, ""));
-    const t =
-      (qs.get("type") || hs.get("type") || "")
-        .toLowerCase()
-        .trim();
-    return t === "recovery";
-  } catch {
-    return false;
-  }
-}
-// END: helper – prepoznaj recovery deeplink (?type=recovery u query ili hash)
-
 export default function AuthConfirmScreen() {
   const nav = useNavigation();
   const route = useRoute();
 
-  // START: recovery-aware – koristimo recoveryActive da ne pregazimo ResetPassword tok
-  const { fetchProfile, recoveryActive } = useAuth();
+  // START: recovery-aware – uklanjamo recoveryActive, više ne radimo ResetPassword tok
+  const { fetchProfile } = useAuth();
   // END: recovery-aware
 
   const { fetchDukatiSaServera, refreshUserPlan } = useDukati();
@@ -107,28 +85,14 @@ export default function AuthConfirmScreen() {
       setMsg("Razmenjujem kod za sesiju…");
       const { error } = await supabase.auth.exchangeCodeForSession({ code });
       if (error) throw error;
-      // START: exchange success
       dbg("exchangeCodeForSession OK");
-      // END: exchange success
 
       setMsg("Uspešno! Sinhronišem nalog…");
       await postLoginSync();
 
-      // START: recovery-aware navigacija posle PKCE
-      if (isRecoveryUrl(url) || recoveryActive) {
-        dbg("nav.reset -> ResetPassword (recovery)");
-        nav.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: "ResetPassword", params: { preventAutoRedirect: true } }],
-          })
-        );
-      } else {
-        // dbg("nav.reset -> Home");
-        // nav.reset({ index: 0, routes: [{ name: "Home" }] });
-        nav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: "Home" }] }));
-      }
-      // END: recovery-aware navigacija posle PKCE
+      // START: navigacija – uvek na Home (nema Recovery modala)
+      nav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: "Home" }] }));
+      // END: navigacija
       return true;
     }
 
@@ -136,28 +100,14 @@ export default function AuthConfirmScreen() {
       setMsg("Postavljam sesiju…");
       const { error } = await supabase.auth.setSession({ access_token, refresh_token });
       if (error) throw error;
-      // START: setSession success
       dbg("setSession OK (hash/search tokens)");
-      // END: setSession success
 
       setMsg("Uspešno! Sinhronišem nalog…");
       await postLoginSync();
 
-      // START: recovery-aware navigacija posle setSession
-      if (isRecoveryUrl(url) || recoveryActive) {
-        dbg("nav.reset -> ResetPassword (recovery)");
-        nav.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: "ResetPassword", params: { preventAutoRedirect: true } }],
-          })
-        );
-      } else {
-        // dbg("nav.reset -> Home");
-        // nav.reset({ index: 0, routes: [{ name: "Home" }] });
-        nav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: "Home" }] }));
-      }
-      // END: recovery-aware navigacija posle setSession
+      // START: navigacija – uvek na Home (nema Recovery modala)
+      nav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: "Home" }] }));
+      // END: navigacija
       return true;
     }
 
@@ -174,9 +124,7 @@ export default function AuthConfirmScreen() {
           return;
         }
 
-        // START: run entry logs
         dbg("route.params.url =", route?.params?.url);
-        // END: run entry logs
 
         // 1) URL iz hook-a (najpouzdaniji)
         let candidate = hookUrl;
@@ -187,9 +135,7 @@ export default function AuthConfirmScreen() {
         // 3) Fallback – initialURL
         if (!candidate) {
           const init = await Linking.getInitialURL();
-          // START: initialURL debug
           dbg("getInitialURL =", init);
-          // END: initialURL debug
           candidate = init || null;
         }
 
@@ -199,49 +145,29 @@ export default function AuthConfirmScreen() {
         }
 
         // 4) Poslednji fallback – pinguj sesiju
-        // START: polling start
         dbg("no candidate URL, start session polling...");
-        // END: polling start
         setMsg("Čekam potvrdu prijave…");
         const backoffs = [0, 300, 800, 1500];
         for (let i = 0; i < backoffs.length; i++) {
           if (backoffs[i] > 0) await delay(backoffs[i]);
           const { data } = await supabase.auth.getSession();
           if (data?.session?.user) {
-            // START: polling success
             dbg("session detected by polling, proceeding to sync");
-            // END: polling success
             setMsg("Sesija aktivna. Sinhronišem…");
             await postLoginSync();
             if (!cancelled) {
-              // START: recovery-aware navigacija tokom polling-a
-              if (recoveryActive) {
-                dbg("nav.reset -> ResetPassword (recovery via polling)");
-                nav.dispatch(
-                  CommonActions.reset({
-                    index: 0,
-                    routes: [{ name: "ResetPassword", params: { preventAutoRedirect: true } }],
-                  })
-                );
-              } else {
-                // dbg("nav.reset -> Home");
-                // nav.reset({ index: 0, routes: [{ name: "Home" }] });
-                nav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: "Home" }] }));
-              }
-              // END: recovery-aware navigacija tokom polling-a
+              // START: navigacija – uvek na Home
+              nav.dispatch(CommonActions.reset({ index: 0, routes: [{ name: "Home" }] }));
+              // END: navigacija
             }
             return;
           }
         }
 
-        // START: polling fail
         dbg("no url and no session after polling");
-        // END: polling fail
         setMsg("Nije stigao povratni link. Zatvori i pokušaj ponovo.");
       } catch (e) {
-        // START: run error
         dbg("run error:", e?.message || e);
-        // END: run error
         setMsg("Greška pri potvrdi prijave.");
       }
     };

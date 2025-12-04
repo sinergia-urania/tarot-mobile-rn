@@ -1,6 +1,11 @@
 {
   "watchAdForCoins": "Watch an ad for coins",
   "appName": "Tarot",
+  "promo": {
+    "tryOurNewApp": "Try our new app",
+    "storeIos": "Available on the App Store",
+    "storeAndroid": "Get it on Google Play"
+  },
   "groups": {
     "velika": "Major Arcana",
     "stapovi": "Wands",
@@ -41,6 +46,9 @@
     "register": "Sign up",
     "savePassword": "Save password"
   },
+  "misc": {
+    "cancel": "No"
+  },
   "messages": {
     "loading": "Loading...",
     "error": "An error occurred",
@@ -53,9 +61,9 @@
     "noDescription": "No description for this card.",
     "successTitle": "Success!",
     "successGeneric": "Success!",
-    "notLoggedInBlurb": "You’re not logged in. Log in to use AI and collect coins!",
-    "notLoggedInSettings": "You’re not logged in. Log in to access settings.",
-    "nameNotSet": "You haven’t entered a name",
+    "notLoggedInBlurb": "You're not logged in. Log in to use AI and collect coins!",
+    "notLoggedInSettings": "You're not logged in. Log in to access settings.",
+    "nameNotSet": "You haven't entered a name",
     "profileSaved": "Profile saved!",
     "noQuestion": "No question.",
     "waitingAI": "Waiting for AI response..."
@@ -180,6 +188,13 @@
       "alreadyProPlus": "You already have ProPlus",
       "buyProPlus": "Buy ProPlus ({{price}} {{currency}} / year)"
     },
+    "cancel": {
+      "confirmTitle": "Cancel subscription?",
+      "confirmBody": "Switching to FREE will be immediate. You can resubscribe anytime.",
+      "confirmCta": "Yes, cancel",
+      "cta": "Cancel subscription",
+      "scheduled": "Subscription cancelled. You've been switched to the FREE plan."
+    },
     "topup": {
       "title": "Top up coins",
       "buyCoins": "Buy {{amount}} coins — {{price}} {{currency}}"
@@ -211,10 +226,11 @@
     "modelUnavailable": "Model unavailable or invalid request.",
     "upstreamFailed": "AI service is temporarily unavailable (upstream).",
     "aiServiceComm": "There was an error communicating with the AI service.",
-    "edgeTimeout": "The AI request timed out. Please try again."
+    "edgeTimeout": "The AI request timed out. Please try again.",
+    "storeUnavailable": "Store is not available."
   },
   "dailyCard": {
-    "alreadyPicked": "You’ve already picked your card of the day!",
+    "alreadyPicked": "You've already picked your card of the day!",
     "comeBackTomorrow": "Come back tomorrow for a new card. 🌞"
   },
   "legal": {
@@ -239,7 +255,7 @@
     "facebookSignIn": "Sign in with Facebook",
     "facebookOpening": "Opening Facebook…",
     "toggleHaveAccount": "Already have an account? Log in",
-    "toggleNoAccount": "Don’t have an account? Sign up",
+    "toggleNoAccount": "Don't have an account? Sign up",
     "loginFailed": "Login failed.",
     "registerFailed": "Registration failed.",
     "googleFailed": "Google sign-in failed.",
@@ -253,7 +269,14 @@
     "passwordTooShort": "Password must be at least 8 characters long.",
     "passwordsDontMatch": "Passwords do not match.",
     "passwordUpdated": "Your password has been updated. Please sign in with the new password.",
-    "passwordUpdateFailed": "Updating the password failed."
+    "passwordUpdateFailed": "Updating the password failed.",
+    "appleSignIn": "Sign in with Apple",
+    "appleOpening": "Opening Apple…",
+    "appleFailed": "Apple sign-in failed.",
+    "sendMagicLink": "Send magic link",
+    "magicLinkSent": "We've sent you a magic link. Open the email on this device.",
+    "magicLinkFailed": "Failed to send the magic link.",
+    "resetTryAgainIn": "Try again in {{s}}s"
   },
   "ads": {
     "errorTitle": "Ad error!",
@@ -285,6 +308,9 @@
     }
   },
   "home": {
+    "welcome": "Welcome",
+    "user": "User",
+    "astroHintPremium": "✨ Premium/Pro members: Add your zodiac sign & ascendant in Profile for astrological insights",
     "menu": {
       "profile": "Profile",
       "settings": "Settings",
@@ -340,7 +366,7 @@
     "noUserId": "No user id!",
     "tokenWriteFail": "Token NOT saved!",
     "tokenWriteOk": "Token saved!",
-    "profileNoToken": "No token in profile. Press “Write push token test” first.",
+    "profileNoToken": "No token in profile. Press 'Write push token test' first.",
     "localTitle": "LOCAL ✅",
     "localBody": "Local notification (foreground/background)",
     "remoteTitle": "REMOTE ✅",

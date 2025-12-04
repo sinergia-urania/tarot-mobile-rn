@@ -34,23 +34,32 @@ function parseTokensFromUrl(url) {
   const access_token = fromHash.get("access_token") || fromQuery.get("access_token");
   const refresh_token = fromHash.get("refresh_token") || fromQuery.get("refresh_token");
 
-  // START: recovery flag iz URL-a
-  const type = (fromQuery.get("type") || fromHash.get("type") || "").toLowerCase();
-  const isRecovery = type === "recovery";
+  // START: proširenje — OTP (magic/recovery) hash + eksplicitni tip iz URL-a
+  const token_hash =
+    fromQuery.get("token_hash") ||
+    fromHash.get("token_hash") ||
+    fromQuery.get("token") || // neki šabloni koriste `token`
+    null;
+
+  const urlType = (fromQuery.get("type") || fromHash.get("type") || "").toLowerCase();
+  // END: proširenje — OTP (magic/recovery) hash + eksplicitni tip iz URL-a
+
+  // START: recovery flag iz URL-a (zadržavamo postojeće ponašanje)
+  const isRecovery = urlType === "recovery";
   // END: recovery flag iz URL-a
 
   // START: ne menjamo postojeći povrat – samo ga proširujemo
-  return { code, access_token, refresh_token, isRecovery };
+  return { code, access_token, refresh_token, token_hash, urlType, isRecovery };
   // END: ne menjamo postojeći povrat – samo ga proširujemo
 }
 
-// START: ensureSessionFromUrl – uklonjen getSessionFromUrl + ručno parsiranje (uz opciono helper fallback)
+// START: ensureSessionFromUrl – ručno parsiranje + proširen fallback verifyOtp
 async function ensureSessionFromUrl(url) {
   try {
     if (!url) return false;
 
-    // START: 1) Ručno parsiranje (radi na svim verzijama SDK-a)
-    const { code, access_token, refresh_token } = parseTokensFromUrl(url);
+    // START: 1) Ručno parsiranje (radi i kad SDK promeni helper)
+    const { code, access_token, refresh_token, token_hash, urlType } = parseTokensFromUrl(url);
 
     // 1) PKCE code flow
     if (code) {
@@ -62,7 +71,7 @@ async function ensureSessionFromUrl(url) {
       return true;
     }
 
-    // 2) Hash/query tokens flow
+    // 2) Hash/query tokens flow (klasični Supabase email linkovi)
     if (access_token && refresh_token) {
       console.log("[OAUTH] setSession (hash/search tokens)");
       const { error } = await supabase.auth.setSession({ access_token, refresh_token });
@@ -74,8 +83,27 @@ async function ensureSessionFromUrl(url) {
     }
     // END: 1) Ručno parsiranje
 
-    // 2) (Opciono) Ako SDK ipak ima helper, pokušaj i njega
+    // START: 3) OTP token hash (Magic Link / Recovery) – fallback kad email šablon šalje token_hash
+    // Ovo je preporučeni bezbedan put kad koristimo web “bounce” → app i želimo verifikaciju bez access_token-a.
+    if (token_hash) {
+      try {
+        const vType = urlType === "recovery" ? "recovery" : "email"; // 'magiclink' je deprecated – koristi 'email'
+        const { error: vErr } = await supabase.auth.verifyOtp({ token_hash, type: vType });
+        if (vErr) {
+          console.warn("[OAUTH] verifyOtp error:", vErr.message);
+          // pada u helper kao zadnji pokušaj
+        } else {
+          return true;
+        }
+      } catch (e) {
+        console.warn("[OAUTH] verifyOtp threw:", e?.message);
+      }
+    }
+    // END: 3) OTP token hash (Magic Link / Recovery)
+
+    // 4) (Opciono) Ako SDK ima helper, probaj i njega kao last-resort
     if (typeof supabase.auth.getSessionFromUrl === "function") {
+      // Neke verzije prihvataju samo options; neke i (options, url) — pokrivamo oba.
       const { error: gsErr } = await supabase.auth.getSessionFromUrl({ storeSession: true }, url);
       if (!gsErr) return true;
       console.warn("[OAUTH] getSessionFromUrl helper err:", gsErr?.message);
@@ -85,7 +113,7 @@ async function ensureSessionFromUrl(url) {
   }
   return false;
 }
-// END: ensureSessionFromUrl – uklonjen getSessionFromUrl + ručno parsiranje (uz opciono helper fallback)
+// END: ensureSessionFromUrl – ručno parsiranje + proširen fallback verifyOtp
 
 async function ensureUserProfileRow(user) {
   try {

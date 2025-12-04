@@ -67,17 +67,25 @@ async function openProvider(provider) {
     throw new Error("SUPABASE_URL nije definisan.");
   }
 
-  // Autorize URL za Google
+  // Autorize URL za providera
   const base = `${SUPABASE_URL}/auth/v1/authorize`;
   const common =
     `?provider=${encodeURIComponent(provider)}` +
     `&redirect_to=${encodeURIComponent(REDIRECT_URL)}` +
     `&flow_type=pkce`; // Stabilniji PKCE flow
+
+  // START: provider-specifični dodaci
   const googleExtras =
     provider === "google"
       ? `&scopes=${encodeURIComponent("openid email profile")}&access_type=offline&prompt=consent`
       : "";
-  const authorize = base + common + googleExtras;
+  const appleExtras =
+    provider === "apple"
+      ? `&scopes=${encodeURIComponent("name email")}`
+      : "";
+  // END: provider-specifični dodaci
+
+  const authorize = base + common + googleExtras + appleExtras;
 
   console.log("[OAUTH-PROXY] openURL =", authorize);
   console.log("[OAUTH-PROXY] REDIRECT =", REDIRECT_URL);
@@ -136,3 +144,6 @@ async function openProvider(provider) {
 
 export const loginWithGoogle = () => openProvider("google");
 export const loginWithFacebook = () => openProvider("facebook");
+// START: Apple OAuth export
+export const loginWithApple = () => openProvider("apple");
+// END: Apple OAuth export

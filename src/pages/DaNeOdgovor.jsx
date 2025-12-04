@@ -1,7 +1,6 @@
 // START: Migracija DaNeOdgovor u React Native - minimalistički home
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
-// import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 // START: SafeImage (expo-image) za iOS/WebP
 import SafeImage from "../components/SafeImage";
@@ -9,6 +8,9 @@ import SafeImage from "../components/SafeImage";
 // START: i18n
 import { useTranslation } from "react-i18next";
 // END: i18n
+// START: ikone (Expo)
+import { Ionicons } from "@expo/vector-icons";
+// END: ikone (Expo)
 
 const DaNeOdgovor = () => {
   const navigation = useNavigation();
@@ -25,25 +27,31 @@ const DaNeOdgovor = () => {
         <TouchableOpacity
           style={styles.homeBtn}
           onPress={() => navigation.navigate("Home")}
+          accessibilityRole="button"
+          accessibilityLabel={t("common:accessibility.home", { defaultValue: "Početna" })}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          activeOpacity={0.85}
         >
-          <Text style={styles.homeIcon}>🏠</Text>
+          <Ionicons name="home" size={26} color="#facc15" />
         </TouchableOpacity>
+
         <View style={styles.center}>
           {/* START: i18n – nema izvučene karte */}
           <Text style={styles.noCardText}>
             {t("common:messages.noCardSelected", {
-              defaultValue: "Nema izvučene karte. Vratite se i pokušajte ponovo."
+              defaultValue: "Nema izvučene karte. Vratite se i pokušajte ponovo.",
             })}
           </Text>
           {/* END: i18n – nema izvučene karte */}
           <TouchableOpacity
             style={styles.button}
             onPress={() => navigation.navigate("Home")}
+            accessibilityRole="button"
           >
             {/* START: i18n – dugme nazad na početnu */}
             <Text style={styles.buttonText}>
               {t("common:buttons.backToTarotHome", {
-                defaultValue: "Nazad na Tarot početnu"
+                defaultValue: "Nazad na Tarot početnu",
               })}
             </Text>
             {/* END: i18n – dugme nazad na početnu */}
@@ -61,28 +69,35 @@ const DaNeOdgovor = () => {
       <TouchableOpacity
         style={styles.homeBtn}
         onPress={() => navigation.navigate("Home")}
+        accessibilityRole="button"
+        accessibilityLabel={t("common:accessibility.home", { defaultValue: "Početna" })}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        activeOpacity={0.85}
       >
-        <Text style={styles.homeIcon}>🏠</Text>
+        <Ionicons name="home" size={26} color="#facc15" />
       </TouchableOpacity>
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.center}>
           {/* START: i18n – naslov */}
           <Text style={styles.title}>
             {t("common:titles.yesNoAnswer", {
-              defaultValue: "Odgovor na tvoje pitanje:"
+              defaultValue: "Odgovor na tvoje pitanje:",
             })}
           </Text>
           {/* END: i18n – naslov */}
+
           {/* START: SafeImage umesto Image (WebP friendly na iOS) */}
           <SafeImage
             source={karta.slika}
             style={[
               styles.image,
-              !isUspravna && { transform: [{ rotate: "180deg" }] }
+              !isUspravna && { transform: [{ rotate: "180deg" }] },
             ]}
             contentFit="contain"
           />
           {/* END: SafeImage */}
+
           {/* START: i18n – DA/NE */}
           <Text style={[styles.answer, isUspravna ? styles.yes : styles.no]}>
             {isUspravna
@@ -90,6 +105,7 @@ const DaNeOdgovor = () => {
               : t("common:answers.no", { defaultValue: "NE" })}
           </Text>
           {/* END: i18n – DA/NE */}
+
           {/* START: i18n – orijentacija karte */}
           <Text style={styles.orientation}>
             {t("common:messages.cardDrawnWithOrientation", {
@@ -99,7 +115,7 @@ const DaNeOdgovor = () => {
                   : "common:orientation.reversed",
                 { defaultValue: isUspravna ? "uspravno" : "obrnuto" }
               ),
-              defaultValue: "Karta je izvučena {{orientation}}."
+              defaultValue: "Karta je izvučena {{orientation}}.",
             })}
           </Text>
           {/* END: i18n – orijentacija karte */}
@@ -127,10 +143,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 5,
-  },
-  homeIcon: {
-    fontSize: 32,
-    color: "#ffd700",
+    borderWidth: 1,
+    borderColor: "#facc15",
   },
   scrollContainer: {
     flexGrow: 1,

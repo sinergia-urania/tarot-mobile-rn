@@ -53,7 +53,7 @@ export default function StaticDocScreen(props) {
     // Možeš prebaciti u .env: EXPO_PUBLIC_INFOHELM_BASE
     const INFOHELM_BASE = process?.env?.EXPO_PUBLIC_INFOHELM_BASE || 'https://infohelm.org';
     // END: infohelm hardening + analytics (configurable base)
-    const SUPPORTED_LANGS = ['sr', 'en', 'fr', 'es', 'pt', 'de', 'hi'];
+    const SUPPORTED_LANGS = ['sr', 'en', 'fr', 'es', 'pt', 'de', 'hi', 'tr', 'id'];
     // START: resolvedLanguage za precizniji izbor jezika u URL-u
     /* original:
     const shortLang = (i18next?.language || 'en').slice(0, 2);

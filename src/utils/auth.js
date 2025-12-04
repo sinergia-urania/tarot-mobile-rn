@@ -34,6 +34,8 @@ export async function login(email, password) {
 
 // START: Delegacija na oauthProxy (Varijanta A)
 import {
+  // START: Apple delegacija
+  loginWithApple as loginWithAppleProxy,
   loginWithFacebook as loginWithFacebookProxy,
   loginWithGoogle as loginWithGoogleProxy,
 } from "./oauthProxy";
@@ -47,6 +49,12 @@ export async function loginWithGoogle() {
 export async function loginWithFacebook() {
   return loginWithFacebookProxy();
 }
+
+// START: Apple – delegirano na oauthProxy (custom scheme + PKCE)
+export async function loginWithApple() {
+  return loginWithAppleProxy();
+}
+// END: Apple – delegirano na oauthProxy (custom scheme + PKCE)
 // END: Delegacija na oauthProxy (Varijanta A)
 
 // (opciono) helper koji si koristio
@@ -107,5 +115,4 @@ export async function dodeliDukateZaFreeKorisnika(userId) {
     return { greska: String(err?.message || err) };
   }
 }
-
-// Nova logika za autentifikaciju sa novim OAuth sistemom (preko proxyja)
+// END: Nova logika za dodelu dukata

@@ -1,72 +1,107 @@
-// START: povezivanje slidera sa globalnom muzikom
+// START: povezivanje slidera sa globalnom muzikom + logaritamska kriva + debounce + fix za 0
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Slider from '@react-native-community/slider';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 import { useMusic } from '../context/MusicProvider';
-// START: i18n za labele zvuka (sa keyPrefix)
-import { useTranslation } from 'react-i18next';
-// END: i18n za labele zvuka
 
 const SoundSettings = () => {
-  const { musicVolume, setVolume } = useMusic(); // global!
-  const [sfxVolume, setSfxVolume] = useState(0.5);
+  const { setVolume } = useMusic(); // ✅ Samo setVolume, NIKADA ne čitamo musicVolume!
 
-  // START: t() sa eksplicitnim namespace + keyPrefix = 'soundControls'
-  // sada pozivamo t('music') i t('effects') bez rizika da promašimo putanju
+  // ✅ FIX: Default volume 25% (slatka sredina)
+  const [localMusicVolume, setLocalMusicVolume] = useState(0.25);
+
   const { t } = useTranslation('common', { keyPrefix: 'soundControls' });
-  // END: t() sa eksplicitnim namespace + keyPrefix
 
+  // ✅ Debounce timeout ref
+  const musicTimeoutRef = useRef(null);
+
+  // ✅ Flag da sprečimo update tokom mount-a
+  const isInitializedRef = useRef(false);
+
+  // ✅ Load saved volume from storage (samo jednom na mount)
   useEffect(() => {
     (async () => {
-      const s = await AsyncStorage.getItem('sfxVolume');
-      if (s) setSfxVolume(JSON.parse(s));
-    })();
-  }, []);
+      try {
+        const savedMusic = await AsyncStorage.getItem('musicVolume');
 
-  const handleMusic = async (value) => {
-    setVolume(value); // koristi context!
+        if (savedMusic) {
+          const parsed = JSON.parse(savedMusic);
+          setLocalMusicVolume(parsed);
+        }
+
+        // ✅ Označimo da smo inicijalizovali
+        isInitializedRef.current = true;
+      } catch (err) {
+        console.warn('[SoundSettings] Load error:', err);
+        isInitializedRef.current = true;
+      }
+    })();
+  }, []); // ✅ Samo jednom!
+
+  // ✅ Bolja logaritamska kriva koja rešava problem kod 0
+  const applyLogarithmicCurve = (value) => {
+    if (value === 0) {
+      return 0; // Tačno 0 - potpuno tiho
+    } else if (value < 0.05) {
+      // Linearno za 0-5% (izbegava skokove blizu nule)
+      return value * 0.2; // 5% → 1%
+    } else {
+      // Logaritamska kriva za 5-100%
+      // Exponenta 2.2 daje prirodniji osećaj
+      return Math.pow(value, 2.2);
+    }
   };
-  const handleSfx = async (value) => {
-    setSfxVolume(value);
-    await AsyncStorage.setItem('sfxVolume', JSON.stringify(value));
-  };
+
+  // ✅ Debounced music handler
+  const handleMusic = useCallback((value) => {
+    // Odmah update UI (nema povratnog loop-a!)
+    setLocalMusicVolume(value);
+
+    // Debounce backend update
+    if (musicTimeoutRef.current) {
+      clearTimeout(musicTimeoutRef.current);
+    }
+
+    musicTimeoutRef.current = setTimeout(async () => {
+      const logarithmicValue = applyLogarithmicCurve(value);
+
+      // ✅ Setuj volume samo ako smo inicijalizovali
+      if (isInitializedRef.current) {
+        await setVolume(logarithmicValue);
+      }
+
+      // ✅ Sačuvaj RAW vrednost (pre logaritma) da slider ostane konzistentan
+      await AsyncStorage.setItem('musicVolume', JSON.stringify(value));
+    }, 100); // ✅ Povećan debounce sa 50ms na 100ms za stabilnost
+  }, [setVolume]);
+
+  // ✅ Cleanup timeout
+  useEffect(() => {
+    return () => {
+      if (musicTimeoutRef.current) clearTimeout(musicTimeoutRef.current);
+    };
+  }, []);
 
   return (
     <View>
+      {/* Samo Music Slider - Effects slider uklonjen */}
       <View style={styles.settingRow}>
-        {/* START: i18n - Muzika */}
         <Text style={styles.label}>🎵 {t('music')}</Text>
-        {/* END: i18n - Muzika */}
         <Slider
           style={styles.slider}
           minimumValue={0}
           maximumValue={1}
-          value={musicVolume}
+          value={localMusicVolume}
           onValueChange={handleMusic}
+          step={0.01} // ✅ Fine-grained control
           minimumTrackTintColor="#c9ad6a"
           maximumTrackTintColor="#888"
           thumbTintColor="#facc15"
         />
-        <Text style={styles.percent}>{Math.round(musicVolume * 100)}%</Text>
-      </View>
-
-      <View style={styles.settingRow}>
-        {/* START: i18n - Efekti */}
-        <Text style={styles.label}>🔔 {t('effects')}</Text>
-        {/* END: i18n - Efekti */}
-        <Slider
-          style={styles.slider}
-          minimumValue={0}
-          maximumValue={1}
-          value={sfxVolume}
-          onValueChange={handleSfx}
-          minimumTrackTintColor="#c9ad6a"
-          maximumTrackTintColor="#888"
-          thumbTintColor="#facc15"
-        />
-        <Text style={styles.percent}>{Math.round(sfxVolume * 100)}%</Text>
+        <Text style={styles.percent}>{Math.round(localMusicVolume * 100)}%</Text>
       </View>
     </View>
   );
@@ -98,4 +133,4 @@ const styles = StyleSheet.create({
 });
 
 export default SoundSettings;
-// END: povezivanje slidera sa globalnom muzikom
+// END: povezivanje slidera sa globalnom muzikom + logaritamska kriva + debounce + fix za 0

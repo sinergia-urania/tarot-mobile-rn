@@ -1,3 +1,4 @@
+// src/pages/Podesavanja.jsx
 import { useNavigation } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
@@ -93,12 +94,10 @@ const Podesavanja = () => {
   const [notifications, setNotifications] = useState(user?.notifications_enabled ?? true);
   const [notifSaving, setNotifSaving] = useState(false);
 
-  const [reversed, setReversed] = useState(true);
+  const [savingAll, setSavingAll] = useState(false); // ⬅️ novo: indikator za "Sačuvaj"
 
   const upisiPushToken = async () => {
-    console.log(">>>> Ulazim u upisiPushToken");
     let token = null;
-
     try {
       let { status } = await Notifications.getPermissionsAsync();
       if (status !== 'granted') {
@@ -112,7 +111,6 @@ const Podesavanja = () => {
         );
         return;
       }
-
       const projectId =
         Constants?.expoConfig?.extra?.eas?.projectId ??
         Constants?.easConfig?.projectId ??
@@ -123,18 +121,11 @@ const Podesavanja = () => {
         projectId ? { projectId } : undefined
       );
       token = expoToken;
-      console.log(">>>> Dobijen token (expo):", token, "projectId=", projectId);
-    } catch (e) {
-      console.log('[PUSH] token error:', e);
-    }
+    } catch { }
 
     if (!token) {
-      try {
-        token = await registerForPushNotificationsAsync();
-        console.log(">>>> Fallback token:", token);
-      } catch { }
+      try { token = await registerForPushNotificationsAsync(); } catch { }
     }
-
     if (!token) {
       Alert.alert(
         t('common:push.titleTest', { defaultValue: 'Push test' }),
@@ -144,7 +135,6 @@ const Podesavanja = () => {
     }
 
     const userId = user?.id;
-    console.log(">>>> userId:", userId);
     if (!userId) {
       Alert.alert(
         t('common:push.titleTest', { defaultValue: 'Push test' }),
@@ -163,13 +153,7 @@ const Podesavanja = () => {
         t('common:push.titleTest', { defaultValue: 'Push test' }),
         t('common:push.tokenWriteFail', { defaultValue: 'Token NIJE upisan!' }) + '\n' + error.message
       );
-      console.log("Supabase error:", error);
     } else {
-      Alert.alert(
-        t('common:push.titleTest', { defaultValue: 'Push test' }),
-        t('common:push.tokenWriteOk', { defaultValue: 'Token JE upisan!' })
-      );
-      console.log("Supabase OK!");
       if (fetchProfile) fetchProfile();
     }
   };
@@ -206,9 +190,7 @@ const Podesavanja = () => {
       });
       const json = await res.json();
       const id = json?.data?.id || json?.data?.[0]?.id;
-      if (id) {
-        Alert.alert('Remote test', t('common:push.sentMinimize', { defaultValue: 'Poslato ✔️ — minimizuj app odmah da vidiš baner.' }));
-      } else {
+      if (!id) {
         Alert.alert('Remote test', t('common:push.notAccepted', { defaultValue: 'Push nije prihvaćen:' }) + '\n' + JSON.stringify(json));
       }
     } catch (e) {
@@ -220,8 +202,6 @@ const Podesavanja = () => {
     try {
       const perms = await Notifications.getPermissionsAsync();
       const channels = await Notifications.getNotificationChannelsAsync();
-      console.log('[NOTIF][perms]', perms);
-      console.log('[NOTIF][channels]', channels);
       const msg =
         `status=${perms?.status}, granted=${perms?.granted}\n` +
         (channels || [])
@@ -272,13 +252,7 @@ const Podesavanja = () => {
     }
     setNotifSaving(false);
     if (refreshUser) refreshUser();
-
-    if (newValue) {
-      await upisiPushToken();
-    } else {
-      // optionally: obrisati expo_push_token
-      // await supabase.from('profiles').update({ expo_push_token: null }).eq('id', userId);
-    }
+    if (newValue) await upisiPushToken();
   };
 
   const [langModal, setLangModal] = useState(false);
@@ -319,6 +293,40 @@ const Podesavanja = () => {
   const languageLabel =
     SHARED_LANGUAGES.find(l => getBaseLang(l.code) === baseLang)?.label || 'Jezik';
 
+  // ⬇️ centralni "Sačuvaj sve" — idempotentno potvrđuje jezik + notifikacije
+  const saveAllSettings = async () => {
+    if (!user?.id) return;
+    setSavingAll(true);
+    try {
+      const updates = {
+        notifications_enabled: !!notifications,
+        language: baseLang,
+      };
+      const { error } = await supabase
+        .from('profiles')
+        .update(updates)
+        .eq('id', user.id);
+      if (error) throw error;
+
+      if (notifications) {
+        await upisiPushToken(); // osiguraj token upis ako je uključeno
+      }
+      if (fetchProfile) await fetchProfile();
+
+      Alert.alert(
+        t('common:messages.successTitle', { defaultValue: 'Uspeh!' }),
+        t('common:messages.profileSaved', { defaultValue: 'Profil je sačuvan!' })
+      );
+    } catch (e) {
+      Alert.alert(
+        t('common:errors.genericTitle', { defaultValue: 'Greška' }),
+        t('common:errors.updateNotifFail', { defaultValue: 'Nije moguće ažurirati notifikacije.' })
+      );
+    } finally {
+      setSavingAll(false);
+    }
+  };
+
   if (!user || !user.id) {
     return (
       <View style={styles.container}>
@@ -331,12 +339,10 @@ const Podesavanja = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-        <Text style={styles.backIcon}>←</Text>
-      </TouchableOpacity>
-
+      {/* Naslov */}
       <Text style={styles.title}>{t('common:titles.settings', { defaultValue: 'Podešavanja' })}</Text>
 
+      {/* Sekcija: ime */}
       <View style={styles.section}>
         <Text style={styles.label}>{t('common:labels.currentName', { defaultValue: 'Trenutno ime:' })}</Text>
         <Text style={styles.displayName}>
@@ -346,6 +352,7 @@ const Podesavanja = () => {
         </Text>
       </View>
 
+      {/* Sekcija: zvuk + notifikacije + jezik */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>{t('common:titles.sound', { defaultValue: 'Zvuk' })}</Text>
         <SoundSettings />
@@ -403,6 +410,7 @@ const Podesavanja = () => {
           <Text style={styles.selectedLang}>{languageLabel} ▼</Text>
         </TouchableOpacity>
 
+        {/* Modal za izbor jezika */}
         <Modal
           visible={langModal}
           transparent
@@ -445,6 +453,35 @@ const Podesavanja = () => {
           </View>
         </Modal>
 
+        {/* ⬇️ SAČUVAJ — u tamnom okviru, odmah ispod jezika */}
+        <TouchableOpacity
+          style={styles.sectionCloseBtn}
+          onPress={saveAllSettings}
+          accessibilityRole="button"
+          accessibilityLabel={t('common:buttons.saveProfile', { defaultValue: 'Sačuvaj profil' })}
+          disabled={savingAll}
+          testID="settings-save-bottom"
+        >
+          <Text style={{ color: savingAll ? '#bfbfbf' : '#facc15', fontWeight: 'bold' }}>
+            {savingAll
+              ? t('common:messages.loading', { defaultValue: 'Čekaj...' })
+              : t('common:buttons.saveProfile', { defaultValue: 'Sačuvaj profil' })}
+          </Text>
+        </TouchableOpacity>
+
+        {/* ⬇️ ZATVORI — ispod Sačuvaj */}
+        <TouchableOpacity
+          style={styles.sectionCloseBtn}
+          onPress={() => navigation.goBack()}
+          accessibilityRole="button"
+          accessibilityLabel={t('common:buttons.close', { defaultValue: 'Zatvori' })}
+          testID="settings-close-bottom"
+        >
+          <Text style={{ color: '#facc15', fontWeight: 'bold' }}>
+            {t('common:buttons.close', { defaultValue: 'Zatvori' })}
+          </Text>
+        </TouchableOpacity>
+
       </View>
     </View>
   );
@@ -455,19 +492,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#181818',
     padding: 20,
-  },
-  backBtn: {
-    position: 'absolute',
-    top: 28,
-    left: 18,
-    zIndex: 2,
-    padding: 6,
-    borderRadius: 18,
-  },
-  backIcon: {
-    fontSize: 26,
-    color: '#facc15',
-    fontWeight: 'bold',
   },
   title: {
     color: '#facc15',
@@ -566,6 +590,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 6,
     fontWeight: "600",
+  },
+  // zajednički “tamni okvir” CTA
+  sectionCloseBtn: {
+    marginTop: 16,
+    alignSelf: 'center',
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    backgroundColor: '#333',
   },
 });
 

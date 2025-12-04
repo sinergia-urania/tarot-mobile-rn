@@ -1,3 +1,4 @@
+// src/components/TarotHeader.jsx
 import React, { useEffect, useRef, useState } from 'react';
 // import { Animated, Image, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Animated, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -7,7 +8,7 @@ import { useMusic } from '../context/MusicProvider';
 import { useTreasureRef } from '../context/TreasureRefContext';
 import TarotHeaderBanner from './TarotHeaderBanner';
 // START: SafeImage (expo-image) za WebP/iOS
-import SafeImage from '../components/SafeImage';
+import SafeImage from './SafeImage';
 // END: SafeImage
 
 // START: i18n import
@@ -84,11 +85,16 @@ const DukatiTreasure = React.forwardRef(({ onPress }, ref) => {
     }
   }, [dukati, scale]);
 
+  const handlePress = async () => {
+    try { await onPress?.(); } catch { }
+    try { await fetchDukatiSaServera(); } catch { }
+  };
+
   return (
     <TouchableOpacity
       ref={ref}
       style={styles.treasureBox}
-      onPress={fetchDukatiSaServera}
+      onPress={handlePress}
       accessibilityLabel={t('common:accessibility.coins')}
     >
       {/* START: SafeImage umesto Image (WebP safe na iOS) */}
@@ -138,6 +144,9 @@ const TarotHeader = ({
   // Lokalni modal za header jezik
   const [langModal, setLangModal] = useState(false);
 
+  // UZMI TREASURE REF JEDNOM (ne u granama)
+  const treasureRef = useTreasureRef();
+
   const handlePickLanguage = async (lang) => {
     // pre: direktno i18n.changeLanguage(lang.code) → to nije sinhronizovalo sa podešavanjima
     // START: koristi centralni handler (jedan izvor istine + upis u profil)
@@ -158,7 +167,7 @@ const TarotHeader = ({
       <View style={styles.header}>
         {!swapTreasureMenu ? (
           <>
-            <DukatiTreasure ref={useTreasureRef()} onPress={onTreasurePress} />
+            <DukatiTreasure ref={treasureRef} onPress={onTreasurePress} />
             {showMenu && (
               <TouchableOpacity
                 onPress={onMenu}
@@ -180,7 +189,7 @@ const TarotHeader = ({
                 <Icon name="menu" size={36} color="#facc15" />
               </TouchableOpacity>
             )}
-            <DukatiTreasure ref={useTreasureRef()} onPress={onTreasurePress} />
+            <DukatiTreasure ref={treasureRef} onPress={onTreasurePress} />
           </>
         )}
 

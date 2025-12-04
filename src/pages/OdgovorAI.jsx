@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 // START: import cleanup (ostavljen stari u komentaru)
 // import { Button, Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import { Button, Dimensions, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Button, Dimensions, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 // END: import cleanup
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
@@ -197,7 +197,7 @@ const OdgovorAI = () => {
   const navigation = useNavigation();
   // START: isPro iz konteksta (gating za Pro i ProPlus)
   // const { userPlan, userId, dukati, platiOtvaranje } = useDukati();
-  const { userPlan, userId, dukati, platiOtvaranje, isPro } = useDukati();
+  const { userPlan, userId, dukati, platiOtvaranje, isPro, refreshCoins } = useDukati();
   const isProTier = !!isPro;
   // END: isPro iz konteksta (gating za Pro i ProPlus)
   const jezikAplikacije = i18n.language;
@@ -246,7 +246,7 @@ const OdgovorAI = () => {
   if ((subtip === "ljubavno" && layout.length === 2) || (subtip === "tri" && layout.length === 3)) {
     cardSize = { width: 120, height: 198 };
   } else if (subtip === "pet" && layout.length === 5) {
-    cardSize = { width: 80, height: 145 };
+    cardSize = { width: 64, height: 116 };
   }
 
   const windowWidth = Dimensions.get('window').width;
@@ -395,6 +395,7 @@ const OdgovorAI = () => {
             console.log('[AI][main] Nema sessionId u odgovoru (dev okruženje?)', resp);
           }
           setAiOdgovor(odgovor);
+          try { await refreshCoins?.(); } catch { }
         })
         // END: robustniji prihvat i čuvanje sessionId
         .catch((err) => {
@@ -505,7 +506,7 @@ const OdgovorAI = () => {
         prethodniOdgovor: aiOdgovor,
         jezikAplikacije,
         znak: podpitanjeZnak,
-        podznak: podpitanjePodznak,
+        podznak: podznak,
         datumrodjenja: podpitanjeDatum,
         gender: profile?.gender || "other",
       });
@@ -519,6 +520,7 @@ const OdgovorAI = () => {
       // END: DEBUG followup response
 
       if (isNedovoljnoDukata(odgovor)) {
+        try { await refreshCoins?.(); } catch { }
         Toast.show({
           type: "error",
           text1: t('common:errors.notEnoughCoinsTitle', { defaultValue: 'Nedovoljno dukata' }),
@@ -532,6 +534,7 @@ const OdgovorAI = () => {
       }
       setPodpitanjeOdgovor(odgovor);
       await upisiPodpitanjeUArhivu(podpitanje, odgovor);
+      try { await refreshCoins?.(); } catch { }
     } catch (err) {
       Toast.show({
         type: "error",
@@ -737,7 +740,6 @@ const OdgovorAI = () => {
                 )}
 
                 {/* PRO/ProPlus follow-up (gating preko isPro) */}
-                {/* START: PRO/ProPlus follow-up (gating preko isPro) */}
                 {/* {userPlan === "pro" && !podpitanjeOdgovor && aiOdgovor && ( */}
                 {isProTier && !podpitanjeOdgovor && aiOdgovor && (
                   <View style={{ marginTop: 22, backgroundColor: "#332", borderRadius: 12, padding: 12 }}>
@@ -767,19 +769,22 @@ const OdgovorAI = () => {
                       }}
                       editable={!loadingPodpitanje}
                     />
-                    <Button
-                      title={loadingPodpitanje ? t('common:messages.loading') : t('common:buttons.askFollowUp')}
-                      onPress={handlePodpitanje}
-                      disabled={loadingPodpitanje || !podpitanje.trim()}
-                      color="#ffd700"
-                    />
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <Button
+                        title={loadingPodpitanje ? t('common:messages.loading') : t('common:buttons.askFollowUp')}
+                        onPress={handlePodpitanje}
+                        disabled={loadingPodpitanje || !podpitanje.trim()}
+                        color="#ffd700"
+                      />
+                      {loadingPodpitanje && (
+                        <ActivityIndicator style={{ marginLeft: 10 }} color="#ffd700" />
+                      )}
+                    </View>
                   </View>
                 )}
                 {/* )} */}
-                {/* END: PRO/ProPlus follow-up (gating preko isPro) */}
 
                 {/* Info za ne-PRO (tj. !isPro → ni Pro ni ProPlus) */}
-                {/* START: Info za ne-PRO → koristimo !isProTier */}
                 {/* {userPlan !== "pro" && ( */}
                 {!isProTier && (
                   <View style={{ marginTop: 20, alignItems: "center" }}>
@@ -789,7 +794,24 @@ const OdgovorAI = () => {
                   </View>
                 )}
                 {/* )} */}
-                {/* END: Info za ne-PRO → koristimo !isProTier */}
+
+                {/* ⬇️ NOVO: prikaz follow-up rezultata odmah na ovoj stranici */}
+                {(!!podpitanje || !!podpitanjeOdgovor) && (
+                  <View style={styles.followupBox}>
+                    <Text style={styles.followupLabel}>
+                      {t("common:detail.followup", { defaultValue: "Podpitanje:" })}
+                    </Text>
+                    <Text style={styles.followupQ}>{podpitanje || "—"}</Text>
+
+                    <Text style={styles.followupLabel}>
+                      {t("common:detail.followupAnswer", { defaultValue: "Odgovor na podpitanje:" })}
+                    </Text>
+                    <Text style={styles.followupA}>
+                      {podpitanjeOdgovor || t("common:messages.noDescription", { defaultValue: "Nema opisa…" })}
+                    </Text>
+                  </View>
+                )}
+                {/* ⬆️ NOVO */}
               </View>
             </View>
           </ScrollView>
@@ -804,10 +826,15 @@ const styles = StyleSheet.create({
   headerWrapper: {
     zIndex: 99,
     width: "100%",
-    backgroundColor: "rgba(0,0,0,0.86)",
+    backgroundColor: "rgba(0,0,0,0.4)", // ✅ bilo 0.8, sada 0.4
     position: "relative",
   },
-  root: { flex: 1, alignItems: "center", padding: 8, backgroundColor: "transparent" },
+  root: {
+    flex: 1,
+    alignItems: "center",
+    padding: 8,
+    backgroundColor: "rgba(0,0,0,0.5)"
+  },
   avatar: { width: 180, height: 180, borderRadius: 90, marginTop: 36, marginBottom: 12 },
   pitanjeLabel: { fontSize: 21, color: "#ffd700", fontWeight: "bold", marginBottom: 3, marginTop: 16 },
   pitanje: { fontSize: 17, color: "#fff", marginBottom: 18, textAlign: "center", maxWidth: 340 },
@@ -817,8 +844,26 @@ const styles = StyleSheet.create({
     marginTop: 6,
     position: "relative",
   },
-  odgovorBox: { backgroundColor: "#fff1", borderRadius: 14, padding: 14, marginTop: 4, maxWidth: 380, width: "100%" },
+  odgovorBox: {
+    backgroundColor: "#fff1", // ✅ ovo je OK, lagano bela pozadina za box
+    borderRadius: 14,
+    padding: 14,
+    marginTop: 4,
+    maxWidth: 380,
+    width: "100%"
+  },
   listItem: { color: "#fff", fontSize: 14, marginBottom: 3, textAlign: "left" },
-});
 
+  followupBox: {
+    marginTop: 20,
+    backgroundColor: "#ffffff10", // ✅ ovo je OK, lagana pozadina za follow-up
+    borderRadius: 12,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: "#ffffff22",
+  },
+  followupLabel: { color: "#ffd700", fontSize: 15, marginTop: 6, marginBottom: 2, fontWeight: "600" },
+  followupQ: { color: "#fff", fontSize: 15, marginBottom: 6, textAlign: "left" },
+  followupA: { color: "#c9c9c9", fontSize: 15, fontStyle: "italic", textAlign: "left" },
+});
 export default OdgovorAI;

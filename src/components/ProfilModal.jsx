@@ -6,20 +6,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { supabase } from '../utils/supabaseClient';
 
-// START: i18n
 import { useTranslation } from 'react-i18next';
-// END: i18n
-
-// START: plan normalizacija (ProPlus podrška)
 import { normalizePlanCanon } from '../constants/plans';
-// END: plan normalizacija (ProPlus podrška)
 
-// Pol (gender) opcije
-const GENDER_OPCIJE = [
-  { label: 'Muški', value: 'male' },
-  { label: 'Ženski', value: 'female' },
-  { label: 'Drugo', value: 'other' }
-];
+// ✅ IMPORT useDukati za pristup premiumUntil i cancellationScheduled
+import { useDukati } from '../context/DukatiContext';
 
 const ZNAKOVI = [
   { label: '♈ Ovan', value: 'Ovan' },
@@ -49,7 +40,6 @@ const ProfilModal = ({
 }) => {
   const insets = useSafeAreaInsets();
 
-  // START: i18n hook + helpers
   const { t, i18n } = useTranslation(['common']);
   const localeMap = {
     sr: 'sr-RS',
@@ -63,9 +53,10 @@ const ProfilModal = ({
     id: 'id-ID',
   };
   const uiLocale = localeMap[i18n.language?.slice(0, 2)] || 'sr-RS';
-  // END: i18n hook + helpers
 
-  // Lokalni state za astropodatke
+  // ✅ DOBAVI premiumUntil i cancellationScheduled iz context-a
+  const { premiumUntil, cancellationScheduled } = useDukati();
+
   const [datumRodjenja, setDatumRodjenja] = useState(profile?.datumrodjenja ? new Date(profile.datumrodjenja) : null);
   const [prikaziDatePicker, setPrikaziDatePicker] = useState(false);
 
@@ -75,11 +66,9 @@ const ProfilModal = ({
   const [podznak, setPodznak] = useState(profile?.podznak || null);
   const [openPodznak, setOpenPodznak] = useState(false);
 
-  // State za pol (gender)
   const [gender, setGender] = useState(profile?.gender || "male");
   const [openGender, setOpenGender] = useState(false);
 
-  // State za ime
   const [displayName, setDisplayName] = useState(profile?.display_name || "");
 
   useEffect(() => {
@@ -90,7 +79,6 @@ const ProfilModal = ({
     setDisplayName(profile?.display_name || "");
   }, [profile]);
 
-  // START: i18n – items za dropdown-e (ne koristimo hardkodovane konstante)
   const genderOpcijeI18n = [
     { label: t('common:profile.gender.male', { defaultValue: 'Muški' }), value: 'male' },
     { label: t('common:profile.gender.female', { defaultValue: 'Ženski' }), value: 'female' },
@@ -111,13 +99,10 @@ const ProfilModal = ({
     { value: 'Vodolija', label: t('common:astrology.signs.aquarius', { defaultValue: '♒ Vodolija' }) },
     { value: 'Ribe', label: t('common:astrology.signs.pisces', { defaultValue: '♓ Ribe' }) },
   ];
-  // END: i18n – items za dropdown-e
 
   const sacuvajProfil = async () => {
     if (!displayName.trim()) {
-      // START: i18n alert
       alert(t('common:errors.nameRequired', { defaultValue: 'Ime ne može biti prazno!' }));
-      // END: i18n alert
       return;
     }
     const toYMD = (d) =>
@@ -139,39 +124,44 @@ const ProfilModal = ({
       .eq('id', user.id);
 
     if (error) {
-      // START: i18n alert
       alert(t('common:errors.profileSaveFailed', { defaultValue: 'Greška pri čuvanju profila.' }));
-      // END: i18n alert
     } else {
-      // START: i18n alert
       alert(t('common:messages.profileSaved', { defaultValue: 'Profil je sačuvan!' }));
-      // END: i18n alert
       fetchProfile && fetchProfile();
     }
   };
 
-  // Dinamički badge za status
+  // ✅ Status badge sa premium_until datumom (kraća verzija)
   const statusBadge = () => {
-    // START: ProPlus podrška + kanonikalizacija statusa
     const canon = normalizePlanCanon(status);
+
+    // ✅ Kraći format datuma sa strelicom
+    const expiryText = premiumUntil
+      ? ` → ${new Date(premiumUntil).toLocaleDateString(uiLocale, {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric'
+      })}`
+      : '';
+
     if (canon === 'premium') {
       return (
         <Text style={styles.statusBadgePremium}>
-          🟡 {t('common:membership.packages.premium', { defaultValue: 'Premium' })}
+          🟡 {t('common:membership.packages.premium', { defaultValue: 'Premium' })}{expiryText}
         </Text>
       );
     }
     if (canon === 'proplus') {
       return (
         <Text style={styles.statusBadgePro}>
-          🔵 {t('common:membership.packages.proplus', { defaultValue: 'ProPlus' })}
+          🔵 {t('common:membership.packages.proplus', { defaultValue: 'ProPlus' })}{expiryText}
         </Text>
       );
     }
     if (canon === 'pro') {
       return (
         <Text style={styles.statusBadgePro}>
-          🔵 {t('common:membership.packages.pro', { defaultValue: 'Pro' })}
+          🔵 {t('common:membership.packages.pro', { defaultValue: 'Pro' })}{expiryText}
         </Text>
       );
     }
@@ -180,12 +170,10 @@ const ProfilModal = ({
         ⚪ {t('common:membership.packages.free', { defaultValue: 'Free' })}
       </Text>
     );
-    // END: ProPlus podrška + kanonikalizacija statusa
   };
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      {/* START: overlay + kartica sa max visinom i ScrollView */}
       <View style={styles.modalOverlay}>
         <View style={[styles.modalCard, { paddingBottom: 12 + insets.bottom }]}>
           <ScrollView
@@ -197,7 +185,7 @@ const ProfilModal = ({
               {t('common:profile.title', { defaultValue: '👤 Profil' })}
             </Text>
 
-            {/* --- Ime korisnika (edit) --- */}
+            {/* Ime korisnika */}
             <Text style={styles.sectionText}>
               {t('common:profile.nameLabel', { defaultValue: 'Ime:' })}
             </Text>
@@ -222,10 +210,10 @@ const ProfilModal = ({
               />
             </View>
 
+            {/* Coins */}
             <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 14 }}>
               <Text style={styles.sectionText}>
-                {t('common:labels.coins', { defaultValue: t('common:accessibility.coins', { defaultValue: 'Dukati' }) })}
-                :{' '}
+                {t('common:labels.coins', { defaultValue: 'Dukati' })}:{' '}
               </Text>
               {loading ? (
                 <ActivityIndicator color="#facc15" size="small" />
@@ -234,14 +222,15 @@ const ProfilModal = ({
               )}
             </View>
 
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            {/* Status sa premium_until i cancel indikatorom */}
+            <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 14 }}>
               <Text style={styles.sectionText}>
                 {t('common:labels.status', { defaultValue: 'Status:' })}{' '}
               </Text>
               {statusBadge()}
             </View>
 
-            {/* --- Pol korisnika --- */}
+            {/* Pol */}
             <Text style={styles.sectionText}>
               {t('common:profile.gender.label', { defaultValue: 'Pol:' })}
             </Text>
@@ -258,7 +247,7 @@ const ProfilModal = ({
               zIndexInverse={1100}
             />
 
-            {/* --- Astropodaci unos/prikaz --- */}
+            {/* Astropodaci */}
             <View style={{ marginTop: 12, marginBottom: 6 }}>
               <Text style={styles.sectionText}>
                 {t('common:profile.birthDate', { defaultValue: 'Datum rođenja:' })}
@@ -282,9 +271,7 @@ const ProfilModal = ({
                     setPrikaziDatePicker(false);
                   }}
                   onCancel={() => setPrikaziDatePicker(false)}
-                  // START: i18n – dodela locale-a pickeru
                   locale={i18n.language?.slice(0, 2) || 'sr'}
-                // END: i18n – dodela locale-a pickeru
                 />
               )}
 
@@ -349,13 +336,11 @@ const ProfilModal = ({
           </ScrollView>
         </View>
       </View>
-      {/* END: overlay + kartica sa max visinom i ScrollView */}
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  // START: novi layout za modal
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.35)',
@@ -373,7 +358,6 @@ const styles = StyleSheet.create({
     elevation: 12,
     overflow: 'hidden',
   },
-  // END: novi layout za modal
   sectionTitle: {
     color: '#facc15',
     fontSize: 21,
@@ -422,7 +406,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     fontSize: 14,
   },
-  // Dodaj još stilova po potrebi...
 });
 
 export default ProfilModal;

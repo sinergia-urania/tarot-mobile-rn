@@ -1,6 +1,11 @@
 {
   "watchAdForCoins": "Werbung ansehen für Münzen",
   "appName": "Tarot",
+  "promo": {
+    "tryOurNewApp": "Probiere unsere neue App",
+    "storeIos": "Im App Store erhältlich",
+    "storeAndroid": "Bei Google Play herunterladen"
+  },
   "groups": {
     "velika": "Große Arkana",
     "stapovi": "Stäbe",
@@ -40,6 +45,9 @@
     "saveProfile": "Profil speichern",
     "register": "Registrieren",
     "savePassword": "Passwort speichern"
+  },
+  "misc": {
+    "cancel": "Nein"
   },
   "messages": {
     "loading": "Wird geladen...",
@@ -142,7 +150,16 @@
       "guest": "Gast",
       "free": "Gratis",
       "premium": "Premium",
-      "pro": "PRO"
+      "pro": "PRO",
+      "proplus": "ProPlus"
+    },
+    "proplus": {
+      "title": "ProPlus jährlich",
+      "subtitle": "Für Power-User. Keine Limits, keine Werbung.",
+      "pricePerYear": "{{price}} {{currency}} / Jahr",
+      "saveXPercent": "Spare {{percent}}%",
+      "bestOffer": "Bestes Angebot",
+      "coinsIncluded": "{{count}} Münzen inklusive"
     },
     "features": {
       "meanings": "Kartenbedeutungen",
@@ -167,7 +184,16 @@
       "alreadyPremium": "Du hast bereits Premium",
       "buyPremium": "Premium kaufen ({{price}} {{currency}} / Monat)",
       "alreadyPro": "Du hast bereits PRO",
-      "buyPro": "PRO kaufen ({{price}} {{currency}} / Monat)"
+      "buyPro": "PRO kaufen ({{price}} {{currency}} / Monat)",
+      "alreadyProPlus": "Du hast bereits ProPlus",
+      "buyProPlus": "ProPlus kaufen ({{price}} {{currency}} / Jahr)"
+    },
+    "cancel": {
+      "confirmTitle": "Abonnement kündigen?",
+      "confirmBody": "Der Wechsel auf FREE erfolgt sofort. Du kannst dein Abonnement jederzeit erneut abschließen.",
+      "confirmCta": "Ja, kündigen",
+      "cta": "Abonnement kündigen",
+      "scheduled": "Abonnement gekündigt. Du wurdest auf den FREE-Tarif umgestellt."
     },
     "topup": {
       "title": "Münzen aufladen",
@@ -176,6 +202,7 @@
     "toast": {
       "upgradedPremium": "Dein Konto ist jetzt Premium. Du hast {{bonus}} Münzen erhalten!",
       "upgradedPro": "Dein Konto ist jetzt PRO. Du hast {{bonus}} Münzen erhalten!",
+      "upgradedProPlus": "Dein Konto ist jetzt ProPlus. Du hast {{bonus}} Münzen erhalten!",
       "topupDone": "Du hast {{amount}} Münzen erhalten."
     }
   },
@@ -199,7 +226,8 @@
     "modelUnavailable": "Modell nicht verfügbar oder ungültige Anfrage.",
     "upstreamFailed": "KI-Dienst ist vorübergehend nicht verfügbar (Upstream).",
     "aiServiceComm": "Es gab einen Fehler bei der Kommunikation mit dem KI-Dienst.",
-    "edgeTimeout": "Zeitüberschreitung bei der KI-Anfrage. Bitte versuche es erneut."
+    "edgeTimeout": "Zeitüberschreitung bei der KI-Anfrage. Bitte versuche es erneut.",
+    "storeUnavailable": "Store ist nicht verfügbar."
   },
   "dailyCard": {
     "alreadyPicked": "Du hast deine Tageskarte bereits gezogen!",
@@ -241,7 +269,14 @@
     "passwordTooShort": "Das Passwort muss mindestens 8 Zeichen lang sein.",
     "passwordsDontMatch": "Die Passwörter stimmen nicht überein.",
     "passwordUpdated": "Dein Passwort wurde aktualisiert. Melde dich mit dem neuen Passwort an.",
-    "passwordUpdateFailed": "Aktualisieren des Passworts ist fehlgeschlagen."
+    "passwordUpdateFailed": "Aktualisieren des Passworts ist fehlgeschlagen.",
+    "appleSignIn": "Mit Apple anmelden",
+    "appleOpening": "Apple wird geöffnet…",
+    "appleFailed": "Apple-Anmeldung fehlgeschlagen.",
+    "sendMagicLink": "Magic-Link senden",
+    "magicLinkSent": "Wir haben dir einen Magic-Link geschickt. Öffne die E-Mail auf diesem Gerät.",
+    "magicLinkFailed": "Senden des Magic-Links ist fehlgeschlagen.",
+    "resetTryAgainIn": "Versuche es in {{s}} s erneut"
   },
   "ads": {
     "errorTitle": "Werbungsfehler!",
@@ -273,6 +308,9 @@
     }
   },
   "home": {
+    "welcome": "Willkommen",
+    "user": "Benutzer",
+    "astroHintPremium": "✨ Premium/Pro-Mitglieder: Füge dein Sternzeichen und deinen Aszendenten im Profil hinzu, um astrologische Einsichten zu erhalten",
     "menu": {
       "profile": "Profil",
       "settings": "Einstellungen",

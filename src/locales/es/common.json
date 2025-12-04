@@ -1,6 +1,11 @@
 {
   "watchAdForCoins": "Ver un anuncio por monedas",
   "appName": "Tarot",
+  "promo": {
+    "tryOurNewApp": "Prueba nuestra nueva app",
+    "storeIos": "Disponible en el App Store",
+    "storeAndroid": "Consíguelo en Google Play"
+  },
   "groups": {
     "velika": "Arcanos Mayores",
     "stapovi": "Bastos",
@@ -40,6 +45,9 @@
     "saveProfile": "Guardar perfil",
     "register": "Registrarse",
     "savePassword": "Guardar contraseña"
+  },
+  "misc": {
+    "cancel": "No"
   },
   "messages": {
     "loading": "Cargando...",
@@ -142,7 +150,16 @@
       "guest": "Invitado",
       "free": "Free",
       "premium": "Premium",
-      "pro": "Pro"
+      "pro": "Pro",
+      "proplus": "ProPlus"
+    },
+    "proplus": {
+      "title": "ProPlus anual",
+      "subtitle": "Para usuarios avanzados. Sin límites, sin anuncios.",
+      "pricePerYear": "{{price}} {{currency}} / año",
+      "saveXPercent": "Ahorra {{percent}}%",
+      "bestOffer": "Mejor oferta",
+      "coinsIncluded": "{{count}} monedas incluidas"
     },
     "features": {
       "meanings": "Significados de cartas",
@@ -167,7 +184,16 @@
       "alreadyPremium": "Ya tienes Premium",
       "buyPremium": "Comprar Premium ({{price}} {{currency}} / mes)",
       "alreadyPro": "Ya tienes PRO",
-      "buyPro": "Comprar PRO ({{price}} {{currency}} / mes)"
+      "buyPro": "Comprar PRO ({{price}} {{currency}} / mes)",
+      "alreadyProPlus": "Ya tienes ProPlus",
+      "buyProPlus": "Comprar ProPlus ({{price}} {{currency}} / año)"
+    },
+    "cancel": {
+      "confirmTitle": "¿Cancelar la suscripción?",
+      "confirmBody": "Cambiar a FREE será inmediato. Puedes suscribirte de nuevo en cualquier momento.",
+      "confirmCta": "Sí, cancelar",
+      "cta": "Cancelar suscripción",
+      "scheduled": "Suscripción cancelada. Has pasado al plan FREE."
     },
     "topup": {
       "title": "Recargar monedas",
@@ -176,6 +202,7 @@
     "toast": {
       "upgradedPremium": "Tu cuenta ahora es Premium. ¡Has recibido {{bonus}} monedas!",
       "upgradedPro": "Tu cuenta ahora es PRO. ¡Has recibido {{bonus}} monedas!",
+      "upgradedProPlus": "Tu cuenta ahora es ProPlus. ¡Has recibido {{bonus}} monedas!",
       "topupDone": "Has recibido {{amount}} monedas."
     }
   },
@@ -199,7 +226,8 @@
     "modelUnavailable": "Modelo no disponible o solicitud no válida.",
     "upstreamFailed": "El servicio de IA no está disponible temporalmente (upstream).",
     "aiServiceComm": "Hubo un error al comunicarse con el servicio de IA.",
-    "edgeTimeout": "La solicitud a la IA agotó el tiempo. Inténtalo de nuevo."
+    "edgeTimeout": "La solicitud a la IA agotó el tiempo. Inténtalo de nuevo.",
+    "storeUnavailable": "La tienda no está disponible."
   },
   "dailyCard": {
     "alreadyPicked": "¡Ya has elegido tu carta del día!",
@@ -241,7 +269,14 @@
     "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
     "passwordsDontMatch": "Las contraseñas no coinciden.",
     "passwordUpdated": "Tu contraseña ha sido actualizada. Inicia sesión con la nueva contraseña.",
-    "passwordUpdateFailed": "Error al actualizar la contraseña."
+    "passwordUpdateFailed": "Error al actualizar la contraseña.",
+    "appleSignIn": "Iniciar sesión con Apple",
+    "appleOpening": "Abriendo Apple…",
+    "appleFailed": "Falló el inicio de sesión con Apple.",
+    "sendMagicLink": "Enviar enlace mágico",
+    "magicLinkSent": "Hemos enviado un enlace mágico. Abre el correo en este dispositivo.",
+    "magicLinkFailed": "No se pudo enviar el enlace mágico.",
+    "resetTryAgainIn": "Inténtalo de nuevo en {{s}} s"
   },
   "ads": {
     "errorTitle": "¡Error de anuncio!",
@@ -273,6 +308,9 @@
     }
   },
   "home": {
+    "welcome": "Bienvenido",
+    "user": "Usuario",
+    "astroHintPremium": "✨ Miembros Premium/Pro: añade tu signo zodiacal y ascendente en Perfil para obtener información astrológica",
     "menu": {
       "profile": "Perfil",
       "settings": "Configuración",

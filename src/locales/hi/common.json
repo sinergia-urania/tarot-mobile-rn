@@ -1,6 +1,11 @@
 {
   "watchAdForCoins": "कॉइन्स के लिए विज्ञापन देखें",
   "appName": "टैरो",
+  "promo": {
+    "tryOurNewApp": "हमारी नई ऐप आज़माएँ",
+    "storeIos": "App Store पर उपलब्ध",
+    "storeAndroid": "Google Play से डाउनलोड करें"
+  },
   "groups": {
     "velika": "मेजर आर्काना",
     "stapovi": "वैंड्स",
@@ -40,6 +45,9 @@
     "saveProfile": "प्रोफ़ाइल सहेजें",
     "register": "साइन अप",
     "savePassword": "पासवर्ड सेव करें"
+  },
+  "misc": {
+    "cancel": "नहीं"
   },
   "messages": {
     "loading": "लोड हो रहा है...",
@@ -142,7 +150,16 @@
       "guest": "गेस्ट",
       "free": "फ्री",
       "premium": "प्रीमियम",
-      "pro": "PRO"
+      "pro": "PRO",
+      "proplus": "ProPlus"
+    },
+    "proplus": {
+      "title": "ProPlus वार्षिक",
+      "subtitle": "पावर यूज़र्स के लिए। बिना लिमिट, बिना विज्ञापन।",
+      "pricePerYear": "{{price}} {{currency}} / वर्ष",
+      "saveXPercent": "{{percent}}% बचत करें",
+      "bestOffer": "सबसे बढ़िया ऑफ़र",
+      "coinsIncluded": "{{count}} कॉइन्स शामिल"
     },
     "features": {
       "meanings": "कार्ड अर्थ",
@@ -167,7 +184,16 @@
       "alreadyPremium": "आपके पास पहले से Premium है",
       "buyPremium": "Premium खरीदें ({{price}} {{currency}} / माह)",
       "alreadyPro": "आप पहले से PRO हैं",
-      "buyPro": "PRO खरीदें ({{price}} {{currency}} / माह)"
+      "buyPro": "PRO खरीदें ({{price}} {{currency}} / माह)",
+      "alreadyProPlus": "आपके पास पहले से ProPlus है",
+      "buyProPlus": "ProPlus खरीदें ({{price}} {{currency}} / वर्ष)"
+    },
+    "cancel": {
+      "confirmTitle": "सदस्यता रद्द करें?",
+      "confirmBody": "FREE प्लान पर स्विच तुरंत हो जाएगा। आप किसी भी समय फिर से सदस्यता ले सकते हैं।",
+      "confirmCta": "हाँ, रद्द करें",
+      "cta": "सदस्यता रद्द करें",
+      "scheduled": "सदस्यता रद्द कर दी गई है। आपको FREE प्लान पर स्विच कर दिया गया है।"
     },
     "topup": {
       "title": "कॉइन्स टॉप-अप",
@@ -176,6 +202,7 @@
     "toast": {
       "upgradedPremium": "आपका अकाउंट अब Premium है। आपको {{bonus}} कॉइन्स मिले!",
       "upgradedPro": "आपका अकाउंट अब PRO है। आपको {{bonus}} कॉइन्स मिले!",
+      "upgradedProPlus": "आपका अकाउंट अब ProPlus है। आपको {{bonus}} कॉइन्स मिले!",
       "topupDone": "आपको {{amount}} कॉइन्स प्राप्त हुए।"
     }
   },
@@ -199,7 +226,8 @@
     "modelUnavailable": "मॉडल उपलब्ध नहीं या अनुरोध अमान्य है।",
     "upstreamFailed": "AI सेवा अस्थायी रूप से उपलब्ध नहीं (अपस्ट्रीम)।",
     "aiServiceComm": "AI सेवा से संचार में त्रुटि हुई।",
-    "edgeTimeout": "AI अनुरोध का समय समाप्त। कृपया फिर कोशिश करें।"
+    "edgeTimeout": "AI अनुरोध का समय समाप्त। कृपया फिर कोशिश करें।",
+    "storeUnavailable": "स्टोर उपलब्ध नहीं है।"
   },
   "dailyCard": {
     "alreadyPicked": "आप आज की कार्ड पहले ही चुन चुके हैं!",
@@ -241,7 +269,14 @@
     "passwordTooShort": "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए।",
     "passwordsDontMatch": "पासवर्ड मेल नहीं खाते।",
     "passwordUpdated": "आपका पासवर्ड अपडेट हो गया है। कृपया नए पासवर्ड से साइन इन करें।",
-    "passwordUpdateFailed": "पासवर्ड अपडेट असफल रहा।"
+    "passwordUpdateFailed": "पासवर्ड अपडेट असफल रहा।",
+    "appleSignIn": "Apple से साइन इन",
+    "appleOpening": "Apple खुल रहा है…",
+    "appleFailed": "Apple साइन-इन विफल।",
+    "sendMagicLink": "मैजिक लिंक भेजें",
+    "magicLinkSent": "हमने मैजिक लिंक भेजा है। इस डिवाइस पर ईमेल खोलें।",
+    "magicLinkFailed": "मैजिक लिंक भेजना विफल रहा।",
+    "resetTryAgainIn": "{{s}}s में फिर कोशिश करें"
   },
   "ads": {
     "errorTitle": "विज्ञापन त्रुटि!",
@@ -273,6 +308,9 @@
     }
   },
   "home": {
+    "welcome": "स्वागत है",
+    "user": "उपयोगकर्ता",
+    "astroHintPremium": "✨ Premium/Pro सदस्य: ज्योतिषीय इनसाइट्स के लिए प्रोफ़ाइल में अपनी राशि और लग्न जोड़ें",
     "menu": {
       "profile": "प्रोफ़ाइल",
       "settings": "सेटिंग्स",

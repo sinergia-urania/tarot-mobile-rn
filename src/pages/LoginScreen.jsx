@@ -1,9 +1,9 @@
-// src/pages/LoginScreen.jsx
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
+  Image,
   StyleSheet,
   Text,
   TextInput,
@@ -12,41 +12,48 @@ import {
 } from "react-native";
 import { useAuth } from "../context/AuthProvider";
 import { useDukati } from "../context/DukatiContext";
-import { loginWithFacebook, loginWithGoogle } from "../utils/oauthProxy";
+// START: import Apple login iz oauthProxy
+import { loginWithApple, loginWithFacebook, loginWithGoogle } from "../utils/oauthProxy";
+// END: import Apple login iz oauthProxy
 import { supabase } from "../utils/supabaseClient";
-// START: import za deep link/redirect za reset lozinke
+// START: import za deep link/redirect (ostaje jer ga koristimo i za fallback)
 import * as Linking from "expo-linking";
-// END: import za deep link/redirect za reset lozinke
+// END: import za deep link/redirect
 
 // i18n
 import { useTranslation } from "react-i18next";
+// START: ikone za dugmad (Expo)
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+// END: ikone za dugmad
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const { t } = useTranslation(["common"]);
 
-  // START: recovery-aware – uzmi recoveryActive iz AuthProvider-a
-  const { user, login, register, recoveryActive } = useAuth();
+  // START: recovery-aware – sada uzimamo samo recoveryActive (klasični login/register uklonjeni)
+  const { user, recoveryActive } = useAuth();
   // END: recovery-aware
 
   const { refreshUserPlan, fetchDukatiSaServera } = useDukati();
 
   const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // START: uklonjen password state (prelaz na magic link)
+  // const [password, setPassword] = useState("");
+  // END: uklonjen password state
   const [displayName, setDisplayName] = useState("");
   const [loading, setLoading] = useState(false);
   const [oauthBusy, setOauthBusy] = useState(false);
   const hasSyncedRef = useRef(false);
 
-  // START: reset-email rate limit cooldown (90s)
-  const [resetCooldown, setResetCooldown] = useState(0); // sekunde
+  // START: magic-link rate limit cooldown (60s)
+  const [magicCooldown, setMagicCooldown] = useState(0); // sekunde
   useEffect(() => {
-    if (resetCooldown <= 0) return;
-    const id = setInterval(() => setResetCooldown((s) => (s > 0 ? s - 1 : 0)), 1000);
+    if (magicCooldown <= 0) return;
+    const id = setInterval(() => setMagicCooldown((s) => (s > 0 ? s - 1 : 0)), 1000);
     return () => clearInterval(id);
-  }, [resetCooldown]);
-  // END: reset-email rate limit cooldown (90s)
+  }, [magicCooldown]);
+  // END: magic-link rate limit cooldown (60s)
 
   // Kad se pojavi user iz AuthProvider-a → sync i zatvori modal (uz guard)
   useEffect(() => {
@@ -79,45 +86,6 @@ const LoginScreen = () => {
     };
     run();
   }, [user?.id]);
-
-  const handleLogin = async () => {
-    setLoading(true);
-    try {
-      await login(email, password);
-    } catch (err) {
-      Alert.alert(
-        t("common:errors.genericTitle", { defaultValue: "Greška" }),
-        err?.message || t("common:auth.loginFailed", { defaultValue: "Neuspešna prijava." })
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleRegister = async () => {
-    if (!displayName.trim()) {
-      Alert.alert(
-        t("common:errors.genericTitle", { defaultValue: "Greška" }),
-        t("common:errors.nameRequired", { defaultValue: "Ime ne može biti prazno!" })
-      );
-      return;
-    }
-    setLoading(true);
-    try {
-      await register(email, password, displayName);
-      Alert.alert(
-        t("common:messages.successTitle", { defaultValue: "Uspeh!" }),
-        t("common:auth.checkEmail", { defaultValue: "Proverite email i potvrdite nalog." })
-      );
-    } catch (err) {
-      Alert.alert(
-        t("common:errors.genericTitle", { defaultValue: "Greška" }),
-        err?.message || t("common:auth.registerFailed", { defaultValue: "Neuspešna registracija." })
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleGoogleLogin = async () => {
     if (oauthBusy) return;
@@ -157,8 +125,38 @@ const LoginScreen = () => {
     }
   };
 
-  // START: handleForgotPassword (1 pokušaj + NO fallback; stop na rate-limit)
-  const handleForgotPassword = async () => {
+  // START: Apple login handler (OAuth preko Supabase-a, WebBrowser + deep link "auth")
+  const handleAppleLogin = async () => {
+    if (oauthBusy) return;
+    setOauthBusy(true);
+    try {
+      const ok = await loginWithApple();
+      if (ok) {
+        // best-effort: čekaj da Supabase signalizira SIGNED_IN
+        for (let i = 0; i < 12; i++) {
+          const { data } = await supabase.auth.getUser();
+          if (data?.user) break;
+          await new Promise((r) => setTimeout(r, 150));
+        }
+      }
+    } catch (err) {
+      Alert.alert(
+        t("common:errors.genericTitle", { defaultValue: "Greška" }),
+        err?.message || t("common:auth.appleFailed", { defaultValue: "Apple prijava nije uspela." })
+      );
+    } finally {
+      setTimeout(() => setOauthBusy(false), 2000);
+    }
+  };
+  // END: Apple login handler
+
+  // START: MAGIC_LINK – šalji link na tvoj web redirect (Varijanta B) pa u app
+  // Ako postoji EXPO_PUBLIC_WEB_REDIRECT_URL u .env (npr. https://infohelm.org/auth-redirect-v3.html),
+  // koristi ga; inače fallback na direktni deeplink.
+  const MAGIC_REDIRECT =
+    process.env.EXPO_PUBLIC_WEB_REDIRECT_URL || Linking.createURL("auth"); // fallback: com.mare82.tarotmobile://auth
+
+  const handleSendMagicLink = async () => {
     if (!email?.trim()) {
       Alert.alert(
         t("common:errors.genericTitle", { defaultValue: "Greška" }),
@@ -166,57 +164,48 @@ const LoginScreen = () => {
       );
       return;
     }
-    if (resetCooldown > 0) return; // cooldown aktivan
-    const target = email.trim();
-
-    // START: jedinstveni ulaz (usklađeno sa linking config-om): scheme://auth?type=recovery
-    // (Ako želiš direktno ResetPassword: "reset-password?type=recovery")
-    const appRedirect = Linking.createURL("auth?type=recovery");
-    // END: jedinstveni ulaz
-
+    if (magicCooldown > 0) return; // cooldown aktivan
+    const target = email.trim().toLowerCase();
     try {
-      console.log("[RESET] A) appRedirect", { target, appRedirect, ts: Date.now() });
-      let { data, error } = await supabase.auth.resetPasswordForEmail(target, { redirectTo: appRedirect });
-      console.log("[RESET] A) result", { data, err: error?.message, code: error?.code, name: error?.name });
-      if (!error) {
-        Alert.alert(
-          t("common:messages.successTitle", { defaultValue: "Uspeh!" }),
-          t("common:auth.resetEmailSent", {
-            defaultValue: "Ako nalog postoji, poslali smo email sa uputstvima za reset lozinke.",
-          })
-        );
-        return;
-      }
-
-      // Ako je rate-limit – odmah stani i upali cooldown (90s)
-      const msg = (error?.message || "").toLowerCase();
-      const code = (error?.code || "").toLowerCase();
-      const isRate = msg.includes("rate") || code.includes("rate") || code.includes("over_email_send_rate_limit");
-      if (isRate) {
-        setResetCooldown(90);
-        Alert.alert(
-          t("common:messages.infoTitle", { defaultValue: "Info" }),
-          t("common:auth.resetRateLimit", { defaultValue: "Previše zahteva. Pokušaj ponovo za ~1–2 minuta." })
-        );
-        return;
-      }
-
-      // NEMA više fallbacka bez redirectTo — to bi poslalo pogrešan https link iz Supabase-a
-
-      // Ako nije redirect greška – digni originalnu grešku
-      throw error;
+      setLoading(true);
+      const { error } = await supabase.auth.signInWithOtp({
+        email: target,
+        options: {
+          emailRedirectTo: MAGIC_REDIRECT,
+          // shouldCreateUser: true (podrazumevano) – kreira nalog ako ne postoji
+        },
+      });
+      if (error) throw error;
+      setMagicCooldown(60);
+      Alert.alert(
+        t("common:messages.successTitle", { defaultValue: "Uspeh!" }),
+        t("common:auth.magicLinkSent", {
+          defaultValue: "Poslali smo ti magični link. Otvori email na ovom uređaju.",
+        })
+      );
     } catch (err) {
-      console.log("[RESET] FINAL ERROR", { msg: err?.message, code: err?.code, name: err?.name });
       Alert.alert(
         t("common:errors.genericTitle", { defaultValue: "Greška" }),
-        err?.message || t("common:auth.resetEmailFailed", { defaultValue: "Slanje emaila nije uspelo." })
+        err?.message || t("common:auth.magicLinkFailed", { defaultValue: "Slanje magičnog linka nije uspelo." })
       );
+    } finally {
+      setLoading(false);
     }
   };
-  // END: handleForgotPassword (1 pokušaj + NO fallback; stop na rate-limit)
+  // END: MAGIC_LINK
 
   return (
     <View style={styles.container}>
+      {/* START: header sa avatarom i dobrodošlicom */}
+      <View style={styles.header}>
+        {/* START: avatar slika iz /assets/una.png */}
+        <Image source={require("../../assets/una.png")} style={styles.avatarImg} />
+        {/* END: avatar slika iz /assets/una.png */}
+        <Text style={styles.welcome}>Welcome</Text>
+        <Text style={styles.subtitle}>Sign in to continue</Text>
+      </View>
+      {/* END: header sa avatarom i dobrodošlicom */}
+
       <Text style={styles.title}>
         {isRegister
           ? t("common:auth.registerTitle", { defaultValue: "Registracija" })
@@ -243,43 +232,37 @@ const LoginScreen = () => {
         autoCapitalize="none"
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder={t("common:placeholders.enterPassword", { defaultValue: "Lozinka" })}
-        placeholderTextColor="#aaa"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-
-      {/* START: Forgot password link (sa cooldown-om) */}
-      <TouchableOpacity
-        onPress={handleForgotPassword}
-        style={{ alignSelf: "flex-end", marginBottom: 8, opacity: resetCooldown > 0 ? 0.6 : 1 }}
-        disabled={resetCooldown > 0}
-      >
-        <Text style={{ color: "#9aa4ff", fontSize: 13 }}>
-          {resetCooldown > 0
-            ? t("common:auth.resetTryAgainIn", { defaultValue: `Pokušaj ponovo za ${resetCooldown}s` })
-            : t("common:auth.forgotPassword", { defaultValue: "Zaboravljena lozinka?" })}
-        </Text>
-      </TouchableOpacity>
-      {/* END: Forgot password link (sa cooldown-om) */}
-
       {loading ? (
         <ActivityIndicator color="#facc15" style={{ marginTop: 16 }} />
       ) : (
         <>
           <TouchableOpacity
             style={[styles.button, (loading || oauthBusy) && { opacity: 0.7 }]}
-            onPress={isRegister ? handleRegister : handleLogin}
-            disabled={loading || oauthBusy}
+            // START: glavno dugme sada šalje magic link
+            onPress={handleSendMagicLink}
+            // END: glavno dugme sada šalje magic link
+            disabled={loading || oauthBusy || magicCooldown > 0}
           >
-            <Text style={styles.buttonText}>
-              {isRegister
-                ? t("common:buttons.register", { defaultValue: "Registruj se" })
-                : t("common:buttons.login", { defaultValue: "Prijavi se" })}
-            </Text>
+            <View style={styles.btnRow}>
+              <MaterialCommunityIcons
+                name="email-send-outline"
+                size={20}
+                color="#0b1026"
+                style={{ marginRight: 8 }}
+              />
+              <Text style={styles.buttonText}>
+                {/* START: tekst dugmeta za magic link */}
+                {magicCooldown > 0
+                  // START: i18n interpolacija za odbrojavanje
+                  ? t("common:auth.resetTryAgainIn", {
+                    s: magicCooldown,
+                    defaultValue: `Pokušaj ponovo za ${magicCooldown}s`,
+                  })
+                  // END: i18n interpolacija
+                  : t("common:auth.sendMagicLink", { defaultValue: "Pošalji magični link" })}
+                {/* END: tekst dugmeta za magic link */}
+              </Text>
+            </View>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -287,11 +270,14 @@ const LoginScreen = () => {
             onPress={handleGoogleLogin}
             disabled={loading || oauthBusy}
           >
-            <Text style={styles.gButtonText}>
-              {oauthBusy
-                ? t("common:auth.googleOpening", { defaultValue: "Otvaram Google..." })
-                : t("common:auth.googleSignIn", { defaultValue: "Prijava preko Google-a" })}
-            </Text>
+            <View style={styles.btnRow}>
+              <FontAwesome name="google" size={20} color="#fff" style={{ marginRight: 8 }} />
+              <Text style={styles.gButtonText}>
+                {oauthBusy
+                  ? t("common:auth.googleOpening", { defaultValue: "Otvaram Google..." })
+                  : t("common:auth.googleSignIn", { defaultValue: "Prijava preko Google-a" })}
+              </Text>
+            </View>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -299,12 +285,32 @@ const LoginScreen = () => {
             onPress={handleFacebookLogin}
             disabled={loading || oauthBusy}
           >
-            <Text style={styles.fbButtonText}>
-              {oauthBusy
-                ? t("common:auth.facebookOpening", { defaultValue: "Otvaram Facebook..." })
-                : t("common:auth.facebookSignIn", { defaultValue: "Prijava preko Facebook-a" })}
-            </Text>
+            <View style={styles.btnRow}>
+              <FontAwesome name="facebook" size={20} color="#fff" style={{ marginRight: 8 }} />
+              <Text style={styles.fbButtonText}>
+                {oauthBusy
+                  ? t("common:auth.facebookOpening", { defaultValue: "Otvaram Facebook..." })
+                  : t("common:auth.facebookSignIn", { defaultValue: "Prijava preko Facebook-a" })}
+              </Text>
+            </View>
           </TouchableOpacity>
+
+          {/* START: Apple dugme */}
+          <TouchableOpacity
+            style={[styles.appleButton, (loading || oauthBusy) && { opacity: 0.6 }]}
+            onPress={handleAppleLogin}
+            disabled={loading || oauthBusy}
+          >
+            <View style={styles.btnRow}>
+              <FontAwesome name="apple" size={20} color="#fff" style={{ marginRight: 8 }} />
+              <Text style={styles.appleButtonText}>
+                {oauthBusy
+                  ? t("common:auth.appleOpening", { defaultValue: "Otvaram Apple..." })
+                  : t("common:auth.appleSignIn", { defaultValue: "Prijava preko Apple-a" })}
+              </Text>
+            </View>
+          </TouchableOpacity>
+          {/* END: Apple dugme */}
 
           <TouchableOpacity
             style={{ marginTop: 20 }}
@@ -332,6 +338,31 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#0b1026", padding: 24, paddingTop: 60 },
+  // START: header stilovi
+  header: { alignItems: "center", marginBottom: 16 },
+  avatarImg: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    marginBottom: 8,
+    borderWidth: 2,
+    borderColor: "#1f2a5a",
+  },
+  avatarFallback: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    marginBottom: 8,
+    backgroundColor: "#131a3a",
+    borderWidth: 2,
+    borderColor: "#1f2a5a",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  avatarLetter: { color: "#9aa4ff", fontSize: 28, fontWeight: "800" },
+  welcome: { color: "#fff", fontSize: 20, fontWeight: "700", marginTop: 2 },
+  subtitle: { color: "#9aa4ff", fontSize: 13, marginTop: 2 },
+  // END: header stilovi
   title: { color: "#fff", fontSize: 22, fontWeight: "700", marginBottom: 16 },
   input: {
     backgroundColor: "#131a3a",
@@ -350,6 +381,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 6,
   },
+  // START: horizontalni raspored ikona + tekst
+  btnRow: { flexDirection: "row", alignItems: "center", justifyContent: "center" },
+  // END: horizontalni raspored ikona + tekst
   buttonText: { color: "#0b1026", fontWeight: "700", fontSize: 16 },
   gButton: {
     backgroundColor: "#ffffff10",
@@ -369,6 +403,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   fbButtonText: { color: "#fff", fontWeight: "600" },
+  // START: Apple stil – crni, sivi obrub, belo slovo
+  appleButton: {
+    backgroundColor: "#000",
+    borderColor: "#333",
+    borderWidth: 1,
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  appleButtonText: { color: "#fff", fontWeight: "600" },
+  // END: Apple stil
   toggleBtn: { marginTop: 18, alignItems: "center" },
   toggleText: { color: "#9aa4ff" },
 });
