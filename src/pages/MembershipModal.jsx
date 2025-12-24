@@ -24,6 +24,27 @@ import { supabase } from '../utils/supabaseClient';
 // Fallback bonus vrednosti
 const PAKET_BONUSI = { free: 150, premium: 4000, pro: 6500, proplus: 70000 };
 
+// === SKU mapping za Play Billing ===
+const SKU_MAP = {
+  premium: 'tarot_premium_monthly',
+  pro: 'tarot_pro_monthly',
+  proplus: 'tarot_proplus_annual',
+  topup500: 'tarot_coins_500',
+  topup1000: 'tarot_coins_1000',
+};
+
+// === Helper za lokalizovanu cenu iz Play Billing-a ===
+const getFormattedStorePrice = (product) => {
+  if (!product) return null;
+  return (
+    product.localizedPrice ||
+    product.priceString ||
+    product.subscriptionOfferDetails?.[0]?.pricingPhases?.pricingPhaseList?.[0]?.formattedPrice ||
+    product.oneTimePurchaseOfferDetails?.formattedPrice ||
+    (product.price != null && product.currency ? `${product.price} ${product.currency}` : null)
+  );
+};
+
 // Packages definition
 const packages = [
   {
@@ -141,7 +162,7 @@ const packages = [
 export default function MembershipModal({ visible, onClose }) {
   const { t } = useTranslation(['common']);
   const { userId, userPlan, fetchDukatiSaServera, refreshUserPlan } = useDukati();
-  const { iapReady, devMode, startPlanPurchase, startTopupPurchase } = useTarotIAP();
+  const { iapReady, devMode, startPlanPurchase, startTopupPurchase, products } = useTarotIAP();
 
   const [loadingPlanKey, setLoadingPlanKey] = React.useState(null);
   const [loadingTopUp, setLoadingTopUp] = React.useState(false);
@@ -479,7 +500,8 @@ export default function MembershipModal({ visible, onClose }) {
                                             userPlan === 'proplus' ? 'tarot_proplus_annual' : null;
 
                                       if (currentSku) {
-                                        const url = `https://play.google.com/store/account/subscriptions?sku=${currentSku}&package=com.mare82.tarotmobile`;
+                                        const url = `https://play.google.com/store/account/subscriptions?sku=${currentSku}&package=com.mare82.unatarot`;
+
                                         Linking.openURL(url).catch(err => {
                                           console.warn('Failed to open Play subscriptions:', err);
                                         });
@@ -548,11 +570,14 @@ export default function MembershipModal({ visible, onClose }) {
                               ? t('common:membership.cta.alreadyPremium', {
                                 defaultValue: 'Već imate Premium',
                               })
-                              : t('common:membership.cta.buyPremium', {
-                                price: PRICE.premium.amount,
-                                currency: PRICE.premium.currency,
-                                defaultValue: 'Kupi Premium ({{price}} {{currency}} / mesec)',
-                              })}
+                              : (() => {
+                                  // === GOOGLE PLAY LOKALIZOVANA CENA ===
+                                  const premiumProduct = products?.find(p => p.productId === SKU_MAP.premium);
+                                  const premiumPrice = getFormattedStorePrice(premiumProduct);
+                                  return premiumPrice
+                                    ? `Kupi Premium (${premiumPrice} / mesec)`
+                                    : t('common:membership.cta.buyPremium', { defaultValue: 'Kupi Premium' });
+                                })()}
                           </Text>
                         )}
                       </TouchableOpacity>
@@ -585,11 +610,14 @@ export default function MembershipModal({ visible, onClose }) {
                               ? t('common:membership.cta.alreadyPro', {
                                 defaultValue: 'Već imate PRO',
                               })
-                              : t('common:membership.cta.buyPro', {
-                                price: PRICE.pro.amount,
-                                currency: PRICE.pro.currency,
-                                defaultValue: 'Kupi PRO ({{price}} {{currency}} / mesec)',
-                              })}
+                              : (() => {
+                                  // === GOOGLE PLAY LOKALIZOVANA CENA ===
+                                  const proProduct = products?.find(p => p.productId === SKU_MAP.pro);
+                                  const proPrice = getFormattedStorePrice(proProduct);
+                                  return proPrice
+                                    ? `Kupi PRO (${proPrice} / mesec)`
+                                    : t('common:membership.cta.buyPro', { defaultValue: 'Kupi PRO' });
+                                })()}
                           </Text>
                         )}
                       </TouchableOpacity>
@@ -622,11 +650,14 @@ export default function MembershipModal({ visible, onClose }) {
                               ? t('common:membership.cta.alreadyProPlus', {
                                 defaultValue: 'Već imate ProPlus',
                               })
-                              : t('common:membership.cta.buyProPlus', {
-                                price: PRICE.proplus.amount,
-                                currency: PRICE.proplus.currency,
-                                defaultValue: 'Kupi ProPlus ({{price}} {{currency}} / godinu)',
-                              })}
+                              : (() => {
+                                  // === GOOGLE PLAY LOKALIZOVANA CENA ===
+                                  const proplusProduct = products?.find(p => p.productId === SKU_MAP.proplus);
+                                  const proplusPrice = getFormattedStorePrice(proplusProduct);
+                                  return proplusPrice
+                                    ? `Kupi ProPlus (${proplusPrice} / godinu)`
+                                    : t('common:membership.cta.buyProPlus', { defaultValue: 'Kupi ProPlus' });
+                                })()}
                           </Text>
                         )}
                       </TouchableOpacity>
@@ -675,12 +706,14 @@ export default function MembershipModal({ visible, onClose }) {
                 <ActivityIndicator color="#222" size="small" />
               ) : (
                 <Text style={{ color: '#222', fontWeight: 'bold', fontSize: 18 }}>
-                  {t('common:membership.topup.buyCoins', {
-                    amount: 500,
-                    price: PRICE.topup500.amount,
-                    currency: PRICE.topup500.currency,
-                    defaultValue: 'Kupi {{amount}} dukata — {{price}} {{currency}}',
-                  })}
+                  {(() => {
+                    // === GOOGLE PLAY LOKALIZOVANA CENA ===
+                    const topup500Product = products?.find(p => p.productId === SKU_MAP.topup500);
+                    const topup500Price = getFormattedStorePrice(topup500Product);
+                    return topup500Price
+                      ? `Kupi 500 dukata — ${topup500Price}`
+                      : t('common:membership.topup.buyCoins', { amount: 500, defaultValue: 'Kupi 500 dukata' });
+                  })()}
                 </Text>
               )}
             </TouchableOpacity>
@@ -703,12 +736,14 @@ export default function MembershipModal({ visible, onClose }) {
                 <ActivityIndicator color="#222" size="small" />
               ) : (
                 <Text style={{ color: '#222', fontWeight: 'bold', fontSize: 18 }}>
-                  {t('common:membership.topup.buyCoins', {
-                    amount: 1000,
-                    price: PRICE.topup1000.amount,
-                    currency: PRICE.topup1000.currency,
-                    defaultValue: 'Kupi {{amount}} dukata — {{price}} {{currency}}',
-                  })}
+                  {(() => {
+                    // === GOOGLE PLAY LOKALIZOVANA CENA ===
+                    const topup1000Product = products?.find(p => p.productId === SKU_MAP.topup1000);
+                    const topup1000Price = getFormattedStorePrice(topup1000Product);
+                    return topup1000Price
+                      ? `Kupi 1000 dukata — ${topup1000Price}`
+                      : t('common:membership.topup.buyCoins', { amount: 1000, defaultValue: 'Kupi 1000 dukata' });
+                  })()}
                 </Text>
               )}
             </TouchableOpacity>

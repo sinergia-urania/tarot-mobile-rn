@@ -96,6 +96,39 @@ const Podesavanja = () => {
 
   const [savingAll, setSavingAll] = useState(false); // ⬅️ novo: indikator za "Sačuvaj"
 
+  const [deleting, setDeleting] = useState(false);
+
+  const doDeleteAccount = async () => {
+    if (deleting) return;
+    setDeleting(true);
+    try {
+      // Edge Function: delete-account (server-side account deletion)
+      const { error } = await supabase.functions.invoke('delete-account', { body: {} });
+      if (error) throw error;
+
+      // Best effort sign-out (session will be invalid after deletion anyway)
+      try { await supabase.auth.signOut(); } catch { }
+
+      Alert.alert('Account deleted', 'Your account has been deleted.');
+    } catch (e) {
+      Alert.alert('Delete failed', e?.message || String(e));
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const confirmDeleteAccount = () => {
+    Alert.alert(
+      'Delete account?',
+      'This will permanently delete your account and all associated data. This cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: deleting ? 'Deleting…' : 'Delete', style: 'destructive', onPress: doDeleteAccount },
+      ]
+    );
+  };
+
+
   const upisiPushToken = async () => {
     let token = null;
     try {
@@ -453,6 +486,27 @@ const Podesavanja = () => {
           </View>
         </Modal>
 
+        {/* 🔥 DANGER ZONE — Apple requirement */}
+        <View style={styles.dangerZone}>
+          <Text style={styles.dangerTitle}>Danger zone</Text>
+          <Text style={styles.dangerText}>
+            Deleting your account will permanently remove your profile and history. This cannot be undone.
+          </Text>
+
+          <TouchableOpacity
+            style={[styles.dangerButton, deleting && { opacity: 0.6 }]}
+            onPress={confirmDeleteAccount}
+            disabled={deleting}
+            accessibilityRole="button"
+            accessibilityLabel="Delete account"
+            testID="settings-delete-account"
+          >
+            <Text style={styles.dangerButtonText}>
+              {deleting ? 'Deleting…' : 'Delete account'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         {/* ⬇️ SAČUVAJ — u tamnom okviru, odmah ispod jezika */}
         <TouchableOpacity
           style={styles.sectionCloseBtn}
@@ -591,6 +645,39 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     fontWeight: "600",
   },
+  dangerZone: {
+    marginTop: 18,
+    padding: 14,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#ef4444',
+    backgroundColor: '#2a1515',
+  },
+  dangerTitle: {
+    color: '#fecaca',
+    fontSize: 16,
+    fontWeight: '800',
+    marginBottom: 6,
+  },
+  dangerText: {
+    color: '#fff',
+    fontSize: 14,
+    lineHeight: 18,
+    opacity: 0.9,
+  },
+  dangerButton: {
+    marginTop: 12,
+    alignSelf: 'flex-start',
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    backgroundColor: '#ef4444',
+  },
+  dangerButtonText: {
+    color: '#111827',
+    fontWeight: '900',
+  },
+
   // zajednički “tamni okvir” CTA
   sectionCloseBtn: {
     marginTop: 16,

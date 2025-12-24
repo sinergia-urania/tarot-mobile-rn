@@ -1,7 +1,10 @@
 ﻿// tarot-mobile1/i18n.js
+import * as Localization from "expo-localization";
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-
+// START: custom language detector (čita iz AsyncStorage)
+import languageDetector from './src/utils/languageDetector';
+// END: custom language detector
 // START: statički import 4 JSON ns za sr
 import sr_ai from './src/locales/sr/ai.json';
 import sr_cardMeanings from './src/locales/sr/cardMeanings.json';
@@ -184,6 +187,9 @@ const resources = {
 // END: resources
 
 i18n
+  // START: koristi custom language detector (AsyncStorage → Device → Fallback)
+  .use(languageDetector)
+  // END: koristi custom language detector
   .use(initReactI18next)
   .init({
     compatibilityJSON: 'v3',
@@ -214,7 +220,8 @@ i18n
       // END: tr & id fallbacks
     },
     // END: pametan fallback
-    lng: 'sr',
+    // UKLONJENO: lng: Localization.getLocales()[0].languageCode,
+    // Sada koristimo languageDetector koji čita iz AsyncStorage pa fallback na device
     // START: podržani jezici
     // START: add German & French - supportedLngs
     // supportedLngs: ['sr', 'en', 'es', 'de', 'fr', 'pt', 'hi'],

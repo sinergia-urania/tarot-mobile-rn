@@ -177,8 +177,10 @@ const SidebarMenu = ({ visible, onClose }) => {
   // END: centralna navigacija ka postojećim ekranima (bez "StaticDoc")
 
   // START: DreamCodex – Play/AppStore URL + handler
-  const DREAM_ANDROID_PKG = process.env.EXPO_PUBLIC_ANDROID_PACKAGE || "com.mare82.aisanovnik";
-  const DREAM_IOS_APP_ID = process.env.EXPO_PUBLIC_IOS_APP_ID || "0";
+  const DREAM_ANDROID_PKG =
+    process.env.EXPO_PUBLIC_CROSS_DREAM_ANDROID_PACKAGE || "com.mare82.aisanovnik";
+  const DREAM_IOS_APP_ID =
+    process.env.EXPO_PUBLIC_CROSS_DREAM_IOS_APP_ID || "0";
   const dreamPlayUrl = `https://play.google.com/store/apps/details?id=${DREAM_ANDROID_PKG}`;
   const dreamAppStoreUrl = (DREAM_IOS_APP_ID && DREAM_IOS_APP_ID !== "0")
     ? `https://apps.apple.com/app/id${DREAM_IOS_APP_ID}`
@@ -446,8 +448,28 @@ const SidebarMenu = ({ visible, onClose }) => {
   );
 };
 
+// ... negde pri dnu fajla src/components/SidebarMenu.jsx ...
+
 const PodrziModal = ({ visible, onClose }) => {
   const { t } = useTranslation(['common']);
+
+  // ✅ OVDE SMO ISPRAVILI PACKAGE NAME
+  const APP_ID = 'com.mare82.unatarot';
+
+  // Link za otvaranje prodavnice (market:// otvara aplikaciju direktno)
+  const storeUrl = Platform.select({
+    android: `market://details?id=${APP_ID}`,
+    ios: `itms-apps://apps.apple.com/app/id6756968978?action=write-review`,
+    default: `https://play.google.com/store/apps/details?id=${APP_ID}`,
+  });
+
+  const shareUrl = Platform.select({
+    android: `https://play.google.com/store/apps/details?id=${APP_ID}`,
+    ios: `https://apps.apple.com/app/id6756968978`,
+    default: `https://play.google.com/store/apps/details?id=${APP_ID}`,
+  });
+
+
   return (
     <Modal visible={visible} transparent animationType="slide">
       <View style={styles.sectionModal}>
@@ -456,7 +478,10 @@ const PodrziModal = ({ visible, onClose }) => {
         <TouchableOpacity
           onPress={async () => {
             await playUiClick();
-            Linking.openURL('https://play.google.com/store/apps/details?id=com.mare82.tarotmobile');
+            // Pokušaj da otvoriš Store aplikaciju, ako ne uspe (npr. emulator), otvori browser
+            Linking.openURL(storeUrl).catch(() => {
+              Linking.openURL(`https://play.google.com/store/apps/details?id=${APP_ID}`);
+            });
           }}
           accessibilityLabel={t('common:support.rateUs', { defaultValue: 'Oceni nas' })}
           accessibilityRole="link"
@@ -470,7 +495,7 @@ const PodrziModal = ({ visible, onClose }) => {
             try {
               await Share.share({
                 message: t('common:support.shareMessage', {
-                  defaultValue: 'Probaj Tarot AI aplikaciju! https://play.google.com/store/apps/details?id=com.mare82.tarotmobile'
+                  defaultValue: `Probaj Tarot AI aplikaciju! ${shareUrl}`
                 })
               });
             } catch { }

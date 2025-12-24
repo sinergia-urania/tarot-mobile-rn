@@ -1,6 +1,6 @@
 // src/utils/ads.js – TEST/PROD toggle + guard logika + detaljni logovi
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import {
   AdEventType,
   BannerAd,
@@ -34,11 +34,20 @@ if (ADS_DISABLED) {
   console.warn('[ADS] PANIC SWITCH ENABLED → svi oglasi su isključeni (EXPO_PUBLIC_ADS_DISABLED=1)');
 }
 
-// 🔽 OVDE upiši prave AdMob ID-jeve (Android) 🔽
-const REAL_INTERSTITIAL = 'ca-app-pub-2786609619751533/6811905994'; // must-watch
-const REAL_REWARDED = 'ca-app-pub-2786609619751533/6157299876'; // coinsRewardAd
-const REAL_BANNER = 'ca-app-pub-2786609619751533/8415593631'; // banner_bottom
-// 🔼 SAMO OVO POPUNI 🔼
+// ANDROID (prod)
+const REAL_INTERSTITIAL_ANDROID = 'ca-app-pub-2786609619751533/5387589780';
+const REAL_REWARDED_ANDROID = 'ca-app-pub-2786609619751533/2876782994';
+const REAL_BANNER_ANDROID = 'ca-app-pub-2786609619751533/5886089716';
+
+// IOS (prod)
+const REAL_INTERSTITIAL_IOS = 'ca-app-pub-2786609619751533/4903362291';
+const REAL_REWARDED_IOS = 'ca-app-pub-2786609619751533/2772022979';
+const REAL_BANNER_IOS = 'ca-app-pub-2786609619751533/4576877479';
+
+// Izaberi po platformi
+const REAL_INTERSTITIAL = Platform.OS === 'ios' ? REAL_INTERSTITIAL_IOS : REAL_INTERSTITIAL_ANDROID;
+const REAL_REWARDED = Platform.OS === 'ios' ? REAL_REWARDED_IOS : REAL_REWARDED_ANDROID;
+const REAL_BANNER = Platform.OS === 'ios' ? REAL_BANNER_IOS : REAL_BANNER_ANDROID;
 
 export const INTERSTITIAL_AD_UNIT_ID = USE_TEST_IDS ? TestIds.INTERSTITIAL : REAL_INTERSTITIAL;
 export const REWARDED_AD_UNIT_ID = USE_TEST_IDS ? TestIds.REWARDED : REAL_REWARDED;

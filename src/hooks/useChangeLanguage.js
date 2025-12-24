@@ -1,11 +1,16 @@
 // START: useChangeLanguage hook (single source of truth za jezik)
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useState } from 'react';
 import i18n from '../../i18n';
 import { supabase } from '../utils/supabaseClient';
 
+// Ključ za AsyncStorage
+export const LANGUAGE_STORAGE_KEY = '@app_language';
+
 /**
  * useChangeLanguage
  * - Menja i18n jezik na nivou app-a
+ * - Čuva jezik u AsyncStorage (za perzistenciju pri restartu)
  * - Ako je korisnik ulogovan, upisuje vrednost u profiles.language
  * - Vraća { changeLanguage, isChanging, current }
  */
@@ -21,7 +26,14 @@ export default function useChangeLanguage() {
                 await i18n.changeLanguage(short);
             }
 
-            // 2) pokušaj upisa u profil (ako postoji user)
+            // 2) NOVO: Sačuvaj u AsyncStorage (lokalna perzistencija)
+            try {
+                await AsyncStorage.setItem(LANGUAGE_STORAGE_KEY, short);
+            } catch (storageErr) {
+                console.warn('[useChangeLanguage] AsyncStorage save failed:', storageErr);
+            }
+
+            // 3) pokušaj upisa u profil (ako postoji user)
             const { data, error: userErr } = await supabase.auth.getUser();
             if (userErr) {
                 console.warn('[useChangeLanguage] getUser error:', userErr);
@@ -31,7 +43,7 @@ export default function useChangeLanguage() {
             if (userId) {
                 const { error: upErr } = await supabase
                     .from('profiles')
-                    .update({ language: short }) // nema updated_at kolone u šemi
+                    .update({ language: short })
                     .eq('id', userId);
 
                 if (upErr) {

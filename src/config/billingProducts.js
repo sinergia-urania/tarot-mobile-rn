@@ -21,12 +21,14 @@ export const BILLING_PRODUCTS = {
         iosSku: 'tarot_pro_monthly',
     },
 
-    // === JEDNOKRATNI PROIZVODI (in-app purchases) ===
     proplus: {
-        type: 'in-app',
+        type: 'subs',
         androidSku: 'tarot_proplus_annual',
         iosSku: 'tarot_proplus_annual',
+
     },
+
+    // === JEDNOKRATNI PROIZVODI (in-app purchases) ===
     topup500: {
         type: 'in-app',
         androidSku: 'tarot_topup_500',

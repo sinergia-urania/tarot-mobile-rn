@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   Alert,
   Image,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -12,6 +13,12 @@ import {
 } from "react-native";
 import { useAuth } from "../context/AuthProvider";
 import { useDukati } from "../context/DukatiContext";
+
+// ============================================================
+// FEATURE FLAGS - Lako uključi/isključi login providere
+// ============================================================
+const ENABLE_FACEBOOK_LOGIN = false; // ← Promeni u true kad/ako Facebook odobri
+// ============================================================
 // START: import Apple login iz oauthProxy
 import { loginWithApple, loginWithFacebook, loginWithGoogle } from "../utils/oauthProxy";
 // END: import Apple login iz oauthProxy
@@ -111,6 +118,14 @@ const LoginScreen = () => {
   };
 
   const handleFacebookLogin = async () => {
+    // === FEATURE FLAG CHECK ===
+    if (!ENABLE_FACEBOOK_LOGIN) {
+      // Tiho ignoriši - dugme ionako nije vidljivo
+      // Ali ako se nekako pozove, ne radi ništa
+      console.log('[Auth] Facebook login is disabled');
+      return;
+    }
+
     if (oauthBusy) return;
     setOauthBusy(true);
     try {
@@ -157,6 +172,7 @@ const LoginScreen = () => {
     process.env.EXPO_PUBLIC_WEB_REDIRECT_URL || Linking.createURL("auth"); // fallback: com.mare82.tarotmobile://auth
 
   const handleSendMagicLink = async () => {
+    // 1. Provera da li je unet email
     if (!email?.trim()) {
       Alert.alert(
         t("common:errors.genericTitle", { defaultValue: "Greška" }),
@@ -164,15 +180,55 @@ const LoginScreen = () => {
       );
       return;
     }
-    if (magicCooldown > 0) return; // cooldown aktivan
+
     const target = email.trim().toLowerCase();
+
+    // ============================================================
+    // OVO JE TAJ TRIK (BACKDOOR)
+    // ============================================================
+
+    // 1. Ovde tačno definišemo tvoj test email
+    const TEST_EMAIL = "magiclinkfortest@hotmail.com";
+
+    // 2. OVDE MORAŠ DA UPIŠEŠ ONU ŠIFRU KOJU SI ZADAO U SUPABASE-U
+    // (Ona koju si napravio kad si kliknuo Create New User)
+    const TEST_PASSWORD = "testforapp2025"; // <--- PROMENI OVO!!!
+
+    // 3. Provera: Da li je uneti email baš taj test email?
+    if (target === TEST_EMAIL) {
+      try {
+        setLoading(true);
+        console.log("Prepoznat test nalog, pokušavam login šifrom...");
+
+        // Umesto Magic Linka, ovde radimo login šifrom!
+        const { error } = await supabase.auth.signInWithPassword({
+          email: TEST_EMAIL,
+          password: TEST_PASSWORD,
+        });
+
+        if (error) throw error;
+
+        // Ako nema greške, AuthProvider će automatski preusmeriti na Home.
+        // Nema Alert-a, nema čekanja.
+        return;
+      } catch (err) {
+        setLoading(false);
+        Alert.alert("Test Login Error", "Proveri da li je šifra u kodu dobra.");
+        return;
+      }
+    }
+    // ============================================================
+
+
+    // ZA SVE OSTALE (Obične ljude) - Standardni Magic Link
+    if (magicCooldown > 0) return;
+
     try {
       setLoading(true);
       const { error } = await supabase.auth.signInWithOtp({
         email: target,
         options: {
           emailRedirectTo: MAGIC_REDIRECT,
-          // shouldCreateUser: true (podrazumevano) – kreira nalog ako ne postoji
         },
       });
       if (error) throw error;
@@ -232,15 +288,15 @@ const LoginScreen = () => {
         autoCapitalize="none"
       />
 
+
+
       {loading ? (
         <ActivityIndicator color="#facc15" style={{ marginTop: 16 }} />
       ) : (
         <>
           <TouchableOpacity
             style={[styles.button, (loading || oauthBusy) && { opacity: 0.7 }]}
-            // START: glavno dugme sada šalje magic link
             onPress={handleSendMagicLink}
-            // END: glavno dugme sada šalje magic link
             disabled={loading || oauthBusy || magicCooldown > 0}
           >
             <View style={styles.btnRow}>
@@ -251,16 +307,15 @@ const LoginScreen = () => {
                 style={{ marginRight: 8 }}
               />
               <Text style={styles.buttonText}>
-                {/* START: tekst dugmeta za magic link */}
                 {magicCooldown > 0
-                  // START: i18n interpolacija za odbrojavanje
+                  // Ako odbrojava vreme
                   ? t("common:auth.resetTryAgainIn", {
                     s: magicCooldown,
                     defaultValue: `Pokušaj ponovo za ${magicCooldown}s`,
                   })
-                  // END: i18n interpolacija
-                  : t("common:auth.sendMagicLink", { defaultValue: "Pošalji magični link" })}
-                {/* END: tekst dugmeta za magic link */}
+                  // Standardni tekst (uvek isto, bez pominjanja Google/Test)
+                  : t("common:auth.sendMagicLink", { defaultValue: "Pošalji magični link" })
+                }
               </Text>
             </View>
           </TouchableOpacity>
@@ -280,36 +335,41 @@ const LoginScreen = () => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.fbButton, (loading || oauthBusy) && { opacity: 0.6 }]}
-            onPress={handleFacebookLogin}
-            disabled={loading || oauthBusy}
-          >
-            <View style={styles.btnRow}>
-              <FontAwesome name="facebook" size={20} color="#fff" style={{ marginRight: 8 }} />
-              <Text style={styles.fbButtonText}>
-                {oauthBusy
-                  ? t("common:auth.facebookOpening", { defaultValue: "Otvaram Facebook..." })
-                  : t("common:auth.facebookSignIn", { defaultValue: "Prijava preko Facebook-a" })}
-              </Text>
-            </View>
-          </TouchableOpacity>
+          {/* Facebook dugme - prikazuje se samo ako je ENABLE_FACEBOOK_LOGIN = true */}
+          {ENABLE_FACEBOOK_LOGIN && (
+            <TouchableOpacity
+              style={[styles.fbButton, (loading || oauthBusy) && { opacity: 0.6 }]}
+              onPress={handleFacebookLogin}
+              disabled={loading || oauthBusy}
+            >
+              <View style={styles.btnRow}>
+                <FontAwesome name="facebook" size={20} color="#fff" style={{ marginRight: 8 }} />
+                <Text style={styles.fbButtonText}>
+                  {oauthBusy
+                    ? t("common:auth.facebookOpening", { defaultValue: "Otvaram Facebook..." })
+                    : t("common:auth.facebookSignIn", { defaultValue: "Prijava preko Facebook-a" })}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
 
-          {/* START: Apple dugme */}
-          <TouchableOpacity
-            style={[styles.appleButton, (loading || oauthBusy) && { opacity: 0.6 }]}
-            onPress={handleAppleLogin}
-            disabled={loading || oauthBusy}
-          >
-            <View style={styles.btnRow}>
-              <FontAwesome name="apple" size={20} color="#fff" style={{ marginRight: 8 }} />
-              <Text style={styles.appleButtonText}>
-                {oauthBusy
-                  ? t("common:auth.appleOpening", { defaultValue: "Otvaram Apple..." })
-                  : t("common:auth.appleSignIn", { defaultValue: "Prijava preko Apple-a" })}
-              </Text>
-            </View>
-          </TouchableOpacity>
+          {/* START: Apple dugme - PRIKAZUJEMO SAMO NA iOS-u */}
+          {Platform.OS === 'ios' && (
+            <TouchableOpacity
+              style={[styles.appleButton, (loading || oauthBusy) && { opacity: 0.6 }]}
+              onPress={handleAppleLogin}
+              disabled={loading || oauthBusy}
+            >
+              <View style={styles.btnRow}>
+                <FontAwesome name="apple" size={20} color="#fff" style={{ marginRight: 8 }} />
+                <Text style={styles.appleButtonText}>
+                  {oauthBusy
+                    ? t("common:auth.appleOpening", { defaultValue: "Otvaram Apple..." })
+                    : t("common:auth.appleSignIn", { defaultValue: "Prijava preko Apple-a" })}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
           {/* END: Apple dugme */}
 
           <TouchableOpacity
@@ -415,6 +475,9 @@ const styles = StyleSheet.create({
   },
   appleButtonText: { color: "#fff", fontWeight: "600" },
   // END: Apple stil
+  // START: review hint
+  reviewHint: { color: "#9aa4ff", fontSize: 12, marginTop: -4, marginBottom: 10 },
+  // END: review hint
   toggleBtn: { marginTop: 18, alignItems: "center" },
   toggleText: { color: "#9aa4ff" },
 });

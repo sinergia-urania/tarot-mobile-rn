@@ -15,7 +15,8 @@ const GUESS_BASE = (() => {
   } catch { }
   return ""; // ako ne uspe, bolje prazan nego pogrešan
 })();
-const SUPABASE_URL = ENV_BASE || GUESS_BASE;
+const SUPABASE_URL = GUESS_BASE || "https://ozssorzirdwyqgbixgri.supabase.co";
+
 // END: SUPABASE_URL – prioritet .env
 
 // Custom scheme (isti na iOS/Android — mora biti ugradjen u app i allowlistovan u Supabase)
@@ -26,7 +27,6 @@ const REDIRECT_URL =
   }) || Linking.createURL("auth/callback");
 
 // Mali parser za query/hash tokene
-// START: parser – dodata podrška za error i error_description
 function parseTokens(url) {
   try {
     const u = new URL(url);
@@ -45,7 +45,6 @@ function parseTokens(url) {
     return {};
   }
 }
-// END: parser – dodata podrška za error i error_description
 
 // (opciono) pomoćni wait — može nekad pomoći posle “success” da sačekamo da se sesija propagira
 async function waitForUser(totalMs = 1500, stepMs = 150) {
@@ -79,13 +78,21 @@ async function openProvider(provider) {
     provider === "google"
       ? `&scopes=${encodeURIComponent("openid email profile")}&access_type=offline&prompt=consent`
       : "";
+
   const appleExtras =
     provider === "apple"
       ? `&scopes=${encodeURIComponent("name email")}`
       : "";
-  // END: provider-specifični dodaci
 
-  const authorize = base + common + googleExtras + appleExtras;
+  // === NOVO: Facebook scopes (public_profile, email) ===
+  const facebookExtras =
+    provider === "facebook"
+      ? `&scopes=${encodeURIComponent("public_profile email")}`
+      : "";
+  // =====================================================
+
+  // Dodajemo i facebookExtras u link
+  const authorize = base + common + googleExtras + appleExtras + facebookExtras;
 
   console.log("[OAUTH-PROXY] openURL =", authorize);
   console.log("[OAUTH-PROXY] REDIRECT =", REDIRECT_URL);
@@ -144,6 +151,4 @@ async function openProvider(provider) {
 
 export const loginWithGoogle = () => openProvider("google");
 export const loginWithFacebook = () => openProvider("facebook");
-// START: Apple OAuth export
 export const loginWithApple = () => openProvider("apple");
-// END: Apple OAuth export

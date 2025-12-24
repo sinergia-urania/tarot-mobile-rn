@@ -37,6 +37,7 @@ const TarotIAPContext = React.createContext({
     devMode: false,
     startPlanPurchase: async () => { },
     startTopupPurchase: async () => { },
+    products: [], // ← DODATO: default prazna lista
 });
 
 export const TarotIAPProvider = ({ children }) => {
@@ -164,7 +165,7 @@ export const TarotIAPProvider = ({ children }) => {
     // EXPO-IAP HOOK
     // ========================================================================
 
-    const { connected, fetchProducts, requestPurchase, finishTransaction } = useIAP({
+    const { connected, products, fetchProducts, requestPurchase, finishTransaction } = useIAP({
         autoFinishTransactions: false,
 
         onPurchaseError: async (error) => {
@@ -279,8 +280,7 @@ export const TarotIAPProvider = ({ children }) => {
                             position: 'bottom',
                         });
 
-                        // ✅ FIX: ProPlus JE consumable (može se kupiti više puta), Premium i Pro nisu
-                        isConsumable = planKey === 'proplus';
+
                     } else {
                         throw new Error(`UNKNOWN_PLAN_KEY: ${planKey}`);
                     }
@@ -367,11 +367,14 @@ export const TarotIAPProvider = ({ children }) => {
         (async () => {
             try {
                 // Pretplate (subscriptions)
-                const subsSkus = [getSkuFor('premium'), getSkuFor('pro')].filter(Boolean);
+                const subsSkus = [
+                    getSkuFor('premium'),
+                    getSkuFor('pro'),
+                    getSkuFor('proplus'),
+                ].filter(Boolean);
 
                 // Jednokratni proizvodi (in-app)
                 const inappSkus = [
-                    getSkuFor('proplus'),
                     getSkuFor('topup500'),
                     getSkuFor('topup1000'),
                 ].filter(Boolean);
@@ -605,6 +608,7 @@ export const TarotIAPProvider = ({ children }) => {
                 devMode: DEV_MODE,
                 startPlanPurchase,
                 startTopupPurchase,
+                products, // ← DODATO: lokalizovane cene iz Play Billing-a
             }}
         >
             {children}

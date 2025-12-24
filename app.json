@@ -4,7 +4,7 @@
     "name": "Una Astro-Tarot AI",
     "slug": "tarot-mobile",
     "owner": "mare82",
-    "version": "1.7.0",
+    "version": "1.4.0",
     "orientation": "portrait",
     "sdkVersion": "53.0.0",
     "scheme": "com.mare82.tarotmobile",
@@ -14,11 +14,18 @@
       }
     },
     "android": {
-      "package": "com.mare82.tarotmobile",
-      "versionCode": 7,
+      "package": "com.mare82.unatarot",
+      "versionCode": 4,
       "googleServicesFile": "./google-services.json",
       "permissions": [
-        "com.android.vending.BILLING"
+        "com.android.vending.BILLING",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "com.google.android.gms.permission.AD_ID",
+        "com.android.vending.BILLING",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "com.google.android.gms.permission.AD_ID"
       ],
       "intentFilters": [
         {
@@ -33,10 +40,13 @@
             }
           ]
         }
-      ]
+      ],
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "ios": {
-      "bundleIdentifier": "com.mare82.tarotmobile",
+      "bundleIdentifier": "com.mare82.unatarot",
       "infoPlist": {
         "NSUserTrackingUsageDescription": "We use your device identifier to show relevant ads (AdMob) and support the development of this app."
       }
@@ -45,8 +55,8 @@
       [
         "react-native-google-mobile-ads",
         {
-          "androidAppId": "ca-app-pub-2786609619751533~1407821486",
-          "iosAppId": "ca-app-pub-2786609619751533~5646433485"
+          "androidAppId": "ca-app-pub-2786609619751533~4025394892",
+          "iosAppId": "ca-app-pub-2786609619751533~4085104640"
         }
       ],
       "expo-notifications",
@@ -54,12 +64,16 @@
       "expo-web-browser",
       "expo-audio",
       "expo-tracking-transparency",
-      "expo-iap"
+      "expo-iap",
+      "expo-localization"
     ],
     "splash": {
       "image": "./assets/una.png",
       "resizeMode": "contain",
       "backgroundColor": "#0B1026"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1c8251b9-7c40-4b86-92b5-96612afcc36b"
     }
   }
 }
