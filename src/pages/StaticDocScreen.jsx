@@ -30,6 +30,37 @@ const playUiClick = async () => {
 };
 // END: haptics + click SFX
 
+// START: linkify helper - pretvara URL-ove u tekstu u klikabilne linkove
+const URL_REGEX = /(https?:\/\/[^\s]+)/g;
+
+const linkifyText = (text, onPress) => {
+    if (!text || typeof text !== 'string') return text;
+
+    const parts = text.split(URL_REGEX);
+    if (parts.length === 1) return text; // nema URL-ova
+
+    return parts.map((part, index) => {
+        if (URL_REGEX.test(part)) {
+            // Reset regex lastIndex
+            URL_REGEX.lastIndex = 0;
+            return (
+                <Text
+                    key={index}
+                    style={{ color: '#9b87f5', textDecorationLine: 'underline' }}
+                    onPress={() => {
+                        onPress?.();
+                        Linking.openURL(part).catch(() => { });
+                    }}
+                >
+                    {part}
+                </Text>
+            );
+        }
+        return part;
+    });
+};
+// END: linkify helper
+
 /**
  * Prikaz statičnih dokumenata iz i18n: documents.{docId}.{title, updatedAt, body[], sourceUrl?}
  * - docId može doći kroz prop (docId) ili route.params.docId
@@ -136,7 +167,7 @@ export default function StaticDocScreen(props) {
             <Text style={styles.title}>{title}</Text>
             {!!updatedAt && (
                 <Text style={styles.updatedAt}>
-                    {t('labels.updatedAt', { ns: 'common', defaultValue: 'Ažurirano' })}: {updatedAt}
+                    {t('labels.updatedAt', { ns: 'common', defaultValue: 'Updated' })}: {updatedAt}
                 </Text>
             )}
 
@@ -145,11 +176,11 @@ export default function StaticDocScreen(props) {
                 <TouchableOpacity
                     style={styles.closeBtn}
                     onPress={handleClose}
-                    accessibilityLabel={t('buttons.close', { ns: 'common', defaultValue: 'Zatvori' })}
+                    accessibilityLabel={t('buttons.close', { ns: 'common', defaultValue: 'Close' })}
                     accessibilityRole="button"
                 >
                     <Text style={styles.closeText}>
-                        {t('buttons.close', { ns: 'common', defaultValue: 'Zatvori' })}
+                        {t('buttons.close', { ns: 'common', defaultValue: 'Close' })}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -180,11 +211,11 @@ export default function StaticDocScreen(props) {
                             }
                         }}
                         // END: robustan open sa canOpenURL + tihi fallback
-                        accessibilityLabel={t('labels.openOnWeb', { ns: 'common', defaultValue: 'Otvori na webu' })}
+                        accessibilityLabel={t('labels.openOnWeb', { ns: 'common', defaultValue: 'Open on the web' })}
                         accessibilityRole="link"
                     >
                         <Text style={styles.webBtnText}>
-                            {t('labels.openOnWeb', { ns: 'common', defaultValue: 'Otvori na webu' })}
+                            {t('labels.openOnWeb', { ns: 'common', defaultValue: 'Open on the web' })}
                         </Text>
                     </TouchableOpacity>
                 )}
@@ -192,11 +223,11 @@ export default function StaticDocScreen(props) {
                 {Array.isArray(body) ? (
                     body.map((p, i) => (
                         <Text key={i} style={styles.paragraph}>
-                            {p}
+                            {linkifyText(p, playUiClick)}
                         </Text>
                     ))
                 ) : (
-                    <Text style={styles.paragraph}>{String(body || '')}</Text>
+                    <Text style={styles.paragraph}>{linkifyText(String(body || ''), playUiClick)}</Text>
                 )}
             </ScrollView>
         </View>

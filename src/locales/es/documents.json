@@ -1,20 +1,8 @@
 {
   "about": {
-    "title": "Sobre la aplicación",
-    "updatedAt": "28 de agosto de 2025",
-    "body": [
-      "AiTarot Una es una aplicación basada en una combinación de tecnologías de IA modernas y símbolos arquetípicos del mundo del Tarot, para ofrecer interpretaciones personalizadas, reflexivas y útiles. La IA no genera mensajes aleatorios; analiza en el contexto de la pregunta del usuario y de la disposición de cartas.",
-      "Todas las tiradas de la app (excepto “Carta del día” y “Sí/No”, que son de naturaleza intuitiva) analizan las cartas mediante un sistema simbólico multinivel e intentan reconocer la lógica interna en relación con la consulta del usuario.",
-      "Cómo funciona: la app ofrece una lista de preguntas frecuentes, pero siempre puedes introducir tu propia pregunta si no aparece entre las sugerencias; así recibes una interpretación realmente personal y relevante.",
-      "Acceso y planes:",
-      "• Free: acceso básico con un número limitado de tiradas y funciones.",
-      "• Premium: desbloquea tipos adicionales de tiradas y perspectivas.",
-      "• Pro: acceso completo a todas las herramientas, análisis y personalización.",
-      "Además de los planes, existe la opción AdReward: al ver anuncios puedes desbloquear determinadas funciones como alternativa al pago.",
-      "Nota: la app no predice el futuro de manera determinista; arroja luz sobre direcciones potenciales y patrones internos mediante el lenguaje arquetípico de las cartas y su simbolismo.",
-      "Si disfrutas de las lecturas de Tarot con IA y quieres explorar más sobre inteligencia artificial, cripto y nuevas tecnologías más allá de las cartas, visita nuestro portal tecnológico independiente InfoHelm Tech: https://tech.infohelm.org/es",
-      "Versión de la app: 1.0.0"
-    ]
+    "title": "Acerca de la app",
+    "updatedAt": "2025-12-25",
+    "body": "# Una AstroTarot AI 🔮✨\n\n**Una AstroTarot AI** combina **Tarot con IA** y **contexto astrológico** para ofrecer interpretaciones claras y con los pies en la tierra — no mensajes aleatorios.\n\nEstá diseñada para la reflexión, el autoconocimiento y decisiones más conscientes — sin “adivinación” determinista.\n\n---\n\n## Qué obtienes\n- 🃏 **Lecturas de Tarot con IA** (varios tirajes)\n- 🪐 **Tránsitos astrológicos y timing** *(Premium/Pro)*\n- 🧠 Interpretación estructurada y multinivel (símbolos, posiciones, contexto)\n- ✍️ Preguntas sugeridas o tu propia pregunta\n- 📚 Experiencia limpia tipo archivo, pensada para usarla a menudo\n\n---\n\n## Cómo funciona\n1) Elige un tiraje (o **Carta del día**).\n2) Selecciona una pregunta sugerida o escribe la tuya.\n3) Saca las cartas.\n4) Una entrega una interpretación conectando **pregunta + tiraje + simbolismo**.\n\n---\n\n## Planes y acceso\n- 🆓 **Free** — acceso básico con tirajes y funciones limitadas.\n- 💎 **Premium** — más tirajes + mayor profundidad + **capa de tránsitos**.\n- 🧿 **Pro** — acceso total a todas las herramientas, análisis avanzado y personalización.\n- 👑 **ProPlus (Anual)** — plan anual con acceso máximo y mejor valor.\n\n🎁 **Opción AdReward:** viendo anuncios puedes desbloquear ciertas acciones como alternativa al pago.\n\n---\n\n## Nota\n- **Carta del día** y **Sí/No** están pensados como formatos más intuitivos y reflexivos.\n- La app no “predice el destino”: resalta **patrones, opciones y dinámicas internas**.\n\n---\n\n## Portal InfoHelm Tech 🌐\nSi te interesa explorar IA, cripto y nuevas tecnologías más allá del Tarot, visita:\n- https://tech.infohelm.org/es \n\n---\n\nVersión de la app: 2.07\n"
   },
   "terms": {
     "title": "Términos de servicio",

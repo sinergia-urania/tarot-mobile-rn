@@ -162,7 +162,7 @@ const packages = [
 export default function MembershipModal({ visible, onClose }) {
   const { t } = useTranslation(['common']);
   const { userId, userPlan, fetchDukatiSaServera, refreshUserPlan } = useDukati();
-  const { iapReady, devMode, startPlanPurchase, startTopupPurchase, products } = useTarotIAP();
+  const { iapReady, devMode, startPlanPurchase, startTopupPurchase, products, restorePurchases } = useTarotIAP();
 
   const [loadingPlanKey, setLoadingPlanKey] = React.useState(null);
   const [loadingTopUp, setLoadingTopUp] = React.useState(false);
@@ -308,6 +308,74 @@ export default function MembershipModal({ visible, onClose }) {
     },
     [iapReady, devMode, userId, startTopupPurchase, t]
   );
+
+  // ========================================================================
+  // RESTORE PURCHASES (iOS - Apple zahteva ovo)
+  // ========================================================================
+
+  const [restoringPurchases, setRestoringPurchases] = React.useState(false);
+
+  const handleRestorePurchases = React.useCallback(async () => {
+    if (restoringPurchases) return;
+    setRestoringPurchases(true);
+
+    try {
+      const result = await restorePurchases();
+
+      if (result.restored) {
+        Toast.show({
+          type: 'success',
+          text1: t('common:messages.successTitle', { defaultValue: 'Uspeh!' }),
+          text2: t('common:membership.restore.success', {
+            plan: result.plan,
+            defaultValue: `Vraćena pretplata: ${result.plan}`,
+          }),
+          position: 'bottom',
+        });
+      } else {
+        Toast.show({
+          type: 'info',
+          text1: t('common:membership.restore.noPurchasesTitle', { defaultValue: 'Nema kupovina' }),
+          text2: t('common:membership.restore.noPurchasesBody', {
+            defaultValue: 'Nismo pronašli aktivne pretplate za ovaj nalog.',
+          }),
+          position: 'bottom',
+        });
+      }
+    } catch (err) {
+      console.error('Restore purchases error:', err);
+      Toast.show({
+        type: 'error',
+        text1: t('common:errors.genericTitle', { defaultValue: 'Greška' }),
+        text2: t('common:errors.tryAgain', { defaultValue: 'Pokušajte ponovo.' }),
+        position: 'bottom',
+      });
+    } finally {
+      setRestoringPurchases(false);
+    }
+  }, [restorePurchases, restoringPurchases, t]);
+
+  // ========================================================================
+  // MANAGE SUBSCRIPTION
+  // ========================================================================
+
+  const handleManageSubscription = React.useCallback(() => {
+    if (Platform.OS === 'ios') {
+      // iOS - otvori App Store subscriptions
+      Linking.openURL('https://apps.apple.com/account/subscriptions');
+    } else {
+      // Android - otvori Google Play subscriptions
+      const currentSku = userPlan === 'premium' ? SKU_MAP.premium
+        : userPlan === 'pro' ? SKU_MAP.pro
+          : userPlan === 'proplus' ? SKU_MAP.proplus
+            : null;
+      if (currentSku) {
+        Linking.openURL(`https://play.google.com/store/account/subscriptions?sku=${currentSku}&package=com.mare82.unatarot`);
+      } else {
+        Linking.openURL('https://play.google.com/store/account/subscriptions');
+      }
+    }
+  }, [userPlan]);
 
   // ========================================================================
   // RENDER
@@ -571,13 +639,13 @@ export default function MembershipModal({ visible, onClose }) {
                                 defaultValue: 'Već imate Premium',
                               })
                               : (() => {
-                                  // === GOOGLE PLAY LOKALIZOVANA CENA ===
-                                  const premiumProduct = products?.find(p => p.productId === SKU_MAP.premium);
-                                  const premiumPrice = getFormattedStorePrice(premiumProduct);
-                                  return premiumPrice
-                                    ? `Kupi Premium (${premiumPrice} / mesec)`
-                                    : t('common:membership.cta.buyPremium', { defaultValue: 'Kupi Premium' });
-                                })()}
+                                // === GOOGLE PLAY LOKALIZOVANA CENA ===
+                                const premiumProduct = products?.find(p => p.productId === SKU_MAP.premium);
+                                const premiumPrice = getFormattedStorePrice(premiumProduct);
+                                return premiumPrice
+                                  ? `Buy Premium (${premiumPrice}/mo)`
+                                  : 'Buy Premium';
+                              })()}
                           </Text>
                         )}
                       </TouchableOpacity>
@@ -608,16 +676,16 @@ export default function MembershipModal({ visible, onClose }) {
                           >
                             {isCurrent
                               ? t('common:membership.cta.alreadyPro', {
-                                defaultValue: 'Već imate PRO',
+                                defaultValue: 'Already PRO',
                               })
                               : (() => {
-                                  // === GOOGLE PLAY LOKALIZOVANA CENA ===
-                                  const proProduct = products?.find(p => p.productId === SKU_MAP.pro);
-                                  const proPrice = getFormattedStorePrice(proProduct);
-                                  return proPrice
-                                    ? `Kupi PRO (${proPrice} / mesec)`
-                                    : t('common:membership.cta.buyPro', { defaultValue: 'Kupi PRO' });
-                                })()}
+                                // === GOOGLE PLAY LOKALIZOVANA CENA ===
+                                const proProduct = products?.find(p => p.productId === SKU_MAP.pro);
+                                const proPrice = getFormattedStorePrice(proProduct);
+                                return proPrice
+                                  ? `Buy PRO (${proPrice}/mo)`
+                                  : 'Buy PRO';
+                              })()}
                           </Text>
                         )}
                       </TouchableOpacity>
@@ -648,16 +716,16 @@ export default function MembershipModal({ visible, onClose }) {
                           >
                             {isCurrent
                               ? t('common:membership.cta.alreadyProPlus', {
-                                defaultValue: 'Već imate ProPlus',
+                                defaultValue: 'Already ProPlus',
                               })
                               : (() => {
-                                  // === GOOGLE PLAY LOKALIZOVANA CENA ===
-                                  const proplusProduct = products?.find(p => p.productId === SKU_MAP.proplus);
-                                  const proplusPrice = getFormattedStorePrice(proplusProduct);
-                                  return proplusPrice
-                                    ? `Kupi ProPlus (${proplusPrice} / godinu)`
-                                    : t('common:membership.cta.buyProPlus', { defaultValue: 'Kupi ProPlus' });
-                                })()}
+                                // === GOOGLE PLAY LOKALIZOVANA CENA ===
+                                const proplusProduct = products?.find(p => p.productId === SKU_MAP.proplus);
+                                const proplusPrice = getFormattedStorePrice(proplusProduct);
+                                return proplusPrice
+                                  ? `Buy ProPlus (${proplusPrice}/yr)`
+                                  : 'Buy ProPlus';
+                              })()}
                           </Text>
                         )}
                       </TouchableOpacity>
@@ -666,88 +734,126 @@ export default function MembershipModal({ visible, onClose }) {
                 </View>
               );
             })}
+
+            {/* PETA KARTICA: Extras (Topup + Restore) */}
+            <View style={{ alignItems: 'center' }}>
+              <View
+                style={[
+                  styles.card,
+                  {
+                    borderColor: '#ffd700',
+                    width: 260,
+                    minHeight: 280,
+                    paddingHorizontal: 22,
+                    paddingVertical: 18,
+                    justifyContent: 'center',
+                  },
+                ]}
+              >
+                <Text style={[styles.cardTitle, { color: '#ffd700', marginBottom: 16 }]}>
+                  {t('common:membership.extras.title', { defaultValue: 'Extras' })}
+                </Text>
+
+                {/* Topup 500 */}
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: '#ffd700',
+                    borderRadius: 10,
+                    paddingHorizontal: 20,
+                    paddingVertical: 12,
+                    marginBottom: 10,
+                    minWidth: 200,
+                    alignItems: 'center',
+                    opacity: loadingTopUp ? 0.5 : 1,
+                  }}
+                  onPress={() => onTopUpPress(500)}
+                  disabled={loadingTopUp}
+                >
+                  {loadingTopUp ? (
+                    <ActivityIndicator color="#222" size="small" />
+                  ) : (
+                    <Text style={{ color: '#222', fontWeight: 'bold', fontSize: 15 }}>
+                      {(() => {
+                        const topup500Product = products?.find(p => p.productId === SKU_MAP.topup500);
+                        const topup500Price = getFormattedStorePrice(topup500Product);
+                        return topup500Price
+                          ? `+500 — ${topup500Price}`
+                          : '+500 coins';
+                      })()}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+
+                {/* Topup 1000 */}
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: '#ffd700',
+                    borderRadius: 10,
+                    paddingHorizontal: 20,
+                    paddingVertical: 12,
+                    marginBottom: 12,
+                    minWidth: 200,
+                    alignItems: 'center',
+                    opacity: loadingTopUp ? 0.5 : 1,
+                  }}
+                  onPress={() => onTopUpPress(1000)}
+                  disabled={loadingTopUp}
+                >
+                  {loadingTopUp ? (
+                    <ActivityIndicator color="#222" size="small" />
+                  ) : (
+                    <Text style={{ color: '#222', fontWeight: 'bold', fontSize: 15 }}>
+                      {(() => {
+                        const topup1000Product = products?.find(p => p.productId === SKU_MAP.topup1000);
+                        const topup1000Price = getFormattedStorePrice(topup1000Product);
+                        return topup1000Price
+                          ? `+1000 — ${topup1000Price}`
+                          : '+1000 coins';
+                      })()}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+
+                {/* iOS: Restore Purchases */}
+                {Platform.OS === 'ios' && (
+                  <TouchableOpacity
+                    onPress={handleRestorePurchases}
+                    disabled={restoringPurchases}
+                    style={{
+                      backgroundColor: '#333',
+                      borderRadius: 10,
+                      paddingHorizontal: 20,
+                      paddingVertical: 12,
+                      minWidth: 200,
+                      alignItems: 'center',
+                      opacity: restoringPurchases ? 0.6 : 1,
+                      marginBottom: 10,
+                    }}
+                  >
+                    {restoringPurchases ? (
+                      <ActivityIndicator color="#fff" size="small" />
+                    ) : (
+                      <Text style={{ color: '#fff', fontWeight: '600', fontSize: 14 }}>
+                        Restore Purchases
+                      </Text>
+                    )}
+                  </TouchableOpacity>
+                )}
+
+                {/* Manage Subscription link - iOS only */}
+                {Platform.OS === 'ios' && userPlan !== 'free' && (
+                  <TouchableOpacity
+                    onPress={handleManageSubscription}
+                    style={{ marginTop: 6, paddingVertical: 6 }}
+                  >
+                    <Text style={{ color: '#9aa4ff', fontSize: 13, textDecorationLine: 'underline' }}>
+                      Manage Subscription
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            </View>
           </ScrollView>
-
-          {/* Topup Section */}
-          <View
-            style={{
-              marginTop: 14,
-              alignItems: 'center',
-              paddingBottom: 12,
-            }}
-          >
-            <Text
-              style={{
-                color: '#ffd700',
-                fontWeight: 'bold',
-                fontSize: 17,
-                marginBottom: 14,
-                textAlign: 'center',
-              }}
-            >
-              {t('common:membership.topup.title', { defaultValue: 'Dopuni dukate' })}
-            </Text>
-
-            <TouchableOpacity
-              style={{
-                backgroundColor: '#ffd700',
-                borderRadius: 10,
-                paddingHorizontal: 26,
-                paddingVertical: 13,
-                marginBottom: 10,
-                minWidth: 210,
-                alignItems: 'center',
-                opacity: loadingTopUp ? 0.5 : 1,
-              }}
-              onPress={() => onTopUpPress(500)}
-              disabled={loadingTopUp}
-            >
-              {loadingTopUp ? (
-                <ActivityIndicator color="#222" size="small" />
-              ) : (
-                <Text style={{ color: '#222', fontWeight: 'bold', fontSize: 18 }}>
-                  {(() => {
-                    // === GOOGLE PLAY LOKALIZOVANA CENA ===
-                    const topup500Product = products?.find(p => p.productId === SKU_MAP.topup500);
-                    const topup500Price = getFormattedStorePrice(topup500Product);
-                    return topup500Price
-                      ? `Kupi 500 dukata — ${topup500Price}`
-                      : t('common:membership.topup.buyCoins', { amount: 500, defaultValue: 'Kupi 500 dukata' });
-                  })()}
-                </Text>
-              )}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                backgroundColor: '#ffd700',
-                borderRadius: 10,
-                paddingHorizontal: 26,
-                paddingVertical: 13,
-                marginBottom: 4,
-                minWidth: 210,
-                alignItems: 'center',
-                opacity: loadingTopUp ? 0.5 : 1,
-              }}
-              onPress={() => onTopUpPress(1000)}
-              disabled={loadingTopUp}
-            >
-              {loadingTopUp ? (
-                <ActivityIndicator color="#222" size="small" />
-              ) : (
-                <Text style={{ color: '#222', fontWeight: 'bold', fontSize: 18 }}>
-                  {(() => {
-                    // === GOOGLE PLAY LOKALIZOVANA CENA ===
-                    const topup1000Product = products?.find(p => p.productId === SKU_MAP.topup1000);
-                    const topup1000Price = getFormattedStorePrice(topup1000Product);
-                    return topup1000Price
-                      ? `Kupi 1000 dukata — ${topup1000Price}`
-                      : t('common:membership.topup.buyCoins', { amount: 1000, defaultValue: 'Kupi 1000 dukata' });
-                  })()}
-                </Text>
-              )}
-            </TouchableOpacity>
-          </View>
         </View>
       </View>
     </Modal>

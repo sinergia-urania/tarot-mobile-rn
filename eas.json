@@ -73,5 +73,12 @@
         "EXPO_PUBLIC_WEB_REDIRECT_URL": "https://infohelm.org/auth-redirect-v3.html"
       }
     }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6756968978"
+      }
+    }
   }
 }
