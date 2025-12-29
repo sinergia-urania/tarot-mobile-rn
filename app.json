@@ -21,10 +21,6 @@
         "com.android.vending.BILLING",
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS",
-        "com.google.android.gms.permission.AD_ID",
-        "com.android.vending.BILLING",
-        "android.permission.RECORD_AUDIO",
-        "android.permission.MODIFY_AUDIO_SETTINGS",
         "com.google.android.gms.permission.AD_ID"
       ],
       "intentFilters": [
@@ -47,8 +43,12 @@
     },
     "ios": {
       "bundleIdentifier": "com.mare82.unatarot",
+      "supportsTablet": false,
+      "requireFullScreen": true,
       "infoPlist": {
-        "NSUserTrackingUsageDescription": "We use your device identifier to show relevant ads (AdMob) and support the development of this app."
+        "NSUserTrackingUsageDescription": "We use your device identifier to show relevant ads (AdMob) and support the development of this app.",
+        "UIRequiredDeviceCapabilities": ["telephony"],
+        "UISupportedInterfaceOrientations": ["UIInterfaceOrientationPortrait"]
       }
     },
     "plugins": [

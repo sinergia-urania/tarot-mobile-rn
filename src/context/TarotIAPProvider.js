@@ -29,6 +29,36 @@ const PAKET_BONUSI = {
 };
 
 // ========================================================================
+// HELPER: Normalizacija payment_id (hash ako je predugačak - Apple fix)
+// ========================================================================
+
+const normalizePaymentId = async (input) => {
+    if (!input) return input;
+    const trimmed = String(input).trim();
+
+    // Ako je "normalne" dužine (Android tokeni) - vrati kao što jeste
+    if (trimmed.length <= 200) {
+        return trimmed;
+    }
+
+    // Ako je ogroman (Apple receipt) → SHA-256 hash
+    // Ovo sprečava "index row size exceeds maximum" grešku u PostgreSQL
+    try {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(trimmed);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashed = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        if (DEV_MODE) console.log('[IAP] payment_id hashed (was', trimmed.length, 'chars)');
+        return hashed;
+    } catch (e) {
+        // Fallback: skrati na 200 karaktera ako hash ne radi
+        console.warn('[IAP] normalizePaymentId hash failed, truncating:', e);
+        return trimmed.substring(0, 200);
+    }
+};
+
+// ========================================================================
 // CONTEXT
 // ========================================================================
 
@@ -197,7 +227,8 @@ export const TarotIAPProvider = ({ children }) => {
                 purchase?.originalTransactionId ||
                 purchase?.id;
 
-            const sku = purchase?.productId;
+            // iOS koristi 'id', Android koristi 'productId'
+            const sku = purchase?.id || purchase?.productId;
 
             if (DEV_MODE) {
                 console.log('[IAP] onPurchaseSuccess:', {
@@ -225,8 +256,45 @@ export const TarotIAPProvider = ({ children }) => {
                 return;
             }
 
-            if (!meta) {
-                console.error('[IAP] No pending purchase metadata');
+            // ========================================================================
+            // SKU FALLBACK LOGIKA (ako meta/pendingRef nije dostupan - iOS problem)
+            // ========================================================================
+
+            const premiumSku = getSkuFor('premium');
+            const proSku = getSkuFor('pro');
+            const proplusSku = getSkuFor('proplus');
+            const topup500Sku = getSkuFor('topup500');
+            const topup1000Sku = getSkuFor('topup1000');
+
+            // Podrazumevano uzmi pendingRef metadata
+            let effKind = meta?.kind ?? null;       // 'plan' | 'topup' | null
+            let effPlanKey = meta?.planKey ?? null; // 'premium' | 'pro' | 'proplus' | null
+            let effAmount = meta?.amount ?? null;   // 500 | 1000 | null (za topup)
+
+            // Fallback po SKU-u ako meta nije dostupan (iOS ponekad resetuje ref)
+            if (!effKind && sku) {
+                if (sku === proplusSku) {
+                    effKind = 'plan';
+                    effPlanKey = 'proplus';
+                } else if (sku === premiumSku) {
+                    effKind = 'plan';
+                    effPlanKey = 'premium';
+                } else if (sku === proSku) {
+                    effKind = 'plan';
+                    effPlanKey = 'pro';
+                } else if (sku === topup500Sku) {
+                    effKind = 'topup';
+                    effAmount = 500;
+                } else if (sku === topup1000Sku) {
+                    effKind = 'topup';
+                    effAmount = 1000;
+                }
+                console.log('[IAP] Fallback na sku → effKind =', effKind, 'effPlanKey =', effPlanKey, 'effAmount =', effAmount);
+            }
+
+            // Ako još uvek nemamo effKind, ne možemo da procesiramo
+            if (!effKind) {
+                console.error('[IAP] No pending purchase metadata and could not determine from SKU:', sku);
                 pendingRef.current = null;
                 return;
             }
@@ -244,6 +312,12 @@ export const TarotIAPProvider = ({ children }) => {
             }
 
             // ========================================================================
+            // NORMALIZE PAYMENT_ID (hash ako je predugačak - Apple fix)
+            // ========================================================================
+
+            const normalizedPaymentId = await normalizePaymentId(payment_id);
+
+            // ========================================================================
             // BACKEND PROCESSING
             // ========================================================================
 
@@ -251,8 +325,8 @@ export const TarotIAPProvider = ({ children }) => {
 
             try {
                 // === PLANOVI (Premium / Pro / ProPlus) ===
-                if (meta.kind === 'plan') {
-                    const planKey = meta.planKey;
+                if (effKind === 'plan') {
+                    const planKey = effPlanKey;
 
                     if (planKey === 'premium' || planKey === 'pro' || planKey === 'proplus') {
                         // ✅ ADD COINS SA payment_id ZA IDEMPOTENCY
@@ -260,7 +334,7 @@ export const TarotIAPProvider = ({ children }) => {
                             p_user: userId,
                             p_amount: BONUS[planKey],
                             p_reason: `upgrade_${planKey}`,
-                            p_payment_id: payment_id, // ← KRITIČNO za idempotency
+                            p_payment_id: normalizedPaymentId, // ← NORMALIZOVAN za Apple
                         });
 
                         // ✅ SET PACKAGE
@@ -287,8 +361,8 @@ export const TarotIAPProvider = ({ children }) => {
                 }
 
                 // === DOPUNE (Topup 500 / 1000) ===
-                if (meta.kind === 'topup') {
-                    const amount = meta.amount || 0;
+                if (effKind === 'topup') {
+                    const amount = effAmount || 0;
                     if (amount <= 0) {
                         throw new Error('INVALID_TOPUP_AMOUNT');
                     }
@@ -298,7 +372,7 @@ export const TarotIAPProvider = ({ children }) => {
                         p_user: userId,
                         p_amount: amount,
                         p_reason: 'topup',
-                        p_payment_id: payment_id, // ← KRITIČNO za idempotency
+                        p_payment_id: normalizedPaymentId, // ← NORMALIZOVAN za Apple
                     });
 
                     await fetchDukatiSaServera();

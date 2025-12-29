@@ -37,6 +37,9 @@ const SKU_MAP = {
 const getFormattedStorePrice = (product) => {
   if (!product) return null;
   return (
+    // iOS expo-iap koristi displayPrice (npr. "4,99 €")
+    product.displayPrice ||
+    // Android / standardni formati
     product.localizedPrice ||
     product.priceString ||
     product.subscriptionOfferDetails?.[0]?.pricingPhases?.pricingPhaseList?.[0]?.formattedPrice ||
@@ -162,7 +165,7 @@ const packages = [
 export default function MembershipModal({ visible, onClose }) {
   const { t } = useTranslation(['common']);
   const { userId, userPlan, fetchDukatiSaServera, refreshUserPlan } = useDukati();
-  const { iapReady, devMode, startPlanPurchase, startTopupPurchase, products, restorePurchases } = useTarotIAP();
+  const { iapReady, devMode, startPlanPurchase, startTopupPurchase, products } = useTarotIAP();
 
   const [loadingPlanKey, setLoadingPlanKey] = React.useState(null);
   const [loadingTopUp, setLoadingTopUp] = React.useState(false);
@@ -308,74 +311,6 @@ export default function MembershipModal({ visible, onClose }) {
     },
     [iapReady, devMode, userId, startTopupPurchase, t]
   );
-
-  // ========================================================================
-  // RESTORE PURCHASES (iOS - Apple zahteva ovo)
-  // ========================================================================
-
-  const [restoringPurchases, setRestoringPurchases] = React.useState(false);
-
-  const handleRestorePurchases = React.useCallback(async () => {
-    if (restoringPurchases) return;
-    setRestoringPurchases(true);
-
-    try {
-      const result = await restorePurchases();
-
-      if (result.restored) {
-        Toast.show({
-          type: 'success',
-          text1: t('common:messages.successTitle', { defaultValue: 'Uspeh!' }),
-          text2: t('common:membership.restore.success', {
-            plan: result.plan,
-            defaultValue: `Vraćena pretplata: ${result.plan}`,
-          }),
-          position: 'bottom',
-        });
-      } else {
-        Toast.show({
-          type: 'info',
-          text1: t('common:membership.restore.noPurchasesTitle', { defaultValue: 'Nema kupovina' }),
-          text2: t('common:membership.restore.noPurchasesBody', {
-            defaultValue: 'Nismo pronašli aktivne pretplate za ovaj nalog.',
-          }),
-          position: 'bottom',
-        });
-      }
-    } catch (err) {
-      console.error('Restore purchases error:', err);
-      Toast.show({
-        type: 'error',
-        text1: t('common:errors.genericTitle', { defaultValue: 'Greška' }),
-        text2: t('common:errors.tryAgain', { defaultValue: 'Pokušajte ponovo.' }),
-        position: 'bottom',
-      });
-    } finally {
-      setRestoringPurchases(false);
-    }
-  }, [restorePurchases, restoringPurchases, t]);
-
-  // ========================================================================
-  // MANAGE SUBSCRIPTION
-  // ========================================================================
-
-  const handleManageSubscription = React.useCallback(() => {
-    if (Platform.OS === 'ios') {
-      // iOS - otvori App Store subscriptions
-      Linking.openURL('https://apps.apple.com/account/subscriptions');
-    } else {
-      // Android - otvori Google Play subscriptions
-      const currentSku = userPlan === 'premium' ? SKU_MAP.premium
-        : userPlan === 'pro' ? SKU_MAP.pro
-          : userPlan === 'proplus' ? SKU_MAP.proplus
-            : null;
-      if (currentSku) {
-        Linking.openURL(`https://play.google.com/store/account/subscriptions?sku=${currentSku}&package=com.mare82.unatarot`);
-      } else {
-        Linking.openURL('https://play.google.com/store/account/subscriptions');
-      }
-    }
-  }, [userPlan]);
 
   // ========================================================================
   // RENDER
@@ -639,8 +574,9 @@ export default function MembershipModal({ visible, onClose }) {
                                 defaultValue: 'Već imate Premium',
                               })
                               : (() => {
-                                // === GOOGLE PLAY LOKALIZOVANA CENA ===
-                                const premiumProduct = products?.find(p => p.productId === SKU_MAP.premium);
+                                // === GOOGLE PLAY / APP STORE LOKALIZOVANA CENA ===
+                                // iOS koristi 'id', Android koristi 'productId'
+                                const premiumProduct = products?.find(p => p.id === SKU_MAP.premium || p.productId === SKU_MAP.premium);
                                 const premiumPrice = getFormattedStorePrice(premiumProduct);
                                 return premiumPrice
                                   ? `Buy Premium (${premiumPrice}/mo)`
@@ -679,8 +615,9 @@ export default function MembershipModal({ visible, onClose }) {
                                 defaultValue: 'Already PRO',
                               })
                               : (() => {
-                                // === GOOGLE PLAY LOKALIZOVANA CENA ===
-                                const proProduct = products?.find(p => p.productId === SKU_MAP.pro);
+                                // === GOOGLE PLAY / APP STORE LOKALIZOVANA CENA ===
+                                // iOS koristi 'id', Android koristi 'productId'
+                                const proProduct = products?.find(p => p.id === SKU_MAP.pro || p.productId === SKU_MAP.pro);
                                 const proPrice = getFormattedStorePrice(proProduct);
                                 return proPrice
                                   ? `Buy PRO (${proPrice}/mo)`
@@ -719,8 +656,9 @@ export default function MembershipModal({ visible, onClose }) {
                                 defaultValue: 'Already ProPlus',
                               })
                               : (() => {
-                                // === GOOGLE PLAY LOKALIZOVANA CENA ===
-                                const proplusProduct = products?.find(p => p.productId === SKU_MAP.proplus);
+                                // === GOOGLE PLAY / APP STORE LOKALIZOVANA CENA ===
+                                // iOS koristi 'id', Android koristi 'productId'
+                                const proplusProduct = products?.find(p => p.id === SKU_MAP.proplus || p.productId === SKU_MAP.proplus);
                                 const proplusPrice = getFormattedStorePrice(proplusProduct);
                                 return proplusPrice
                                   ? `Buy ProPlus (${proplusPrice}/yr)`
@@ -774,7 +712,8 @@ export default function MembershipModal({ visible, onClose }) {
                   ) : (
                     <Text style={{ color: '#222', fontWeight: 'bold', fontSize: 15 }}>
                       {(() => {
-                        const topup500Product = products?.find(p => p.productId === SKU_MAP.topup500);
+                        // iOS koristi 'id', Android koristi 'productId'
+                        const topup500Product = products?.find(p => p.id === SKU_MAP.topup500 || p.productId === SKU_MAP.topup500);
                         const topup500Price = getFormattedStorePrice(topup500Product);
                         return topup500Price
                           ? `+500 — ${topup500Price}`
@@ -804,7 +743,8 @@ export default function MembershipModal({ visible, onClose }) {
                   ) : (
                     <Text style={{ color: '#222', fontWeight: 'bold', fontSize: 15 }}>
                       {(() => {
-                        const topup1000Product = products?.find(p => p.productId === SKU_MAP.topup1000);
+                        // iOS koristi 'id', Android koristi 'productId'
+                        const topup1000Product = products?.find(p => p.id === SKU_MAP.topup1000 || p.productId === SKU_MAP.topup1000);
                         const topup1000Price = getFormattedStorePrice(topup1000Product);
                         return topup1000Price
                           ? `+1000 — ${topup1000Price}`
@@ -814,11 +754,22 @@ export default function MembershipModal({ visible, onClose }) {
                   )}
                 </TouchableOpacity>
 
-                {/* iOS: Restore Purchases */}
+                {/* iOS: Restore Purchases - otvara Apple Subscriptions ekran */}
                 {Platform.OS === 'ios' && (
                   <TouchableOpacity
-                    onPress={handleRestorePurchases}
-                    disabled={restoringPurchases}
+                    onPress={async () => {
+                      try {
+                        await Linking.openURL('https://apps.apple.com/account/subscriptions');
+                      } catch (e) {
+                        console.log('Error opening Apple subscriptions:', e);
+                        Toast.show({
+                          type: 'error',
+                          text1: t('common:errors.genericTitle', { defaultValue: 'Greška' }),
+                          text2: t('common:errors.tryAgain', { defaultValue: 'Pokušajte ponovo.' }),
+                          position: 'bottom',
+                        });
+                      }
+                    }}
                     style={{
                       backgroundColor: '#333',
                       borderRadius: 10,
@@ -826,28 +777,11 @@ export default function MembershipModal({ visible, onClose }) {
                       paddingVertical: 12,
                       minWidth: 200,
                       alignItems: 'center',
-                      opacity: restoringPurchases ? 0.6 : 1,
                       marginBottom: 10,
                     }}
                   >
-                    {restoringPurchases ? (
-                      <ActivityIndicator color="#fff" size="small" />
-                    ) : (
-                      <Text style={{ color: '#fff', fontWeight: '600', fontSize: 14 }}>
-                        Restore Purchases
-                      </Text>
-                    )}
-                  </TouchableOpacity>
-                )}
-
-                {/* Manage Subscription link - iOS only */}
-                {Platform.OS === 'ios' && userPlan !== 'free' && (
-                  <TouchableOpacity
-                    onPress={handleManageSubscription}
-                    style={{ marginTop: 6, paddingVertical: 6 }}
-                  >
-                    <Text style={{ color: '#9aa4ff', fontSize: 13, textDecorationLine: 'underline' }}>
-                      Manage Subscription
+                    <Text style={{ color: '#fff', fontWeight: '600', fontSize: 14 }}>
+                      Restore Purchases
                     </Text>
                   </TouchableOpacity>
                 )}
