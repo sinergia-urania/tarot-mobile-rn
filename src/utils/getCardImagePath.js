@@ -80,12 +80,16 @@
   master_card: require('../assets/cards/master_card.webp'),
 };
 
-const toSnakeCase = (str) =>
-  str.replace(/([A-Z])/g, '_$1').toLowerCase();
+const toSnakeCase = (str) => {
+  // ✅ guard: uvek pretvori u string
+  if (typeof str !== 'string') str = str?.key ?? str?.label ?? str?.name ?? '';
+  str = String(str ?? '');
+
+  return str.replace(/([A-Z])/g, '_$1').toLowerCase();
+};
 
 export const getCardImagePath = (key) => {
+  if (key == null) return require('../assets/cards/back.webp');
   const snakeKey = toSnakeCase(key);
   return cardImages[snakeKey] || require('../assets/cards/back.webp');
 };
-
-

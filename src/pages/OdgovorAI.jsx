@@ -5,11 +5,12 @@ import { CommonActions } from "@react-navigation/native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+// FIX: dodaj useRef za sprečavanje duplog poziva
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 // START: import cleanup (ostavljen stari u komentaru)
 // import { Button, Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import { ActivityIndicator, Button, Dimensions, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Button, Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 // END: import cleanup
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
@@ -118,6 +119,16 @@ const POZICIJE_OTVARANJA = {
     "Šta ostavljam iza sebe",
     "Kuda vodi moja spoznaja"
   ]
+};
+
+// FIX: Helper za mapiranje subtip -> pozicije (bug fix)
+// subtip je "tri" | "pet" | "ljubavno", dok tip može biti "klasicno" | "keltski" | "astrološko" | "drvo"
+// Za keltski/astro/drvo se koriste posebne label liste, ne POZICIJE_OTVARANJA
+const getPozicijeZaSubtip = (subtip) => {
+  if (subtip === "ljubavno") return POZICIJE_OTVARANJA.dve;
+  if (subtip === "tri") return POZICIJE_OTVARANJA.tri;
+  if (subtip === "pet") return POZICIJE_OTVARANJA.pet;
+  return undefined; // keltski/astro/drvo koriste svoje label liste
 };
 
 const isNedovoljnoDukata = (s) => typeof s === "string" && /nedovoljno\s+dukata/i.test(s);
@@ -261,6 +272,14 @@ const OdgovorAI = () => {
   const [loadingPodpitanje, setLoadingPodpitanje] = useState(false);
   const { profile, authLoading } = useAuth();
 
+  // FIX: ref za sprečavanje duplog AI poziva (iOS race condition)
+  const aiStartedRef = useRef(false);
+
+  // FIX: retry mehanizam sa limitom pokušaja
+  const [aiFailed, setAiFailed] = useState(false);
+  const retryCountRef = useRef(0);
+  const MAX_RETRIES = 2;
+
   // i18n (ai, cardMeanings, common)
   const { t } = useTranslation(['ai', 'cardMeanings', 'common']);
   // START: i18n kontekst otvaranja (novi, lokalizovan)
@@ -317,15 +336,44 @@ const OdgovorAI = () => {
   }
   // END: DEBUG jezik i tranziti
 
-  // Server-first: glavno otvaranje
+  // FIX: Reset aiStartedRef i retryCount kad se promeni pitanje (novi reading)
   useEffect(() => {
-    console.log('AI PROFILE DATA:', {
-      znak: suncevZnak,
-      podznak: podznak,
-      datumrodjenja: datumrodjenja,
-      display_name: profile?.display_name,
-    });
-    if (!aiOdgovor && pitanje && profile && !authLoading) {
+    aiStartedRef.current = false;
+    retryCountRef.current = 0;
+  }, [pitanje]);
+
+  // Server-first: glavno otvaranje
+  // FIX: soft-wait pattern za iOS profil race condition
+  useEffect(() => {
+    // Već pozvano? Izađi.
+    if (aiStartedRef.current) return;
+    // Auth još učitava? Čekaj.
+    if (authLoading) return;
+    // Nema pitanja? Izađi.
+    if (!pitanje) return;
+    // Već imamo odgovor? Izađi.
+    if (aiOdgovor) return;
+
+    // FIX: Ako profil postoji, kreni odmah (delay=0)
+    // Ako profil NE postoji, sačekaj do 3s pa kreni sa defaults
+    const delay = profile ? 0 : 3000;
+
+    const timeoutId = setTimeout(() => {
+      // Dupla provera - možda je u međuvremenu profil stigao i već pokrenuo AI
+      if (aiStartedRef.current) return;
+      aiStartedRef.current = true;
+
+      // FIX: resetuj fail status kad kreće novi pokušaj
+      setAiFailed(false);
+
+      console.log('AI PROFILE DATA:', {
+        znak: suncevZnak,
+        podznak: podznak,
+        datumrodjenja: datumrodjenja,
+        display_name: profile?.display_name,
+        profileWasNull: !profile,
+      });
+
       console.log('TRANZITI KOJI SE ŠALJU:', tranzitiTekst);
       // START: DEBUG payload main
       if (__DEV__) {
@@ -338,15 +386,17 @@ const OdgovorAI = () => {
             sefiroti: SEFIROTI_I18N?.slice(0, 3),
             kuce: KUCE_ASTRO?.slice(0, 3),
           },
-          hasTransits: !!tranzitiTekst
+          hasTransits: !!tranzitiTekst,
+          usedDelay: delay,
         });
       }
       // END: DEBUG payload main
 
       getAIAnswer({
         userId,
-        ime: profile?.display_name,              // ime (da Una oslovljava)
-        gender: profile?.gender || "other",
+        // FIX: fallback vrednosti ako profil nije stigao
+        ime: profile?.display_name ?? "Korisnik",
+        gender: profile?.gender ?? "other",
         pitanje,
         tipOtvaranja: tip,
         subtip,
@@ -355,17 +405,19 @@ const OdgovorAI = () => {
         // START: AI – pošalji uvek normalizovane karte sa reversed
         karte: karteZaAI,
         // END: AI – pošalji uvek normalizovane karte sa reversed
-        pozicije: POZICIJE_OTVARANJA[tip] || undefined,
+        // FIX: koristi subtip za mapiranje pozicija (ne tip!)
+        pozicije: getPozicijeZaSubtip(subtip),
         // START: prosledi i18n etikete za prompt (app jezik)
         keltskePozicije: KELTSKE_I18N,
         sefirotiLabels: SEFIROTI_I18N,
         kuceAstroLabels: KUCE_ASTRO,
         // END: prosledi i18n etikete za prompt (app jezik)
+        // FIX: koristi lokalne varijable koje su već izračunate iz profile
         znak: suncevZnak,
         podznak: podznak,
         datumrodjenja: datumrodjenja,
         datumOtvaranja,
-        tranzitiTekst,                           // 👈 sad je “skraćen”
+        tranzitiTekst,                           // 👈 sad je "skraćen"
       })
         // START: robustniji prihvat i čuvanje sessionId
         .then(async (resp) => {
@@ -394,8 +446,14 @@ const OdgovorAI = () => {
           } else if (__DEV__) {
             console.log('[AI][main] Nema sessionId u odgovoru (dev okruženje?)', resp);
           }
-          setAiOdgovor(odgovor);
+          const safeOdgovor = typeof odgovor === "string" ? odgovor : "";
+          setAiOdgovor(safeOdgovor);
+
+          // ako je prazan, tretiraj kao fail da bi Retry imao smisla
+          if (!safeOdgovor) setAiFailed(true);
+
           try { await refreshCoins?.(); } catch { }
+
         })
         // END: robustniji prihvat i čuvanje sessionId
         .catch((err) => {
@@ -407,6 +465,9 @@ const OdgovorAI = () => {
             position: "bottom",
           });
 
+          // FIX: označi da je AI fail-ovao (za retry dugme)
+          setAiFailed(true);
+
           setAiOdgovor(
             t('common:errors.aiAnswerFailedDetailed', {
               defaultValue: 'Došlo je do greške prilikom dobijanja odgovora.{{extra}}',
@@ -414,8 +475,11 @@ const OdgovorAI = () => {
             })
           );
         });
-    }
-  }, [pitanje, userPlan, prikazaneKarte, tip, profile, authLoading, tranzitiTekst]);
+    }, delay);
+
+    // Cleanup: ako se komponenta unmountuje ili dependency promeni, očisti timeout
+    return () => clearTimeout(timeoutId);
+  }, [authLoading, pitanje, aiOdgovor, profile]);
 
   const cenaOtvaranja = route.params?.cena || 0;
 
@@ -496,73 +560,79 @@ const OdgovorAI = () => {
         // START: AI follow-up – takođe normalizovane karte
         karte: karteZaAI,
         // END: AI follow-up – takođe normalizovane karte
-        pozicije: POZICIJE_OTVARANJA[tip] || undefined,
+        // FIX: koristi subtip za mapiranje pozicija (ne tip!)
+        pozicije: getPozicijeZaSubtip(subtip),
         // START: prosledi i18n etikete za prompt (app jezik)
         keltskePozicije: KELTSKE_I18N,
         sefirotiLabels: SEFIROTI_I18N,
         kuceAstroLabels: KUCE_ASTRO,
         // END: prosledi i18n etikete za prompt (app jezik)
-        podpitanje,
-        prethodniOdgovor: aiOdgovor,
-        jezikAplikacije,
         znak: podpitanjeZnak,
-        podznak: podznak,
+        podznak: podpitanjePodznak,
         datumrodjenja: podpitanjeDatum,
-        gender: profile?.gender || "other",
+        datumOtvaranja,
+        tranzitiTekst,
+        pitanje,
+        prethodniOdgovor: aiOdgovor,
+        novoPitanje: podpitanje,
+        userLevel: userPlan,
+        jezikAplikacije,
+        ime: profile?.display_name ?? "Korisnik",
+        gender: profile?.gender ?? "other",
       });
-      // START: DEBUG followup response
-      if (__DEV__) {
-        console.log('[AI][payload.followup.response]', {
-          ok: !isNedovoljnoDukata(odgovor),
-          answerPreview: String(odgovor || '').slice(0, 180)
-        });
-      }
-      // END: DEBUG followup response
 
       if (isNedovoljnoDukata(odgovor)) {
-        try { await refreshCoins?.(); } catch { }
         Toast.show({
           type: "error",
           text1: t('common:errors.notEnoughCoinsTitle', { defaultValue: 'Nedovoljno dukata' }),
           text2: t('common:errors.notEnoughCoinsFollowup', {
-            defaultValue: 'Nemaš dovoljno dukata za AI podpitanje!'
+            defaultValue: 'Nemaš dovoljno dukata za podpitanje. Dopuni i pokušaj ponovo.'
           }),
           position: "bottom",
         });
-
         return;
       }
+
       setPodpitanjeOdgovor(odgovor);
       await upisiPodpitanjeUArhivu(podpitanje, odgovor);
       try { await refreshCoins?.(); } catch { }
     } catch (err) {
+      console.log("Followup ERROR:", err);
       Toast.show({
         type: "error",
-        text1: t('common:errors.aiFollowupFailed', { defaultValue: 'Greška pri dobijanju AI odgovora!' }),
+        text1: t('common:errors.followupFailed', { defaultValue: 'Greška' }),
+        text2: err?.message || t('common:errors.tryAgain', { defaultValue: 'Pokušajte ponovo.' }),
         position: "bottom",
       });
-
     } finally {
       setLoadingPodpitanje(false);
     }
   };
 
-  function isValidAIResponse(odgovor) {
-    if (!odgovor) return false;
-    const failPaterni = [
-      "greška", "došlo je do greške", "nije moguće", "error", "ne mogu", "nije generisan"
-    ];
-    const odg = odgovor.trim().toLowerCase();
-    return !failPaterni.some(fail => odg.includes(fail));
-  }
+  // FIX: Retry handler sa limitom pokušaja
+  const onRetry = () => {
+    if (retryCountRef.current >= MAX_RETRIES) {
+      Toast.show({
+        type: "info",
+        text1: t('common:errors.maxRetriesTitle', { defaultValue: 'Previše pokušaja' }),
+        text2: t('common:errors.maxRetriesMessage', { defaultValue: 'Pokušaj ponovo kasnije.' }),
+        position: "bottom",
+      });
+      return;
+    }
+    retryCountRef.current += 1;
+    aiStartedRef.current = false;  // odblokira useEffect
+    setAiFailed(false);
+    setAiOdgovor("");              // da useEffect opet krene
+  };
 
+  // START: View + SafeImage kao background (WebP na iOS)
+  // <ImageBackground
+  //   source={backgroundImg}
+  //   style={{ flex: 1, width: "100%", height: "100%" }}
+  //   imageStyle={{ resizeMode: "cover" }}
+  // >
   return (
-    // START: View + SafeImage kao background (WebP na iOS)
-    // <ImageBackground
-    //   source={backgroundImg}
-    //   style={{ flex: 1, width: "100%", height: "100%" }}
-    //   imageStyle={{ resizeMode: "cover" }}
-    // >
     <View style={{ flex: 1, width: "100%", height: "100%" }}>
       <SafeImage
         source={backgroundImg}
@@ -581,7 +651,7 @@ const OdgovorAI = () => {
       </View>
 
       {
-        !aiOdgovor ? (
+        (!aiOdgovor && !aiFailed) ? (
           <View style={{
             flex: 1,
             alignItems: "center",
@@ -687,6 +757,14 @@ const OdgovorAI = () => {
                   {/* END: i18n kontekst */}
                   {aiOdgovor || "Ovo je mesto gde će AI dati odgovor na osnovu odabranih karata."}
                 </Text>
+
+                {/* FIX: Retry dugme - prikazuje se samo kad je fail (ne i za "Nedovoljno dukata")
+                    NAPOMENA: retryCountRef.current u JSX radi jer setAiOdgovor("") trigeruje rerender */}
+                {aiFailed && !isNedovoljnoDukata(aiOdgovor) && retryCountRef.current < MAX_RETRIES && (
+                  <TouchableOpacity onPress={onRetry} style={styles.retryBtn}>
+                    <Text style={styles.retryBtnText}>↻ Retry</Text>
+                  </TouchableOpacity>
+                )}
 
                 {/* Astrološke kuće */}
                 {tip === "astrološko" && (
@@ -865,5 +943,21 @@ const styles = StyleSheet.create({
   followupLabel: { color: "#ffd700", fontSize: 15, marginTop: 6, marginBottom: 2, fontWeight: "600" },
   followupQ: { color: "#fff", fontSize: 15, marginBottom: 6, textAlign: "left" },
   followupA: { color: "#c9c9c9", fontSize: 15, fontStyle: "italic", textAlign: "left" },
+
+  // FIX: Retry dugme stilovi
+  retryBtn: {
+    backgroundColor: "#ffd700",
+    paddingVertical: 10,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignSelf: "center",
+    marginTop: 12,
+    marginBottom: 8,
+  },
+  retryBtnText: {
+    color: "#0d0d2b",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
 export default OdgovorAI;

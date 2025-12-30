@@ -15,7 +15,8 @@ const GUESS_BASE = (() => {
   } catch { }
   return ""; // ako ne uspe, bolje prazan nego pogrešan
 })();
-const SUPABASE_URL = GUESS_BASE || "https://ozssorzirdwyqgbixgri.supabase.co";
+const SUPABASE_URL = ENV_BASE || GUESS_BASE || "https://ozssorzirdwyqgbixgri.supabase.co";
+
 
 // END: SUPABASE_URL – prioritet .env
 

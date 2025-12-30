@@ -42,13 +42,22 @@
       }
     },
     "ios": {
+      "icon": "./assets/icon.png",
       "bundleIdentifier": "com.mare82.unatarot",
+      "buildNumber": "2",
       "supportsTablet": false,
       "requireFullScreen": true,
+      "usesAppleSignIn": true,
       "infoPlist": {
         "NSUserTrackingUsageDescription": "We use your device identifier to show relevant ads (AdMob) and support the development of this app.",
-        "UIRequiredDeviceCapabilities": ["telephony"],
-        "UISupportedInterfaceOrientations": ["UIInterfaceOrientationPortrait"]
+        "UIRequiredDeviceCapabilities": [
+          "telephony"
+        ],
+        "UISupportedInterfaceOrientations": [
+          "UIInterfaceOrientationPortrait",
+          "UIInterfaceOrientationPortrait"
+        ],
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "plugins": [

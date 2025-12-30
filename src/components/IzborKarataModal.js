@@ -104,14 +104,17 @@ const IzborKarataModal = ({
 
   const fanBaseTopByTier = {
     phoneSmall: 150,                                              // ~6.0" (umesto 80)
-    phoneMedium: 230,                                             // ~6.5" (tvoj dobar broj)
-    phoneLarge: 270 + 40 + Math.round(CARD_IN_FAN_HEIGHT / 3),    // ~6.7" (tvoja logika)
+    phoneMedium: 215,                                             // ~6.5" (tvoj dobar broj)
+    phoneLarge: 260 + 40 + Math.round(CARD_IN_FAN_HEIGHT / 3),    // ~6.7" (tvoja logika)
     tabSmall: 320,                                                // ~8.5–10.5"
     tabLarge: 360,                                                // ~10.5–14"
   };
 
   const fanBaseTop = fanBaseTopByTier[screenTier];
   // END: fanBaseTop po tier-u
+
+  // iOS fix: granica za touch detekciju lepeze (da ne hvata drag po celom ekranu)
+  const FAN_TOUCH_TOP = dimensions.height - 220 - fanBaseTop;
 
   // START: CHEVRON_TOP po tier-u
   const chevronTopByTier = {
@@ -379,11 +382,19 @@ const IzborKarataModal = ({
 
   const pan = useRef({ last: 0 }).current;
   const rafRef = useRef(null);
-  const panResponder = useRef(
+
+  // PanResponder sa FAN_TOUCH_TOP gate-om (da hvata drag samo u fan zoni)
+  const panResponder = useMemo(() =>
     PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: (_, g) =>
-        Math.abs(g.dx) > 4 || Math.abs(g.dy) > 4,
+      // Tap ide karti (Pressable), drag ide lepezi
+      // Na startu NE uzimamo responder - samo kad se stvarno povuče
+      onStartShouldSetPanResponderCapture: () => false,
+      onStartShouldSetPanResponder: () => false,
+      // Drag se hvata samo u fan zoni i kad ima pomeraja
+      onMoveShouldSetPanResponderCapture: (evt, g) =>
+        evt.nativeEvent.pageY >= FAN_TOUCH_TOP && Math.abs(g.dx) > 2,
+      onMoveShouldSetPanResponder: (evt, g) =>
+        evt.nativeEvent.pageY >= FAN_TOUCH_TOP && Math.abs(g.dx) > 4,
       onPanResponderGrant: () => {
         angleOffset.stopAnimation();
         pan.last = angleOffset.__getValue?.() ?? currentAngle;
@@ -397,6 +408,9 @@ const IzborKarataModal = ({
         });
       },
       onPanResponderRelease: (_, g) => {
+        // iOS fix: resetuj dragActive odmah, ne čekaj decay callback
+        setDragActive(false);
+
         if (rafRef.current) {
           cancelAnimationFrame(rafRef.current);
           rafRef.current = null;
@@ -408,11 +422,11 @@ const IzborKarataModal = ({
           useNativeDriver: false,
         }).start(() => {
           pan.last = angleOffset.__getValue?.() ?? currentAngle;
-          setDragActive(false);
         });
       },
-    })
-  ).current;
+    }),
+    [FAN_TOUCH_TOP, angleOffset, pan]
+  );
 
   useEffect(() => {
     return () => {
@@ -457,7 +471,11 @@ const IzborKarataModal = ({
         <Text style={styles.closeText}>×</Text>
       </TouchableOpacity>
 
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        scrollEnabled={tip === "karta-dana" ? !dragActive : false}
+        removeClippedSubviews={false}
+      >
         {tip !== "dane" && tip !== "karta-dana" && (
           <View style={styles.row}>
             <TouchableOpacity
@@ -571,155 +589,163 @@ const IzborKarataModal = ({
               </Text>
             )}
 
-            {/* START: (ISKLJUČENO) — stari luk ostavljen radi istorije */}
-            {false && (
-              <View style={{
-                position: "absolute",
-                top: dimensions.height - 220 - fanBaseTop,
-                width: dimensions.width,
-                height: 220,
-                zIndex: 5,
-                pointerEvents: "none",
-              }}>
-                <Svg width={dimensions.width} height={220}>
-
-                </Svg>
-              </View>
-            )}
-            {/* END: (ISKLJUČENO) — stari luk */}
-
-            {/* START: Chevron hint — kompaktan i žut */}
-            {SHOW_CHEVRON_HINT && (
-              <View style={{
-                position: "absolute",
-                top: dimensions.height - 220 - fanBaseTop,
-                width: dimensions.width,
-                height: 220,
-                zIndex: 6,
-                pointerEvents: "none",
-              }}>
-                {/* Levi chevron */}
-                <Animated.View style={{
-                  position: "absolute",
-                  top: CHEVRON_TOP,
-                  left: (dimensions.width / 2) - CHEVRON_DISTANCE - 24,
-                  opacity: chevOpacity,
-                  transform: [{ translateX: leftShift }, { rotate: `-${CHEVRON_TILT_DEG}deg` }],
-                }}>
-                  <Svg width={48} height={48} viewBox="0 0 48 48">
-                    <Path d="M30 8 L14 24 L30 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                    <Path d="M18 8 L2 24 L18 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                  </Svg>
-                </Animated.View>
-                {/* Desni chevron */}
-                <Animated.View style={{
-                  position: "absolute",
-                  top: CHEVRON_TOP,
-                  left: (dimensions.width / 2) + CHEVRON_DISTANCE - 24,
-                  opacity: Animated.add(chevOpacity, 0),
-                  transform: [{ translateX: rightShift }, { rotate: `${CHEVRON_TILT_DEG}deg` }],
-                }}>
-                  <Svg width={48} height={48} viewBox="0 0 48 48">
-                    <Path d="M18 8 L34 24 L18 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                    <Path d="M 6 8 L22 24 L 6 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                  </Svg>
-                </Animated.View>
-              </View>
-            )}
-            {/* END: Chevron hint */}
-
-            {/* --- Lepeza sa PanResponder-om za fluidni drag --- */}
-            <View
-              {...panResponder.panHandlers}
-              style={[
-                styles.cardsCircle,
-                {
-                  position: "absolute",
-                  top: dimensions.height - 220 - fanBaseTop,
-                  width: dimensions.width,
-                  height: 220,
-                },
-              ]}
-            >
-              {availableCards.map((card, idx) => {
-                const cardKey = card.key;
-
-                // START: perf(render) — koristi memo pozicije + rotacione formule
-                const bp = basePositions[idx];
-                const baseDeg =
-                  bp?.baseDeg ?? (startAngle + (idx * fanAngle) / Math.max(availableCards.length - 1, 1));
-                const angleDeg = baseDeg + currentAngle;
-
-                const cb = bp?.cosBase ?? Math.cos((baseDeg * Math.PI) / 180);
-                const sb = bp?.sinBase ?? Math.sin((baseDeg * Math.PI) / 180);
-                const cosAngle = cb * cosCA - sb * sinCA;
-                const sinAngle = sb * cosCA + cb * sinCA;
-
-                const x = centerX + radius * cosAngle;
-                const y = centerY + radius * sinAngle;
-                const rotate = angleDeg + 90;
-                // END: perf(render)
-
-                return (
-                  <View
-                    key={cardKey}
-                    style={[
-                      styles.singleCard,
-                      {
-                        left: x - 40,
-                        top: y - 90,
-                        zIndex: idx,
-                        transform: [{ rotate: `${rotate}deg` }],
-                        position: 'absolute',
-                      },
-                    ]}
-                  >
-                    {!card.removed ? (
-                      <Pressable
-                        style={{ width: '100%', height: '100%' }}
-                        onPress={() => {
-                          if (!dragActive) handleCardClick(cardKey);
-                        }}
-                      >
-                        <SafeImage
-                          source={getCardImagePath("master_card")}
-                          style={styles.cardImage}
-                          contentFit="contain"
-                        />
-                      </Pressable>
-                    ) : (
-                      <View style={{ width: '100%', height: '100%' }} />
-                    )}
-                  </View>
-                );
-              })}
-            </View>
-            {/* --- Kraj lepeze --- */}
-
-            {/* Dugme fiksirano na dnu */}
-            {selectedCards.length === numPlaceholders && (
-              <TouchableOpacity
-                style={[
-                  styles.answerBtn,
-                  loadingAnswer && { opacity: 0.6 }
-                ]}
-                onPress={handleGoToAnswer}
-                activeOpacity={0.85}
-                disabled={loadingAnswer}
-              >
-                {loadingAnswer ? (
-                  <ActivityIndicator color="#222" size="small" />
-                ) : (
-                  <Text style={styles.answerBtnText}>
-                    {t('common:buttons.answer', { defaultValue: 'Odgovor' })}
-                  </Text>
-                )}
-              </TouchableOpacity>
-            )}
-
           </>
         )}
       </ScrollView>
+
+      {/* === OVERLAY ELEMENTI (van ScrollView-a za iOS kompatibilnost) === */}
+
+      {!(tip === "karta-dana" && kartaDana?._izabranaDanas) && (
+        <>
+          {/* START: (ISKLJUČENO) — stari luk ostavljen radi istorije */}
+          {false && (
+            <View style={{
+              position: "absolute",
+              top: dimensions.height - 220 - fanBaseTop,
+              width: dimensions.width,
+              height: 220,
+              zIndex: 5,
+              pointerEvents: "none",
+            }}>
+              <Svg width={dimensions.width} height={220}>
+
+              </Svg>
+            </View>
+          )}
+          {/* END: (ISKLJUČENO) — stari luk */}
+
+          {/* START: Chevron hint — kompaktan i žut */}
+          {SHOW_CHEVRON_HINT && (
+            <View style={{
+              position: "absolute",
+              top: dimensions.height - 220 - fanBaseTop,
+              width: dimensions.width,
+              height: 220,
+              zIndex: 6,
+              pointerEvents: "none",
+            }}>
+              {/* Levi chevron */}
+              <Animated.View style={{
+                position: "absolute",
+                top: CHEVRON_TOP,
+                left: (dimensions.width / 2) - CHEVRON_DISTANCE - 24,
+                opacity: chevOpacity,
+                transform: [{ translateX: leftShift }, { rotate: `-${CHEVRON_TILT_DEG}deg` }],
+              }}>
+                <Svg width={48} height={48} viewBox="0 0 48 48">
+                  <Path d="M30 8 L14 24 L30 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  <Path d="M18 8 L2 24 L18 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </Svg>
+              </Animated.View>
+              {/* Desni chevron */}
+              <Animated.View style={{
+                position: "absolute",
+                top: CHEVRON_TOP,
+                left: (dimensions.width / 2) + CHEVRON_DISTANCE - 24,
+                opacity: Animated.add(chevOpacity, 0),
+                transform: [{ translateX: rightShift }, { rotate: `${CHEVRON_TILT_DEG}deg` }],
+              }}>
+                <Svg width={48} height={48} viewBox="0 0 48 48">
+                  <Path d="M18 8 L34 24 L18 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  <Path d="M 6 8 L22 24 L 6 40" stroke={CHEVRON_COLOR} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </Svg>
+              </Animated.View>
+            </View>
+          )}
+          {/* END: Chevron hint */}
+
+          {/* --- Lepeza sa PanResponder-om za fluidni drag --- */}
+          {/* Wrapper sa sidrom dole, ali VAN ScrollView-a za iOS kompatibilnost */}
+          <View
+            {...panResponder.panHandlers}
+            collapsable={false}
+            style={{
+              position: "absolute",
+              top: dimensions.height - 210 - fanBaseTop,
+              width: dimensions.width,
+              height: 220,
+              zIndex: 7,
+              overflow: "visible",
+            }}
+          >
+            {availableCards.map((card, idx) => {
+              const cardKey = card.key;
+
+              // START: perf(render) — koristi memo pozicije + rotacione formule
+              const bp = basePositions[idx];
+              const baseDeg =
+                bp?.baseDeg ?? (startAngle + (idx * fanAngle) / Math.max(availableCards.length - 1, 1));
+              const angleDeg = baseDeg + currentAngle;
+
+              const cb = bp?.cosBase ?? Math.cos((baseDeg * Math.PI) / 180);
+              const sb = bp?.sinBase ?? Math.sin((baseDeg * Math.PI) / 180);
+              const cosAngle = cb * cosCA - sb * sinCA;
+              const sinAngle = sb * cosCA + cb * sinCA;
+
+              const x = centerX + radius * cosAngle;
+              const y = centerY + radius * sinAngle;
+              const rotate = angleDeg + 90;
+              // END: perf(render)
+
+              return (
+                <View
+                  key={cardKey}
+                  style={[
+                    styles.singleCard,
+                    {
+                      left: x - 40,
+                      top: y - 90,
+                      zIndex: idx,
+                      transform: [{ rotate: `${rotate}deg` }],
+                      position: 'absolute',
+                    },
+                  ]}
+                >
+                  {!card.removed ? (
+                    <Pressable
+                      style={{ width: '100%', height: '100%' }}
+                      onPress={() => {
+                        if (!dragActive) handleCardClick(cardKey);
+                      }}
+                    >
+                      <SafeImage
+                        source={getCardImagePath("master_card")}
+                        style={styles.cardImage}
+                        contentFit="contain"
+                      />
+                    </Pressable>
+                  ) : (
+                    <View style={{ width: '100%', height: '100%' }} />
+                  )}
+                </View>
+              );
+            })}
+          </View>
+          {/* --- Kraj lepeze --- */}
+
+          {/* Dugme fiksirano na dnu */}
+          {selectedCards.length >= numPlaceholders && (
+            <TouchableOpacity
+              style={[
+                styles.answerBtn,
+                loadingAnswer && { opacity: 0.6 }
+              ]}
+              onPress={handleGoToAnswer}
+              activeOpacity={0.85}
+              disabled={loadingAnswer}
+            >
+              {loadingAnswer ? (
+                <ActivityIndicator color="#222" size="small" />
+              ) : (
+                <Text style={styles.answerBtnText}>
+                  {t('common:buttons.answer', { defaultValue: 'Odgovor' })}
+                </Text>
+              )}
+            </TouchableOpacity>
+          )}
+        </>
+      )}
+
     </View>
   );
 };
