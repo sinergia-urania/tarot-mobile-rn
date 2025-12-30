@@ -16,7 +16,7 @@ import { supabase } from "../utils/supabaseClient";
 
 // START: konfiguracija + debug log
 const AI_CLIENT_DEBUG = process.env.EXPO_PUBLIC_AI_DEBUG === "1";
-const EDGE_TIMEOUT_MS = Number(process.env.EXPO_PUBLIC_AI_EDGE_TIMEOUT_MS || 25000);
+const EDGE_TIMEOUT_MS = Number(process.env.EXPO_PUBLIC_AI_EDGE_TIMEOUT_MS || 60000);
 
 const dlog = (tag, obj) => {
   if (typeof __DEV__ !== "undefined" && __DEV__ && AI_CLIENT_DEBUG) {

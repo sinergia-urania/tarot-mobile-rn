@@ -236,11 +236,12 @@ const IzborKarataModal = ({
   }, []);
 
   useEffect(() => {
+    if (!visible) return;
+
     const shuffled = shuffleDeck(allCardKeys);
     setAvailableCards(shuffled.map((key) => ({ key, removed: false })));
     setSelectedCards([]);
-  }, [shuffleId]);
-
+  }, [visible, shuffleId, allCardKeys]);
   // START: Resetuj "upravoIzvucena" kad se modal otvori
   useEffect(() => {
     if (visible) setUpravoIzvucena(false);
@@ -689,7 +690,7 @@ const IzborKarataModal = ({
 
               return (
                 <View
-                  key={cardKey}
+                  key={`${cardKey || 'card'}-${idx}`}
                   style={[
                     styles.singleCard,
                     {
