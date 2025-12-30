@@ -195,13 +195,13 @@ export const TarotIAPProvider = ({ children }) => {
     // EXPO-IAP HOOK
     // ========================================================================
 
-    const { connected, products, fetchProducts, requestPurchase, finishTransaction } = useIAP({
+    const { connected, products, subscriptions, fetchProducts, requestPurchase, finishTransaction } = useIAP({
         autoFinishTransactions: false,
 
         onPurchaseError: async (error) => {
             pendingRef.current = null;
 
-            if (error?.code === ErrorCode.E_USER_CANCELLED) {
+            if (error?.code === ErrorCode.UserCancelled || error?.code === ErrorCode.E_USER_CANCELLED) {
                 // Korisnik odustao - tiho ignoriši
                 return;
             }
@@ -540,18 +540,30 @@ export const TarotIAPProvider = ({ children }) => {
             try {
                 pendingRef.current = { kind: 'plan', planKey };
 
-                const requestPayload = Platform.OS === 'ios'
-                    ? {
-                        request: { sku },
-                        type,
-                    }
-                    : {
-                        request: { android: { skus: [sku] } },
-                        type,
-                    };
+                // type za planove uvek subs
+                const purchaseType = 'subs';
+
+                // Android offer tokens (ako postoji subscription sa tim SKU)
+                const sub = subscriptions?.find((s) => s.id === sku);
+                const subscriptionOffers = (sub?.subscriptionOfferDetailsAndroid ?? []).map((offer) => ({
+                    sku,
+                    offerToken: offer.offerToken,
+                }));
+
+                const requestPayload = {
+                    request: {
+                        apple: { sku },
+                        google: {
+                            skus: [sku],
+                            ...(subscriptionOffers.length > 0 ? { subscriptionOffers } : {}),
+                        },
+                    },
+                    type: purchaseType,
+                };
 
                 // ✅ DEBUG: prikazi tacni payload
                 console.log('[IAP] requestPurchase PAYLOAD:', JSON.stringify(requestPayload, null, 2));
+                console.log('[IAP] subscriptionOffers:', subscriptionOffers);
 
                 await requestPurchase(requestPayload);
             } catch (err) {
@@ -568,7 +580,7 @@ export const TarotIAPProvider = ({ children }) => {
                 });
             }
         },
-        [connected, requestPurchase, t, userId]
+        [connected, requestPurchase, subscriptions, t, userId]
     );
 
     // ========================================================================
@@ -640,15 +652,13 @@ export const TarotIAPProvider = ({ children }) => {
             try {
                 pendingRef.current = { kind: 'topup', amount };
 
-                const requestPayload = Platform.OS === 'ios'
-                    ? {
-                        request: { sku },
-                        type: 'in-app',
-                    }
-                    : {
-                        request: { android: { skus: [sku] } },
-                        type: 'in-app',
-                    };
+                const requestPayload = {
+                    request: {
+                        apple: { sku },
+                        google: { skus: [sku] },
+                    },
+                    type: 'in-app',
+                };
 
                 // ✅ DEBUG: prikazi tacni payload
                 console.log('[IAP] requestPurchase PAYLOAD:', JSON.stringify(requestPayload, null, 2));

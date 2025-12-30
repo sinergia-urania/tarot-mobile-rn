@@ -1,5 +1,5 @@
 ﻿import React, { useCallback, useState } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { getCardImagePath } from '../utils/getCardImagePath';
 import TarotCardModal from './TarotCardModal';
 // START: i18n (nazivi karata)
@@ -71,7 +71,7 @@ const VelikaArkanaList = (props) => {
         windowSize={5}
         maxToRenderPerBatch={9}
         updateCellsBatchingPeriod={50}
-        removeClippedSubviews
+        removeClippedSubviews={Platform.OS === 'android'}
       // END: FlatList tuning
       />
 
