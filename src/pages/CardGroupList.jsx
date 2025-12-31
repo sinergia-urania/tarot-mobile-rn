@@ -1,5 +1,5 @@
 ﻿import React, { useCallback, useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { getCardImagePath } from '../utils/getCardImagePath';
 import TarotCardModal from './TarotCardModal';
 // START: i18n
@@ -66,7 +66,7 @@ const CardGroupList = ({ cards, title, groupIcon, onCardView }) => {
         windowSize={5}
         maxToRenderPerBatch={9}
         updateCellsBatchingPeriod={50}
-        removeClippedSubviews
+        removeClippedSubviews={Platform.OS === 'android'}
       // END: FlatList tuning
       />
 

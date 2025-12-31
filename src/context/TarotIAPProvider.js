@@ -201,7 +201,7 @@ export const TarotIAPProvider = ({ children }) => {
         onPurchaseError: async (error) => {
             pendingRef.current = null;
 
-            if (error?.code === ErrorCode.UserCancelled || error?.code === ErrorCode.E_USER_CANCELLED) {
+            if (error?.code === ErrorCode.E_USER_CANCELLED) {
                 // Korisnik odustao - tiho ignoriši
                 return;
             }
@@ -219,22 +219,38 @@ export const TarotIAPProvider = ({ children }) => {
         onPurchaseSuccess: async (purchase) => {
             const meta = pendingRef.current;
 
-            // ✅ Stabilan payment_id (Google purchaseToken ima prioritet)
-            const payment_id =
-                purchase?.purchaseToken ||
-                purchase?.orderId ||
-                purchase?.transactionId ||
-                purchase?.originalTransactionId ||
-                purchase?.id;
+            // ✅ SKU - izvuci prvo jer nam treba za payment_id
+            const sku =
+                purchase?.id ||
+                purchase?.productId ||
+                purchase?.sku ||
+                purchase?.productIdentifier;
 
-            // iOS koristi 'id', Android koristi 'productId'
-            const sku = purchase?.id || purchase?.productId;
+            // ✅ Stabilan payment_id (Google purchaseToken ima prioritet)
+            // Za iOS upgrade (Premium→Pro): originalTransactionId ostaje isti,
+            // pa dodajemo :sku suffix da bude unikatan po planu
+            const payment_id =
+                purchase?.purchaseToken || // Android - unikatan
+                purchase?.orderId ||       // Android fallback
+
+                // ✅ iOS: čak i ako je transactionId “isti”, dodaj :sku da upgrade ne kolidira
+                (purchase?.transactionId && sku
+                    ? `${purchase.transactionId}:${sku}`
+                    : purchase?.transactionId) ||
+
+                (purchase?.originalTransactionId && sku
+                    ? `${purchase.originalTransactionId}:${sku}`
+                    : null) ||
+
+                (userId && sku ? `${userId}:${sku}` : sku);
 
             if (DEV_MODE) {
                 console.log('[IAP] onPurchaseSuccess:', {
                     sku,
                     payment_id,
                     meta,
+                    rawTransactionId: purchase?.transactionId,
+                    rawOriginalTransactionId: purchase?.originalTransactionId,
                 });
             }
 
@@ -330,12 +346,20 @@ export const TarotIAPProvider = ({ children }) => {
 
                     if (planKey === 'premium' || planKey === 'pro' || planKey === 'proplus') {
                         // ✅ ADD COINS SA payment_id ZA IDEMPOTENCY
-                        await supabase.rpc('add_coins', {
+                        const { data: addData, error: addErr } = await supabase.rpc('add_coins', {
                             p_user: userId,
                             p_amount: BONUS[planKey],
                             p_reason: `upgrade_${planKey}`,
-                            p_payment_id: normalizedPaymentId, // ← NORMALIZOVAN za Apple
+                            p_payment_id: normalizedPaymentId,
                         });
+
+                        if (addErr) throw addErr;
+
+                        // Ako tvoja funkcija vraća “added”, možeš i ovo (opciono, ali korisno):
+                        if (addData && typeof addData === 'object' && 'added' in addData && addData.added === 0) {
+                            throw new Error('ADD_COINS_ADDED_0');
+                        }
+
 
                         // ✅ SET PACKAGE
                         const ok = await writePackage(userId, planKey);
@@ -368,12 +392,14 @@ export const TarotIAPProvider = ({ children }) => {
                     }
 
                     // ✅ ADD COINS SA payment_id ZA IDEMPOTENCY
-                    await supabase.rpc('add_coins', {
+                    const { error: topErr } = await supabase.rpc('add_coins', {
                         p_user: userId,
                         p_amount: amount,
                         p_reason: 'topup',
-                        p_payment_id: normalizedPaymentId, // ← NORMALIZOVAN za Apple
+                        p_payment_id: normalizedPaymentId,
                     });
+                    if (topErr) throw topErr;
+
 
                     await fetchDukatiSaServera();
 
