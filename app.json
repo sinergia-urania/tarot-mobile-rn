@@ -44,7 +44,7 @@
     "ios": {
       "icon": "./assets/icon.png",
       "bundleIdentifier": "com.mare82.unatarot",
-      "buildNumber": "5",
+      "buildNumber": "7",
       "supportsTablet": false,
       "requireFullScreen": true,
       "usesAppleSignIn": true,

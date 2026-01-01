@@ -52,10 +52,14 @@ const normalizePaymentId = async (input) => {
         if (DEV_MODE) console.log('[IAP] payment_id hashed (was', trimmed.length, 'chars)');
         return hashed;
     } catch (e) {
-        // Fallback: skrati na 200 karaktera ako hash ne radi
-        console.warn('[IAP] normalizePaymentId hash failed, truncating:', e);
-        return trimmed.substring(0, 200);
+        // Fallback bez crypto.subtle: uzmi i POČETAK i KRAJ + dužinu
+        // (Apple JWS header je često isti, razlike su na kraju)
+        const head = trimmed.slice(0, 90);
+        const tail = trimmed.slice(-90);
+        const key = `${head}..${tail}:${trimmed.length}`; // ~ 90+2+90+1+len = ispod ~200
+        return key;
     }
+
 };
 
 // ========================================================================
@@ -236,10 +240,16 @@ export const TarotIAPProvider = ({ children }) => {
                 purchase?.originalTransactionIdentifierIOS || // ✅ čest naziv u IAP bibliotekama
                 purchase?.originalTransactionId;              // fallback ako postoji
 
+            const receipt =
+                purchase?.transactionReceipt ||
+                purchase?.jwsRepresentation ||
+                purchase?.originalJson;
+
             const payment_id =
                 purchase?.purchaseToken ||      // Android (unikatan)
                 purchase?.orderId ||            // Android fallback
-                (iosTxId && sku ? `${iosTxId}:${sku}` : iosTxId) || // iOS (unikatan)
+                (iosTxId && sku ? `${iosTxId}:${sku}` : iosTxId) ||
+                receipt ||
                 (userId && sku ? `${userId}:${sku}` : sku);         // poslednji fallback
 
             if (DEV_MODE) {
@@ -397,13 +407,24 @@ export const TarotIAPProvider = ({ children }) => {
                         p_payment_id: normalizedPaymentId,
                     });
                     if (topErr) throw topErr;
-                    if (topData && typeof topData === 'object') {
-                        const added = ('added' in topData) ? Number(topData.added) : null;
-                        const awarded = ('awarded' in topData) ? Boolean(topData.awarded) : null;
+                    const row = Array.isArray(topData) ? topData?.[0] : topData;
+
+                    if (row && typeof row === 'object') {
+                        const added = ('added' in row) ? Number(row.added) : null;
+                        const awarded = ('awarded' in row) ? Boolean(row.awarded) : null;
+
                         if (awarded === false || added === 0) {
                             throw new Error('TOPUP_NOT_AWARDED');
                         }
+
+                        // ako nema ni added ni awarded → tretiraj kao fail (da ne daje "Uspešno")
+                        if (added === null && awarded === null) {
+                            throw new Error('TOPUP_NOT_AWARDED');
+                        }
+                    } else {
+                        throw new Error('TOPUP_NOT_AWARDED');
                     }
+
 
 
                     await fetchDukatiSaServera();
