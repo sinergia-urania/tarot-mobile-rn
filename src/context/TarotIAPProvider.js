@@ -67,7 +67,8 @@ const TarotIAPContext = React.createContext({
     devMode: false,
     startPlanPurchase: async () => { },
     startTopupPurchase: async () => { },
-    products: [], // ← DODATO: default prazna lista
+    products: [],
+    subscriptions: [], // ← DODATO: default prazna lista
 });
 
 export const TarotIAPProvider = ({ children }) => {
@@ -229,20 +230,17 @@ export const TarotIAPProvider = ({ children }) => {
             // ✅ Stabilan payment_id (Google purchaseToken ima prioritet)
             // Za iOS upgrade (Premium→Pro): originalTransactionId ostaje isti,
             // pa dodajemo :sku suffix da bude unikatan po planu
+            const iosTxId =
+                purchase?.transactionId ||
+                purchase?.transactionIdentifier ||
+                purchase?.originalTransactionIdentifierIOS || // ✅ čest naziv u IAP bibliotekama
+                purchase?.originalTransactionId;              // fallback ako postoji
+
             const payment_id =
-                purchase?.purchaseToken || // Android - unikatan
-                purchase?.orderId ||       // Android fallback
-
-                // ✅ iOS: čak i ako je transactionId “isti”, dodaj :sku da upgrade ne kolidira
-                (purchase?.transactionId && sku
-                    ? `${purchase.transactionId}:${sku}`
-                    : purchase?.transactionId) ||
-
-                (purchase?.originalTransactionId && sku
-                    ? `${purchase.originalTransactionId}:${sku}`
-                    : null) ||
-
-                (userId && sku ? `${userId}:${sku}` : sku);
+                purchase?.purchaseToken ||      // Android (unikatan)
+                purchase?.orderId ||            // Android fallback
+                (iosTxId && sku ? `${iosTxId}:${sku}` : iosTxId) || // iOS (unikatan)
+                (userId && sku ? `${userId}:${sku}` : sku);         // poslednji fallback
 
             if (DEV_MODE) {
                 console.log('[IAP] onPurchaseSuccess:', {
@@ -392,13 +390,20 @@ export const TarotIAPProvider = ({ children }) => {
                     }
 
                     // ✅ ADD COINS SA payment_id ZA IDEMPOTENCY
-                    const { error: topErr } = await supabase.rpc('add_coins', {
+                    const { data: topData, error: topErr } = await supabase.rpc('add_coins', {
                         p_user: userId,
                         p_amount: amount,
                         p_reason: 'topup',
                         p_payment_id: normalizedPaymentId,
                     });
                     if (topErr) throw topErr;
+                    if (topData && typeof topData === 'object') {
+                        const added = ('added' in topData) ? Number(topData.added) : null;
+                        const awarded = ('awarded' in topData) ? Boolean(topData.awarded) : null;
+                        if (awarded === false || added === 0) {
+                            throw new Error('TOPUP_NOT_AWARDED');
+                        }
+                    }
 
 
                     await fetchDukatiSaServera();
@@ -718,7 +723,8 @@ export const TarotIAPProvider = ({ children }) => {
                 devMode: DEV_MODE,
                 startPlanPurchase,
                 startTopupPurchase,
-                products, // ← DODATO: lokalizovane cene iz Play Billing-a
+                products,
+                subscriptions,  // ← DODATO: lokalizovane cene iz Play Billing-a
             }}
         >
             {children}

@@ -29,8 +29,9 @@ const SKU_MAP = {
   premium: 'tarot_premium_monthly',
   pro: 'tarot_pro_monthly',
   proplus: 'tarot_proplus_annual',
-  topup500: 'tarot_coins_500',
-  topup1000: 'tarot_coins_1000',
+  topup500: 'tarot_topup_500',
+  topup1000: 'tarot_topup_1000',
+
 };
 
 // === Helper za lokalizovanu cenu iz Play Billing-a ===
@@ -165,7 +166,7 @@ const packages = [
 export default function MembershipModal({ visible, onClose }) {
   const { t } = useTranslation(['common']);
   const { userId, userPlan, fetchDukatiSaServera, refreshUserPlan } = useDukati();
-  const { iapReady, devMode, startPlanPurchase, startTopupPurchase, products } = useTarotIAP();
+  const { iapReady, devMode, startPlanPurchase, startTopupPurchase, products, subscriptions } = useTarotIAP();
 
   const [loadingPlanKey, setLoadingPlanKey] = React.useState(null);
   const [loadingTopUp, setLoadingTopUp] = React.useState(false);
@@ -576,7 +577,10 @@ export default function MembershipModal({ visible, onClose }) {
                               : (() => {
                                 // === GOOGLE PLAY / APP STORE LOKALIZOVANA CENA ===
                                 // iOS koristi 'id', Android koristi 'productId'
-                                const premiumProduct = products?.find(p => p.id === SKU_MAP.premium || p.productId === SKU_MAP.premium);
+                                const premiumProduct =
+                                  subscriptions?.find(p => p.id === SKU_MAP.premium || p.productId === SKU_MAP.premium) ||
+                                  products?.find(p => p.id === SKU_MAP.premium || p.productId === SKU_MAP.premium);
+
                                 const premiumPrice = getFormattedStorePrice(premiumProduct);
                                 return premiumPrice
                                   ? `Buy Premium (${premiumPrice}/mo)`
@@ -617,7 +621,9 @@ export default function MembershipModal({ visible, onClose }) {
                               : (() => {
                                 // === GOOGLE PLAY / APP STORE LOKALIZOVANA CENA ===
                                 // iOS koristi 'id', Android koristi 'productId'
-                                const proProduct = products?.find(p => p.id === SKU_MAP.pro || p.productId === SKU_MAP.pro);
+                                const proProduct =
+                                  subscriptions?.find(p => p.id === SKU_MAP.pro || p.productId === SKU_MAP.pro) ||
+                                  products?.find(p => p.id === SKU_MAP.pro || p.productId === SKU_MAP.pro);
                                 const proPrice = getFormattedStorePrice(proProduct);
                                 return proPrice
                                   ? `Buy PRO (${proPrice}/mo)`
@@ -658,7 +664,9 @@ export default function MembershipModal({ visible, onClose }) {
                               : (() => {
                                 // === GOOGLE PLAY / APP STORE LOKALIZOVANA CENA ===
                                 // iOS koristi 'id', Android koristi 'productId'
-                                const proplusProduct = products?.find(p => p.id === SKU_MAP.proplus || p.productId === SKU_MAP.proplus);
+                                const proplusProduct =
+                                  subscriptions?.find(p => p.id === SKU_MAP.proplus || p.productId === SKU_MAP.proplus) ||
+                                  products?.find(p => p.id === SKU_MAP.proplus || p.productId === SKU_MAP.proplus);
                                 const proplusPrice = getFormattedStorePrice(proplusProduct);
                                 return proplusPrice
                                   ? `Buy ProPlus (${proplusPrice}/yr)`
