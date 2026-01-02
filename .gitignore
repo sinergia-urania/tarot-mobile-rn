@@ -82,3 +82,4 @@ __tests__/
 
 # Ignore Android keystore
 *.jks
+admin

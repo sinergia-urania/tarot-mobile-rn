@@ -74,7 +74,15 @@
       "expo-audio",
       "expo-tracking-transparency",
       "expo-iap",
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "2.2.10"
+          }
+        }
+      ]
     ],
     "splash": {
       "image": "./assets/una.png",
