@@ -54,10 +54,14 @@
       }
     },
     "production": {
+      "channel": "production",
       "android": {
         "buildType": "app-bundle"
       },
       "env": {
+        "NODE_OPTIONS": "--max-old-space-size=8192",
+        "GRADLE_OPTS": "-Dorg.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1024m",
+        "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
         "EXPO_PUBLIC_ADS_ENV": "prod",
         "EXPO_PUBLIC_ATT_REQUIRED": "1",
         "EXPO_PUBLIC_ADS_DISABLED": "0",
