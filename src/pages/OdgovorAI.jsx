@@ -10,8 +10,26 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 // START: import cleanup (ostavljen stari u komentaru)
 // import { Button, Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import { ActivityIndicator, Button, Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+
+// START: KeyboardAvoidingView + Keyboard imports (bez novih biblioteka)
+// import { ActivityIndicator, Button, Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  Dimensions,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+// END: KeyboardAvoidingView + Keyboard imports
 // END: import cleanup
+
 import Toast from "react-native-toast-message";
 import uuid from "react-native-uuid";
 import i18n from '../../i18n';
@@ -28,7 +46,6 @@ import { getTranzitiZaPeriodAdvanced } from '../utils/getTranzitiZaPeriod';
 
 // START: SafeImage (expo-image) wrapper
 import SafeImage from "../components/SafeImage";
-// END: SafeImage (expo-image) wrapper
 
 // START: Prosta heuristika detekcije jezika pitanja
 function detectLangFromQuestion(q = "") {
@@ -226,12 +243,19 @@ const OdgovorAI = () => {
   } = route.params || {};
 
   const prikazaneKarte = izabraneKarte || karte || [];
+
   // START: normalizacija – garantuj da AI dobija eksplicitno reversed: true/false
+  // (U uploadovanom fajlu je postojala greška ".c," — to bi puklo build. Ostavila sam staro u komentaru.)
+  // const karteZaAI = (prikazaneKarte || []).map((c) => ({
+  //   .c,
+  //   reversed: isCardReversed(c),
+  // }));
   const karteZaAI = (prikazaneKarte || []).map((c) => ({
-    ...c,
+    ...(c || {}),
     reversed: isCardReversed(c),
   }));
   // END: normalizacija – garantuj da AI dobija eksplicitno reversed: true/false
+
   // START: back → TarotOtvaranja (presretni hardverski Back)
   useEffect(() => {
     const sub = navigation.addListener("beforeRemove", (e) => {
@@ -269,6 +293,13 @@ const OdgovorAI = () => {
   const [sessionId, setSessionId] = useState(null);
   const [podpitanje, setPodpitanje] = useState("");
   const [podpitanjeOdgovor, setPodpitanjeOdgovor] = useState("");
+
+  // START: fix prikaza podpitanja – čuvaj poslednje poslato pitanje
+  const [podpitanjePrikaz, setPodpitanjePrikaz] = useState("");
+  // END: fix prikaza podpitanja – čuvaj poslednje poslato pitanje
+
+  // END: freeze poslednje poslato podpitanje (da UI ne prikaže "—")
+
   const [loadingPodpitanje, setLoadingPodpitanje] = useState(false);
   const { profile, authLoading } = useAuth();
 
@@ -279,6 +310,36 @@ const OdgovorAI = () => {
   const [aiFailed, setAiFailed] = useState(false);
   const retryCountRef = useRef(0);
   const MAX_RETRIES = 2;
+
+  // START: KeyboardAvoiding + auto-scroll za podpitanje (Android/iOS)
+  const scrollRef = useRef(null);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [isFollowupFocused, setIsFollowupFocused] = useState(false);
+
+  useEffect(() => {
+    const showEvt = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    const hideEvt = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+
+    const subShow = Keyboard.addListener(showEvt, (e) => {
+      const h = e?.endCoordinates?.height ?? 0;
+      setKeyboardHeight(h);
+    });
+    const subHide = Keyboard.addListener(hideEvt, () => setKeyboardHeight(0));
+
+    return () => {
+      subShow?.remove?.();
+      subHide?.remove?.();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isFollowupFocused) return;
+    if (!keyboardHeight) return;
+    requestAnimationFrame(() => {
+      scrollRef.current?.scrollToEnd?.({ animated: true });
+    });
+  }, [keyboardHeight, isFollowupFocused]);
+  // END: KeyboardAvoiding + auto-scroll za podpitanje
 
   // i18n (ai, cardMeanings, common)
   const { t } = useTranslation(['ai', 'cardMeanings', 'common']);
@@ -313,7 +374,6 @@ const OdgovorAI = () => {
   }
   // END: DEBUG i18n etikete
 
-
   // Datum & tranziti (smart)
   const datumOtvaranja = new Date().toISOString().slice(0, 10);
   // START: biramo format prema jeziku pitanja
@@ -342,18 +402,11 @@ const OdgovorAI = () => {
     retryCountRef.current = 0;
   }, [pitanje]);
 
-  // Server-first: glavno otvaranje
-  // FIX: soft-wait pattern za iOS profil race condition
   useEffect(() => {
-    // Već pozvano? Izađi.
-    if (aiStartedRef.current) return;
-    // Auth još učitava? Čekaj.
-    if (authLoading) return;
-    // Nema pitanja? Izađi.
-    if (!pitanje) return;
-    // Već imamo odgovor? Izađi.
-    if (aiOdgovor) return;
+    // Ne pokreći opet ako već ima odgovor ili je već startovao
+    if (aiOdgovor || aiStartedRef.current) return;
 
+    // START: Ako profil kasni, probaj ponovo kroz delay fallback
     // FIX: Ako profil postoji, kreni odmah (delay=0)
     // Ako profil NE postoji, sačekaj do 3s pa kreni sa defaults
     const delay = profile ? 0 : 3000;
@@ -494,8 +547,8 @@ const OdgovorAI = () => {
         id: uuid.v4(),
         question: pitanje,
         answer: aiOdgovor,
-        subquestion: podpitanje,
-        subanswer: podpitanjeOdgovor,
+        subquestion: null,
+        subanswer: null,
         karte: prikazaneKarte,
         type: tip,
         vreme: Date.now(),
@@ -508,12 +561,16 @@ const OdgovorAI = () => {
       } catch { }
     };
     sacuvajOtvaranje();
-  }, [aiOdgovor, isProTier, pitanje, prikazaneKarte, tip, podpitanje, podpitanjeOdgovor]);
+  }, [aiOdgovor, isProTier, pitanje, prikazaneKarte, tip]);
 
   // Follow-up (server naplata)
   const handlePodpitanje = async () => {
     try {
       setLoadingPodpitanje(true);
+      const asked = (podpitanje || "").trim();
+      setPodpitanjePrikaz(asked);
+
+
       // START: pokušaj da pribaviš sessionId iz state-a ili local storage-a (fallback)
       let sid = sessionId;
       if (!sid) { try { sid = await AsyncStorage.getItem('last_session_id'); } catch { } }
@@ -574,7 +631,9 @@ const OdgovorAI = () => {
         tranzitiTekst,
         pitanje,
         prethodniOdgovor: aiOdgovor,
-        novoPitanje: podpitanje,
+        podpitanje: asked,
+        novoPitanje: asked,
+        subquestion: asked,
         userLevel: userPlan,
         jezikAplikacije,
         ime: profile?.display_name ?? "Korisnik",
@@ -594,7 +653,7 @@ const OdgovorAI = () => {
       }
 
       setPodpitanjeOdgovor(odgovor);
-      await upisiPodpitanjeUArhivu(podpitanje, odgovor);
+      await upisiPodpitanjeUArhivu(asked, odgovor);
       try { await refreshCoins?.(); } catch { }
     } catch (err) {
       console.log("Followup ERROR:", err);
@@ -632,271 +691,280 @@ const OdgovorAI = () => {
   //   style={{ flex: 1, width: "100%", height: "100%" }}
   //   imageStyle={{ resizeMode: "cover" }}
   // >
-  return (
-    <View style={{ flex: 1, width: "100%", height: "100%" }}>
-      <SafeImage
-        source={backgroundImg}
-        style={StyleSheet.absoluteFillObject}
-        contentFit="cover"
-      />
-      {/* END: View + SafeImage background */}
 
-      <View style={styles.headerWrapper}>
-        <TarotHeader
-          showBack={false}
-          onBack={() => navigation.goBack()}
-          onHome={() => navigation.navigate("Home")}
-          showMenu={false}
+  return (
+    // START: KeyboardAvoidingView wrapper + tap to dismiss
+
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 80 : 0}
+    >
+      {/* END: KeyboardAvoidingView wrapper + tap to dismiss */}
+      <View style={{ flex: 1, width: "100%", height: "100%" }}>
+        <SafeImage
+          source={backgroundImg}
+          style={StyleSheet.absoluteFillObject}
+          contentFit="cover"
         />
+        {/* END: View + SafeImage background */}
+
+        <View style={styles.headerWrapper}>
+          <TarotHeader
+            showBack={false}
+            onBack={() => navigation.goBack()}
+            onHome={() => navigation.navigate("Home")}
+            showMenu={false}
+          />
+        </View>
+
+        {
+          (!aiOdgovor && !aiFailed) ? (
+            <View style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#000b"
+            }}>
+              <UnaSpinner size="large" color="#ffd700" />
+              <Text style={{ color: "#ffd700", marginTop: 18, fontSize: 20 }}>
+                {t('common:messages.waitingAI', { defaultValue: 'Čekam odgovor AI...' })}
+              </Text>
+
+            </View>
+          ) : (
+            // START: ScrollView ref + padding kad je tastatura + taps
+            <ScrollView
+              ref={scrollRef}
+              style={{ flex: 1 }}
+              keyboardShouldPersistTaps="handled"
+              keyboardDismissMode="on-drag"
+              onScrollBeginDrag={() => Keyboard.dismiss()}
+              contentContainerStyle={{ paddingBottom: Math.max(24, keyboardHeight + 24) }}
+            >
+              {/* END: ScrollView ref + padding kad je tastatura + taps */}
+              <View style={styles.root}>
+                {/* <Image source={unaAvatar} style={styles.avatar} /> */}
+                <SafeImage source={unaAvatar} style={styles.avatar} contentFit="cover" />
+                {/* START: i18n "Pitanje:" */}
+                <Text style={styles.pitanjeLabel}>
+                  {t('ai:labels.question', { defaultValue: 'Pitanje:' })}
+                </Text>
+                {/* END: i18n "Pitanje:" */}
+                <Text style={styles.pitanje}>{pitanje || "Nema pitanja."}</Text>
+
+                {/* Karte u layout-u */}
+                <View
+                  style={[
+                    styles.cardsContainer,
+                    {
+                      height: containerHeight,
+                      width: windowWidth,
+                      alignSelf: "center",
+                      justifyContent: "center",
+                    }
+                  ]}
+                >
+                  {layout.map((pos, idx) => {
+                    const card = prikazaneKarte[idx];
+                    const isRotated = tip === "keltski" && idx === 1;
+                    const isReversed = isCardReversed(card); // 👈 samo sliku kartice rotiramo ako je obrnuta
+                    const zIndex = idx === 1 ? 20 : 10 + idx;
+                    return (
+                      <View
+                        key={idx}
+                        style={{
+                          position: "absolute",
+                          width: cardSize.width,
+                          height: cardSize.height,
+                          left: (windowWidth / 2) + (pos.x * cardSize.width) + offsetX - (cardSize.width / 2),
+                          top: (containerHeight / 2) + (pos.y * cardSize.height) - (cardSize.height / 2),
+                          zIndex,
+                          backgroundColor: "#ffd700",
+                          borderRadius: 6,
+                          justifyContent: "center",
+                          alignItems: "center",
+                          overflow: "hidden",
+                          transform: [{ rotate: isRotated ? "90deg" : "0deg" }]
+                        }}
+                      >
+                        {card && card.label ? (
+                          <SafeImage
+                            source={getCardImagePath(card.label)}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              transform: isReversed ? [{ rotate: "180deg" }] : undefined,
+                            }}
+                            contentFit="cover"
+                          />
+                        ) : (
+                          // START: i18n placeholder pozicije
+                          <Text style={{ fontSize: 11, color: "#222" }}>
+                            {t('ai:misc.cardPlaceholder', { index: idx + 1, defaultValue: 'Karta {{index}}' })}
+                          </Text>
+                          // END: i18n placeholder pozicije
+                        )}
+                      </View>
+                    );
+                  })}
+                </View>
+
+                {/* AI odgovor + kontekst */}
+                <View style={styles.odgovorBox}>
+                  <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 8, justifyContent: "center" }}>
+                    <SafeImage source={unaAvatar} style={{ width: 44, height: 44, borderRadius: 24, marginRight: 8 }} contentFit="cover" />
+                    <Text style={{ color: "#ffd700", fontSize: 18, fontWeight: "bold" }}>
+                      {t('ai:titles.aiReply', { defaultValue: 'Una odgovara' })}:
+                    </Text>
+                  </View>
+                  <Text style={{ color: "#fff", textAlign: "center", fontSize: 16, marginBottom: 2 }}>
+                    {/* START: i18n kontekst */}
+                    {kontekstOtvaranjaI18n}
+                    {/* END: i18n kontekst */}
+                    {aiOdgovor || "Ovo je mesto gde će AI dati odgovor na osnovu odabranih karata."}
+                  </Text>
+
+                  {/* FIX: Retry dugme - prikazuje se samo kad je fail (ne i za "Nedovoljno dukata")
+                        NAPOMENA: retryCountRef.current u JSX radi jer setAiOdgovor("") trigeruje rerender */}
+                  {aiFailed && !isNedovoljnoDukata(aiOdgovor) && retryCountRef.current < MAX_RETRIES && (
+                    <TouchableOpacity onPress={onRetry} style={styles.retryBtn}>
+                      <Text style={styles.retryBtnText}>↻ Retry</Text>
+                    </TouchableOpacity>
+                  )}
+
+                  {/* Astrološke kuće */}
+                  {tip === "astrološko" && (
+                    <View style={{ marginTop: 20 }}>
+                      {/* START: i18n naslov za kuće */}
+                      <Text style={{ fontSize: 16, fontWeight: "bold", color: "#ffd700", marginBottom: 5 }}>
+                        {t('ai:titles.astroHouses', { defaultValue: 'Tumačenje po astrološkim kućama:' })}
+                      </Text>
+                      {/* END: i18n naslov za kuće */}
+                      {prikazaneKarte.map((card, index) => card ? (
+                        <Text key={index} style={styles.listItem}>
+                          <Text style={{ fontWeight: "bold" }}>{KUCE_ASTRO[index]}: </Text>
+                          {t(`cardMeanings:cards.${card.label}.name`, { defaultValue: card?.label || `Karta #${card?.id}` })}
+                        </Text>
+                      ) : null)}
+                    </View>
+                  )}
+
+                  {/* Sefiroti */}
+                  {tip === "drvo" && (
+                    <View style={{ marginTop: 20 }}>
+                      {/* START: i18n naslov za sefirote */}
+                      <Text style={{ fontSize: 16, fontWeight: "bold", color: "#ffd700", marginBottom: 5 }}>
+                        {t('ai:titles.sefirot', { defaultValue: 'Tumačenje po sefirotima:' })}
+                      </Text>
+                      {/* END: i18n naslov za sefirote */}
+                      {prikazaneKarte.map((card, index) => card ? (
+                        <Text key={index} style={styles.listItem}>
+                          <Text style={{ fontWeight: "bold" }}>{index + 1}. {SEFIROTI_I18N[index]}: </Text>
+                          {t(`cardMeanings:cards.${card.label}.name`, { defaultValue: card?.label || `Karta #${card?.id}` })}
+                        </Text>
+                      ) : null)}
+                    </View>
+                  )}
+
+                  {/* Keltski krst */}
+                  {tip === "keltski" && (
+                    <View style={{ marginTop: 20 }}>
+                      {/* START: i18n naslov za Keltski krst */}
+                      <Text style={{ fontSize: 16, fontWeight: "bold", color: "#ffd700", marginBottom: 5 }}>
+                        {t('ai:titles.celticInterpretation', { defaultValue: 'Tumačenje Keltskog krsta:' })}
+                      </Text>
+                      {/* END: i18n naslov za Keltski krst */}
+                      {prikazaneKarte.map((card, index) => card ? (
+                        <Text key={index} style={styles.listItem}>
+                          <Text style={{ fontWeight: "bold" }}>{KELTSKE_I18N[index]}: </Text>
+                          {t(`cardMeanings:cards.${card.label}.name`, { defaultValue: card?.label || `Karta #${card?.id}` })}
+                        </Text>
+                      ) : null)}
+                    </View>
+                  )}
+
+                  {/* PRO/ProPlus follow-up (gating preko isPro) */}
+                  {isProTier && !podpitanjeOdgovor && aiOdgovor && (
+                    <View style={{ marginTop: 22, backgroundColor: "#332", borderRadius: 12, padding: 12 }}>
+                      <Text style={{ color: "#ffd700", fontWeight: "bold", marginBottom: 6 }}>
+                        {t('ai:titles.followupPrompt', { defaultValue: 'Postavi dodatno podpitanje (PRO):' })}
+                      </Text>
+                      {/* START: prikaz samo vrednosti cene (ako je > 0) */}
+                      {Number.isFinite(FOLLOWUP_PRICE) && FOLLOWUP_PRICE > 0 && (
+                        <Text style={{ color: "#facc15", marginBottom: 6, fontWeight: "bold" }}>
+                          {FOLLOWUP_PRICE} 🪙
+                        </Text>
+                      )}
+                      {/* END: prikaz samo vrednosti cene */}
+                      <TextInput
+                        value={podpitanje}
+                        onChangeText={setPodpitanje}
+                        // START: i18n placeholder za podpitanje
+                        placeholder={t('ai:placeholders.followup', { defaultValue: 'Unesi podpitanje.' })}
+                        // END: i18n placeholder za podpitanje
+                        placeholderTextColor="#999"
+                        style={{
+                          backgroundColor: "#fff2",
+                          borderRadius: 8,
+                          padding: 10,
+                          color: "#fff",
+                          marginBottom: 8,
+                        }}
+                        editable={!loadingPodpitanje}
+                        // START: fokus => skroluj iznad tastature
+                        onFocus={() => {
+                          setIsFollowupFocused(true);
+                          requestAnimationFrame(() => {
+                            scrollRef.current?.scrollToEnd?.({ animated: true });
+                          });
+                        }}
+                        onBlur={() => setIsFollowupFocused(false)}
+                      // END: fokus => skroluj iznad tastature
+                      />
+                      <View style={{ flexDirection: "row", alignItems: "center" }}>
+                        <Button
+                          title={loadingPodpitanje ? t('common:messages.loading') : t('common:buttons.askFollowUp')}
+                          onPress={handlePodpitanje}
+                          disabled={loadingPodpitanje || !podpitanje.trim()}
+                          color="#ffd700"
+                        />
+                        {loadingPodpitanje && (
+                          <ActivityIndicator style={{ marginLeft: 10 }} color="#ffd700" />
+                        )}
+                      </View>
+                    </View>
+                  )}
+
+                  {/* ⬇️ NOVO: prikaz follow-up rezultata odmah na ovoj stranici */}
+                  {(!!podpitanje || !!podpitanjeOdgovor) && (
+                    <View style={styles.followupBox}>
+                      <Text style={styles.followupLabel}>
+                        {t("common:detail.followup", { defaultValue: "Podpitanje:" })}
+                      </Text>
+                      <Text style={styles.followupQ}>{podpitanjePrikaz || podpitanje || "—"}</Text>
+
+                      <Text style={styles.followupLabel}>
+                        {t("common:detail.followupAnswer", { defaultValue: "Odgovor na podpitanje:" })}
+                      </Text>
+                      <Text style={styles.followupA}>
+                        {podpitanjeOdgovor || t("common:messages.noDescription", { defaultValue: "Nema opisa…" })}
+                      </Text>
+                    </View>
+                  )}
+                  {/* ⬆️ NOVO */}
+                </View>
+              </View>
+            </ScrollView>
+          )
+        }
+        {/* </ImageBackground> */}
       </View>
 
-      {
-        (!aiOdgovor && !aiFailed) ? (
-          <View style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#000b"
-          }}>
-            <UnaSpinner size="large" color="#ffd700" />
-            <Text style={{ color: "#ffd700", marginTop: 18, fontSize: 20 }}>
-              {t('common:messages.waitingAI', { defaultValue: 'Čekam odgovor AI...' })}
-            </Text>
+      {/* START: zatvaranje KeyboardAvoidingView wrappera */}
+    </KeyboardAvoidingView>
 
-          </View>
-        ) : (
-          <ScrollView style={{ flex: 1 }}>
-            <View style={styles.root}>
-              {/* <Image source={unaAvatar} style={styles.avatar} /> */}
-              <SafeImage source={unaAvatar} style={styles.avatar} contentFit="cover" />
-              {/* START: i18n "Pitanje:" */}
-              <Text style={styles.pitanjeLabel}>
-                {t('ai:labels.question', { defaultValue: 'Pitanje:' })}
-              </Text>
-              {/* END: i18n "Pitanje:" */}
-              <Text style={styles.pitanje}>{pitanje || "Nema pitanja."}</Text>
-
-              {/* Karte u layout-u */}
-              <View
-                style={[
-                  styles.cardsContainer,
-                  {
-                    height: containerHeight,
-                    width: windowWidth,
-                    alignSelf: "center",
-                    justifyContent: "center",
-                  }
-                ]}
-              >
-                {layout.map((pos, idx) => {
-                  const card = prikazaneKarte[idx];
-                  const isRotated = tip === "keltski" && idx === 1;
-                  const isReversed = isCardReversed(card); // 👈 samo sliku kartice rotiramo ako je obrnuta
-                  const zIndex = idx === 1 ? 20 : 10 + idx;
-                  return (
-                    <View
-                      key={idx}
-                      style={{
-                        position: "absolute",
-                        width: cardSize.width,
-                        height: cardSize.height,
-                        left: (windowWidth / 2) + (pos.x * cardSize.width) + offsetX - (cardSize.width / 2),
-                        top: (containerHeight / 2) + (pos.y * cardSize.height) - (cardSize.height / 2),
-                        zIndex,
-                        backgroundColor: "#ffd700",
-                        borderRadius: 6,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        overflow: "hidden",
-                        transform: [{ rotate: isRotated ? "90deg" : "0deg" }]
-                      }}
-                    >
-                      {card && card.label ? (
-                        // <Image
-                        //   source={getCardImagePath(card.label)}
-                        //   style={{
-                        //     width: "100%",
-                        //     height: "100%",
-                        //     resizeMode: "cover",
-                        //     transform: isReversed ? [{ rotate: "180deg" }] : undefined,
-                        //   }}
-                        // />
-                        <SafeImage
-                          source={getCardImagePath(card.label)}
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            transform: isReversed ? [{ rotate: "180deg" }] : undefined,
-                          }}
-                          contentFit="cover"
-                        />
-                      ) : (
-                        // START: i18n placeholder pozicije
-                        <Text style={{ fontSize: 11, color: "#222" }}>
-                          {t('ai:misc.cardPlaceholder', { index: idx + 1, defaultValue: 'Karta {{index}}' })}
-                        </Text>
-                        // END: i18n placeholder pozicije
-                      )}
-                    </View>
-                  );
-                })}
-              </View>
-
-              {/* AI odgovor + kontekst */}
-              <View style={styles.odgovorBox}>
-                <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 8, justifyContent: "center" }}>
-                  {/* <Image source={unaAvatar} style={{ width: 44, height: 44, borderRadius: 24, marginRight: 8 }} /> */}
-                  <SafeImage source={unaAvatar} style={{ width: 44, height: 44, borderRadius: 24, marginRight: 8 }} contentFit="cover" />
-                  <Text style={{ color: "#ffd700", fontSize: 18, fontWeight: "bold" }}>
-                    {t('ai:titles.aiReply', { defaultValue: 'Una odgovara' })}:
-                  </Text>
-                </View>
-                <Text style={{ color: "#fff", textAlign: "center", fontSize: 16, marginBottom: 2 }}>
-                  {/* START: i18n kontekst */}
-                  {kontekstOtvaranjaI18n}
-                  {/* END: i18n kontekst */}
-                  {aiOdgovor || "Ovo je mesto gde će AI dati odgovor na osnovu odabranih karata."}
-                </Text>
-
-                {/* FIX: Retry dugme - prikazuje se samo kad je fail (ne i za "Nedovoljno dukata")
-                    NAPOMENA: retryCountRef.current u JSX radi jer setAiOdgovor("") trigeruje rerender */}
-                {aiFailed && !isNedovoljnoDukata(aiOdgovor) && retryCountRef.current < MAX_RETRIES && (
-                  <TouchableOpacity onPress={onRetry} style={styles.retryBtn}>
-                    <Text style={styles.retryBtnText}>↻ Retry</Text>
-                  </TouchableOpacity>
-                )}
-
-                {/* Astrološke kuće */}
-                {tip === "astrološko" && (
-                  <View style={{ marginTop: 20 }}>
-                    {/* START: i18n naslov za kuće */}
-                    <Text style={{ fontSize: 16, fontWeight: "bold", color: "#ffd700", marginBottom: 5 }}>
-                      {t('ai:titles.astroHouses', { defaultValue: 'Tumačenje po astrološkim kućama:' })}
-                    </Text>
-                    {/* END: i18n naslov za kuće */}
-                    {prikazaneKarte.map((card, index) => card ? (
-                      <Text key={index} style={styles.listItem}>
-                        <Text style={{ fontWeight: "bold" }}>{KUCE_ASTRO[index]}: </Text>
-                        {t(`cardMeanings:cards.${card.label}.name`, { defaultValue: card?.label || `Karta #${card?.id}` })}
-                      </Text>
-                    ) : null)}
-                  </View>
-                )}
-
-                {/* Sefiroti */}
-                {tip === "drvo" && (
-                  <View style={{ marginTop: 20 }}>
-                    {/* START: i18n naslov za sefirote */}
-                    <Text style={{ fontSize: 16, fontWeight: "bold", color: "#ffd700", marginBottom: 5 }}>
-                      {t('ai:titles.sefirot', { defaultValue: 'Tumačenje po sefirotima:' })}
-                    </Text>
-                    {/* END: i18n naslov za sefirote */}
-                    {prikazaneKarte.map((card, index) => card ? (
-                      <Text key={index} style={styles.listItem}>
-                        <Text style={{ fontWeight: "bold" }}>{index + 1}. {SEFIROTI_I18N[index]}: </Text>
-                        {t(`cardMeanings:cards.${card.label}.name`, { defaultValue: card?.label || `Karta #${card?.id}` })}
-                      </Text>
-                    ) : null)}
-                  </View>
-                )}
-
-                {/* Keltski krst */}
-                {tip === "keltski" && (
-                  <View style={{ marginTop: 20 }}>
-                    {/* START: i18n naslov za Keltski krst */}
-                    <Text style={{ fontSize: 16, fontWeight: "bold", color: "#ffd700", marginBottom: 5 }}>
-                      {t('ai:titles.celticInterpretation', { defaultValue: 'Tumačenje Keltskog krsta:' })}
-                    </Text>
-                    {/* END: i18n naslov za Keltski krst */}
-                    {prikazaneKarte.map((card, index) => card ? (
-                      <Text key={index} style={styles.listItem}>
-                        <Text style={{ fontWeight: "bold" }}>{KELTSKE_I18N[index]}: </Text>
-                        {t(`cardMeanings:cards.${card.label}.name`, { defaultValue: card?.label || `Karta #${card?.id}` })}
-                      </Text>
-                    ) : null)}
-                  </View>
-                )}
-
-                {/* PRO/ProPlus follow-up (gating preko isPro) */}
-                {/* {userPlan === "pro" && !podpitanjeOdgovor && aiOdgovor && ( */}
-                {isProTier && !podpitanjeOdgovor && aiOdgovor && (
-                  <View style={{ marginTop: 22, backgroundColor: "#332", borderRadius: 12, padding: 12 }}>
-                    <Text style={{ color: "#ffd700", fontWeight: "bold", marginBottom: 6 }}>
-                      {t('ai:titles.followupPrompt', { defaultValue: 'Postavi dodatno podpitanje (PRO):' })}
-                    </Text>
-                    {/* START: prikaz samo vrednosti cene (ako je > 0) */}
-                    {Number.isFinite(FOLLOWUP_PRICE) && FOLLOWUP_PRICE > 0 && (
-                      <Text style={{ color: "#facc15", marginBottom: 6, fontWeight: "bold" }}>
-                        {FOLLOWUP_PRICE} 🪙
-                      </Text>
-                    )}
-                    {/* END: prikaz samo vrednosti cene */}
-                    <TextInput
-                      value={podpitanje}
-                      onChangeText={setPodpitanje}
-                      // START: i18n placeholder za podpitanje
-                      placeholder={t('ai:placeholders.followup', { defaultValue: 'Unesi podpitanje...' })}
-                      // END: i18n placeholder za podpitanje
-                      placeholderTextColor="#999"
-                      style={{
-                        backgroundColor: "#fff2",
-                        borderRadius: 8,
-                        padding: 10,
-                        color: "#fff",
-                        marginBottom: 8,
-                      }}
-                      editable={!loadingPodpitanje}
-                    />
-                    <View style={{ flexDirection: "row", alignItems: "center" }}>
-                      <Button
-                        title={loadingPodpitanje ? t('common:messages.loading') : t('common:buttons.askFollowUp')}
-                        onPress={handlePodpitanje}
-                        disabled={loadingPodpitanje || !podpitanje.trim()}
-                        color="#ffd700"
-                      />
-                      {loadingPodpitanje && (
-                        <ActivityIndicator style={{ marginLeft: 10 }} color="#ffd700" />
-                      )}
-                    </View>
-                  </View>
-                )}
-                {/* )} */}
-
-                {/* Info za ne-PRO (tj. !isPro → ni Pro ni ProPlus) */}
-                {/* {userPlan !== "pro" && ( */}
-                {!isProTier && (
-                  <View style={{ marginTop: 20, alignItems: "center" }}>
-                    <Text style={{ color: "#ffd700", fontStyle: "italic" }}>
-                      {t('ai:misc.proOnly', { defaultValue: 'Dodatna podpitanja dostupna su samo za Pro korisnike.' })}
-                    </Text>
-                  </View>
-                )}
-                {/* )} */}
-
-                {/* ⬇️ NOVO: prikaz follow-up rezultata odmah na ovoj stranici */}
-                {(!!podpitanje || !!podpitanjeOdgovor) && (
-                  <View style={styles.followupBox}>
-                    <Text style={styles.followupLabel}>
-                      {t("common:detail.followup", { defaultValue: "Podpitanje:" })}
-                    </Text>
-                    <Text style={styles.followupQ}>{podpitanje || "—"}</Text>
-
-                    <Text style={styles.followupLabel}>
-                      {t("common:detail.followupAnswer", { defaultValue: "Odgovor na podpitanje:" })}
-                    </Text>
-                    <Text style={styles.followupA}>
-                      {podpitanjeOdgovor || t("common:messages.noDescription", { defaultValue: "Nema opisa…" })}
-                    </Text>
-                  </View>
-                )}
-                {/* ⬆️ NOVO */}
-              </View>
-            </View>
-          </ScrollView>
-        )
-      }
-      {/* </ImageBackground> */}
-    </View>
+    // END: zatvaranje KeyboardAvoidingView wrappera
   );
 };
 

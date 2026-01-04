@@ -1,26 +1,27 @@
-// File: src/context/MusicProvider.js
+// START: stabilizacija audio moda i zaključavanje volume-a (20%)
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createAudioPlayer, setAudioModeAsync } from 'expo-audio';
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Platform } from 'react-native';
-// 👇 Uvozimo Auth da bi znali da li je korisnik ulogovan
 import { useAuth } from './AuthProvider';
 
-// ⚠️ PROVERI PUTANJU DO ZVUKA U ODNOSU NA OVAJ FAJL!
-// Ako je fajl u src/context, a assets u korenu, verovatno ti treba ../../assets
 const MUSIC_PATH = require('../assets/sounds/sinergija-audio.mp3');
 
 const MusicContext = createContext();
 export const useMusic = () => useContext(MusicContext);
 
 export const MusicProvider = ({ children }) => {
-  const { user } = useAuth(); // <--- 1. Pratimo korisnika
+  const { user } = useAuth();
   const playerRef = useRef(null);
-  const [musicVolume, setMusicVolume] = useState(0.25);
-  // Default je false, čekamo login da bi upalili
+
+  // START: fiksni BGM volume (20%) – stabilnost u production
+  const FIXED_VOLUME = 0.2;
+  const FORCE_FIXED_VOLUME = true;
+  const [musicVolume, setMusicVolume] = useState(FIXED_VOLUME);
+  // END: fiksni BGM volume (20%)
+
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // --- Helpers ---
   const setMode = async (mode = 'duckOthers', opts = {}) => {
     try {
       await setAudioModeAsync({
@@ -31,7 +32,9 @@ export const MusicProvider = ({ children }) => {
         shouldDuckAndroid: mode !== 'doNotMix',
         shouldPlayInBackground: false,
         shouldRouteThroughEarpiece: false,
+        // START: fix syntax (spread opts)
         ...opts,
+        // END: fix syntax (spread opts)
       });
     } catch (e) {
       console.log('[AUDIO mode] err:', e?.message || String(e));
@@ -54,17 +57,24 @@ export const MusicProvider = ({ children }) => {
     }
   };
 
-  // 1. Učitaj sačuvan volume
   useEffect(() => {
     (async () => {
       try {
         const m = await AsyncStorage.getItem('musicVolume');
         if (m) setMusicVolume(JSON.parse(m));
       } catch { }
+
+      // START: forsiraj 20% bez obzira na storage (da se ne vrati “problematična” vrednost)
+      if (FORCE_FIXED_VOLUME) {
+        try {
+          await AsyncStorage.setItem('musicVolume', JSON.stringify(FIXED_VOLUME));
+        } catch { }
+        setMusicVolume(FIXED_VOLUME);
+      }
+      // END: forsiraj 20%
     })();
   }, []);
 
-  // 2. Inicijalizacija plejera (SAMO JEDNOM, BEZ PUŠTANJA)
   useEffect(() => {
     (async () => {
       try {
@@ -75,9 +85,6 @@ export const MusicProvider = ({ children }) => {
           player.loop = true;
           player.volume = musicVolume;
           playerRef.current = player;
-
-          // ❌ OVDE VIŠE NE ZOVEMO play()!
-          // Čekamo da useEffect ispod odradi posao kad vidi User-a.
         }
       } catch (e) {
         console.warn('[AUDIO] init error:', e?.message || String(e));
@@ -85,24 +92,23 @@ export const MusicProvider = ({ children }) => {
     })();
 
     return () => {
-      try { playerRef.current?.remove?.(); } catch { }
+      try {
+        playerRef.current?.remove?.();
+      } catch { }
       playerRef.current = null;
     };
   }, []);
 
-  // 3. LOGIKA: User Login + Mute/Unmute
   useEffect(() => {
     const p = playerRef.current;
     if (!p) return;
 
-    // Muzika svira SAMO ako smo ulogovani (user postoji) I ako je dugme uključeno (isPlaying)
     const shouldPlay = !!user && isPlaying;
 
     (async () => {
       try {
         if (shouldPlay) {
           if (!p.playing) {
-            // Ako treba da svira, a ne svira -> PLAY
             if (Platform.OS === 'android' && p.currentTime === 0) {
               await kickstartAndroidAudio(p);
             } else {
@@ -110,52 +116,52 @@ export const MusicProvider = ({ children }) => {
             }
           }
         } else {
-          if (p.playing) {
-            // Ako ne treba da svira (Login ekran ili Mute), a svira -> PAUSE
-            p.pause();
-          }
+          if (p.playing) p.pause();
         }
-      } catch (e) { console.warn('Audio logic error:', e); }
+      } catch (e) {
+        console.warn('Audio logic error:', e);
+      }
     })();
-  }, [user, isPlaying]); // <--- Okida se na promenu usera ili dugmeta
+  }, [user, isPlaying]);
 
-  // 4. Automatski upali dugme kad se uloguješ (da ne moraš ručno)
   useEffect(() => {
-    if (user) {
-      setIsPlaying(true);
-    }
-    // Ne gasimo na logout, da bi pamtio stanje ako treba,
-    // ali gornji useEffect će svakako pauzirati zvuk jer nema usera.
+    if (user) setIsPlaying(true);
   }, [user]);
 
-  // 5. Volume kontrola
   useEffect(() => {
     const p = playerRef.current;
     if (!p) return;
-    try { p.volume = Math.max(0, Math.min(1, musicVolume)); } catch { }
+    try {
+      p.volume = Math.max(0, Math.min(1, musicVolume));
+    } catch { }
   }, [musicVolume]);
 
-  // API
   const setVolume = async (v) => {
+    // START: zaključan volume (20%) – ignoriši promene sa UI
     const clamped = Math.max(0, Math.min(1, v ?? 0));
-    setMusicVolume(clamped);
-    try { await AsyncStorage.setItem('musicVolume', JSON.stringify(clamped)); } catch { }
+    const next = FORCE_FIXED_VOLUME ? FIXED_VOLUME : clamped;
+    setMusicVolume(next);
+    try {
+      await AsyncStorage.setItem('musicVolume', JSON.stringify(next));
+    } catch { }
+    // END: zaključan volume (20%)
   };
 
   const mute = () => setIsPlaying(false);
   const unmute = () => setIsPlaying(true);
 
-  const testMusic = async () => { /* ... */ };
-
   return (
     <MusicContext.Provider
       value={{
-        musicVolume, setVolume,
-        isPlaying, mute, unmute,
-        testMusic,
+        musicVolume,
+        setVolume,
+        isPlaying,
+        mute,
+        unmute,
       }}
     >
       {children}
     </MusicContext.Provider>
   );
 };
+// END: stabilizacija audio moda i zaključavanje volume-a (20%)

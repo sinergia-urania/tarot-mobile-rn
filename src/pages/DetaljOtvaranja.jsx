@@ -58,11 +58,17 @@ const normalizeOpening = (r = {}) => {
   const answer =
     r.answer ?? r.ai_answer ?? r.aiAnswer ?? r.response ?? r.result ?? r.odgovor ?? null;
 
+  // START: fix - tretiraj "" kao prazno (da fallback na podpitanje radi)
   const subquestion =
-    r.subquestion ?? r.podpitanje ?? r.followup ?? null;
+    (typeof r.subquestion === "string" && r.subquestion.trim())
+      ? r.subquestion
+      : (r.podpitanje ?? r.followup ?? null);
 
   const subanswer =
-    r.subanswer ?? r.followup_answer ?? r.followupAnswer ?? r.odgovor2 ?? null;
+    (typeof r.subanswer === "string" && r.subanswer.trim())
+      ? r.subanswer
+      : (r.followup_answer ?? r.followupAnswer ?? r.odgovor2 ?? null);
+  // END: fix - tretiraj "" kao prazno (da fallback na podpitanje radi)
 
   const cards =
     r.cards ?? r.karte ?? r.drawn_cards ?? r.drawnCards ?? [];
@@ -172,7 +178,12 @@ const DetaljOtvaranja = () => {
             <Text style={[styles.label, { marginTop: 14 }]}>
               {t("common:detail.followup", { defaultValue: "Podpitanje:" })}
             </Text>
-            <Text style={styles.q}>{otvaranje.subquestion || "—"}</Text>
+            <Text style={styles.q}>
+              {otvaranje.subquestion ||
+                otvaranje.podpitanje ||
+                otvaranje.followup ||
+                "—"}
+            </Text>
             <Text style={styles.label}>
               {t("common:detail.followupAnswer", { defaultValue: "Odgovor na podpitanje:" })}
             </Text>

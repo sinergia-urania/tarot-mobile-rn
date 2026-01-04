@@ -15,10 +15,10 @@ import * as Notifications from 'expo-notifications';
 import { useLastNotificationResponse } from 'expo-notifications';
 import { getTrackingPermissionsAsync, requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 import React, { useEffect, useRef } from "react";
-import { LogBox, Platform, SafeAreaView, StatusBar } from "react-native";
+import { LogBox, Platform, StatusBar } from "react-native";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import mobileAds from "react-native-google-mobile-ads";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
 import UnaSpinner from "./src/components/UnaSpinner";
 import { AuthProvider, useAuth } from "./src/context/AuthProvider";
@@ -277,12 +277,18 @@ export default function App() {
                   {/* push token registracija čim postoji user */}
                   <RegisterPushOnLogin />
                   <NavWithAdGate linking={linking}>
-                    <SafeAreaView style={{ flex: 1, backgroundColor: "#0d0d19" }}>
+                    <SafeAreaView
+                      // START: globalni safe-area fix (da status bar ne preklapa UI)
+                      edges={['top']}
+                      // END: globalni safe-area fix
+                      style={{ flex: 1, backgroundColor: "#0d0d19" }}
+                    >
                       <StatusBar barStyle="light-content" />
                       <RootNavigator />
                       <Toast />
                     </SafeAreaView>
                   </NavWithAdGate>
+
                 </TreasureRefProvider>
               </TarotIAPProvider>
             </DukatiProvider>

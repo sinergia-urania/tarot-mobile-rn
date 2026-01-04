@@ -1,11 +1,24 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // START: i18n hook (common + questions)
 import { useTranslation } from 'react-i18next'; // 👈 NOVO
 // END: i18n hook (common + questions)
 // START: Modal import za OblastModal
-import { InteractionManager, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  InteractionManager,
+  Keyboard,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 // END: Modal import za OblastModal
+
 // START: lokalni klik SFX (expo-audio) samo za ovaj ekran
 import { createAudioPlayer } from 'expo-audio';
 const _clickSound = require('../assets/sounds/hover-click.mp3');
@@ -22,6 +35,7 @@ const playClickOnceLocal = async () => {
   } catch { }
 };
 // END: lokalni klik SFX (expo-audio) samo za ovaj ekran
+
 import TarotHeader from "../components/TarotHeader";
 
 // START: ✅ NOVO – import za guardovani baner i userPlan
@@ -78,6 +92,57 @@ export default function PitanjeIzbor() {
   const [openModal, setOpenModal] = useState(null);
 
   const pressLockRef = useRef(false);
+
+  // START: Scroll ref da možemo da skrolujemo do inputa kad se otvori tastatura
+  const scrollRef = useRef(null);
+  // END: Scroll ref da možemo da skrolujemo do inputa kad se otvori tastatura
+
+  // START: ✅ Dinamično “podizanje” iznad tastature bez biblioteka (iOS/Android)
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  // START: stabilniji auto-scroll (bez novih biblioteka)
+  const keyboardOpenRef = useRef(false);
+
+  const scrollToBottom = (delay = 0) => {
+    setTimeout(() => {
+      InteractionManager.runAfterInteractions(() => {
+        requestAnimationFrame(() => {
+          scrollRef.current?.scrollToEnd?.({ animated: true });
+        });
+      });
+    }, delay);
+  };
+  // END: stabilniji auto-scroll (bez novih biblioteka)
+
+  useEffect(() => {
+    const showEvt = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
+    const hideEvt = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
+
+    const showSub = Keyboard.addListener(showEvt, (e) => {
+      const h = e?.endCoordinates?.height ?? 0;
+      setKeyboardHeight(h);
+
+      // kad tastatura krene/otvori se:
+      keyboardOpenRef.current = true;
+      scrollToBottom(Platform.OS === "ios" ? 220 : 80);
+
+
+    });
+
+    const hideSub = Keyboard.addListener(hideEvt, () => {
+      keyboardOpenRef.current = false;
+      setKeyboardHeight(0);
+    });
+
+    return () => {
+      showSub?.remove?.();
+      hideSub?.remove?.();
+    };
+  }, []);
+
+  // malo veći offset (TarotHeader + safe area). Ako i dalje fali, podigni na 140.
+  const keyboardOffset = Platform.OS === "ios" ? 120 : 0;
+  // END: ✅ Dinamično “podizanje” iznad tastature bez biblioteka (iOS/Android)
+
   // START: handleNastavi sa opcionim isključenjem zvuka (da izbegnemo dupli klik)
   const handleNastavi = async (suppressSound = false) => {
     const q = pitanje.trim();
@@ -126,6 +191,7 @@ export default function PitanjeIzbor() {
   // const { isPro } = useDukati();
   // END: ✅ (opciono) Zadržavamo kontekst radi budućih gating-a
 
+
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
       <TarotHeader
@@ -136,77 +202,107 @@ export default function PitanjeIzbor() {
         showMenu={false}
       />
 
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 32 }}>
-        <View style={styles.container}>
-          {/* START: intro poruka iz i18n (poseban ključ za ovaj ekran) */}
-          <Text style={styles.infoMsg}>
-            {t('common:questions.introBlurb', {
-              defaultValue: 'Izaberi neku od tema i primera pitanja ili postavi svoje pitanje AI tumaču.'
-            })}
-          </Text>
-          {/* END: intro poruka iz i18n */}
+      {/* START: Keyboard-safe wrapper (iOS/Android) da input ne ode ispod tastature */}
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        // START: veći + stabilniji offset
+        // keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
+        keyboardVerticalOffset={keyboardOffset}
+      // END: veći + stabilniji offset
+      >
+        {/* START: ScrollView podešen za rad sa tastaturom + skrol */}
+        <ScrollView
+          ref={scrollRef}
+          style={{ flex: 1 }}
+          // START: dinamički paddingBottom po visini tastature
+          // contentContainerStyle={{ paddingBottom: 32, flexGrow: 1 }}
+          contentContainerStyle={{ paddingBottom: Math.max(32, Math.floor(keyboardHeight * 0.55) + 24), flexGrow: 1 }}
+          // END: dinamički paddingBottom po visini tastature
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="on-drag"
 
-          <View style={styles.oblastiCol}>
-            {prikazOblasti.map((oblast, idx) => (
-              <View key={oblast.key} style={{ width: "100%" }}>
-                <TouchableOpacity
-                  style={styles.oblastBtn}
-                  // START: klik SFX na otvaranje modala oblasti
-                  onPress={async () => { await playClickOnceLocal(); setOpenModal(idx); }}
-                  // END: klik SFX na otvaranje modala oblasti
-                  activeOpacity={0.87}
-                >
-                  <Text style={styles.oblastText}>
-                    <Text style={styles.ikona}>{oblast.ikonica}</Text> {oblast.naziv} <Text style={styles.ikona}>{oblast.ikonica}</Text>
-                  </Text>
-                </TouchableOpacity>
 
-                <OblastModal
-                  oblast={oblast}
-                  visible={openModal === idx}
-                  onClose={() => setOpenModal(null)}
-                  onSelect={(p) => {
-                    setPitanje(p);
-                    // START: zatvori modal pre navigacije
-                    setOpenModal(null);
-                    // END: zatvori modal pre navigacije
-                    // START: izbegni dupli zvuk — modal klik već svira
-                    setTimeout(() => handleNastavi(true), 200);
-                    // END: izbegni dupli zvuk — modal klik već svira
-                  }}
-                />
-              </View>
-            ))}
+        >
+          <View style={styles.container}>
+            {/* START: intro poruka iz i18n (poseban ključ za ovaj ekran) */}
+            <Text style={styles.infoMsg}>
+              {t('common:questions.introBlurb', {
+                defaultValue: 'Izaberi neku od tema i primera pitanja ili postavi svoje pitanje AI tumaču.'
+              })}
+            </Text>
+            {/* END: intro poruka iz i18n */}
+
+            <View style={styles.oblastiCol}>
+              {prikazOblasti.map((oblast, idx) => (
+                <View key={oblast.key} style={{ width: "100%" }}>
+                  <TouchableOpacity
+                    style={styles.oblastBtn}
+                    // START: klik SFX na otvaranje modala oblasti
+                    onPress={async () => { await playClickOnceLocal(); setOpenModal(idx); }}
+                    // END: klik SFX na otvaranje modala oblasti
+                    activeOpacity={0.87}
+                  >
+                    <Text style={styles.oblastText}>
+                      <Text style={styles.ikona}>{oblast.ikonica}</Text> {oblast.naziv} <Text style={styles.ikona}>{oblast.ikonica}</Text>
+                    </Text>
+                  </TouchableOpacity>
+
+                  <OblastModal
+                    oblast={oblast}
+                    visible={openModal === idx}
+                    onClose={() => setOpenModal(null)}
+                    onSelect={(p) => {
+                      setPitanje(p);
+                      // START: zatvori modal pre navigacije
+                      setOpenModal(null);
+                      // END: zatvori modal pre navigacije
+                      // START: izbegni dupli zvuk — modal klik već svira
+                      setTimeout(() => handleNastavi(true), 200);
+                      // END: izbegni dupli zvuk — modal klik već svira
+                    }}
+                  />
+                </View>
+              ))}
+            </View>
+
+            <Text style={styles.subTitle}>{t('labels.orTypeYourQuestion', { defaultValue: 'Ili unesi svoje pitanje' })}</Text>
+            <TextInput
+              value={pitanje}
+              onChangeText={setPitanje}
+              // START: kada se fokusira input, sačekaj da tastatura “legne” pa skroluj do dna
+              onFocus={() => {
+                scrollToBottom(Platform.OS === "ios" ? 220 : 80);
+              }}
+              // END: kada se fokusira input, sačekaj da tastatura “legne” pa skroluj do dna
+              placeholder={t('placeholders.enterQuestion', { defaultValue: 'Unesi pitanje' })}
+              placeholderTextColor="#aaa"
+              style={styles.input}
+            />
+
+            {/* START: Aktiviraj dugme samo na osnovu unetog pitanja */}
+            <TouchableOpacity
+              style={[styles.nastaviBtn, !pitanje.trim() && { opacity: 0.6 }]}
+              onPress={() => handleNastavi(false)}
+              disabled={!pitanje.trim()}
+            >
+              <Text style={styles.nastaviText}>{t('labels.chooseCards', { defaultValue: 'Izbor karata' })}</Text>
+            </TouchableOpacity>
+            {/* END: Aktiviraj dugme samo na osnovu unetog pitanja */}
+
+            {/* START: ✅ NOVO – nenametljiv banner ispod dugmeta (skriva se premium/pro) */}
+            <View style={styles.inlineBanner}>
+              {/* START: pojednostavljen poziv – bez session/profile stubova */}
+              {/* <AdBannerIfEligible session={sessionLike} profile={profileLike} /> */}
+              <AdBannerIfEligible />
+              {/* END: pojednostavljen poziv – bez session/profile stubova */}
+            </View>
+            {/* END: ✅ NOVO – nenametljiv banner ispod dugmeta */}
           </View>
-
-          <Text style={styles.subTitle}>{t('labels.orTypeYourQuestion', { defaultValue: 'Ili unesi svoje pitanje' })}</Text>
-          <TextInput
-            value={pitanje}
-            onChangeText={setPitanje}
-            placeholder={t('placeholders.enterQuestion', { defaultValue: 'Unesi pitanje' })}
-            placeholderTextColor="#aaa"
-            style={styles.input}
-          />
-          {/* START: Aktiviraj dugme samo na osnovu unetog pitanja */}
-          <TouchableOpacity
-            style={[styles.nastaviBtn, !pitanje.trim() && { opacity: 0.6 }]}
-            onPress={() => handleNastavi(false)}
-            disabled={!pitanje.trim()}
-          >
-            <Text style={styles.nastaviText}>{t('labels.chooseCards', { defaultValue: 'Izbor karata' })}</Text>
-          </TouchableOpacity>
-          {/* END: Aktiviraj dugme samo na osnovu unetog pitanja */}
-
-          {/* START: ✅ NOVO – nenametljiv banner ispod dugmeta (skriva se premium/pro) */}
-          <View style={styles.inlineBanner}>
-            {/* START: pojednostavljen poziv – bez session/profile stubova */}
-            {/* <AdBannerIfEligible session={sessionLike} profile={profileLike} /> */}
-            <AdBannerIfEligible />
-            {/* END: pojednostavljen poziv – bez session/profile stubova */}
-          </View>
-          {/* END: ✅ NOVO – nenametljiv banner ispod dugmeta */}
-        </View>
-      </ScrollView>
+        </ScrollView>
+        {/* END: ScrollView podešen za rad sa tastaturom + skrol */}
+      </KeyboardAvoidingView>
+      {/* END: Keyboard-safe wrapper (iOS/Android) */}
     </View>
   );
 }

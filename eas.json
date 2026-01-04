@@ -10,6 +10,9 @@
         "buildType": "apk"
       },
       "env": {
+        "NODE_OPTIONS": "--max-old-space-size=8192",
+        "GRADLE_OPTS": "-Dorg.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1024m",
+        "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
         "EXPO_PUBLIC_AI_DEBUG": "1",
         "EXPO_PUBLIC_VERBOSE_AI_LOGS": "1",
         "EXPO_PUBLIC_AI_DEDUPE_WINDOW_MS": "1200",
