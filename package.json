@@ -1,7 +1,7 @@
 {
   "name": "tarot-mobile",
   "main": "node_modules/expo/AppEntry.js",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -15,7 +15,7 @@
     "@expo/vector-icons": "^15.0.3",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/datetimepicker": "8.4.1",
-    "@react-native-community/slider": "^5.1.1",
+    "@react-native-community/slider": "5.1.1",
     "@react-native-picker/picker": "2.11.1",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
@@ -28,6 +28,7 @@
     "expo-audio": "~1.1.1",
     "expo-auth-session": "^7.0.10",
     "expo-blur": "^15.0.8",
+    "expo-build-properties": "^1.0.10",
     "expo-constants": "~18.0.10",
     "expo-datepicker": "^1.0.23",
     "expo-dev-client": "~6.0.20",
@@ -82,6 +83,13 @@
   },
   "private": true,
   "expo": {
+    "install": {
+      "exclude": [
+        "@react-native-community/slider",
+        "react-native-webview",
+        "@react-native-community/datetimepicker"
+      ]
+    },
     "doctor": {
       "reactNativeDirectoryCheck": {
         "exclude": [
