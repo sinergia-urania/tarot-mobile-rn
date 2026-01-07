@@ -20,8 +20,7 @@
       "permissions": [
         "com.android.vending.BILLING",
         "android.permission.MODIFY_AUDIO_SETTINGS",
-        "com.google.android.gms.permission.AD_ID",
-        "android.permission.POST_NOTIFICATIONS"
+        "com.google.android.gms.permission.AD_ID"
       ],
       "blockedPermissions": [
         "android.permission.RECORD_AUDIO",
@@ -58,7 +57,6 @@
           "telephony"
         ],
         "UISupportedInterfaceOrientations": [
-          "UIInterfaceOrientationPortrait",
           "UIInterfaceOrientationPortrait"
         ],
         "ITSAppUsesNonExemptEncryption": false
@@ -96,6 +94,9 @@
     },
     "updates": {
       "url": "https://u.expo.dev/1c8251b9-7c40-4b86-92b5-96612afcc36b"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
