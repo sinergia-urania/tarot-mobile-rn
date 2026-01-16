@@ -11,6 +11,10 @@
     "extra": {
       "eas": {
         "projectId": "1c8251b9-7c40-4b86-92b5-96612afcc36b"
+      },
+      "__legacyATT": {
+        "NSUserTrackingUsageDescription": "We use your device identifier to show relevant ads (AdMob) and support the development of this app.",
+        "plugin": "expo-tracking-transparency"
       }
     },
     "android": {
@@ -52,7 +56,6 @@
       "requireFullScreen": true,
       "usesAppleSignIn": true,
       "infoPlist": {
-        "NSUserTrackingUsageDescription": "We use your device identifier to show relevant ads (AdMob) and support the development of this app.",
         "UIRequiredDeviceCapabilities": [
           "telephony"
         ],
@@ -83,7 +86,6 @@
       "expo-font",
       "expo-web-browser",
       "expo-audio",
-      "expo-tracking-transparency",
       "expo-iap",
       "expo-localization"
     ],

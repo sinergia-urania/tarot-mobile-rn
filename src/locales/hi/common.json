@@ -321,12 +321,14 @@
       "yesNo": "$t(menu.yesNo)",
       "meanings": "$t(menu.meanings)",
       "history": "$t(menu.history)",
-      "access": "$t(menu.access)"
+      "access": "$t(menu.access)",
+      "jungLessons": "युंगियन आर्केटाइप्स"
     },
     "info": {
       "allSpreads": "$t(info.allSpreads)",
       "dailyCard": "$t(info.dailyCard)",
-      "yesNo": "$t(info.yesNo)"
+      "yesNo": "$t(info.yesNo)",
+      "jungLessons": "12 पाठों का मिनी-कोर्स जो युंगियन आर्केटाइप्स को टैरो के प्रतीकवाद से जोड़ता है — फोकस भविष्यवाणी नहीं, आत्म-चिंतन है।"
     },
     "watchAdForCoins": "$t(watchAdForCoins)"
   },

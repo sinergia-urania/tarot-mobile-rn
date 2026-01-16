@@ -1,0 +1,134 @@
+{
+    "screen": {
+        "title": "Jung Questions",
+        "subtitle": "30 prompts for reflection (not prediction).",
+        "filterAll": "All",
+        "filterThisLesson": "This lesson"
+    },
+    "opening": {
+        "title": "Jung Archetypes",
+        "subtitle": "Choose one curated question (no custom input).",
+        "chooseCards": "Choose cards",
+        "priceLine": "Price: {{price}} • Balance: {{balance}}"
+    },
+    "intro_01": {
+        "question": "What archetypal theme is shaping my situation right now?",
+        "why": "Frames the situation as a meaningful pattern (not prediction), making the reflection focused and grounded."
+    },
+    "intro_02": {
+        "question": "What am I trying to control by seeking certainty, and what would help me release it?",
+        "why": "Shifts from anxiety-driven future-checking to agency and practical next steps."
+    },
+    "persona_01": {
+        "question": "Where am I over-identifying with my Persona, and what is it protecting?",
+        "why": "Reveals the role you’re stuck in and the fear underneath it, unlocking honest choices."
+    },
+    "persona_02": {
+        "question": "What would change if I showed up 10% more authentic in this situation?",
+        "why": "Keeps it actionable and safe—small authenticity experiments are easier than extremes."
+    },
+    "shadow_01": {
+        "question": "What is my Shadow trying to show me through this trigger?",
+        "why": "Turns triggers into information so you respond with insight instead of reacting on autopilot."
+    },
+    "shadow_02": {
+        "question": "What am I avoiding admitting to myself, and why?",
+        "why": "Finds the missing truth that blocks progress and keeps the reflection honest."
+    },
+    "shadow_03": {
+        "question": "What boundary would reduce self-sabotage right now?",
+        "why": "Converts insight into behavior—boundaries are a fast way to change repeating patterns."
+    },
+    "anima_01": {
+        "question": "What inner polarity needs balancing: receptivity vs initiative, intuition vs logic?",
+        "why": "Helps you spot imbalance and choose the missing energy that would stabilize the situation."
+    },
+    "anima_02": {
+        "question": "What quality do I keep asking others to carry for me?",
+        "why": "Highlights projection/dependency and restores personal power (you reclaim what you outsource)."
+    },
+    "self_01": {
+        "question": "What choice would feel most aligned with my deeper Self?",
+        "why": "Prioritizes long-term alignment over short-term comfort, making the reflection feel true."
+    },
+    "self_02": {
+        "question": "What truth am I negotiating away to keep the peace?",
+        "why": "Exposes people-pleasing loops and clarifies what must be honored or expressed."
+    },
+    "indiv_01": {
+        "question": "What recurring life lesson is asking to be integrated now?",
+        "why": "Connects today’s issue to a larger growth theme—great for tracking patterns over time."
+    },
+    "indiv_02": {
+        "question": "What am I ready to outgrow in this chapter?",
+        "why": "Names the outdated identity/belief that keeps recreating the same outcomes."
+    },
+    "indiv_03": {
+        "question": "What is the next honest 1% step toward becoming more whole?",
+        "why": "Makes progress realistic—small steps are easier to act on than vague big goals."
+    },
+    "hero_01": {
+        "question": "Where do I need courage and discipline — not intensity — to move forward?",
+        "why": "Separates sustainable progress from emotional spikes and focuses on real action."
+    },
+    "hero_02": {
+        "question": "What commitment am I avoiding, and what would make it sustainable?",
+        "why": "Finds the true commitment underneath fear and designs it in a way you can keep."
+    },
+    "guide_01": {
+        "question": "What do I already know but keep ignoring?",
+        "why": "Cuts through confusion—often the answer is known but emotionally inconvenient."
+    },
+    "guide_02": {
+        "question": "What information or support do I need before I decide?",
+        "why": "Prevents impulsive choices and clarifies what’s missing for a confident decision."
+    },
+    "guide_03": {
+        "question": "What would my wiser future self advise me to do next?",
+        "why": "Creates distance from stress and reveals a calmer, strategic next step."
+    },
+    "trick_01": {
+        "question": "Where am I rationalizing or “gaming” this situation instead of facing it?",
+        "why": "Spots mental loopholes that keep you stuck and returns you to honesty."
+    },
+    "trick_02": {
+        "question": "What pattern of avoidance shows up as humor, distraction, or impulsiveness?",
+        "why": "Helps you catch self-sabotage early—especially the ‘I’m fine’ mask."
+    },
+    "trick_03": {
+        "question": "What small playful experiment could reveal the truth safely?",
+        "why": "Encourages curiosity and low-risk testing instead of all-or-nothing moves."
+    },
+    "mother_01": {
+        "question": "Where do I confuse care with control (for myself or others)?",
+        "why": "Clarifies whether helping is actually anxiety, so you can choose healthier support."
+    },
+    "mother_02": {
+        "question": "What do I need to nourish — and what must I stop enabling?",
+        "why": "Separates growth-support from pattern-support (huge for relationships and habits)."
+    },
+    "death_01": {
+        "question": "What is ending (even quietly), and what is asking to be released?",
+        "why": "Helps you recognize closure before it becomes a crisis."
+    },
+    "death_02": {
+        "question": "What identity or belief is too small for who I’m becoming?",
+        "why": "Points to the inner shift required—often the real ending is a self-image."
+    },
+    "death_03": {
+        "question": "What would “letting go” look like as one concrete action this week?",
+        "why": "Forces a measurable step so the reflection turns into momentum."
+    },
+    "proj_01": {
+        "question": "What am I projecting onto this person/situation that I might carry too?",
+        "why": "Reduces blame and returns clarity—projection is a fast way to distort reality."
+    },
+    "proj_02": {
+        "question": "What story am I telling, and what facts do I actually have?",
+        "why": "Separates narrative from evidence, making decisions cleaner and calmer."
+    },
+    "proj_03": {
+        "question": "What would a fair, grounded interpretation be — without assumptions?",
+        "why": "Re-centers the reflection on balance and reduces emotional overreach."
+    }
+}

@@ -321,12 +321,14 @@
       "yesNo": "$t(menu.yesNo)",
       "meanings": "$t(menu.meanings)",
       "history": "$t(menu.history)",
-      "access": "$t(menu.access)"
+      "access": "$t(menu.access)",
+      "jungLessons": "Jungovski arhetipovi"
     },
     "info": {
       "allSpreads": "$t(info.allSpreads)",
       "dailyCard": "$t(info.dailyCard)",
-      "yesNo": "$t(info.yesNo)"
+      "yesNo": "$t(info.yesNo)",
+      "jungLessons": "Mini-kurs od 12 lekcija koji spaja Jungove arhetipove sa simbolikom Tarota — fokus na refleksiji, ne na predviđanju."
     },
     "watchAdForCoins": "$t(watchAdForCoins)"
   },

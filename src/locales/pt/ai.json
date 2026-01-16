@@ -20,18 +20,18 @@
     "label": "Resumo geral:"
   },
   "houses": [
-    "1ª Casa (Eu)",
-    "2ª Casa (Finanças)",
-    "3ª Casa (Comunicação)",
-    "4ª Casa (Lar e Família)",
-    "5ª Casa (Criatividade)",
-    "6ª Casa (Saúde)",
-    "7ª Casa (Parcerias)",
-    "8ª Casa (Transformação)",
-    "9ª Casa (Viagens e Crenças)",
-    "10ª Casa (Carreira)",
-    "11ª Casa (Amigos e Comunidade)",
-    "12ª Casa (Subconsciente)"
+    "1. área (Personalidade)",
+    "2. área (Finanças)",
+    "3. área (Comunicação)",
+    "4. área (Lar e família)",
+    "5. área (Criatividade)",
+    "6. área (Saúde)",
+    "7. área (Parcerias)",
+    "8. área (Transformação)",
+    "9. área (Viagens e crenças)",
+    "10. área (Carreira)",
+    "11. área (Amigos e comunidade)",
+    "12. área (Subconsciente)"
   ],
   "celticPositions": [
     "1. Situação atual",

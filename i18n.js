@@ -1,10 +1,11 @@
 ﻿// tarot-mobile1/i18n.js
-import * as Localization from "expo-localization";
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+
 // START: custom language detector (čita iz AsyncStorage)
 import languageDetector from './src/utils/languageDetector';
 // END: custom language detector
+
 // START: statički import 4 JSON ns za sr
 import sr_ai from './src/locales/sr/ai.json';
 import sr_cardMeanings from './src/locales/sr/cardMeanings.json';
@@ -23,6 +24,8 @@ import en_cardMeanings from './src/locales/en/cardMeanings.json';
 import en_common from './src/locales/en/common.json';
 import en_documents from './src/locales/en/documents.json';
 import en_extendedMeanings from './src/locales/en/extendedMeanings.json';
+import en_jungQuestions from './src/locales/en/jungQuestions.json';
+import en_lessons from './src/locales/en/lessons.json';
 import en_questions from './src/locales/en/questions.json';
 // END: EN resursi
 
@@ -89,6 +92,32 @@ import id_extendedMeanings from './src/locales/id/extendedMeanings.json';
 import id_questions from './src/locales/id/questions.json';
 // END: ID resursi
 
+// START: lessons & jungQuestions imports (sr/es/de/fr/pt/hi/tr/id)
+import sr_jungQuestions from './src/locales/sr/jungQuestions.json';
+import sr_lessons from './src/locales/sr/lessons.json';
+
+import es_jungQuestions from './src/locales/es/jungQuestions.json';
+import es_lessons from './src/locales/es/lessons.json';
+
+import de_jungQuestions from './src/locales/de/jungQuestions.json';
+import de_lessons from './src/locales/de/lessons.json';
+
+import fr_jungQuestions from './src/locales/fr/jungQuestions.json';
+import fr_lessons from './src/locales/fr/lessons.json';
+
+import pt_jungQuestions from './src/locales/pt/jungQuestions.json';
+import pt_lessons from './src/locales/pt/lessons.json';
+
+import hi_jungQuestions from './src/locales/hi/jungQuestions.json';
+import hi_lessons from './src/locales/hi/lessons.json';
+
+import tr_jungQuestions from './src/locales/tr/jungQuestions.json';
+import tr_lessons from './src/locales/tr/lessons.json';
+
+import id_jungQuestions from './src/locales/id/jungQuestions.json';
+import id_lessons from './src/locales/id/lessons.json';
+// END: lessons & jungQuestions imports (sr/es/de/fr/pt/hi/tr/id)
+
 // START: resources — sr/en/es (+ de + fr)
 const resources = {
   sr: {
@@ -98,7 +127,12 @@ const resources = {
     extendedMeanings: sr_extendedMeanings,
     documents: sr_documents,
     questions: sr_questions,
+    // START: add lessons & jungQuestions for sr
+    lessons: sr_lessons,
+    jungQuestions: sr_jungQuestions,
+    // END: add lessons & jungQuestions for sr
   },
+
   // START: en resources (komplet)
   en: {
     common: en_common,
@@ -107,8 +141,11 @@ const resources = {
     extendedMeanings: en_extendedMeanings,
     documents: en_documents,
     questions: en_questions,
+    lessons: en_lessons,
+    jungQuestions: en_jungQuestions,
   },
   // END: en resources
+
   // START: es resources (komplet)
   es: {
     common: es_common,
@@ -117,8 +154,13 @@ const resources = {
     extendedMeanings: es_extendedMeanings,
     documents: es_documents,
     questions: es_questions,
+    // START: add lessons & jungQuestions for es
+    lessons: es_lessons,
+    jungQuestions: es_jungQuestions,
+    // END: add lessons & jungQuestions for es
   },
   // END: es resources
+
   // START: de resources (komplet)
   de: {
     common: de_common,
@@ -127,8 +169,13 @@ const resources = {
     extendedMeanings: de_extendedMeanings,
     documents: de_documents,
     questions: de_questions,
+    // START: add lessons & jungQuestions for de
+    lessons: de_lessons,
+    jungQuestions: de_jungQuestions,
+    // END: add lessons & jungQuestions for de
   },
   // END: de resources
+
   // START: fr resources (komplet)
   fr: {
     common: fr_common,
@@ -137,6 +184,10 @@ const resources = {
     extendedMeanings: fr_extendedMeanings,
     documents: fr_documents,
     questions: fr_questions,
+    // START: add lessons & jungQuestions for fr
+    lessons: fr_lessons,
+    jungQuestions: fr_jungQuestions,
+    // END: add lessons & jungQuestions for fr
   },
   // END: fr resources
 
@@ -148,6 +199,10 @@ const resources = {
     extendedMeanings: pt_extendedMeanings,
     documents: pt_documents,
     questions: pt_questions,
+    // START: add lessons & jungQuestions for pt
+    lessons: pt_lessons,
+    jungQuestions: pt_jungQuestions,
+    // END: add lessons & jungQuestions for pt
   },
   // END: pt resources
 
@@ -159,6 +214,10 @@ const resources = {
     extendedMeanings: hi_extendedMeanings,
     documents: hi_documents,
     questions: hi_questions,
+    // START: add lessons & jungQuestions for hi
+    lessons: hi_lessons,
+    jungQuestions: hi_jungQuestions,
+    // END: add lessons & jungQuestions for hi
   },
   // END: hi resources
 
@@ -170,6 +229,10 @@ const resources = {
     extendedMeanings: tr_extendedMeanings,
     documents: tr_documents,
     questions: tr_questions,
+    // START: add lessons & jungQuestions for tr
+    lessons: tr_lessons,
+    jungQuestions: tr_jungQuestions,
+    // END: add lessons & jungQuestions for tr
   },
   // END: tr resources
 
@@ -181,6 +244,10 @@ const resources = {
     extendedMeanings: id_extendedMeanings,
     documents: id_documents,
     questions: id_questions,
+    // START: add lessons & jungQuestions for id
+    lessons: id_lessons,
+    jungQuestions: id_jungQuestions,
+    // END: add lessons & jungQuestions for id
   },
   // END: id resources
 };
@@ -194,10 +261,13 @@ i18n
   .init({
     compatibilityJSON: 'v3',
     resources,
-    ns: ['common', 'ai', 'cardMeanings', 'extendedMeanings', 'documents', 'questions'],
+    ns: ['common', 'ai', 'cardMeanings', 'extendedMeanings', 'documents', 'questions', 'lessons', 'jungQuestions'],
+
     defaultNS: 'common',
+
     // START: fallbackNS — ako ključ fali u aktivnom ns, traži ga u "common"
     fallbackNS: 'common',
+
     // START: pametan fallback — globalno prvo EN, pa SR; za sr ostaje sr→en
     fallbackLng: {
       default: ['en', 'sr'],
@@ -205,6 +275,7 @@ i18n
       en: ['en', 'sr'],
       es: ['en', 'sr'], // španski pada na EN, pa SR
       de: ['de', 'en', 'sr'], // nemački: DE → EN → SR
+
       // START: add French (FR) resources and config - fallbackLng.fr
       fr: ['fr', 'en', 'sr'], // francuski: FR → EN → SR
       // END: add French (FR) resources and config - fallbackLng.fr
@@ -220,22 +291,29 @@ i18n
       // END: tr & id fallbacks
     },
     // END: pametan fallback
+
     // UKLONJENO: lng: Localization.getLocales()[0].languageCode,
     // Sada koristimo languageDetector koji čita iz AsyncStorage pa fallback na device
+
     // START: podržani jezici
     // START: add German & French - supportedLngs
     // supportedLngs: ['sr', 'en', 'es', 'de', 'fr', 'pt', 'hi'],
     // END: add German & French - supportedLngs
+
     // START: add Turkish & Indonesian - supportedLngs (extend list)
     supportedLngs: ['sr', 'en', 'es', 'de', 'fr', 'pt', 'hi', 'tr', 'id'],
     // END: add Turkish & Indonesian - supportedLngs (extend list)
-    load: 'languageOnly',        // en-US/sr-RS/es-ES → en/sr/es
+
+    load: 'languageOnly', // en-US/sr-RS/es-ES → en/sr/es
     nonExplicitSupportedLngs: true,
     // END: podržani jezici
+
     interpolation: { escapeValue: false },
+
     // START: RN best-practice – bez suspense-a
     react: { useSuspense: false },
     // END: RN best-practice
+
     // START: dev pomoć – prijavi nestale ključeve u konzolu (samo u __DEV__)
     missingKeyHandler: (__lng, __ns, key) => {
       if (typeof __DEV__ !== 'undefined' && __DEV__) {

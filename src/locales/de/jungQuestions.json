@@ -1,0 +1,134 @@
+{
+    "screen": {
+        "title": "Jung-Fragen",
+        "subtitle": "30 Impulse zur Reflexion (keine Vorhersage).",
+        "filterAll": "Alle",
+        "filterThisLesson": "Diese Lektion"
+    },
+    "opening": {
+        "title": "Jung-Archetypen",
+        "subtitle": "Wähle eine kuratierte Frage (keine eigene Eingabe).",
+        "chooseCards": "Karten wählen",
+        "priceLine": "Preis: {{price}} • Guthaben: {{balance}}"
+    },
+    "intro_01": {
+        "question": "Welches archetypische Thema prägt meine Situation gerade?",
+        "why": "Rahmt die Situation als sinnvolles Muster (keine Vorhersage) und macht die Reflexion fokussiert und geerdet."
+    },
+    "intro_02": {
+        "question": "Was versuche ich durch das Suchen nach Gewissheit zu kontrollieren, und was würde mir helfen, es loszulassen?",
+        "why": "Verschiebt den Fokus von angstgetriebenem Zukunfts-Checken hin zu Handlungsspielraum und praktischen nächsten Schritten."
+    },
+    "persona_01": {
+        "question": "Wo identifiziere ich mich zu sehr mit meiner Persona, und was schützt sie?",
+        "why": "Zeigt die Rolle, in der du feststeckst, und die Angst darunter — und öffnet so ehrlichere Entscheidungen."
+    },
+    "persona_02": {
+        "question": "Was würde sich ändern, wenn ich in dieser Situation 10% authentischer auftauchen würde?",
+        "why": "Hält es umsetzbar und sicher — kleine Authentizitäts-Experimente sind leichter als Extreme."
+    },
+    "shadow_01": {
+        "question": "Was versucht mir mein Schatten durch diesen Trigger zu zeigen?",
+        "why": "Macht Trigger zu Information, damit du mit Einsicht reagierst statt im Autopilot zu reagieren."
+    },
+    "shadow_02": {
+        "question": "Was vermeide ich mir selbst einzugestehen, und warum?",
+        "why": "Findet die fehlende Wahrheit, die Fortschritt blockiert, und hält die Reflexion ehrlich."
+    },
+    "shadow_03": {
+        "question": "Welche Grenze würde gerade Selbstsabotage reduzieren?",
+        "why": "Übersetzt Einsicht in Verhalten — Grenzen sind ein schneller Weg, wiederkehrende Muster zu verändern."
+    },
+    "anima_01": {
+        "question": "Welche innere Polarität braucht Balance: Empfänglichkeit vs. Initiative, Intuition vs. Logik?",
+        "why": "Hilft dir, ein Ungleichgewicht zu erkennen und die fehlende Energie zu wählen, die die Situation stabilisiert."
+    },
+    "anima_02": {
+        "question": "Welche Eigenschaft bitte ich andere immer wieder, für mich zu tragen?",
+        "why": "Zeigt Projektion/Abhängigkeit und bringt persönliche Kraft zurück (du holst zurück, was du ausgelagert hast)."
+    },
+    "self_01": {
+        "question": "Welche Entscheidung würde sich am stärksten im Einklang mit meinem tieferen Selbst anfühlen?",
+        "why": "Priorisiert langfristige Ausrichtung gegenüber kurzfristigem Komfort und lässt die Reflexion wahr wirken."
+    },
+    "self_02": {
+        "question": "Welche Wahrheit verhandle ich weg, um den Frieden zu wahren?",
+        "why": "Deckt People-Pleasing-Schleifen auf und klärt, was geehrt oder ausgesprochen werden muss."
+    },
+    "indiv_01": {
+        "question": "Welche wiederkehrende Lebenslektion möchte jetzt integriert werden?",
+        "why": "Verbindet das heutige Thema mit einem größeren Wachstumsmuster — ideal, um Muster über Zeit zu verfolgen."
+    },
+    "indiv_02": {
+        "question": "Was bin ich bereit, in diesem Kapitel hinter mir zu lassen?",
+        "why": "Benennt die veraltete Identität/Überzeugung, die immer wieder dieselben Ergebnisse erzeugt."
+    },
+    "indiv_03": {
+        "question": "Was ist der nächste ehrliche 1%-Schritt, um mehr Ganzheit zu werden?",
+        "why": "Macht Fortschritt realistisch — kleine Schritte sind leichter umzusetzen als vage große Ziele."
+    },
+    "hero_01": {
+        "question": "Wo brauche ich Mut und Disziplin — nicht Intensität — um voranzukommen?",
+        "why": "Trennt nachhaltigen Fortschritt von emotionalen Peaks und fokussiert auf echte Handlung."
+    },
+    "hero_02": {
+        "question": "Welche Verpflichtung vermeide ich, und was würde sie nachhaltig machen?",
+        "why": "Findet das wahre Commitment unter der Angst und gestaltet es so, dass du es halten kannst."
+    },
+    "guide_01": {
+        "question": "Was weiß ich eigentlich schon, ignoriere es aber ständig?",
+        "why": "Schneidet durch Verwirrung — oft ist die Antwort bekannt, aber emotional unbequem."
+    },
+    "guide_02": {
+        "question": "Welche Informationen oder Unterstützung brauche ich, bevor ich entscheide?",
+        "why": "Verhindert impulsive Entscheidungen und klärt, was für eine sichere Entscheidung noch fehlt."
+    },
+    "guide_03": {
+        "question": "Was würde mir mein weiseres zukünftiges Ich als Nächstes raten?",
+        "why": "Schafft Abstand zum Stress und zeigt einen ruhigeren, strategischen nächsten Schritt."
+    },
+    "trick_01": {
+        "question": "Wo rationalisiere ich oder „spiele“ ich diese Situation, statt mich ihr zu stellen?",
+        "why": "Erkennt mentale Schlupflöcher, die dich festhalten, und bringt dich zurück zur Ehrlichkeit."
+    },
+    "trick_02": {
+        "question": "Welches Vermeidungs-Muster zeigt sich als Humor, Ablenkung oder Impulsivität?",
+        "why": "Hilft dir, Selbstsabotage früh zu erkennen — besonders die „Mir geht’s gut“-Maske."
+    },
+    "trick_03": {
+        "question": "Welches kleine spielerische Experiment könnte die Wahrheit sicher sichtbar machen?",
+        "why": "Fördert Neugier und risikoarmes Testen statt Alles-oder-nichts-Entscheidungen."
+    },
+    "mother_01": {
+        "question": "Wo verwechsle ich Fürsorge mit Kontrolle (für mich oder andere)?",
+        "why": "Klären, ob Helfen eigentlich Angst ist — so kannst du gesündere Unterstützung wählen."
+    },
+    "mother_02": {
+        "question": "Was muss ich nähren — und was muss ich aufhören zu ermöglichen?",
+        "why": "Trennt Wachstums-Unterstützung von Muster-Unterstützung (riesig für Beziehungen und Gewohnheiten)."
+    },
+    "death_01": {
+        "question": "Was endet (auch leise), und was möchte losgelassen werden?",
+        "why": "Hilft dir, Abschluss zu erkennen, bevor er zur Krise wird."
+    },
+    "death_02": {
+        "question": "Welche Identität oder Überzeugung ist zu klein für das, was ich werde?",
+        "why": "Zeigt die innere Verschiebung, die nötig ist — oft ist das wahre Ende ein Selbstbild."
+    },
+    "death_03": {
+        "question": "Wie würde „loslassen“ als eine konkrete Handlung diese Woche aussehen?",
+        "why": "Zwingt zu einem messbaren Schritt, damit Reflexion zu Momentum wird."
+    },
+    "proj_01": {
+        "question": "Was projiziere ich auf diese Person/Situation, das ich vielleicht auch in mir trage?",
+        "why": "Reduziert Schuldzuweisung und bringt Klarheit zurück — Projektion verzerrt Realität sehr schnell."
+    },
+    "proj_02": {
+        "question": "Welche Geschichte erzähle ich, und welche Fakten habe ich tatsächlich?",
+        "why": "Trennt Narrativ von Evidenz und macht Entscheidungen klarer und ruhiger."
+    },
+    "proj_03": {
+        "question": "Was wäre eine faire, bodenständige Interpretation — ohne Annahmen?",
+        "why": "Zentriert die Reflexion auf Balance und reduziert emotionales Überschießen."
+    }
+}

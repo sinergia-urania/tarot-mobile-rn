@@ -1,0 +1,134 @@
+{
+    "screen": {
+        "title": "Jungova pitanja",
+        "subtitle": "30 podsticaja za refleksiju (ne predviđanje).",
+        "filterAll": "Sve",
+        "filterThisLesson": "Ova lekcija"
+    },
+    "opening": {
+        "title": "Jungovi arhetipovi",
+        "subtitle": "Izaberi jedno od odabranih pitanja (bez unosa sopstvenog).",
+        "chooseCards": "Izaberi karte",
+        "priceLine": "Cena: {{price}} • Balans: {{balance}}"
+    },
+    "intro_01": {
+        "question": "Koja arhetipska tema trenutno oblikuje moju situaciju?",
+        "why": "Uokviruje situaciju kao smislen obrazac (ne predviđanje), pa refleksija ostaje fokusirana i prizemljena."
+    },
+    "intro_02": {
+        "question": "Šta pokušavam da kontrolišem time što tražim izvesnost, i šta bi mi pomoglo da to pustim?",
+        "why": "Prebacuje fokus sa anksioznog proveravanja budućnosti na ličnu moć delovanja i praktične sledeće korake."
+    },
+    "persona_01": {
+        "question": "Gde se previše poistovećujem sa svojom Personom, i šta ona štiti?",
+        "why": "Otkriva ulogu u kojoj se držiš i strah ispod nje, pa postaje lakše da praviš iskrene izbore."
+    },
+    "persona_02": {
+        "question": "Šta bi se promenilo ako se u ovoj situaciji pokažem 10% autentičnije?",
+        "why": "Drži stvar praktičnom i bezbednom — mali eksperimenti autentičnosti su lakši od ekstrema."
+    },
+    "shadow_01": {
+        "question": "Šta moja Senka pokušava da mi pokaže kroz ovaj okidač?",
+        "why": "Pretvara okidače u informaciju, da odgovoriš uvidom umesto da reaguješ na autopilotu."
+    },
+    "shadow_02": {
+        "question": "Šta izbegavam da priznam sebi, i zašto?",
+        "why": "Pronalazi nedostajuću istinu koja blokira napredak i drži refleksiju iskrenom."
+    },
+    "shadow_03": {
+        "question": "Koja granica bi sada smanjila samosabotažu?",
+        "why": "Pretvara uvid u ponašanje — granice su brz način da promeniš obrasce koji se ponavljaju."
+    },
+    "anima_01": {
+        "question": "Koji unutrašnji polaritet traži balans: prijemčivost naspram inicijative, intuicija naspram logike?",
+        "why": "Pomaže da uočiš neravnotežu i izabereš energiju koja nedostaje i koja bi stabilizovala situaciju."
+    },
+    "anima_02": {
+        "question": "Koji kvalitet stalno tražim od drugih da nose umesto mene?",
+        "why": "Ističe projekciju/zavisnost i vraća ličnu moć (uzimaš nazad ono što prepuštaš drugima)."
+    },
+    "self_01": {
+        "question": "Koji izbor bi bio najusklađeniji sa mojim dubljim Sopstvom?",
+        "why": "Daje prednost dugoročnoj usklađenosti u odnosu na kratkoročnu udobnost, pa refleksija deluje istinito."
+    },
+    "self_02": {
+        "question": "Koju istinu prećutkujem ili razvodnjavam da bih sačuvao mir?",
+        "why": "Razotkriva petlje ugađanja drugima i razjašnjava šta mora biti poštovano ili izrečeno."
+    },
+    "indiv_01": {
+        "question": "Koja ponavljajuća životna lekcija traži da se sada integriše?",
+        "why": "Povezuje današnji problem sa većom temom rasta — odlično za praćenje obrazaca kroz vreme."
+    },
+    "indiv_02": {
+        "question": "Šta je vreme da prerastem u ovom poglavlju?",
+        "why": "Imenuje zastareli identitet/uverenje koji stalno ponavlja iste ishode."
+    },
+    "indiv_03": {
+        "question": "Koji je sledeći iskreni korak od 1% ka većoj celovitosti?",
+        "why": "Čini napredak realnim — male korake je lakše uraditi nego maglovite velike ciljeve."
+    },
+    "hero_01": {
+        "question": "Gde su mi potrebni hrabrost i disciplina — a ne intenzitet — da bih krenuo napred?",
+        "why": "Razdvaja održiv napredak od emotivnih naleta i fokusira se na stvarnu akciju."
+    },
+    "hero_02": {
+        "question": "Koju obavezu izbegavam, i šta bi je učinilo održivom?",
+        "why": "Pronalazi pravu obavezu ispod straha i oblikuje je tako da možeš da je održiš."
+    },
+    "guide_01": {
+        "question": "Šta već znam, ali uporno ignorišem?",
+        "why": "Seče kroz konfuziju — često odgovor već znaš, ali je emocionalno nezgodan."
+    },
+    "guide_02": {
+        "question": "Koje informacije ili podršku mi trebaju pre nego što odlučim?",
+        "why": "Sprečava impulsivne izbore i razjašnjava šta nedostaje za samopouzdanu odluku."
+    },
+    "guide_03": {
+        "question": "Šta bi mi moja mudrija buduća verzija savetovala da uradim sledeće?",
+        "why": "Pravi distancu od stresa i otkriva mirniji, strateški sledeći korak."
+    },
+    "trick_01": {
+        "question": "Gde racionalizujem ili “igram igrice” u ovoj situaciji umesto da se suočim s njom?",
+        "why": "Uočava mentalne izgovore i prečice koje te drže zaglavljenim i vraća te na iskrenost."
+    },
+    "trick_02": {
+        "question": "Koji obrazac izbegavanja se pojavljuje kao humor, distrakcija ili impulsivnost?",
+        "why": "Pomaže da uhvatiš samosabotažu rano — naročito masku “ma dobro sam”."
+    },
+    "trick_03": {
+        "question": "Koji mali, razigrani eksperiment bi mogao bezbedno da otkrije istinu?",
+        "why": "Podstiče radoznalost i testiranje niskog rizika umesto poteza sve-ili-ništa."
+    },
+    "mother_01": {
+        "question": "Gde brigu mešam sa kontrolom (za sebe ili druge)?",
+        "why": "Razjašnjava da li je pomaganje zapravo anksioznost, pa možeš da izabereš zdraviju podršku."
+    },
+    "mother_02": {
+        "question": "Šta treba da negujem — a šta moram da prestanem da omogućavam?",
+        "why": "Razdvaja podršku rastu od podrške obrascima (ogromno za odnose i navike)."
+    },
+    "death_01": {
+        "question": "Šta se završava (čak i tiho), i šta traži da bude pušteno?",
+        "why": "Pomaže da prepoznaš zatvaranje pre nego što postane kriza."
+    },
+    "death_02": {
+        "question": "Koji identitet ili uverenje je premalo za ono što postajem?",
+        "why": "Ukazuje na unutrašnji pomak koji je potreban — često se pravi kraj dešava u slici o sebi."
+    },
+    "death_03": {
+        "question": "Kako bi “puštanje” izgledalo kao jedna konkretna akcija ove nedelje?",
+        "why": "Forsira merljiv korak da se refleksija pretvori u zamah."
+    },
+    "proj_01": {
+        "question": "Šta projektujem na ovu osobu/situaciju što možda nosim i ja?",
+        "why": "Smanjuje okrivljavanje i vraća jasnoću — projekcija brzo iskrivljuje realnost."
+    },
+    "proj_02": {
+        "question": "Koju priču sebi pričam, a koje činjenice zapravo imam?",
+        "why": "Razdvaja narativ od dokaza, pa odluke postaju čistije i mirnije."
+    },
+    "proj_03": {
+        "question": "Koje bi bilo fer, prizemljeno tumačenje — bez pretpostavki?",
+        "why": "Vraća refleksiju u balans i smanjuje emotivno preterivanje."
+    }
+}

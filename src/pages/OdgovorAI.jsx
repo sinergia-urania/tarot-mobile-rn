@@ -205,7 +205,10 @@ function buildTransitTextForTip(tip, startISO, overrideFormat) {
 
   const slow = uniq(preset.slowPlanets || ['Jupiter', 'Saturn', 'Uran', 'Neptun', 'Pluton']);
 
-  return getTranzitiZaPeriodAdvanced(startISO, {
+  // START: TIME WINDOW — NOW_DATE anchor na vrhu tranzit bloka
+  // (Sidro "šta je SADA" + lak_drop-in pravilo za vezivanje tranzita za datumske linije)
+  // return getTranzitiZaPeriodAdvanced(startISO, {
+  const transitsBody = getTranzitiZaPeriodAdvanced(startISO, {
     brojDana: preset.maxDays ?? 30,
     dayStep: preset.dayStep ?? 3,
     includeMoon: !!preset.includeMoon,
@@ -217,8 +220,29 @@ function buildTransitTextForTip(tip, startISO, overrideFormat) {
     headerLabel: (overrideFormat || preset.format) === 'symbol' ? '' : 'Spore planete (baza za period):',
     // END: simbolički format override + neutralan header
   });
+
+  if (!transitsBody) return '';
+  return `NOW_DATE: ${startISO}\nNOW_TAG: [${startISO}]\n${transitsBody}`;
+  // END: TIME WINDOW — NOW_DATE anchor na vrhu tranzit bloka
+
 }
 // END: helperi za tranzite
+// START: TIME WINDOW — normalize [NOW_TAG]/NOW_DATE placeholder-e u AI output-u
+const extractNowISOFromTransits = (tranzitiTekst, fallbackISO) => {
+  const m = String(tranzitiTekst || '').match(/NOW_DATE:\s*(\d{4}-\d{2}-\d{2})/);
+  return m?.[1] || (fallbackISO ? String(fallbackISO).slice(0, 10) : null);
+};
+
+const normalizeTimeWindowTags = (text, nowISO) => {
+  if (!text || !nowISO) return text;
+  const tag = `[${nowISO}]`;
+  return String(text)
+    .replace(/\[NOW_TAG\]/g, tag)
+    .replace(/\[NOW_DATE\]/g, tag)
+    .replace(/\bNOW_TAG\b/g, tag)
+    .replace(/\bNOW_DATE\b/g, tag);
+};
+// END: TIME WINDOW — normalize [NOW_TAG]/NOW_DATE placeholder-e u AI output-u
 
 const OdgovorAI = () => {
   const route = useRoute();
@@ -239,8 +263,14 @@ const OdgovorAI = () => {
     podpitanja = [],
     izabraneKarte,
     karte,
-    opisOtvaranja = ""
+    opisOtvaranja = "",
+    jungLessonId = null,
+    jungQuestionId = null,
+    jungTags = []
   } = route.params || {};
+
+  const isJung = String(tip || "").toLowerCase().trim() === "jung";
+  const canFollowup = isProTier && !isJung;
 
   const prikazaneKarte = izabraneKarte || karte || [];
 
@@ -274,15 +304,68 @@ const OdgovorAI = () => {
   // END: back → TarotOtvaranja (presretni hardverski Back)
 
   const kontekstOtvaranja = opisOtvaranja ? `Tip otvaranja: ${opisOtvaranja}. ` : "";
-  const layout = route.params?.layoutTemplate || getLayoutByTip(tip);
+  // START: Jung layout fix + validacija layoutTemplate (da se ne prikazuje samo 1 karta i da se ne preklapaju)
+  // const layout = route.params?.layoutTemplate || getLayoutByTip(tip);
+  const rawLayoutTemplate = route.params?.layoutTemplate;
+
+  const hasValidLayoutTemplate =
+    Array.isArray(rawLayoutTemplate) &&
+    rawLayoutTemplate.length > 0 &&
+    rawLayoutTemplate.every((p) => p && Number.isFinite(p.x) && Number.isFinite(p.y));
+
+  // Ako je Jung, koristi 5-card layout kao za "pet" (dok ne uvedemo poseban jung layout u getLayoutByTip)
+  const layoutTip = tip === "jung" ? "pet" : tip;
+
+  // START: robust fallback layout (ako layout ispadne prazan, prikaži karte svakako)
+  const layoutFromTip = hasValidLayoutTemplate
+    ? rawLayoutTemplate
+    : getLayoutByTip(layoutTip);
+
+  const linearFallbackLayout = (n = 1) => {
+    const count = Math.max(1, Number(n) || 1);
+    const mid = (count - 1) / 2;
+    return Array.from({ length: count }, (_, i) => ({ x: i - mid, y: 0 }));
+  };
+
+  const JUNG_FALLBACK_LAYOUT = [
+    { x: -2, y: 0 },
+    { x: -1, y: 0 },
+    { x: 0, y: 0 },
+    { x: 1, y: 0 },
+    { x: 2, y: 0 },
+  ];
+
+  const layout =
+    Array.isArray(layoutFromTip) && layoutFromTip.length
+      ? layoutFromTip
+      : tip === "jung"
+        ? JUNG_FALLBACK_LAYOUT
+        : linearFallbackLayout(prikazaneKarte?.length || 1);
+
+  if (__DEV__) {
+    console.log("[OdgovorAI][layout]", {
+      tip,
+      subtip,
+      layoutTip,
+      hasValidLayoutTemplate,
+      rawLayoutLen: Array.isArray(rawLayoutTemplate) ? rawLayoutTemplate.length : null,
+      fromTipLen: Array.isArray(layoutFromTip) ? layoutFromTip.length : null,
+      finalLen: layout.length,
+      cardsLen: Array.isArray(prikazaneKarte) ? prikazaneKarte.length : null,
+    });
+  }
+  // END: robust fallback layout
 
   const offsetX = tip === "keltski" ? -35 : 0;
   let cardSize = { width: 48, height: 80 };
   if ((subtip === "ljubavno" && layout.length === 2) || (subtip === "tri" && layout.length === 3)) {
     cardSize = { width: 120, height: 198 };
-  } else if (subtip === "pet" && layout.length === 5) {
+    // START: Jung card size = kao "pet" kada je layout 5
+  } else if ((subtip === "pet" || tip === "jung") && layout.length === 5) {
     cardSize = { width: 64, height: 116 };
   }
+  // END: Jung card size = kao "pet" kada je layout 5
+
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -453,6 +536,9 @@ const OdgovorAI = () => {
         pitanje,
         tipOtvaranja: tip,
         subtip,
+        jungLessonId,
+        jungQuestionId,
+        jungTags,
         userLevel: userPlan,
         jezikAplikacije,
         // START: AI – pošalji uvek normalizovane karte sa reversed
@@ -500,10 +586,17 @@ const OdgovorAI = () => {
             console.log('[AI][main] Nema sessionId u odgovoru (dev okruženje?)', resp);
           }
           const safeOdgovor = typeof odgovor === "string" ? odgovor : "";
-          setAiOdgovor(safeOdgovor);
+
+          // START: TIME WINDOW — zameni [NOW_TAG] u [YYYY-MM-DD] po NOW_DATE iz tranzitiTekst
+          const nowISO = extractNowISOFromTransits(tranzitiTekst, datumOtvaranja);
+          const safeOdgovorFixed = normalizeTimeWindowTags(safeOdgovor, nowISO);
+          // setAiOdgovor(safeOdgovor);
+          setAiOdgovor(safeOdgovorFixed);
 
           // ako je prazan, tretiraj kao fail da bi Retry imao smisla
-          if (!safeOdgovor) setAiFailed(true);
+          // if (!safeOdgovor) setAiFailed(true);
+          if (!safeOdgovorFixed) setAiFailed(true);
+          // END: TIME WINDOW — zameni [NOW_TAG] u [YYYY-MM-DD] po NOW_DATE iz tranzitiTekst
 
           try { await refreshCoins?.(); } catch { }
 
@@ -614,6 +707,9 @@ const OdgovorAI = () => {
         // END: prosledi sessionId samo ako postoji
         tipOtvaranja: tip,
         subtip,
+        jungLessonId,
+        jungQuestionId,
+        jungTags,
         // START: AI follow-up – takođe normalizovane karte
         karte: karteZaAI,
         // END: AI follow-up – takođe normalizovane karte
@@ -653,7 +749,13 @@ const OdgovorAI = () => {
       }
 
       setPodpitanjeOdgovor(odgovor);
-      await upisiPodpitanjeUArhivu(asked, odgovor);
+      // START: TIME WINDOW — normalize i za podpitanje
+      const nowISO = extractNowISOFromTransits(tranzitiTekst, datumOtvaranja);
+      const odgovorFixed = normalizeTimeWindowTags(odgovor, nowISO);
+      setPodpitanjeOdgovor(odgovorFixed);
+      // await upisiPodpitanjeUArhivu(asked, odgovor);
+      await upisiPodpitanjeUArhivu(asked, odgovorFixed);
+      // END: TIME WINDOW — normalize i za podpitanje
       try { await refreshCoins?.(); } catch { }
     } catch (err) {
       console.log("Followup ERROR:", err);
@@ -885,7 +987,7 @@ const OdgovorAI = () => {
                   )}
 
                   {/* PRO/ProPlus follow-up (gating preko isPro) */}
-                  {isProTier && !podpitanjeOdgovor && aiOdgovor && (
+                  {canFollowup && !podpitanjeOdgovor && aiOdgovor && (
                     <View style={{ marginTop: 22, backgroundColor: "#332", borderRadius: 12, padding: 12 }}>
                       <Text style={{ color: "#ffd700", fontWeight: "bold", marginBottom: 6 }}>
                         {t('ai:titles.followupPrompt', { defaultValue: 'Postavi dodatno podpitanje (PRO):' })}
@@ -937,7 +1039,7 @@ const OdgovorAI = () => {
                   )}
 
                   {/* ⬇️ NOVO: prikaz follow-up rezultata odmah na ovoj stranici */}
-                  {(!!podpitanje || !!podpitanjeOdgovor) && (
+                  {canFollowup && (!!podpitanje || !!podpitanjeOdgovor) && (
                     <View style={styles.followupBox}>
                       <Text style={styles.followupLabel}>
                         {t("common:detail.followup", { defaultValue: "Podpitanje:" })}

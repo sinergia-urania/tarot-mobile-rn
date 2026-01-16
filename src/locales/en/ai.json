@@ -20,18 +20,18 @@
     "label": "Suma sumarum:"
   },
   "houses": [
-    "1st House (Self)",
-    "2nd House (Finances)",
-    "3rd House (Communication)",
-    "4th House (Home & Family)",
-    "5th House (Creativity)",
-    "6th House (Health)",
-    "7th House (Partnerships)",
-    "8th House (Transformation)",
-    "9th House (Travel & Beliefs)",
-    "10th House (Career)",
-    "11th House (Friends & Community)",
-    "12th House (Subconscious)"
+    "1. area (Personality)",
+    "2. area (Finances)",
+    "3. area (Communication)",
+    "4. area (Home & family)",
+    "5. area (Creativity)",
+    "6. area (Health)",
+    "7. area (Partnerships)",
+    "8. area (Transformation)",
+    "9. area (Travel & beliefs)",
+    "10. area (Career)",
+    "11. area (Friends & community)",
+    "12. area (Subconscious)"
   ],
   "celticPositions": [
     "1. Present situation",

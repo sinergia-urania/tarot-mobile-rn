@@ -20,18 +20,18 @@
     "label": "Resumen:"
   },
   "houses": [
-    "Casa 1 (Yo)",
-    "Casa 2 (Finanzas)",
-    "Casa 3 (Comunicación)",
-    "Casa 4 (Hogar y familia)",
-    "Casa 5 (Creatividad)",
-    "Casa 6 (Salud)",
-    "Casa 7 (Parejas y asociaciones)",
-    "Casa 8 (Transformación)",
-    "Casa 9 (Viajes y creencias)",
-    "Casa 10 (Carrera profesional)",
-    "Casa 11 (Amigos y comunidad)",
-    "Casa 12 (Subconsciente)"
+    "1. área (Personalidad)",
+    "2. área (Finanzas)",
+    "3. área (Comunicación)",
+    "4. área (Hogar y familia)",
+    "5. área (Creatividad)",
+    "6. área (Salud)",
+    "7. área (Asociaciones)",
+    "8. área (Transformación)",
+    "9. área (Viajes y creencias)",
+    "10. área (Carrera)",
+    "11. área (Amigos y comunidad)",
+    "12. área (Subconsciente)"
   ],
   "celticPositions": [
     "1. Situación actual",

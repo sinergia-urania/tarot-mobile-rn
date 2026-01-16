@@ -1,0 +1,155 @@
+{
+    "jungLessons": {
+        "home": {
+            "title": "Arketipe Jung",
+            "subtitle": "12 pelajaran mikro yang menghubungkan simbolisme Tarot dengan psikologi Jung."
+        },
+        "list": {
+            "title": "Arketipe Jung",
+            "subtitle": "Mini-kursus terpandu: arketipe, pola, dan refleksi praktis."
+        },
+        "detail": {
+            "kicker": "Pelajaran mikro",
+            "lesson": "Pelajaran",
+            "relatedArcana": "Arkana Mayor terkait",
+            "prompts": "Pertanyaan refleksi",
+            "jungQuestions": "Jelajahi pertanyaan Jung",
+            "markComplete": "Tandai selesai",
+            "completed": "Selesai ✓",
+            "notFound": "Pelajaran tidak ditemukan.",
+            "backToLessons": "Kembali ke pelajaran",
+            "goHome": "Beranda",
+            "explore": {
+                "title": "Jelajahi",
+                "tarotTitle": "Makna Tarot",
+                "tarotSub": "Buka makna Arkana Mayor",
+                "jungTitle": "Jelajahi pertanyaan Jung",
+                "jungSub": "Pilih pertanyaan dan tafsirkan dengan kartu",
+                "jungPriceNote": "Pembacaan: 100 🪙"
+            }
+        },
+        "progress": {
+            "note": "Pelacakan progres dinonaktifkan (AsyncStorage belum diinstal)."
+        },
+        "introArchetypes": {
+            "title": "Tarot sebagai bahasa arketipal",
+            "oneLiner": "Tarot sebagai cermin simbolik — bukan mesin kepastian.",
+            "arcana": [
+                "The Fool",
+                "The Magician",
+                "The High Priestess"
+            ],
+            "body": "Tarot dan Jung berbicara dalam bahasa ibu yang sama: simbol.\n\nDalam psikologi Jung, arketipe bukan “tipe orang” — melainkan pola mendalam dari pengalaman manusia (seperti Pencari, Pelindung, Pemberontak). Arketipe membentuk cara kita merasa, memilih, terikat, menghindar, dan bertumbuh — sering kali sebelum kita bisa menjelaskannya secara logis.\n\nTarot bekerja paling baik ketika kamu berhenti memperlakukannya seperti alat meramal dan mulai menggunakannya sebagai cermin. Gambar kartu tidak memberi kepastian — ia menyorot pola: ketakutan, hasrat, konflik, nilai, titik buta.\n\nCara membaca arketipal yang sederhana:\n1) Namai tegangannya: apa “pertanyaan hidup” di sini?\n2) Kenali perannya: siapa aku dalam cerita ini (Pahlawan, Pengasuh, Trickster, Hakim, Pencinta)?\n3) Pilih perilaku: tindakan apa yang selaras dengan nilai-nilaiku — meski hanya 1%?\n\nJebakan umum: meminta Tarot menenangkan kecemasan (“Katakan apa yang akan terjadi supaya aku tenang.”). Itu sering membuat pikiran makin bergantung pada kepastian. Pendekatan Jung justru sebaliknya: mengembalikan kuasa bertindak padamu.\n\nCoba ini (2 menit):\n• Tulis satu kalimat: “Saat ini aku takut bahwa…”\n• Lalu: “Pola yang terus kuulang adalah…”\n• Terakhir: “Langkah jujur berikutnya adalah…”\n\nKalau kamu memakai Tarot seperti ini, ia menjadi alat individuasi — bukan drama, bukan kiamat, bukan optimisme buta. Hanya kebenaran, yang terungkap dengan lembut."
+        },
+        "persona": {
+            "title": "Persona",
+            "oneLiner": "Peran yang kamu mainkan — berguna sampai berubah jadi sangkar.",
+            "arcana": [
+                "The Emperor",
+                "The Hierophant",
+                "Justice"
+            ],
+            "body": "Jung memakai istilah Persona untuk menggambarkan “topeng sosial” yang kita kenakan agar bisa berfungsi di dunia. Itu bukan kepalsuan — itu adaptif. Masalah mulai muncul ketika kamu mengira topeng itu adalah seluruh wajahmu.\n\nPersona berkata: “Jadilah kompeten.” “Jadilah baik.” “Jadilah yang kuat.” “Jadilah yang santai.” Ia membantu kamu diterima. Tapi jika kamu terlalu mengidentifikasi diri dengannya, ia jadi sangkar: kamu tampil, bukan terhubung.\n\nDalam Tarot, tema Persona sering muncul sebagai struktur, aturan, reputasi, dan penilaian — kartu seperti The Emperor (kontrol/peran), The Hierophant (norma/persetujuan), dan Justice (citra diri, keadilan, “yang benar”). Tidak ada yang “buruk” — menjadi berat ketika itu satu-satunya cara kamu tahu untuk menjadi.\n\nTanda kamu terjebak di Persona:\n• Kamu merasa aman hanya saat terlihat mengesankan, berguna, atau menyenangkan.\n• Kamu menyembunyikan kebutuhan sampai berubah jadi rasa kesal.\n• Kamu memilih yang terlihat benar, bukan yang terasa benar.\n\nLangkah Jung yang sehat bukan “merobek topeng.” Melainkan keaslian yang terukur.\n\nCoba ini (3 langkah):\n1) Namai perannya: “Aku bertindak seperti ____.” (Pemimpin, Penolong, Anak baik, Ahli, Pendamai…)\n2) Namai apa yang ia lindungi: “Peran ini melindungiku dari ____.” (ditolak, konflik, malu, gagal…)\n3) 10% lebih jujur: satu tindakan kecil kehadiran yang jujur (batas yang jelas, perasaan yang nyata, permintaan sederhana).\n\nPersona kembali sehat ketika ia alat — bukan identitas. Kamu bisa tetap dihormati *dan* tetap nyata. Kombinasi ini membuat relasi dan keputusan terasa lebih ringan."
+        },
+        "shadow": {
+            "title": "Bayangan",
+            "oneLiner": "Apa yang kamu tolak atau sembunyikan sering kembali sebagai pemicu.",
+            "arcana": [
+                "The Moon",
+                "The Devil",
+                "Death"
+            ],
+            "body": "Bayangan adalah bagian dirimu yang “dibuang”: sifat, kebutuhan, emosi, hasrat, dan dorongan yang dulu terasa tidak aman untuk ditunjukkan.\n\nBayangan bukan jahat. Itu energi hidup yang belum kamu akui. Saat tetap tidak sadar, ia sering muncul sebagai:\n• reaksi berlebihan (hal kecil terasa sangat besar)\n• putaran rasa malu\n• sabotase diri\n• menghakimi orang lain secara intens\n\nTarot sangat bagus untuk kerja Bayangan karena ia bicara lewat gambar, bukan lewat alasan.\n\nDalam arkana pelajaran ini:\n• The Moon = ketidakjelasan, cerita ketakutan, proyeksi, pikiran mengisi kekosongan.\n• The Devil = keterikatan, kompulsi, tawar-menawar dengan ketidaknyamanan (“sekali lagi saja…”).\n• Death = akhir yang bersih: membiarkan identitas atau kebiasaan “mati” agar sesuatu yang nyata bisa hidup.\n\nLangkah praktis dengan Bayangan bukan “memperbaiki diri.” Melainkan: “katakan kebenaran dan pilih satu batas.”\n\nCoba ini (2 menit):\n1) Namai pemicunya: “Saat aku melihat ____ pada seseorang, aku merasa ____.”\n2) Temukan cermin tersembunyi: “Versi kecil itu hidup di dalamku sebagai ____.” (meski kamu tidak suka)\n3) Pilih batas: satu perilaku yang berhenti kamu “beri makan” (doom scrolling, memohon, menyelamatkan, mengecek, terlalu menjelaskan).\n\nIntegrasi Bayangan terlihat seperti kekuatan yang tenang: lebih sedikit drama, lebih banyak kejernihan. Kamu tidak jadi sempurna — kamu jadi cukup utuh untuk bertindak dengan jujur."
+        },
+        "animaAnimus": {
+            "title": "Anima & Animus (polaritas batin)",
+            "oneLiner": "Polaritas batin membentuk ketertarikan, konflik, dan kreativitas.",
+            "arcana": [
+                "The Lovers",
+                "The Empress",
+                "The Chariot"
+            ],
+            "body": "Jung menggunakan Anima/Animus untuk menggambarkan polaritas batin: energi yang saling melengkapi di dalam dirimu (reseptif/aktif, intuitif/rasional, merasakan/memutuskan). Ini bukan soal gender — ini soal keseimbangan.\n\nSaat kamu mengabaikan satu sisi, kamu sering “meng-outsourcing”-kannya:\n• kamu mencarinya secara obsesif pada pasangan\n• kamu terganggu oleh orang yang memilikinya\n• kamu terayun antara ekstrem (terlalu pasif → terlalu memaksa)\n\nTarot membantu melihat pola polaritas dengan cepat.\n\nDalam arkana pelajaran ini:\n• The Lovers = pilihan + integrasi (bukan hanya romantis).\n• The Empress = reseptivitas, kreativitas, merawat, kebenaran tubuh.\n• The Chariot = arah, kemauan, disiplin, maju.\n\nKetidakseimbangan yang umum:\n• Terlalu Chariot: kontrol, mendorong, tidak pernah menerima.\n• Terlalu Empress: menunggu, berharap, merawat orang lain sambil menghindari tindakan.\n• Lovers macet: terlalu memikirkan pilihan “yang tepat” alih-alih memilih dan belajar.\n\nCoba ini (3 pertanyaan):\n1) Energi apa yang kurang sekarang: reseptif atau inisiatif?\n2) Di mana aku meminta orang lain membawa kualitas yang sebenarnya bisa kulatih? (kelembutan, ketegasan, struktur, bermain…)\n3) Perilaku seimbang apa yang bisa kulakukan hari ini? (batas jelas + permintaan lembut; istirahat + satu tindakan fokus)\n\nPolaritas batin menjadi superpower saat kamu memilikinya: kamu bisa lembut tanpa pasif, dan kuat tanpa kasar."
+        },
+        "self": {
+            "title": "Diri (Integrasi)",
+            "oneLiner": "Integrasi dan keselarasan — rasa koherensi batin.",
+            "arcana": [
+                "The Sun",
+                "Temperance",
+                "The World"
+            ],
+            "body": "Dalam istilah Jung, Diri bukan ego. Ego adalah siapa yang kamu kira kamu hari ini; Diri adalah pusat pengorganisasian keutuhan — rasa selaras dari dalam.\n\nSaat tidak selaras, hidup terasa bising:\n• ragu terus-menerus\n• menyenangkan orang lain\n• mengejar persetujuan\n• pilihan yang terlihat bagus tapi terasa salah\n\nTarot dapat mengungkap keselarasan dengan menampilkan apa yang psike-mu sudah tahu.\n\nDalam arkana pelajaran ini:\n• The Sun = kejernihan, kebenaran yang menghangatkan (bukan membongkar untuk menghukum).\n• Temperance = integrasi: mencampur kebalikan ke dalam ritme yang berfungsi.\n• The World = penutupan, koherensi, “ini milikku untuk dijalani.”\n\nPilihan yang selaras dengan Diri sering lebih sederhana daripada yang ego inginkan:\n• mengurangi konflik batin\n• menghormati nilai-nilaimu\n• butuh lebih sedikit alasan\n\nCoba ini (1 menit):\n1) Tulis dua opsi yang kamu pertimbangkan.\n2) Tanya: “Opsi mana yang membuatku lebih utuh dalam jangka panjang — meski tidak nyaman dalam jangka pendek?”\n3) Namai kebenaran yang kamu haluskan demi “menjaga damai”.\n\nKeselarasan bukan suasana hati. Ini latihan. Setiap pilihan jujur adalah tindakan kecil individuasi."
+        },
+        "individuation": {
+            "title": "Individuasi (Perjalanan Si Bodoh)",
+            "oneLiner": "Bertumbuh adalah integrasi berulang, bukan satu terobosan besar.",
+            "arcana": [
+                "Hermit",
+                "Judgement",
+                "The World"
+            ],
+            "body": "Individuasi adalah istilah Jung untuk menjadi dirimu — dengan sengaja.\n\nIni bukan egois dan bukan isolasi. Ini proses lambat:\n• mengintegrasikan apa yang kamu buang\n• memisahkan nilai-nilaimu dari ekspektasi orang lain\n• membangun hidup yang selaras dengan kebenaran batinmu\n\nKamu merasakan individuasi ketika:\n• kamu berhenti tampil demi persetujuan\n• batasmu jadi tenang, bukan dramatis\n• keputusanmu jadi lebih sederhana (meski lebih berat)\n\nDalam arkana pelajaran ini:\n• The Hermit = otoritas batin, kesendirian yang menjernihkan.\n• Judgement = alarm jujur: “bab ini selesai.”\n• The World = koherensi: kamu bisa berdiri di balik pilihanmu.\n\nCoba ini (2 menit):\n1) Namai satu peran yang kamu lelah memainkannya.\n2) Namai satu kebenaran yang kamu kecilkan untuk menghindari konflik.\n3) Pilih satu tindakan kecil yang membuktikan kebenaranmu (batas, permintaan, “tidak”, ubah rencana).\n\nIndividuasi bukan transformasi mendadak. Ini pola: kebenaran → batas → perilaku konsisten."
+        },
+        "hero": {
+            "title": "Sang Pahlawan",
+            "oneLiner": "Keberanian + disiplin + arah (tanpa drama).",
+            "arcana": [
+                "Strength",
+                "Fool",
+                "The Emperor"
+            ],
+            "body": "Arketipe Pahlawan adalah bagian dirimu yang bisa memulai, bertahan, dan menjadi lebih kuat lewat tantangan.\n\nPahlawan tidak “selalu percaya diri.” Pahlawan itu siap.\nIa bergerak meski takut — dan belajar dari konsekuensi.\n\nSaat Pahlawan tersumbat, sering tampak sebagai:\n• menunda yang menyamar sebagai perfeksionisme\n• menunggu “motivasi”\n• hidup sebagai pengkritik, bukan pelaku\n\nDalam arkana pelajaran ini:\n• Strength = keberanian stabil, regulasi sistem saraf, kekuatan lembut.\n• The Emperor = struktur, tanggung jawab, keputusan jelas.\n• The Fool = langkah pertama, lebih percaya pada pengalaman daripada kepastian.\n\nEnergi Pahlawan yang sehat terlihat seperti:\n• rencana kecil\n• aksi konsisten\n• welas asih saat kamu tersandung\n\nCoba ini (1 menit):\n1) Apa langkah *super kecil* berikutnya yang bisa kulakukan hari ini? (maks 10 menit)\n2) Struktur apa yang mendukungnya? (waktu, batas, akuntabilitas)\n3) Kalimat berani apa yang bisa kukatakan? (sebuah “tidak” yang jelas, permintaan langsung, pengakuan jujur)\n\nKerja Pahlawan bukan soal menang. Intinya adalah menjadi orang yang terus muncul."
+        },
+        "wiseGuide": {
+            "title": "Pembimbing bijak",
+            "oneLiner": "Daya pilah, belajar, dan mendengar batin dengan jujur.",
+            "arcana": [
+                "Star",
+                "The Hierophant",
+                "The High Priestess"
+            ],
+            "body": "Arketipe Pembimbing Bijak adalah mentor batinmu: wawasan, perspektif, dan arah yang tenang.\n\nIni suara yang berkata:\n• “Pelan.”\n• “Lihat lagi.”\n• “Apa pertanyaan yang sebenarnya?”\n\nSaat kamu kehilangan kontak dengannya, hidup jadi reaktif:\n• kamu mengejar urgensi\n• kamu terlalu berpikir dan terlalu sedikit merasa\n• kamu mendengar nasihat dari ketakutan\n\nDalam arkana pelajaran ini:\n• The Hierophant = kebijaksanaan lewat tradisi, makna, nilai, dan pembelajaran.\n• The High Priestess = intuisi, mengenali pola, pengetahuan hening.\n• The Star = harapan yang membumi: orientasi jangka panjang.\n\nCoba ini (3 pemantik):\n1) Jika aku percaya pada mentor batinku, negosiasi apa yang akan kuhentikan dengan diriku?\n2) Apa yang sebenarnya sudah kutahu tapi terus kutunda?\n3) Apa langkah berikutnya yang paling berwelas asih — bukan yang paling cepat?\n\nEnergi Pembimbing Bijak tidak berteriak. Ia merapikan perhatianmu sampai tindakan yang tepat menjadi jelas."
+        },
+        "trickster": {
+            "title": "Trickster",
+            "oneLiner": "Gangguan yang bisa membebaskan — atau menjegal.",
+            "arcana": [
+                "The Magician",
+                "The Fool",
+                "The Tower"
+            ],
+            "body": "Arketipe Trickster adalah bagian psike yang mengacaukan kepastian palsu.\n\nIa muncul sebagai humor, kekacauan, pembalikan, dan “plot twist” — bukan untuk menghancurkanmu, tapi untuk melonggarkan cengkeraman peran yang kaku.\n\nSaat Trickster tidak sadar, ia bisa terlihat seperti:\n• sabotase diri tepat sebelum kemajuan\n• distraksi kompulsif\n• menghindari tanggung jawab lewat candaan\n• memancing drama agar tidak rentan\n\nSaat Trickster terintegrasi, ia menjadi:\n• pemecahan masalah kreatif\n• fleksibilitas di bawah tekanan\n• mampu tertawa dan tetap memilih dengan bijak\n\nDalam arkana pelajaran ini:\n• The Magician = keterampilan, improvisasi, memakai yang ada.\n• The Fool = kebebasan dan risiko, keluar dari skrip.\n• The Tower = runtuhnya kebohongan (menyakitkan, tapi jujur).\n\nCoba ini (2 menit):\n1) Di mana aku “main permainan” alih-alih mengatakan kebenaran?\n2) Apa yang kuhindari untuk kurasakan dengan terus sibuk, lucu, atau tak terduga?\n3) Apa satu tindakan “lurus” hari ini? (pesan jelas, tenggat, batas, satu tugas fokus)\n\nEnergi Trickster adalah guru. Ia memecah topeng — agar kamu hidup dengan lebih sedikit ilusi dan lebih banyak pilihan nyata."
+        },
+        "greatMother": {
+            "title": "Ibu Agung (merawat vs mengontrol)",
+            "oneLiner": "Perawatan, perlindungan, dan bayangan kontrol berlebihan.",
+            "arcana": [
+                "The Empress",
+                "Queen of Cups",
+                "The Devil"
+            ],
+            "body": "Arketipe Ibu Agung adalah energi merawat, melindungi, menutrisi, dan rasa memiliki — tapi ia punya dua sisi.\n\nEnergi Ibu yang sehat:\n• mendukung pertumbuhan\n• menciptakan rasa aman\n• membantu kamu beristirahat dan pulih\n\nEnergi Ibu yang tidak sehat (bayangan):\n• mencekik\n• mengontrol “demi kebaikanmu”\n• membuatmu bergantung\n• mengubah perawatan menjadi rasa bersalah\n\nArketipe ini juga hidup dalam dirimu sebagai perawatan diri dan “mengasuh diri sendiri”.\n\nDalam arkana pelajaran ini:\n• The Empress = menutrisi, kreativitas, kebijaksanaan tubuh.\n• Queen of Cups = menampung emosi, empati, batas lembut.\n• The Devil = keterikatan dan “ikatan rasa bersalah” yang menyamar sebagai cinta.\n\nCoba ini (3 pertanyaan):\n1) Di mana aku mencampuradukkan cinta dengan kewajiban?\n2) Perawatan seperti apa yang benar-benar kubutuhkan hari ini: istirahat, makan, bergerak, penguatan, struktur?\n3) Batas apa yang melindungi sistem sarafku? (lebih sedikit kontak, lebih sedikit bantuan, tidak menyelamatkan, permintaan lebih jelas)\n\nEnergi Ibu Agung menjadi menyembuhkan ketika ia mendukung otonomimu — perawatan yang membantu kamu berdiri di atas kaki sendiri."
+        },
+        "deathRenewal": {
+            "title": "Kematian & pembaruan",
+            "oneLiner": "Akhir yang memberi ruang untuk fase jujur berikutnya.",
+            "arcana": [
+                "Death",
+                "Judgement",
+                "The Tower"
+            ],
+            "body": "Kematian & pembaruan adalah arketipe akhir yang membuat hidup mungkin.\n\nPertumbuhan Jung menuntut kematian simbolik:\n• identitas yang sudah kamu lampaui\n• fantasi tentang bagaimana hal-hal “seharusnya”\n• pola relasi yang berulang\n\nJika kamu menolak akhir, pembaruan jadi stagnasi. Jika kamu menerima akhir, pembaruan jadi kekuatan.\n\nDalam arkana pelajaran ini:\n• Death = penuntasan, potong bersih, “selamat tinggal” yang jujur.\n• The Tower = kebenaran tiba-tiba, guncangan yang menyingkirkan ilusi.\n• Judgement = panggilan ke bab baru: “inilah kamu sekarang.”\n\nCoba ini (2 menit):\n1) Bab mana yang sebenarnya sudah selesai — meski aku masih terikat secara emosional?\n2) Apa yang kutakuti akan hilang jika aku melepas? (identitas, persetujuan, kontrol)\n3) Ritual penutupan apa yang bisa kulakukan? (hapus rangkaian chat, tulis surat perpisahan, ubah rutinitas, rapikan ruang)\n\nPembaruan bukan reset ajaib. Ia menjadi mungkin saat kamu berhenti memberi makan yang sudah mati dan mulai menghormati yang ingin hidup."
+        },
+        "projection": {
+            "title": "Proyeksi (melihat diri di orang lain)",
+            "oneLiner": "Proyeksi mengubah material batin menjadi drama luar.",
+            "arcana": [
+                "The Moon",
+                "Devil",
+                "Sun"
+            ],
+            "body": "Proyeksi adalah ketika kamu mengalami sesuatu pada orang lain, padahal itu sebenarnya milik dunia batinmu.\n\nBisa negatif:\n• “Mereka sombong.” (padahal kamu menolak kebanggaan atau kepercayaan dirimu)\n• “Mereka egois.” (padahal kamu tidak mengizinkan kebutuhanmu sendiri)\n\nBisa juga positif:\n• “Mereka luar biasa.” (kamu melihat potensimu yang belum diwujudkan)\n\nProyeksi bukan kegagalan moral. Itu jalan pintas psikologis: pikiran lebih suka melihat di luar apa yang belum bisa ditopang di dalam.\n\nDalam arkana pelajaran ini:\n• The Moon = ketidakjelasan + proyeksi: cerita takut mengisi celah.\n• Devil = keterikatan: proyeksi jadi “kail”.\n• Sun = kejernihan: melihat apa adanya — tanpa cerita.\n\nCoba ini (3 langkah):\n1) Pilih reaksi kuat: kagum atau jengkel.\n2) Tanya: “Kualitas apa yang kulihat?” Lalu: “Di mana versi kecil itu hidup di diriku?”\n3) Lakukan satu aksi mengembalikan ke diri:\n   • Jika kagum: latih kualitas itu 10 menit hari ini.\n   • Jika jengkel: pasang batas atau akui kebutuhan yang kamu sembunyikan.\n\nSaat kamu mengembalikan proyeksi, relasi jadi lebih jernih. Kamu berhenti berkelahi dengan hantu dan kembali ke realitas — termasuk kekuatanmu sendiri."
+        }
+    }
+}

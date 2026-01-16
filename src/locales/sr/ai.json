@@ -20,18 +20,18 @@
     "label": "Suma sumarum:"
   },
   "houses": [
-    "1. kuća (Ličnost)",
-    "2. kuća (Finansije)",
-    "3. kuća (Komunikacija)",
-    "4. kuća (Dom i porodica)",
-    "5. kuća (Kreativnost)",
-    "6. kuća (Zdravlje)",
-    "7. kuća (Partnerstva)",
-    "8. kuća (Transformacija)",
-    "9. kuća (Putovanja i uverenja)",
-    "10. kuća (Karijera)",
-    "11. kuća (Prijatelji i zajednica)",
-    "12. kuća (Podsvest)"
+    "1. oblast (Ličnost)",
+    "2. oblast (Finansije)",
+    "3. oblast (Komunikacija)",
+    "4. oblast (Dom i porodica)",
+    "5. oblast (Kreativnost)",
+    "6. oblast (Zdravlje)",
+    "7. oblast (Partnerstva)",
+    "8. oblast (Transformacija)",
+    "9. oblast (Putovanja i uverenja)",
+    "10. oblast (Karijera)",
+    "11. oblast (Prijatelji i zajednica)",
+    "12. oblast (Podsvest)"
   ],
   "celticPositions": [
     "1. Sadašnja situacija",

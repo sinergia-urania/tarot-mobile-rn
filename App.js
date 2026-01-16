@@ -13,7 +13,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as ExpoLinking from "expo-linking";
 import * as Notifications from 'expo-notifications';
 import { useLastNotificationResponse } from 'expo-notifications';
-import { getTrackingPermissionsAsync, requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
+// START: ATT uklonjen (koristimo samo non-personalized AdMob, bez tracking-a)
+// import { getTrackingPermissionsAsync, requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
+// END: ATT uklonjen
+
 import React, { useEffect, useRef } from "react";
 import { LogBox, Platform, StatusBar } from "react-native";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -76,6 +79,13 @@ import TarotMeaning from "./src/pages/TarotMeaning";
 import TarotOtvaranja from "./src/pages/TarotOtvaranja";
 import Uslovi from "./src/pages/Uslovi";
 import VelikaArkanaList from "./src/pages/VelikaArkanaList";
+// START: Jung Lessons screens
+
+import JungLessonDetailScreen from "./src/pages/JungLessonDetailScreen";
+import JungLessonsListScreen from "./src/pages/JungLessonsListScreen";
+import JungQuestionsScreen from "./src/pages/JungQuestionsScreen";
+// END: Jung Lessons screens
+
 // START: Disclaimer ekran (lokalni)
 import Odricanje from "./src/pages/Odricanje";
 // END: Disclaimer ekran (lokalni)
@@ -122,6 +132,13 @@ function RootNavigator() {
           <Stack.Screen name="Uslovi" component={Uslovi} />
           <Stack.Screen name="Kontakt" component={Kontakt} />
           <Stack.Screen name="OAplikaciji" component={OAplikaciji} />
+          {/* START: Jung Lessons routes */}
+          <Stack.Screen name="JungLessons" component={JungLessonsListScreen} />
+          <Stack.Screen name="JungLessonDetail" component={JungLessonDetailScreen} />
+          <Stack.Screen name="JungQuestions" component={JungQuestionsScreen} />
+
+          {/* END: Jung Lessons routes */}
+
           {/* START: lokalni Disclaimer (Odricanje) */}
           <Stack.Screen
             name="Odricanje"
@@ -192,19 +209,9 @@ function NavWithAdGate({ linking, children }) {
 // END: Nav wrapper – izbačen sav recovery/ResetPassword forward
 
 export default function App() {
-  // AdMob init + ATT prompt (iOS) PRE init-a
+
   useEffect(() => {
     (async () => {
-      try {
-        if (Platform.OS === 'ios') {
-          const { status } = await getTrackingPermissionsAsync();
-          if (status !== 'granted') {
-            await requestTrackingPermissionsAsync();
-          }
-        }
-      } catch (e) {
-        if (__DEV__) console.log('[ATT] warn:', e?.message || e);
-      }
       try {
         await mobileAds().initialize();
       } catch (e) {
@@ -298,6 +305,7 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
+
 
 // Pomoćna komponenta – ne remeti App
 function RegisterPushOnLogin() {

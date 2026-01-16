@@ -1,0 +1,134 @@
+{
+    "screen": {
+        "title": "Pertanyaan Jung",
+        "subtitle": "30 pemantik refleksi (bukan prediksi).",
+        "filterAll": "Semua",
+        "filterThisLesson": "Pelajaran ini"
+    },
+    "opening": {
+        "title": "Arketipe Jung",
+        "subtitle": "Pilih satu pertanyaan kurasi (tanpa mengetik pertanyaan sendiri).",
+        "chooseCards": "Pilih kartu",
+        "priceLine": "Harga: {{price}} • Saldo: {{balance}}"
+    },
+    "intro_01": {
+        "question": "Tema arketipal apa yang sedang membentuk situasiku saat ini?",
+        "why": "Membingkai situasi sebagai pola yang bermakna (bukan prediksi), sehingga refleksi tetap fokus dan membumi."
+    },
+    "intro_02": {
+        "question": "Apa yang coba kukendalikan dengan mencari kepastian, dan apa yang akan membantuku melepaskannya?",
+        "why": "Mengalihkan fokus dari mengecek masa depan karena cemas ke kuasa bertindak dan langkah berikutnya yang praktis."
+    },
+    "persona_01": {
+        "question": "Di mana aku terlalu mengidentifikasi diri dengan Personaku, dan apa yang ia lindungi?",
+        "why": "Mengungkap peran yang kamu pegang dan ketakutan di baliknya, sehingga pilihan menjadi lebih jujur."
+    },
+    "persona_02": {
+        "question": "Apa yang akan berubah jika aku hadir 10% lebih autentik dalam situasi ini?",
+        "why": "Menjaganya tetap praktis dan aman — eksperimen kecil keaslian lebih mudah daripada ekstrem."
+    },
+    "shadow_01": {
+        "question": "Apa yang coba ditunjukkan Bayanganku lewat pemicu ini?",
+        "why": "Mengubah pemicu menjadi informasi, sehingga kamu merespons dengan wawasan alih-alih bereaksi otomatis."
+    },
+    "shadow_02": {
+        "question": "Apa yang kuhindari untuk kuakui pada diriku sendiri, dan mengapa?",
+        "why": "Menemukan kebenaran yang hilang yang menghambat kemajuan dan menjaga refleksi tetap jujur."
+    },
+    "shadow_03": {
+        "question": "Batas apa yang akan mengurangi sabotase diri saat ini?",
+        "why": "Mengubah wawasan menjadi perilaku — batas adalah cara cepat untuk mengubah pola berulang."
+    },
+    "anima_01": {
+        "question": "Polaritas batin apa yang membutuhkan keseimbangan: reseptivitas vs inisiatif, intuisi vs logika?",
+        "why": "Membantu melihat ketidakseimbangan dan memilih energi yang kurang yang akan menstabilkan situasi."
+    },
+    "anima_02": {
+        "question": "Kualitas apa yang terus kuminta orang lain menanggungnya untukku?",
+        "why": "Menyorot proyeksi/ketergantungan dan mengembalikan kuasa pribadi (kamu mengambil kembali yang kamu delegasikan)."
+    },
+    "self_01": {
+        "question": "Pilihan mana yang paling selaras dengan Diriku yang lebih dalam?",
+        "why": "Memprioritaskan keselarasan jangka panjang daripada kenyamanan jangka pendek, sehingga refleksi terasa benar."
+    },
+    "self_02": {
+        "question": "Kebenaran apa yang kutahan atau kulunakkan demi menjaga damai?",
+        "why": "Membongkar pola menyenangkan orang lain dan memperjelas apa yang perlu dihormati atau diucapkan."
+    },
+    "indiv_01": {
+        "question": "Pelajaran hidup berulang apa yang ingin terintegrasi sekarang?",
+        "why": "Menghubungkan masalah hari ini dengan tema pertumbuhan yang lebih besar — bagus untuk melacak pola dari waktu ke waktu."
+    },
+    "indiv_02": {
+        "question": "Apa yang sudah waktunya kutinggalkan dalam bab ini?",
+        "why": "Menamai identitas/keyakinan usang yang terus menghasilkan hasil yang sama."
+    },
+    "indiv_03": {
+        "question": "Apa langkah jujur 1% berikutnya menuju keutuhan yang lebih besar?",
+        "why": "Membuat kemajuan realistis — langkah kecil lebih mudah daripada tujuan besar yang kabur."
+    },
+    "hero_01": {
+        "question": "Di mana aku membutuhkan keberanian dan disiplin — bukan intensitas — untuk maju?",
+        "why": "Memisahkan kemajuan berkelanjutan dari puncak emosi dan fokus pada tindakan nyata."
+    },
+    "hero_02": {
+        "question": "Komitmen apa yang kuhindari, dan apa yang akan membuatnya berkelanjutan?",
+        "why": "Menemukan komitmen yang sebenarnya di balik rasa takut dan membentuknya agar bisa kamu pertahankan."
+    },
+    "guide_01": {
+        "question": "Apa yang sebenarnya sudah kuketahui, tapi terus kuabaikan?",
+        "why": "Memotong kebingungan — sering kali jawabannya sudah kamu tahu, tapi tidak nyaman secara emosional."
+    },
+    "guide_02": {
+        "question": "Informasi atau dukungan apa yang kubutuhkan sebelum memutuskan?",
+        "why": "Mencegah keputusan impulsif dan memperjelas apa yang kurang untuk keputusan yang percaya diri."
+    },
+    "guide_03": {
+        "question": "Apa saran versi diriku yang lebih bijak di masa depan untuk langkah berikutnya?",
+        "why": "Menciptakan jarak dari stres dan mengungkap langkah berikutnya yang lebih tenang dan strategis."
+    },
+    "trick_01": {
+        "question": "Di mana aku merasionalisasi atau “main permainan” dalam situasi ini alih-alih menghadapinya?",
+        "why": "Menangkap celah mental dan jalan pintas yang membuatmu terjebak, lalu mengembalikanmu pada kejujuran."
+    },
+    "trick_02": {
+        "question": "Pola penghindaran apa yang muncul sebagai humor, distraksi, atau impulsif?",
+        "why": "Membantu menangkap sabotase diri sejak dini — terutama topeng “aku baik-baik saja”."
+    },
+    "trick_03": {
+        "question": "Eksperimen kecil yang playful seperti apa yang bisa menyingkap kebenaran dengan aman?",
+        "why": "Mendorong rasa ingin tahu dan uji coba berisiko rendah alih-alih langkah serba-atau-tidak sama sekali."
+    },
+    "mother_01": {
+        "question": "Di mana aku mencampuradukkan merawat dengan mengontrol (untuk diriku atau orang lain)?",
+        "why": "Memperjelas apakah membantu sebenarnya adalah kecemasan, sehingga kamu bisa memilih dukungan yang lebih sehat."
+    },
+    "mother_02": {
+        "question": "Apa yang perlu kurawat — dan apa yang harus kuhentikan untuk terus kuperbolehkan?",
+        "why": "Memisahkan mendukung pertumbuhan dari mendukung pola (sangat besar untuk relasi dan kebiasaan)."
+    },
+    "death_01": {
+        "question": "Apa yang sedang berakhir (bahkan diam-diam), dan apa yang meminta untuk dilepas?",
+        "why": "Membantu mengenali penutupan sebelum berubah menjadi krisis."
+    },
+    "death_02": {
+        "question": "Identitas atau keyakinan apa yang terlalu kecil untuk apa yang sedang aku tumbuh menjadi?",
+        "why": "Menunjukkan pergeseran batin yang dibutuhkan — sering kali akhir yang sebenarnya terjadi pada citra diri."
+    },
+    "death_03": {
+        "question": "Seperti apa “melepas” jika menjadi satu tindakan konkret minggu ini?",
+        "why": "Memaksa satu langkah yang terukur agar refleksi berubah menjadi momentum."
+    },
+    "proj_01": {
+        "question": "Apa yang kuproyeksikan pada orang/situasi ini yang mungkin juga kubawa dalam diriku?",
+        "why": "Mengurangi menyalahkan dan mengembalikan kejernihan — proyeksi cepat mendistorsi realitas."
+    },
+    "proj_02": {
+        "question": "Cerita apa yang kuceritakan pada diriku, dan fakta apa yang benar-benar kumiliki?",
+        "why": "Memisahkan narasi dari bukti, sehingga keputusan menjadi lebih jernih dan tenang."
+    },
+    "proj_03": {
+        "question": "Apa interpretasi yang adil dan membumi — tanpa asumsi?",
+        "why": "Mengembalikan refleksi ke keseimbangan dan mengurangi pembesaran emosi."
+    }
+}

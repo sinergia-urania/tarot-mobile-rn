@@ -226,6 +226,10 @@ export function getOtvaranjeNaziv(type, subtip, t) {
       return t("common:detail.pathOfInsightReading", { defaultValue: "Put spoznaje" });
     return t("common:detail.classic", { defaultValue: "Klasično otvaranje" });
   }
+  if (["jung", "jungian", "archetypes", "arhetipovi"].some(k => tokens.includes(k))) {
+    return t("common:detail.jungianArchetypes", { defaultValue: "Jungian Archetypes" });
+  }
+
   if (r === "astrološko" || r === "astrolosko")
     return t("common:detail.astrologicalSpread", { defaultValue: "Astrološko otvaranje" });
   if (r === "keltski")

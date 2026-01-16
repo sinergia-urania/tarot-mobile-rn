@@ -1,0 +1,134 @@
+{
+    "screen": {
+        "title": "Questions de Jung",
+        "subtitle": "30 impulsions de réflexion (pas de prédiction).",
+        "filterAll": "Tout",
+        "filterThisLesson": "Cette leçon"
+    },
+    "opening": {
+        "title": "Archétypes de Jung",
+        "subtitle": "Choisis une question sélectionnée (sans saisir la tienne).",
+        "chooseCards": "Choisir des cartes",
+        "priceLine": "Prix : {{price}} • Solde : {{balance}}"
+    },
+    "intro_01": {
+        "question": "Quel thème archétypal façonne ma situation en ce moment ?",
+        "why": "Cadre la situation comme un schéma porteur de sens (pas une prédiction), afin que la réflexion reste focalisée et ancrée."
+    },
+    "intro_02": {
+        "question": "Qu’est-ce que j’essaie de contrôler en cherchant la certitude, et qu’est-ce qui m’aiderait à lâcher prise ?",
+        "why": "Déplace le focus du besoin anxieux de vérifier le futur vers ta capacité d’action et des prochains pas concrets."
+    },
+    "persona_01": {
+        "question": "Où est-ce que je m’identifie trop à ma Persona, et que protège-t-elle ?",
+        "why": "Révèle le rôle auquel tu t’accroches et la peur en dessous, pour rendre tes choix plus honnêtes."
+    },
+    "persona_02": {
+        "question": "Qu’est-ce qui changerait si je me montrais 10 % plus authentique dans cette situation ?",
+        "why": "Garde les choses pratiques et sûres — de petits essais d’authenticité sont plus faciles que des extrêmes."
+    },
+    "shadow_01": {
+        "question": "Que cherche à me montrer mon Ombre à travers ce déclencheur ?",
+        "why": "Transforme les déclencheurs en information, pour répondre avec lucidité plutôt que réagir en pilote automatique."
+    },
+    "shadow_02": {
+        "question": "Qu’est-ce que j’évite de m’avouer, et pourquoi ?",
+        "why": "Trouve la vérité manquante qui bloque l’avancée et maintient la réflexion honnête."
+    },
+    "shadow_03": {
+        "question": "Quelle limite réduirait l’auto-sabotage maintenant ?",
+        "why": "Transforme l’insight en comportement — les limites sont un moyen rapide de changer des schémas répétitifs."
+    },
+    "anima_01": {
+        "question": "Quelle polarité intérieure demande un équilibre : réceptivité vs initiative, intuition vs logique ?",
+        "why": "Aide à repérer le déséquilibre et à choisir l’énergie manquante qui stabiliserait la situation."
+    },
+    "anima_02": {
+        "question": "Quelle qualité est-ce que je demande sans cesse aux autres de porter à ma place ?",
+        "why": "Met en évidence projection/dépendance et rend du pouvoir personnel (tu récupères ce que tu délègues)."
+    },
+    "self_01": {
+        "question": "Quel choix serait le plus aligné avec mon Soi profond ?",
+        "why": "Privilégie l’alignement à long terme plutôt que le confort à court terme, pour une réflexion plus vraie."
+    },
+    "self_02": {
+        "question": "Quelle vérité je tais ou j’édulcore pour préserver la paix ?",
+        "why": "Met au jour les boucles de people-pleasing et clarifie ce qui doit être respecté ou dit."
+    },
+    "indiv_01": {
+        "question": "Quelle leçon de vie récurrente demande à être intégrée maintenant ?",
+        "why": "Relie le problème du moment à un thème de croissance plus large — idéal pour suivre des schémas dans le temps."
+    },
+    "indiv_02": {
+        "question": "Qu’est-ce qu’il est temps de dépasser dans ce chapitre ?",
+        "why": "Nomme l’identité/la croyance obsolète qui reproduit les mêmes résultats."
+    },
+    "indiv_03": {
+        "question": "Quel est le prochain pas honnête de 1 % vers plus de totalité ?",
+        "why": "Rend le progrès réaliste — les petits pas sont plus faciles que de grands objectifs flous."
+    },
+    "hero_01": {
+        "question": "Où ai-je besoin de courage et de discipline — pas d’intensité — pour avancer ?",
+        "why": "Sépare le progrès durable des pics émotionnels et se concentre sur l’action réelle."
+    },
+    "hero_02": {
+        "question": "Quel engagement est-ce que j’évite, et qu’est-ce qui le rendrait tenable ?",
+        "why": "Trouve le vrai engagement sous la peur et le façonne pour qu’il soit soutenable."
+    },
+    "guide_01": {
+        "question": "Qu’est-ce que je sais déjà, mais que j’ignore obstinément ?",
+        "why": "Coupe court à la confusion — souvent, tu connais déjà la réponse, mais elle est émotionnellement inconfortable."
+    },
+    "guide_02": {
+        "question": "De quelles informations ou de quel soutien ai-je besoin avant de décider ?",
+        "why": "Évite les décisions impulsives et clarifie ce qui manque pour décider avec assurance."
+    },
+    "guide_03": {
+        "question": "Que me conseillerait de faire ensuite ma version future plus sage ?",
+        "why": "Crée de la distance avec le stress et révèle un prochain pas plus calme et stratégique."
+    },
+    "trick_01": {
+        "question": "Où est-ce que je rationalise ou que je « joue » avec cette situation au lieu de l’affronter ?",
+        "why": "Repère les échappatoires mentales qui te maintiennent bloqué et te ramène à l’honnêteté."
+    },
+    "trick_02": {
+        "question": "Quel schéma d’évitement apparaît sous forme d’humour, de distraction ou d’impulsivité ?",
+        "why": "Aide à attraper l’auto-sabotage tôt — surtout le masque « ça va »."
+    },
+    "trick_03": {
+        "question": "Quel petit essai ludique pourrait révéler la vérité en toute sécurité ?",
+        "why": "Encourage la curiosité et des tests à faible risque plutôt que des décisions tout ou rien."
+    },
+    "mother_01": {
+        "question": "Où est-ce que je confonds le soin avec le contrôle (pour moi ou pour les autres) ?",
+        "why": "Clarifie si aider est en réalité de l’anxiété, pour choisir un soutien plus sain."
+    },
+    "mother_02": {
+        "question": "Qu’est-ce que je dois nourrir — et qu’est-ce que je dois cesser de permettre ?",
+        "why": "Sépare soutenir la croissance de soutenir les schémas (énorme pour les relations et les habitudes)."
+    },
+    "death_01": {
+        "question": "Qu’est-ce qui se termine (même silencieusement), et qu’est-ce qui demande à être lâché ?",
+        "why": "Aide à reconnaître une clôture avant qu’elle ne devienne une crise."
+    },
+    "death_02": {
+        "question": "Quelle identité ou croyance est trop petite pour ce que je deviens ?",
+        "why": "Met en évidence le changement intérieur nécessaire — souvent, la vraie fin se joue dans l’image de soi."
+    },
+    "death_03": {
+        "question": "À quoi ressemblerait « lâcher prise » sous la forme d’une action concrète cette semaine ?",
+        "why": "Force un pas mesurable pour transformer la réflexion en élan."
+    },
+    "proj_01": {
+        "question": "Qu’est-ce que je projette sur cette personne/situation que je porte peut-être aussi en moi ?",
+        "why": "Réduit le blâme et rend de la clarté — la projection déforme vite la réalité."
+    },
+    "proj_02": {
+        "question": "Quelle histoire est-ce que je me raconte, et quels faits ai-je réellement ?",
+        "why": "Sépare le récit des preuves, pour des décisions plus claires et plus calmes."
+    },
+    "proj_03": {
+        "question": "Quelle serait une interprétation juste et ancrée — sans suppositions ?",
+        "why": "Ramène la réflexion à l’équilibre et réduit l’exagération émotionnelle."
+    }
+}

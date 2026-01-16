@@ -6,11 +6,13 @@
 export const READING_PRICES = {
   ljubavno: 70,   // 2 karte (ljubavno otvaranje)
   tri: 80,        // 3 karte (prošlost-sadašnjost-budućnost)
-  pet: 100,        // 5 karata (put spoznaje)
+  pet: 100,       // 5 karata (put spoznaje)
+  jung: 100,
   keltski: 150,
   astrološko: 200,
   drvo: 170,
   podpitanje: 60,
+
 
 };
 // END: naplata po subtipu (AI logika)

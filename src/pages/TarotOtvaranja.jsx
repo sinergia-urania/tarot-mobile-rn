@@ -35,7 +35,11 @@ const playClickSound = async () => {
     p.volume = 1;
     await p.seekTo(0);
     p.play();
-    setTimeout(() => { try { p.remove?.(); } catch { } }, 1200);
+    setTimeout(() => {
+      try {
+        p.remove?.();
+      } catch { }
+    }, 1200);
   } catch (e) { }
 };
 // END: click SFX sa expo-audio
@@ -59,14 +63,29 @@ const TarotOtvaranja = ({ navigation }) => {
 
   // ANTIDUPLI KLIK (debounce) – sprečava dvostruki SFX i duple navigacije
   const selectingRef = useRef(false);
-  useFocusEffect(React.useCallback(() => {
-    selectingRef.current = false;
-    return () => { selectingRef.current = false; };
-  }, []));
+  useFocusEffect(
+    React.useCallback(() => {
+      selectingRef.current = false;
+      return () => {
+        selectingRef.current = false;
+      };
+    }, [])
+  );
 
+  // START: Jung – specijalno otvaranje (pitanja bez ručnog unosa)
+  const JUNG_READING_PRICE = 100;
+  // END: Jung – specijalno otvaranje
 
   // START: redosled ikonica — Astrološko poslednje, Kabalističko pre njega (labeli iz postojećih ključeva)
   const icons = [
+    // START: Jung entry kao PRVI na listi
+    {
+      key: "jung",
+      icon: require("../assets/icons/naucnik.webp"),
+      label: t("common:home.menu.jungLessons", { defaultValue: "Jungian Archetypes" }),
+      price: JUNG_READING_PRICE,
+    },
+    // END: Jung entry
     {
       key: "klasicno",
       icon: require("../assets/icons/otvaranje-klasicno.webp"),
@@ -93,7 +112,9 @@ const TarotOtvaranja = ({ navigation }) => {
   const handleSelect = async (key) => {
     if (selectingRef.current) return; // debounce
     selectingRef.current = true;
-    const autoRelease = setTimeout(() => { selectingRef.current = false; }, 1000);
+    const autoRelease = setTimeout(() => {
+      selectingRef.current = false;
+    }, 1000);
 
     await playClickSound();
 
@@ -110,13 +131,18 @@ const TarotOtvaranja = ({ navigation }) => {
     if (key === "klasicno") {
       setShowModal(true);
       // dozvoli ponovni klik nakon otvaranja modala
-      setTimeout(() => { selectingRef.current = false; }, 300);
+      setTimeout(() => {
+        selectingRef.current = false;
+      }, 300);
       clearTimeout(autoRelease);
       return;
     }
 
     // Logika za ostala otvaranja (naplata)
-    const cena = READING_PRICES[key] || 0;
+    // const cena = READING_PRICES[key] || 0;
+    // START: Jung – override cene (ne zavisi od READING_PRICES)
+    const cena = key === "jung" ? JUNG_READING_PRICE : READING_PRICES[key] || 0;
+    // END: Jung – override cene
 
     // Guard: nemaš dovoljno dukata?
     if (cena > 0 && dukati < cena) {
@@ -134,6 +160,19 @@ const TarotOtvaranja = ({ navigation }) => {
     }
 
     // Ako ima dovoljno, normalna navigacija
+    // START: Jung – vodi na poseban screen sa pitanjima (bez ručnog unosa)
+    if (key === "jung") {
+      navigation.navigate("JungQuestions", {
+        tip: "jung",
+        brojKarata: 5,
+        // source: "TarotOtvaranja", // opcionalno, ako ti treba za analytics/debug
+      });
+      clearTimeout(autoRelease);
+      return;
+    }
+
+    // END: Jung – poseban flow
+
     if (key === "keltski") {
       navigation.navigate("PitanjeIzbor", {
         layoutTemplate: KELTSKI_KRST.layout,
@@ -156,6 +195,7 @@ const TarotOtvaranja = ({ navigation }) => {
         brojKarata: 10,
       });
     }
+
     clearTimeout(autoRelease);
     // nakon navigacije komponenta će se unmount-ovati; nije potrebno resetovati selectingRef
   };
@@ -181,35 +221,34 @@ const TarotOtvaranja = ({ navigation }) => {
         {/* END: View + SafeImage background */}
 
         <View style={styles.headerWrapper}>
-          <TarotHeader
-            showBack={true}
-            onBack={goHome}
-            onHome={goHome}
-            showMenu={false}
-          />
+          <TarotHeader showBack={true} onBack={goHome} onHome={goHome} showMenu={false} />
         </View>
 
         {/* START: Modal za nedovoljno dukata */}
         {showNoDukes && (
-          <View style={{
-            position: "absolute",
-            top: "40%",
-            left: "5%",
-            width: "90%",
-            backgroundColor: "#220",
-            borderColor: "#ffd700",
-            borderWidth: 2,
-            borderRadius: 16,
-            padding: 24,
-            zIndex: 500,
-            alignSelf: "center",
-          }}>
-            <Text style={{
-              color: "#ffd700",
-              fontWeight: "bold",
-              fontSize: 18,
-              textAlign: "center"
-            }}>
+          <View
+            style={{
+              position: "absolute",
+              top: "40%",
+              left: "5%",
+              width: "90%",
+              backgroundColor: "#220",
+              borderColor: "#ffd700",
+              borderWidth: 2,
+              borderRadius: 16,
+              padding: 24,
+              zIndex: 500,
+              alignSelf: "center",
+            }}
+          >
+            <Text
+              style={{
+                color: "#ffd700",
+                fontWeight: "bold",
+                fontSize: 18,
+                textAlign: "center",
+              }}
+            >
               {noDukesText || t("common:errors.notEnoughCoinsTitle", { defaultValue: "Nedovoljno dukata" })}
             </Text>
             <TouchableOpacity
@@ -220,13 +259,16 @@ const TarotOtvaranja = ({ navigation }) => {
                 backgroundColor: "#ffd700",
                 paddingHorizontal: 28,
                 paddingVertical: 10,
-                borderRadius: 9
-              }}>
-              <Text style={{
-                color: "#222",
-                fontWeight: "bold",
-                fontSize: 16,
-              }}>
+                borderRadius: 9,
+              }}
+            >
+              <Text
+                style={{
+                  color: "#222",
+                  fontWeight: "bold",
+                  fontSize: 16,
+                }}
+              >
                 {t("common:buttons.ok", { defaultValue: "U redu" })}
               </Text>
             </TouchableOpacity>
@@ -235,9 +277,7 @@ const TarotOtvaranja = ({ navigation }) => {
         {/* END: Modal za nedovoljno dukata */}
 
         <ScrollView contentContainerStyle={styles.content}>
-          <Text style={styles.title}>
-            {t("common:home.menu.allSpreads", { defaultValue: "Sva otvaranja" })}
-          </Text>
+          <Text style={styles.title}>{t("common:home.menu.allSpreads", { defaultValue: "Sva otvaranja" })}</Text>
 
           <View style={styles.verticalList}>
             {icons.map((opt) => {
@@ -246,19 +286,16 @@ const TarotOtvaranja = ({ navigation }) => {
               const isDrvo = opt.key === "drvo";
               // const astroLocked = isAstro && userPlan !== "pro";         // samo PRO
               // START: PRO/ProPlus otključano za Astrološko
-              const astroLocked = isAstro && !isProTier;                    // Pro ili ProPlus → otključano
+              const astroLocked = isAstro && !isProTier; // Pro ili ProPlus → otključano
               // END: PRO/ProPlus otključano za Astrološko
-              const drvoLocked = isDrvo && userPlan === "free";          // PRO & PREMIUM imaju pristup
+              const drvoLocked = isDrvo && userPlan === "free"; // PRO & PREMIUM imaju pristup
               const locked = astroLocked || drvoLocked;
               // END: lock logika
 
               return (
                 <TouchableOpacity
                   key={opt.key}
-                  style={[
-                    styles.iconButton,
-                    locked && styles.disabledCard, // vizuelno zatamnjenje
-                  ]}
+                  style={[styles.iconButton, locked && styles.disabledCard /* vizuelno zatamnjenje */]}
                   onPress={() => {
                     if (locked) return; // blokiraj tap kada je zaključano
                     handleSelect(opt.key);
@@ -292,7 +329,12 @@ const TarotOtvaranja = ({ navigation }) => {
                     <Text style={styles.iconPrice}>🪙🪙🪙</Text>
                   ) : (
                     <Text style={styles.iconPrice}>
-                      {READING_PRICES[opt.key] ? `${READING_PRICES[opt.key]} 🪙` : ""}
+                      {/* START: Jung – prikaži cenu iz opt.price ako postoji */}
+                      {/* {READING_PRICES[opt.key] ? `${READING_PRICES[opt.key]} 🪙` : ""} */}
+                      {(typeof opt.price === "number" ? opt.price : READING_PRICES[opt.key])
+                        ? `${typeof opt.price === "number" ? opt.price : READING_PRICES[opt.key]} 🪙`
+                        : ""}
+                      {/* END: Jung – prikaži cenu */}
                     </Text>
                   )}
                 </TouchableOpacity>
@@ -301,17 +343,17 @@ const TarotOtvaranja = ({ navigation }) => {
           </View>
         </ScrollView>
 
-        <Modal
-          visible={showModal}
-          animationType="slide"
-          transparent={true}
-        >
+        <Modal visible={showModal} animationType="slide" transparent={true}>
           <KlasicnoModal
             onClose={async (silent) => {
-              if (!silent) { await playClickSound(); }
+              if (!silent) {
+                await playClickSound();
+              }
               setShowModal(false);
               // dozvoli ponovni klik posle zatvaranja
-              setTimeout(() => { selectingRef.current = false; }, 200);
+              setTimeout(() => {
+                selectingRef.current = false;
+              }, 200);
             }}
             navigation={navigation}
           />
@@ -323,7 +365,6 @@ const TarotOtvaranja = ({ navigation }) => {
     </>
   );
 };
-
 
 const styles = StyleSheet.create({
   background: {
@@ -369,7 +410,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14, // bilo 18, sada 14
     width: "85%", // bilo 90%, sada 85% (kao na Home)
     shadowColor: "#fff",
-    shadowOpacity: 0.10,
+    shadowOpacity: 0.1,
     shadowRadius: 12,
     borderWidth: 2,
     borderColor: "#facc15",

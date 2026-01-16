@@ -20,18 +20,18 @@
     "label": "Zusammenfassung:"
   },
   "houses": [
-    "1. Haus (Selbst)",
-    "2. Haus (Finanzen)",
-    "3. Haus (Kommunikation)",
-    "4. Haus (Zuhause & Familie)",
-    "5. Haus (Kreativität)",
-    "6. Haus (Gesundheit)",
-    "7. Haus (Partnerschaften)",
-    "8. Haus (Transformation)",
-    "9. Haus (Reisen & Glauben)",
-    "10. Haus (Karriere)",
-    "11. Haus (Freunde & Gemeinschaft)",
-    "12. Haus (Unterbewusstsein)"
+    "1. Bereich (Persönlichkeit)",
+    "2. Bereich (Finanzen)",
+    "3. Bereich (Kommunikation)",
+    "4. Bereich (Zuhause und Familie)",
+    "5. Bereich (Kreativität)",
+    "6. Bereich (Gesundheit)",
+    "7. Bereich (Partnerschaften)",
+    "8. Bereich (Transformation)",
+    "9. Bereich (Reisen und Überzeugungen)",
+    "10. Bereich (Karriere)",
+    "11. Bereich (Freunde und Gemeinschaft)",
+    "12. Bereich (Unterbewusstsein)"
   ],
   "celticPositions": [
     "1. Gegenwart",

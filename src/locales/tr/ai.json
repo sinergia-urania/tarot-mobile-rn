@@ -20,18 +20,18 @@
     "label": "Özetle:"
   },
   "houses": [
-    "1. Ev (Benlik)",
-    "2. Ev (Finans)",
-    "3. Ev (İletişim)",
-    "4. Ev (Ev ve Aile)",
-    "5. Ev (Yaratıcılık)",
-    "6. Ev (Sağlık)",
-    "7. Ev (Ortaklıklar)",
-    "8. Ev (Dönüşüm)",
-    "9. Ev (Seyahat ve İnançlar)",
-    "10. Ev (Kariyer)",
-    "11. Ev (Arkadaşlar ve Topluluk)",
-    "12. Ev (Bilinçdışı)"
+    "1. alan (Kişilik)",
+    "2. alan (Finans)",
+    "3. alan (İletişim)",
+    "4. alan (Ev ve aile)",
+    "5. alan (Yaratıcılık)",
+    "6. alan (Sağlık)",
+    "7. alan (Ortaklıklar)",
+    "8. alan (Dönüşüm)",
+    "9. alan (Seyahat ve inançlar)",
+    "10. alan (Kariyer)",
+    "11. alan (Arkadaşlar ve topluluk)",
+    "12. alan (Bilinçaltı)"
   ],
   "celticPositions": [
     "1. Mevcut durum",

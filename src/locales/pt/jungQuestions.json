@@ -1,0 +1,134 @@
+{
+    "screen": {
+        "title": "Perguntas de Jung",
+        "subtitle": "30 estímulos para reflexão (não previsão).",
+        "filterAll": "Todas",
+        "filterThisLesson": "Esta lição"
+    },
+    "opening": {
+        "title": "Arquétipos de Jung",
+        "subtitle": "Escolha uma pergunta selecionada (sem digitar a sua).",
+        "chooseCards": "Escolher cartas",
+        "priceLine": "Preço: {{price}} • Saldo: {{balance}}"
+    },
+    "intro_01": {
+        "question": "Qual tema arquetípico está moldando minha situação agora?",
+        "why": "Enquadra a situação como um padrão com sentido (não uma previsão), deixando a reflexão focada e com os pés no chão."
+    },
+    "intro_02": {
+        "question": "O que eu tento controlar ao buscar certeza, e o que me ajudaria a soltar isso?",
+        "why": "Tira o foco de checar o futuro por ansiedade e devolve seu poder de agir com próximos passos práticos."
+    },
+    "persona_01": {
+        "question": "Em que ponto eu me identifico demais com a minha Persona, e o que ela protege?",
+        "why": "Revela o papel ao qual você se apega e o medo por trás, facilitando escolhas mais honestas."
+    },
+    "persona_02": {
+        "question": "O que mudaria se eu aparecesse 10% mais autêntico nesta situação?",
+        "why": "Mantém isso prático e seguro — pequenos experimentos de autenticidade são mais fáceis do que extremos."
+    },
+    "shadow_01": {
+        "question": "O que minha Sombra está tentando me mostrar por meio deste gatilho?",
+        "why": "Transforma gatilhos em informação, para você responder com insight em vez de reagir no piloto automático."
+    },
+    "shadow_02": {
+        "question": "O que eu evito admitir para mim mesmo, e por quê?",
+        "why": "Encontra a verdade que falta, a que bloqueia o avanço, e mantém a reflexão honesta."
+    },
+    "shadow_03": {
+        "question": "Qual limite reduziria a autossabotagem agora?",
+        "why": "Transforma insight em comportamento — limites são um jeito rápido de mudar padrões repetidos."
+    },
+    "anima_01": {
+        "question": "Qual polaridade interna pede equilíbrio: receptividade vs iniciativa, intuição vs lógica?",
+        "why": "Ajuda você a enxergar o desequilíbrio e escolher a energia que falta e que estabilizaria a situação."
+    },
+    "anima_02": {
+        "question": "Que qualidade eu continuo pedindo para os outros carregarem por mim?",
+        "why": "Aponta projeção/dependência e devolve poder pessoal (você recupera o que está terceirizando)."
+    },
+    "self_01": {
+        "question": "Que escolha estaria mais alinhada com meu Si-mesmo mais profundo?",
+        "why": "Prioriza alinhamento de longo prazo em vez de conforto de curto prazo, para a reflexão soar verdadeira."
+    },
+    "self_02": {
+        "question": "Que verdade eu estou calando ou suavizando para manter a paz?",
+        "why": "Expõe loops de agradar os outros e esclarece o que precisa ser respeitado ou dito."
+    },
+    "indiv_01": {
+        "question": "Que lição de vida recorrente pede para ser integrada agora?",
+        "why": "Conecta o problema de hoje a um tema maior de crescimento — ótimo para acompanhar padrões ao longo do tempo."
+    },
+    "indiv_02": {
+        "question": "O que está na hora de eu superar neste capítulo?",
+        "why": "Nomeia a identidade/crença desatualizada que repete os mesmos resultados."
+    },
+    "indiv_03": {
+        "question": "Qual é o próximo passo honesto de 1% rumo a mais inteireza?",
+        "why": "Torna o progresso realista — passos pequenos são mais fáceis do que grandes metas vagas."
+    },
+    "hero_01": {
+        "question": "Onde eu preciso de coragem e disciplina — não de intensidade — para seguir em frente?",
+        "why": "Separa progresso sustentável de picos emocionais e foca em ação real."
+    },
+    "hero_02": {
+        "question": "Que compromisso eu estou evitando, e o que o tornaria sustentável?",
+        "why": "Encontra o compromisso real por baixo do medo e o molda para você conseguir manter."
+    },
+    "guide_01": {
+        "question": "O que eu já sei, mas continuo ignorando?",
+        "why": "Corta a confusão — muitas vezes você já sabe a resposta, mas ela é emocionalmente incômoda."
+    },
+    "guide_02": {
+        "question": "Que informação ou apoio eu preciso antes de decidir?",
+        "why": "Evita decisões impulsivas e esclarece o que falta para decidir com confiança."
+    },
+    "guide_03": {
+        "question": "O que minha versão futura mais sábia me aconselharia a fazer em seguida?",
+        "why": "Cria distância do estresse e revela um próximo passo mais calmo e estratégico."
+    },
+    "trick_01": {
+        "question": "Onde eu racionalizo ou “jogo joguinhos” nesta situação em vez de encarar?",
+        "why": "Identifica desculpas mentais e atalhos que te mantêm travado e te traz de volta à honestidade."
+    },
+    "trick_02": {
+        "question": "Que padrão de evitação aparece como humor, distração ou impulsividade?",
+        "why": "Ajuda você a pegar a autossabotagem cedo — especialmente a máscara do “tá tudo bem”."
+    },
+    "trick_03": {
+        "question": "Que pequeno experimento brincalhão poderia revelar a verdade com segurança?",
+        "why": "Incentiva curiosidade e testes de baixo risco em vez de movimentos tudo-ou-nada."
+    },
+    "mother_01": {
+        "question": "Onde eu confundo cuidado com controle (comigo ou com os outros)?",
+        "why": "Esclarece se ajudar é, na verdade, ansiedade — para você escolher um apoio mais saudável."
+    },
+    "mother_02": {
+        "question": "O que eu preciso nutrir — e o que eu preciso parar de permitir?",
+        "why": "Separa apoiar crescimento de apoiar padrões (muito importante para relações e hábitos)."
+    },
+    "death_01": {
+        "question": "O que está terminando (mesmo que silenciosamente), e o que pede para ser solto?",
+        "why": "Ajuda você a reconhecer encerramentos antes que virem crise."
+    },
+    "death_02": {
+        "question": "Que identidade ou crença é pequena demais para o que eu estou me tornando?",
+        "why": "Aponta a mudança interna necessária — muitas vezes o verdadeiro fim acontece na autoimagem."
+    },
+    "death_03": {
+        "question": "Como “soltar” pareceria como uma ação concreta nesta semana?",
+        "why": "Força um passo mensurável para transformar reflexão em impulso."
+    },
+    "proj_01": {
+        "question": "O que eu projeto nesta pessoa/situação que talvez eu também carregue?",
+        "why": "Reduz culpa e devolve clareza — projeção distorce a realidade muito rápido."
+    },
+    "proj_02": {
+        "question": "Que história eu estou contando para mim, e que fatos eu realmente tenho?",
+        "why": "Separa narrativa de evidência, deixando decisões mais claras e tranquilas."
+    },
+    "proj_03": {
+        "question": "Qual seria uma interpretação justa e pé no chão — sem suposições?",
+        "why": "Traz a reflexão de volta ao equilíbrio e reduz exagero emocional."
+    }
+}

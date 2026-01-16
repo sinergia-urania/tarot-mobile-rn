@@ -796,6 +796,51 @@ export default function MembershipModal({ visible, onClose }) {
               </View>
             </View>
           </ScrollView>
+          {/* START: iOS-only legal linkovi (bez teksta, samo linkovi) */}
+          {Platform.OS === 'ios' && (
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: 6,
+              }}
+            >
+              <TouchableOpacity
+                onPress={() =>
+                  Linking.openURL('https://www.apple.com/legal/internet-services/itunes/dev/stdeula/')
+                }
+              >
+                <Text
+                  style={{
+                    color: '#7dd3fc',
+                    textDecorationLine: 'underline',
+                    fontSize: 13,
+                  }}
+                >
+                  Terms of Use (EULA)
+                </Text>
+              </TouchableOpacity>
+
+              <Text style={{ color: '#9ca3af', marginHorizontal: 10 }}>•</Text>
+
+              <TouchableOpacity
+                onPress={() => Linking.openURL('https://www.infohelm.org/privacy-policy-en.html')}
+              >
+                <Text
+                  style={{
+                    color: '#7dd3fc',
+                    textDecorationLine: 'underline',
+                    fontSize: 13,
+                  }}
+                >
+                  Privacy Policy
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          {/* START: iOS-only legal linkovi (bez teksta, samo linkovi) */}
+
         </View>
       </View>
     </Modal>

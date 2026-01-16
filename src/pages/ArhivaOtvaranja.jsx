@@ -85,6 +85,9 @@ const ArhivaOtvaranja = () => {
     if (["astrološko", "astrolosko", "astro", "astrological", "astrological spread"].includes(r)) {
       return t("common:detail.astrologicalSpread", { defaultValue: "Astrological spread" });
     }
+    if (["jung", "jungian", "archetypes", "arhetipovi"].some(k => tokens.includes(k))) {
+      return t("common:detail.jungianArchetypes", { defaultValue: "Jungian Archetypes" });
+    }
     if (
       [
         "keltski",

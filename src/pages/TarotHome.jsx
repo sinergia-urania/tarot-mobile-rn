@@ -164,6 +164,16 @@ const TarotHome = () => {
               )}
           </View>
           {/* END: Welcome sekcija */}
+          {/* START: Jungian Archetypes entry (top button) */}
+          <MenuButton
+            icon={require('../assets/icons/naucnik.webp')}
+            label={t('common:home.menu.jungLessons', { defaultValue: 'Jungian Archetypes' })}
+            infoId="jungLessons"
+            onPress={() => {
+              navigation.navigate('JungLessons');
+            }}
+          />
+          {/* END: Jungian Archetypes entry (top button) */}
 
           <View style={styles.grid}>
             <MenuButton
@@ -173,34 +183,6 @@ const TarotHome = () => {
               onPress={() => {
                 handleOtvaranje();
                 navigation.navigate('TarotOtvaranja');
-              }}
-            />
-
-            <MenuButton
-              icon={require('../assets/icons/daily.webp')}
-              label={t('common:home.menu.dailyCard', { defaultValue: 'Karta dana' })}
-              infoId="dailyCard"
-              onPress={() => {
-                handleOtvaranje();
-                navigation.navigate('IzborKarata', {
-                  tip: 'karta-dana',
-                  layoutTemplate: [{}], // OBAVEZNO!
-                  pitanje: t('common:questions.dailyCardPrompt', { defaultValue: 'Tvoja karta dana je...' })
-                })
-              }}
-            />
-
-            <MenuButton
-              icon={require('../assets/icons/yes.no.webp')}
-              label={t('common:home.menu.yesNo', { defaultValue: 'Da / Ne' })}
-              infoId="yesNo"
-              onPress={() => {
-                handleOtvaranje();
-                navigation.navigate('IzborKarata', {
-                  tip: 'dane',
-                  layoutTemplate: [{}], // OBAVEZNO!
-                  pitanje: t('common:questions.yesNoPrompt', { defaultValue: 'Tvoje pitanje za Da/Ne...' })
-                })
               }}
             />
 
@@ -229,6 +211,36 @@ const TarotHome = () => {
               // END: disable preko isPro
               isProOnly
             />
+
+            <MenuButton
+              icon={require('../assets/icons/yes.no.webp')}
+              label={t('common:home.menu.yesNo', { defaultValue: 'Da / Ne' })}
+              infoId="yesNo"
+              onPress={() => {
+                handleOtvaranje();
+                navigation.navigate('IzborKarata', {
+                  tip: 'dane',
+                  layoutTemplate: [{}], // OBAVEZNO!
+                  pitanje: t('common:questions.yesNoPrompt', { defaultValue: 'Tvoje pitanje za Da/Ne...' })
+                })
+              }}
+            />
+
+
+            <MenuButton
+              icon={require('../assets/icons/daily.webp')}
+              label={t('common:home.menu.dailyCard', { defaultValue: 'Karta dana' })}
+              infoId="dailyCard"
+              onPress={() => {
+                handleOtvaranje();
+                navigation.navigate('IzborKarata', {
+                  tip: 'karta-dana',
+                  layoutTemplate: [{}], // OBAVEZNO!
+                  pitanje: t('common:questions.dailyCardPrompt', { defaultValue: 'Tvoja karta dana je...' })
+                })
+              }}
+            />
+
 
             <MenuButton
               icon={require('../assets/icons/access.webp')}

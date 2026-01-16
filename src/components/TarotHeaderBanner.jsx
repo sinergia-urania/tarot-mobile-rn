@@ -92,7 +92,7 @@ export default function TarotHeaderBanner() {
             },
           ]}
         >
-          Una Astro Tarot
+          Una Jung Tarot
         </Text>
 
         {/* Desne zvezdice */}

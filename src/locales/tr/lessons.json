@@ -1,0 +1,155 @@
+{
+    "jungLessons": {
+        "home": {
+            "title": "Jungiyen Arketipler",
+            "subtitle": "Tarot sembolizmini Jung psikolojisiyle buluşturan 12 mikro ders."
+        },
+        "list": {
+            "title": "Jungiyen Arketipler",
+            "subtitle": "Rehberli mini kurs: arketipler, kalıplar ve pratik içgörü."
+        },
+        "detail": {
+            "kicker": "Mikro ders",
+            "lesson": "Ders",
+            "relatedArcana": "İlgili Büyük Arkana",
+            "prompts": "Düşünme soruları",
+            "jungQuestions": "Jung sorularını keşfet",
+            "markComplete": "Tamamlandı olarak işaretle",
+            "completed": "Tamamlandı ✓",
+            "notFound": "Ders bulunamadı.",
+            "backToLessons": "Derslere dön",
+            "goHome": "Ana sayfa",
+            "explore": {
+                "title": "Keşfet",
+                "tarotTitle": "Tarot anlamları",
+                "tarotSub": "Büyük arkana anlamlarını aç",
+                "jungTitle": "Jung sorularını keşfet",
+                "jungSub": "Bir soru seç ve kartlarla yorumla",
+                "jungPriceNote": "Açılım: 100 🪙"
+            }
+        },
+        "progress": {
+            "note": "İlerleme takibi devre dışı (AsyncStorage yüklü değil)."
+        },
+        "introArchetypes": {
+            "title": "Arketipsel bir dil olarak Tarot",
+            "oneLiner": "Tarot, sembolik bir ayna — kesinlik makinesi değil.",
+            "arcana": [
+                "The Fool",
+                "The Magician",
+                "The High Priestess"
+            ],
+            "body": "Tarot ve Jung aynı ana dili konuşur: semboller.\n\nJungiyen psikolojide arketip “insan tipi” değildir — insan deneyiminin derin bir kalıbıdır (Arayıcı, Koruyucu, Asi gibi). Arketipler; nasıl hissettiğimizi, nasıl seçtiğimizi, nasıl bağlandığımızı, nelerden kaçındığımızı ve nasıl büyüdüğümüzü şekillendirir — çoğu zaman bunu mantıken açıklayabilmemizden önce.\n\nTarot, onu bir kehanet cihazı gibi görmeyi bırakıp bir ayna gibi kullandığında en iyi çalışır. Kartın görseli sana kesinlik vermez — bir kalıbı görünür kılar: korku, arzu, çatışma, değer, kör nokta.\n\nArketipsel okumaya basit bir yaklaşım:\n1) Gerilimi adlandır: Buradaki “canlı soru” nedir?\n2) Rolü fark et: Bu hikâyede ben kimim (Kahraman, Besleyen, Trickster, Yargıç, Âşık)?\n3) Davranışı seç: Değerlerimle uyumlu tek bir eylem nedir — %1 bile olsa?\n\nYaygın tuzak: Tarot’tan kaygıyı yatıştırmasını istemek (“Ne olacağını söyle ki rahatlayayım.”). Bu, zihni çoğu zaman kesinliğe daha bağımlı yapar. Jungiyen yaklaşım bunun tersini yapar: eylem gücünü sana geri verir.\n\nBunu dene (2 dakika):\n• Bir cümle yaz: “Şu anda şundan korkuyorum…”\n• Sonra: “Tekrar tekrar döndüğüm kalıp şu…”\n• En son: “Bir sonraki dürüst adımım şu…”\n\nTarot’u böyle kullanırsan, bireyleşme (individuation) için bir araca dönüşür — drama değil, felaket değil, kör iyimserlik değil. Sadece nazikçe görünür olan gerçek."
+        },
+        "persona": {
+            "title": "Persona",
+            "oneLiner": "Oynadığın rol — ta ki bir kafese dönüşene kadar işe yarar.",
+            "arcana": [
+                "The Emperor",
+                "The Hierophant",
+                "Justice"
+            ],
+            "body": "Jung, Persona terimini dünyada işlev görebilmek için taktığımız “sosyal maske”yi anlatmak için kullanır. Bu sahte değildir — uyum sağlamaktır. Sorun, maskeyi bütün yüzün sanmaya başladığında çıkar.\n\nPersona şunu der: “Yetkin ol.” “İyi ol.” “Güçlü olan ol.” “Rahat olan ol.” Aidiyet sağlar. Ama onunla fazla özdeşleşirsen, kafese döner: bağ kurmak yerine performans sergilersin.\n\nTarot’ta Persona temaları çoğunlukla yapı, kurallar, itibar ve yargı olarak görünür — The Emperor (kontrol/rol), The Hierophant (normlar/onay) ve Justice (öz-imaj, adalet, “doğruluk”) gibi. Bunların hiçbiri “kötü” değildir — sadece tek bildiğin varoluş biçimi olursa ağırlaşır.\n\nPersona’ya sıkıştığını gösteren işaretler:\n• Sadece etkileyici, işe yarar ya da “tatlı” olduğunda güvende hissedersin.\n• İhtiyaçlarını saklarsın; sonra bunlar kırgınlığa dönüşür.\n• Gerçek geleni değil, doğru görüneni seçersin.\n\nJungiyen sağlıklı adım “maskeyi yırtıp atmak” değildir. Ölçülü otantikliktir.\n\nBunu dene (3 adım):\n1) Rolü adlandır: “Şu an ____ gibi davranıyorum.” (Lider, Yardımcı, Usul çocuk, Uzman, Barıştırıcı…)\n2) Neyi koruduğunu adlandır: “Bu rol beni ____’dan koruyor.” (reddedilme, çatışma, utanç, başarısızlık…)\n3) %10 daha fazla gerçek: dürüst varlığın küçük bir eylemi (net bir sınır, gerçek bir duygu, basit bir rica).\n\nPersona, araç olduğunda yeniden sağlıklı olur — kimlik değil. Hem saygı görebilir, hem de gerçek olabilirsin. Bu ikisi bir araya gelince ilişkiler ve kararlar kolaylaşır."
+        },
+        "shadow": {
+            "title": "Gölge",
+            "oneLiner": "Reddettiğin ya da sakladığın şey çoğu zaman tetikleyici olarak geri gelir.",
+            "arcana": [
+                "The Moon",
+                "The Devil",
+                "Death"
+            ],
+            "body": "Gölge, sürgüne gönderilmiş parçandır: “göstermek güvenli değil” diye öğrendiğin özellikler, ihtiyaçlar, duygular, arzular ve dürtüler.\n\nGölge kötü değildir. Sahiplenilmemiş yaşam enerjisidir. Bilinçdışı kaldığında genelde şöyle görünür:\n• aşırı tepkiler (küçük bir şey devasa gelir)\n• utanç döngüleri\n• kendini sabote etme\n• başkalarını yoğun biçimde yargılama\n\nTarot, Gölge çalışmasını harika yansıtır çünkü bahanelerle değil, imgelerle konuşur.\n\nBu dersin arkanalarında:\n• The Moon = belirsizlik, korku hikâyeleri, projeksiyon, zihnin boşlukları doldurması.\n• The Devil = bağlanma, kompulsiyon, rahatsızlıkla pazarlık (“bir kez daha…”).\n• Death = net bir bitiş: bir kimliğin ya da alışkanlığın ölmesine izin verip gerçeğin yaşamasına alan açmak.\n\nGölgeyle pratik adım “kendimi düzeltmek” değildir. Şudur: “Gerçeği söyle ve bir sınır seç.”\n\nBunu dene (2 dakika):\n1) Tetikleyiciyi adlandır: “Birinde ____ gördüğümde ____ hissediyorum.”\n2) Gizli aynayı bul: “Bunun küçük bir versiyonu bende ____ olarak yaşıyor.” (hoşlanmasan bile)\n3) Bir sınır seç: artık beslemeyeceğin bir davranış (doomscrolling, yalvarmak, kurtarmak, kontrol etmek, fazla açıklamak).\n\nGölge entegrasyonu sakin bir güç gibidir: daha az drama, daha çok netlik. Mükemmel olmazsın — dürüstçe hareket edecek kadar bütün olursun."
+        },
+        "animaAnimus": {
+            "title": "Anima & Animus (içsel kutupluluk)",
+            "oneLiner": "İçsel kutupluluk çekimi, çatışmayı ve yaratıcılığı şekillendirir.",
+            "arcana": [
+                "The Lovers",
+                "The Empress",
+                "The Chariot"
+            ],
+            "body": "Jung, Anima/Animus kavramlarını içsel kutupluluğu anlatmak için kullanır: sende bulunan tamamlayıcı enerjiler (alıcı/etkin, sezgisel/akılcı, hissetme/karar). Cinsiyetle ilgili değil — dengeyle ilgilidir.\n\nBir tarafı yok saydığında, onu sık sık “dışarıya devredersin”:\n• partnerlerde takıntılı biçimde ararsın\n• o enerjiyi taşıyan insanlara sinir olursun\n• uçlar arasında savrulursun (fazla pasif → fazla zorlayıcı)\n\nTarot, kutupluluk kalıplarını hızlı görmene yardım eder.\n\nBu dersin arkanalarında:\n• The Lovers = seçim + entegrasyon (sadece romantizm değil).\n• The Empress = alıcılık, yaratıcılık, besleme, bedenin gerçeği.\n• The Chariot = yön, irade, disiplin, ileri hareket.\n\nYaygın dengesizlikler:\n• Çok Chariot: kontrol, zorlama, asla almamak.\n• Çok Empress: beklemek, umut etmek, başkalarını besleyip eylemden kaçınmak.\n• Lovers’da takılmak: “doğru” seçimi aşırı düşünmek, seçip öğrenmek yerine.\n\nBunu dene (3 soru):\n1) Şu an hangi enerji eksik: alıcılık mı, inisiyatif mi?\n2) Hangi niteliği sürekli başkalarının benim yerime taşımasını istiyorum — oysa ben de çalışabilirim? (şefkat, kararlılık, yapı, oyun…)\n3) Bugün yapabileceğim dengeli bir davranış nedir? (net sınır + yumuşak rica; dinlenme + tek odaklı eylem)\n\nİçsel kutupluluk sahiplenildiğinde süper güce dönüşür: pasif olmadan yumuşak, kaba olmadan güçlü olabilirsin."
+        },
+        "self": {
+            "title": "Benlik (entegrasyon)",
+            "oneLiner": "Entegrasyon ve hizalanma — içsel tutarlılık hissi.",
+            "arcana": [
+                "The Sun",
+                "Temperance",
+                "The World"
+            ],
+            "body": "Jungiyen anlamda Benlik, ego değildir. Ego bugün kim olduğunu sandığındır; Benlik ise bütünlüğün düzenleyici merkezidir — içeriden hizalı olma hissi.\n\nHizalı olmadığında hayat gürültülü gelir:\n• sürekli sorgulama\n• insanları memnun etme\n• onay peşinde koşma\n• iyi görünen ama yanlış hissettiren seçimler\n\nTarot, psişenin zaten bildiğini görünür kılarak hizalanmayı gösterebilir.\n\nBu dersin arkanalarında:\n• The Sun = netlik, ısıtan bir gerçek (cezalandırmak için ifşa etmez).\n• Temperance = entegrasyon: zıtları işleyen bir ritimde harmanlamak.\n• The World = tamamlanma, tutarlılık, “bunu yaşamak benim işim.”\n\nBenlikle hizalı bir seçim, egonun istediğinden daha basit olur:\n• iç çatışmayı azaltır\n• değerlerini korur\n• daha az bahane ister\n\nBunu dene (1 dakika):\n1) Düşündüğün iki seçeneği yaz.\n2) Sor: “Hangi seçenek beni uzun vadede daha bütün yapar — kısa vadede rahatsız etse bile?”\n3) “Barışı korumak” için yumuşattığın/susturduğun gerçeği adlandır.\n\nHizalanma bir ruh hâli değildir. Bir pratiktir. Her dürüst seçim, bireyleşmenin küçük bir adımıdır."
+        },
+        "individuation": {
+            "title": "Bireyleşme (Deli’nin yolculuğu)",
+            "oneLiner": "Büyüme tek büyük kırılma değil, tekrar tekrar entegrasyondur.",
+            "arcana": [
+                "Hermit",
+                "Judgement",
+                "The World"
+            ],
+            "body": "Bireyleşme, Jung’un “kendin olma” sürecine verdiği isimdir — bilinçli biçimde.\n\nBu ne bencilliktir ne de izolasyon. Yavaş bir süreçtir:\n• reddettiğin parçaları entegre etmek\n• değerlerini başkalarının beklentilerinden ayırmak\n• iç gerçeğinle uyumlu bir hayat kurmak\n\nBireyleşmeyi şunlarla hissedersin:\n• onay için kendini kanıtlamayı bırakırsın\n• sınırların dramatik değil, sakin olur\n• kararların daha basitleşir (zorlaşsa bile)\n\nBu dersin arkanalarında:\n• The Hermit = iç otorite, netleştiren yalnızlık.\n• Judgement = dürüst bir alarm: “Bu bölüm bitti.”\n• The World = tutarlılık: seçimlerinin arkasında durabilirsin.\n\nBunu dene (2 dakika):\n1) Oynamaktan yorulduğun bir rolü adlandır.\n2) Çatışmadan kaçınmak için küçülttüğün bir gerçeği adlandır.\n3) Gerçeğini kanıtlayan küçük bir eylem seç (sınır, rica, “hayır”, plan değişikliği).\n\nBireyleşme ani bir dönüşüm değildir. Bir kalıptır: gerçek → sınır → tutarlı davranış."
+        },
+        "hero": {
+            "title": "Kahraman",
+            "oneLiner": "Cesaret + disiplin + yön (drama değil).",
+            "arcana": [
+                "Strength",
+                "Fool",
+                "The Emperor"
+            ],
+            "body": "Kahraman arketipi, başlayabilen, sürdürebilen ve zorlukla güçlenebilen yanındır.\n\nKahraman “her zaman özgüvenli” değildir. Kahraman hazırdır.\nKorkuya rağmen hareket eder — ve sonuçlardan öğrenir.\n\nKahraman tıkandığında genelde şunlar görünür:\n• mükemmeliyetçilik kılığında erteleme\n• “motivasyon” beklemek\n• katılımcı olmak yerine eleştirmen olmak\n\nBu dersin arkanalarında:\n• Strength = sakin cesaret, sinir sistemi regülasyonu, yumuşak güç.\n• The Emperor = yapı, sorumluluk, net kararlar.\n• The Fool = ilk adım, kesinlikten çok deneyime güvenmek.\n\nSağlıklı Kahraman enerjisi şuna benzer:\n• küçük bir plan\n• tutarlı eylem\n• tökezlediğinde kendine şefkat\n\nBunu dene (1 dakika):\n1) Bugün yapabileceğim bir sonraki *minik* adım nedir? (maks 10 dakika)\n2) Hangi yapı bunu destekler? (zaman, sınır, sorumluluk)\n3) Söyleyebileceğim cesur bir cümle nedir? (net bir “hayır”, doğrudan rica, dürüst bir itiraf)\n\nKahraman işi kazanmak değildir. Mesele, tekrar tekrar ortaya çıkan kişi olmaktır."
+        },
+        "wiseGuide": {
+            "title": "Bilge rehber",
+            "oneLiner": "Ayırt etme gücü, öğrenme ve dürüst içsel dinleme.",
+            "arcana": [
+                "Star",
+                "The Hierophant",
+                "The High Priestess"
+            ],
+            "body": "Bilge Rehber arketipi, içsel mentorundur: içgörü, perspektif ve sakin yön.\n\nŞunu diyen sestir:\n• “Yavaşla.”\n• “Bir daha bak.”\n• “Asıl soru ne?”\n\nBu arketiple temas kaybolduğunda hayat reaktifleşir:\n• aciliyetin peşinden koşarsın\n• fazla düşünür, az hissedersin\n• korkunun tavsiyesini dinlersin\n\nBu dersin arkanalarında:\n• The Hierophant = gelenek, anlam, değerler ve öğrenme üzerinden bilgelik.\n• The High Priestess = sezgi, kalıp tanıma, sessiz bilgi.\n• The Star = ayakları yere basan umut: uzun vadeli yön.\n\nBunu dene (3 itki):\n1) İçsel mentoruma güvenseydim, kendimle hangi pazarlığı artık yapmazdım?\n2) Zaten neyi biliyorum ama sürekli erteliyorum?\n3) En şefkatli bir sonraki adım nedir — en hızlı olan değil?\n\nBilge rehber enerjisi bağırmaz. Doğru eylem belirginleşene kadar dikkatini düzenler."
+        },
+        "trickster": {
+            "title": "Trickster",
+            "oneLiner": "Özgürleştirebilen bir bozulma — ya da seni tökezletebilir.",
+            "arcana": [
+                "The Magician",
+                "The Fool",
+                "The Tower"
+            ],
+            "body": "Trickster arketipi, sahte kesinliği bozan psişe parçasıdır.\n\nMizah, kaos, ters köşe ve “sürpriz dönüşler” olarak görünür — seni yıkmak için değil, katı rollerin kavrayışını gevşetmek için.\n\nTrickster bilinçdışı kaldığında şöyle görünebilir:\n• ilerlemenin hemen öncesinde kendini sabote etmek\n• kompulsif dikkat dağıtma\n• şakalarla sorumluluktan kaçmak\n• kırılganlıktan kaçınmak için drama çıkarmak\n\nTrickster entegre olduğunda şuna dönüşür:\n• yaratıcı problem çözme\n• baskı altında esneklik\n• gülüp yine de bilgece seçebilmek\n\nBu dersin arkanalarında:\n• The Magician = beceri, doğaçlama, elindekini kullanmak.\n• The Fool = özgürlük ve risk, senaryodan çıkmak.\n• The Tower = bir yalanın yıkılışı (acıtır ama dürüsttür).\n\nBunu dene (2 dakika):\n1) Nerede “oyun oynuyorum” da gerçeği söylemiyorum?\n2) Sürekli meşgul/komik/öngörülemez kalarak hangi duygudan kaçıyorum?\n3) Bugün “düz” bir eylem nedir? (net bir mesaj, bir son tarih, bir sınır, tek odaklı bir görev)\n\nTrickster enerjisi bir öğretmendir. Maskeyi kırar — daha az illüzyonla, daha çok gerçek seçimle yaşaman için."
+        },
+        "greatMother": {
+            "title": "Büyük Anne (şefkat vs. kontrol)",
+            "oneLiner": "Bakım, koruma ve aşırı kontrolün gölge tarafı.",
+            "arcana": [
+                "The Empress",
+                "Queen of Cups",
+                "The Devil"
+            ],
+            "body": "Büyük Anne arketipi; bakım, koruma, besleme ve aidiyet enerjisidir — ama iki yüzü vardır.\n\nSağlıklı Anne enerjisi:\n• büyümeyi destekler\n• güvenlik yaratır\n• dinlenmene ve toparlanmana yardım eder\n\nSağlıksız Anne enerjisi (gölge):\n• boğar\n• “senin iyiliğin için” kontrol eder\n• seni bağımlı tutar\n• bakımı suçluluğa çevirir\n\nBu arketip sende de öz-bakım ve “kendine ebeveynlik” olarak yaşar.\n\nBu dersin arkanalarında:\n• The Empress = besleme, yaratıcılık, beden bilgeliği.\n• Queen of Cups = duygusal tutma alanı, empati, yumuşak sınırlar.\n• The Devil = sevgi gibi görünen bağlanmalar ve “suçluluk bağları”.\n\nBunu dene (3 soru):\n1) Nerede sevgiyi zorunlulukla karıştırıyorum?\n2) Bugün gerçekten hangi bakıma ihtiyacım var: dinlenme, yemek, hareket, rahatlatma, yapı?\n3) Sinir sistemimi hangi sınır korur? (daha az temas, daha az iyilik, kurtarmamak, daha net ricalar)\n\nBüyük Anne enerjisi, özerkliğini desteklediğinde şifalı olur — kendi ayakların üzerinde durmana yardım eden bakım."
+        },
+        "deathRenewal": {
+            "title": "Ölüm ve yenilenme",
+            "oneLiner": "Bir sonraki dürüst faz için alan açan bitişler.",
+            "arcana": [
+                "Death",
+                "Judgement",
+                "The Tower"
+            ],
+            "body": "Ölüm ve yenilenme, yaşamı mümkün kılan bitişlerin arketipidir.\n\nJungiyen büyüme sembolik bir ölümü gerektirir:\n• artık sana küçük gelen bir kimlik\n• şeylerin “öyle olması gerektiği” fantezisi\n• tekrar eden bir ilişki kalıbı\n\nBitişleri reddedersen, yenilenme durağanlığa dönüşür. Bitişleri kabul edersen, yenilenme güce dönüşür.\n\nBu dersin arkanalarında:\n• Death = kapanış, net kesiş, dürüst bir veda.\n• The Tower = ani gerçek, illüzyonu kaldıran sarsıntı.\n• Judgement = yeni bölüme çağrı: “Artık sensin.”\n\nBunu dene (2 dakika):\n1) Hangi bölüm zaten bitti — ben hâlâ duygusal olarak bağlı olsam bile?\n2) Bırakırsam neyi kaybetmekten korkuyorum? (kimlik, onay, kontrol)\n3) Hangi kapanış ritüelini yapabilirim? (mesaj zincirini sil, veda mektubu yaz, rutini değiştir, alanı toparla)\n\nYenilenme sihirli bir reset değildir. Ölü olanı beslemeyi bırakıp yaşamak isteyeni onurlandırdığında mümkün olur."
+        },
+        "projection": {
+            "title": "Projeksiyon (başkalarında kendini görmek)",
+            "oneLiner": "Projeksiyon, içsel malzemeyi dışsal dramaya çevirir.",
+            "arcana": [
+                "The Moon",
+                "Devil",
+                "Sun"
+            ],
+            "body": "Projeksiyon, başka birinde deneyimlediğin bir şeyin aslında kendi iç dünyana ait olmasıdır.\n\nNegatif olabilir:\n• “Onlar kibirli.” (ama sen kendi gururunu ya da özgüvenini inkâr ediyorsun)\n• “Onlar bencil.” (ama kendi ihtiyaçlarına izin vermiyorsun)\n\nPozitif de olabilir:\n• “Onlar harika.” (kendi gerçekleştirilmemiş potansiyelini görürsün)\n\nProjeksiyon ahlaki bir hata değildir. Psikolojik bir kestirmedir: zihin, içeride taşıyamadığını dışarıda görmeyi tercih eder.\n\nBu dersin arkanalarında:\n• The Moon = belirsizlik + projeksiyon: korku hikâyeleri boşlukları doldurur.\n• Devil = bağlanma: projeksiyon bir “olta iğnesi” olur.\n• Sun = netlik: hikâyesiz biçimde “olanı” görmek.\n\nBunu dene (3 adım):\n1) Güçlü bir tepki seç: hayranlık ya da rahatsızlık.\n2) Sor: “Hangi niteliği görüyorum?” Sonra: “Bunun küçük bir versiyonu bende nerede yaşıyor?”\n3) Kendine geri alma eylemi yap:\n   • Hayranlıksa: o niteliği bugün 10 dakika çalış.\n   • Rahatsızlıksa: bir sınır koy ya da sakladığın bir ihtiyacı kabul et.\n\nProjeksiyonları geri aldığında ilişkiler berraklaşır. Hayaletlerle savaşmayı bırakır, gerçeğe dönersin — kendi gücün dahil."
+        }
+    }
+}

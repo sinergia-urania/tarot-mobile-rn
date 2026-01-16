@@ -321,12 +321,14 @@
       "yesNo": "$t(menu.yesNo)",
       "meanings": "$t(menu.meanings)",
       "history": "$t(menu.history)",
-      "access": "$t(menu.access)"
+      "access": "$t(menu.access)",
+      "jungLessons": "Arquetipos junguianos"
     },
     "info": {
       "allSpreads": "$t(info.allSpreads)",
       "dailyCard": "$t(info.dailyCard)",
-      "yesNo": "$t(info.yesNo)"
+      "yesNo": "$t(info.yesNo)",
+      "jungLessons": "Mini-curso de 12 lecciones que conecta los arquetipos junguianos con el simbolismo del Tarot — enfocado en la reflexión, no en la predicción."
     },
     "watchAdForCoins": "$t(watchAdForCoins)"
   },

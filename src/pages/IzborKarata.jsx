@@ -8,7 +8,7 @@ import { allCardKeys } from '../utils/allCardKeys';
 // START: State i efekt za sveže mešanje karata prilikom svakog otvaranja stranice
 const IzborKarata = () => {
   const route = useRoute();
-  const { pitanje, tip, subtip, layoutTemplate } = route.params || {};
+  const { pitanje, tip, subtip, layoutTemplate, jungLessonId, jungQuestionId, jungTags } = route.params || {};
   const [shuffleId, setShuffleId] = useState(Date.now());
 
   useFocusEffect(
@@ -26,8 +26,11 @@ const IzborKarata = () => {
         tip={tip}
         subtip={subtip}
         allCardKeys={allCardKeys}
+        jungLessonId={jungLessonId}
+        jungQuestionId={jungQuestionId}
+        jungTags={jungTags}
         shuffleId={shuffleId}
-        onClose={() => {}}
+        onClose={() => { }}
       />
     </View>
   );
@@ -41,4 +44,3 @@ const styles = StyleSheet.create({
 });
 
 export default IzborKarata;
-

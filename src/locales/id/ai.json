@@ -20,18 +20,18 @@
     "label": "Simpulan:"
   },
   "houses": [
-    "Rumah ke-1 (Diri)",
-    "Rumah ke-2 (Keuangan)",
-    "Rumah ke-3 (Komunikasi)",
-    "Rumah ke-4 (Rumah & Keluarga)",
-    "Rumah ke-5 (Kreativitas)",
-    "Rumah ke-6 (Kesehatan)",
-    "Rumah ke-7 (Kemitraan)",
-    "Rumah ke-8 (Transformasi)",
-    "Rumah ke-9 (Perjalanan & Keyakinan)",
-    "Rumah ke-10 (Karier)",
-    "Rumah ke-11 (Teman & Komunitas)",
-    "Rumah ke-12 (Bawah sadar)"
+    "1. area (Kepribadian)",
+    "2. area (Keuangan)",
+    "3. area (Komunikasi)",
+    "4. area (Rumah & keluarga)",
+    "5. area (Kreativitas)",
+    "6. area (Kesehatan)",
+    "7. area (Kemitraan)",
+    "8. area (Transformasi)",
+    "9. area (Perjalanan & keyakinan)",
+    "10. area (Karier)",
+    "11. area (Teman & komunitas)",
+    "12. area (Bawah sadar)"
   ],
   "celticPositions": [
     "1. Situasi saat ini",

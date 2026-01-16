@@ -1,0 +1,155 @@
+{
+    "jungLessons": {
+        "home": {
+            "title": "Jungovi arhetipovi",
+            "subtitle": "12 mikro-lekcija koje spajaju simboliku Tarota sa Jungovom psihologijom."
+        },
+        "list": {
+            "title": "Jungovi arhetipovi",
+            "subtitle": "Vođeni mini-kurs: arhetipovi, obrasci i praktična refleksija."
+        },
+        "detail": {
+            "kicker": "Mikro-lekcija",
+            "lesson": "Lekcija",
+            "relatedArcana": "Povezane velike arkane",
+            "prompts": "Pitanja za refleksiju",
+            "jungQuestions": "Istraži Jungova pitanja",
+            "markComplete": "Označi kao završeno",
+            "completed": "Završeno ✓",
+            "notFound": "Lekcija nije pronađena.",
+            "backToLessons": "Nazad na lekcije",
+            "goHome": "Početna",
+            "explore": {
+                "title": "Istraži",
+                "tarotTitle": "Značenja Tarota",
+                "tarotSub": "Otvori značenja velikih arkana",
+                "jungTitle": "Istraži Jungova pitanja",
+                "jungSub": "Izaberi pitanje i protumači uz karte",
+                "jungPriceNote": "Čitanje: 100 🪙"
+            }
+        },
+        "progress": {
+            "note": "Praćenje napretka je isključeno (AsyncStorage nije instaliran)."
+        },
+        "introArchetypes": {
+            "title": "Tarot kao arhetipski jezik",
+            "oneLiner": "Tarot kao simbolično ogledalo — ne mašina za izvesnost.",
+            "arcana": [
+                "The Fool",
+                "The Magician",
+                "The High Priestess"
+            ],
+            "body": "Tarot i Jung govore istim maternjim jezikom: simbolima.\n\nU jungovskoj psihologiji, arhetip nije “tip osobe” — to je dubok obrazac ljudskog iskustva (poput Tragaoca, Zaštitnika, Buntovnika). Arhetipovi oblikuju kako osećamo, biramo, vezujemo se, izbegavamo i rastemo — često pre nego što to možemo logički da objasnimo.\n\nTarot najbolje radi kada prestaneš da ga tretiraš kao uređaj za predviđanje i počneš da ga koristiš kao ogledalo. Slika na karti ti ne daje sigurnost — ona ističe obrazac: strah, želju, konflikt, vrednost, slepu tačku.\n\nJedan jednostavan arhetipski način čitanja:\n1) Imenuj tenziju: Koje je “živo pitanje” ovde?\n2) Prepoznaj ulogu: Ko sam ja u ovoj priči (Heroj, Negovatelj, Trikster, Sudija, Ljubavnik)?\n3) Izaberi ponašanje: Koja je jedna akcija koja je u skladu s mojim vrednostima — makar 1%?\n\nČesta zamka: tražiti od Tarota da umiri anksioznost (“Reci mi šta će se desiti pa da se opustim.”). To često čini um još zavisnijim od izvesnosti. Jungovski pristup radi suprotno: vraća ti ličnu moć delovanja.\n\nProbaj ovo (2 minuta):\n• Napiši jednu rečenicu: “Trenutno se plašim da…”\n• Zatim: “Obrazac koji stalno ponavljam je…”\n• Na kraju: “Moj sledeći iskren korak je…”\n\nAko koristiš Tarot ovako, postaje alat za individuaciju — ne drama, ne propast i ne slepi optimizam. Samo istina, nežno otkrivena."
+        },
+        "persona": {
+            "title": "Persona",
+            "oneLiner": "Uloga koju izvodiš — korisna dok ne postane kavez.",
+            "arcana": [
+                "The Emperor",
+                "The Hierophant",
+                "Justice"
+            ],
+            "body": "Jung je koristio termin Persona da opiše “društvenu masku” koju nosimo da bismo funkcionisali u svetu. To nije lažno — to je prilagodljivo. Problem počinje kada pomešaš masku sa celim licem.\n\nPersona kaže: “Budi kompetentan.” “Budi dobar.” “Budi onaj jaki.” “Budi onaj opušteni.” Ona ti pomaže da pripadaš. Ali ako se previše poistovetiš s njom, postaje kavez: izvodiš umesto da se povezuješ.\n\nU Tarotu, teme Persone često se pojavljuju kao struktura, pravila, reputacija i prosuđivanje — karte poput The Emperor (kontrola/uloga), The Hierophant (norme/odobravanje) i Justice (slika o sebi, pravednost, “ispravnost”). Ništa od toga nije “loše” — postaje teško kada je to jedini način na koji znaš da budeš.\n\nZnaci da si zaglavljen u Personi:\n• Osećaš se bezbedno samo kada si impresivan, koristan ili prijatan.\n• Kriješ potrebe dok se ne pretvore u ogorčenost.\n• Biraš ono što izgleda ispravno umesto onoga što deluje istinito.\n\nJungovski zdrav potez nije “da strgneš masku.” To je dozirana autentičnost.\n\nProbaj ovo (3 koraka):\n1) Imenuj ulogu: “Ponašam se kao ____.” (Vođa, Pomagač, Dobro dete, Ekspert, Mirotvorac…)\n2) Imenuj šta štiti: “Ova uloga me štiti od ____.” (odbacivanja, konflikta, srama, neuspeha…)\n3) Uradi 10% više istine: jedan mali čin iskrenog prisustva (jasna granica, pravo osećanje, jednostavan zahtev).\n\nPersona ponovo postaje zdrava kada je alat — ne identitet. Možeš i dalje biti poštovan *i* stvaran. Ta kombinacija je mesto gde odnosi i odluke postaju lakši."
+        },
+        "shadow": {
+            "title": "Senka",
+            "oneLiner": "Ono što odbacuješ ili kriješ često se vraća kao okidač.",
+            "arcana": [
+                "The Moon",
+                "The Devil",
+                "Death"
+            ],
+            "body": "Senka je deo tebe koji je bio proteran: osobine, potrebe, emocije, želje i impulsi koje nije delovalo “bezbedno” pokazati.\n\nSenka nije zla. To je neprisvojena životna energija. Kada ostane nesvesna, često se pojavljuje kao:\n• preterane reakcije (mala stvar deluje ogromno)\n• petlje srama\n• samosabotaža\n• intenzivno osuđivanje drugih\n\nTarot sjajno oslikava rad sa Senkom jer govori slikama, a ne izgovorima.\n\nU arkanama ove lekcije:\n• The Moon = nejasnoća, priče iz straha, projekcija, um koji popunjava praznine.\n• The Devil = vezanost, kompulzija, pregovaranje s nelagodom (“još samo jednom…”).\n• Death = čist kraj: puštanje da identitet ili navika umre kako bi nešto stvarno moglo da živi.\n\nPraktičan potez sa Senkom nije “da se popravim.” To je: “Reci istinu i izaberi jednu granicu.”\n\nProbaj ovo (2 minuta):\n1) Imenuj okidač: “Kada vidim ____ kod nekoga, osećam ____.”\n2) Nađi skriveno ogledalo: “Mala verzija toga živi u meni kao ____.” (čak i ako ti se ne sviđa)\n3) Izaberi granicu: jedno ponašanje koje prestaješ da hraniš (doom scrolling, moljakanje, spasavanje, proveravanje, preterano objašnjavanje).\n\nIntegracija Senke izgleda kao mirna moć: manje drame, više jasnoće. Ne postaješ savršen — postaješ dovoljno celovit da deluješ iskreno."
+        },
+        "animaAnimus": {
+            "title": "Anima & Animus (unutrašnji polaritet)",
+            "oneLiner": "Unutrašnji polaritet oblikuje privlačnost, konflikt i kreativnost.",
+            "arcana": [
+                "The Lovers",
+                "The Empress",
+                "The Chariot"
+            ],
+            "body": "Jung je koristio Animu/Animusa da opiše unutrašnji polaritet: komplementarne energije u tebi (prijemčivo/aktivno, intuitivno/racionalno, osećanje/odlučivanje). Ne radi se o polu — već o balansu.\n\nKada jednu stranu ignorišeš, često je “outsourcuješ”:\n• opsesivno je tražiš u partnerima\n• nerviraš se na ljude koji je imaju\n• ljuljaš se između ekstrema (previše pasivno → previše silovito)\n\nTarot pomaže da brzo uočiš obrasce polariteta.\n\nU arkanama ove lekcije:\n• The Lovers = izbor + integracija (ne samo romantika).\n• The Empress = prijemčivost, kreativnost, negovanje, istina tela.\n• The Chariot = smer, volja, disciplina, kretanje napred.\n\nČesti obrasci neravnoteže:\n• Previše Chariot: kontrola, guranje, nikad ne primaš.\n• Previše Empress: čekanje, nada, negovanje drugih uz izbegavanje akcije.\n• Lovers zaglavljen: previše razmišljanja o “pravom” izboru umesto da izabereš i učiš.\n\nProbaj ovo (3 pitanja):\n1) Koja energija mi sada nedostaje: prijemčivost ili inicijativa?\n2) Gde stalno tražim od drugih da nose kvalitet koji mogu i sam da vežbam? (nežnost, odlučnost, struktura, igra…)\n3) Koje je jedno uravnoteženo ponašanje koje mogu danas da uradim? (jasna granica + nežan zahtev; odmor + jedna fokusirana akcija)\n\nUnutrašnji polaritet postaje supermoć kada je prisvojen: možeš biti mekan bez pasivnosti i snažan bez grubosti."
+        },
+        "self": {
+            "title": "Sopstvo (Integracija)",
+            "oneLiner": "Integracija i usklađenost — osećaj unutrašnje koherentnosti.",
+            "arcana": [
+                "The Sun",
+                "Temperance",
+                "The World"
+            ],
+            "body": "U jungovskim terminima, Sopstvo nije ego. Ego je ono za koga misliš da si danas; Sopstvo je organizujući centar celovitosti — osećaj da si iznutra usklađen.\n\nKada nisi usklađen, život deluje bučno:\n• stalno preispitivanje\n• ugađanje drugima\n• jurenje odobravanja\n• izbori koji lepo izgledaju, ali deluju pogrešno\n\nTarot može da otkrije usklađenost tako što pokaže ono što tvoja psiha već zna.\n\nU arkanama ove lekcije:\n• The Sun = jasnoća, istina koja greje (ne razotkriva radi kazne).\n• Temperance = integracija: mešanje suprotnosti u ritam koji funkcioniše.\n• The World = završetak, koherentnost, “ovo je moje da živim.”\n\nIzbor usklađen sa Sopstvom je često jednostavniji nego što ego želi:\n• smanjuje unutrašnji konflikt\n• poštuje tvoje vrednosti\n• traži manje izgovora\n\nProbaj ovo (1 minut):\n1) Napiši dve opcije koje razmatraš.\n2) Pitaj se: “Koja opcija me dugoročno čini celovitijim — čak i ako je kratkoročno neprijatna?”\n3) Imenuj istinu koju stalno razvodnjavaš da bi “sačuvao mir”.\n\nUsklađenost nije raspoloženje. To je praksa. Svaki iskren izbor je mali čin individuacije."
+        },
+        "individuation": {
+            "title": "Individuacija (Putovanje Lude)",
+            "oneLiner": "Rast je ponovljena integracija, ne jedan veliki proboj.",
+            "arcana": [
+                "Hermit",
+                "Judgement",
+                "The World"
+            ],
+            "body": "Individuacija je Jungova reč za to da postaješ svoj — namerno.\n\nTo nije sebičnost i nije izolacija. To je spor proces:\n• integrisanja onoga što si odbacio\n• odvajanja svojih vrednosti od tuđih očekivanja\n• građenja života koji se poklapa sa tvojom unutrašnjom istinom\n\nMožeš osetiti da se individuacija dešava kada:\n• prestaneš da se dokazuješ radi odobravanja\n• tvoje granice postanu mirne umesto dramatične\n• tvoje odluke postanu jednostavnije (čak i ako su teže)\n\nU arkanama ove lekcije:\n• The Hermit = unutrašnji autoritet, samoća koja razjašnjava.\n• Judgement = iskren “alarm”: “Ovo poglavlje je završeno.”\n• The World = koherentnost: možeš da stojiš iza svojih izbora.\n\nProbaj ovo (2 minuta):\n1) Imenuj jednu ulogu koju si umoran da igraš.\n2) Imenuj jednu istinu koju stalno umanjuješ da izbegneš konflikt.\n3) Izaberi jednu malu akciju koja dokazuje tvoju istinu (granica, zahtev, “ne”, promena rasporeda).\n\nIndividuacija nije nagla transformacija. To je obrazac: istina → granica → dosledno ponašanje."
+        },
+        "hero": {
+            "title": "Heroj",
+            "oneLiner": "Hrabrost + disciplina + smer (bez drame).",
+            "arcana": [
+                "Strength",
+                "Fool",
+                "The Emperor"
+            ],
+            "body": "Arhetip Heroja je deo tebe koji može da počne, istraje i ojača kroz izazov.\n\nHeroj nije “uvek samouveren.” Heroj je spreman.\nKreće se i pored straha — i uči iz posledica.\n\nKada je Heroj blokiran, često vidiš:\n• odlaganje maskirano perfekcionizmom\n• čekanje “motivacije”\n• život kao kritičar umesto kao učesnik\n\nU arkanama ove lekcije:\n• Strength = stabilna hrabrost, regulacija nervnog sistema, nežna moć.\n• The Emperor = struktura, odgovornost, jasne odluke.\n• The Fool = prvi korak, više poverenja u iskustvo nego u izvesnost.\n\nZdrava energija Heroja izgleda kao:\n• mali plan\n• dosledna akcija\n• saosećanje kada posrneš\n\nProbaj ovo (1 minut):\n1) Koji je sledeći *sićušan* korak koji mogu danas da uradim? (maks 10 minuta)\n2) Koja struktura ga podržava? (vreme, granica, odgovornost)\n3) Koja je jedna hrabra rečenica koju mogu da izgovorim? (jasno “ne”, direktan zahtev, iskreno priznanje)\n\nRad Heroja nije u pobedi. Poenta je da postaješ osoba koja nastavlja da se pojavljuje."
+        },
+        "wiseGuide": {
+            "title": "Mudri vodič",
+            "oneLiner": "Razlučivanje, učenje i iskreno unutrašnje slušanje.",
+            "arcana": [
+                "Star",
+                "The Hierophant",
+                "The High Priestess"
+            ],
+            "body": "Arhetip Mudrog vodiča je tvoj unutrašnji mentor: uvid, perspektiva i miran smer.\n\nTo je glas koji kaže:\n• “Uspori.”\n• “Pogledaj ponovo.”\n• “Koje je pravo pitanje?”\n\nKada izgubiš kontakt s ovim arhetipom, život postaje reaktivan:\n• juriš hitnost\n• previše razmišljaš, premalo osećaš\n• slušaš savete straha\n\nU arkanama ove lekcije:\n• The Hierophant = mudrost kroz tradiciju, smisao, vrednosti i učenje.\n• The High Priestess = intuicija, prepoznavanje obrazaca, tiho znanje.\n• The Star = nada koja je prizemljena: dugoročna orijentacija.\n\nProbaj ovo (3 podsticaja):\n1) Kada bih verovao svom unutrašnjem mentoru, šta bih prestao da “pregovaram” sa sobom?\n2) Šta već znam, ali stalno odlažem?\n3) Koji je sledeći korak sa najviše saosećanja — ne najbrži?\n\nEnergija Mudrog vodiča ne viče. Ona organizuje tvoju pažnju dok prava akcija ne postane očigledna."
+        },
+        "trickster": {
+            "title": "Trikster",
+            "oneLiner": "Poremećaj koji može da te oslobodi — ili saplete.",
+            "arcana": [
+                "The Magician",
+                "The Fool",
+                "The Tower"
+            ],
+            "body": "Arhetip Trikstera je deo psihe koji remeti lažnu izvesnost.\n\nPojavljuje se kao humor, haos, preokret i “obrti u priči” — ne da bi te uništio, već da bi olabavio stisak rigidnih uloga.\n\nKada je Trikster nesvestan, može izgledati kao:\n• samosabotaža tik pred napredak\n• kompulzivno skretanje pažnje\n• izbegavanje odgovornosti kroz šale\n• provociranje drame da bi se izbegla ranjivost\n\nKada je Trikster integrisan, postaje:\n• kreativno rešavanje problema\n• fleksibilnost pod pritiskom\n• sposobnost da se nasmeješ i ipak izabereš mudro\n\nU arkanama ove lekcije:\n• The Magician = veština, improvizacija, korišćenje onoga što imaš.\n• The Fool = sloboda i rizik, izlazak iz scenarija.\n• The Tower = rušenje laži (bolno, ali iskreno).\n\nProbaj ovo (2 minuta):\n1) Gde “igram igrice” umesto da kažem istinu?\n2) Šta izbegavam da osetim tako što sam stalno zauzet, duhovit ili nepredvidiv?\n3) Koja je jedna “prava” akcija danas? (jasna poruka, rok, granica, jedan fokusiran zadatak)\n\nEnergija Trikstera je učitelj. Lomi masku — da bi živeo sa manje iluzije i više stvarnog izbora."
+        },
+        "greatMother": {
+            "title": "Velika Majka (briga naspram kontrole)",
+            "oneLiner": "Briga, zaštita i senka preterane kontrole.",
+            "arcana": [
+                "The Empress",
+                "Queen of Cups",
+                "The Devil"
+            ],
+            "body": "Arhetip Velike Majke je energija brige, zaštite, negovanja i pripadanja — ali ima dva lica.\n\nZdrava energija Majke:\n• podržava rast\n• stvara sigurnost\n• pomaže ti da se odmoriš i oporaviš\n\nNezdrava energija Majke (senka):\n• guši\n• kontroliše “za tvoje dobro”\n• drži te zavisnim\n• pretvara brigu u krivicu\n\nOvaj arhetip živi i u tebi kao briga o sebi i “roditeljstvo prema sebi”.\n\nU arkanama ove lekcije:\n• The Empress = negovanje, kreativnost, mudrost tela.\n• Queen of Cups = emocionalno držanje, empatija, nežne granice.\n• The Devil = vezanost i “veze krivice” koje se maskiraju kao ljubav.\n\nProbaj ovo (3 pitanja):\n1) Gde mešam ljubav sa obavezom?\n2) Kakva briga mi danas stvarno treba: odmor, hrana, kretanje, ohrabrenje, struktura?\n3) Koja granica štiti moj nervni sistem? (manje kontakta, manje usluga, bez spasavanja, jasniji zahtevi)\n\nEnergija Velike Majke postaje lekovita kada podržava tvoju autonomiju — briga koja ti pomaže da stojiš na svojim nogama."
+        },
+        "deathRenewal": {
+            "title": "Smrt i obnova",
+            "oneLiner": "Završeci koji prave prostor za sledeću iskrenu fazu.",
+            "arcana": [
+                "Death",
+                "Judgement",
+                "The Tower"
+            ],
+            "body": "Smrt i obnova je arhetip završetaka koji čine život mogućim.\n\nJungovski rast zahteva simboličnu smrt:\n• identitet koji si prerastao\n• fantaziju o tome kako bi stvari “trebalo” da budu\n• obrazac u odnosima koji se stalno ponavlja\n\nAko odbijaš završetke, obnova postaje stagnacija. Ako prihvatiš završetke, obnova postaje snaga.\n\nU arkanama ove lekcije:\n• Death = dovršavanje, čist rez, iskreno “zbogom”.\n• The Tower = iznenadna istina, potres koji uklanja iluziju.\n• Judgement = poziv u novo poglavlje: “Ovo si ti sada.”\n\nProbaj ovo (2 minuta):\n1) Koje je poglavlje već završeno — čak i ako sam i dalje emotivno vezan?\n2) Čega se bojim da ću izgubiti ako pustim? (identitet, odobravanje, kontrolu)\n3) Koji je jedan ritual zatvaranja koji mogu da uradim? (obriši nit poruka, napiši oproštajno pismo, promeni rutinu, očisti prostor)\n\nObnova nije magični reset. To je ono što postaje moguće kada prestaneš da hraniš ono što je mrtvo i počneš da poštuješ ono što želi da živi."
+        },
+        "projection": {
+            "title": "Projekcija (videti sebe u drugima)",
+            "oneLiner": "Projekcija pretvara unutrašnji materijal u spoljašnju dramu.",
+            "arcana": [
+                "The Moon",
+                "Devil",
+                "Sun"
+            ],
+            "body": "Projekcija je kada doživljavaš nešto u drugoj osobi, a to zapravo pripada tvom unutrašnjem svetu.\n\nMože biti negativno:\n• “Oni su arogantni.” (a ti poričeš sopstveni ponos ili samopouzdanje)\n• “Oni su sebični.” (a ti sebi ne dozvoljavaš svoje potrebe)\n\nA može biti i pozitivno:\n• “Oni su neverovatni.” (vidiš sopstveni nerealizovani potencijal)\n\nProjekcija nije moralni neuspeh. To je psihološka prečica: um radije vidi spolja ono što još ne može da drži iznutra.\n\nU arkanama ove lekcije:\n• The Moon = nejasnoća + projekcija: priče iz straha popunjavaju praznine.\n• The Devil = vezanost: projekcija postaje “udica”.\n• The Sun = jasnoća: videti šta jeste, bez priče.\n\nProbaj ovo (3 koraka):\n1) Izaberi jaku reakciju: divljenje ili iritaciju.\n2) Pitaj: “Koji kvalitet vidim?” Zatim: “Gde mala verzija toga živi u meni?”\n3) Uradi jednu akciju vraćanja sebi:\n   • Ako je divljenje: vežbaj taj kvalitet 10 minuta danas.\n   • Ako je iritacija: postavi granicu ili priznaj potrebu koju kriješ.\n\nKada vratiš projekcije sebi, odnosi postaju čistiji. Prestaješ da se boriš sa fantomima i počinješ da se baviš stvarnošću — uključujući i sopstvenu moć."
+        }
+    }
+}

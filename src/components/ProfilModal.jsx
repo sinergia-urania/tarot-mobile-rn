@@ -234,18 +234,30 @@ const ProfilModal = ({
             <Text style={styles.sectionText}>
               {t('common:profile.gender.label', { defaultValue: 'Pol:' })}
             </Text>
+
+            {/* START: Gender dropdown (SCROLLVIEW umesto MODAL + lepši stil) */}
             <DropDownPicker
               open={openGender}
               setOpen={setOpenGender}
               value={gender}
               setValue={setGender}
               items={genderOpcijeI18n}
-              listMode="MODAL"
+              listMode="SCROLLVIEW"
+              dropDownDirection="AUTO"
+              dropDownContainerStyle={styles.pickerDropDown}
+              scrollViewProps={{ nestedScrollEnabled: true, showsVerticalScrollIndicator: true }}
+              onOpen={() => {
+                setOpenZnak(false);
+                setOpenPodznak(false);
+              }}
+              textStyle={styles.pickerText}
+              placeholderStyle={styles.pickerPlaceholder}
               placeholder={t('common:placeholders.selectGender', { defaultValue: 'Izaberi pol' })}
-              style={{ marginBottom: openGender ? 60 : 8, zIndex: 4000 }}
+              style={[styles.pickerField, { marginBottom: openGender ? 180 : 8, zIndex: 4000 }]}
               zIndex={4000}
               zIndexInverse={1100}
             />
+            {/* END: Gender dropdown (SCROLLVIEW umesto MODAL + lepši stil) */}
 
             {/* Astropodaci */}
             <View style={{ marginTop: 12, marginBottom: 6 }}>
@@ -278,35 +290,75 @@ const ProfilModal = ({
               <Text style={styles.sectionText}>
                 {t('common:profile.sunSign', { defaultValue: 'Znak:' })}
               </Text>
+
+              {/* START: Znak dropdown (SCROLLVIEW + skrol lista) */}
               <DropDownPicker
                 open={openZnak}
                 setOpen={setOpenZnak}
                 value={znak}
                 setValue={setZnak}
                 items={znakoviI18n}
-                listMode="MODAL"
+                listMode="SCROLLVIEW"
+                dropDownDirection="AUTO"
+                dropDownContainerStyle={styles.pickerDropDown}
+                scrollViewProps={{ nestedScrollEnabled: true, showsVerticalScrollIndicator: true }}
+                onOpen={() => {
+                  setOpenGender(false);
+                  setOpenPodznak(false);
+                }}
+                textStyle={styles.pickerText}
+                placeholderStyle={styles.pickerPlaceholder}
                 placeholder={t('common:placeholders.pickSign', { defaultValue: 'Izaberi znak' })}
-                style={{ marginBottom: openZnak ? 60 : 8, zIndex: 3000 }}
+                style={[styles.pickerField, { marginBottom: openZnak ? 240 : 8, zIndex: 3000 }]}
                 zIndex={3000}
                 zIndexInverse={1000}
               />
+              {/* END: Znak dropdown (SCROLLVIEW + skrol lista) */}
 
               <Text style={styles.sectionText}>
                 {t('common:profile.ascendant', { defaultValue: 'Podznak:' })}
               </Text>
+
+              {/* START: Podznak dropdown (SCROLLVIEW + skrol lista) */}
               <DropDownPicker
                 open={openPodznak}
                 setOpen={setOpenPodznak}
                 value={podznak}
                 setValue={setPodznak}
                 items={znakoviI18n}
-                listMode="MODAL"
+                listMode="SCROLLVIEW"
+                dropDownDirection="AUTO"
+                dropDownContainerStyle={styles.pickerDropDown}
+                scrollViewProps={{ nestedScrollEnabled: true, showsVerticalScrollIndicator: true }}
+                onOpen={() => {
+                  setOpenGender(false);
+                  setOpenZnak(false);
+                }}
+                textStyle={styles.pickerText}
+                placeholderStyle={styles.pickerPlaceholder}
                 placeholder={t('common:placeholders.pickAscendant', { defaultValue: 'Izaberi podznak' })}
-                style={{ marginBottom: openPodznak ? 60 : 8, zIndex: 2000 }}
+                style={[styles.pickerField, { marginBottom: openPodznak ? 240 : 8, zIndex: 2000 }]}
                 zIndex={2000}
                 zIndexInverse={900}
               />
+              {/* END: Podznak dropdown (SCROLLVIEW + skrol lista) */}
             </View>
+
+            {/* START: Odjavi se pre Sačuvaj (da “Zatvori” ne bude između retkih akcija) */}
+            {user && (
+              <TouchableOpacity
+                style={[styles.logoutBtn, { marginTop: 18, marginBottom: 6 }]}
+                onPress={async () => {
+                  await logout();
+                  onClose();
+                }}
+              >
+                <Text style={{ color: '#f87171' }}>
+                  {t('common:buttons.logout', { defaultValue: 'Odjavi se' })}
+                </Text>
+              </TouchableOpacity>
+            )}
+            {/* END: Odjavi se pre Sačuvaj */}
 
             <TouchableOpacity style={styles.sectionCloseBtn} onPress={sacuvajProfil}>
               <Text style={{ color: '#facc15' }}>
@@ -314,12 +366,16 @@ const ProfilModal = ({
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.sectionCloseBtn} onPress={onClose}>
+            {/* START: malo veći razmak pre “Zatvori” */}
+            <TouchableOpacity style={[styles.sectionCloseBtn, { marginTop: 26 }]} onPress={onClose}>
               <Text style={{ color: '#facc15' }}>
                 {t('common:buttons.close', { defaultValue: 'Zatvori' })}
               </Text>
             </TouchableOpacity>
+            {/* END: malo veći razmak pre “Zatvori” */}
 
+            {/* START: stari “Odjavi se” blok isključen (premesten iznad Sačuvaj) */}
+            {/*
             {user && (
               <TouchableOpacity
                 style={styles.logoutBtn}
@@ -333,6 +389,8 @@ const ProfilModal = ({
                 </Text>
               </TouchableOpacity>
             )}
+            */}
+            {/* END: stari “Odjavi se” blok isključen */}
           </ScrollView>
         </View>
       </View>
@@ -406,6 +464,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     fontSize: 14,
   },
+
+  // START: styling za dropdown prikaz (bez novih biblioteka)
+  pickerField: {
+    backgroundColor: '#232323',
+    borderColor: '#facc15',
+    borderWidth: 1,
+    borderRadius: 10,
+    minHeight: 44,
+  },
+  pickerDropDown: {
+    backgroundColor: '#232323',
+    borderColor: '#facc15',
+    borderWidth: 1,
+    borderRadius: 10,
+    maxHeight: 220, // omogućava skrol (znak/podznak)
+  },
+  pickerText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  pickerPlaceholder: {
+    color: '#ccc',
+  },
+  // END: styling za dropdown prikaz (bez novih biblioteka)
 });
 
 export default ProfilModal;

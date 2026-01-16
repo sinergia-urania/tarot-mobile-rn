@@ -20,18 +20,18 @@
     "label": "En résumé :"
   },
   "houses": [
-    "Maison I (Soi)",
-    "Maison II (Finances)",
-    "Maison III (Communication)",
-    "Maison IV (Foyer & Famille)",
-    "Maison V (Créativité)",
-    "Maison VI (Santé)",
-    "Maison VII (Partenariats)",
-    "Maison VIII (Transformation)",
-    "Maison IX (Voyages & Croyances)",
-    "Maison X (Carrière)",
-    "Maison XI (Ami·e·s & Communauté)",
-    "Maison XII (Subconscient)"
+    "1. domaine (Personnalité)",
+    "2. domaine (Finances)",
+    "3. domaine (Communication)",
+    "4. domaine (Foyer et famille)",
+    "5. domaine (Créativité)",
+    "6. domaine (Santé)",
+    "7. domaine (Partenariats)",
+    "8. domaine (Transformation)",
+    "9. domaine (Voyages et croyances)",
+    "10. domaine (Carrière)",
+    "11. domaine (Amis et communauté)",
+    "12. domaine (Subconscient)"
   ],
   "celticPositions": [
     "1. Situation présente",

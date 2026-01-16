@@ -1,0 +1,155 @@
+{
+    "jungLessons": {
+        "home": {
+            "title": "Jungian Archetypes",
+            "subtitle": "12 micro-lessons blending Tarot symbolism with Jung’s psychology."
+        },
+        "list": {
+            "title": "Jungian Archetypes",
+            "subtitle": "A guided mini-course: archetypes, patterns, and practical reflection."
+        },
+        "detail": {
+            "kicker": "Micro-lesson",
+            "lesson": "Lesson",
+            "relatedArcana": "Related Major Arcana",
+            "prompts": "Reflection Prompts",
+            "jungQuestions": "Explore Jung Questions",
+            "markComplete": "Mark as complete",
+            "completed": "Completed ✓",
+            "notFound": "Lesson not found.",
+            "backToLessons": "Back to lessons",
+            "goHome": "Home",
+            "explore": {
+                "title": "Explore",
+                "tarotTitle": "Tarot meanings",
+                "tarotSub": "Open Major Arcana meanings",
+                "jungTitle": "Explore Jung Questions",
+                "jungSub": "Pick a question and interpret with cards",
+                "jungPriceNote": "Reading: 100 🪙"
+            }
+        },
+        "progress": {
+            "note": "Progress tracking is disabled (AsyncStorage not installed)."
+        },
+        "introArchetypes": {
+            "title": "Tarot as Archetypal Language",
+            "oneLiner": "Tarot as a symbolic mirror — not a certainty machine.",
+            "arcana": [
+                "The Fool",
+                "The Magician",
+                "The High Priestess"
+            ],
+            "body": "Tarot and Jung speak the same native tongue: symbols.\n\nIn Jungian psychology, an archetype isn’t a “type of person” — it’s a deep pattern of human experience (like The Seeker, The Protector, The Rebel). Archetypes shape how we feel, choose, attach, avoid, and grow — often before we can explain it logically.\n\nTarot works best when you stop treating it like a prediction device and start using it as a mirror. A card image doesn’t hand you certainty — it highlights a pattern: a fear, a desire, a conflict, a value, a blind spot.\n\nA simple archetypal way to read:\n1) Name the tension: What is the living question here?\n2) Spot the role: Who am I being in this story (Hero, Caretaker, Trickster, Judge, Lover)?\n3) Choose a behavior: What is one action that matches my values — even 1%?\n\nCommon trap: asking Tarot to calm anxiety (“Tell me what will happen so I can relax.”). That often makes the mind more dependent on certainty. A Jung-informed reading does the opposite: it returns agency.\n\nTry this (2 minutes):\n• Write one sentence: “Right now I’m afraid that…”\n• Then: “The pattern I keep repeating is…”\n• Finally: “My next honest step is…”\n\nIf you use Tarot like this, it becomes a tool for individuation — not drama, not doom, and not blind optimism. Just truth, gently revealed."
+        },
+        "persona": {
+            "title": "Persona",
+            "oneLiner": "The role you perform — useful until it becomes a cage.",
+            "arcana": [
+                "The Emperor",
+                "The Hierophant",
+                "Justice"
+            ],
+            "body": "Jung used the word Persona to describe the “social mask” we wear to function in the world. It’s not fake — it’s adaptive. The problem starts when you confuse the mask with the whole face.\n\nPersona says: “Be competent.” “Be good.” “Be the strong one.” “Be the chill one.” It helps you belong. But if you over-identify with it, it becomes a cage: you perform instead of relate.\n\nIn Tarot, Persona themes often show up as structure, rules, reputation, and judgment — cards like The Emperor (control/role), The Hierophant (norms/approval), and Justice (image, fairness, correctness). None of these are ‘bad’ — they become heavy when they’re the only way you know how to be.\n\nSigns you’re stuck in Persona:\n• You feel safe only when you’re impressive, useful, or agreeable.\n• You hide needs until they become resentment.\n• You choose what looks right over what feels true.\n\nA Jung-friendly move is not “rip the mask off.” It’s graded authenticity.\n\nTry this (3 steps):\n1) Name the role: “I’m acting as the ____.” (Leader, Helper, Good Child, Expert, Peacemaker…)\n2) Name what it protects: “This role protects me from ____.” (rejection, conflict, shame, failure…)\n3) Do 10% more truth: one small act of honest presence (a clear boundary, a real feeling, a simple request).\n\nPersona becomes healthy again when it’s a tool — not an identity. You can still be respected *and* real. That combination is where relationships and decisions get lighter."
+        },
+        "shadow": {
+            "title": "Shadow",
+            "oneLiner": "What you reject or hide often returns as a trigger.",
+            "arcana": [
+                "The Moon",
+                "The Devil",
+                "Death"
+            ],
+            "body": "The Shadow is the part of you that got exiled: traits, needs, emotions, desires, and impulses that didn’t feel “safe” to show.\n\nThe Shadow isn’t evil. It’s unowned life-energy. When it stays unconscious, it shows up as:\n• overreactions (a small thing feels huge)\n• shame loops\n• self-sabotage\n• intense judgment of others\n\nTarot mirrors Shadow work beautifully because it speaks in images instead of excuses.\n\nIn this lesson’s arcana:\n• The Moon = ambiguity, fear-stories, projection, the mind filling gaps.\n• The Devil = attachment, compulsion, bargaining with discomfort (“just one more…”).\n• Death = the clean ending: letting an identity or habit die so something real can live.\n\nA practical Shadow move is not “fix myself.” It’s: “Tell the truth and choose one boundary.”\n\nTry this (2 minutes):\n1) Name the trigger: “When I see ____ in someone, I feel ____.”\n2) Find the hidden mirror: “A small version of that lives in me as ____.” (even if you hate it)\n3) Choose a boundary: one behavior you stop feeding (doom scrolling, pleading, rescuing, checking, overexplaining).\n\nShadow integration looks like calm power: less drama, more clarity. You don’t become perfect — you become whole enough to act with honesty."
+        },
+        "animaAnimus": {
+            "title": "Anima & Animus (Inner Polarity)",
+            "oneLiner": "Inner polarity shapes attraction, conflict, and creativity.",
+            "arcana": [
+                "The Lovers",
+                "The Empress",
+                "The Chariot"
+            ],
+            "body": "Jung used Anima/Animus to describe inner polarity: complementary energies inside you (receptive/active, intuitive/rational, feeling/deciding). It’s not about gender — it’s about balance.\n\nWhen one side gets ignored, you often outsource it:\n• you seek it obsessively in partners\n• you resent people who embody it\n• you swing between extremes (too passive → too forceful)\n\nTarot helps you spot polarity patterns fast.\n\nIn this lesson’s arcana:\n• The Lovers = choice + integration (not just romance).\n• The Empress = receptivity, creativity, nourishment, body-truth.\n• The Chariot = direction, will, discipline, forward movement.\n\nCommon imbalance patterns:\n• Too much Chariot: controlling, pushing, never receiving.\n• Too much Empress: waiting, hoping, nurturing others but avoiding action.\n• Lovers stuck: overthinking the “right” choice instead of choosing and learning.\n\nTry this (3 questions):\n1) Which energy is missing right now: receptivity or initiative?\n2) Where do I keep asking others to carry a quality I could practice? (tenderness, decisiveness, structure, play…)\n3) What is one balanced behavior I can do today? (a clear boundary + a gentle request; rest + one focused action)\n\nInner polarity becomes a superpower when it’s owned: you can be soft without being passive, and strong without being harsh."
+        },
+        "self": {
+            "title": "The Self (Integration)",
+            "oneLiner": "Integration and alignment — the feeling of inner coherence.",
+            "arcana": [
+                "The Sun",
+                "Temperance",
+                "The World"
+            ],
+            "body": "In Jungian terms, the Self is not the ego. The ego is who you think you are today; the Self is the organizing center of wholeness — the feeling of being aligned inside.\n\nWhen you’re out of alignment, life feels noisy:\n• constant second-guessing\n• people-pleasing\n• chasing approval\n• choices that look good but feel wrong\n\nTarot can reveal alignment by showing what your psyche already knows.\n\nIn this lesson’s arcana:\n• The Sun = clarity, truth that warms (not exposes for punishment).\n• Temperance = integration: blending opposites into a workable rhythm.\n• The World = completion, coherence, “this is mine to live.”\n\nA Self-aligned choice is often simpler than the ego wants:\n• it reduces inner conflict\n• it respects your values\n• it requires fewer excuses\n\nTry this (1 minute):\n1) Write two options you’re considering.\n2) Ask: “Which option makes me feel more whole long-term — even if it’s uncomfortable short-term?”\n3) Name the truth you keep negotiating away to keep the peace.\n\nAlignment isn’t a mood. It’s a practice. Each honest choice is a small act of individuation."
+        },
+        "individuation": {
+            "title": "Individuation (The Fool’s Journey)",
+            "oneLiner": "Growth is repeated integration, not a single breakthrough.",
+            "arcana": [
+                "Hermit",
+                "Judgement",
+                "The World"
+            ],
+            "body": "Individuation is Jung’s word for becoming yourself on purpose.\n\nIt’s not selfishness and it’s not isolation. It’s the slow process of:\n• integrating what you’ve rejected\n• separating your values from other people’s expectations\n• building a life that matches your inner truth\n\nYou can feel individuation happening when:\n• you stop performing for approval\n• your boundaries become calm instead of dramatic\n• your decisions get simpler (even if they’re harder)\n\nIn this lesson’s arcana:\n• The Hermit = inner authority, solitude that clarifies.\n• Judgement = an honest wake-up call: “This chapter is over.”\n• The World = coherence: you can stand behind your choices.\n\nTry this (2 minutes):\n1) Name one role you’re tired of playing.\n2) Name one truth you keep minimizing to avoid conflict.\n3) Choose one small action that proves your truth (a boundary, a request, a “no,” a schedule change).\n\nIndividuation isn’t a sudden transformation. It’s a pattern: truth → boundary → consistent behavior."
+        },
+        "hero": {
+            "title": "The Hero",
+            "oneLiner": "Courage + discipline + direction (not drama).",
+            "arcana": [
+                "Strength",
+                "Fool",
+                "The Emperor"
+            ],
+            "body": "The Hero archetype is the part of you that can start, persist, and grow stronger through challenge.\n\nThe Hero is not “always confident.” The Hero is willing.\nIt moves even with fear — and learns from the consequences.\n\nWhen the Hero is blocked, you often see:\n• procrastination disguised as perfection\n• waiting for “motivation”\n• living as a critic instead of a participant\n\nIn this lesson’s arcana:\n• Strength = steady courage, nervous system regulation, gentle power.\n• The Emperor = structure, responsibility, clear decisions.\n• The Fool = the first step, trusting experience more than certainty.\n\nHealthy Hero energy looks like:\n• a small plan\n• consistent action\n• compassion when you stumble\n\nTry this (1 minute):\n1) What is the next *tiny* step I can take today? (10 minutes max)\n2) What structure supports it? (time, boundary, accountability)\n3) What’s one brave sentence I can say? (a clear “no,” a direct request, an honest admission)\n\nHero work isn’t about winning. It’s about becoming the kind of person who keeps showing up."
+        },
+        "wiseGuide": {
+            "title": "The Wise Guide",
+            "oneLiner": "Discernment, study, and honest inner listening.",
+            "arcana": [
+                "Star",
+                "The Hierophant",
+                "The High Priestess"
+            ],
+            "body": "The Wise Guide archetype is your inner mentor: insight, perspective, and calm direction.\n\nIt’s the voice that says:\n• “Slow down.”\n• “Look again.”\n• “What’s the real question?”\n\nWhen you lose contact with this archetype, life feels reactive:\n• you chase urgency\n• you overthink and underfeel\n• you take advice from fear\n\nIn this lesson’s arcana:\n• The Hierophant = wisdom through tradition, meaning, values, and learning.\n• The High Priestess = intuition, pattern recognition, quiet knowing.\n• The Star = hope that is grounded: a long-term orientation.\n\nTry this (3 prompts):\n1) If I trusted my inner mentor, what would I stop negotiating?\n2) What do I already know but keep postponing?\n3) What is the most compassionate next step — not the fastest?\n\nWise Guide energy doesn’t shout. It organizes your attention until the right action becomes obvious."
+        },
+        "trickster": {
+            "title": "The Trickster",
+            "oneLiner": "Disruption that can free you — or trip you.",
+            "arcana": [
+                "The Magician",
+                "The Fool",
+                "The Tower"
+            ],
+            "body": "The Trickster archetype is the part of the psyche that disrupts false certainty.\n\nIt shows up as humor, chaos, reversal, and “plot twists” — not to destroy you, but to loosen the grip of rigid roles.\n\nWhen Trickster is unconscious, it can look like:\n• self-sabotage right before progress\n• compulsive distraction\n• dodging responsibility with jokes\n• provoking drama to avoid vulnerability\n\nWhen Trickster is integrated, it becomes:\n• creative problem-solving\n• flexibility under pressure\n• the ability to laugh and still choose wisely\n\nIn this lesson’s arcana:\n• The Magician = skill, improvisation, using what’s available.\n• The Fool = freedom and risk, stepping outside the script.\n• The Tower = the collapse of a lie (painful, but honest).\n\nTry this (2 minutes):\n1) Where am I playing games instead of telling the truth?\n2) What am I avoiding feeling by staying busy, funny, or unpredictable?\n3) What is one “straight” action today? (a clear message, a deadline, a boundary, one focused task)\n\nTrickster energy is a teacher. It breaks the mask — so you can live with less illusion and more real choice."
+        },
+        "greatMother": {
+            "title": "The Great Mother (Nurture vs Control)",
+            "oneLiner": "Care, protection, and the shadow of over-control.",
+            "arcana": [
+                "The Empress",
+                "Queen of Cups",
+                "The Devil"
+            ],
+            "body": "The Great Mother archetype is the energy of care, protection, nourishment, and belonging — but it has two faces.\n\nHealthy Mother energy:\n• supports growth\n• creates safety\n• helps you rest and repair\n\nUnhealthy Mother energy (the shadow side):\n• smothers\n• controls “for your own good”\n• keeps you dependent\n• turns care into guilt\n\nThis archetype also lives inside you as self-care and self-parenting.\n\nIn this lesson’s arcana:\n• The Empress = nourishment, creativity, body-wisdom.\n• The Queen of Cups = emotional holding, empathy, gentle boundaries.\n• The Devil = attachment and guilt-bonds that masquerade as love.\n\nTry this (3 questions):\n1) Where do I confuse love with obligation?\n2) What kind of care do I actually need today: rest, food, movement, reassurance, structure?\n3) What boundary protects my nervous system? (less contact, fewer favors, no rescuing, clearer requests)\n\nGreat Mother energy becomes healing when it supports your autonomy — care that helps you stand on your own feet."
+        },
+        "deathRenewal": {
+            "title": "Death & Renewal",
+            "oneLiner": "Endings that create space for the next honest phase.",
+            "arcana": [
+                "Death",
+                "Judgement",
+                "The Tower"
+            ],
+            "body": "Death & Renewal is the archetype of endings that make life possible.\n\nJungian growth requires symbolic death:\n• an identity you outgrew\n• a fantasy of how things “should” be\n• a relationship pattern that keeps repeating\n\nIf you refuse endings, renewal turns into stagnation. If you accept endings, renewal becomes strength.\n\nIn this lesson’s arcana:\n• Death = completion, the clean cut, the honest goodbye.\n• The Tower = sudden truth, disruption that removes illusion.\n• Judgement = the call to a new chapter: “This is who you are now.”\n\nTry this (2 minutes):\n1) What chapter is already over — even if I’m still emotionally attached?\n2) What am I afraid I’ll lose if I let go? (identity, approval, control)\n3) What is one ritual of closure I can do? (delete the thread, write the goodbye letter, change the routine, clean the space)\n\nRenewal isn’t a magical reset. It’s what becomes possible when you stop feeding what’s dead and start honoring what wants to live."
+        },
+        "projection": {
+            "title": "Projection (Seeing Yourself in Others)",
+            "oneLiner": "Projection turns inner material into external drama.",
+            "arcana": [
+                "The Moon",
+                "Devil",
+                "Sun"
+            ],
+            "body": "Projection is when you experience something in someone else that actually belongs to your own inner world.\n\nIt can be negative:\n• “They’re arrogant.” (but you deny your own pride or confidence)\n• “They’re selfish.” (but you don’t allow your own needs)\n\nAnd it can be positive:\n• “They’re amazing.” (you’re seeing your own unrealized potential)\n\nProjection is not a moral failure. It’s a psychological shortcut: the mind prefers to see outside what it can’t yet hold inside.\n\nIn this lesson’s arcana:\n• The Moon = ambiguity + projection: fear-stories fill the blanks.\n• The Devil = attachment: the projection becomes a hook.\n• The Sun = clarity: seeing what is, without the story.\n\nTry this (3 steps):\n1) Pick a strong reaction: admiration or irritation.\n2) Ask: “What quality am I seeing?” Then: “Where does a small version of this live in me?”\n3) Take one reclaiming action:\n   • If it’s admiration: practice the quality for 10 minutes today.\n   • If it’s irritation: set a boundary or admit a need you’ve been hiding.\n\nWhen you reclaim projections, relationships get cleaner. You stop fighting phantoms and start dealing with reality — including your own power."
+        }
+    }
+}

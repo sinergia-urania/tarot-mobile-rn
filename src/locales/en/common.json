@@ -321,12 +321,14 @@
       "yesNo": "$t(menu.yesNo)",
       "meanings": "$t(menu.meanings)",
       "history": "$t(menu.history)",
-      "access": "$t(menu.access)"
+      "access": "$t(menu.access)",
+      "jungLessons": "Jungian Archetypes"
     },
     "info": {
       "allSpreads": "$t(info.allSpreads)",
       "dailyCard": "$t(info.dailyCard)",
-      "yesNo": "$t(info.yesNo)"
+      "yesNo": "$t(info.yesNo)",
+      "jungLessons": "A mini-course of 12 lessons blending Jung’s archetypes with Tarot symbolism—focused on reflection, not prediction."
     },
     "watchAdForCoins": "$t(watchAdForCoins)"
   },

@@ -647,6 +647,7 @@ const styles = StyleSheet.create({
   },
   dangerZone: {
     marginTop: 18,
+    marginBottom: 10,
     padding: 14,
     borderRadius: 12,
     borderWidth: 1,
@@ -680,7 +681,7 @@ const styles = StyleSheet.create({
 
   // zajednički “tamni okvir” CTA
   sectionCloseBtn: {
-    marginTop: 16,
+    marginTop: 20,
     alignSelf: 'center',
     paddingVertical: 6,
     paddingHorizontal: 16,

@@ -42,7 +42,10 @@ const IzborKarataModal = ({
   layoutTemplate = [],
   pitanje = "",
   tip = "",
-  subtip = "",           // <-- DODATO: sada možeš primati subtip kroz props
+  subtip = "",
+  jungLessonId = null,
+  jungQuestionId = null,
+  jungTags = [],
   shuffleId,
   allCardKeys = [],
 }) => {
@@ -367,6 +370,9 @@ const IzborKarataModal = ({
         pitanje,
         tip,
         subtip,
+        jungLessonId,
+        jungQuestionId,
+        jungTags,
         cena: cenaOtvaranja,
         layoutTemplate,
       });

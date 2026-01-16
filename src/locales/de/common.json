@@ -321,12 +321,14 @@
       "yesNo": "$t(menu.yesNo)",
       "meanings": "$t(menu.meanings)",
       "history": "$t(menu.history)",
-      "access": "$t(menu.access)"
+      "access": "$t(menu.access)",
+      "jungLessons": "Jungsche Archetypen"
     },
     "info": {
       "allSpreads": "$t(info.allSpreads)",
       "dailyCard": "$t(info.dailyCard)",
-      "yesNo": "$t(info.yesNo)"
+      "yesNo": "$t(info.yesNo)",
+      "jungLessons": "Minikurs mit 12 Lektionen, der Jungsche Archetypen mit der Symbolik des Tarot verbindet – Fokus auf Reflexion, nicht auf Vorhersage."
     },
     "watchAdForCoins": "$t(watchAdForCoins)"
   },

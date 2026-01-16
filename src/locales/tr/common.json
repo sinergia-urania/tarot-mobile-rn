@@ -321,12 +321,14 @@
       "yesNo": "$t(menu.yesNo)",
       "meanings": "$t(menu.meanings)",
       "history": "$t(menu.history)",
-      "access": "$t(menu.access)"
+      "access": "$t(menu.access)",
+      "jungLessons": "Jungçu arketipler"
     },
     "info": {
       "allSpreads": "$t(info.allSpreads)",
       "dailyCard": "$t(info.dailyCard)",
-      "yesNo": "$t(info.yesNo)"
+      "yesNo": "$t(info.yesNo)",
+      "jungLessons": "Jungçu arketipleri Tarot sembolizmiyle birleştiren 12 derslik mini курс — odak tahmin değil, öz-farkındalık ve düşünme."
     },
     "watchAdForCoins": "$t(watchAdForCoins)"
   },

@@ -1,0 +1,134 @@
+{
+    "screen": {
+        "title": "Jung soruları",
+        "subtitle": "30 düşünme dürtüsü (kehanet değil).",
+        "filterAll": "Tümü",
+        "filterThisLesson": "Bu ders"
+    },
+    "opening": {
+        "title": "Jung arketipleri",
+        "subtitle": "Seçilmiş bir sorudan birini seç (kendi sorunu yazmadan).",
+        "chooseCards": "Kartları seç",
+        "priceLine": "Fiyat: {{price}} • Bakiye: {{balance}}"
+    },
+    "intro_01": {
+        "question": "Şu anda durumumu şekillendiren arketipsel tema nedir?",
+        "why": "Durumu anlamlı bir kalıp olarak çerçeveler (kehanet değil) ve düşünmeyi odaklı, ayakları yere basan hâle getirir."
+    },
+    "intro_02": {
+        "question": "Kesinlik ararken neyi kontrol etmeye çalışıyorum ve bunu bırakmama ne yardımcı olur?",
+        "why": "Kaygıyla geleceği kontrol etme döngüsünden, eylem gücüne ve pratik sonraki adımlara geçiş sağlar."
+    },
+    "persona_01": {
+        "question": "Nerede Persona’mla fazla özdeşleşiyorum ve o neyi koruyor?",
+        "why": "Tutunduğun rolü ve altındaki korkuyu görünür kılar; böylece daha dürüst seçimler yapmak kolaylaşır."
+    },
+    "persona_02": {
+        "question": "Bu durumda %10 daha otantik görünsem ne değişirdi?",
+        "why": "Pratik ve güvenli tutar — küçük otantiklik denemeleri uçlara gitmekten daha kolaydır."
+    },
+    "shadow_01": {
+        "question": "Gölge’m bu tetikleyici üzerinden bana ne göstermeye çalışıyor?",
+        "why": "Tetikleyicileri bilgiye çevirir; otomatik tepkiler yerine içgörüyle yanıt vermeni sağlar."
+    },
+    "shadow_02": {
+        "question": "Kendime itiraf etmekten kaçındığım şey ne ve neden?",
+        "why": "İlerlemeyi tıkayan eksik gerçeği bulur ve düşünmeyi dürüst tutar."
+    },
+    "shadow_03": {
+        "question": "Şu anda hangi sınır, kendini sabote etmeyi azaltırdı?",
+        "why": "İçgörüyü davranışa çevirir — sınırlar, tekrar eden kalıpları değiştirmenin hızlı yoludur."
+    },
+    "anima_01": {
+        "question": "Hangi içsel kutupluluk denge istiyor: alıcılık vs inisiyatif, sezgi vs mantık?",
+        "why": "Dengesizliği fark etmene ve durumu dengeleyecek eksik enerjiyi seçmene yardım eder."
+    },
+    "anima_02": {
+        "question": "Hangi niteliği sürekli başkalarının benim yerime taşımasını istiyorum?",
+        "why": "Projeksiyon/bağımlılığı görünür kılar ve kişisel gücü geri verir (başkalarına devrettiğini geri alırsın)."
+    },
+    "self_01": {
+        "question": "Hangi seçim, daha derin Benliğimle en çok hizalı olurdu?",
+        "why": "Kısa vadeli rahatlıktan çok uzun vadeli hizalanmayı öne alır; düşünmenin daha gerçek hissetmesini sağlar."
+    },
+    "self_02": {
+        "question": "Huzuru korumak için hangi gerçeği susuyor ya da yumuşatıyorum?",
+        "why": "İnsanları memnun etme döngülerini açığa çıkarır ve neyin onurlandırılması ya da söylenmesi gerektiğini netleştirir."
+    },
+    "indiv_01": {
+        "question": "Şu an hangi tekrar eden yaşam dersi entegre olmak istiyor?",
+        "why": "Bugünkü problemi daha büyük bir büyüme temasıyla bağlar — kalıpları zaman içinde takip etmek için harika."
+    },
+    "indiv_02": {
+        "question": "Bu bölümde büyüyüp geride bırakma zamanı gelen şey ne?",
+        "why": "Aynı sonuçları tekrar tekrar üreten eskimiş kimliği/inancı adlandırır."
+    },
+    "indiv_03": {
+        "question": "Daha fazla bütünlüğe doğru bir sonraki dürüst %1 adımım ne?",
+        "why": "İlerlemeyi gerçekçi kılar — küçük adımlar, belirsiz büyük hedeflerden daha yapılabilirdir."
+    },
+    "hero_01": {
+        "question": "İlerlemek için nerede yoğunluğa değil, cesaret ve disipline ihtiyacım var?",
+        "why": "Sürdürülebilir ilerlemeyi duygusal yükselişlerden ayırır ve gerçek eyleme odaklar."
+    },
+    "hero_02": {
+        "question": "Hangi taahhütten kaçınıyorum ve onu sürdürülebilir kılacak şey ne?",
+        "why": "Korkunun altındaki gerçek bağlılığı bulur ve onu taşınabilir hâle getirir."
+    },
+    "guide_01": {
+        "question": "Zaten ne biliyorum ama inatla görmezden geliyorum?",
+        "why": "Kafa karışıklığını keser — çoğu zaman cevap zaten bilinir ama duygusal olarak rahatsız edicidir."
+    },
+    "guide_02": {
+        "question": "Karar vermeden önce hangi bilgiye ya da desteğe ihtiyacım var?",
+        "why": "Dürtüsel seçimleri önler ve güvenle karar vermek için neyin eksik olduğunu netleştirir."
+    },
+    "guide_03": {
+        "question": "Gelecekteki daha bilge hâlim bana bir sonraki adım olarak ne yapmamı söylerdi?",
+        "why": "Stresten mesafe yaratır ve daha sakin, stratejik bir sonraki adımı ortaya çıkarır."
+    },
+    "trick_01": {
+        "question": "Bu durumda nerede bahane üretiyor veya “oyun oynuyor”, yüzleşmekten kaçıyorum?",
+        "why": "Seni takılı tutan zihinsel kestirmeleri yakalar ve dürüstlüğe geri getirir."
+    },
+    "trick_02": {
+        "question": "Hangi kaçınma kalıbı mizah, dikkat dağıtma ya da dürtüsellik olarak ortaya çıkıyor?",
+        "why": "Kendini sabote etmeyi erken yakalamana yardım eder — özellikle “iyiyim ya” maskesini."
+    },
+    "trick_03": {
+        "question": "Gerçeği güvenli biçimde ortaya çıkarabilecek küçük, oyunbaz bir deney ne olabilir?",
+        "why": "Ya hep ya hiç hamleleri yerine merakı ve düşük riskli denemeyi teşvik eder."
+    },
+    "mother_01": {
+        "question": "Nerede bakımı kontrolle karıştırıyorum (kendim için ya da başkaları için)?",
+        "why": "Yardım etmenin aslında kaygı olup olmadığını netleştirir; böylece daha sağlıklı destek seçebilirsin."
+    },
+    "mother_02": {
+        "question": "Neyi beslemeliyim — ve neyi artık mümkün kılmayı bırakmalıyım?",
+        "why": "Büyümeyi desteklemekle kalıpları desteklemeyi ayırır (ilişkiler ve alışkanlıklar için çok kritik)."
+    },
+    "death_01": {
+        "question": "Ne bitiyor (sessizce bile) ve ne bırakılmak istiyor?",
+        "why": "Kapanışı kriz olmadan önce fark etmene yardım eder."
+    },
+    "death_02": {
+        "question": "Hangi kimlik ya da inanç, olmakta olduğum şey için artık çok küçük?",
+        "why": "Gerekli içsel kaymayı işaret eder — çoğu zaman gerçek bitiş, öz-imajda olur."
+    },
+    "death_03": {
+        "question": "“Bırakmak”, bu hafta tek bir somut eylem olarak nasıl görünürdü?",
+        "why": "Düşünmeyi ivmeye çevirmek için ölçülebilir bir adımı zorlar."
+    },
+    "proj_01": {
+        "question": "Bu kişi/durum üzerine neyi yansıtıyorum; bende de taşıyor olabileceğim şey ne?",
+        "why": "Suçlamayı azaltır ve netliği geri getirir — projeksiyon gerçekliği çok hızlı çarpıtır."
+    },
+    "proj_02": {
+        "question": "Kendime hangi hikâyeyi anlatıyorum ve gerçekte hangi gerçeklere sahibim?",
+        "why": "Anlatıyı kanıttan ayırır; böylece kararlar daha temiz ve sakin olur."
+    },
+    "proj_03": {
+        "question": "Varsayımsız, adil ve ayakları yere basan bir yorum ne olurdu?",
+        "why": "Düşünmeyi dengeye geri taşır ve duygusal abartıyı azaltır."
+    }
+}

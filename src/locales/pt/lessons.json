@@ -1,0 +1,155 @@
+{
+    "jungLessons": {
+        "home": {
+            "title": "Arquétipos junguianos",
+            "subtitle": "12 microlições que conectam a simbologia do Tarot com a psicologia de Jung."
+        },
+        "list": {
+            "title": "Arquétipos junguianos",
+            "subtitle": "Mini-curso guiado: arquétipos, padrões e reflexão prática."
+        },
+        "detail": {
+            "kicker": "Microlição",
+            "lesson": "Lição",
+            "relatedArcana": "Arcanos Maiores relacionados",
+            "prompts": "Perguntas de reflexão",
+            "jungQuestions": "Explorar perguntas de Jung",
+            "markComplete": "Marcar como concluído",
+            "completed": "Concluído ✓",
+            "notFound": "Lição não encontrada.",
+            "backToLessons": "Voltar às lições",
+            "goHome": "Início",
+            "explore": {
+                "title": "Explorar",
+                "tarotTitle": "Significados do Tarot",
+                "tarotSub": "Abrir significados dos Arcanos Maiores",
+                "jungTitle": "Explorar perguntas de Jung",
+                "jungSub": "Escolha uma pergunta e interprete com as cartas",
+                "jungPriceNote": "Leitura: 100 🪙"
+            }
+        },
+        "progress": {
+            "note": "O acompanhamento de progresso está desativado (AsyncStorage não está instalado)."
+        },
+        "introArchetypes": {
+            "title": "O Tarot como linguagem arquetípica",
+            "oneLiner": "Tarot como espelho simbólico — não uma máquina de certezas.",
+            "arcana": [
+                "The Fool",
+                "The Magician",
+                "The High Priestess"
+            ],
+            "body": "Tarot e Jung falam a mesma língua materna: símbolos.\n\nNa psicologia junguiana, um arquétipo não é um “tipo de pessoa” — é um padrão profundo da experiência humana (como o Buscador, o Protetor, o Rebelde). Arquétipos moldam como sentimos, escolhemos, nos vinculamos, evitamos e crescemos — muitas vezes antes de conseguirmos explicar isso pela lógica.\n\nO Tarot funciona melhor quando você para de tratá-lo como um aparelho de previsão e começa a usá-lo como um espelho. A imagem da carta não te dá certeza — ela destaca um padrão: medo, desejo, conflito, valor, ponto cego.\n\nUm jeito arquetípico simples de ler:\n1) Nomeie a tensão: qual é a “pergunta viva” aqui?\n2) Reconheça o papel: quem sou eu nesta história (Herói, Cuidador, Trickster, Juiz, Amante)?\n3) Escolha um comportamento: qual é uma ação alinhada aos meus valores — nem que seja 1%?\n\nArmadilha comum: pedir ao Tarot para acalmar a ansiedade (“Me diz o que vai acontecer pra eu relaxar.”). Isso costuma deixar a mente ainda mais dependente de certeza. A abordagem junguiana faz o contrário: devolve seu poder de ação.\n\nTenta isso (2 minutos):\n• Escreva uma frase: “Agora eu tenho medo de…”\n• Depois: “O padrão que eu repito é…”\n• Por fim: “Meu próximo passo honesto é…”\n\nSe você usa o Tarot assim, ele vira uma ferramenta de individuação — não drama, não catástrofe e não otimismo cego. Só verdade, revelada com gentileza."
+        },
+        "persona": {
+            "title": "Persona",
+            "oneLiner": "O papel que você interpreta — útil até virar uma gaiola.",
+            "arcana": [
+                "The Emperor",
+                "The Hierophant",
+                "Justice"
+            ],
+            "body": "Jung usou o termo Persona para descrever a “máscara social” que a gente usa para funcionar no mundo. Não é falsidade — é adaptação. O problema começa quando você confunde a máscara com o seu rosto inteiro.\n\nA Persona diz: “Seja competente.” “Seja bom.” “Seja o forte.” “Seja o tranquilo.” Ela ajuda você a pertencer. Mas, se você se identifica demais com ela, vira uma gaiola: você performa em vez de se conectar.\n\nNo Tarot, temas de Persona aparecem como estrutura, regras, reputação e julgamento — cartas como The Emperor (controle/papel), The Hierophant (normas/aprovação) e Justice (autoimagem, justiça, “o certo”). Nada disso é “ruim” — fica pesado quando é o único jeito que você sabe existir.\n\nSinais de que você está preso na Persona:\n• Você só se sente seguro quando é impressionante, útil ou agradável.\n• Você esconde necessidades até virar ressentimento.\n• Você escolhe o que parece certo em vez do que parece verdadeiro.\n\nUm passo junguiano saudável não é “arrancar a máscara”. É autenticidade dosada.\n\nTenta isso (3 passos):\n1) Nomeie o papel: “Eu estou agindo como ____.” (Líder, Ajudador, Bom filho, Especialista, Pacificador…)\n2) Nomeie o que ele protege: “Esse papel me protege de ____.” (rejeição, conflito, vergonha, fracasso…)\n3) 10% mais verdade: um pequeno ato de presença honesta (um limite claro, um sentimento real, um pedido simples).\n\nA Persona volta a ser saudável quando é uma ferramenta — não uma identidade. Dá pra ser respeitado *e* real. Essa combinação deixa relacionamentos e decisões bem mais leves."
+        },
+        "shadow": {
+            "title": "Sombra",
+            "oneLiner": "O que você rejeita ou esconde costuma voltar como gatilho.",
+            "arcana": [
+                "The Moon",
+                "The Devil",
+                "Death"
+            ],
+            "body": "A Sombra é a parte de você que foi “exilada”: traços, necessidades, emoções, desejos e impulsos que não parecia seguro mostrar.\n\nA Sombra não é má. É energia de vida não reconhecida. Quando fica inconsciente, costuma aparecer como:\n• reações desproporcionais (uma coisa pequena parece enorme)\n• loops de vergonha\n• autossabotagem\n• julgamento intenso dos outros\n\nO Tarot reflete muito bem o trabalho com a Sombra porque fala por imagens, não por desculpas.\n\nNos arcanos desta lição:\n• The Moon = ambiguidade, histórias de medo, projeção, a mente preenchendo lacunas.\n• The Devil = apego, compulsão, barganhar com o desconforto (“só mais uma vez…”).\n• Death = um fim limpo: deixar um papel/identidade ou hábito morrer para algo verdadeiro poder viver.\n\nUm passo prático com a Sombra não é “me consertar”. É: “dizer a verdade e escolher um limite”.\n\nTenta isso (2 minutos):\n1) Nomeie o gatilho: “Quando eu vejo ____ em alguém, eu sinto ____.”\n2) Ache o espelho escondido: “Uma versão pequena disso vive em mim como ____.” (mesmo que você não goste)\n3) Escolha um limite: um comportamento que você para de alimentar (doomscrolling, implorar, salvar, checar, explicar demais).\n\nIntegrar a Sombra parece poder calmo: menos drama, mais clareza. Você não vira perfeito — vira inteiro o suficiente pra agir com honestidade."
+        },
+        "animaAnimus": {
+            "title": "Ânima e Ânimus (polaridade interna)",
+            "oneLiner": "A polaridade interna molda atração, conflito e criatividade.",
+            "arcana": [
+                "The Lovers",
+                "The Empress",
+                "The Chariot"
+            ],
+            "body": "Jung usou Ânima/Ânimus para falar de polaridade interna: energias complementares em você (receptivo/ativo, intuitivo/racional, sentir/decidir). Não é sobre gênero — é sobre equilíbrio.\n\nQuando você ignora um lado, costuma “terceirizar” isso:\n• você procura obsessivamente em parceiros\n• você se irrita com pessoas que têm aquilo\n• você oscila entre extremos (passivo demais → intenso demais)\n\nO Tarot ajuda a enxergar padrões de polaridade rapidamente.\n\nNos arcanos desta lição:\n• The Lovers = escolha + integração (não só romance).\n• The Empress = receptividade, criatividade, nutrir, verdade do corpo.\n• The Chariot = direção, vontade, disciplina, avançar.\n\nDesequilíbrios comuns:\n• Chariot demais: controle, pressão, nunca receber.\n• Empress demais: esperar, torcer, nutrir os outros evitando agir.\n• Lovers travado: pensar demais na “escolha certa” em vez de escolher e aprender.\n\nTenta isso (3 perguntas):\n1) Qual energia está faltando agora: receptividade ou iniciativa?\n2) Onde eu peço que outras pessoas carreguem uma qualidade que eu mesmo poderia praticar? (gentileza, decisão, estrutura, leveza…)\n3) Qual comportamento equilibrado eu posso fazer hoje? (limite claro + pedido gentil; descanso + uma ação focada)\n\nA polaridade interna vira superpoder quando é sua: dá pra ser suave sem ser passivo e forte sem ser duro."
+        },
+        "self": {
+            "title": "O Si-mesmo (Integração)",
+            "oneLiner": "Integração e alinhamento — sensação de coerência interna.",
+            "arcana": [
+                "The Sun",
+                "Temperance",
+                "The World"
+            ],
+            "body": "Em termos junguianos, o Si-mesmo não é o ego. O ego é quem você acha que é hoje; o Si-mesmo é o centro organizador da totalidade — a sensação de estar alinhado por dentro.\n\nQuando você não está alinhado, a vida parece barulhenta:\n• dúvida constante\n• agradar os outros\n• correr atrás de aprovação\n• escolhas que parecem boas, mas soam erradas\n\nO Tarot pode revelar alinhamento ao tornar visível o que sua psique já sabe.\n\nNos arcanos desta lição:\n• The Sun = clareza, uma verdade que aquece (não expõe pra punir).\n• Temperance = integração: misturar opostos num ritmo que funciona.\n• The World = fechamento, coerência, “isso é meu para viver”.\n\nUma escolha alinhada ao Si-mesmo costuma ser mais simples do que o ego quer:\n• reduz conflito interno\n• respeita seus valores\n• precisa de menos desculpas\n\nTenta isso (1 minuto):\n1) Escreva duas opções que você está considerando.\n2) Pergunte: “Qual opção me deixa mais inteiro no longo prazo — mesmo que seja desconfortável no curto prazo?”\n3) Nomeie a verdade que você está suavizando pra “manter a paz”.\n\nAlinhamento não é um humor. É uma prática. Cada escolha honesta é um pequeno ato de individuação."
+        },
+        "individuation": {
+            "title": "Individuação (A jornada do Louco)",
+            "oneLiner": "Crescer é integrar repetidamente — não um grande estalo único.",
+            "arcana": [
+                "Hermit",
+                "Judgement",
+                "The World"
+            ],
+            "body": "Individuação é a palavra de Jung para se tornar você — de propósito.\n\nNão é egoísmo nem isolamento. É um processo lento de:\n• integrar o que você rejeitou\n• separar seus valores das expectativas dos outros\n• construir uma vida que combina com sua verdade interna\n\nVocê percebe a individuação quando:\n• para de se provar por aprovação\n• seus limites ficam calmos em vez de dramáticos\n• suas decisões ficam mais simples (mesmo quando mais difíceis)\n\nNos arcanos desta lição:\n• The Hermit = autoridade interna, solitude que clareia.\n• Judgement = um chamado honesto: “este capítulo acabou”.\n• The World = coerência: você consegue sustentar suas escolhas.\n\nTenta isso (2 minutos):\n1) Nomeie um papel que você está cansado de interpretar.\n2) Nomeie uma verdade que você diminui pra evitar conflito.\n3) Escolha uma pequena ação que prove sua verdade (um limite, um pedido, um “não”, uma mudança de plano).\n\nIndividuação não é uma transformação repentina. É um padrão: verdade → limite → comportamento consistente."
+        },
+        "hero": {
+            "title": "O Herói",
+            "oneLiner": "Coragem + disciplina + direção (sem drama).",
+            "arcana": [
+                "Strength",
+                "Fool",
+                "The Emperor"
+            ],
+            "body": "O arquétipo do Herói é a parte de você que consegue começar, sustentar e ficar mais forte através do desafio.\n\nO Herói não é “sempre confiante”. O Herói está disposto.\nEle se move apesar do medo — e aprende com as consequências.\n\nQuando o Herói está travado, costuma aparecer como:\n• procrastinação disfarçada de perfeccionismo\n• esperar “motivação”\n• viver como crítico em vez de participante\n\nNos arcanos desta lição:\n• Strength = coragem estável, regulação do sistema nervoso, força suave.\n• The Emperor = estrutura, responsabilidade, decisões claras.\n• The Fool = primeiro passo, confiar mais na experiência do que na certeza.\n\nEnergia saudável de Herói parece:\n• um plano pequeno\n• ação consistente\n• compaixão quando você tropeça\n\nTenta isso (1 minuto):\n1) Qual é o próximo passo *minúsculo* que eu posso fazer hoje? (máx. 10 minutos)\n2) Que estrutura apoia isso? (horário, limite, responsabilidade)\n3) Qual é uma frase corajosa que eu posso dizer? (um “não” claro, um pedido direto, uma admissão honesta)\n\nO trabalho do Herói não é vencer. É virar a pessoa que continua aparecendo."
+        },
+        "wiseGuide": {
+            "title": "O guia sábio",
+            "oneLiner": "Discernimento, aprendizado e escuta interna honesta.",
+            "arcana": [
+                "Star",
+                "The Hierophant",
+                "The High Priestess"
+            ],
+            "body": "O arquétipo do guia sábio é seu mentor interno: insight, perspectiva e direção tranquila.\n\nÉ a voz que diz:\n• “Vai com calma.”\n• “Olha de novo.”\n• “Qual é a pergunta de verdade?”\n\nQuando você perde contato com esse arquétipo, a vida fica reativa:\n• você corre atrás de urgência\n• pensa demais e sente de menos\n• escuta conselhos do medo\n\nNos arcanos desta lição:\n• The Hierophant = sabedoria via tradição, sentido, valores e aprendizado.\n• The High Priestess = intuição, reconhecimento de padrões, saber silencioso.\n• The Star = esperança aterrada: orientação de longo prazo.\n\nTenta isso (3 estímulos):\n1) Se eu confiasse no meu mentor interno, o que eu pararia de “negociar” comigo mesmo?\n2) O que eu já sei, mas continuo adiando?\n3) Qual é o próximo passo mais compassivo — não o mais rápido?\n\nA energia do guia sábio não grita. Ela organiza sua atenção até a ação certa ficar óbvia."
+        },
+        "trickster": {
+            "title": "O Trickster",
+            "oneLiner": "Uma bagunça que pode libertar — ou te derrubar.",
+            "arcana": [
+                "The Magician",
+                "The Fool",
+                "The Tower"
+            ],
+            "body": "O arquétipo do Trickster é a parte da psique que bagunça certezas falsas.\n\nEle aparece como humor, caos, reviravolta e “plot twist” — não pra te destruir, mas pra afrouxar o aperto de papéis rígidos.\n\nQuando o Trickster está inconsciente, pode parecer:\n• autossabotagem bem antes do progresso\n• distração compulsiva\n• evitar responsabilidade com piadas\n• provocar drama pra evitar vulnerabilidade\n\nQuando o Trickster é integrado, vira:\n• solução criativa de problemas\n• flexibilidade sob pressão\n• capacidade de rir e ainda assim escolher com sabedoria\n\nNos arcanos desta lição:\n• The Magician = habilidade, improviso, usar o que você tem.\n• The Fool = liberdade e risco, sair do roteiro.\n• The Tower = queda de uma mentira (doloroso, mas honesto).\n\nTenta isso (2 minutos):\n1) Onde eu estou “jogando joguinhos” em vez de dizer a verdade?\n2) O que eu evito sentir ficando sempre ocupado, engraçado ou imprevisível?\n3) Qual é uma ação “reta” hoje? (uma mensagem clara, um prazo, um limite, uma tarefa focada)\n\nA energia do Trickster é um professor. Ele quebra a máscara — pra você viver com menos ilusão e mais escolha real."
+        },
+        "greatMother": {
+            "title": "A Grande Mãe (cuidar vs. controlar)",
+            "oneLiner": "Cuidado, proteção e a sombra do controle excessivo.",
+            "arcana": [
+                "The Empress",
+                "Queen of Cups",
+                "The Devil"
+            ],
+            "body": "O arquétipo da Grande Mãe é a energia de cuidado, proteção, nutrição e pertencimento — mas tem dois lados.\n\nEnergia saudável da Mãe:\n• apoia o crescimento\n• cria segurança\n• ajuda você a descansar e se recuperar\n\nEnergia não saudável da Mãe (sombra):\n• sufoca\n• controla “pro seu bem”\n• mantém você dependente\n• transforma cuidado em culpa\n\nEsse arquétipo também vive em você como autocuidado e “parentalidade consigo mesmo”.\n\nNos arcanos desta lição:\n• The Empress = nutrir, criatividade, sabedoria do corpo.\n• Queen of Cups = sustentação emocional, empatia, limites gentis.\n• The Devil = apego e “laços de culpa” disfarçados de amor.\n\nTenta isso (3 perguntas):\n1) Onde eu confundo amor com obrigação?\n2) Que tipo de cuidado eu realmente preciso hoje: descanso, comida, movimento, acolhimento, estrutura?\n3) Que limite protege meu sistema nervoso? (menos contato, menos favores, sem salvar, pedidos mais claros)\n\nA energia da Grande Mãe vira cura quando apoia sua autonomia — cuidado que te ajuda a ficar de pé com as próprias pernas."
+        },
+        "deathRenewal": {
+            "title": "Morte e renovação",
+            "oneLiner": "Finais que criam espaço para a próxima fase honesta.",
+            "arcana": [
+                "Death",
+                "Judgement",
+                "The Tower"
+            ],
+            "body": "Morte e renovação é o arquétipo de finais que tornam a vida possível.\n\nCrescimento junguiano exige morte simbólica:\n• uma identidade que já ficou pequena\n• uma fantasia de como as coisas “deveriam” ser\n• um padrão de relacionamento que se repete\n\nSe você recusa finais, renovação vira estagnação. Se você aceita finais, renovação vira força.\n\nNos arcanos desta lição:\n• Death = encerramento, corte limpo, um adeus honesto.\n• The Tower = verdade repentina, abalo que remove a ilusão.\n• Judgement = chamado para um novo capítulo: “isso é você agora”.\n\nTenta isso (2 minutos):\n1) Que capítulo já acabou — mesmo que eu ainda esteja apegado emocionalmente?\n2) O que eu tenho medo de perder se eu soltar? (identidade, aprovação, controle)\n3) Que ritual de fechamento eu posso fazer? (apagar a conversa, escrever uma carta de despedida, mudar a rotina, organizar o espaço)\n\nRenovação não é um reset mágico. Ela fica possível quando você para de alimentar o que já morreu e começa a honrar o que quer viver."
+        },
+        "projection": {
+            "title": "Projeção (ver a si nos outros)",
+            "oneLiner": "Projeção transforma material interno em drama externo.",
+            "arcana": [
+                "The Moon",
+                "Devil",
+                "Sun"
+            ],
+            "body": "Projeção é quando você vive algo na outra pessoa, mas isso na verdade pertence ao seu mundo interno.\n\nPode ser negativa:\n• “Eles são arrogantes.” (mas você nega seu próprio orgulho ou autoconfiança)\n• “Eles são egoístas.” (mas você não se permite ter necessidades)\n\nE pode ser positiva:\n• “Eles são incríveis.” (você enxerga seu potencial ainda não vivido)\n\nProjeção não é falha moral. É um atalho psicológico: a mente prefere ver fora o que ainda não consegue sustentar por dentro.\n\nNos arcanos desta lição:\n• The Moon = ambiguidade + projeção: histórias de medo preenchem lacunas.\n• Devil = apego: a projeção vira um “gancho”.\n• Sun = clareza: ver o que é — sem a história.\n\nTenta isso (3 passos):\n1) Escolha uma reação forte: admiração ou irritação.\n2) Pergunte: “Que qualidade eu vejo?” Depois: “Onde uma versão pequena disso vive em mim?”\n3) Faça uma ação de devolução a você:\n   • Se for admiração: pratique essa qualidade por 10 minutos hoje.\n   • Se for irritação: coloque um limite ou admita uma necessidade que você tem escondido.\n\nQuando você devolve projeções, relações ficam mais claras. Você para de brigar com fantasmas e volta pro real — incluindo sua própria força."
+        }
+    }
+}

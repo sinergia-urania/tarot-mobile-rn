@@ -321,12 +321,14 @@
       "yesNo": "$t(menu.yesNo)",
       "meanings": "$t(menu.meanings)",
       "history": "$t(menu.history)",
-      "access": "$t(menu.access)"
+      "access": "$t(menu.access)",
+      "jungLessons": "Arketipe Jung"
     },
     "info": {
       "allSpreads": "$t(info.allSpreads)",
       "dailyCard": "$t(info.dailyCard)",
-      "yesNo": "$t(info.yesNo)"
+      "yesNo": "$t(info.yesNo)",
+      "jungLessons": "Mini-kursus 12 pelajaran yang menghubungkan arketipe Jung dengan simbolisme Tarot — fokus pada refleksi, bukan ramalan."
     },
     "watchAdForCoins": "$t(watchAdForCoins)"
   },

@@ -301,7 +301,7 @@ const LoginScreen = () => {
           >
             <View style={styles.btnRow}>
               <MaterialCommunityIcons
-                name="email-send-outline"
+                name="email-outline"
                 size={20}
                 color="#0b1026"
                 style={{ marginRight: 8 }}
