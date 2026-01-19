@@ -18,6 +18,16 @@ import { supabase } from "../utils/supabaseClient";
 const AI_CLIENT_DEBUG = process.env.EXPO_PUBLIC_AI_DEBUG === "1";
 const EDGE_TIMEOUT_MS = Number(process.env.EXPO_PUBLIC_AI_EDGE_TIMEOUT_MS || 60000);
 
+// START: retry config za “cold network” (iOS idle/lock)
+/**
+ * iOS posle dužeg idle/lock-a ume da “proguta” prvi request (DNS/TLS/ruta).
+ * Ovaj retry je namerno mali i okida se samo na tipične network greške
+ * (“Failed to send a request...”, “Network request failed”, “Failed to fetch”).
+ */
+const EDGE_RETRIES = Number(process.env.EXPO_PUBLIC_AI_EDGE_RETRIES || 2); // 0 = bez retry
+const EDGE_RETRY_BASE_DELAY_MS = Number(process.env.EXPO_PUBLIC_AI_EDGE_RETRY_BASE_DELAY_MS || 350);
+// END: retry config za “cold network” (iOS idle/lock)
+
 const dlog = (tag, obj) => {
   if (typeof __DEV__ !== "undefined" && __DEV__ && AI_CLIENT_DEBUG) {
     try { console.log(tag, obj); } catch { }
@@ -43,6 +53,55 @@ function withTimeout(promise, ms) {
   });
 }
 // END: utility — timeout
+
+// START: utility — retry helper za Edge invoke (samo za network hiccup)
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function isTransientNetworkError(err) {
+  const msg = String(err?.message || err || "");
+  return (
+    msg.includes("Failed to send a request to the edge function") ||
+    msg.includes("Failed to send a request to the Edge Function") ||
+    msg.includes("Network request failed") ||
+    msg.includes("Failed to fetch")
+  );
+}
+
+async function invokeEdgeWithRetry(functionName, payload) {
+  let lastErr = null;
+  const max = Math.max(0, EDGE_RETRIES);
+
+  for (let attempt = 0; attempt <= max; attempt++) {
+    try {
+      const invoke = supabase.functions.invoke(functionName, { body: payload });
+      const { data, error } = await withTimeout(invoke, EDGE_TIMEOUT_MS);
+
+      // Retry samo za prolazne network greške (ne retry-ujemo timeout da ne dupliramo rad/naplatu)
+      if (error && isTransientNetworkError(error) && attempt < max) {
+        lastErr = error;
+        const delay = EDGE_RETRY_BASE_DELAY_MS * Math.pow(2, attempt); // 350ms, 700ms, 1400ms...
+        dlog("[AI][retry]", { attempt: attempt + 1, delay, message: error?.message });
+        await sleep(delay);
+        continue;
+      }
+
+      return { data, error };
+    } catch (e) {
+      // Ovo pokriva slučaj da invoke/withTimeout baci (npr. pre nego što dobiješ {data,error})
+      if (isTransientNetworkError(e) && attempt < max) {
+        lastErr = e;
+        const delay = EDGE_RETRY_BASE_DELAY_MS * Math.pow(2, attempt);
+        dlog("[AI][retry-catch]", { attempt: attempt + 1, delay, message: e?.message });
+        await sleep(delay);
+        continue;
+      }
+      throw e;
+    }
+  }
+
+  throw lastErr || new Error("Edge invoke failed after retries");
+}
+// END: utility — retry helper za Edge invoke (samo za network hiccup)
 
 // START: utility — normalizacija odgovora (radi i kada Functions vrati string)
 function normalizeData(data) {
@@ -142,9 +201,9 @@ export async function getAIAnswer(payload) {
       keys: Object.keys(payload || {}),
     });
 
-    // Poziv sa timeout zaštitom
-    const invoke = supabase.functions.invoke("ai-odgovor", { body: payload });
-    const { data, error } = await withTimeout(invoke, EDGE_TIMEOUT_MS);
+    // START: Poziv sa timeout zaštitom + retry za iOS “prvi poziv posle idle-a”
+    const { data, error } = await invokeEdgeWithRetry("ai-odgovor", payload);
+    // END: Poziv sa timeout zaštitom + retry za iOS “prvi poziv posle idle-a”
 
     // HTTP greška iz Functions API-ja
     if (error) {
@@ -166,7 +225,7 @@ export async function getAIAnswer(payload) {
 
     dlog("[AI][invoke->ok]", { model: norm.modelUsed, api: norm.api });
     // Vraćamo raw objekt (kao i ranije), ali sada imamo i norm.* ako nekad zatreba
-    return norm.raw ?? data; // očekuješ { odgovor, sessionId, ... }
+    return norm.raw ?? data; // očekuješ { odgovor, sessionId, . }
   } catch (e) {
     dlog("[AI][invoke->catch]", { code: e?.code, message: e?.message });
     throw e;
@@ -176,7 +235,7 @@ export async function getAIAnswer(payload) {
 
 // START: legacy direct invoke (zadržano samo kao referenca — ne izvršava se)
 /*
-import { supabase } from "../utils/supabaseClient";
+import { supabase } from "./utils/supabaseClient";
 
 export async function getAIAnswer(payload) {
   try {
@@ -205,10 +264,10 @@ export async function getAIAnswer(payload) {
       throw e;
     }
 
-    return data; // očekuješ { odgovor, sessionId, ... }
+    return data; // očekuješ { odgovor, sessionId, . }
   } catch (e) {
     throw e;
   }
 }
 */
-// END: legacy direct invoke (zadržano samo kao referenca)
+// END: legacy direct invoke (zadržano samo kao referenca — ne izvršava se)

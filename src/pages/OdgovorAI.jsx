@@ -271,6 +271,8 @@ const OdgovorAI = () => {
 
   const isJung = String(tip || "").toLowerCase().trim() === "jung";
   const canFollowup = isProTier && !isJung;
+  const planNorm = String(userPlan || "").toLowerCase();
+  const isPaidTier = isProTier || planNorm === "premium" || planNorm === "pro" || planNorm === "proplus";
 
   const prikazaneKarte = izabraneKarte || karte || [];
 
@@ -391,6 +393,7 @@ const OdgovorAI = () => {
 
   // FIX: retry mehanizam sa limitom pokušaja
   const [aiFailed, setAiFailed] = useState(false);
+  const showFreeNote = planNorm === "free" && !isJung && !!aiOdgovor && !aiFailed;
   const retryCountRef = useRef(0);
   const MAX_RETRIES = 2;
 
@@ -926,6 +929,16 @@ const OdgovorAI = () => {
                     {/* END: i18n kontekst */}
                     {aiOdgovor || "Ovo je mesto gde će AI dati odgovor na osnovu odabranih karata."}
                   </Text>
+                  {showFreeNote && (
+                    <View style={styles.freeNoteBox}>
+                      <Text style={styles.freeNoteText}>
+                        {t("ai:aiUpsell.body", {
+                          defaultValue:
+                            "Note: Premium/Pro unlock deeper readings, a larger AI model, and astrological transits.",
+                        })}
+                      </Text>
+                    </View>
+                  )}
 
                   {/* FIX: Retry dugme - prikazuje se samo kad je fail (ne i za "Nedovoljno dukata")
                         NAPOMENA: retryCountRef.current u JSX radi jer setAiOdgovor("") trigeruje rerender */}
@@ -1113,6 +1126,22 @@ const styles = StyleSheet.create({
   followupLabel: { color: "#ffd700", fontSize: 15, marginTop: 6, marginBottom: 2, fontWeight: "600" },
   followupQ: { color: "#fff", fontSize: 15, marginBottom: 6, textAlign: "left" },
   followupA: { color: "#c9c9c9", fontSize: 15, fontStyle: "italic", textAlign: "left" },
+
+  freeNoteBox: {
+    marginTop: 10,
+    backgroundColor: "#ffd70022",
+    borderColor: "#ffd70055",
+    borderWidth: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 10,
+  },
+  freeNoteText: {
+    color: "#ffd700",
+    textAlign: "center",
+    fontSize: 13,
+    lineHeight: 18,
+  },
 
   // FIX: Retry dugme stilovi
   retryBtn: {

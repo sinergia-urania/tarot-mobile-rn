@@ -68,6 +68,11 @@
     "noQuestion": "No hay pregunta.",
     "waitingAI": "Esperando la respuesta de la IA..."
   },
+  "aiUpsell": {
+    "title": "¿Quieres ver todo el potencial?",
+    "body": "PRO/Premium desbloquean lecturas más profundas, un modelo de IA más grande y tránsitos astrológicos.",
+    "cta": "Ver planes"
+  },
   "titles": {
     "yesNoAnswer": "Respuesta a tu pregunta:",
     "settings": "Configuración",
@@ -169,7 +174,8 @@
       "kabbalisticSpread": "Tirada cabalística",
       "aiFollowups": "Seguimientos con IA",
       "historyArchive": "Historial de lecturas",
-      "astrologicalTransits": "Tránsitos astrológicos"
+      "astrologicalTransits": "Tránsitos astrológicos",
+      "jungArchetypes": "Arquetipos junguianos"
     },
     "values": {
       "ads": "Anuncios",

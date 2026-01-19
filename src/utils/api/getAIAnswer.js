@@ -60,8 +60,8 @@ const LG_MAX_CHARS = Number(process.env.EXPO_PUBLIC_AI_LANG_GUARD_MAXCHARS || 60
 function normalizeLangCode(lang) {
   return String(lang || "").split("-")[0].toLowerCase();
 }
-const ALLOWED_LANGS = new Set(["it", "en", "de", "es", "fr", "sr", "pt", "hi"]); // ciljni jezici (IT dozvoljen kao target)
-const SUPPORTED_APP_LANGS = new Set(["en", "de", "pt", "fr", "sr", "hi", "es"]); // app jezici (bez IT)
+const ALLOWED_LANGS = new Set(["en", "de", "pt", "fr", "sr", "hi", "es", "id", "tr"]);
+const SUPPORTED_APP_LANGS = new Set(["en", "de", "pt", "fr", "sr", "hi", "es", "id", "tr"]); // app jezici (bez IT)
 function normalizeAppLang(lang) {
   const n = normalizeLangCode(lang);
   return SUPPORTED_APP_LANGS.has(n) ? n : "en";
@@ -78,7 +78,7 @@ async function detectLangViaEdge({ text, uid, sessionId, selectedModel }) {
   try {
     const prompt =
       `Detect the language of the following text. ` +
-      `Reply with ISO 639-1 code only (e.g., "it","en","de","es","fr","sr","pt","hi","und").\n\n` +
+      `Reply with ISO 639-1 code only (e.g., "en", "de", "pt", "fr", "sr", "hi", "es", "id", "tr","und").\n\n` +
       String(text || "");
     const { data, error } = await supabase.functions.invoke("ai-odgovor", {
       body: {
@@ -102,7 +102,8 @@ async function detectLangViaEdge({ text, uid, sessionId, selectedModel }) {
       out = data?.odgovor ?? data?.answer ?? null;
     }
     out = (out || "").toLowerCase().trim();
-    const m = out.match(/^(it|en|de|es|fr|sr|pt|hi|und)\b/);
+    const m = out.match(/^(en|de|pt|fr|sr|hi|es|id|tr|und)\b/);
+
     return m ? m[1] : null;
   } catch {
     return null;
@@ -110,23 +111,12 @@ async function detectLangViaEdge({ text, uid, sessionId, selectedModel }) {
 }
 // END: tiny AI language detection (on-demand, via Edge)
 
-// START: pickTargetLang helper
-function pickTargetLang({ questionLang, jezikAplikacije, pitanje }) {
-  const q = normalizeLangCode(questionLang);
-  if (q) return q;                           // 1) eksplicitno iz UI
-  if (looksSerbian(String(pitanje || ""))) return "sr"; // 2) ako je i pitanje srpsko
-  return normalizeAppLang(jezikAplikacije);  // 3) fallback: jezik app (bez IT)
-}
-// END: pickTargetLang helper
-
-const VERBOSE = process.env.EXPO_PUBLIC_AI_VERBOSE === "1";
-// START: strip Transitus kada tranziti nisu dozvoljeni
-function stripTransitusIfNotAllowed(text, { tipOtvaranja, tranzitiTekst }) {
+// START: strip Transitus kada tranziti nisu dozvoljeni (safe)
+function stripTransitusIfNotAllowed(text) {
   try {
-    const allow = ["keltski", "astrološko", "drvo"].includes(tipOtvaranja) && !!tranzitiTekst;
-    if (allow) return text;
+    if (!text) return text;
     // Ukloni blok "Transitus:" do prve prazne linije / sledećeg naslova / kraja
-    let out = text.replace(
+    let out = String(text).replace(
       /(^|\n)Transitus\s*:\s*[\s\S]*?(?=\n{2,}|\n##|\n[A-Z][^\n]*:|\n?$)/gi,
       "$1"
     );
@@ -137,12 +127,12 @@ function stripTransitusIfNotAllowed(text, { tipOtvaranja, tranzitiTekst }) {
     return text;
   }
 }
-// END: strip Transitus
+// END: strip Transitus kada tranziti nisu dozvoljeni (safe)
+
 
 export async function getAIAnswer({
   ime,
   pitanje,
-  dodatniKontekst,
   tipOtvaranja,
   subtip,
   podpitanja = [],
@@ -178,25 +168,20 @@ export async function getAIAnswer({
   const MODEL_FREE = process.env.EXPO_PUBLIC_AI_MODEL_FREE || "gpt-4.1-mini";
   const MODEL_PRO = process.env.EXPO_PUBLIC_AI_MODEL_PRO || "gpt-4.1";
   const useProModel = (planCanon === "premium" || planCanon === "pro" || planCanon === "proplus");
-  const model = useProModel ? "gpt-4.1" : "gpt-4.1-mini";
   const selectedModel = useProModel ? MODEL_PRO : MODEL_FREE;
   // END: ProPlus tretman i centralna normalizacija plana
+  // NOVO: hard-lock target jezika na jezik aplikacije
+  const targetLang = normalizeAppLang(jezikAplikacije);
 
-  // START: switch na GPT-4.1 porodicu + ENV override
-  // (ne diramo postojeći `model` iznad; uvodimo `selectedModel` i dalje njega koristimo)
-  // END: switch na GPT-4.1 porodicu + ENV override
-
-  // START: LIGHT ROLLBACK — prepustimo modelu autodetekciju jezika
-  const targetLang = questionLang || null;
   if (__DEV__) {
     dlog("[AI][lang]", {
       questionLang,
-      targetLang: targetLang || "auto",
+      targetLang,
       appLang: jezikAplikacije,
-      mode: "model-autodetect",
+      mode: "appLang-locked",
     });
   }
-  // END: LIGHT ROLLBACK
+  // END: LANGUAGE AXIOM — targetLang = appLang (hard lock)
 
   // START: NOVO – fallback ako userId nije prosleđen
   let uid = userId || null;
@@ -220,6 +205,33 @@ export async function getAIAnswer({
     }
   } catch { /* tiho */ }
   // END: HOTFIX-2
+  // START: TRANSITS entitlement (client-side) — zabrani tranzite za free
+  const planCanonForEnt = normalizePlanCanon(userLevel);
+
+  const tipForEntitlement =
+    String(tipOtvaranja || "").toLowerCase().trim() === "klasicno"
+      ? String(subtip || "").toLowerCase().trim()
+      : String(tipOtvaranja || "").toLowerCase().trim();
+
+  const TRANSIT_TIPS = new Set([
+    "keltski",
+    "drvo",          // = kabalističko u tvom app-u
+    "kabalisticko",
+    "kabalističko",
+    "astrološko",
+    "astrolosko",
+  ]);
+
+  const TRANSIT_PLANS = new Set(["premium", "pro", "proplus"]);
+
+  const canUseTransitsClient =
+    !podpitanjeMod &&
+    TRANSIT_TIPS.has(tipForEntitlement) &&
+    TRANSIT_PLANS.has(planCanonForEnt) &&
+    !!tranzitiTekst;
+
+  const tranzitiTekstEntitled = canUseTransitsClient ? tranzitiTekst : "";
+  // END: TRANSITS entitlement (client-side) — zabrani tranzite za free
 
   // START: uvek koristi buildAIPrompt (glavno + podpitanje)
   let prompt = "";
@@ -229,13 +241,10 @@ export async function getAIAnswer({
     prompt = buildAIPrompt({
       ime,
       pitanje,
-      dodatniKontekst,
       tipOtvaranja,
       subtip,
       podpitanja: [podpitanje],
       jezikAplikacije,
-      jezikPitanja: targetLang || undefined, // hint (ne forsiramo)
-      karte,
       pozicije,
       // START: i18n etikete do buildera
       keltskePozicije,
@@ -254,12 +263,10 @@ export async function getAIAnswer({
     prompt = buildAIPrompt({
       ime,
       pitanje,
-      dodatniKontekst,
       tipOtvaranja,
       subtip,
       podpitanja,
       jezikAplikacije,
-      jezikPitanja: targetLang || undefined, // hint (ne forsiramo)
       karte,
       pozicije,
       // START: i18n etikete do buildera
@@ -271,11 +278,19 @@ export async function getAIAnswer({
       podznak,
       datumrodjenja,
       datumOtvaranja,
-      tranzitiTekst,
+      tranzitiTekst: tranzitiTekstEntitled,
+
       gender,
     });
   }
-  // END: uvek koristi buildAIPrompt (glavno + podpitanje)
+  const LANG_BANNER =
+    `LANGUAGE AXIOM: Reply ONLY in the APP language "${targetLang}". ` +
+    `Ignore the question language. Do not mix languages. ` +
+    `Translate all headings/labels and tarot card names to "${targetLang}". ` +
+    `Preserve formatting. Return only the reading text. ` +
+    `TARGET_LANG=${targetLang}`;
+
+  prompt = `${LANG_BANNER}\n\n${prompt}`;
 
   // START: post-proces — PREMEŠTENO POSLE PARSIRANJA ODGOVORA
   // (ovde NE diramo odgovorText jer još ne postoji)
@@ -340,8 +355,7 @@ export async function getAIAnswer({
           // ostali podaci čisto informativno (server ih ne koristi kada ima prompt)
           pitanje,
           questionLang: questionLang || null,   // zadržavamo radi debug-a
-          targetLang: targetLang || "auto",     // jasno da je puštena autodetekcija
-          dodatniKontekst,
+          targetLang,
           karte,
           pozicije,
           // START: i18n etikete i za debug payload (opciono)
@@ -353,7 +367,7 @@ export async function getAIAnswer({
           podznak,
           datumrodjenja,
           datumOtvaranja,
-          tranzitiTekst,
+          tranzitiTekst: tranzitiTekstEntitled,
           gender,
           // START: model hint – koristimo selectedModel
           modelHint: selectedModel,
@@ -481,23 +495,8 @@ export async function getAIAnswer({
     let _lgReason = null;
     try {
       if (!LG_ON) throw new Error("lang-guard disabled");
-      const trg = pickTargetLang({ questionLang, jezikAplikacije, pitanje });
-
-      // Ako nemamo questionLang i cilj je jezik aplikacije → probaj AI autodetekciju pitanja;
-      // ako ne uspe → eksplicitni fallback na jezik aplikacije (bez IT).
-      let toLang = trg;
-      if ((!questionLang || questionLang === "") && trg === normalizeAppLang(jezikAplikacije)) {
-        const inferred = await detectLangViaEdge({ text: pitanje, uid, sessionId, selectedModel: UTIL_MODEL });
-        if (inferred && inferred !== "und") {
-          toLang = inferred;             // npr. "it"
-          _lgReason = "detected_question";
-        } else {
-          toLang = normalizeAppLang(jezikAplikacije); // fallback: app lang (bez IT)
-          _lgReason = "fallback_app_no_detect";
-        }
-      } else {
-        _lgReason = questionLang ? "explicit_questionLang" : "pick_target_lang";
-      }
+      let toLang = normalizeAppLang(jezikAplikacije);
+      _lgReason = "appLang_locked";
 
       // Ako je cilj nepoznat/van podržanog seta → fallback na jezik aplikacije (bez IT)
       if (!toLang || !ALLOWED_LANGS.has(toLang)) {
@@ -505,26 +504,34 @@ export async function getAIAnswer({
         _lgReason = "fallback_app_invalid_target";
       }
 
-      // START: HI guard — prevod u HI po potrebi (samo ako je cilj hi)
+      // START: LANGUAGE AXIOM — global mismatch translate (radi za bilo koji pogrešan jezik)
       if (
         LG_TRANSLATE_ON &&
-        toLang === "hi" &&
+        !_lgApplied &&
+        toLang &&
         typeof odgovorText === "string" &&
         odgovorText &&
         odgovorText.length <= LG_MAX_CHARS
       ) {
-        const quickHindi = looksHindi(odgovorText);
-        let outLang = quickHindi ? "hi" : await detectLangViaEdge({
-          text: odgovorText.slice(0, 4000),
-          uid,
-          sessionId,
-          selectedModel: UTIL_MODEL
-        });
-        if (outLang !== "hi") {
+        let outLang = null;
+
+        if (toLang === "sr" && looksSerbian(odgovorText)) outLang = "sr";
+        else if (toLang === "hi" && looksHindi(odgovorText)) outLang = "hi";
+        else {
+          outLang = await detectLangViaEdge({
+            text: odgovorText.slice(0, 4000),
+            uid,
+            sessionId,
+            selectedModel: UTIL_MODEL
+          });
+        }
+
+        if (outLang && outLang !== "und" && outLang !== toLang) {
           const translatePrompt =
-            `Translate the following tarot reading to hi (Hindi, Devanagari). ` +
-            `Preserve formatting, lists and emojis. Do not add any preface or extra comments.\n\n` +
-            odgovorText;
+            toLang === "hi"
+              ? `Translate the following tarot reading to hi (Hindi, Devanagari). Preserve formatting, lists and emojis. Do not add any preface or extra comments.\n\n${odgovorText}`
+              : `Translate the following tarot reading to ${toLang}. Preserve formatting, lists and emojis. Do not add any preface or extra comments.\n\n${odgovorText}`;
+
           const { data: tData, error: tErr } = await supabase.functions.invoke("ai-odgovor", {
             body: {
               userId: uid,
@@ -537,43 +544,39 @@ export async function getAIAnswer({
               },
             },
           });
+
           if (!tErr) {
             let fixed = null;
             if (typeof tData === "string") {
-              try {
-                const p = JSON.parse(tData);
-                fixed = p?.odgovor ?? p?.answer ?? null;
-              } catch { }
+              try { const p = JSON.parse(tData); fixed = p?.odgovor ?? p?.answer ?? null; } catch { }
             } else if (tData && typeof tData === "object") {
               fixed = tData?.odgovor ?? tData?.answer ?? null;
             }
+
             if (fixed && typeof fixed === "string") {
-              odgovorText = hiPostEdit(String(fixed)).trim();
+              odgovorText = (toLang === "hi" ? hiPostEdit(String(fixed)) : String(fixed)).trim();
               _lgApplied = true;
-              _lgTarget = "hi";
-              _lgReason = "hi_output_fix";
-              dlog("[AI][lang-guard]", { to: "hi", applied: true, reason: _lgReason });
+              _lgTarget = toLang;
+              _lgReason = "output_lang_mismatch_translate";
+              dlog("[AI][lang-guard]", { to: toLang, applied: true, reason: _lgReason, outLang });
             }
           }
         }
       }
-      // END: HI guard — prevod u HI po potrebi
+      // END: LANGUAGE AXIOM — global mismatch translate
 
       // Prevod samo ako je omogućen, cilj NIJE sr, izlaz "miriše" na srpski, i nije predugačak
-      if (
-        LG_TRANSLATE_ON &&
-        toLang && toLang !== "sr" &&
-        looksSerbian(odgovorText) &&
-        odgovorText.length <= LG_MAX_CHARS
-      ) {
+      if (LG_TRANSLATE_ON && !_lgApplied && toLang && toLang !== "sr" && looksSerbian(odgovorText) && odgovorText.length <= LG_MAX_CHARS) {
         // Potvrdi jezik izlaza jeftinim detektom da smanjiš lažne alarme
+
+
         const outLang = await detectLangViaEdge({
           text: odgovorText.slice(0, 4000),
           uid,
           sessionId,
           selectedModel: UTIL_MODEL
         });
-        if (outLang !== "sr") {
+        if (outLang && outLang !== "sr") {
           dlog("[AI][lang-guard]", { applied: false, reason: "output_not_sr_confirmed", outLang, mode: _lgReason });
           throw new Error("skip-translate-not-sr");
         }
@@ -626,18 +629,19 @@ export async function getAIAnswer({
     }
     // END: language guard (mini fix)
 
-    // START: post-proces — ukloni "Transitus" ako nije dozvoljen (SADA: nakon parsiranja/prevoda)
+    // START: post-proces — ukloni "Transitus" ako nije dozvoljen (entitlement)
     try {
-      const allow = ["keltski", "astrološko", "drvo"].includes(tipOtvaranja) && !!tranzitiTekst;
+      const allow = canUseTransitsClient && !!tranzitiTekstEntitled;
       if (!allow) {
         const beforeScrub2 = odgovorText;
-        odgovorText = stripTransitusIfNotAllowed(odgovorText, { tipOtvaranja, tranzitiTekst });
+        odgovorText = stripTransitusIfNotAllowed(odgovorText);
         if (beforeScrub2 !== odgovorText) {
           dlog("[AI][postprocess]", { removedTransitus: true, tip: tipOtvaranja });
         }
       }
     } catch { }
-    // END: post-proces — ukloni "Transitus"
+    // END: post-proces — ukloni "Transitus" ako nije dozvoljen (entitlement)
+
 
     // START: Approx output i cena (samo log, bez UI promena)
     const approxOutputTokens = Math.ceil(odgovorText.length / 4); // (posle lang-guarda)

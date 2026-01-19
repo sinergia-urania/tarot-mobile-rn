@@ -68,6 +68,11 @@
     "noQuestion": "Keine Frage.",
     "waitingAI": "Warte auf KI-Antwort..."
   },
+  "aiUpsell": {
+    "title": "Willst du das volle Potenzial?",
+    "body": "PRO/Premium schalten tiefere Deutungen, ein größeres KI-Modell und astrologische Transite frei.",
+    "cta": "Pläne ansehen"
+  },
   "titles": {
     "yesNoAnswer": "Antwort auf deine Frage:",
     "settings": "Einstellungen",
@@ -169,7 +174,8 @@
       "kabbalisticSpread": "Kabbalistische Legung / Lebensbaum",
       "aiFollowups": "KI-Rückfragen",
       "historyArchive": "Archiv der Legungen",
-      "astrologicalTransits": "Astrologische Transite"
+      "astrologicalTransits": "Astrologische Transite",
+      "jungArchetypes": "Jungsche Archetypen"
     },
     "values": {
       "ads": "Werbung",

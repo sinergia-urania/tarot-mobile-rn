@@ -68,6 +68,11 @@
     "noQuestion": "कोई प्रश्न नहीं।",
     "waitingAI": "AI उत्तर का इंतज़ार..."
   },
+  "aiUpsell": {
+    "title": "पूरा पोटेंशियल देखना चाहते हैं?",
+    "body": "PRO/Premium में अधिक गहरा विश्लेषण, बड़ा AI मॉडल और ज्योतिषीय ट्रांज़िट्स मिलते हैं।",
+    "cta": "प्लान देखें"
+  },
   "titles": {
     "yesNoAnswer": "आपके प्रश्न का उत्तर:",
     "settings": "सेटिंग्स",
@@ -169,7 +174,8 @@
       "kabbalisticSpread": "कब्बलाहिक स्प्रेड",
       "aiFollowups": "AI अनुवर्ती",
       "historyArchive": "रीडिंग आर्काइव",
-      "astrologicalTransits": "ज्योतिषीय ट्रांज़िट"
+      "astrologicalTransits": "ज्योतिषीय ट्रांज़िट",
+      "jungArchetypes": "युंगियन आदिरूप"
     },
     "values": {
       "ads": "विज्ञापन",

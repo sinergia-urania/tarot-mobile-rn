@@ -68,6 +68,11 @@
     "noQuestion": "No question.",
     "waitingAI": "Waiting for AI response..."
   },
+  "aiUpsell": {
+    "title": "Want the full potential?",
+    "body": "PRO/Premium unlock deeper readings, a larger AI model, and astrological transits.",
+    "cta": "See plans"
+  },
   "titles": {
     "yesNoAnswer": "Answer to your question:",
     "settings": "Settings",
@@ -169,7 +174,8 @@
       "kabbalisticSpread": "Kabbalistic spread",
       "aiFollowups": "AI follow-ups",
       "historyArchive": "Readings archive",
-      "astrologicalTransits": "Astrological transits"
+      "astrologicalTransits": "Astrological transits",
+      "jungArchetypes": "Jung archetypes"
     },
     "values": {
       "ads": "Ads",

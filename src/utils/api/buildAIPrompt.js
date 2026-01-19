@@ -191,12 +191,15 @@ const FOLLOWUP_ENFORCER = `
 const CARDS_FIRST_RULE = `VAŽNO: Karte su primarne. Tranziti su dopuna i ne zamenjuju karte. Ako nema karata, traži novo otvaranje.`.trim();
 // END: light-rollback
 
-// SR jezičko pravilo
+// START: legacy langRule (placeholder "{jezikAplikacije}" zbunjuje model; koristimo langRuleFinal)
+// eslint-disable-next-line no-unused-vars
 const langRule = `
-Odgovaraj ISKLJUČIVO na jeziku na kom je postavljeno pitanje.
-Ako zaista ne možeš da ga prepoznaš ili nije podržan, koristi jezik aplikacije: "{jezikAplikacije}".
-Ne objašnjavaj ova pravila u odgovoru.
+Odgovaraj ISKLJUČIVO na jeziku aplikacije: "{jezikAplikacije}".
+Ignoriši jezik pitanja (pitanje može biti na drugom jeziku).
+Ne mešaj jezike i ne objašnjavaj ova pravila u odgovoru.
 `.trim();
+// END: legacy langRule
+
 
 // HARD: zabrana meta/disclaimera
 const NO_META = `
@@ -208,7 +211,7 @@ Počni direktno sa tumačenjem, bez uvodnih odricanja.
 // AKSIOM — pravila nad svim pravilima
 const AXIOM = `
 AKSIOM — poštuj pre svega:
-1) Uvek odgovaraj na jeziku pitanja (izuzetak samo ako ga zaista ne prepoznaješ/podržavaš — tada koristi jezik aplikacije).
+1) Uvek odgovaraj na jeziku aplikacije (jezik UI).
 2) Bez meta/disclaimera u tekstu.
 3) Karte su primarne; tranzite koristi kao prirodnu dopunu uz konkretne karte/pozicije/oblasti.
    Ako nema karata, ljubazno zatraži novo otvaranje (ne piši čisto astro odgovor).
@@ -222,9 +225,6 @@ const TRANSIT_ELIGIBLE_TIPS = new Set(["keltski", "astrološko", "drvo"]);
 const TRANSIT_REQUIRED_TIPS = new Set(["keltski", "astrološko", "drvo"]);
 // END: transits required map
 
-// START: minimalna detekcija SR vs non-SR + LANG banner
-const detectSr = (q = "") => /[čćšžđČĆŠŽĐ]|[ЉЊЂЋЏА-Яа-я]/.test(q);
-// START: glyph mape za znakove (neutralni simboli za sve jezike)
 const SIGN_GLYPHS = {
   "Ovan": "♈", "Bik": "♉", "Blizanci": "♊", "Rak": "♋", "Lav": "♌", "Devica": "♍",
   "Vaga": "♎", "Škorpija": "♏", "Strelac": "♐", "Jarac": "♑", "Vodolija": "♒", "Ribe": "♓"
@@ -254,7 +254,6 @@ export function buildAIPrompt({
   ime,
   gender,
   pitanje,
-  dodatniKontekst,
   tipOtvaranja,
   subtip,
   podpitanja = [],
@@ -288,19 +287,114 @@ export function buildAIPrompt({
   const pz = valueOrUnknown(podznak);
   const dr = valueOrUnknown(datumrodjenja);
 
-  // START: QLANG + LANG_BANNER
-  const QLANG = jezikPitanja
-    ? String(jezikPitanja).split('-')[0]   // npr. "sr-RS" → "sr"
-    : (detectSr(pitanje) ? 'sr' : null);
-  const LANG_BANNER = ""; // bez bannera koji “zakucava” jezik
+  // START: QLANG + LANG_BANNER (VALIDATE lang codes; ignoriši "non-sr"/"non")
+  const QLANG = (() => {
+    const LANG_OK = new Set(["en", "de", "es", "fr", "pt", "sr", "hi", "tr", "id"]);
+    const appRaw = String(jezikAplikacije || "").split("-")[0].toLowerCase();
+    return (appRaw && LANG_OK.has(appRaw)) ? appRaw : "en";
+  })();
+
+  const LANG_BANNER =
+    `TARGET_LANG (APP_LANGUAGE) = "${QLANG}". ` +
+    `Reply ONLY in this language. Do not mix languages.`;
+
   // END: QLANG + LANG_BANNER
-  // START: JUNG — lokalizacija fiksnih labela (Risk/Opportunity/Summary + potpis)
+  // START: langRuleFinal — jedina istina (TARGET_LANG = app language)
+  const langRuleFinal = `
+  Reply ONLY in the APP language (TARGET_LANG): "${QLANG}".
+  Ignore the question language. Do not mix languages.
+  `.trim();
+
+  // END: langRuleFinal
+
+
+  // START: JUNG — lokalizacija fiksnih labela (TARGET_LANG = app language)
   const JUNG_LEX = (() => {
     const lang = (QLANG || String(jezikAplikacije || "").split("-")[0] || "en").toLowerCase();
-    if (lang === "sr") {
-      return { risk: "Rizik", opp: "Prilika", summary: "Sažetak", signoff: "Una" };
-    }
-    return { risk: "Risk", opp: "Opportunity", summary: "Summary", signoff: "Yours, Una" };
+
+    // START: JUNG_LEX headings (Persona/Shadow/...) localized by TARGET_LANG
+    // (u postojeće return objekte dodaj ovih 5 ključeva)
+    if (lang === "sr") return {
+      risk: "Rizik", opp: "Prilika", summary: "Sažetak", signoff: "Una",
+      persona: "Persona",
+      shadow: "Senka",
+      core: "Centralni arhetip / tema Sopstva",
+      integration: "Integracioni korak",
+      direction: "Pravac",
+    };
+
+    if (lang === "de") return {
+      risk: "Risiko", opp: "Chance", summary: "Zusammenfassung", signoff: "Deine, Una",
+      persona: "Persona",
+      shadow: "Schatten",
+      core: "Kernarchetyp / Selbst-Thema",
+      integration: "Integrationsschritt",
+      direction: "Richtung",
+    };
+
+    if (lang === "es") return {
+      risk: "Riesgo", opp: "Oportunidad", summary: "Resumen", signoff: "Con cariño, Una",
+      persona: "Persona",
+      shadow: "Sombra",
+      core: "Arquetipo central / tema del Sí-mismo",
+      integration: "Paso de integración",
+      direction: "Dirección",
+    };
+
+    if (lang === "fr") return {
+      risk: "Risque", opp: "Opportunité", summary: "Résumé", signoff: "Amitiés, Una",
+      persona: "Persona",
+      shadow: "Ombre",
+      core: "Archétype central / thème du Soi",
+      integration: "Étape d’intégration",
+      direction: "Direction",
+    };
+
+    if (lang === "pt") return {
+      risk: "Risco", opp: "Oportunidade", summary: "Resumo", signoff: "Com carinho, Una",
+      persona: "Persona",
+      shadow: "Sombra",
+      core: "Arquétipo central / tema do Self",
+      integration: "Passo de integração",
+      direction: "Direção",
+    };
+
+    if (lang === "tr") return {
+      risk: "Risk", opp: "Fırsat", summary: "Özet", signoff: "Sevgiler, Una",
+      persona: "Persona",
+      shadow: "Gölge",
+      core: "Çekirdek arketip / Benlik teması",
+      integration: "Entegrasyon adımı",
+      direction: "Yön",
+    };
+
+    if (lang === "id") return {
+      risk: "Risiko", opp: "Peluang", summary: "Ringkasan", signoff: "Salam hangat, Una",
+      persona: "Persona",
+      shadow: "Bayangan",
+      core: "Arketipe inti / tema Diri",
+      integration: "Langkah integrasi",
+      direction: "Arah",
+    };
+
+    if (lang === "hi") return {
+      risk: "जोखिम", opp: "अवसर", summary: "सारांश", signoff: "सप्रेम, Una",
+      persona: "पर्सोना",
+      shadow: "छाया",
+      core: "मुख्य आर्केटाइप / स्व-थीम",
+      integration: "एकीकरण कदम",
+      direction: "दिशा",
+    };
+
+    return {
+      risk: "Risk", opp: "Opportunity", summary: "Summary", signoff: "Yours, Una",
+      persona: "Persona",
+      shadow: "Shadow",
+      core: "Core archetype / Self theme",
+      integration: "Integration step",
+      direction: "Direction",
+    };
+    // END: JUNG_LEX headings (Persona/Shadow/...) localized by TARGET_LANG
   })();
   // END: JUNG — lokalizacija fiksnih labela
 
@@ -321,8 +415,6 @@ export function buildAIPrompt({
     : '';
   // END: word limit – samo za podpitanje
 
-  // Missing astro hint
-  let napomenaProfil = "";
 
   // START: da li su tranziti dozvoljeni (TIP + realan tekst tranzita) i obavezni
   const mustHaveTransits = TRANSIT_REQUIRED_TIPS.has(TIP);
@@ -350,16 +442,19 @@ ${allowTransits ? `\n${IDENTITET_ASTRO_H_NOTE}` : ""}
   // END: identitet — overrideable
   // END: identitet
 
-  // Labels note (SR/EN po QLANG)
+  // START: labelsNoteText — bez sudaranja (ne prevodi layout labele)
   const labelsNoteText =
-    QLANG === 'sr'
-      ? "Napomena: Pozicije/oblasti/sefiroti mogu biti na jeziku aplikacije — možeš ih prevesti ili zadržati neutralno numerisanje. Karte ostaju primarne."
-      : "Note: Positions/areas/Sefirot labels may be in the app language — you may translate them or keep neutral numbering. Cards remain primary.";
+    QLANG === "sr"
+      ? "Napomena: Za layout pozicije/oblasti/sefirote koristi TAČNO prosleđene labele iz inputa i ne prevodi ih. Karte ostaju primarne."
+      : "Note: Use the EXACT provided layout labels for positions/areas/Sefirot; do NOT translate them. Cards remain primary.";
+  // END: labelsNoteText — bez sudaranja
 
   // START: Astro info block — uvek simbolički (neutralan za sve jezike)
   let astroInfo = '';
   const sunSign = zn && zn !== 'unknown' ? `☉ ${SIGN_GLYPHS[zn] || zn}` : null;
   const ascSign = pz && pz !== 'unknown' ? `ASC ${SIGN_GLYPHS[pz] || pz}` : null;
+  const astroOutLine = (sunSign && ascSign) ? `${sunSign} • ${ascSign}` : "";
+
   const dobLine = dr && dr !== 'unknown' ? `${dr}` : null;
   const astroLine = [sunSign, ascSign, dobLine].filter(Boolean).join(' • ');
   if (astroLine) {
@@ -394,41 +489,38 @@ Radiš kroz 5 pozicija: Persona → Senka → Core archetype/Self theme → Inte
   // identitetFinal postoji u template-u, ali za ostale je PRAZAN (nema dupliranja)
   const identitetFinal = (TIP === "jung") ? identitetJung : "";
 
-  // NOTE: legacy no-op placeholders (kept to avoid duplicating astro injection)
-  const astroTekstFinal = "";
-  const houseCheatFinal = "";
-
-
+  // START: JUNG_ENFORCER — headings must be EXACT in TARGET_LANG (no EN leakage)
   const JUNG_ENFORCER = (TIP === "jung") ? `
 – For type "jung": interpret tarot as Jungian archetypal symbolism (reflection + integration), NOT future prediction.
 – Do NOT mention zodiac signs, ASC, transits, timing, “you will/it will happen”, or guarantees.
-– Output must be EXACTLY 5 numbered sections with headings in the answer language:
-  1) Persona
-  2) Shadow
-  3) Core archetype / Self theme
-  4) Integration step
-  5) Direction (developmental direction, not “what will happen”)
-– In section 5 include: Risk: ... and Opportunity: ... (one sentence each).
-– The labels (Risk, Opportunity, Summary) must be written in the SAME LANGUAGE as the question.
-  For example, if the question is in Serbian, use "Rizik", "Prilika", "Sažetak";
-  if in German, use their equivalents in German, etc.
-– The section headings (Persona, Shadow, Core archetype, Integration, Direction) must also be written in the answer language.
+
+– Output must be EXACTLY 5 numbered sections with these EXACT headings (TARGET_LANG):
+  1) ${JUNG_LEX.persona}
+  2) ${JUNG_LEX.shadow}
+  3) ${JUNG_LEX.core}
+  4) ${JUNG_LEX.integration}
+  5) ${JUNG_LEX.direction}
+
+– The labels MUST be written in TARGET_LANG (APP language) using EXACT words:
+  ${JUNG_LEX.risk}, ${JUNG_LEX.opp}, ${JUNG_LEX.summary}
 
 – Section 4 must be exactly 3 bullet actions (short, concrete, doable today).
+– Card-first line rule: In EACH section (1)–(5), the first content line after the heading MUST start with the card name + arrow copied verbatim from the drawn cards list, e.g. "Page of Cups ↑ — ...".
+– Section 4 format: First write ONE short sentence that starts with Card 4 name+arrow (max 18 words), THEN write EXACTLY 3 bullet actions (each actionable, doable today). No extra bullets or paragraphs in section 4.
+
 – AFTER section (5), you MUST finish with EXACTLY two final lines (no extra paragraphs):
-  Summary: <ONE sentence, no name, no signature words>
-  Yours, Una
+  ${JUNG_LEX.summary}: <ONE sentence, no name, no signature words>
+  ${JUNG_LEX.signoff}
 – Do NOT write “In summary, Una” (or any variant). The sign-off must be ONLY the last line.
-– Fidelity rule: You must interpret the EXACT drawn card identity (same card and orientation), but translate the card name into the answer language if needed.
+– Fidelity rule: You must interpret the EXACT drawn card identity (same card and orientation), but translate the card name into TARGET_LANG if needed.
 
 – Section-to-card binding: Section 1 MUST use Card 1, Section 2 MUST use Card 2, ... Section 5 MUST use Card 5 (in order).
 – Card naming: In each section, write the card name EXACTLY as provided for that section (copy it verbatim; do not substitute suits like Cups/Pentacles).
 – Card orientation rule: ↑ = emerging/healthy need/potential; ↓ = blockage/distortion/resistance. Respect this throughout.
 – Keep sections (1)–(3) to max 2–3 sentences each (avoid generic filler).
-
-
 `.trim() : "";
-  // END: JUNG — identitet + strip astro context
+  // END: JUNG_ENFORCER — headings must be EXACT in TARGET_LANG (no EN leakage)
+
 
   // Follow-up context
   const prethodniKontekst = (podpitanja && podpitanja.length > 0 && prethodniOdgovor)
@@ -568,11 +660,11 @@ ${allowTransits ? FLOW_UKLAPANJE : ""}`.trim();
 
   }
 
+  // START: uvodPromptFinal — prevent EN Jung intro leakage
   const uvodPromptFinal =
-    QLANG === 'sr' ? uvodPrompt
-      : QLANG === 'en' ? uvodPromptEN
-        : ""; // ne guramo uvod na “nepoznatom” jeziku
-  // END: EN/SR varijante uvoda
+    (TIP === "jung") ? "" : ((QLANG === "sr") ? uvodPrompt : uvodPromptEN);
+  // END: uvodPromptFinal — prevent EN Jung intro leakage
+
 
   // START: tranziti — anotiraj sa H# (whole-sign po podznaku)
   const tranzitiTekstFinal = allowTransits
@@ -633,7 +725,16 @@ ${allowTransits ? FLOW_UKLAPANJE : ""}`.trim();
       const labels =
         (pozicije && pozicije.length === karte.length)
           ? pozicije
-          : (QLANG === "sr" ? JUNG_LABELS_SR : JUNG_LABELS_EN);
+          // START: JUNG labels fallback — use TARGET_LANG headings (JUNG_LEX)
+          : [
+            `1) ${JUNG_LEX.persona}`,
+            `2) ${JUNG_LEX.shadow}`,
+            `3) ${JUNG_LEX.core}`,
+            `4) ${JUNG_LEX.integration}`,
+            `5) ${JUNG_LEX.direction}`,
+          ];
+      // END: JUNG labels fallback — use TARGET_LANG headings (JUNG_LEX)
+
 
       karteOpis = karte.map((k, i) => {
         const imeK = k?.ime || k?.label || "?";
@@ -688,16 +789,11 @@ Podpitanje: ${podpitanja[0]}
     TIP === "drvo"
       ? `– Pri pominjanju sefirota koristi transliteracije: Keter, Chokhmah, Binah, Chesed, Gevurah, Tiferet, Netzach, Hod, Yesod, Malkhut.`
       : TIP === "astrološko"
-        ? `– Pri pominjanju layout-a koristi “oblast” (1–12) i tačne labele iz inputa.
-– Pri pominjanju tranzita/natalnih kuća koristi isključivo H# (npr. H9) i ne prevodi H#.`
+        ? `– For the layout, use the EXACT provided labels for areas/positions (do not translate them).
+– For transits/natal houses, use only H# (e.g., H9) and never translate H#.`
+
         : "";
   // END: fix terminologijaRule (avoid tagged template "is not a function")
-
-
-  // START: drop imeHint to avoid Serbian anchoring
-  const imeHint = '';
-  // END: drop imeHint to avoid Serbian anchoring
-
   // START: MAIN_DIRECTIVE (astro vs jung)
   const MAIN_DIRECTIVE =
     TIP === "jung"
@@ -707,11 +803,13 @@ Ovo je jungovsko arhetipsko tumačenje kroz tarot karte.
 Fokus: analiza, introspekcija i integracija — ne predviđanje budućnosti.
 Struktura odgovora mora biti TAČNO pet numerisanih sekcija:
 
-1) Persona — svesni identitet koji osoba pokazuje svetu.
-2) Shadow — potisnuti aspekti, unutrašnji konflikt, nesvesno ponašanje.
-3) Core archetype / Self theme — centralni arhetip i glavna tema ličnog razvoja.
-4) Integration step — praktičan korak ili refleksija koja vodi balansiranju Personae i Senke.
-5) Direction — simbolički pravac rasta (ne “šta će se desiti”, već “u kom pravcu vodi proces”).
+// START: MAIN_DIRECTIVE (jung headings localized via JUNG_LEX)
+1) ${JUNG_LEX.persona} — svesni identitet koji osoba pokazuje svetu.
+2) ${JUNG_LEX.shadow} — potisnuti aspekti, unutrašnji konflikt, nesvesno ponašanje.
+3) ${JUNG_LEX.core} — centralni arhetip i glavna tema ličnog razvoja.
+4) ${JUNG_LEX.integration} — praktičan korak ili refleksija koja vodi balansiranju Personae i Senke.
+5) ${JUNG_LEX.direction} — simbolički pravac rasta (ne “šta će se desiti”, već “u kom pravcu vodi proces”).
+// END: MAIN_DIRECTIVE (jung headings localized via JUNG_LEX)
 
 U svakoj sekciji koristi ton stručnog jungovskog analitičara: reflektivan, topao i jasan.
 Ne koristi fraze o budućnosti, predviđanjima, “on/ona te voli”, niti astrologiju.
@@ -740,16 +838,17 @@ Na osnovu pitanja, napiši jasno i empatično tumačenje **primarno iz karata** 
   return `
 ${LANG_BANNER}
 ${AXIOM}
-${langRule}
+${langRuleFinal}
+
 ${NO_META}
 
-${napomenaProfil}
 ${identitet}
 ${identitetFinal}
 ${labelsNoteText}
 
 // START: user question block (triple-quoted, bez navodnika)
-User question (answer in the same language):
+User question (answer in the APP language / TARGET_LANG):
+
 """
 ${pitanje}
 """
@@ -762,7 +861,6 @@ ${astroTekstJungSafe}${houseCheatJungSafe}
 
 
 ${MAIN_DIRECTIVE}
-${astroTekstFinal}${houseCheatFinal}
 ${uvodPromptFinal ? uvodPromptFinal + "\n" : ""}
 
 Tip otvaranja: ${nazivOtvaranja}.
@@ -772,35 +870,39 @@ Izvučene karte po pozicijama:
 ${karteOpis}
 ${datumOtvaranjaBlok}
 ${tranzitiBlock}
-${imeHint}
 ${podpitanjaTekst}
 
 // START: rules-neutral-greeting-and-sign-asc-first-paragraph
-Pravila:
-– Odgovaraj isključivo na osnovu navedenih karata/pozicija (ne izmišljaj dodatne karte).
-– Analiziraj pozicije karata tamo gde ima smisla.
-– Odgovori **na jeziku pitanja**; ako nije podržan, koristi jezik aplikacije ("${jezikAplikacije}").
+Rules:
+– Answer strictly based on the provided cards/positions (do not invent extra cards).
+– Use the position meanings where relevant.
+– Reply ONLY in TARGET_LANG (APP language): "${QLANG}".
+
 ${wordCapRule}
 – Poštuj **AKSIOM** iznad svega, čak i ako nešto drugo u promptu implicira suprotno.
 ${JUNG_ENFORCER ? `\n${JUNG_ENFORCER}\n` : ""}
 ${ime
       ? `– Pozdrav/obraćanje: prva linija odgovora mora biti tačno: **"${ime},"** (bez drugih reči).`
-      : `– Ako ime nije dostupno, započni **neutralnim pozdravom u jeziku pitanja** (sr: "Zdravo,", en: "Hello,", it: "Ciao,").`
+      : `– Ako ime nije dostupno, započni neutralnim pozdravom na jeziku aplikacije (sr: "Zdravo,", en: "Hello,", de: "Hallo,", tr: "Merhaba,", es: "Hola,", fr: "Bonjour,", pt: "Olá,", id: "Halo,", hi: "नमस्ते,").`
+
     }
-${/* START: sign/asc output enforce */""}
+${/* START: astro output line enforce (neutral symbols, no SR leakage) */""}
 ${TIP === "jung"
       ? ""
-      : (znak && podznak)
-        ? `– Ako su poznati Sunčev znak i Podznak (ASC), napiši ih **u prvom pasusu samog odgovora** prirodnom rečenicom na jeziku odgovora (npr. SR: "Kao ${znak} sa ASC ${podznak}, ...", EN: "As a ${znak} with ${podznak} rising, ..."). Ne izmišljaj ako nisu poznati.`
+      : (astroOutLine
+        ? `– If Sun sign and ASC are known: RIGHT AFTER the greeting, on its own line, output EXACTLY this (copy verbatim): "${astroOutLine}". Do NOT rewrite it as a sentence and do NOT add any extra words.`
         : ""
+      )
     }
-${/* END: sign/asc output enforce */""}
+${/* END: astro output line enforce (neutral symbols, no SR leakage) */""}
+
 ${/* START: output style guardrails */""}
 
 ${TIP === "astrološko"
-      ? `– Pošto je ovo otvaranje kroz 12 oblasti: glavni deo odgovora strukturiraj kao numerisan spisak **1–12** u formatu “1. oblast (…): …”. Svaka oblast 1–3 rečenice. Ne piši esej umesto liste.`
+      ? `– Since this is a 12-area spread: structure the main body as a numbered list 1–12 using the EXACT provided area labels (do not translate them). Each item 1–3 sentences; do not write an essay.`
       : ""
     }
+
 ${/* END: output style guardrails */""}
 
 
@@ -814,7 +916,8 @@ ${allowTransits ? `\n${TRANSITS_SCOPE_RULE}\n` : ''}
 ${allowTransits ? '– Inline tranzit napomene rasporedi kroz tekst (nemoj sve u jednom pasusu) i uvek ih veži za konkretnu kuću/poziciju koja već ima sličnu temu.' : ''}
 ${allowTransits ? '– Bar **75%** teksta posveti kartama; tranziti su dopuna, ne osnova tumačenja.' : ''}
 – Nazive karata piši na jeziku odgovora; ako ulaz sadrži engleske “slugove” (npr. "queenOfSwords"), prevedi ih na standardne lokalne nazive.
-– Before sending, perform a **language self-check**: your answer must be in the **same language as the question**; if uncertain or you drifted, **translate the entire answer** to the question's language before sending. **Do not mix languages.**
+– Before sending, perform a **language self-check**: your answer must be in the **APP language (TARGET_LANG)**; if uncertain or you drifted, **translate the entire answer** to TARGET_LANG before sending. **Do not mix languages.**
+
 – **AXIOM FIRST:** While writing, always prioritize the AXIOM above any other preference or hint. If a rule conflicts, follow the AXIOM.
 ${sumarumPravilo}
 ${REQUIRED_TRANSITS_MISSING}
@@ -825,7 +928,8 @@ ${gender === "male" ? '– Obraćaj se korisniku u muškom rodu (izbegavaj žens
 ${gender === "female" ? '– Obraćaj se korisniku u ženskom rodu (izbegavaj muški rod).' : ''}
 ${!gender ? '– Koristi rodno neutralne formulacije (izbegavaj “pozvan/pozvana”, “spreman/spremna”). Umesto toga: “važno je da…”, “pomaže da…”, “obrati pažnju na…”.' : ''}
 
-– Potpiši se jednom kratkom linijom prevedenom na jezik odgovora (npr. EN: "Yours, Una").
+${TIP === "jung" ? "" : '– Potpiši se jednom kratkom linijom prevedenom na jezik odgovora (npr. EN: "Yours, Una").'}
+
 
 // END: rules-neutral-greeting-and-sign-asc-first-paragraph
 
@@ -837,7 +941,8 @@ ${TIP === "jung"
       : "Piši kao iskusan astro-tarot tumač — toplo i podržavajuće."}
 
 
-Kraj poruke.
+End of message.
+
 `.trim();
 }
 

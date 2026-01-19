@@ -68,6 +68,11 @@
     "noQuestion": "Tidak ada pertanyaan.",
     "waitingAI": "Menunggu respons AI..."
   },
+  "aiUpsell": {
+    "title": "Ingin melihat potensi penuhnya?",
+    "body": "PRO/Premium membuka pembacaan yang lebih mendalam, model AI yang lebih besar, dan transit astrologi.",
+    "cta": "Lihat paket"
+  },
   "titles": {
     "yesNoAnswer": "Jawaban atas pertanyaanmu:",
     "settings": "Pengaturan",
@@ -169,7 +174,8 @@
       "kabbalisticSpread": "Tebaran kabbalistik",
       "aiFollowups": "Tindak lanjut AI",
       "historyArchive": "Arsip pembacaan",
-      "astrologicalTransits": "Transit astrologi"
+      "astrologicalTransits": "Transit astrologi",
+      "jungArchetypes": "Arketipe Jung"
     },
     "values": {
       "ads": "Iklan",

@@ -68,6 +68,11 @@
     "noQuestion": "Soru yok.",
     "waitingAI": "Yapay zekâ yanıtı bekleniyor..."
   },
+  "aiUpsell": {
+    "title": "Tüm potansiyeli görmek ister misin?",
+    "body": "PRO/Premium daha derin yorumlar, daha büyük bir yapay zekâ modeli ve astrolojik transitleri açar.",
+    "cta": "Paketleri gör"
+  },
   "titles": {
     "yesNoAnswer": "Sorunuza yanıt:",
     "settings": "Ayarlar",
@@ -169,7 +174,8 @@
       "kabbalisticSpread": "Kabalistik açılım",
       "aiFollowups": "YZ takip soruları",
       "historyArchive": "Açılım arşivi",
-      "astrologicalTransits": "Astrolojik geçişler"
+      "astrologicalTransits": "Astrolojik geçişler",
+      "jungArchetypes": "Jung arketipleri"
     },
     "values": {
       "ads": "Reklamlar",

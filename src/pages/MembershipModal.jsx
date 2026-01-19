@@ -59,6 +59,7 @@ const packages = [
       { label: '', value: 'AI model: Mini', valueKey: 'aiModelMini', color: '#facc15' },
       { label: 'Značenje karata', labelKey: 'meanings', icon: 'bank-outline' },
       { label: 'Klasična otvaranja', labelKey: 'classicSpreads', icon: 'bank-outline' },
+      { label: 'Jungovski arhetipovi', labelKey: 'jungArchetypes', icon: 'bank-outline' },
       { label: 'Keltski krst', labelKey: 'celticCross', icon: 'bank-outline' },
       {
         label: 'Kabalističko otvaranje',
@@ -96,6 +97,7 @@ const packages = [
       { label: '', value: 'AI model: Large', valueKey: 'aiModelLarge', color: '#a8ff76' },
       { label: 'Značenje karata', labelKey: 'meanings', icon: 'bank-outline' },
       { label: 'Klasična otvaranja', labelKey: 'classicSpreads', icon: 'bank-outline' },
+      { label: 'Jungovski arhetipovi', labelKey: 'jungArchetypes', icon: 'bank-outline' },
       { label: 'Keltski krst', labelKey: 'celticCross', icon: 'bank-outline' },
       {
         label: 'Kabalističko otvaranje',
@@ -127,6 +129,7 @@ const packages = [
       { label: '', value: 'AI model: Large', valueKey: 'aiModelLarge', color: '#ae7ffb' },
       { label: 'Značenje karata', labelKey: 'meanings', icon: 'bank-outline' },
       { label: 'Klasična otvaranja', labelKey: 'classicSpreads', icon: 'bank-outline' },
+      { label: 'Jungovski arhetipovi', labelKey: 'jungArchetypes', icon: 'bank-outline' },
       { label: 'Keltski krst', labelKey: 'celticCross', icon: 'bank-outline' },
       {
         label: 'Kabalističko otvaranje',
@@ -148,6 +151,7 @@ const packages = [
       { label: '', value: 'AI model: Large', valueKey: 'aiModelLarge', color: '#ef4444' },
       { label: 'Značenje karata', labelKey: 'meanings', icon: 'bank-outline' },
       { label: 'Klasična otvaranja', labelKey: 'classicSpreads', icon: 'bank-outline' },
+      { label: 'Jungovski arhetipovi', labelKey: 'jungArchetypes', icon: 'bank-outline' },
       { label: 'Keltski krst', labelKey: 'celticCross', icon: 'bank-outline' },
       {
         label: 'Kabalističko otvaranje',

@@ -68,6 +68,11 @@
     "noQuestion": "Nema pitanja.",
     "waitingAI": "Čekam odgovor AI..."
   },
+  "aiUpsell": {
+    "title": "Želiš pun potencijal?",
+    "body": "PRO/Premium otključavaju dublje tumačenje, veći AI model i astro tranzite.",
+    "cta": "Vidi pakete"
+  },
   "titles": {
     "yesNoAnswer": "Odgovor na tvoje pitanje:",
     "settings": "Podešavanja",
@@ -169,7 +174,8 @@
       "kabbalisticSpread": "Kabalističko otvaranje",
       "aiFollowups": "AI potpitanja",
       "historyArchive": "Arhiva otvaranja",
-      "astrologicalTransits": "Astro tranziti"
+      "astrologicalTransits": "Astro tranziti",
+      "jungArchetypes": "Jungovski arhetipovi"
     },
     "values": {
       "ads": "Reklame",
